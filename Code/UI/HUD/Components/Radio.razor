@@ -1,0 +1,92 @@
+@using System;
+@using Sandbox.UI;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+@{
+	var sounds = MySounds;
+	if (sounds == null) return;
+}
+
+<root class="@(IsOpen ? "visible" : "") layout with-background color-borders">
+	@foreach (var TeamSound in sounds.TeamSounds)
+	{
+		@foreach (var RadioEntry in TeamSound.Entries)
+		{
+			// TODO : these hover methods are a little fucky, investigate
+			<div onmouseover="@(() => OnCommandHover(TeamSound.Category, RadioEntry))" onmouseout="@(() => HoverCommand.Reset())" class="radio-command">
+				<button onclick=@(() => PlayCommandFromPress(TeamSound.Category, RadioEntry))>@RadioEntry.Name</button>
+			</div>
+		}
+	}
+</root>
+
+@code
+{
+	private struct RadioCommand
+	{
+		public string Category;
+		public TeamRadioCategory.TeamRadioEntry Entry;
+
+		public void Reset()
+		{
+			Category = "invalid";
+		}
+
+		public bool IsValid()
+		{
+			return Category != "invalid" && Category.IsValidTag();
+		}
+	}
+
+	public RadioSounds MySounds => RadioSounds.All.FirstOrDefault(x => x.Team == PlayerState.Local.Team);
+
+	private RadioCommand HoverCommand;
+	private bool IsOpen;
+
+	// TODO : is there a way to using TeamRadioCategory.TeamRadioEntry?
+	private void PlayCommandFromPress(in string Category, in TeamRadioCategory.TeamRadioEntry Entry)
+	{
+		RadioSounds.CmdPlay(Category, Entry.Name);
+		HoverCommand.Reset();
+	}
+
+	private void OnCommandHover(in string Category, in TeamRadioCategory.TeamRadioEntry Entry)
+	{
+		HoverCommand.Category = Category;
+		HoverCommand.Entry = Entry;
+	}
+
+	bool last_state = false;
+	public override void Tick()
+	{
+		var PlayerPawn = PlayerState.Local.PlayerPawn;
+		if (!PlayerPawn.IsValid())
+		{
+			return;
+		}
+
+		bool Alive = PlayerPawn.IsAlive;
+
+		IsOpen = Input.Down("Radio");
+		IsOpen &= Alive;
+
+		if (IsOpen != last_state)
+		{
+			if (!IsOpen)
+			{
+				if (HoverCommand.IsValid() && Alive)
+				{
+					RadioSounds.CmdPlay(HoverCommand.Category, HoverCommand.Entry.Name);
+				}
+				HoverCommand.Reset();
+			}
+
+			last_state = IsOpen;
+			StateHasChanged();
+		}
+	}
+}

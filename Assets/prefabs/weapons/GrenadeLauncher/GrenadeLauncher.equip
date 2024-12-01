@@ -1,0 +1,26 @@
+{
+  "Name": "Grenade Launcher",
+  "Description": "",
+  "Slot": "Primary",
+  "Team": "Unassigned",
+  "CanOtherTeamPickUp": true,
+  "DropOnDisconnect": false,
+  "Icon": null,
+  "IsPurchasable": true,
+  "Price": 0,
+  "KillReward": 300,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/grenadelauncher/w_grenadelauncher.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/grenadelauncher/vm_grenadelauncher.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_sniper_m700/w_m700.vmdl",
+  "DroppedSize": "8,2,8",
+  "DroppedCenter": "0,0,0",
+  "ArmorReduction": null,
+  "HelmetReduction": null,
+  "__version": 0
+}

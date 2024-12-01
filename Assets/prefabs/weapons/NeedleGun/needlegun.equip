@@ -1,0 +1,26 @@
+{
+  "Name": "Needler",
+  "Description": "",
+  "Slot": "Secondary",
+  "Team": "Unassigned",
+  "CanOtherTeamPickUp": true,
+  "DropOnDisconnect": false,
+  "Icon": "facepunch.doorframe_single_dev/thumb.png",
+  "IsPurchasable": true,
+  "Price": 0,
+  "KillReward": 300,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/needlegun/w_needlegun.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/needlegun/wm_needlegun.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+  "DroppedSize": "8,2,8",
+  "DroppedCenter": "0,0,0",
+  "ArmorReduction": null,
+  "HelmetReduction": null,
+  "__version": 0
+}

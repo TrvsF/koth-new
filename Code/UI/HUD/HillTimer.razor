@@ -1,0 +1,52 @@
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root>
+	<label class="hill-timer" style="left: 10%; color: @(TeamExtensions.GetColor(Team.Terrorist, true).Hex);">
+		@HillTimerT
+	</label>
+
+	<label class="hill-timer" style="left: 90%; color: @(TeamExtensions.GetColor(Team.CounterTerrorist, true).Hex);">
+		@HillTimerCT
+	</label>
+</root>
+
+@code
+{
+	public static HillTimer Instance { get; set; }
+
+	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+
+	string HillTimerT = ""; 
+	string HillTimerCT = ""; 
+
+	public HillTimer()
+	{
+		Instance = this;
+	}
+
+	public override void Tick()
+	{
+		if (!LocalPlayerPawn.IsValid())
+		{
+			return;
+		}
+
+		// TODO : cache
+		var Hills = LocalPlayerPawn.Scene.GetAllComponents<Hill>();
+		if (!Hills.Any()) return;
+
+		var Hill = Hills.First();
+		if (Hill.IsValid())
+		{
+			HillTimerT = Math.Round(Hill.GetTeamsTimeLeft(Team.Terrorist)).ToString();
+			HillTimerCT = Math.Round(Hill.GetTeamsTimeLeft(Team.CounterTerrorist)).ToString();
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

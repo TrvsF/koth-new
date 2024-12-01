@@ -1,0 +1,236 @@
+{
+  "__guid": "60be4b7c-e377-41ce-8407-f8a3df33315c",
+  "GameObjects": [
+    {
+      "__guid": "2e9d327f-67ac-42d4-99e7-f9b58dcfb749",
+      "Flags": 0,
+      "Name": "Scene Information",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SceneInformation",
+          "__guid": "783dea40-ea14-435d-93f6-7d401cbc0944",
+          "Changes": "",
+          "Description": "",
+          "SceneTags": "",
+          "Title": "jump1"
+        }
+      ]
+    },
+    {
+      "__guid": "624a8198-c56a-437e-bff0-90272865dca6",
+      "Flags": 0,
+      "Name": "MapInstance",
+      "Position": "149.3263,149.3264,-211.1794",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "03615e7e-c2ad-45b5-8cd6-742fcfbb5df6",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/jump1/jump1.vmap",
+          "NoOrigin": false,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "337b45d2-f94a-41a9-b735-093088733043",
+      "Flags": 0,
+      "Name": "Networking",
+      "Position": "122.1813,507.827,-209.1794",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "KOTH.GameNetworkManager",
+          "__guid": "5d9bbbde-69e1-480e-bb38-0ea23aeb4107",
+          "NetworkMode": "Singleplayer",
+          "PlayerStatePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerstate.prefab"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "38e7bddb-3a82-492f-91e8-59113b5cbf3b",
+      "Flags": 0,
+      "Name": "GameMode",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "__Prefab": "prefabs/game_modes/jumper.prefab",
+      "__PrefabVariables": {
+        "Description": "keep the hill under your control for the longest to win",
+        "Title": "KOTH"
+      }
+    },
+    {
+      "__guid": "fed2b91f-4df7-444f-90a0-af6d94dc6c53",
+      "Flags": 0,
+      "Name": "HUD",
+      "Position": "-11.66301,-170.663,499.0976",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "Components": [
+        {
+          "__type": "KOTH.UI.MainHUD",
+          "__guid": "037052d7-7742-4e88-9a45-68529e96e6cd"
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "57867fc6-897f-4925-ba59-16015fff42ac",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        },
+        {
+          "__type": "KOTH.UI.DeveloperMenu",
+          "__guid": "072b97fd-94da-4ec9-955f-3ee671c81acd",
+          "__enabled": false
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "57ff3da8-114f-4af5-9f3a-a107792c2adf",
+          "__enabled": false,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        }
+      ]
+    },
+    {
+      "__guid": "2fe5edcf-823c-41a5-bf76-c57b259b5426",
+      "Flags": 0,
+      "Name": "JumpZones",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "d1e57c3b-f49e-4823-9d3f-e65544a09185",
+          "Flags": 0,
+          "Name": "teleportzone",
+          "Position": "1266.849,428.4224,-285.1655",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "5d51691d-310d-4957-9bbe-fa74360324bb",
+              "Center": "0,0,0",
+              "IsTrigger": true,
+              "Scale": "326.6012,728.1995,90.30023",
+              "Static": false,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "Zone",
+              "__guid": "2b76acec-38ac-465f-a33a-9ff5b28a3f93",
+              "Color": "0,1,1,1"
+            },
+            {
+              "__type": "KOTH.TeleportZone",
+              "__guid": "34a3d64e-9937-4135-8fcc-93680c662115",
+              "TeleportLocation": "-349.0072,-15.66235,121.521",
+              "TeleportRotation": "0,0,0,1"
+            }
+          ]
+        },
+        {
+          "__guid": "67fad40b-9d5f-493c-921c-a6c698077c2d",
+          "Flags": 0,
+          "Name": "teleportzone (1)",
+          "Position": "2077.247,419.6228,-270.4866",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "ac21233d-d7e1-42b6-bf02-5b129a68cc58",
+              "Center": "0,0,0",
+              "IsTrigger": true,
+              "Scale": "656.6039,728.1995,140.9001",
+              "Static": false,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "Zone",
+              "__guid": "6ace79f4-3a32-403f-81a9-e794db60ea27",
+              "Color": "0,1,1,1"
+            },
+            {
+              "__type": "KOTH.TeleportZone",
+              "__guid": "288ec048-1b0c-4b78-818b-3541f11602eb",
+              "TeleportLocation": "-406.2075,-15.66235,169.3215",
+              "TeleportRotation": "0,0,0.003490651,0.9999939"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "5161b6f6-483d-4a69-8358-723d9aebc201",
+      "Flags": 0,
+      "Name": "KillZone",
+      "Position": "-63.8437,631.0758,-158.7791",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "667fdc9d-db7f-4b7b-a74d-6ede7382772d",
+          "Center": "0,0,0",
+          "IsTrigger": true,
+          "Scale": "100,100,100",
+          "Static": false,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "Zone",
+          "__guid": "c52b8594-add7-400c-a9e0-09219533302d",
+          "Color": "1,0,0,1"
+        },
+        {
+          "__type": "KOTH.KillZone",
+          "__guid": "71e62e49-22cb-47ed-b851-1fced40e53a0"
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 60,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 86,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 8,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {
+      "Title": "jump1"
+    },
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": "jump1",
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}

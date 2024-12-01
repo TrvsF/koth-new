@@ -1,0 +1,18 @@
+@import "/UI/Styles/Theme.scss";
+
+HealStatus {
+    * {
+        position: absolute;
+    }
+
+    .healing {
+        top: 60%;
+        left: 35%;
+        color: white;
+        font-size: 24px;
+    }
+
+    .healed {
+
+    }
+}

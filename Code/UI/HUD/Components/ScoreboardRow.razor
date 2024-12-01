@@ -1,0 +1,69 @@
+﻿@using System;
+@using Sandbox.UI;
+
+@namespace KOTH.UI
+@inherits Panel
+
+<root class="row @(IsLocal ? "local" : "") @(IsDead ? "dead" : "") with-px-lg with-py">
+    <span class="col stat-small">
+        @if ( Connection is not null )
+        {
+            <label class="small">@(Connection?.Ping.CeilToInt())</label>
+        }
+        else
+        {
+            <Icon style="background-tint: red;" File="/ui/no-connection.png" size="24" />
+        }
+    </span>
+
+    <span class="col playername gap-sm">
+        
+        <PlayerAvatar ShowHealth=@false ShowBomb=@false class="avatar" Player=@RowPlayerState />
+        <label>
+            @RowPlayerState.DisplayName
+        </label>
+
+        @if ( IsPartyMember )
+        {
+            <Icon File="/ui/party-member.png" size="24"></Icon>
+        }
+    </span>
+
+    @foreach ( var x in IScore.Find( RowPlayerState ) )
+    {
+        <label class="col stat">@(x.Value)</label>
+    }
+</root>
+
+@code {
+    public PlayerState RowPlayerState { get; set; }
+    public PlayerPawn Player => RowPlayerState.PlayerPawn;
+    private Connection Connection => RowPlayerState.Connection;
+    private PlayerScore Score => RowPlayerState.Components.Get<PlayerScore>();
+
+    private bool IsFriendly => RowPlayerState.IsFriendly(PlayerState.Local);
+    private bool IsLocal => false;
+    private bool IsDead => !Player.IsValid() || !Player.IsAlive;
+    private float KillDeathRatio => (float)Score.Kills / (float)Score.Deaths.Clamp(1, int.MaxValue);
+    private Team Team => RowPlayerState.Team;
+    private bool IsPartyMember => PartyRoom.Current?.Members.Any( x => x.Id == Connection.SteamId ) ?? false;
+
+    public bool Disconnected => Connection is null;
+
+    protected override int BuildHash()
+    {
+        var hash = HashCode.Combine( Connection, IsLocal, IsDead, Connection?.Ping );
+
+        if ( Player.IsValid() )
+        {
+            // hash = HashCode.Combine( hash, IsPartyMember, Player.RowPlayerState.PlayerColor );
+        }
+
+        foreach ( var x in IScore.Find( RowPlayerState ) )
+        {
+            hash = HashCode.Combine( hash, x.Value );
+        }
+
+        return hash;
+    }
+}

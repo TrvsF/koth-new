@@ -1,0 +1,89 @@
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root>
+	@foreach (var DamageTri in DamageTris)
+	{
+		<img class="damage-tri" src="/ui/koth/damage-triangle.png" style="opacity: @DamageTri.GetOpacity(); transform: translate(@(-50 + DamageTri.TopRightOffset.x)%, @(-55 - DamageTri.TopRightOffset.y)%) rotate(@(DamageTri.Rotation)deg);" />
+	}
+</root>
+
+@code
+{
+	public struct FDamageTri
+	{
+		public FDamageTri()
+		{
+			TimeSince = 0;
+		}
+
+		public float Rotation { get; init; } = 0;
+		public Vector2 TopRightOffset { get; init; } = new(1, 0);
+		public TimeSince TimeSince { get; init; } = new();
+
+		public float GetOpacity()
+		{
+			// TODO : scale with damage
+			return MathX.Lerp(0.7f, 0f, TimeSince / 1f);
+		}
+	}
+
+	public float Rotation = 0;
+	public Vector2 TopRight = new(1, 0);
+
+	public Vector2 GetScreenPosFromPosition(Vector3 InPosition, out bool IsBehind)
+	{
+		var Position = LocalPlayerPawn.Camera.PointToScreenNormal(InPosition, out IsBehind);
+		return Position;
+	}
+
+	public static DamageIndicatorNew Instance { get; set; }
+
+	public DamageIndicatorNew()
+	{
+		Instance = this;
+	}
+
+	public float GetOpacity()
+	{
+		return MathX.Lerp(0.7f, 0f, TimeSinceLastHit / 2f);
+	}
+
+	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+
+	public List<FDamageTri> DamageTris = new();
+
+	TimeSince TimeSinceLastHit = new();
+	public void OnHit(Vector3 DamageLocation)
+	{
+		TimeSinceLastHit = 0;
+
+		// ---------------
+		// rotation
+		var PlayerToHit = DamageLocation - LocalPlayerPawn.Transform.Position;
+		var PlayerToHit2d = new Vector2(PlayerToHit.x, PlayerToHit.y).Normal;
+
+		var PlayerForward = LocalPlayerPawn.AimRay.Forward.Normal;
+		var PlayerForward2d = new Vector2(PlayerForward.x, PlayerForward.y);
+
+		var Angle1 = Math.Atan2(PlayerForward.y, PlayerForward.x);
+		var Angle2 = Math.Atan2(PlayerToHit.y, PlayerToHit.x);
+
+		var AngleR = Angle1 - Angle2;
+		var Angle = AngleR * (180.0 / Math.PI);
+		Rotation = (float)Angle;
+
+		// ---------------
+		// position
+		TopRight = new((float)Math.Sin(AngleR) * 300f, (float)Math.Cos(AngleR) * 300f);
+
+		DamageTris.Add(new() { Rotation = Rotation, TopRightOffset = TopRight });
+		// TODO : currently leaking memory, remove em
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

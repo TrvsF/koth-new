@@ -1,0 +1,20 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "goldenboys",
+      "Type": "asset",
+      "Org": "wurstsoftware",
+      "Ident": "goldenboys",
+      "Schema": 0,
+      "IncludeSourceFiles": true,
+      "Resources": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "data/goldenboys.itemdb"
+      }
+    }
+  }
+}

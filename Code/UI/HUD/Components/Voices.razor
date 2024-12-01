@@ -1,0 +1,47 @@
+@namespace KOTH.UI
+@attribute [StyleSheet]
+@inherits Panel
+
+<root class="">
+    @foreach (var voice in VoiceList.Where( x => CanDisplay( x ) ) )
+    {
+        <div class="row">
+            <div class="item-row with-background">
+                @{
+                    var player = GetPlayer( voice );
+                }
+
+                <Icon class="square rounded shrink-0" File="/ui/chat/radio.png" size="24" style="transform: scale( @GetAmplitudeScale( voice ) )" />
+                <img class="avatar" src="avatar:@player.SteamId" />
+                <PlayerPanel PlayerState=@player />
+            </div>
+        </div>
+    }
+
+</root>
+
+@code
+{
+    public IEnumerable<PlayerVoiceComponent> VoiceList => Scene.GetAllComponents<PlayerVoiceComponent>().Where( x => x.PlayerState.IsConnected );
+
+    private PlayerState GetPlayer( Voice voice )
+    {
+        return voice.Components.Get<PlayerState>();
+    }
+
+    private bool CanDisplay( Voice voice )
+    {
+        return voice.LastPlayed < 0.25f;
+    }
+
+    private string GetAmplitudeScale( Voice voice )
+    {
+        var scale = 0.5f + ( voice.Amplitude * 2.365f );
+        return ( 1f + scale ).ToString( "0.#" );
+    }
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine( Time.Now );
+    }
+}

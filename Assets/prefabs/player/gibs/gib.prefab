@@ -1,0 +1,219 @@
+{
+  "RootObject": {
+    "__guid": "8ec24fde-ef9c-4983-9664-f0efcc62697d",
+    "Flags": 0,
+    "Name": "gib",
+    "Tags": "gib",
+    "Enabled": true,
+    "NetworkMode": 0,
+    "Components": [
+      {
+        "__type": "KOTH.TravisGib",
+        "__guid": "42fbdfff-8b66-4220-a81a-dab01edcfb67"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "57f1e8e9-4129-44aa-8b1b-3492634c59b6",
+        "Flags": 0,
+        "Name": "arm",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "4b246407-8245-493f-999c-ad26062e3af5",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/left_arm_gib_cap.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "b2a73ff2-25b4-498a-b8cd-124c538dcd66",
+        "Flags": 0,
+        "Name": "arm (1)",
+        "Position": "1.756988,-6.697239,0",
+        "Rotation": "0,-0,-0.9917832,0.1279301",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "85816af4-71ca-4060-b725-10054e8cd379",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/torn_torso_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "15bb3f52-651b-4763-a27f-c0088d85179d",
+        "Flags": 0,
+        "Name": "other",
+        "Position": "-0.8147278,18.0217,6.548342",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "6b9749c3-f174-4de4-a3d4-86e60a9c0605",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/torn_leg_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "9416ca70-3789-4b9d-8698-4e97c1289948",
+        "Flags": 0,
+        "Name": "other (4)",
+        "Position": "-0.8147278,-13.0279,-5.890158",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "3d94f26e-bcc3-4d7c-bbd9-03ca12972933",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/right_hand_gib_cap.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "2695c8ae-2fcc-455e-a329-a6b30c6fb49a",
+        "Flags": 0,
+        "Name": "other (5)",
+        "Position": "-0.8147278,30.01471,-5.890158",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "d5e42bba-c019-41cc-894a-d7bf92499477",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/right_hand_gib_cap.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "97f67b32-9417-4148-81a2-fcb4844148d3",
+        "Flags": 0,
+        "Name": "other (1)",
+        "Position": "0.2024708,-6.137095,6.798653",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "15cf1f56-9143-45ee-aa63-2caddd7f393c",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/skull_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "88315f2a-3509-4f39-a1aa-a7166cc8c285",
+        "Flags": 0,
+        "Name": "other (2)",
+        "Position": "-16,15.77878,27.84053",
+        "Rotation": "0.5,0,0,0.8660254",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "056f1946-6ee4-4a18-81f7-0310267fcbc8",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/torn_arm_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "45b16ba5-4eb6-42e3-a334-0477a8c766b6",
+        "Flags": 0,
+        "Name": "other (3)",
+        "Position": "0,-2.19,22.47876",
+        "Rotation": "0.5,0,0,0.8660254",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "ccc806b8-577b-435f-bc50-3dae950a4a30",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/right_leg_gib_cap.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "fcb1b348-b112-4d23-8bc5-7c2757164c67",
+        "Flags": 0,
+        "Name": "other (6)",
+        "Position": "0,1.295197,-0.7477837",
+        "Rotation": "0.5,0,0,0.8660254",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "642386a0-cfce-4493-9472-e2c881ba2728",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/organ_02_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "740faad4-71d0-4261-a134-3532415aafde",
+        "Flags": 0,
+        "Name": "other (7)",
+        "Position": "0,16.23879,-3.87359",
+        "Rotation": "0.5,0,0,0.8660254",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "d11b44ab-27c4-452f-b6c5-e3a281681420",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "Model": "models/citizen_gibs/models/organ_02_gib.vmdl",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

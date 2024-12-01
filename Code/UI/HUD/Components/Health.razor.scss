@@ -1,0 +1,14 @@
+@import "/UI/Styles/Theme.scss";
+
+Health {
+    * {
+        position: absolute;
+        top: 65%;
+        left: 35%;
+    }
+
+    .hp {
+        font-size: 64px;
+        color: white;
+    }
+}

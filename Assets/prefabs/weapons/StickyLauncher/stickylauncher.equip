@@ -1,0 +1,29 @@
+{
+  "Name": "Sticky Launcher",
+  "Description": "KA-BOOM",
+  "Slot": "Primary",
+  "Team": "Unassigned",
+  "CanOtherTeamPickUp": true,
+  "DropOnDisconnect": false,
+  "Icon": null,
+  "IsPurchasable": true,
+  "Price": 0,
+  "KillReward": 300,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/stickylauncher/w_stickylauncher.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/stickylauncher/vm_stickylauncher.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+  "DroppedSize": "8,2,8",
+  "DroppedCenter": "0,0,0",
+  "ArmorReduction": null,
+  "HelmetReduction": null,
+  "__references": [
+    "facepunch.w_mp5#33703"
+  ],
+  "__version": 0
+}

@@ -1,0 +1,19 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "donny",
+      "Type": "asset",
+      "Org": "local",
+      "Ident": "donny",
+      "Schema": 0,
+      "IncludeSourceFiles": true,
+      "Resources": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "prefabs/classes/donny.chardef"
+      }
+    }
+  }
+}

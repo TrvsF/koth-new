@@ -1,0 +1,14 @@
+
+Layer0
+{
+	shader "shaders/complex.shader_c"
+
+	TextureColor "models/koth/health_cans_low_lambert1_basecolor.png"
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
+	TextureNormal "models/koth/health_cans_low_lambert1_normal.png"
+	TextureRoughness "models/koth/health_cans_low_lambert1_roughness.png"
+	F_METALNESS_TEXTURE 1
+	F_SPECULAR 1
+	TextureMetalness "models/koth/health_cans_low_lambert1_metallic.png"
+
+}

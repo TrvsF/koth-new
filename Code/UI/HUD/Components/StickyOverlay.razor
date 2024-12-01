@@ -1,0 +1,73 @@
+﻿@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root class="flex row gap align-center justify-end" style="width: 100px;">
+	@if (IsCurrentWeaponAStickyLauncher())
+	{
+		<label class="charge" style="background-color: whitesmoke; background-image: linear-gradient(to right, whitesmoke 100%, rgba(0, 0, 0, 100) @(GetChargeDelta() * 100f)%);"></label>
+		<label class="stickies">@GetStickies()</label>
+	}
+</root>
+
+@code
+{
+	public PlayerInventory Inventory => Player.Inventory;
+	public PlayerPawn Player => PlayerState.Viewer?.PlayerPawn;
+
+	private int GetStickies()
+	{
+		var ProjectileComp = GetProjectileWeaponComponent();
+		if (!ProjectileComp.IsValid())
+			return 0;
+
+		return ProjectileComp.ActiveStickies;
+	}
+
+	private float GetChargeDelta()
+	{
+		var ProjectileComp = GetProjectileWeaponComponent();
+		if (!ProjectileComp.IsValid())
+			return 0;
+
+		var StickyComp = (StickyWeaponComponent)ProjectileComp;
+		if (!StickyComp.WasInputDownLastTick)
+			return 0;
+
+		return Math.Clamp(StickyComp.TimeSinceInputFirstDown / StickyComp.MaxChargeTime, 0, 1);
+	}
+
+	private bool IsCurrentWeaponAStickyLauncher()
+	{
+		var ProjectileComp = GetProjectileWeaponComponent();
+		return ProjectileComp == null ? false : ProjectileComp.IsStickyLauncher;
+	}
+
+	private ProjectileWeaponComponent GetProjectileWeaponComponent()
+	{
+		if (!Player.IsValid())
+			return null;
+
+		var Weapon = Player.CurrentEquipment;
+		if (!Weapon.IsValid() || !Weapon.IsDeployed)
+			return null;
+
+		ProjectileWeaponComponent ProjectileWeaponComponent = null;
+		foreach (var Child in Weapon.GameObject.Children)
+		{
+			ProjectileWeaponComponent = Child.Components.Get<ProjectileWeaponComponent>();
+			if (ProjectileWeaponComponent.IsValid())
+			{
+				break;
+			}
+		}
+		return ProjectileWeaponComponent;
+	}
+
+	protected override int BuildHash()
+	{
+		if (!Player.IsValid() || !Player.CurrentEquipment.IsValid())
+			return 0;
+		return HashCode.Combine(Time.Now);
+	}
+}

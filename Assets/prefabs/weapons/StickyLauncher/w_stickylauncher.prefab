@@ -1,0 +1,185 @@
+{
+  "RootObject": {
+    "__guid": "0e9b3837-380e-4587-acdb-f8a1c6e3ea61",
+    "Flags": 0,
+    "Name": "w_stickylauncher",
+    "Tags": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "KOTH.Equipment",
+        "__guid": "aa2c3636-b926-4bfd-b13d-7bcb63fd1f1e",
+        "DeploySound": "sounds/guns/switch/weapon_switch.sound",
+        "EjectionPort": {
+          "_type": "gameobject",
+          "go": "a1749d19-0334-479c-a43d-57577da6d589"
+        },
+        "Handedness": "Right",
+        "HoldType": "Rifle",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
+          "go": "e6199e40-738f-44b2-a1a5-5916daa5725e",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "MountedPrefab": {
+          "_type": "gameobject",
+          "prefab": "weapons/m4a1/mount_m4a1.prefab"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
+        },
+        "Resource": "prefabs/weapons/stickylauncher/stickylauncher.equip",
+        "SpeedPenalty": 40,
+        "UseCrosshair": true
+      },
+      {
+        "__type": "KOTH.TagBinder",
+        "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "-0.1607628,-1.758964,-3.878195",
+        "Rotation": "0.08670059,-0.02514087,-0.3245313,0.9415574",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
+            "BodyGroups": 1,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+            "Morphs": {},
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "0.08785,0.54847,0.6093,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979",
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "20.07571,0,7.212921",
+            "Enabled": true
+          },
+          {
+            "__guid": "a1749d19-0334-479c-a43d-57577da6d589",
+            "Flags": 0,
+            "Name": "EjectionPort",
+            "Position": "1.774985,-0.4210945,7.672482",
+            "Enabled": true
+          }
+        ]
+      },
+      {
+        "__guid": "8f9b0f89-d493-4656-be19-e23bb64f2cea",
+        "Flags": 0,
+        "Name": "Functions",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "KOTH.AmmoComponent",
+            "__guid": "809891ef-b6af-4974-bab3-3e2f8ec5423b",
+            "Ammo": 6,
+            "HasAmmo": true,
+            "MaxAmmo": 6
+          },
+          {
+            "__type": "KOTH.ReloadWeaponComponent",
+            "__guid": "01933652-6cd6-48ce-90d1-09986c59921a",
+            "AmmoComponent": {
+              "_type": "component",
+              "component_id": "809891ef-b6af-4974-bab3-3e2f8ec5423b",
+              "go": "8f9b0f89-d493-4656-be19-e23bb64f2cea",
+              "component_type": "AmmoComponent"
+            },
+            "EmptyReloadSounds": {
+              "0": "sounds/guns/mp5/reload/mp5.move.sound",
+              "0.5": "sounds/guns/mp5/reload/mp5.mag.sound",
+              "1.2": "sounds/guns/mp5/reload/mp5.mag.load.sound",
+              "2": "sounds/guns/mp5/reload/mp5.mag.sound"
+            },
+            "InputActions": [
+              "Reload"
+            ],
+            "ReloadTime": 0.8,
+            "ReloadType": "Single",
+            "ReloadWhileNotActive": false,
+            "RequiresAllInputActions": false,
+            "TimedReloadSounds": {
+              "0": "sounds/guns/mp5/reload/mp5.move.sound",
+              "0.5": "sounds/guns/mp5/reload/mp5.mag.sound",
+              "1.2": "sounds/guns/mp5/reload/mp5.mag.load.sound"
+            }
+          },
+          {
+            "__type": "KOTH.ProjectileWeaponComponent",
+            "__guid": "46febf9d-7f42-43b8-8c31-40461db28072",
+            "__enabled": false,
+            "FireRate": 0.66,
+            "InputActions": [
+              "Attack1"
+            ],
+            "ProjectileHorizontalSpeed": 600,
+            "ProjectilePrefab": {
+              "_type": "gameobject",
+              "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
+            },
+            "ProjectileVerticalSpeed": 0,
+            "RequiresAllInputActions": false
+          },
+          {
+            "__type": "KOTH.StickyTrackerComponent",
+            "__guid": "096d1acc-b365-40a3-ba12-3709e248bdf8"
+          },
+          {
+            "__type": "KOTH.StickyWeaponComponent",
+            "__guid": "0cd0d38f-af07-490f-abe7-d2e9d19641ef",
+            "FireRate": 0.66,
+            "InputActions": [
+              "Attack1"
+            ],
+            "MaxChargeTime": 1.6,
+            "ProjectileHorizontalSpeed": 720,
+            "ProjectilePrefab": {
+              "_type": "gameobject",
+              "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
+            },
+            "ProjectileVerticalSpeed": 160,
+            "RequiresAllInputActions": false
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_mp5#33703"
+  ],
+  "IsValid": true,
+  "__version": 1
+}

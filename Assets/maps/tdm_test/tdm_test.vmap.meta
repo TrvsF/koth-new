@@ -1,0 +1,18 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "tdm_test",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "tdm_test",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "Metadata": {
+        "SingleAssetSource": "maps/tdm_test/tdm_test.vmap"
+      }
+    }
+  }
+}

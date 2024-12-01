@@ -1,0 +1,10 @@
+{
+  "Sequences": [
+    {
+      "Source": "models/koth/health_cans_low_lambert1_roughness.png",
+      "IsLooping": true,
+      "Frames": 64
+    }
+  ],
+  "OutputTypeString": "2D"
+}

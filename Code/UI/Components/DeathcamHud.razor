@@ -1,0 +1,42 @@
+@using System;
+@using Sandbox.UI;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+<root>
+	@if (ShouldDraw)
+	{
+		<div class="deathcam-hud">@KillerName | @(KillerHealth)hp</div>
+	}
+</root>
+
+@code
+{
+	public static DeathcamHud Instance { get; private set; }
+
+	public DeathcamHud()
+	{
+		Instance = this;
+	}
+
+	public bool ShouldDraw { get; set; } = false;
+	string KillerName = "";
+	string KillerHealth = "";
+
+	public void SetKillerInfo(string InKillerName, string InKillerHealth)
+	{
+		KillerName = InKillerName;
+		KillerHealth = InKillerHealth;
+
+		Log.Info($"{KillerName} : {KillerHealth}");
+		Log.Info(ShouldDraw);
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(KillerName, KillerHealth, ShouldDraw);
+	}
+}

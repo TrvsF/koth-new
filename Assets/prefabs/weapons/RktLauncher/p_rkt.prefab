@@ -1,0 +1,113 @@
+{
+  "RootObject": {
+    "__guid": "60087b42-cd0a-4bac-9540-8aa5ef06af0b",
+    "Flags": 0,
+    "Name": "p_rkt",
+    "Tags": "projectile",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 3,
+    "Components": [
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b9eb7f58-8495-48a0-aaab-651f5b0d909d",
+        "AngularDamping": 0,
+        "Gravity": false,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": "DisableCollisionSounds",
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "f505ebca-6921-45d7-9ae0-7c55827f8ab7",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "3,3,3",
+        "Static": false,
+        "Surface": "surfaces/default.surface",
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "KOTH.Rkt",
+        "__guid": "b9f278af-2a58-4500-9544-dddff82a1fd9",
+        "Damage": 90,
+        "ExplosionRadius": 112,
+        "ImpactPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/gameplay/money/hit_burst.prefab"
+        },
+        "KnockbackStrength": 360
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
+        "Flags": 0,
+        "Name": "Rkt",
+        "Rotation": "0.7071068,0.0000001376788,-0.7071068,0.0000001376788",
+        "Scale": "0.05,0.05,0.05",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "Model": "models/projectiles/rocket-2.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "0.74419,0.18691,0.18691,1"
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

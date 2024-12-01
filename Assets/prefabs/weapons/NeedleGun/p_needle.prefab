@@ -1,0 +1,80 @@
+{
+  "RootObject": {
+    "__guid": "60087b42-cd0a-4bac-9540-8aa5ef06af0b",
+    "Flags": 0,
+    "Name": "p_needle",
+    "Scale": "0.3,0.3,0.3",
+    "Tags": "projectile",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 3,
+    "Components": [
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b9eb7f58-8495-48a0-aaab-651f5b0d909d",
+        "AngularDamping": 0,
+        "Gravity": false,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": "DisableCollisionSounds",
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "ea96de1c-a1d8-4d60-b20a-6c1d4f9e0b4b",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "10,10,10",
+        "Static": false
+      },
+      {
+        "__type": "KOTH.Needle",
+        "__guid": "e9fe6937-2210-430f-94f4-2d2acb214c68",
+        "ExplosionRadius": 128,
+        "KnockbackStrength": 300,
+        "MaxDamage": 75,
+        "MaxHealing": 125,
+        "MinDamage": 33,
+        "MinHealing": 65
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
+        "Flags": 0,
+        "Name": "Sphere",
+        "Scale": "1,0.3,0.3",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/dev/sphere.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "0.18691,0.74419,0.23335,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
+}

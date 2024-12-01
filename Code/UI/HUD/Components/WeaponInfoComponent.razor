@@ -1,0 +1,56 @@
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+@if (!Player.IsValid()) return;
+
+<root class="hud with-deadzone column">
+	@foreach (var SlotGroup in Inventory.Equipment.OrderBy(x => x.Resource.Slot).GroupBy(x => x.Resource.Slot))
+	{
+		<div class="" style="padding-right: 60px;">
+			@foreach (var Equipment in SlotGroup)
+			{
+				@if (Equipment.IsValid())
+				{
+					@if (Equipment.IsDeployed)
+					{
+						<label style="font-size: 26px; color: white; position: absolute; top: 70%; right: 60px;">@Equipment.Resource.Name</label>
+					}
+					else
+					{
+						<label style="font-size: 18px; color: darkgrey;">@Equipment.Resource.Name</label>
+					}
+				}
+			}
+		</div>
+	}
+</root>
+
+@code
+{
+	public PlayerPawn Player => PlayerState.Viewer.PlayerPawn;
+	public PlayerInventory Inventory => Player.Inventory;
+	public Equipment CurrentEquipment => Player?.CurrentEquipment;
+
+	public string GroupClasses(EEquipmentSlot slot)
+	{
+		var wpn = CurrentEquipment;
+		if (!wpn.IsValid()) return "";
+
+		if (wpn.Resource.Slot == slot) return "active color-border-right";
+
+		return "";
+	}
+
+	public int SlotIndex(EEquipmentSlot slot)
+	{
+		return (int)slot;
+	}
+
+	public int GetSlot(Equipment equipment) => Inventory.Equipment.ToList().IndexOf(equipment);
+
+	protected override int BuildHash()
+	{
+		return !Player.IsValid() ? 0 : HashCode.Combine(Inventory.Equipment.Count(), CurrentEquipment);
+	}
+}

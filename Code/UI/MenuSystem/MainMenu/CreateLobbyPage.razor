@@ -1,0 +1,78 @@
+@using Sandbox;
+@using Sandbox.Network
+@using Sandbox.UI;
+
+@inherits Panel
+@implements INavigatorPage
+@namespace KOTH.UI
+
+<root class="hc1">
+    <Page>
+        <Header>
+            Create a Game
+        </Header>
+
+        <Body>
+            <div class="layout column">
+                <div class="inset column layout with-background">
+                    <div class="line" />
+
+                    <div class="layout padding-extra with-gap column">
+                        <label class="text">Map</label>
+                        <MapList SelectedMap:bind=@SelectedMap GameMode:bind=@SelectedGameMode OnSelected=@OnMapSelected />
+                    </div>
+                </div>
+
+                <div class="inset column layout with-background">
+                    <div class="layout padding-extra with-gap column">
+                        <label class="text">Game mode</label>
+                        <GameModeList SelectedGameMode:bind=@SelectedGameMode @ref="GameModeList" />
+                    </div>
+
+                    <div class="line" />
+                </div>
+            </div>
+        </Body>
+
+        <SubFooter>
+            <div class="button standard" onclick=@Join>start game</div>
+        </SubFooter>
+    </Page>
+
+</root>
+
+@code
+{
+    public MapDefinition SelectedMap { get; set; }
+    public GameModeInfo SelectedGameMode { get; set; }
+
+    public GameModeList GameModeList { get; set; }
+
+    public void OnMapSelected( MapDefinition map )
+    {
+        GameModeList.Filter( map );
+        SelectedGameMode = GameModeList.GameModes.FirstOrDefault();
+    }
+
+    protected override void OnAfterTreeRender( bool firstTime )
+    {
+        if ( !firstTime )
+            return;
+
+        SelectedMap = MapSystem.All.FirstOrDefault();
+        SelectedGameMode = GameMode.GetAll( SelectedMap.SceneFile ).FirstOrDefault();
+        GameModeList.Filter( SelectedMap );
+    }
+
+    private void Join()
+    {
+        if (SelectedGameMode is null)
+            return;
+
+        if (SelectedMap is null)
+            return;
+
+        GameMode.SetCurrent( SelectedGameMode );
+        Game.ActiveScene.Load( SelectedMap.SceneFile );
+    }
+}

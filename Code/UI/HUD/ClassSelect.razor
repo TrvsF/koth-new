@@ -1,0 +1,68 @@
+﻿@using System;
+@using Sandbox.UI;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+@*TODO : tidy this is a piece of shit*@
+
+<style>
+	button:hover {
+		background-color: #535353AA;
+	}
+</style>
+
+<root class="flex absolute inset-0 align-center justify-center">
+	<table class="with-padding-lg layout" style="background-color: #53535344;">
+		<div class="title" style="font-size: 60px;">
+			Select Class
+		</div>
+
+		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
+		{
+			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 100px;">@Class.CharacterName | @Class.Description</button>
+		}
+	</table>
+</root>
+
+@code
+{
+	public static ClassSelect Instance { get; private set; }
+	public bool IsActive { get; set; }
+
+	public ClassSelect()
+	{
+		Instance = this;
+	}
+
+	protected override int BuildHash()
+	{
+		var hash = new HashCode();
+
+		hash.Add(IsActive);
+
+		return hash.ToHashCode();
+	}
+
+	public ClassList ActiveClassList { get => GameMode.Instance.Components.Get<ClassList>(); }
+
+	private void SelectClass(CharacterDefinition Class)
+	{
+		PlayerState.Local.RequestNewClass(Class);
+		Log.Info($"selected class {Class}");
+		
+		IsActive = false;
+		SetClass("visible", IsActive);
+	}
+
+	public override void Tick()
+	{
+		if (Input.Pressed("ClassSelect"))
+		{
+			IsActive = !IsActive;
+			SetClass("visible", IsActive);
+		}
+	}
+}

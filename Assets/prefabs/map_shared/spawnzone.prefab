@@ -1,0 +1,37 @@
+{
+  "RootObject": {
+    "__guid": "3316380c-3fe1-41b1-9948-bdbc077bd56a",
+    "Flags": 0,
+    "Name": "spawn",
+    "Tags": "zone",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "875e5c30-1407-48cb-a022-0a78a03d263e",
+        "Center": "0,0,0",
+        "IsTrigger": true,
+        "Scale": "500,500,100",
+        "Static": false
+      },
+      {
+        "__type": "Zone",
+        "__guid": "6c3ddd80-b513-4d61-98bf-adfcb1c3b8c0",
+        "Color": "0.54819,0.77823,0.84186,1"
+      },
+      {
+        "__type": "KOTH.SpawnZone",
+        "__guid": "ba8c06f2-8d75-482d-8bea-8a33ee426128",
+        "Team": "Unassigned"
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

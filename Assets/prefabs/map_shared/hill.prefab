@@ -1,0 +1,61 @@
+{
+  "RootObject": {
+    "__guid": "4b716979-16cf-418b-a4ab-819bfaf6d650",
+    "Flags": 0,
+    "Name": "hill",
+    "Tags": "zone,hill",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "KOTH.Hill",
+        "__guid": "8f2127fe-a8b8-4ca6-84be-009641eb31b6",
+        "CaptureTime": 8,
+        "WinTime": 180
+      },
+      {
+        "__type": "Zone",
+        "__guid": "67e9df4c-dca0-45c3-8f8e-77d3bfecfec7",
+        "Color": "1,1,0,1",
+        "DisplayName": "Hill"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "ccc2b29b-d0b6-40a7-bb7c-64efbddc0fb6",
+        "Center": "0,0,0",
+        "IsTrigger": true,
+        "Scale": "200,200,100",
+        "Static": false
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "23067d8f-78c3-41ba-ac09-c672afa2da33",
+        "Flags": 0,
+        "Name": "platform",
+        "Position": "0,0,-50",
+        "Scale": "4,4,0.1",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkInterpolation": false,
+        "NetworkOrphaned": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "74c2cd77-2a6c-4069-a434-b2df321e0f10",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/dev/box.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

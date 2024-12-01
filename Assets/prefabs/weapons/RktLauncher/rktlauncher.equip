@@ -1,0 +1,30 @@
+{
+  "Name": "Rocket Launcher",
+  "Description": "maggot!",
+  "Slot": "Primary",
+  "Team": "Unassigned",
+  "CanOtherTeamPickUp": true,
+  "DropOnDisconnect": false,
+  "Icon": "facepunch.crate_dev_large/thumb.png",
+  "IsPurchasable": true,
+  "Price": 1,
+  "KillReward": 300,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/rktlauncher/w_rktlauncher.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/rktlauncher/vm_rktlauncher.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
+  "DroppedSize": "8,2,8",
+  "DroppedCenter": "0,0,0",
+  "ArmorReduction": null,
+  "HelmetReduction": null,
+  "__references": [
+    "facepunch.crate_dev_large#57597",
+    "facepunch.w_spaghellim4#58057"
+  ],
+  "__version": 0
+}

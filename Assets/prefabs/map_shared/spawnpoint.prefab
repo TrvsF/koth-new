@@ -1,0 +1,22 @@
+{
+  "RootObject": {
+    "__guid": "0c51528b-6a48-4916-8b67-63ac586d7abc",
+    "Flags": 0,
+    "Name": "spawnpoint",
+    "Components": [
+      {
+        "__type": "TeamSpawnPoint",
+        "__guid": "8aeb9e33-69ef-408e-88c4-e6f651a71f6c",
+        "Team": "Unassigned"
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

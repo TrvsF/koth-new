@@ -1,0 +1,24 @@
+@import "/UI/Styles/Theme.scss";
+
+StickyOverlay {
+    * {
+        position: absolute;
+    }
+
+    .charge {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        width: 96px;
+        height: 8px;
+        transform: translateX(-48px);
+    }
+
+    .stickies {
+        position: absolute;
+        top: 75%;
+        left: 70%;
+        color: white;
+        font-size: 36px;
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "botz",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "botz",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/botz/botz.vmap",
+        "ParentPackage": "wurstsoftware.koth"
+      }
+    }
+  }
+}

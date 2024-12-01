@@ -1,0 +1,32 @@
+﻿@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+@if ( !Player.IsValid() )
+    return;
+
+<root>
+    <div class="circle"></div>
+</root>
+
+@code
+{
+    /// <summary>
+    /// The player's inventory
+    /// </summary>
+    public PlayerInventory Inventory => Player.Inventory;
+
+    /// The player
+    public PlayerPawn Player => PlayerState.Viewer.PlayerPawn;
+
+    private AmmoComponent AmmoComponent => Player?.CurrentEquipment?.Components?.Get<AmmoComponent>( FindMode.EverythingInSelfAndDescendants );
+
+    public ShootWeaponComponent Shoot => Player.CurrentEquipment.IsValid() ? Player.CurrentEquipment.Components.Get<ShootWeaponComponent>( FindMode.EnabledInSelfAndDescendants ) : null;
+
+    protected override int BuildHash()
+    {
+        if ( !Player.IsValid() || !Player.CurrentEquipment.IsValid() )
+            return 0;
+        return HashCode.Combine( Player, AmmoComponent?.Ammo, Player?.CurrentEquipment );
+    }
+}

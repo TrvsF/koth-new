@@ -1,0 +1,82 @@
+{
+  "RootObject": {
+    "__guid": "60087b42-cd0a-4bac-9540-8aa5ef06af0b",
+    "Flags": 0,
+    "Name": "p_sticky",
+    "Tags": "projectile,sticky",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 3,
+    "Components": [
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b9eb7f58-8495-48a0-aaab-651f5b0d909d",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": "DisableCollisionSounds",
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "f505ebca-6921-45d7-9ae0-7c55827f8ab7",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "15,15,15",
+        "Static": false
+      },
+      {
+        "__type": "KOTH.Sticky",
+        "__guid": "1afd1993-ed95-474a-a132-302d3fdd977f",
+        "Damage": 80,
+        "ExplodeSound": "sounds/weapons/grenade/he_grenade_explode.sound",
+        "ExplosionPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/gameplay/money/hit_burst.prefab"
+        },
+        "ExplosionRadius": 128,
+        "KnockbackStrength": 625,
+        "MinDetTime": 0.66
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
+        "Flags": 0,
+        "Name": "Sphere",
+        "Scale": "0.075,0.075,0.075",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/dev/sphere.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "0.3245,0.46512,0.43934,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
+}

@@ -1,0 +1,25 @@
+{
+  "Sequences": [
+    {
+      "Source": "models/koth/health_cans_low_lambert1_basecolor.png",
+      "IsLooping": true,
+      "Frames": 64
+    },
+    {
+      "Source": "models/koth/health_cans_low_lambert1_metallic.png",
+      "IsLooping": true,
+      "Frames": 64
+    },
+    {
+      "Source": "models/koth/health_cans_low_lambert1_normal.png",
+      "IsLooping": true,
+      "Frames": 64
+    },
+    {
+      "Source": "models/koth/health_cans_low_lambert1_roughness.png",
+      "IsLooping": true,
+      "Frames": 64
+    }
+  ],
+  "OutputTypeString": "2D"
+}

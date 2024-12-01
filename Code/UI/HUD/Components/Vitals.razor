@@ -1,0 +1,56 @@
+﻿@using System.Text;
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+@*TODO : too bad!*@
+
+@*
+@if (!Pawn.IsValid() || !DamageComponent.IsValid()) return;
+
+<root class="@BuildClass()">
+
+    <div class="inner with-padding flex row gap justify-start">
+        <div class="flex column">
+            @if ( ArmorComponent.IsValid() )
+            {
+                <Donut Value="@(Armor)" size="48" icon="@(HasHelmet ? "/ui/helmet.png" : "/ui/armor.png")" />
+            }
+        </div>
+
+        <div class="flex column">
+            <ProgressBar Value="@(Health)" width="128" />
+            <span class="flex row align-center gap-sm">
+                <Icon file="/ui/health.png" size="24" />
+                <label class="vital">@Health</label>
+            </span>
+        </div>
+    </div>
+
+</root>
+
+@code
+{
+    public Pawn Pawn => PlayerState.Viewer.Pawn;
+    public DamageComponent DamageComponent => Pawn.PlayerState.PlayerPawn.DamageComponent;
+    public ArmorComponent ArmorComponent => Pawn.GameObject?.Components.Get<ArmorComponent>();
+    public int Health => DamageComponent?.Health.CeilToInt() ?? 0;
+    public int Armor => ArmorComponent?.Armor.CeilToInt() ?? 0;
+    public bool HasHelmet => ArmorComponent?.HasHelmet ?? false;
+
+    protected override int BuildHash()
+    {
+        return !Pawn.IsValid() ? 0 : HashCode.Combine(Health, Armor, HasHelmet, Pawn.DamageComponent?.State);
+    }
+
+    private string BuildClass()
+    {
+        var sb = new StringBuilder();
+        
+        if ( Health < 30f )
+            sb.Append( "low-health" );
+        
+        return sb.ToString();
+    }
+}
+*@

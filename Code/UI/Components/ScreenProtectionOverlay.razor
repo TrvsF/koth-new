@@ -1,0 +1,38 @@
+@namespace KOTH.UI
+@attribute [StyleSheet]
+
+<root>
+    <div @ref="Overlay" class="overlay mask-scope" />
+</root>
+
+@code
+{
+    public Panel Overlay { get; set; }
+
+    float GetOpacity()
+    {
+        // TODO : wtf is this?
+
+        //if ( !PlayerState.Viewer.IsValid() )
+        //    return 0f;
+
+        //if ( !PlayerState.Viewer.Pawn.IsValid() )
+        //    return 0f;
+
+        //if ( !PlayerState.Viewer.Pawn.DamageComponent.IsValid() )
+        //    return 0f;
+
+        //if ( PlayerState.Viewer.Pawn.DamageComponent.IsGodMode ) 
+        //    return 1f;
+
+        return 0f;
+    }
+
+    public override void Tick()
+    {
+        if ( Overlay.IsValid() )
+        {
+            Overlay.Style.Opacity = GetOpacity();
+        }
+    }
+}

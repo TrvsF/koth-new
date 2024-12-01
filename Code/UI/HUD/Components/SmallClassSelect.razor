@@ -1,0 +1,70 @@
+﻿@using System;
+@using Sandbox.UI;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+@if (GameNetworkManager.Instance.NetworkMode != EGameNetworkMode.Multiplayer)
+	return;
+
+<style>
+	* {
+		width: auto;
+		pointer-events: all;
+	}
+
+	.class-button :hover {
+		background-color: black;
+	}
+</style>
+
+<root class="hidden flex">
+	<div class="inner flex row gap-sm align-center with-padding">
+		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
+		{
+			<button class="class-button" onclick="@(() => SelectClass(Class))" style="cursor: pointer; color: white; padding: 24px;">@Class.CharacterName</button>
+		}
+	</div>
+</root>
+
+@code
+{
+	public bool IsActive { get; set; } = false;
+
+	protected override int BuildHash()
+	{
+		var hash = new HashCode();
+
+		hash.Add(IsActive);
+
+		return hash.ToHashCode();
+	}
+
+	public ClassList ActiveClassList { get => GameMode.Instance.Components.Get<ClassList>(); }
+
+	public SmallClassSelect()
+	{
+		SetClass("visible", IsActive);
+	}
+
+	private void SelectClass(CharacterDefinition Class)
+	{
+		PlayerState.Local.RequestNewClass(Class);
+		Log.Info($"selected class {Class}");
+
+		IsActive = false;
+		SetClass("visible", IsActive);
+	}
+
+	public override void Tick()
+	{
+		if (Input.Pressed("ClassSelect"))
+		{
+			Log.Info(IsActive);
+			IsActive = !IsActive;
+			SetClass("visible", IsActive);
+		}
+	}
+}

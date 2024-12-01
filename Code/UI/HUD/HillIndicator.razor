@@ -1,0 +1,81 @@
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root>
+	@if (CapDelta < 0.01)
+	{
+		<label class="hill" style="background-color: @(IndicatorColour.Hex);"></label>
+	}
+	@if (CapDelta >= 0.01)
+	{
+		<label class="hill" style="background-color: @(CappingColour.Hex); background-image: linear-gradient(to right, @(CappingColour.Hex) 100%, @(IndicatorColour.Hex) @(CapDelta * 100f)%);"></label>
+	}
+</root>
+
+@code
+{
+	public static HillIndicator Instance { get; set; }
+
+	public Color IndicatorColour { get; set; } = Color.White;
+	public Color BorderColour { get; private set; } = Color.White;
+	public Color CappingColour { get; set; } = Color.White;
+	public float CapDelta { get; set; } = 0f;
+
+	private Hill Hill { get => PlayerState.Local.Scene.GetAllComponents<Hill>().Any() ? PlayerState.Local.Scene.GetAllComponents<Hill>().First() : null; }
+	static PlayerPawn LocalPlayerPawn => PlayerState.Local.PlayerPawn;
+
+	public HillIndicator()
+	{
+		var LocalTeam = Team.Unassigned;
+		if (LocalPlayerPawn.IsValid())
+		{
+			LocalTeam = LocalPlayerPawn.Team;
+		}
+
+		BorderColour = TeamExtensions.GetColor(LocalTeam, true);
+
+		Instance = this;
+	}
+
+	public override void Tick()
+	{
+		if (Hill.IsValid())
+		{
+			IndicatorColour = TeamExtensions.GetColor(Hill.OwningTeam, false);
+		}
+	}
+
+	public void OnTeamChange(Team Team)
+	{
+		IndicatorColour = TeamExtensions.GetColor(Team, false);
+		CappingColour = TeamExtensions.GetColor(Team, false);
+	}
+
+	public void OnHillReset()
+	{
+		IndicatorColour = Color.White;
+	}
+
+	public void OnHillCapTick(Team Team, float CaptureDelta)
+	{
+		CappingColour = TeamExtensions.GetColor(Team, false);
+		CapDelta = CaptureDelta;
+		CapDelta = Math.Max(0, Math.Min(1, CaptureDelta));
+	}
+
+	public void Decay(float CaptureDelta)
+	{
+
+		if (CaptureDelta < 0.005)
+			CaptureDelta = 0;
+
+		CapDelta = CaptureDelta;
+		CapDelta = Math.Max(0, Math.Min(1, CaptureDelta));
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(CapDelta);
+	}
+}

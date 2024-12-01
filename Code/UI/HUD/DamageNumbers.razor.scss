@@ -1,0 +1,11 @@
+@import "/UI/Styles/Theme.scss";
+
+DamageNumbers {
+    .damage-number {
+        background: none;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    }
+}

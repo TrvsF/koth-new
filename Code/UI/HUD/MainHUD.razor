@@ -1,0 +1,71 @@
+@namespace KOTH.UI
+@using Sandbox.Events
+@inherits PanelComponent
+@implements IGameEventHandler<OnScoreAddedEvent>
+
+@if (!IsHudEnabled)
+	return;
+
+@if (PlayerState.Local.PlayerPawn.IsValid())
+	return;
+
+<root>
+	<ScreenProtectionOverlay />
+
+	<canvas>
+		<Watermark />
+		<DamageNumbers />
+		<HillIndicator />
+		<DeathcamHud />
+		<Toast />
+		<Ammo />
+		<DamageIndicatorNew />
+		<StickyOverlay />
+		<HealStatus />
+		<SmallClassSelect />
+		<XHair />
+		<Health />
+
+		<RoundStateDisplay />
+
+		<div class="right">
+		<div class="flex-grow" />
+		<Voices />
+		<WeaponInfoComponent />
+		</div>
+
+		<Radio />
+
+		<ScoringSystem @ref="ScoringSystem" />
+	</canvas>
+
+	<!-- Full-screen overlays -->
+	<Scoreboard />
+</root>
+
+@code
+{
+	[ConVar("cl_drawhud")]
+	public static bool IsHudEnabled { get; set; } = true;
+
+	[DeveloperCommand("Toggle HUD", "Visuals")]
+	private static void Command_ToggleHUD()
+	{
+		IsHudEnabled = !IsHudEnabled;
+	}
+
+	public ScoringSystem ScoringSystem { get; set; }
+
+	void IGameEventHandler<OnScoreAddedEvent>.OnGameEvent(OnScoreAddedEvent eventArgs)
+	{
+		if (ScoringSystem != null)
+		{
+			ScoringSystem.OnScore(eventArgs.Score, eventArgs.Reason);
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "RootObject": {
+    "__guid": "0f04ee6a-6956-44a5-851e-aa6b5151fa34",
+    "Flags": 32,
+    "Name": "Networking",
+    "Position": "-403.784,-123.1075,41.92808",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "KOTH.GameNetworkManager",
+        "__guid": "b7996461-15c3-4a17-97fa-ad71cef223d7",
+        "NetworkMode": "Singleplayer",
+        "PlayerStatePrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/player/playerstate.prefab"
+        }
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

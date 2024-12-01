@@ -1,0 +1,35 @@
+Radio {
+    justify-content: center;
+    width: 320px;
+    gap: 16px;
+    flex-direction: column;
+    opacity: 0;
+
+    &.visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .row {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        InputHint {
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+    .radio-command {
+        font-size: 3em;
+        padding: 30px;
+        color: violet;
+    }
+
+    .radio-command:hover {
+        background-color: black;
+    }
+}

@@ -1,0 +1,81 @@
+{
+  "RootObject": {
+    "__guid": "60087b42-cd0a-4bac-9540-8aa5ef06af0b",
+    "Flags": 0,
+    "Name": "p_grenade",
+    "Tags": "projectile",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 3,
+    "Components": [
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b9eb7f58-8495-48a0-aaab-651f5b0d909d",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": "DisableCollisionSounds",
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "f505ebca-6921-45d7-9ae0-7c55827f8ab7",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "25,25,25",
+        "Static": false
+      },
+      {
+        "__type": "KOTH.Grenade",
+        "__guid": "7f4d2b59-e90f-47cb-b4cf-fd9581c714a0",
+        "Damage": 80,
+        "ExplosionFuse": 3,
+        "ExplosionPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/gameplay/guns/taser/taser_fire_tags.prefab"
+        },
+        "ExplosionRadius": 86,
+        "KnockbackStrength": 400
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
+        "Flags": 0,
+        "Name": "Sphere",
+        "Scale": "0.066,0.066,0.066",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/dev/sphere.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "0.44186,0.20511,0.1788,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
+}

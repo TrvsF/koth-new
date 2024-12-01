@@ -1,0 +1,45 @@
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+<root class="@AvatarClasses">
+	<div class="avatar">
+		<img class="image" src="avatar:@Player.SteamId" />
+	</div>
+
+	@if (!Pawn.IsValid() || IsDead)
+	{
+		<div style="background-image: url( ui/dead.png )" class="overlay" />
+
+		return;
+	}
+
+	@if (ShowHealth && Pawn.IsAlive && IsFriendly)
+	{
+		<div class="health">
+			<div class="health-inner" style="width:@(Player.PlayerPawn.Health)%" />
+		</div>
+	}
+</root>
+
+@code
+{
+	public PlayerPawn Pawn => Player.IsValid() ? Player.PlayerPawn : null;
+	public PlayerState Player { get; set; }
+	public bool IsFriendly => PlayerState.Local.IsFriendly(Player);
+	public Color PlayerColor => Player.IsValid() ? Player.PlayerColor : Color.White;
+	private bool IsDead => !Pawn.IsValid() || !Pawn.IsAlive;
+
+	public bool ShowBomb { get; set; } = true;
+	public bool ShowHealth { get; set; } = true;
+
+	private string AvatarClasses
+	{
+		get
+		{
+			if (IsDead) return "dead";
+			return "";
+		}
+	}
+}

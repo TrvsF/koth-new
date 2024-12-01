@@ -1,0 +1,102 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.Network;
+
+@implements INavigatorPage
+@namespace KOTH.UI
+
+<root>
+	<Page>
+		<Body>
+			@if (IsSearching)
+			{
+				<div class="flex align-center justify-center">
+					<label class="small slight" style="margin-top: 32px;">Looking for servers...</label>
+				</div>
+			}
+			else if (FetchedLobbies.Count() < 1)
+			{
+				<div class="flex align-center justify-center">
+					<label class="small slight" style="margin-top: 32px;">No servers found...</label>
+				</div>
+			}
+			@foreach (var Lobby in FetchedLobbies)
+			{
+				<button onclick="@(() => JoinLobby(Lobby))">@(Lobby.Name)</button>
+			}
+
+			<button onclick="@(() => Refresh())">refresh</button>
+			<button onclick="@(() => Load())">create</button>
+			<a href="/">back</a>
+		</Body>
+	</Page>
+</root>
+
+@code
+{
+	void Load()
+	{
+		var sc = ResourceLibrary.Get<SceneFile>("prefabs/scenes/product/koth_product.scene");
+		Game.ActiveScene.Load(sc);
+	}
+
+	public bool IsHidden = true;
+	public static MultiPlayer Instance;
+
+	private List<LobbyInformation> FetchedLobbies { get; set; } = new();
+
+	public Lobby? CurrentLobby { get; set; }
+
+	private bool IsSearching = true;
+
+	private async void JoinLobby(LobbyInformation LobbyInformation)
+	{
+		if (await Networking.TryConnectSteamId(LobbyInformation.LobbyId))
+		{
+			Log.Info("wowie, you joined a lobby");
+		}
+	}
+
+	protected override void OnAfterTreeRender(bool firstTime)
+	{
+		if (firstTime)
+		{
+			FetchLobbies();
+		}
+	}
+
+	private void OnSelected(Lobby Lobby)
+	{
+		CurrentLobby = Lobby;
+	}
+
+	private void Create()
+	{
+		Networking.CreateLobby();
+	}
+
+	private bool IsEditorLobby(LobbyInformation Lobby)
+	{
+		if (Game.IsEditor) return false;
+		return Lobby.IsEditorLobby();
+	}
+
+	protected async void FetchLobbies()
+	{
+		IsSearching = true;
+		FetchedLobbies = new();
+		StateHasChanged();
+
+		var lobbies = await Networking.QueryLobbies(Game.Ident);
+
+		IsSearching = false;
+		FetchedLobbies = lobbies.Where(x => !IsEditorLobby(x)).ToList();
+		StateHasChanged();
+	}
+
+	public void Refresh()
+	{
+		StateHasChanged();
+		FetchLobbies();
+	}
+}

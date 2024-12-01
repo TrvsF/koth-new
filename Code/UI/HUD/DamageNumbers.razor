@@ -1,0 +1,207 @@
+@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root>
+	@foreach (var DamageNumberElement in DamageNumberElements)
+	{
+		<label class="damage-number" style="font-size: @(DamageNumberElement.GetSizePx())px; color: @(DamageNumberElement.GetColour().Hex); left: @(DamageNumberElement.GetScreenPos().x * 100)%; top: @(DamageNumberElement.GetScreenPos().y * 100)%; ">
+			@(DamageNumberElement)
+		</label>
+	}
+</root>
+
+@code
+{
+	// TODO : put these in a helper somewhere
+
+	public Vector2 GetScreenPosFromPlayerPawn(PlayerPawn PlayerPawn, out bool IsBehind)
+	{
+		var Position = LocalPlayerPawn.Camera.PointToScreenNormal(PlayerPawn.Transform.Position, out IsBehind);
+		return Position;
+	}
+
+	public Vector2 GetScreenOffset(float Distance = 0f)
+	{
+		float DistanceFactor = 0.01f; //0.007f * (float)Math.Sqrt(Distance);
+
+		float XOffset = (float)(Random.Shared.NextDouble() * DistanceFactor * 2) - DistanceFactor;
+		float YOffset = (float)(Random.Shared.NextDouble() * (0.15f - DistanceFactor)) + DistanceFactor;
+		return new Vector2(XOffset, -YOffset);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////
+
+	class FScreenNumberElement
+	{
+		public PlayerPawn PlayerPawn { get; set; } = null;
+		public PlayerPawn TargetPawn { get; set; } = null;
+		public Vector2 ScreenOffset { get; set; } = Vector2.Zero;
+		public float Damage { get; set; } = 0f;
+		public bool IsDamage { get; set; } = true;
+		public TimeUntil DisplayedTime { get; set; } = new();
+
+		public bool IsVisable { get; private set; } = true;
+
+		public Vector3 Location { get; private set; } = Vector3.Zero;
+
+		public FScreenNumberElement(){}
+
+		public void Init()
+		{
+			Location = TargetPawn.Transform.Position;
+			DisplayedTime = 0;
+		}
+
+		public Vector2 GetScreenPos()
+		{
+			var IsBehind = false;
+			var ScreenPos = PlayerPawn.Camera.PointToScreenNormal(Location, out IsBehind);
+			ScreenPos.y += (DisplayedTime * 0.075f);
+
+			return ScreenPos + ScreenOffset;
+		}
+
+		public void AddDamage(float InDamage)
+		{
+			Damage += InDamage;
+		}
+
+		public override string ToString()
+		{
+			if (IsDamage)
+			{
+				return $"-{Damage.CeilToInt()}";
+			}
+			else
+			{
+				return $"+{Damage.CeilToInt()}";
+			}
+		}
+
+		// TODO : all these need to be cached, and all instances like it
+		public Color GetColour()
+		{
+			if (IsDamage)
+			{
+				return Color.Yellow;
+			}
+			else
+			{
+				return TeamExtensions.GetColor(PlayerPawn.Team, false);
+			}
+		}
+
+		public int GetSizePx()
+		{
+			if (Damage < 50)
+			{
+				return 24;
+			}
+			return (int) Math.Max(24, Math.Min(48, Math.Round(Damage * 0.7f)));
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////
+
+	public static DamageNumbers Instance { get; set; }
+
+	public DamageNumbers()
+	{
+		Instance = this;
+	}
+
+	List<FScreenNumberElement> DamageNumberElements = new();
+	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+
+	public void OnHealth(float Health, PlayerPawn HitPawn)
+	{
+		if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || HitPawn == LocalPlayerPawn)
+		{
+			return;
+		}
+
+		bool IsBehind;
+		var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
+		var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
+		if (IsHidden || IsBehind)
+		{
+			return;
+		}
+		var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
+		FScreenNumberElement DamageNumberElement = new()
+			{
+				PlayerPawn = LocalPlayerPawn,
+				TargetPawn = HitPawn,
+				ScreenOffset = GetScreenOffset(Distance),
+				Damage = Health,
+				IsDamage = false,
+				DisplayedTime = 0,
+			};
+		DamageNumberElement.Init();
+		DamageNumberElements.Add(DamageNumberElement);
+	}
+
+	public void OnHit(float Damage, PlayerPawn HitPawn)
+	{
+		if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || HitPawn == LocalPlayerPawn)
+		{
+			return;
+		}
+
+		bool IsBehind;
+		var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
+		var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
+		if (IsHidden || IsBehind)
+		{
+			return;
+		}
+		var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
+
+		foreach (var Element in DamageNumberElements)
+		{
+			if (Element.TargetPawn == HitPawn)
+			{
+				Element.AddDamage(Damage);
+				Element.Init();
+
+				return; // NOTE : early return
+			}
+		}
+
+		// if we haven't return'd then make a new element
+		FScreenNumberElement DamageNumberElement = new()
+			{
+				PlayerPawn = LocalPlayerPawn,
+				TargetPawn = HitPawn,
+				ScreenOffset = GetScreenOffset(Distance),
+				Damage = Damage,
+				DisplayedTime = 0,
+			};
+		DamageNumberElement.Init();
+		DamageNumberElements.Add(DamageNumberElement);
+	}
+
+	public override void Tick()
+	{
+		List<FScreenNumberElement> DamageNumbersToRemove = new();
+
+		foreach (var DamageNumber in DamageNumberElements)
+		{
+			if (DamageNumber.DisplayedTime < -0.9f)
+			{
+				DamageNumbersToRemove.Add(DamageNumber);
+			}
+		}
+
+		foreach (var Remove in DamageNumbersToRemove)
+		{
+			DamageNumberElements.Remove(Remove);
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}
