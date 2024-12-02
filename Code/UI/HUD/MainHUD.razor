@@ -6,7 +6,7 @@
 @if (!IsHudEnabled)
 	return;
 
-@if (PlayerState.Local.PlayerPawn.IsValid())
+@if (!PlayerState.Local.PlayerPawn.IsValid())
 	return;
 
 <root>
@@ -29,9 +29,9 @@
 		<RoundStateDisplay />
 
 		<div class="right">
-		<div class="flex-grow" />
-		<Voices />
-		<WeaponInfoComponent />
+			<div class="flex-grow" />
+			<Voices />
+			<WeaponInfoComponent />
 		</div>
 
 		<Radio />

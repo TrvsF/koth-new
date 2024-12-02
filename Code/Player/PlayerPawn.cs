@@ -174,9 +174,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			if (IsLocallyControlled)
 			{
-				// TOOD : bug
 				Body.Renderer.Enabled = false;
 				Tags.Add("self");
+			}
+			else
+			{
+				// HACK : turns back on rendering if the host disabled it globally for themself
+				Body.Renderer.Enabled = true;
 			}
 			return true;
 		}

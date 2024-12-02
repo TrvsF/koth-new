@@ -100,10 +100,10 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	[DeveloperCommand("Toggle View Model", "Visuals")]
 	private static void ToggleViewModel()
 	{
-		var player = PlayerState.Viewer.PlayerPawn;
+		var ViewerPlayerPawn = PlayerState.Viewer.PlayerPawn;
 
-		player.CurrentEquipment.ViewModel.ModelRenderer.Enabled = !player.CurrentEquipment.ViewModel.ModelRenderer.Enabled;
-		player.CurrentEquipment.ViewModel.Arms.Enabled = !player.CurrentEquipment.ViewModel.Arms.Enabled;
+		ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled;
+		ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled;
 	}
 
 	/// <summary>
@@ -153,7 +153,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	/// <summary>
 	/// Deploy this equipment.
 	/// </summary>
-	[Authority]
+	[Rpc.Owner]
 	public void Deploy()
 	{
 		if (IsDeployed)
@@ -174,7 +174,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	/// <summary>
 	/// Holster this equipment.
 	/// </summary>
-	[Authority]
+	[Rpc.Owner]
 	public void Holster()
 	{
 		if (!IsDeployed)
@@ -224,7 +224,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			ViewModel.GameObject.Destroy();
 	}
 
-	// TODO : this sometimes doesn't fire for the client, i've also added the gold code here hehe
+	// TODO : this sometimes doesn't fire for the client
 	public void CreateViewModel(bool playDeployEffects = true)
 	{
 		var player = Owner;

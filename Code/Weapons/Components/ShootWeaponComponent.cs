@@ -536,24 +536,24 @@ public class ShootWeaponComponent : InputWeaponComponent,
 
 	public void CycleFireMode()
 	{
-		if (TimeSinceFireModeSwitch < FireModeSwitchDelay) return;
-		if (IsBurstFiring) return;
-		if (IsDown()) return;
+		//if (TimeSinceFireModeSwitch < FireModeSwitchDelay) return;
+		//if (IsBurstFiring) return;
+		//if (IsDown()) return;
 
-		var curIndex = GetFireModeIndex(CurrentFireMode);
-		var length = SupportedFireModes.Count;
-		var newIndex = (curIndex + 1 + length) % length;
+		//var curIndex = GetFireModeIndex(CurrentFireMode);
+		//var length = SupportedFireModes.Count;
+		//var newIndex = (curIndex + 1 + length) % length;
 
-		// We didn't change anything
-		if (newIndex == curIndex) return;
+		//// We didn't change anything
+		//if (newIndex == curIndex) return;
 
-		CurrentFireMode = SupportedFireModes[newIndex];
+		//CurrentFireMode = SupportedFireModes[newIndex];
 
-		Equipment.ViewModel?.OnFireMode(CurrentFireMode);
+		//Equipment.ViewModel?.OnFireMode(CurrentFireMode);
 
-		// Toast.Instance?.Show( $"{CurrentFireMode}", ToastType.Generic, 1f );
+		//// Toast.Instance?.Show( $"{CurrentFireMode}", ToastType.Generic, 1f );
 
-		TimeSinceFireModeSwitch = 0;
+		//TimeSinceFireModeSwitch = 0;
 	}
 
 	void IGameEventHandler<EquipmentHolsteredEvent>.OnGameEvent(EquipmentHolsteredEvent eventArgs)
