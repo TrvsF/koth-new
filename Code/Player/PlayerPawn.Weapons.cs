@@ -6,9 +6,6 @@ public partial class PlayerPawn :
 	IGameEventHandler<EquipmentDeployedEvent>,
 	IGameEventHandler<EquipmentHolsteredEvent>
 {
-	/// <summary>
-	/// What Weapon are we using?
-	/// </summary>
 	[Property, ReadOnly] public Equipment CurrentEquipment { get; private set; }
 
 	void IGameEventHandler<EquipmentDeployedEvent>.OnGameEvent(EquipmentDeployedEvent eventArgs)
@@ -22,13 +19,13 @@ public partial class PlayerPawn :
 			CurrentEquipment = null;
 	}
 
-	[Authority]
+	[Rpc.Owner]
 	private void SetCurrentWeapon(Equipment equipment)
 	{
 		SetCurrentEquipment(equipment);
 	}
 
-	[Authority]
+	[Rpc.Owner]
 	private void ClearCurrentWeapon()
 	{
 		CurrentEquipment?.Holster();

@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 using Sandbox.Events;
 
 namespace KOTH;
@@ -12,86 +13,30 @@ public record EquipmentDestroyedEvent(Equipment Equipment) : IGameEvent;
 /// </summary>
 public partial class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
 {
-	/// <summary>
-	/// A reference to the equipment's <see cref="EquipmentResource"/>.
-	/// </summary>
-	[Property, Group("Resources")] public EquipmentResource Resource { get; set; }
-
-	/// <summary>
-	/// A tag binder for this equipment.
-	/// </summary>
+	internal void BindTag(string tag, Func<bool> predicate) => TagBinder.BindTag(tag, predicate);
 	[RequireComponent] public TagBinder TagBinder { get; set; }
 
-	/// <summary>
-	/// Shorthand to bind a tag.
-	/// </summary>
-	/// <param name="tag"></param>
-	/// <param name="predicate"></param>
-	internal void BindTag(string tag, Func<bool> predicate) => TagBinder.BindTag(tag, predicate);
-
-	/// <summary>
-	/// A reference to the equipment's model renderer.
-	/// </summary>
+	[Property, Group("Resources")] public EquipmentResource Resource { get; set; }
 	[Property, Group("Components")] public SkinnedModelRenderer ModelRenderer { get; set; }
-
-	/// <summary>
-	/// The default holdtype for this equipment.
-	/// </summary>
 	[Property, Group("Animation")] protected AnimationHelper.HoldTypes HoldType { get; set; } = AnimationHelper.HoldTypes.Rifle;
-
-	/// <summary>
-	/// The default holdtype for this equipment.
-	/// </summary>
 	[Property, Group("Animation")] public AnimationHelper.Hand Handedness { get; set; } = AnimationHelper.Hand.Right;
-
-	/// <summary>
-	/// What sound should we play when taking this gun out?
-	/// </summary>
 	[Property, Group("Sounds")] public SoundEvent DeploySound { get; set; }
-
-	/// <summary>
-	/// How slower do we walk with this equipment out?
-	/// </summary>
 	[Property, Group("Movement")] public float SpeedPenalty { get; set; } = 0f;
-
 	[Property, Group("GameObjects")] public GameObject Muzzle { get; set; }
 	[Property, Group("GameObjects")] public GameObject EjectionPort { get; set; }
-
-	/// <summary>
-	/// What prefab should we spawn as the mounted version of this piece of equipment?
-	/// </summary>
 	[Property, Group("Mount Points")] public GameObject MountedPrefab { get; set; }
-
-	/// <summary>
-	/// Should we enable the crosshair?
-	/// </summary>
 	[Property, Group("UI")] public bool UseCrosshair { get; set; } = true;
 
-	/// <summary>
-	/// Cached version of the owner once we fetch it.
-	/// </summary>
-	private PlayerPawn owner;
 
-	/// <summary>
-	/// Who owns this gun?
-	/// </summary>
+	[HostSync] public Guid OwnerId { get; set; }
+	private PlayerPawn owner;
 	public PlayerPawn Owner
 	{
 		get => owner ??= Scene.Directory.FindComponentByGuid(OwnerId) as PlayerPawn;
 	}
 
-	/// <summary>
-	/// The Guid of the owner's <see cref="PlayerPawn"/>
-	/// </summary>
-	[HostSync] public Guid OwnerId { get; set; }
-
-	// IDescription
 	string IDescription.DisplayName => Resource.Name;
-	// string IDescription.Icon => Resource.Icon;
 
-	/// <summary>
-	/// Is this equipment currently deployed by the player?
-	/// </summary>
 	[Sync, Change(nameof(OnIsDeployedPropertyChanged))]
 	public bool IsDeployed { get; private set; }
 	private bool _wasDeployed { get; set; }
@@ -106,9 +51,6 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled;
 	}
 
-	/// <summary>
-	/// Updates the render mode, if we're locally controlling a player, we want to hide the world model.
-	/// </summary>
 	public void UpdateRenderMode(bool force = false)
 	{
 		var on = force || (Owner.IsValid() && !Owner.IsViewer && IsDeployed);
@@ -150,9 +92,6 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		if (!player.IsValid()) return;
 	}
 
-	/// <summary>
-	/// Deploy this equipment.
-	/// </summary>
 	[Rpc.Owner]
 	public void Deploy()
 	{
@@ -171,9 +110,6 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		IsDeployed = true;
 	}
 
-	/// <summary>
-	/// Holster this equipment.
-	/// </summary>
 	[Rpc.Owner]
 	public void Holster()
 	{
@@ -183,10 +119,6 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		IsDeployed = false;
 	}
 
-	/// <summary>
-	/// Allow equipment to override holdtypes at any notice.
-	/// </summary>
-	/// <returns></returns>
 	public virtual AnimationHelper.HoldTypes GetHoldType()
 	{
 		return HoldType;
@@ -227,21 +159,19 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	// TODO : this sometimes doesn't fire for the client
 	public void CreateViewModel(bool playDeployEffects = true)
 	{
-		var player = Owner;
-		if (!player.IsValid()) return;
-
-		var resource = Resource;
+		Assert.IsValid(Owner);
+		Assert.IsValid(Resource);
 
 		ClearViewModel();
 		UpdateRenderMode();
 
-		if (resource.ViewModelPrefab.IsValid())
+		if (Resource.ViewModelPrefab.IsValid())
 		{
 			// Create the equipment prefab and put it on the equipment gameobject.
-			var viewModelGameObject = resource.ViewModelPrefab.Clone(new CloneConfig()
+			var viewModelGameObject = Resource.ViewModelPrefab.Clone(new CloneConfig()
 			{
 				Transform = new(),
-				Parent = player.GameObject,
+				Parent = Owner.Boom,
 				StartEnabled = true,
 			});
 
@@ -255,10 +185,14 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		}
 
 		if (!playDeployEffects)
+		{
 			return;
+		}
 
 		if (DeploySound is null)
+		{
 			return;
+		}
 
 		var snd = Sound.Play(DeploySound, WorldPosition);
 		if (!snd.IsValid()) return;
@@ -271,9 +205,13 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		_wasDeployed = IsDeployed;
 		_hasStarted = true;
 		if (IsDeployed)
+		{
 			OnDeployed();
+		}
 		else
+		{
 			OnHolstered();
+		}
 	}
 
 	bool HasCreatedViewModel { get; set; } = false;

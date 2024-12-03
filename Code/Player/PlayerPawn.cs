@@ -61,10 +61,16 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
 		{
-			Scene.Dispatch(new EquipmentRequentEvent(CharacterDefinition.SecondaryWeapon, this, false));
-			Scene.Dispatch(new EquipmentRequentEvent(CharacterDefinition.PrimaryWeapon, this, true));
+			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, false);
+			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
 		}
+	}
+
+	[Rpc.Host]
+	private void GiveWeaponToPawn(EquipmentResource Weapon, bool ShouldActivate)
+	{
+		Inventory.Give(Weapon, ShouldActivate);
 	}
 
 	protected override void OnUpdate()

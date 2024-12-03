@@ -7,14 +7,11 @@ using static Sandbox.PhysicsContact;
 
 namespace KOTH;
 
-public record EquipmentRequentEvent(EquipmentResource Equipment, PlayerPawn Player, bool ShouldActivate) : IGameEvent;
-
 // TODO : why is this a singleton? what is a singleton in this sense? <- is it the rpcs?
 // TODO : rename health manager
 public sealed class DamageManager : SingletonComponent<DamageManager>,
 	IGameEventHandler<DamageRequestEvent>,
-	IGameEventHandler<HealingRequestEvent>,
-	IGameEventHandler<EquipmentRequentEvent>
+	IGameEventHandler<HealingRequestEvent>
 {
 	[Property] public SoundEvent HitSound { get; set; }
 
@@ -80,7 +77,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	// host only broadcasts
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
-	[Rpc.Broadcast]
+	[Rpc.Host]
 	private void ServerInflictDamageToPlayer(FDamageRequest DamageRequest)
 	{
 		Assert.True(Networking.IsHost);
@@ -201,7 +198,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		//}
 	}
 
-	[Rpc.Broadcast]
+	[Rpc.Host]
 	private static void ServerInflictHealing(PlayerPawn Target, PlayerPawn Giver, float Healing, bool AllowOverhealing)
 	{
 		if (!Networking.IsHost)
@@ -236,7 +233,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		//}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void ClientDidDamage(PlayerState PlayerState, PlayerPawn PlayerPawn, float Damage, bool WasSelfDamage)
 	{
 		if (!WasSelfDamage)
@@ -248,22 +245,5 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			HitSound.Pitch = MathX.Lerp(1.2f, 0.7f, Damage * .02f);
 			HitSound.ListenLocal = true;
 		}
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////
-	// TODO : MOVE ME!
-
-	public void OnGameEvent(EquipmentRequentEvent EventArgs)
-	{
-		using (Rpc.FilterInclude(Connection.Host))
-		{
-			GiveWeaponToPawn(EventArgs.Player, EventArgs.Equipment, EventArgs.ShouldActivate);
-		}
-	}
-
-	[Broadcast]
-	private static void GiveWeaponToPawn(PlayerPawn Player, EquipmentResource Weapon, bool ShouldActivate)
-	{
-		Player.Inventory.Give(Weapon, ShouldActivate);
 	}
 }
