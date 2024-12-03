@@ -28,7 +28,7 @@
 
 @code
 {
-	public PlayerPawn Player => PlayerState.Viewer.PlayerPawn;
+	public PlayerPawn Player => PlayerState.Local.PlayerPawn;
 	public PlayerInventory Inventory => Player.Inventory;
 	public Equipment CurrentEquipment => Player?.CurrentEquipment;
 

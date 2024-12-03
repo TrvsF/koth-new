@@ -50,7 +50,7 @@
 		return MathX.Lerp(0.7f, 0f, TimeSinceLastHit / 2f);
 	}
 
-	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+	PlayerPawn LocalPlayerPawn => PlayerState.Local.IsValid() ? PlayerState.Local.PlayerPawn : null;
 
 	public List<FDamageTri> DamageTris = new();
 

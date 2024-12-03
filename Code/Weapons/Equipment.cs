@@ -100,7 +100,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	[DeveloperCommand("Toggle View Model", "Visuals")]
 	private static void ToggleViewModel()
 	{
-		var ViewerPlayerPawn = PlayerState.Viewer.PlayerPawn;
+		var ViewerPlayerPawn = PlayerState.Local.PlayerPawn;
 
 		ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled;
 		ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled;

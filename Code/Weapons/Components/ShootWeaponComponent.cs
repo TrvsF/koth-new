@@ -273,9 +273,6 @@ public class ShootWeaponComponent : InputWeaponComponent,
 				count++;
 			}
 		}
-
-		// If we have a recoil function, let it know.
-		Equipment.Components.Get<RecoilWeaponComponent>(FindMode.EnabledInSelfAndDescendants)?.Shoot();
 	}
 
 	private float CalculateDamageFalloff(float damage, float distance)
@@ -300,7 +297,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	/// <summary>
 	/// Makes some tracers using legacy particle effects.
 	/// </summary>
-	[Broadcast]
+	[Rpc.Broadcast]
 	protected void DoTracer(Vector3 startPosition, Vector3 endPosition, float distance, int count)
 	{
 		if (!IsNearby(startPosition) || !IsNearby(endPosition)) return;

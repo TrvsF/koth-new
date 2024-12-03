@@ -112,7 +112,7 @@
 	}
 
 	List<FScreenNumberElement> DamageNumberElements = new();
-	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+	PlayerPawn LocalPlayerPawn => PlayerState.Local.IsValid() ? PlayerState.Local.PlayerPawn : null;
 
 	public void OnHealth(float Health, PlayerPawn HitPawn)
 	{

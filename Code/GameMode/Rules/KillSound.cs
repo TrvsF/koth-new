@@ -35,7 +35,7 @@ public sealed class KillSound : Component,
 		var Attacker = GameUtils.GetPlayerFromComponent(EventArgs.DamageEvent.AttackerPlayerPawn);
 		var Victim = GameUtils.GetPlayerFromComponent(EventArgs.DamageEvent.VictimPlayerPawn);
 
-		if (Attacker != PlayerState.Viewer.PlayerPawn || !Attacker.IsValid() || !Victim.IsValid())
+		if (Attacker != PlayerState.Local.PlayerPawn || !Attacker.IsValid() || !Victim.IsValid())
 			return;
 
 		if (Attacker.IsFriendly(Victim))

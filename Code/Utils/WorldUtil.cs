@@ -14,7 +14,7 @@ namespace KOTH.Utils
 			var ClassList = GameMode.Instance.Components.Get<ClassList>();
 			Assert.NotNull(ClassList);
 
-			return ClassList.ClassDefinitions.First();
+			return ClassList.ClassDefinitions[2];
 		}
 	}
 }

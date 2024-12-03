@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.Utility;
 using System.ComponentModel.DataAnnotations;
@@ -79,14 +80,10 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	// host only broadcasts
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void ServerInflictDamageToPlayer(FDamageRequest DamageRequest)
 	{
-		if (!Networking.IsHost)
-		{
-			Log.Warning("Trying to invoke server damage methods from client");
-			return;
-		}
+		Assert.True(Networking.IsHost);
 
 		var DamageOrigin = DamageRequest.DamageOrigin;
 		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
@@ -174,20 +171,20 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		if (KnockbackOnly)
 		{
 			TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);
+			return;
 		}
-		else
+
+		if (TargetPlayerPawn.Body.IsValid()) // TODO : move me
 		{
-			if (TargetPlayerPawn.Body.IsValid()) // TODO : move me
-			{
-				TargetPlayerPawn.Body.DamageTakenForce = Knockback * .66f;
-			}
-			TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);
-			TargetPlayerPawn.DamageComponent.TakeDamage(DamageTaken);
-
-			AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
-
-			Log.Info($"{Damage} damage has been taken {AttackerPlayerPawn?.DisplayName} -> {TargetPlayerPawn.DisplayName}");
+			TargetPlayerPawn.Body.DamageTakenForce = Knockback * .66f;
 		}
+		TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);
+		TargetPlayerPawn.DamageComponent.TakeDamage(DamageTaken);
+
+		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
+
+		Log.Info($"{Damage} damage has been taken {AttackerPlayerPawn?.DisplayName} -> {TargetPlayerPawn.DisplayName}");
+
 
 		// ---------------------- stats
 		//if (TargetPlayerPawn.PlayerState.IsValid())
@@ -204,7 +201,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		//}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private static void ServerInflictHealing(PlayerPawn Target, PlayerPawn Giver, float Healing, bool AllowOverhealing)
 	{
 		if (!Networking.IsHost)

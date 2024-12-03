@@ -3,7 +3,7 @@
 @inherits Panel
 
 <root class="">
-	@foreach (var voice in VoiceList.Where(x => CanDisplay(x)))
+	@* @foreach (var voice in VoiceList.Where(x => CanDisplay(x)))
 	{
 		<div class="row">
 			<div class="item-row with-background">
@@ -16,7 +16,7 @@
 				<PlayerPanel PlayerState=@player />
 			</div>
 		</div>
-	}
+	} *@
 
 </root>
 

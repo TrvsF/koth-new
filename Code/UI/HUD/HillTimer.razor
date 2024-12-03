@@ -16,7 +16,7 @@
 {
 	public static HillTimer Instance { get; set; }
 
-	PlayerPawn LocalPlayerPawn => PlayerState.Viewer.IsValid() ? PlayerState.Viewer.PlayerPawn : null;
+	PlayerPawn LocalPlayerPawn => PlayerState.Local.IsValid() ? PlayerState.Local.PlayerPawn : null;
 
 	string HillTimerT = ""; 
 	string HillTimerCT = ""; 

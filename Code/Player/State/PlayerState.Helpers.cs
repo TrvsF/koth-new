@@ -8,9 +8,6 @@ namespace KOTH;
 
 public partial class PlayerState
 {
-	// [HostSync] public static NetDictionary<Connection, PlayerState> PlayerStateConnectionPairs { get; private set; } = new();
-	// TODO : 
-
+	// TODO : yuk singleton, TODO : create connection -> player state map?
 	public static PlayerState Local { get; private set; }
-	public static PlayerState Viewer { get; private set; }
 }
