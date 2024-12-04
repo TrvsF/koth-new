@@ -5,49 +5,20 @@ namespace KOTH;
 
 public enum AutoBalanceMode
 {
-	/// <summary>
-	/// Don't auto-balance.
-	/// </summary>
 	None,
-
-	/// <summary>
-	/// Pick random players to move.
-	/// </summary>
 	Random,
-
-	/// <summary>
-	/// Prefer to move players with the lowest scores.
-	/// </summary>
 	LowestScorers,
-
-	/// <summary>
-	/// Prefer to move players with the lowest scores from just the last round.
-	/// </summary>
 	LowestScorersLastRound
 }
 
-/// <summary>
-/// Split players into two balanced teams. If <see cref="AllowLateJoiners"/> is true,
-/// new players will be assigned as soon as they join. Otherwise, teams will only be
-/// assigned when this game state is entered.
-/// </summary>
 public sealed class TeamAssigner : Component,
 	IGameEventHandler<EnterStateEvent>,
 	IGameEventHandler<PlayerConnectedEvent>
 {
-	[Property] public int MaxTeamSize { get; set; } = 5;
-
-	/// <summary>
-	/// Target number of Ts per CT.
-	/// </summary>
+	[Property] public int MaxTeamSize { get; set; } = 9;
 	[Property] public float TargetRatio { get; set; } = 1f;
-
-	/// <summary>
-	/// What sort of auto-balancing should we apply when entering this state.
-	/// </summary>
 	[Property] public AutoBalanceMode AutoBalanceMode { get; set; } = AutoBalanceMode.Random;
 
-	[After<SwapTeams>]
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
 		AssignSpectatorsToTeams();

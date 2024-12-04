@@ -21,7 +21,6 @@
       "__guid": "624a8198-c56a-437e-bff0-90272865dca6",
       "Flags": 0,
       "Name": "MapInstance",
-      "Position": "149.3263,149.3264,-211.1794",
       "Enabled": true,
       "Components": [
         {
@@ -42,7 +41,6 @@
       "__guid": "337b45d2-f94a-41a9-b735-093088733043",
       "Flags": 0,
       "Name": "GameState",
-      "Position": "122.1813,507.827,-209.1794",
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkInterpolation": false,
@@ -163,34 +161,6 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "__guid": "c9f043ab-b96a-4cb2-92b4-efe58aa792d9",
-      "Flags": 0,
-      "Name": "KillZone (1)",
-      "Position": "0,0,-500",
-      "Tags": "zone",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "56de2bba-8da3-449a-978b-f65ceffa77d9",
-          "Center": "0,0,0",
-          "IsTrigger": true,
-          "Scale": "10000,10000,100",
-          "Static": false,
-          "SurfaceVelocity": "0,0,0"
-        },
-        {
-          "__type": "Zone",
-          "__guid": "cc302073-2a7a-44d4-925b-a1dc244b36c0",
-          "Color": "1,0,0,1"
-        },
-        {
-          "__type": "KOTH.KillZone",
-          "__guid": "1c565ecd-66cc-48bf-9859-6fa498c1d28e"
         }
       ]
     },
@@ -942,7 +912,7 @@
       "__guid": "5c7a37ae-95af-4db0-a4da-7dab36115d35",
       "Flags": 0,
       "Name": "healthpack (1)",
-      "Position": "160,704,-58.17939",
+      "Position": "0,0,144",
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
@@ -950,10 +920,10 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "404a63ca-6a36-4e33-866f-755806e11140",
+      "__guid": "4f91999c-2228-4a79-853a-e6e40c2448dc",
       "Flags": 0,
-      "Name": "healthpack",
-      "Position": "160,591.9999,-58.17939",
+      "Name": "healthpack (2)",
+      "Position": "0,48,144",
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
@@ -964,7 +934,7 @@
       "__guid": "37f16748-a3fd-4c7a-a495-d640837228bf",
       "Flags": 0,
       "Name": "DefaultSceneCamera",
-      "Position": "816.8995,406.3002,-30.38166",
+      "Position": "816.8995,406.3002,256",
       "Enabled": true,
       "Components": [
         {

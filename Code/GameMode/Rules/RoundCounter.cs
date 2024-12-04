@@ -18,8 +18,7 @@ public record RoundCounterIncrementedEvent : IGameEvent;
 /// </summary>
 public sealed class RoundCounter : Component,
 	IGameEventHandler<RoundCounterResetEvent>,
-	IGameEventHandler<RoundCounterIncrementedEvent>,
-	IGameEventHandler<TeamsSwappedEvent>
+	IGameEventHandler<RoundCounterIncrementedEvent>
 {
 	/// <summary>
 	/// Current round number, starting at 1.
@@ -42,12 +41,6 @@ public sealed class RoundCounter : Component,
 	void IGameEventHandler<RoundCounterIncrementedEvent>.OnGameEvent(RoundCounterIncrementedEvent eventArgs)
 	{
 		Round += 1;
-	}
-
-	[Early]
-	void IGameEventHandler<TeamsSwappedEvent>.OnGameEvent(TeamsSwappedEvent eventArgs)
-	{
-		LastTeamSwapRound = Round;
 	}
 
 	private void OnRoundChanged(int oldValue, int newValue)

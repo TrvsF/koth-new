@@ -36,10 +36,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		switch (HealingRequest.HealingType)
 		{
 			case EHealingType.Continuous:
-				using (Rpc.FilterInclude(Connection.Host))
-				{
-					ServerInflictHealing(TargetPlayerPawn, HealingRequest.AttackerPlayerPawn, HealingRequest.BaseHealing, HealingRequest.AllowOverheal);
-				}
+				ServerInflictHealing(TargetPlayerPawn, HealingRequest.AttackerPlayerPawn, HealingRequest.BaseHealing, HealingRequest.AllowOverheal);
 				// HealingRequest.AttackerPlayerPawn.GameObject.Root.Dispatch(new HealingGivenEvent(new(HealingRequest.TargetPlayerPawn, HealingRequest.BaseHealing)));
 				break;
 			case EHealingType.Projectile:
@@ -57,10 +54,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		}
 
 		// tell server to do damage from request
-		using (Rpc.FilterInclude(Connection.Host))
-		{
-			ServerInflictDamageToPlayer(DamageRequest);
-		}
+		ServerInflictDamageToPlayer(DamageRequest);
 	}
 
 	const float MaxKB = 1200f;
@@ -233,7 +227,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		//}
 	}
 
-	[Rpc.Broadcast]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void ClientDidDamage(PlayerState PlayerState, PlayerPawn PlayerPawn, float Damage, bool WasSelfDamage)
 	{
 		if (!WasSelfDamage)

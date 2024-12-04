@@ -8,8 +8,7 @@ public record TeamScoreIncrementedEvent(Team Team, int Score) : IGameEvent;
 /// Keeps track of a score for each team.
 /// </summary>
 public sealed class TeamScoring : Component,
-	IGameEventHandler<ResetScoresEvent>,
-	IGameEventHandler<TeamsSwappedEvent>
+	IGameEventHandler<ResetScoresEvent>
 {
 	[HostSync]
 	public NetDictionary<Team, int> Scores { get; private set; } = new();
@@ -52,11 +51,6 @@ public sealed class TeamScoring : Component,
 
 		Scores[Team.Terrorist] = ctScores;
 		Scores[Team.CounterTerrorist] = tScores;
-	}
-
-	void IGameEventHandler<TeamsSwappedEvent>.OnGameEvent(TeamsSwappedEvent eventArgs)
-	{
-		Flip();
 	}
 }
 

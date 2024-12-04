@@ -156,7 +156,6 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			ViewModel.GameObject.Destroy();
 	}
 
-	// TODO : this sometimes doesn't fire for the client
 	public void CreateViewModel(bool playDeployEffects = true)
 	{
 		Assert.IsValid(Owner);
@@ -175,11 +174,11 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 				StartEnabled = true,
 			});
 
-			var viewModelComponent = viewModelGameObject.Components.Get<ViewModel>();
-			viewModelComponent.PlayDeployEffects = playDeployEffects;
+			var ViewModelComponent = viewModelGameObject.Components.Get<ViewModel>();
+			ViewModelComponent.PlayDeployEffects = playDeployEffects;
 
 			// equipment needs to know about the ViewModel
-			ViewModel = viewModelComponent;
+			ViewModel = ViewModelComponent;
 
 			viewModelGameObject.BreakFromPrefab();
 		}
@@ -194,10 +193,13 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			return;
 		}
 
-		var snd = Sound.Play(DeploySound, WorldPosition);
-		if (!snd.IsValid()) return;
+		var Sound = Sandbox.Sound.Play(DeploySound, WorldPosition);
+		if (!Sound.IsValid())
+		{
+			return; 
+		}
 
-		snd.ListenLocal = !IsProxy;
+		Sound.ListenLocal = !IsProxy;
 	}
 
 	protected override void OnStart()
