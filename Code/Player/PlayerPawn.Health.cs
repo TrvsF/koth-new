@@ -24,31 +24,26 @@ public partial class PlayerPawn :
 		// TODO : attempt retry or throw 
 	}
 
-	public void OnKill()
+	public void OnKill(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
 
-		//IsAlive = false;
-		//Inventory.Clear();
+		Inventory.Clear();
 
-		//if (DamageTaken.Damage > 56)
-		//{
-		//	CreateGibs();
-		//}
-		//else
-		//{
-		//	CreateRagdoll();
-		//}
+		if (DamageTaken.Damage > 56)
+		{
+			CreateGibs();
+		}
+		else
+		{
+			CreateRagdoll();
+		}
 
-		//if (IsProxy)
-		//	return;
-
-		//// PlayerState?.OnKill(DamageTaken);
-
-		//Holster();
-
-		//_previousVelocity = Vector3.Zero;
-		//CameraController.Mode = CameraMode.ThirdPerson;
+		if (Camera.IsValid())
+		{
+			Camera.Destroy();
+		}
+		// GameObject.Root.Destroy();
 	}
 
 	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)

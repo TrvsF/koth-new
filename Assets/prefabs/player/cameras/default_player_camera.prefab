@@ -88,10 +88,13 @@
       {
         "__type": "Sandbox.AmbientOcclusion",
         "__guid": "9d21f25e-4845-4991-8273-82f901d917f4",
-        "FalloffDistance": 1,
-        "Intensity": 8,
+        "__version": 1,
+        "DenoiseMode": "Temporal",
+        "FalloffRange": 0.75,
+        "Intensity": 0.15,
         "Quality": "High",
-        "Radius": 32
+        "Radius": 128,
+        "ThinCompensation": 0
       },
       {
         "__type": "KOTH.UI.MainHUD",

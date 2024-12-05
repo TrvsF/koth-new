@@ -136,7 +136,7 @@ public partial class ViewModel : Component, IEquipment
 		localRotation = Rotation.Identity;
 		localPosition = Vector3.Zero;
 
-		if (!Owner.IsValid() || !Owner.CharacterController.IsValid())
+		if (!Owner.IsValid() || !Owner.CharacterController.IsValid() || !Owner.IsAlive)
 			return;
 
 		ApplyAnimationParameters();

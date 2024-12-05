@@ -37,6 +37,19 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if (PlayerPawn.IsValid())
+		{
+			if (!PlayerPawn.IsAlive)
+			{
+				PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
+			}
+		}
+	}
+
 	public void RequestCharacterDefinition()
 	{
 		Log.Info("Requested Character");
@@ -86,8 +99,6 @@ public partial class PlayerState
 
 			PlayerPawn = SpawnPlayerPawnComponent;
 			PlayerStateSpawningState = EPlayerStateSpawningState.InWorld;
-
-			PlayerPawn.OnRespawn();
 		}
 		else
 		{

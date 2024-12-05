@@ -9,7 +9,7 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn
 {
-	public CameraComponent Camera { get; private set; }
+	public CameraComponent Camera => Boom.GetComponentInChildren<CameraComponent>();
 	public Ray AimRay => new(Boom.WorldPosition + Boom.WorldRotation.Forward, Boom.WorldRotation.Forward);
 
 	////////////////////////////////////////////////////////////////////////
@@ -28,10 +28,10 @@ public sealed partial class PlayerPawn
 		};
 
 		PlayerCameraPrefab.Clone(CameraPrefabConfig);
-		Camera = PlayerCameraPrefab.GetComponent<CameraComponent>();
+		// Camera = PlayerCameraPrefab.GetComponent<CameraComponent>();
 		if (!Camera.IsValid())
 		{
-			throw new Exception($"Something went wrong trying to create camera for PlayerPawn '{DisplayName}'");
+			return false;
 		}
 
 		return true;

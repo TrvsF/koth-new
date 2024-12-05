@@ -46,6 +46,8 @@ public sealed class DamageComponent : Component
 		}
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+
 	public void SetHealth(float MaxBaseHealthIn)
 	{
 		Assert.True(Networking.IsHost);
@@ -70,22 +72,20 @@ public sealed class DamageComponent : Component
 		Health = Math.Min(MaxHealth, Health + Healing);
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+
 	public void TakeDamage(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
 
+		Health -= DamageTaken.Damage;
 		BroadcastDamage(DamageTaken);
 
-		if (IsGodMode) return;
-
-		Health -= DamageTaken.Damage;
-
-		if (Health > 0f) return;
-
-		BroadcastKill(DamageTaken);
-
-		// TODO : HACK
-		OwnerPawn.OnKill();
+		if (Health <= 0f)
+		{
+			BroadcastKill(DamageTaken);
+			OwnerPawn.OnKill(DamageTaken);
+		}
 	}
 	
 	public void TakeKnockback(Vector3 Knockback)
@@ -95,13 +95,13 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastDamage(FDamageTaken DamageTaken)
 	{
 		GameObject.Root.Dispatch(new DamageTakenEvent(DamageTaken));
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastKill(FDamageTaken DamageTaken)
 	{
 		Scene.Dispatch(new KillEvent(DamageTaken));
@@ -121,7 +121,7 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void SetGodmode(bool GodMode)
 	{
 		IsGodMode = GodMode;

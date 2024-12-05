@@ -51,17 +51,17 @@ public sealed class PlayerFootsteps : Component
 
 	protected override void OnFixedUpdate()
 	{
-		if (!Player.IsValid())
-			return;
+		//if (!Player.IsValid())
+		//	return;
 
-		if (!Player.IsAlive) return;
+		//if (!Player.IsAlive) return;
 
-		if (timeSinceStep < GetStepFrequency())
-			return;
+		//if (timeSinceStep < GetStepFrequency())
+		//	return;
 
-		if (Player.CharacterController.Velocity.Length > 50f)
-		{
-			Footstep();
-		}
+		//if (Player.CharacterController.Velocity.Length > 50f)
+		//{
+		//	Footstep();
+		//}
 	}
 }

@@ -48,7 +48,33 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[Property] public bool IsViewer => PlayerState.Local?.PlayerPawn == this; // TODO : make spectate target in playerpawn?
 
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
+	[RequireComponent] public PlayerInventory Inventory { get; private set; }
+	[HostSync] public TimeSince TimeSinceLastRespawn { get; private set; }
+
+	public Team Team;
+
+	public void Teleport(Transform transform)
+	{
+		Teleport(transform.Position, transform.Rotation);
+	}
+
+	[Rpc.Owner]
+	public void Teleport(Vector3 position, Rotation rotation)
+	{
+		Transform.World = new(position, rotation);
+		Transform.ClearInterpolation();
+		EyeAngles = rotation.Angles();
+
+		if (CharacterController.IsValid())
+		{
+			CharacterController.Velocity = Vector3.Zero;
+			CharacterController.IsOnGround = true;
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+
 	protected override void OnStart()
 	{
 		Assert.NotNull(Head);
@@ -81,12 +107,14 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			{
 				EyeAngles += Input.AnalogLook;
 				EyeAngles = EyeAngles.WithPitch(EyeAngles.pitch.Clamp(-90, 90));
+
+				Camera.LocalPosition = Vector3.Zero;
+				Camera.LocalRotation = Rotation.Identity;
+
+				Boom.WorldRotation = EyeAngles.ToRotation();
 			}
 
-			Camera.LocalPosition = Vector3.Zero;
-			Camera.LocalRotation = Rotation.Identity;
-
-			Boom.WorldRotation = EyeAngles.ToRotation();
+			
 		}
 		else
 		{
@@ -120,8 +148,15 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	public SceneTraceResult CachedEyeTrace { get; private set; }
 	protected override void OnFixedUpdate()
 	{
-		Assert.True(CharacterController.IsValid());
-		Assert.True(DamageComponent.IsValid());
+		// TODO : these have been downgraded til sbox has a proper component
+		// system (or has a fixed update that waits til its components oneanbled is fired(?))
+		//Assert.True(CharacterController.IsValid());
+		//Assert.True(DamageComponent.IsValid());
+
+		if (!CharacterController.IsValid() || !DamageComponent.IsValid())
+		{
+			return;
+		}
 
 		var wasGrounded = IsGrounded;
 		IsGrounded = CharacterController.IsOnGround;
