@@ -20,8 +20,6 @@
           "_type": "gameobject",
           "go": "60019c0b-5443-4e23-9154-37648ba90882"
         },
-        "IronsightsFireScale": 0.1,
-        "IsThrowable": false,
         "ModelRenderer": {
           "_type": "component",
           "component_id": "2d65235d-6a43-421f-9bae-49d28004f322",
@@ -32,16 +30,33 @@
           "_type": "gameobject",
           "go": "17537c4e-23c1-45b8-9429-f950b345213d"
         },
-        "ThrowableType": "HEGrenade",
         "UseMovementInertia": true
       },
       {
         "__type": "Sandbox.SkinnedModelRenderer",
         "__guid": "2d65235d-6a43-421f-9bae-49d28004f322",
-        "BodyGroups": 73,
+        "BodyGroups": 75,
+        "CreateAttachments": false,
         "CreateBoneObjects": true,
         "Model": "models/weapons/sbox_smg_mp5/v_mp5.vmdl",
+        "Morphs": {},
+        "Parameters": {
+          "bools": {},
+          "ints": {},
+          "floats": {},
+          "vectors": {},
+          "rotations": {}
+        },
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
         "RenderType": "Off",
+        "Sequence": {
+          "Name": null
+        },
         "Tint": "0.3483,0.65116,0.59564,1",
         "UseAnimGraph": true
       }
@@ -50,7 +65,7 @@
       {
         "__guid": "aed8fc47-c51c-4230-8167-d0a2d6694c41",
         "Flags": 0,
-        "Name": "Object",
+        "Name": "Arms",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
@@ -64,9 +79,27 @@
               "go": "42a3c29d-4bb2-4aa8-ba33-8b8323783b56",
               "component_type": "SkinnedModelRenderer"
             },
+            "CreateAttachments": false,
             "CreateBoneObjects": false,
             "Model": "models/first_person/first_person_arms.vmdl",
+            "Morphs": {},
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "Off",
+            "Sequence": {
+              "Name": null
+            },
             "Tint": "1,1,1,1",
             "UseAnimGraph": true
           }
@@ -83,7 +116,6 @@
             "__guid": "c1960e24-35b8-40e8-ab17-9f56fd26f155",
             "Flags": 4,
             "Name": "weapon_root_children",
-            "Position": "0,0,0",
             "Enabled": true,
             "Children": [
               {
@@ -510,14 +542,12 @@
                         "__guid": "829951d6-f86f-4afc-84f3-4e507f9760d1",
                         "Flags": 4,
                         "Name": "arm_lower_R_twistctrl0",
-                        "Position": "0,0,0",
                         "Enabled": true,
                         "Children": [
                           {
                             "__guid": "1fb641eb-dd40-4a2b-8bdd-1e931fe970db",
                             "Flags": 4,
                             "Name": "arm_lower_R_twist0",
-                            "Position": "0,0,0",
                             "Enabled": true
                           },
                           {
@@ -540,7 +570,6 @@
                                     "__guid": "fa09e8fd-d7b3-438a-abdc-4c39c7c6364a",
                                     "Flags": 4,
                                     "Name": "arm_lower_R_twist2",
-                                    "Position": "0,0,0",
                                     "Enabled": true
                                   }
                                 ]
@@ -549,7 +578,6 @@
                                 "__guid": "b999bc2c-6a21-4c62-9e56-299f27f24f8f",
                                 "Flags": 4,
                                 "Name": "arm_lower_R_twist1",
-                                "Position": "0,0,0",
                                 "Enabled": true
                               }
                             ]
@@ -796,7 +824,6 @@
                         "__guid": "29644ef3-b79f-4ccd-a119-98d6445e2145",
                         "Flags": 4,
                         "Name": "arm_lower_L_twistctrl0",
-                        "Position": "0,0,0",
                         "Enabled": true,
                         "Children": [
                           {
@@ -819,7 +846,6 @@
                                     "__guid": "8269bf1f-d61a-46cd-8cc5-21c615a61a40",
                                     "Flags": 4,
                                     "Name": "arm_lower_L_twist2",
-                                    "Position": "0,0,0",
                                     "Enabled": true
                                   }
                                 ]
@@ -828,7 +854,6 @@
                                 "__guid": "5f414713-8e7c-4c95-a6a6-26a21c34eaa3",
                                 "Flags": 4,
                                 "Name": "arm_lower_L_twist1",
-                                "Position": "0,0,0",
                                 "Enabled": true
                               }
                             ]
@@ -837,7 +862,6 @@
                             "__guid": "0b4bdbba-3471-4347-9e13-3a994b076e2a",
                             "Flags": 4,
                             "Name": "arm_lower_L_twist0",
-                            "Position": "0,0,0",
                             "Enabled": true
                           }
                         ]
@@ -857,13 +881,170 @@
         "Position": "0.003238884,0.00001530641,-0.000003003693",
         "Rotation": "-0.0000002682208,-0.00000004470348,0.000002950429,1",
         "Enabled": true
+      },
+      {
+        "__guid": "adab7dd5-7ca7-40f3-87f8-17adba4199e6",
+        "Flags": 0,
+        "Name": "Bone",
+        "Rotation": "-0.2816851,-0.05357314,0.7036812,0.6500894",
+        "Enabled": true,
+        "Children": [
+          {
+            "__guid": "5b1f09e7-334a-4ad0-965b-9d5298c34b13",
+            "Flags": 0,
+            "Name": "Bone_002",
+            "Position": "-0.3405962,-1.489117,0.3437402",
+            "Rotation": "0.6588643,-0.4596952,-0.5354596,0.2605017",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "f48dfe75-c129-44ef-ac6b-5b5ab21a32a6",
+                "Flags": 0,
+                "Name": "Bone_004",
+                "Position": "4.580146,0.6614323,0.000003483584",
+                "Rotation": "-0.0000009232349,0.0000000295806,0.9928322,-0.1195172",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "b699db35-e64e-4c0a-9908-a50e87793fd7",
+                    "Flags": 0,
+                    "Name": "Bone_007",
+                    "Position": "-0.8192949,0.7853611,-0.576941",
+                    "Rotation": "-0.6238222,0.7688846,-0.1140344,-0.08160001",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "58dcfe4b-c488-4039-b43e-0c14c826800e",
+                        "Flags": 0,
+                        "Name": "Bone_007_end",
+                        "Position": "-0.00000756979,1.234309,0.0000002384186",
+                        "Enabled": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "__guid": "db0b0c47-c434-4f91-b821-34fbfc02ae83",
+                "Flags": 0,
+                "Name": "Bone_006",
+                "Position": "9.639978,3.664181,0.000008601897",
+                "Rotation": "-0.0000005261502,-0.0000004943595,0.7071063,0.7071072",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "9131d681-d459-431b-9de1-47d84bfcd2f7",
+                    "Flags": 0,
+                    "Name": "Bone_006_end",
+                    "Position": "-0.000009059906,2.26181,-0.000003533584",
+                    "Enabled": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "__guid": "c63d86c4-83fb-436b-92e5-f27f48b5baee",
+            "Flags": 0,
+            "Name": "Bone_001",
+            "Position": "0.0000001033768,2.91827,-0.0000005960464",
+            "Rotation": "0.9707205,0.0000001193271,0.00817397,-0.2400728",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "ee8d97b5-d255-4e9d-a555-81aa27378e69",
+                "Flags": 0,
+                "Name": "Bone_001_end",
+                "Position": "0.0000007590279,1.514085,0.0000004768372",
+                "Enabled": true
+              }
+            ]
+          },
+          {
+            "__guid": "188e62f8-82cb-4e27-bb54-077efc582739",
+            "Flags": 0,
+            "Name": "Bone_011",
+            "Position": "-0.9725723,-14.11318,-4.07123",
+            "Rotation": "0.4235835,-0.2151232,0.8734654,-0.1065702",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "ff6d08ae-ca21-46bd-a383-111209e888de",
+                "Flags": 0,
+                "Name": "Bone_011_end",
+                "Position": "-0.000008583069,1.288757,-0.000003218651",
+                "Enabled": true
+              }
+            ]
+          },
+          {
+            "__guid": "f3b660c5-100d-4b69-a5e1-74fd585d85f6",
+            "Flags": 0,
+            "Name": "Bone_005",
+            "Position": "0.08994089,-1.561597,-0.8350274",
+            "Rotation": "0.1661608,0.7674878,-0.5854856,0.2013942",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "48d10d93-3c2f-43bb-a5e1-d69e53ecf87b",
+                "Flags": 0,
+                "Name": "Bone_005_end",
+                "Position": "0.0000004172325,1.427563,0.0000001192093",
+                "Enabled": true
+              }
+            ]
+          },
+          {
+            "__guid": "32a40609-e064-4455-a044-0d8216434e1e",
+            "Flags": 0,
+            "Name": "Bone_003",
+            "Rotation": "-0.1664327,-0.2437073,0.9553292,0.01590928",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "a56534ab-d470-400f-8035-808e037b5bc6",
+                "Flags": 0,
+                "Name": "Bone_003_end",
+                "Position": "-0.000000005693593,1.773115,-0.0000004760596",
+                "Enabled": true
+              }
+            ]
+          }
+        ]
       }
     ],
-    "__variables": []
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
+  "__references": [
+    "facepunch.v_mp5#58796"
+  ],
   "__version": 1
 }

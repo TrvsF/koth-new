@@ -21,7 +21,8 @@ public record PlayerPawnDefinition
 public enum EPlayerStateSpawningState
 {
 	None,
-	InWorld,
+	Dead,
+	Alive,
 	WaitingForSpawn,
 	Spectating,
 }
@@ -98,7 +99,7 @@ public partial class PlayerState
 			SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDef);
 
 			PlayerPawn = SpawnPlayerPawnComponent;
-			PlayerStateSpawningState = EPlayerStateSpawningState.InWorld;
+			PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 		}
 		else
 		{

@@ -21,7 +21,8 @@ public partial class ReloadWeaponComponent : InputWeaponComponent,
 	[Property] public AmmoComponent AmmoComponent { get; set; }
 
 	private bool _IsReloading;
-	[Sync] public bool IsReloading
+	[Sync]
+	public bool IsReloading
 	{
 		get => _IsReloading;
 		private set
@@ -106,7 +107,7 @@ public partial class ReloadWeaponComponent : InputWeaponComponent,
 		return TimedReloadSounds;
 	}
 
-	[Broadcast(NetPermission.OwnerOnly)]
+	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void StartReload()
 	{
 		if (!IsProxy)
@@ -120,7 +121,7 @@ public partial class ReloadWeaponComponent : InputWeaponComponent,
 		// Equipment.Owner?.BodyRenderer?.Set("b_reload", true);
 	}
 
-	[Broadcast(NetPermission.OwnerOnly)]
+	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void CancelReload()
 	{
 		if (!IsProxy)
@@ -131,13 +132,13 @@ public partial class ReloadWeaponComponent : InputWeaponComponent,
 		// Equipment.Owner?.BodyRenderer?.Set("b_reload", false);
 	}
 
-	[Broadcast(NetPermission.OwnerOnly)]
+	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void EndReload()
 	{
 		if (!IsProxy)
 		{
 			IsFirstReloadInSequence = false;
-			
+
 			switch (ReloadType)
 			{
 				case EReloadType.Mag:

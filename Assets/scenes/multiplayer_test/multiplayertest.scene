@@ -73,11 +73,6 @@
           "Title": "Botz"
         },
         {
-          "__type": "KOTH.PlayerRagdollBehavior",
-          "__guid": "c16bd23d-a30a-48ab-ad42-f0e0684b7812",
-          "DestroyTime": 10
-        },
-        {
           "__type": "KOTH.DamageManager",
           "__guid": "d35d41ad-e4a9-44e8-afc6-de2e0cad48b7",
           "HitSound": "sounds/hitsound.sound",
@@ -934,7 +929,7 @@
       "__guid": "37f16748-a3fd-4c7a-a495-d640837228bf",
       "Flags": 0,
       "Name": "DefaultSceneCamera",
-      "Position": "816.8995,406.3002,256",
+      "Position": "816.8995,272,256",
       "Enabled": true,
       "Components": [
         {
