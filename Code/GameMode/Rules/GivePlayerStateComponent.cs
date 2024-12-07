@@ -41,7 +41,7 @@ public abstract class GivePlayerStateComponent<T> : Component,
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
-		foreach (var player in GameUtils.AllPlayers)
+		foreach (var player in GameNetworkManager.PlayerStates)
 		{
 			CreateForPlayer(player);
 		}
@@ -49,7 +49,7 @@ public abstract class GivePlayerStateComponent<T> : Component,
 
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
 	{
-		foreach (var player in GameUtils.AllPlayers)
+		foreach (var player in GameNetworkManager.PlayerStates)
 		{
 			player.Components.Get<T>()?.Destroy();
 		}

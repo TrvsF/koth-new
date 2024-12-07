@@ -6,18 +6,14 @@
 @namespace KOTH.UI
 
 <root>
-	<Page>
-		<Body>
-			<div class="mm-options">
-				<button class="mm-option" onclick=@(() => JoinBotz())>botz</button>
-				<button class="mm-option" onclick=@(() => JoinSingleplayer())>jumpmap</button>
-				<button class="mm-option" onclick=@(() => JoinBestLobby())>quickplay</button>
-				<button class="mm-option" onclick=@(() => JoinBestLobby())></button>
-				@*<a class="mm-option" href="/about">about</a>*@
-				<button class="mm-option" onclick=@(() => Game.Close())>quit</button>
-			</div>
-		</Body>
-	</Page>
+	<div class="mm-options">
+		<button class="mm-option" onclick=@(() => JoinBotz())>botz</button>
+		<button class="mm-option" onclick=@(() => JoinSingleplayer())>jumpmap</button>
+		<button class="mm-option" onclick=@(() => JoinBestLobby())>quickplay</button>
+		<button class="mm-option" onclick=@(() => JoinBestLobby())></button>
+		@*<a class="mm-option" href="/about">about</a>*@
+		<button class="mm-option" onclick=@(() => Game.Close())>quit</button>
+	</div>
 </root>
 
 @code

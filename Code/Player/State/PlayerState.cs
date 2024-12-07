@@ -60,7 +60,7 @@ public partial class PlayerState : Component
 		Connection = ConnectionIn;
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
-		AssignTeam(Team.Unassigned);
+		Team = Team.Unassigned;
 
 		// client rpc
 		using (Rpc.FilterInclude(Connection))

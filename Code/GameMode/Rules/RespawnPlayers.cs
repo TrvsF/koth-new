@@ -16,7 +16,7 @@ public sealed class RespawnPlayers : Component,
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
-		foreach (var player in GameUtils.AllPlayers)
+		foreach (var player in GameNetworkManager.PlayerStates)
 		{
 			// player.Respawn(ForceNew);
 		}

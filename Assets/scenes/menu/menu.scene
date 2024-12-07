@@ -18,34 +18,6 @@
       ]
     },
     {
-      "__guid": "ff590321-7fa0-4089-8421-33cc01854ce0",
-      "Flags": 0,
-      "Name": "Main Menu",
-      "Position": "-4440.262,-1274.093,358.4633",
-      "Rotation": "-0.04697734,0.131926,0.3321497,0.9327729",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "dfc70fd4-d3d6-4808-9db1-1b6457b8144b",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "ZIndex": 100
-        },
-        {
-          "__type": "KOTH.UI.MainMenuPanel",
-          "__guid": "41847128-5a98-42ac-8928-dc493737a12d"
-        },
-        {
-          "__type": "KOTH.UI.PauseMenuPanel",
-          "__guid": "c4cbedf2-7178-4d5f-bfb5-0cbe6379b1fb",
-          "__enabled": false
-        }
-      ]
-    },
-    {
       "__guid": "16925719-04c7-4cd7-89e0-37219ba0352d",
       "Flags": 0,
       "Name": "Camera",
@@ -80,18 +52,20 @@
         {
           "__type": "Sandbox.AmbientOcclusion",
           "__guid": "ec6e3287-e266-4248-87cf-64eef569e08a",
-          "FalloffDistance": 1,
-          "Intensity": 16,
+          "__version": 1,
+          "DenoiseMode": "Temporal",
+          "FalloffRange": 0.75,
+          "Intensity": 0.15,
           "Quality": "High",
-          "Radius": 32
+          "Radius": 128,
+          "ThinCompensation": 0
         },
         {
           "__type": "Sandbox.DepthOfField",
           "__guid": "8d70ae48-a971-454c-b252-c042dae6a56e",
-          "__enabled": false,
           "BackBlur": true,
-          "BlurSize": 44.85,
-          "FocalDistance": 69.12,
+          "BlurSize": 9.48,
+          "FocalDistance": 199.08,
           "FocusRange": 500,
           "FrontBlur": false,
           "QualityLevel": "High"
@@ -253,6 +227,24 @@
         {
           "__type": "KOTH.LevelText",
           "__guid": "f50d7d00-9bd8-435b-9522-07445d511640"
+        }
+      ]
+    },
+    {
+      "__guid": "0f6b3b26-d629-4509-932b-1f8b1a9b815f",
+      "Flags": 0,
+      "Name": "NetworkManager",
+      "Position": "816.8995,2737.093,-30.38166",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "KOTH.GameNetworkManager",
+          "__guid": "08164420-4e80-4ea2-b963-a63b7c519e29",
+          "NetworkMode": "Lobby",
+          "PlayerStatePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerstate.prefab"
+          }
         }
       ]
     }

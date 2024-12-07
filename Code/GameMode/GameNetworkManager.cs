@@ -10,7 +10,7 @@ namespace KOTH;
 public enum EGameNetworkMode
 {
 	None,
-	Lobby,
+	Menu,
 	Singleplayer,
 	Multiplayer,
 }
@@ -33,7 +33,7 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	[HostSync] public NetList<PlayerState> PlayerStates { get; set; } = new();
+	[HostSync] public static NetList<PlayerState> PlayerStates { get; set; } = new();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -86,10 +86,11 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 				bool Joined = await Networking.JoinBestLobby("koth");
 				if (!Joined)
 				{
+					Log.Info("starting own lobby...");
 					CreateLobby();
 				}
 				break;
-			case EGameNetworkMode.Lobby:
+			case EGameNetworkMode.Menu:
 				break;
 			case EGameNetworkMode.None:
 				break;

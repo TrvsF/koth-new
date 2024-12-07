@@ -80,33 +80,28 @@ MainMenuRoot, PauseMenuRoot
     color: $text-color;
 }
 
-SettingEntry
-{
+SettingEntry {
     width: 448px;
     justify-content: space-between;
     flex-direction: column;
 
-    .icon
-    {
-        font-family: Material Icons;
+    .icon {
+        font-family: $main-font;
         color: white;
         font-size: 20px;
     }
 
-    .name
-    {
+    .name {
         color: white;
         font-size: 18px;
     }
 
-    .description
-    {
+    .description {
         font-weight: 500;
         font-size: 15px;
     }
 
-    .warning
-    {
+    .warning {
         font-size: 16px;
         color: orange;
     }

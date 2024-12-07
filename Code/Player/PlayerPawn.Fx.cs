@@ -33,7 +33,7 @@ public partial class PlayerPawn
 			Gibs.NetworkSpawn();
 		}
 
-		Body = null;
+		// Body = null;
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
@@ -55,7 +55,7 @@ public partial class PlayerPawn
 		//	comp.Time = ev.DestroyTime;
 		//}
 
-		Body = null;
+		// Body = null;
 	}
 
 	private void ResetBody()

@@ -63,7 +63,7 @@
     public int? RoundNumber => GameMode.Instance.Get<RoundCounter>()?.Round;
     public int? RoundLimit => GameMode.Instance.Get<RoundLimit>()?.MaxRounds;
 
-    public IEnumerable<PlayerState> PlayerStates => GameUtils.AllPlayers;
+    public IEnumerable<PlayerState> PlayerStates => GameNetworkManager.PlayerStates;
 
     private List<IGrouping<Team, PlayerState>> GroupedPlayers
     {

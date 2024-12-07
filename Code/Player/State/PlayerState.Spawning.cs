@@ -88,16 +88,10 @@ public partial class PlayerState
 		Assert.NotNull(SpawnPlayerPawnComponent);
 
 		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
-		PlayerPawnDefinition PlayerPawnDef = new()
-		{ 
-			CharacterDefinition = RequestedCharacterDefinition,
-			OwnerPlayerState = this,
-		};
 
+		SpawnPlayerPawnComponent.SetCharacterDefinition(RequestedCharacterDefinition, DisplayName);
 		if (SpawnPlayerPawnPrefab.NetworkSpawn(Connection))
 		{
-			SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDef);
-
 			PlayerPawn = SpawnPlayerPawnComponent;
 			PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 		}

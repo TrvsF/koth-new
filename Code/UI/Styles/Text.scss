@@ -1,101 +1,83 @@
 $text-color: #FF0000;
 
-label, text, textentry, i
-{
+label, text, textentry, i {
     font-family: $main-font;
     font-size: 18px;
     font-weight: bold;
     text-shadow: 0 4px 4px rgba( black, 0.25 );
 
-    &.uppercase 
-    {
+    &.uppercase {
         text-transform: uppercase;
     }
 
-    &.no-shadow
-    {
+    &.no-shadow {
         text-shadow: none;
     }
 
-    &.small
-    {
+    &.small {
         font-size: 16px;
     }
 
-    .grow
-    {
+    .grow {
         flex-grow: 1;
     }
 
-    &.slight
-    {
+    &.slight {
         color: rgb(190, 190, 190);
         text-shadow: 0 4px 4px rgba( black, 0.50 );
     }
 
-    &.emphasis
-    {
+    &.emphasis {
         font-size: 21px;
         font-weight: bold;
     }
 
-    &.important
-    {
+    &.important {
         font-size: 26px;
         font-weight: bold;
     }
 
-    &.vital
-    {
+    &.vital {
         font-size: 32px;
         font-weight: bold;
     }
 
-    &.huge
-    {
+    &.huge {
         font-size: 42px;
         font-weight: bold;
     }
 
-    &.blue
-    {
+    &.blue {
         color: $blue;
     }
 
-    &.red
-    {
+    &.red {
         color: $red;
     }
 
-    &.green
-    {
+    &.green {
         color: $green;
     }
 
-    &.yellow
-    {
+    &.yellow {
         color: $yellow;
     }
 
-    &.white
-    {
+    &.white {
         color: white;
     }
 
-    &.grey
-    {
+    &.grey {
         opacity: 0.5;
     }
 
-    &.text-center
-    {
+    &.text-center {
         text-align: center;
     }
 
-    &.icon
-    {
+    &.icon {
         text-transform: lowercase;
-        font-family: 'Material Icons';
+        font-family: $main-font;
     }
 }
 

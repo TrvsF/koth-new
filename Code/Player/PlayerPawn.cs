@@ -10,19 +10,15 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
 {
-	[HostSync] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	[HostSync] public CharacterDefinition CharacterDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
-	public void SetPlayerPawnDefinition(PlayerPawnDefinition PlayerPawnDefinitionIn)
+	public void SetCharacterDefinition(CharacterDefinition CharacterDefinitionIn, string Name)
 	{
 		Assert.True(Networking.IsHost);
 
-		Log.Info($"setting def to {PlayerPawnDefinitionIn}");
-
-		PlayerPawnDefinition = PlayerPawnDefinitionIn;
-		CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
-
+		CharacterDefinition = CharacterDefinitionIn;
+		DisplayName = Name;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -78,11 +74,10 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	protected override void OnStart()
 	{
 		Assert.NotNull(Head);
-		Assert.NotNull(GibPrefab);
-		Assert.NotNull(PlayerPawnDefinition);
+		Assert.NotNull(CharacterDefinition);
+		// Assert.NotNull(GibPrefab);
 
 		ClientInit(); // TODO : headless if server
-		Assert.NotNull(CharacterDefinition);
 
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
@@ -90,6 +85,19 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, false);
 			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
+		}
+
+		if (IsProxy)
+		{
+			// HACK : turns back on rendering if the host disabled it globally for themself
+			if (Camera.IsValid())
+			{
+				Camera.Enabled = false;
+			}
+			if (Body.IsValid())
+			{
+				Body.Renderer.Enabled = true;
+			}
 		}
 	}
 
@@ -196,15 +204,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	private bool ClientInit()
 	{
-		if (!PlayerPawnDefinition.IsValid() || !CharacterDefinition.IsValid())
-		{
-			return false;
-		}
-
-		// IsLocallyControlled = PlayerPawnDefinition.OwnerPlayerState == PlayerState.Local;
-		CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
-
-		DisplayName = PlayerPawnDefinition.OwnerPlayerState.DisplayName;
 		GameObject.Name = $"PlayerPawn:{DisplayName}";
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
@@ -217,11 +216,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			{
 				Body.Renderer.Enabled = false;
 				Tags.Add("self");
-			}
-			else
-			{
-				// HACK : turns back on rendering if the host disabled it globally for themself
-				Body.Renderer.Enabled = true;
 			}
 			return true;
 		}

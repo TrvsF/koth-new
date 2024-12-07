@@ -16,7 +16,7 @@ public sealed class PlayerAutoRespawner : Component,
 	{
 		Assert.True(Networking.IsHost);
 
-		foreach (var PlayerState in GameUtils.AllPlayers)
+		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
 			if (PlayerState.PlayerPawn.IsValid() && PlayerState.PlayerPawn.IsAlive)
 			{
