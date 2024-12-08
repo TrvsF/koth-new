@@ -10,15 +10,14 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
 {
-	[HostSync] public CharacterDefinition CharacterDefinition { get; private set; }
+	[HostSync] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
-	public void SetCharacterDefinition(CharacterDefinition CharacterDefinitionIn, string Name)
+	public void SetPlayerPawnDefinition(PlayerPawnDefinition CharacterDefinitionIn)
 	{
 		Assert.True(Networking.IsHost);
 
-		CharacterDefinition = CharacterDefinitionIn;
-		DisplayName = Name;
+		PlayerPawnDefinition = CharacterDefinitionIn;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -74,10 +73,23 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	protected override void OnStart()
 	{
 		Assert.NotNull(Head);
-		Assert.NotNull(CharacterDefinition);
+		Assert.True(PlayerPawnDefinition.IsValid());
 		// Assert.NotNull(GibPrefab);
 
-		ClientInit(); // TODO : headless if server
+		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
+		Assert.True(SetMovementVariables(CharacterDefinition));
+		DisplayName = PlayerPawnDefinition.Name;
+
+		if (IsLocallyControlled)
+		{
+			Assert.True(CreatePlayerCamera());
+			Body.Renderer.Enabled = false;
+			Tags.Add("self");
+		}
+
+		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
+		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);
+		TagBinder.BindTag("no_aiming", () => TimeSinceGroundedChanged < 0.25f);
 
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
@@ -87,17 +99,10 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
 		}
 
+		// HACK : turns back on rendering if the host disabled it globally for themself
 		if (IsProxy)
 		{
-			// HACK : turns back on rendering if the host disabled it globally for themself
-			if (Camera.IsValid())
-			{
-				Camera.Enabled = false;
-			}
-			if (Body.IsValid())
-			{
-				Body.Renderer.Enabled = true;
-			}
+			Body.Renderer.Enabled = true;
 		}
 	}
 
@@ -201,27 +206,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
-
-	private bool ClientInit()
-	{
-		GameObject.Name = $"PlayerPawn:{DisplayName}";
-
-		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
-		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);
-		TagBinder.BindTag("no_aiming", () => TimeSinceGroundedChanged < 0.25f);
-
-		if (CreatePlayerCamera(IsLocallyControlled))
-		{
-			if (IsLocallyControlled)
-			{
-				Body.Renderer.Enabled = false;
-				Tags.Add("self");
-			}
-			return true;
-		}
-
-		return false;
-	}
 
 	private void DoDummyMovement()
 	{

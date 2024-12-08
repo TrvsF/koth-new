@@ -31,6 +31,44 @@ public partial class PlayerPawn
 
 	//////////////////////////////////////////////////////////////
 
+	public bool SetMovementVariables(CharacterDefinition CharacterDefinitionIn)
+	{
+		if (!CharacterDefinitionIn.IsValid())
+		{
+			return false;
+		}
+
+		WeightFactor = CharacterDefinitionIn.WeightFactor;
+		AirMaxAcceleration = CharacterDefinitionIn.AirMaxAcceleration;
+		MaxAcceleration = CharacterDefinitionIn.MaxAcceleration;
+		SlowCrouchLerpSpeed = CharacterDefinitionIn.SlowCrouchLerpSpeed;
+		CrouchLerpSpeed = CharacterDefinitionIn.CrouchLerpSpeed;
+		JumpPower = CharacterDefinitionIn.JumpPower;
+		CrouchingFriction = CharacterDefinitionIn.CrouchingFriction;
+		WalkFriction = CharacterDefinitionIn.WalkFriction;
+		AirAcceleration = CharacterDefinitionIn.AirAcceleration;
+		CrouchingAcceleration = CharacterDefinitionIn.CrouchingAcceleration;
+		BaseAcceleration = CharacterDefinitionIn.BaseAcceleration;
+		WalkSpeed = CharacterDefinitionIn.WalkSpeed;
+
+		return true;
+	}
+
+	public float WeightFactor;
+	float AirMaxAcceleration;
+	float MaxAcceleration;
+	float SlowCrouchLerpSpeed;
+	float CrouchLerpSpeed;
+	float JumpPower;
+	float CrouchingFriction;
+	float WalkFriction;
+	float AirAcceleration;
+	float CrouchingAcceleration;
+	float BaseAcceleration;
+	float WalkSpeed;
+
+	//////////////////////////////////////////////////////////////
+
 	public Vector3 CenterPosition { get => PlayerBoxCollider.Center + WorldPosition; }
 	public Angles EyeAngles
 	{
@@ -60,14 +98,14 @@ public partial class PlayerPawn
 	// TODO : revisit
 	private void UpdateCrouch()
 	{
-		CrouchAmount = CrouchAmount.LerpTo(IsCrouching ? 1 : 0, Time.Delta * CrouchLerpSpeed());
+		CrouchAmount = CrouchAmount.LerpTo(IsCrouching ? 1 : 0, Time.Delta * GetCrouchLerpSpeed());
 		_smoothEyeHeight = _smoothEyeHeight.LerpTo(_eyeHeightOffset * (IsCrouching ? CrouchAmount : 1), Time.Delta * 10f);
 		CharacterController.Height = 64 + _smoothEyeHeight;
 	}
 
 	private float GetMaxAcceleration()
 	{
-		return CharacterController.IsOnGround ? CharacterDefinition.MaxAcceleration : CharacterDefinition.AirMaxAcceleration;
+		return CharacterController.IsOnGround ? MaxAcceleration : AirMaxAcceleration;
 	}
 
 	Vector3 Gravity = new Vector3(0, 0, 800); // TODO : move me
@@ -125,12 +163,12 @@ public partial class PlayerPawn
 	TimeSince TimeSinceCrouchPressed = 10f;
 	TimeSince TimeSinceCrouchReleased = 10f;
 
-	private float CrouchLerpSpeed()
+	private float GetCrouchLerpSpeed()
 	{
 		if (TimeSinceCrouchPressed < 1f && TimeSinceCrouchReleased < 1f)
-			return CharacterDefinition.SlowCrouchLerpSpeed;
+			return SlowCrouchLerpSpeed;
 
-		return CharacterDefinition.CrouchLerpSpeed;
+		return CrouchLerpSpeed;
 	}
 
 	private int CrouchOffset = 16;
@@ -175,7 +213,7 @@ public partial class PlayerPawn
 		{
 			if (Input.Pressed("Jump"))
 			{
-				CharacterController.Punch(Vector3.Up * CharacterDefinition.JumpPower);
+				CharacterController.Punch(Vector3.Up * JumpPower);
 				BroadcastPlayerJumped();
 			}
 		}
@@ -284,16 +322,16 @@ public partial class PlayerPawn
 	private float GetFriction()
 	{
 		if (!CharacterController.IsOnGround) return 0.1f;
-		if (IsCrouching) return CharacterDefinition.CrouchingFriction;
-		return CharacterDefinition.WalkFriction;
+		if (IsCrouching) return CrouchingFriction;
+		return WalkFriction;
 	}
 
 	private float GetAcceleration()
 	{
-		if (!CharacterController.IsOnGround) return CharacterDefinition.AirAcceleration;
-		else if (IsCrouching) return CharacterDefinition.CrouchingAcceleration;
+		if (!CharacterController.IsOnGround) return AirAcceleration;
+		else if (IsCrouching) return CrouchingAcceleration;
 
-		return CharacterDefinition.BaseAcceleration;
+		return BaseAcceleration;
 	}
 
 	float GetEyeHeightOffset()
@@ -306,8 +344,8 @@ public partial class PlayerPawn
 	const float CrouchFactor = 0.75f;
 	private float GetWishSpeed()
 	{
-		if (IsCrouching) return CharacterDefinition.WalkSpeed * CrouchFactor;
-		return CharacterDefinition.WalkSpeed;
+		if (IsCrouching) return WalkSpeed * CrouchFactor;
+		return WalkSpeed;
 	}
 
 	Vector3 LastVelocity = Vector3.Zero;

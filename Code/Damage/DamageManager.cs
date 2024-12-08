@@ -142,7 +142,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 		var DirectionVec = (TargetPoint - DamageOrigin).Normal;
 		var Knockback = CalculateKnockback(DirectionVec, Damage, DamageRequest.BaseKnockbackStrength,
-			TargetPlayerPawn.CharacterDefinition.WeightFactor, TargetPlayerPawn.IsCrouching);
+			TargetPlayerPawn.WeightFactor, TargetPlayerPawn.IsCrouching);
 
 		bool WasSelfDamage = TargetPlayerPawn == AttackerPlayerPawn;
 		if (WasSelfDamage && DamageRequest.DoesLessSelfDamage)

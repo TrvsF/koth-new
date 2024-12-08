@@ -18,11 +18,11 @@ public sealed partial class PlayerPawn
 	[Property] public GameObject Boom { get; private set; }
 	[Property] public float BaseFOV { get; private set; } = 90f;
 
-	public bool CreatePlayerCamera(bool StartEnabled)
+	public bool CreatePlayerCamera()
 	{
 		var CameraPrefabConfig = new CloneConfig()
 		{
-			StartEnabled = StartEnabled,
+			StartEnabled = true,
 			Parent = Boom,
 			Transform = new Transform()
 		};

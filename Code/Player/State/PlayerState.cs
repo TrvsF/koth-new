@@ -19,25 +19,25 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync, Change(nameof(OnPlayerStateStateChanged))] public EPlayerState PlayerStateState { get; set; }
+	[HostSync, Change(nameof(OnPlayerStateStateChanged))] public EPlayerState PlayerStateState { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
 	public Color PlayerColor => PlayerColors.Instance?.GetColor(this) ?? Team.GetColor(false);
 
 	[RequireComponent] public PlayerId PlayerId { get; private set; }
-	[RequireComponent] public LocalStats LocalStatsSnapshot { get; set; }
+	[RequireComponent] public LocalStats LocalStatsSnapshot { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync, Property] public ulong SteamId { get; set; }
-	[HostSync] private string SteamName { get; set; }
+	[HostSync, Property] public ulong SteamId { get; private set; }
+	[HostSync, Property] public string SteamName { get; private set; }
 	
 	//////////////////////////////////////////////////////////////
 
 	[HostSync, Property] public Team Team { get; private set; } // TODO : listen to onteamchange
-	[HostSync, ValidOrNull] public PlayerPawn PlayerPawn { get; set; }
-	[HostSync, ValidOrNull] public PlayerPawn SpectatingTarget { get; set; }
+	[HostSync, ValidOrNull] public PlayerPawn PlayerPawn { get; private set; }
+	[HostSync, ValidOrNull] public PlayerPawn SpectatingTarget { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 

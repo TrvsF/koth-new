@@ -3,20 +3,29 @@ using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using System.Xml.Linq;
 
 namespace KOTH;
 
-public record PlayerPawnDefinition
+public struct PlayerPawnDefinition
 {
-	public CharacterDefinition CharacterDefinition { get; set; }
-	public PlayerState OwnerPlayerState { get; set; }
-	public bool IsBot { get; set; }
+	public PlayerPawnDefinition()
+	{
+	}
+
+	public CharacterDefinition CharacterDefinition { get; init; }
+	// public PlayerState OwnerPlayerState { get; init; }
+
+	public string Name { get; init; } = "UNINITALIZED";
+	public bool IsBot { get; init; } = false;
 
 	public bool IsValid()
 	{
-		return CharacterDefinition.IsValid() && (OwnerPlayerState.IsValid() || IsBot);
+		return CharacterDefinition.IsValid()/* && (OwnerPlayerState.IsValid() || IsBot)*/;
 	}
 }
+
+//////////////////////////////////////////////////////////////////////////////////
 
 public enum EPlayerStateSpawningState
 {
@@ -26,6 +35,8 @@ public enum EPlayerStateSpawningState
 	WaitingForSpawn,
 	Spectating,
 }
+
+//////////////////////////////////////////////////////////////////////////////////
 
 public partial class PlayerState
 {
@@ -51,11 +62,11 @@ public partial class PlayerState
 		}
 	}
 
-	public void RequestCharacterDefinition()
+	public void RequestCharacterDefinition(CharacterDefinition CharacterDefintionIn)
 	{
 		Log.Info("Requested Character");
 
-
+		RequestedCharacterDefinition = CharacterDefintionIn;
 	}
 
 	public void RequestSpawn(SpawnPointInfo SpawnPoint)
@@ -67,6 +78,7 @@ public partial class PlayerState
 			return;
 		}
 
+		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
 		SpawnPlayerPawn(SpawnPoint);
 	}
 
@@ -87,9 +99,13 @@ public partial class PlayerState
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();
 		Assert.NotNull(SpawnPlayerPawnComponent);
 
-		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
+		PlayerPawnDefinition PlayerPawnDefinition = new()
+		{
+			CharacterDefinition = RequestedCharacterDefinition,
+			Name = SteamName,
+		};
 
-		SpawnPlayerPawnComponent.SetCharacterDefinition(RequestedCharacterDefinition, DisplayName);
+		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);
 		if (SpawnPlayerPawnPrefab.NetworkSpawn(Connection))
 		{
 			PlayerPawn = SpawnPlayerPawnComponent;
