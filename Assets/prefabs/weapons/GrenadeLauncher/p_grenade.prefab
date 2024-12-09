@@ -55,8 +55,8 @@
       {
         "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
         "Flags": 0,
-        "Name": "Sphere",
-        "Scale": "0.066,0.066,0.066",
+        "Name": "Model",
+        "Scale": "0.125,0.08,0.08",
         "Enabled": true,
         "Components": [
           {

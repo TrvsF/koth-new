@@ -1,7 +1,7 @@
 $text-color: #FF0000;
 
 label, text, textentry, i {
-    font-family: $main-font;
+    font-family: 'Andale Mono';
     font-size: 18px;
     font-weight: bold;
     text-shadow: 0 4px 4px rgba( black, 0.25 );
@@ -77,12 +77,11 @@ label, text, textentry, i {
 
     &.icon {
         text-transform: lowercase;
-        font-family: $main-font;
+        font-family: 'Andale Mono';
     }
 }
 
-i, icon, icon label
-{
+i, icon, icon label {
     text-transform: lowercase;
-    font-family: Material Icons;
+    font-family: 'Andale Mono';
 }

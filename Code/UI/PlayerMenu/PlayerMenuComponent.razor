@@ -1,0 +1,17 @@
+@namespace KOTH.UI
+@using Sandbox.Events
+@inherits PanelComponent
+
+<root>
+	<canvas>
+		<Watermark />
+	</canvas>
+</root>
+
+@code
+{
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

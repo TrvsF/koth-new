@@ -80,7 +80,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 		var AimForward = PlayerPawn.AimRay.Forward;
 
 		// create projectile object from prefab
-		var ProjectilePosition = PlayerPawn.AimRay.Position + (Vector3.Down * 3f);
+		var ProjectilePosition = PlayerPawn.AimRay.Position + (Vector3.Down * 4f);
 		var ProjectileRotation = Rotation.LookAt(AimForward);
 		var Projectile = ProjectilePrefab.Clone(ProjectilePosition, ProjectileRotation);
 

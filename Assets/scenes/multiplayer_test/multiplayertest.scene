@@ -151,7 +151,7 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
                   "AllowSpectatorsToSpawn": false,
-                  "RespawnDelaySeconds": 2
+                  "RespawnDelaySeconds": 5
                 }
               ]
             }
@@ -160,9 +160,26 @@
       ]
     },
     {
+      "__guid": "360246d1-752c-4266-85d1-9d26dc22150b",
+      "Flags": 0,
+      "Name": "spawnpoint (26)",
+      "Position": "0,144,160",
+      "Rotation": "0,0,0.7071068,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "575c7894-fbc8-4456-b2c1-a823e821e477",
+          "IsDummy": false,
+          "Team": "Unassigned"
+        }
+      ]
+    },
+    {
       "__guid": "f2aaae39-6044-4c22-8807-3ab615c5c27f",
       "Flags": 0,
       "Name": "Jumpers",
+      "Position": "-144,-320,224",
       "Enabled": true,
       "Children": [
         {
@@ -948,6 +965,10 @@
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
           "ZNear": 10
+        },
+        {
+          "__type": "KOTH.UI.PlayerMenuComponent",
+          "__guid": "28d01382-2e74-44c1-99c5-73659cbf5294"
         }
       ]
     }

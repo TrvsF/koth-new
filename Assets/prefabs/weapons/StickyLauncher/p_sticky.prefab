@@ -34,7 +34,7 @@
         "__guid": "f505ebca-6921-45d7-9ae0-7c55827f8ab7",
         "Center": "0,0,0",
         "IsTrigger": false,
-        "Scale": "3,3,3",
+        "Scale": "8,8,8",
         "Static": false,
         "SurfaceVelocity": "0,0,0"
       },
@@ -56,8 +56,8 @@
       {
         "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
         "Flags": 0,
-        "Name": "Sphere",
-        "Scale": "0.075,0.075,0.075",
+        "Name": "Model",
+        "Scale": "0.025,0.025,0.025",
         "Enabled": true,
         "Components": [
           {
@@ -65,7 +65,7 @@
             "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
-            "Model": "models/dev/sphere.vmdl",
+            "Model": "prefabs/weapons/stickylauncher/sticky1.vmdl",
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -73,7 +73,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "0.3245,0.46512,0.43934,1"
+            "Tint": "0.9907,0.08755,0.08755,1"
           }
         ]
       }

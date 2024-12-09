@@ -78,7 +78,6 @@ public partial class PlayerState
 			return;
 		}
 
-		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
 		SpawnPlayerPawn(SpawnPoint);
 	}
 

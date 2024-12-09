@@ -6,36 +6,32 @@
 
 @attribute [StyleSheet]
 
-@*TODO : tidy this is a piece of shit*@
+@if (GameNetworkManager.Instance.NetworkMode != EGameNetworkMode.Multiplayer)
+	return;
 
 <style>
-	button:hover {
-		background-color: #535353AA;
+	* {
+		width: auto;
+		pointer-events: all;
+	}
+
+	.class-button :hover {
+		background-color: black;
 	}
 </style>
 
-<root class="flex absolute inset-0 align-center justify-center">
-	<table class="with-padding-lg layout" style="background-color: #53535344;">
-		<div class="title" style="font-size: 60px;">
-			Select Class
-		</div>
-
+<root class="hidden flex">
+	<div class="inner flex row gap-sm align-center with-padding">
 		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
 		{
-			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 100px;">@Class.CharacterName | @Class.Description</button>
+			<button class="class-button" onclick="@(() => SelectClass(Class))" style="cursor: pointer; color: white; padding: 24px;">@Class.CharacterName</button>
 		}
-	</table>
+	</div>
 </root>
 
 @code
 {
-	public static ClassSelect Instance { get; private set; }
-	public bool IsActive { get; set; }
-
-	public ClassSelect()
-	{
-		Instance = this;
-	}
+	public bool IsActive { get; set; } = false;
 
 	protected override int BuildHash()
 	{
@@ -48,11 +44,16 @@
 
 	public ClassList ActiveClassList { get => GameMode.Instance.Components.Get<ClassList>(); }
 
+	public SmallClassSelect()
+	{
+		SetClass("visible", IsActive);
+	}
+
 	private void SelectClass(CharacterDefinition Class)
 	{
-		PlayerState.Local.RequestNewClass(Class);
+		PlayerState.Local.RequestCharacterDefinition(Class);
 		Log.Info($"selected class {Class}");
-		
+
 		IsActive = false;
 		SetClass("visible", IsActive);
 	}
@@ -61,6 +62,7 @@
 	{
 		if (Input.Pressed("ClassSelect"))
 		{
+			Log.Info(IsActive);
 			IsActive = !IsActive;
 			SetClass("visible", IsActive);
 		}

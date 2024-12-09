@@ -1,4 +1,5 @@
 ﻿using KOTH.UI;
+using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -61,6 +62,7 @@ public partial class PlayerState : Component
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
 		Team = Team.Unassigned;
+		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
 
 		// client rpc
 		using (Rpc.FilterInclude(Connection))
@@ -82,12 +84,5 @@ public partial class PlayerState : Component
 		Assert.True(Networking.IsHost);
 
 		Team = team;
-	}
-
-	public void RequestNewClass(CharacterDefinition NewClass)
-	{
-		Assert.True(GameObject.Network.IsOwner);
-		
-		RequestedCharacterDefinition = NewClass;
 	}
 }
