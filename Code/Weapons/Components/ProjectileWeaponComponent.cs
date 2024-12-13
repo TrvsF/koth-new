@@ -66,12 +66,12 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 		}
 	}
 
-	protected virtual void Shoot()
+	protected virtual GameObject Shoot()
 	{
 		var PlayerPawn = Equipment.Owner;
 		if (!PlayerPawn.IsValid())
 		{
-			return;
+			return null;
 		}
 
 		TimeSinceShot = 0;
@@ -98,6 +98,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 
 		Projectile.Root.Tags.Add("self");
 		Projectile.NetworkSpawn();
+		return Projectile;
 	}
 
 	protected virtual void SetProjectileVelocity(Rigidbody ProjectileRigidbody, Vector3 AimForward)
@@ -108,7 +109,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 	}
 
 	protected TimeSince TimeSinceShot = new();
-	public bool CanShoot()
+	protected virtual bool CanShoot()
 	{
 		// these 2 should be ensures?
 		if (!Equipment.IsValid()) return false;
@@ -140,6 +141,8 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 {
 	[Property] public float MaxChargeTime { get; private set; } = 1.6f;
 
+	// TODO : THIS IS QUICKLY BECOMING A MESS!
+
 	public TimeSince TimeSinceInputFirstDown { get; private set; } = new();
 	public bool WasInputDownLastTick { get; private set; } = false;
 	protected override void OnInputUpdate()
@@ -150,7 +153,12 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 		{
 			if (!KeyDown && CanShoot())
 			{
-				Shoot();
+				GameObject Projectile = Shoot();
+				if (Projectile.Components.Get<Sticky>() is Sticky Sticky)
+				{
+					// Equipment.Owner.CharacterController.Velocity
+					Sticky.SetSpin();
+				}
 			}
 		}
 		else

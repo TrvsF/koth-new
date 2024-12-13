@@ -15,6 +15,11 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	public TimeSince AliveTime { get; private set; } = new();
 
+	public void SetSpin()
+	{
+
+	}
+
 	protected override void OnStart()
 	{
 		base.OnStart();
@@ -65,10 +70,11 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		}
 	}
 
+	[Obsolete]
 	public void Explode()
 	{
 		// TODO : this is likely because the object is destroyed on clients before this
-		// code can run (race condition). Maybe do this in ondestroy (& have a bool set)
+		// code can run (race condition). Maybe somehow call async? 
 		if (Transform == null)
 		{
 			Log.Warning("transform null on sticky");
@@ -77,7 +83,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 		if (ExplosionPrefab.IsValid())
 		{
-			var Explosion = ExplosionPrefab.Clone(Transform.Position);
+			var Explosion = ExplosionPrefab.Clone(WorldPosition);
 			if (Explosion.IsValid())
 			{
 				Explosion.NetworkSpawn();

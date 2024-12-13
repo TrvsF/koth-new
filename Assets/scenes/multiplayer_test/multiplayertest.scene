@@ -30,8 +30,6 @@
           "EnableCollision": true,
           "MapName": "maps/botz/botz.vmap",
           "NoOrigin": false,
-          "OnMapLoaded": null,
-          "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         }
       ],
@@ -969,6 +967,15 @@
         {
           "__type": "KOTH.UI.PlayerMenuComponent",
           "__guid": "28d01382-2e74-44c1-99c5-73659cbf5294"
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "de8c4ae0-cb03-4ffd-a234-3080f3afe0f7",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
         }
       ]
     }

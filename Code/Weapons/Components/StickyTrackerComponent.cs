@@ -11,10 +11,13 @@ public partial class StickyTrackerComponent : Component
 		for (int Index = 0; Index < StickyCount; ++Index)
 		{
 			var Sticky = Stickies.Dequeue();
-			if (Sticky.IsValid() && Sticky.GameObject.Root.IsValid())
+			if (!Sticky.IsValid() || !Sticky.GameObject.Root.IsValid())
 			{
-				Sticky.GameObject.Root.Destroy();
+				Log.Warning("unable to destroy sticky");
+				continue;
 			}
+
+			Sticky.GameObject.Root.Destroy();
 		}
 	}
 
@@ -29,6 +32,9 @@ public partial class StickyTrackerComponent : Component
 
 	public void Detonate()
 	{
+		// relys on Stickies being in cronological order
+		// (which it always should be!)
+
 		var DetonatedStickies = 0;
 		foreach (var Sticky in Stickies)
 		{
