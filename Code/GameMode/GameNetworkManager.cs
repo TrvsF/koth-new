@@ -53,6 +53,8 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
 	{
+		Log.Info("disconnection event");
+
 		foreach (var PlayerState in PlayerStates)
 		{
 			if (PlayerState.Connection == ConnectionChannel)

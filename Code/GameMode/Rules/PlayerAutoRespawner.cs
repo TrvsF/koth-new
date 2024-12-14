@@ -7,7 +7,7 @@ namespace KOTH;
 public sealed class PlayerAutoRespawner : Component,
 	IGameEventHandler<UpdateStateEvent>
 {
-	[Property, HostSync] public float RespawnDelaySeconds { get; private set; } = 0f;
+	[Property, Sync(SyncFlags.FromHost)] public float RespawnDelaySeconds { get; private set; } = 0f;
 	[Property] public bool AllowSpectatorsToSpawn { get; set; } = false;
 
 	private Dictionary<PlayerState, TimeSince> PlayersWaitingForSpawn = new();
@@ -15,6 +15,8 @@ public sealed class PlayerAutoRespawner : Component,
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
 		Assert.True(Networking.IsHost);
+
+		Log.Info(GameNetworkManager.PlayerStates.Count);
 
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{

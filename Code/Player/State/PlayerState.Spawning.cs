@@ -49,19 +49,6 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	protected override void OnUpdate()
-	{
-		base.OnUpdate();
-
-		if (PlayerPawn.IsValid())
-		{
-			if (!PlayerPawn.IsAlive)
-			{
-				PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
-			}
-		}
-	}
-
 	public void RequestCharacterDefinition(CharacterDefinition CharacterDefintionIn)
 	{
 		Log.Info("Requested Character");
@@ -108,6 +95,7 @@ public partial class PlayerState
 		if (SpawnPlayerPawnPrefab.NetworkSpawn(Connection))
 		{
 			PlayerPawn = SpawnPlayerPawnComponent;
+			PlayerPawn.OnDeath += OnPlayerPawnDeath;
 			PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 		}
 		else
@@ -115,6 +103,13 @@ public partial class PlayerState
 			SpawnPlayerPawnPrefab.Destroy();
 			Log.Warning($"failed to spawn player pawn for client {SteamName}:{SteamId}");
 		}
+	}
+
+	void OnPlayerPawnDeath()
+	{
+		Assert.True(Networking.IsHost);
+
+		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
 
 	void OnPlayerStateStateChanged()

@@ -75,8 +75,12 @@ public partial class PlayerPawn :
 
 	public void CreateViewModel(bool playDeployEffects = true)
 	{
-		var Weapon = CurrentEquipment;
-		if (Weapon.IsValid())
-			Weapon.CreateViewModel(playDeployEffects);
+		if (!CurrentEquipment.IsValid())
+		{
+			Log.Warning($"Failed to create viewmodel for {DisplayName}");
+			return;
+		}
+
+		CurrentEquipment.CreateViewModel(playDeployEffects);
 	}
 }

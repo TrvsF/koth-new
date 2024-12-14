@@ -17,13 +17,13 @@ public partial class PlayerInventory : Component
 
 	public void Clear()
 	{
-		if (!Networking.IsHost)
-			return;
+		Assert.True(Networking.IsHost);
 
-		foreach (var wpn in Equipment)
+		foreach (var Weapon in Equipment)
 		{
-			wpn.GameObject.Destroy();
-			wpn.Enabled = false;
+			Weapon.ViewModel?.Destroy();
+			Weapon.GameObject.Destroy();
+			Weapon.Enabled = false;
 		}
 	}
 

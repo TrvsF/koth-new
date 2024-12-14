@@ -14,6 +14,7 @@ public partial class PlayerPawn :
 	public float Health => DamageComponent.Health;
 	public float MaxHealth => DamageComponent.MaxBaseHealth;
 	public bool IsAlive => !DamageComponent.IsDead;
+	public event Action OnDeath;
 
 	protected override void OnEnabled()
 	{
@@ -41,9 +42,10 @@ public partial class PlayerPawn :
 
 		if (Camera.IsValid())
 		{
-			Camera.Destroy();
+			Camera.GameObject.Root.Destroy();
 		}
-		// GameObject.Root.Destroy();
+
+		OnDeath?.Invoke();
 	}
 
 	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
