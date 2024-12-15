@@ -149,7 +149,7 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
                   "AllowSpectatorsToSpawn": false,
-                  "RespawnDelaySeconds": 5
+                  "RespawnDelaySeconds": 10
                 }
               ]
             }

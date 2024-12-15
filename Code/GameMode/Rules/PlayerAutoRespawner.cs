@@ -16,8 +16,6 @@ public sealed class PlayerAutoRespawner : Component,
 	{
 		Assert.True(Networking.IsHost);
 
-		Log.Info(GameNetworkManager.PlayerStates.Count);
-
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
 			if (PlayerState.PlayerPawn.IsValid() && PlayerState.PlayerPawn.IsAlive)
@@ -30,16 +28,21 @@ public sealed class PlayerAutoRespawner : Component,
 				if (!PlayersWaitingForSpawn.ContainsKey(PlayerState))
 				{
 					PlayersWaitingForSpawn.Add(PlayerState, 0);
-					continue;
 				}
 
-				if (PlayersWaitingForSpawn[PlayerState] < RespawnDelaySeconds)
+				var TimeWaitingForSpawn = PlayersWaitingForSpawn[PlayerState];
+
+				var TimeTilSpawn = RespawnDelaySeconds - TimeWaitingForSpawn;
+				PlayerState.SetTimeTilAttemptedSpawn(TimeTilSpawn);
+
+				if (TimeWaitingForSpawn < RespawnDelaySeconds)
 				{
 					continue;
 				}
 
 				SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(Team.CounterTerrorist);
 				PlayerState.RequestSpawn(SpawnPoint);
+				PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
 				PlayersWaitingForSpawn.Remove(PlayerState);
 			}
 		}

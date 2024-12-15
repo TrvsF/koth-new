@@ -20,7 +20,7 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync, Change(nameof(OnPlayerStateStateChanged))] public EPlayerState PlayerStateState { get; private set; }
+	[HostSync] public EPlayerState PlayerStateState { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 

@@ -25,25 +25,15 @@
 			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 100px;">@Class.CharacterName | @Class.Description</button>
 		}
 	</table>
+
+	<label style="position: absolute; top: 5%; font-size: 50px; color: antiquewhite;">@(Math.Round(PlayerState.Local.TimeTilAttemptedSpawn))</label>
 </root>
 
 @code
 {
-	public static ClassSelect Instance { get; private set; }
-	public bool IsActive { get; set; }
-
-	public ClassSelect()
-	{
-		Instance = this;
-	}
-
 	protected override int BuildHash()
 	{
-		var hash = new HashCode();
-
-		hash.Add(IsActive);
-
-		return hash.ToHashCode();
+		return HashCode.Combine(Time.Now);
 	}
 
 	public ClassList ActiveClassList { get => GameMode.Instance.Components.Get<ClassList>(); }
@@ -52,17 +42,5 @@
 	{
 		PlayerState.Local.RequestCharacterDefinition(Class);
 		Log.Info($"selected class {Class}");
-		
-		IsActive = false;
-		SetClass("visible", IsActive);
-	}
-
-	public override void Tick()
-	{
-		if (Input.Pressed("ClassSelect"))
-		{
-			IsActive = !IsActive;
-			SetClass("visible", IsActive);
-		}
 	}
 }

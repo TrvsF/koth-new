@@ -10,7 +10,7 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
 {
-	[HostSync] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
 	public void SetPlayerPawnDefinition(PlayerPawnDefinition CharacterDefinitionIn)
@@ -45,7 +45,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
-	[HostSync] public TimeSince TimeSinceLastRespawn { get; private set; }
+	[Sync(SyncFlags.FromHost)] public TimeSince TimeSinceLastRespawn { get; private set; }
 
 	public Team Team;
 

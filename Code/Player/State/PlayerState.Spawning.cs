@@ -27,12 +27,17 @@ public struct PlayerPawnDefinition
 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+ * State of the player pawn
+ * menu when displaying a menu (true when first joining a lobby)
+ * waitingforspawn when in a game & requestedcharacterdefinition is not null
+ * alive when playing in game
+ */
 public enum EPlayerStateSpawningState
 {
-	None,
-	Dead,
-	Alive,
+	Menu,
 	WaitingForSpawn,
+	Alive,
 	Spectating,
 }
 
@@ -40,7 +45,23 @@ public enum EPlayerStateSpawningState
 
 public partial class PlayerState
 {
-	[HostSync] public EPlayerStateSpawningState PlayerStateSpawningState { get; private set; } = EPlayerStateSpawningState.WaitingForSpawn;
+	[Sync(SyncFlags.FromHost)/*, Change(nameof(OnPlayerStateSpawningStateChanged))*/] public EPlayerStateSpawningState PlayerStateSpawningState { get; private set; } = EPlayerStateSpawningState.Menu;
+
+	private void OnPlayerStateSpawningStateChanged()
+	{
+
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+
+	[Sync(SyncFlags.FromHost)] public float TimeTilAttemptedSpawn { get; private set; } = -1;
+
+	public void SetTimeTilAttemptedSpawn(float TimeTilSpawn)
+	{
+		Assert.True(Networking.IsHost);
+
+		TimeTilAttemptedSpawn = TimeTilSpawn;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -54,6 +75,7 @@ public partial class PlayerState
 		Log.Info("Requested Character");
 
 		RequestedCharacterDefinition = CharacterDefintionIn;
+		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
 
 	public void RequestSpawn(SpawnPointInfo SpawnPoint)
@@ -110,10 +132,5 @@ public partial class PlayerState
 		Assert.True(Networking.IsHost);
 
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
-	}
-
-	void OnPlayerStateStateChanged()
-	{
-
 	}
 }
