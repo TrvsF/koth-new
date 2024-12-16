@@ -75,6 +75,12 @@ public partial class PlayerState
 		Log.Info("Requested Character");
 
 		RequestedCharacterDefinition = CharacterDefintionIn;
+		HACKPlayerSpawnState();
+	}
+
+	[Rpc.Host]
+	private void HACKPlayerSpawnState()
+	{
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
 
@@ -89,6 +95,8 @@ public partial class PlayerState
 
 		SpawnPlayerPawn(SpawnPoint);
 	}
+
+	private ScreenPanel AssumedSceneCameraObject = null;
 
 	[Rpc.Host]
 	private void SpawnPlayerPawn(SpawnPointInfo SpawnPoint)
@@ -116,6 +124,14 @@ public partial class PlayerState
 		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);
 		if (SpawnPlayerPawnPrefab.NetworkSpawn(Connection))
 		{
+			// HACK : understand the camera system more, surely there's a better way!
+			if (AssumedSceneCameraObject == null)
+			{
+				AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get< ScreenPanel>();
+			}
+			AssumedSceneCameraObject.Enabled = false;
+			//
+
 			PlayerPawn = SpawnPlayerPawnComponent;
 			PlayerPawn.OnDeath += OnPlayerPawnDeath;
 			PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
@@ -132,5 +148,6 @@ public partial class PlayerState
 		Assert.True(Networking.IsHost);
 
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
+		AssumedSceneCameraObject.Enabled = true;
 	}
 }

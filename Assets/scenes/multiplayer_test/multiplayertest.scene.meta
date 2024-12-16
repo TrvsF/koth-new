@@ -1,0 +1,21 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Multiplayertest",
+      "Type": "map",
+      "Org": "wurstsoftware",
+      "Ident": "multiplayertest",
+      "Schema": 0,
+      "IncludeSourceFiles": true,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": null,
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "scenes/multiplayer_test/multiplayertest.scene",
+        "ParentPackage": "wurstsoftware.koth"
+      }
+    }
+  }
+}

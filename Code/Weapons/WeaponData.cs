@@ -16,8 +16,6 @@ public enum EEquipmentSlot
 [GameResource("koth/Equipment Item", "equip", "", IconBgColor = "#5877E0", Icon = "track_changes")]
 public partial class EquipmentResource : GameResource
 {
-	public static HashSet<EquipmentResource> All { get; set; } = new();
-
 	[Category("Base")]
 	public string Name { get; set; } = "My Equipment";
 
@@ -96,16 +94,5 @@ public partial class EquipmentResource : GameResource
 	public bool IsPurchasableForTeam(Team team)
 	{
 		return Team == Team.Unassigned || Team == team;
-	}
-
-	protected override void PostLoad()
-	{
-		if (All.Contains(this))
-		{
-			Log.Warning("Tried to add two of the same equipment (?)");
-			return;
-		}
-
-		All.Add(this);
 	}
 }

@@ -11,9 +11,9 @@ public partial class PlayerPawn :
 {
 	public DamageComponent DamageComponent => Components.Get<DamageComponent>();
 
-	public float Health => DamageComponent.Health;
-	public float MaxHealth => DamageComponent.MaxBaseHealth;
-	public bool IsAlive => !DamageComponent.IsDead;
+	public float Health => DamageComponent.IsValid ? DamageComponent.Health : -1;
+	public float MaxHealth => DamageComponent.IsValid ? DamageComponent.MaxBaseHealth : -1;
+	public bool IsAlive => DamageComponent.IsValid && !DamageComponent.IsDead;
 	public event Action OnDeath;
 
 	protected override void OnEnabled()

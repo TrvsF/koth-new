@@ -33,7 +33,7 @@ public partial class PlayerState : Component
 
 	[HostSync, Property] public ulong SteamId { get; private set; }
 	[HostSync, Property] public string SteamName { get; private set; }
-	
+
 	//////////////////////////////////////////////////////////////
 
 	[HostSync, Property] public Team Team { get; private set; } // TODO : listen to onteamchange

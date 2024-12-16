@@ -10,6 +10,10 @@ public record GamemodeInitializedEvent(string Title) : IGameEvent;
 /// </summary>
 public sealed partial class GameMode : SingletonComponent<GameMode>, Component.INetworkListener
 {
+	[Property] public string Title { get; set; }
+
+	/////////////////////////////////////////////////////////////
+
 	public static string ActivePath { get; private set; }
 
 	public static void SetCurrent(GameModeInfo gameMode)
@@ -23,8 +27,6 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 		ActivePath = gameMode.Path;
 	}
 
-	[Property] public string Title { get; set; }
-	[Property] public string Description { get; set; }
 
 	private StateMachineComponent _stateMachine;
 

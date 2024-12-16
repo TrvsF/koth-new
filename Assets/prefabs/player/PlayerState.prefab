@@ -74,12 +74,6 @@
         "WorldspacePlayback": false
       },
       {
-        "__type": "KOTH.PlayerLoadout",
-        "__guid": "c47762ae-b09b-4cde-99b3-157debee5f47",
-        "Equipment": [],
-        "HasDefuseKit": false
-      },
-      {
         "__type": "KOTH.LocalStats",
         "__guid": "15f354ef-7255-4bf0-849b-80c32f02e67f"
       }
@@ -116,6 +110,5 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [],
-  "IsValid": true,
   "__version": 1
 }

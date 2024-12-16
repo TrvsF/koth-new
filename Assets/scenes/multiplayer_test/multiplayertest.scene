@@ -18,24 +18,6 @@
       ]
     },
     {
-      "__guid": "624a8198-c56a-437e-bff0-90272865dca6",
-      "Flags": 0,
-      "Name": "MapInstance",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.MapInstance",
-          "__guid": "03615e7e-c2ad-45b5-8cd6-742fcfbb5df6",
-          "__version": 1,
-          "EnableCollision": true,
-          "MapName": "maps/botz/botz.vmap",
-          "NoOrigin": false,
-          "UseMapFromLaunch": true
-        }
-      ],
-      "Children": []
-    },
-    {
       "__guid": "337b45d2-f94a-41a9-b735-093088733043",
       "Flags": 0,
       "Name": "GameState",
@@ -67,7 +49,6 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "e1ddd168-dee3-463d-af9e-682151c03381",
-          "Description": "practise against da bots",
           "Title": "Botz"
         },
         {
@@ -149,7 +130,7 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
                   "AllowSpectatorsToSpawn": false,
-                  "RespawnDelaySeconds": 10
+                  "RespawnDelaySeconds": 1
                 }
               ]
             }
@@ -956,7 +937,7 @@
           "IsMainCamera": true,
           "Orthographic": false,
           "OrthographicHeight": 1204,
-          "Priority": 1,
+          "Priority": 8,
           "RenderExcludeTags": "",
           "RenderTags": "",
           "TargetEye": "None",
@@ -978,6 +959,26 @@
           "ZIndex": 100
         }
       ]
+    },
+    {
+      "__guid": "35743eb6-f234-45f1-afdf-30d0d97963ad",
+      "Flags": 0,
+      "Name": "MapInstance",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "98efe617-6ede-4b90-98ad-250412013ed5",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/botz/botz.vmap",
+          "NoOrigin": false,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": true
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {

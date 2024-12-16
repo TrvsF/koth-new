@@ -10,7 +10,7 @@
   "EditorReferences": null,
   "IsWhitelistDisabled": false,
   "Metadata": {
-    "MaxPlayers": 12,
+    "MaxPlayers": 16,
     "MinPlayers": 1,
     "GameNetworkType": "Multiplayer",
     "MapSelect": "Official",
@@ -156,7 +156,7 @@
     "HttpAllowList": null,
     "TickRate": 30,
     "LaunchMode": "Normal",
-    "StartupScene": "prefabs/scenes/menu.scene",
+    "StartupScene": "scenes/multiplayer_test/multiplayertest.scene",
     "DedicatedServerStartupScene": "scenes/multiplayer_test/multiplayertest.scene"
   }
 }
