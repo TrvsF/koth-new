@@ -3,6 +3,7 @@ using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace KOTH;
@@ -17,7 +18,7 @@ public struct PlayerPawnDefinition
 	// public PlayerState OwnerPlayerState { get; init; }
 
 	public string Name { get; init; } = "UNINITALIZED";
-	public bool IsBot { get; init; } = false;
+	public bool IsDummy { get; init; } = false;
 
 	public bool IsValid()
 	{
@@ -65,7 +66,6 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Property] public GameObject DefaultPlayerPawnPrefab { get; private set; }
 	[Sync] public CharacterDefinition RequestedCharacterDefinition { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -93,21 +93,61 @@ public partial class PlayerState
 			return;
 		}
 
-		SpawnPlayerPawn(SpawnPoint);
-	}
-
-	private ScreenPanel AssumedSceneCameraObject = null;
-
-	[Rpc.Host]
-	private void SpawnPlayerPawn(SpawnPointInfo SpawnPoint)
-	{
-		Assert.True(Networking.IsHost);
-
 		if (PlayerPawn.IsValid())
 		{
 			PlayerPawn.GameObject.Root.Destroy();
 			PlayerPawn = null;
 		}
+
+		SpawnPlayerPawn(Connection, SteamName, RequestedCharacterDefinition, SpawnPoint);
+	}
+
+
+	[Property] public static GameObject DefaultPlayerPawnPrefab { get; private set; }
+
+	private void OnPlayerPawnSpawn()
+	{
+		Assert.True(Networking.IsHost);
+		Assert.True(PlayerPawn.IsValid());
+
+		// PlayerPawn = PlayerPawnOut;
+		PlayerPawn.OnDeath += OnPlayerPawnDeath;
+		PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
+
+		using (Rpc.FilterInclude(Connection))
+		{
+			CameraDisableHack();
+		}
+	}
+
+	private ScreenPanel AssumedSceneCameraObject = null;
+	[Rpc.Broadcast]
+	private void CameraDisableHack()
+	{
+		// HACK : understand the camera system more, surely there's a better way!
+		if (AssumedSceneCameraObject == null)
+		{
+			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();
+		}
+		AssumedSceneCameraObject.Enabled = false;
+		//
+	}
+
+	[Rpc.Broadcast]
+	private void CameraEnableHack()
+	{
+		if (AssumedSceneCameraObject == null)
+		{
+			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();
+		}
+		AssumedSceneCameraObject.Enabled = true;
+		Log.Info(AssumedSceneCameraObject.GameObject);
+	}
+
+	[Rpc.Host]
+	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, SpawnPointInfo SpawnPoint)
+	{
+		Assert.True(Networking.IsHost);
 
 		var SpawnPlayerPawnPrefab = DefaultPlayerPawnPrefab.Clone(SpawnPoint.Transform, null, true);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
@@ -117,30 +157,20 @@ public partial class PlayerState
 
 		PlayerPawnDefinition PlayerPawnDefinition = new()
 		{
-			CharacterDefinition = RequestedCharacterDefinition,
-			Name = SteamName,
+			CharacterDefinition = CharacterDefinition,
+			Name = Name,
 		};
 
 		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);
-		if (SpawnPlayerPawnPrefab.NetworkSpawn(Connection))
-		{
-			// HACK : understand the camera system more, surely there's a better way!
-			if (AssumedSceneCameraObject == null)
-			{
-				AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get< ScreenPanel>();
-			}
-			AssumedSceneCameraObject.Enabled = false;
-			//
 
-			PlayerPawn = SpawnPlayerPawnComponent;
-			PlayerPawn.OnDeath += OnPlayerPawnDeath;
-			PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
-		}
-		else
+		if (!SpawnPlayerPawnPrefab.NetworkSpawn(OwningConnection))
 		{
 			SpawnPlayerPawnPrefab.Destroy();
-			Log.Warning($"failed to spawn player pawn for client {SteamName}:{SteamId}");
+			return;
 		}
+
+		PlayerPawn = SpawnPlayerPawnComponent;
+		OnPlayerPawnSpawn();
 	}
 
 	void OnPlayerPawnDeath()
@@ -148,6 +178,10 @@ public partial class PlayerState
 		Assert.True(Networking.IsHost);
 
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
-		AssumedSceneCameraObject.Enabled = true;
+
+		using (Rpc.FilterInclude(Connection))
+		{
+			CameraEnableHack();
+		}
 	}
 }

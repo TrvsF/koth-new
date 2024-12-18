@@ -142,13 +142,45 @@
       "__guid": "360246d1-752c-4266-85d1-9d26dc22150b",
       "Flags": 0,
       "Name": "spawnpoint (26)",
-      "Position": "0,144,160",
-      "Rotation": "0,0,0.7071068,0.7071068",
+      "Position": "0.00006103516,832.0001,144.0001",
+      "Rotation": "0,0,-0.7071067,0.7071069",
       "Enabled": true,
       "Components": [
         {
           "__type": "TeamSpawnPoint",
           "__guid": "575c7894-fbc8-4456-b2c1-a823e821e477",
+          "IsDummy": false,
+          "Team": "Unassigned"
+        }
+      ]
+    },
+    {
+      "__guid": "b8f4d4c6-da8c-4fec-b1fb-49662dc5aee8",
+      "Flags": 0,
+      "Name": "spawnpoint (1)",
+      "Position": "0.00003051759,928,144.0001",
+      "Rotation": "0,0,-0.7071067,0.7071069",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "21edcc6f-188c-4f90-ae4c-5e6b56f7defc",
+          "IsDummy": false,
+          "Team": "Unassigned"
+        }
+      ]
+    },
+    {
+      "__guid": "e30ea631-675e-4710-bf38-e46f1f630786",
+      "Flags": 0,
+      "Name": "spawnpoint (2)",
+      "Position": "0,1040,144.0001",
+      "Rotation": "0,0,-0.7071067,0.7071069",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "0a75eff8-aa0e-4c5e-a52b-7d67f4c3acae",
           "IsDummy": false,
           "Team": "Unassigned"
         }
@@ -973,8 +1005,6 @@
           "EnableCollision": true,
           "MapName": "maps/botz/botz.vmap",
           "NoOrigin": false,
-          "OnMapLoaded": null,
-          "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         }
       ],

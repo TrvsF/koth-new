@@ -13,11 +13,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[Sync(SyncFlags.FromHost)] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
-	public void SetPlayerPawnDefinition(PlayerPawnDefinition CharacterDefinitionIn)
+	public void SetPlayerPawnDefinition(PlayerPawnDefinition PlayerPawnDefinitionIn)
 	{
 		Assert.True(Networking.IsHost);
 
-		PlayerPawnDefinition = CharacterDefinitionIn;
+		PlayerPawnDefinition = PlayerPawnDefinitionIn;
+		IsDummy = PlayerPawnDefinitionIn.IsDummy;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -38,8 +39,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Property] public bool IsBot { get; private set; } = false;
-	[Property] public bool IsLocallyControlled => !IsProxy;
+	[Property] public bool IsDummy { get; private set; } = false;
+	[Property] public bool IsLocallyControlled => !IsProxy && !IsDummy;
 	[Property] public bool IsViewer => PlayerState.Local?.PlayerPawn == this; // TODO : make spectate target in playerpawn?
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +80,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
 		Assert.True(SetMovementVariables(CharacterDefinition));
 		DisplayName = PlayerPawnDefinition.Name;
+		GameObject.Name = DisplayName;
 
 		if (IsLocallyControlled)
 		{
@@ -181,6 +183,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		UpdateZones();
 
+		if (IsDummy)
+		{
+			DoDummyMovement();
+			return; // NOTE : early return
+		}
+
 		if (DamageComponent == null || !IsAlive || !IsLocallyControlled)
 		{
 			return; // NOTE : early return
@@ -209,15 +217,15 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	private void DoDummyMovement()
 	{
-		//if (DummyType.HasFlag(DummyType.Jumper))
-		//{
-		//	IsCrouching = true;
-		//	if (CharacterController.IsOnGround)
-		//	{
-		//		CharacterController.Punch(Vector3.Up * CharacterDefinition.JumpPower);
-		//		BroadcastPlayerJumped();
-		//	}
-		//}
+		// if (DummyType.HasFlag(DummyType.Jumper))
+		{
+			IsCrouching = true;
+			if (CharacterController.IsOnGround)
+			{
+				CharacterController.Punch(Vector3.Up * JumpPower);
+				BroadcastPlayerJumped();
+			}
+		}
 
 		//if (DummyType.HasFlag(DummyType.Walker))
 		//{

@@ -97,7 +97,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		}
 
 		// ---------------------- team check
-		if (TargetPlayerPawn.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn/* && !TargetPlayerPawn.IsDummy*/)
+		if (TargetPlayerPawn.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
 		{
 			return; // NOTE : early return
 		}

@@ -1,7 +1,7 @@
 ﻿
 namespace KOTH;
 
-public sealed class RandomSpawnAssigner : Component, ISpawnAssigner
+public sealed class RandomSpawnAssigner : Component
 {
 	/// <summary>
 	/// Use spawns that include at least one of these tags.
@@ -68,7 +68,7 @@ public sealed class RandomSpawnAssigner : Component, ISpawnAssigner
 		return true;
 	}
 
-	SpawnPointInfo ISpawnAssigner.GetSpawnPoint(PlayerState player)
+	SpawnPointInfo GetSpawnPoint(PlayerState player)
 	{
 		var AllPlayers = GameUtils.PlayerPawns
 			.Where(x => x.IsAlive)
@@ -80,7 +80,7 @@ public sealed class RandomSpawnAssigner : Component, ISpawnAssigner
 			.Select(x => x.Transform.World)
 			.ToArray();
 
-		var Spawns = GameUtils.GetSpawnPoints(Team.Unassigned, SpawnTags.ToArray())
+		var Spawns = GameUtils.GetPlayerSpawnPoints(Team.Unassigned, SpawnTags.ToArray())
 			.Shuffle();
 
 		foreach (var Spawn in Spawns)

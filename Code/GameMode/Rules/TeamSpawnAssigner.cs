@@ -11,8 +11,7 @@ public class SpawnRule
 	public int MaxPlayers { get; set; }
 }
 
-public sealed class TeamSpawnAssigner : Component,
-	ISpawnAssigner
+public sealed class TeamSpawnAssigner : Component
 {
 	[Property, Title("Tags")]
 	public TagSet SpawnTags { get; private set; } = new();
@@ -23,7 +22,7 @@ public sealed class TeamSpawnAssigner : Component,
 	public SpawnPointInfo GetSpawnPoint(PlayerState player)
 	{
 		var Team = player.Team;
-		var Spawns = GameUtils.GetSpawnPoints(Team, SpawnTags.ToArray()).Shuffle();
+		var Spawns = GameUtils.GetPlayerSpawnPoints(Team, SpawnTags.ToArray()).Shuffle();
 
 		if (Spawns.Count == 0 && player.Team != Team.Unassigned)
 		{

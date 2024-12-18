@@ -40,7 +40,7 @@ public sealed class PlayerAutoRespawner : Component,
 					continue;
 				}
 
-				SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(Team.CounterTerrorist);
+				SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
 				PlayerState.RequestSpawn(SpawnPoint);
 				PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
 				PlayersWaitingForSpawn.Remove(PlayerState);

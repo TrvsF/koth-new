@@ -34,7 +34,7 @@
           "_type": "gameobject",
           "go": "4858b351-8fb8-43aa-af2a-92496608fcda"
         },
-        "IsBot": false,
+        "IsDummy": false,
         "IsLocallyControlled": true,
         "IsViewer": false,
         "LandSound": "sounds/footsteps/footstep-concrete-land.sound",
@@ -267,10 +267,7 @@
               "go": "d5948881-7e0d-4ca0-8054-85c77a3cc5af",
               "component_type": "SkinnedModelRenderer"
             },
-            "TeamBaseModels": {
-              "Terrorist": "models/player/t_side/t_side_player_01/t_side_player_01_v2.vmdl",
-              "CounterTerrorist": "models/player/ct_side/ct_side_player_01/ct_side_player_01_v2.vmdl"
-            }
+            "TeamBaseModels": {}
           }
         ],
         "Children": [
@@ -1075,6 +1072,1165 @@
                 "Position": "0.7620924,-5.898317,-2.614985",
                 "Rotation": "-0.7059661,0.1016842,-0.6644532,0.223099",
                 "Enabled": true
+              }
+            ]
+          },
+          {
+            "__guid": "c9da3895-1f88-4fce-a593-cd67265d7120",
+            "Flags": 0,
+            "Name": "ValveBiped_Bip01",
+            "Position": "0.5209801,-0.0000007649385,31.07145",
+            "Rotation": "0.4999998,0.4999999,0.5000001,0.5000004",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "b21e41f0-39bb-4de0-8b86-8f0cfd442214",
+                "Flags": 0,
+                "Name": "ValveBiped_Bip01_Spine",
+                "Position": "0.00001624017,3.265903,-2.91128",
+                "Rotation": "0.4779696,0.5210997,0.4779693,0.5211004",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "d0ed083a-0109-40ae-96c2-9e12ee1227c5",
+                    "Flags": 0,
+                    "Name": "ValveBiped_Bip01_Spine1",
+                    "Position": "3.662022,-0.02258897,-0.0000178783",
+                    "Rotation": "0.00000003193739,-0.0000001014066,-0.01462029,0.9998932",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "6e293fd0-e9b4-4da0-b446-caec71eb3270",
+                        "Flags": 0,
+                        "Name": "ValveBiped_Bip01_Spine2",
+                        "Position": "5.948456,0.2916667,-0.00002676521",
+                        "Rotation": "0.00000005192316,0.0000001095119,0.05015032,0.9987417",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "9f06a8e1-8cbe-4dd4-ad36-0cc924a54c83",
+                            "Flags": 0,
+                            "Name": "ValveBiped_Bip01_Spine4",
+                            "Position": "12.35087,0.05494809,-0.00003577612",
+                            "Rotation": "0.0000000570168,0.0000001624011,0.09689248,0.9952949",
+                            "Enabled": true,
+                            "Children": [
+                              {
+                                "__guid": "78866cc2-baef-41ae-91e5-781ff5b1b4f8",
+                                "Flags": 0,
+                                "Name": "ValveBiped_Bip01_L_Clavicle",
+                                "Position": "4.386288,0.5676537,2.715996",
+                                "Rotation": "0.4541318,0.5452528,0.6114221,-0.350181",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "61698ec3-4c50-42b7-b546-231df0a457d0",
+                                    "Flags": 0,
+                                    "Name": "ValveBiped_Bip01_L_UpperArm",
+                                    "Position": "10.83867,2.597454,0.02866268",
+                                    "Rotation": "-0.6839484,0.1988558,-0.1596652,0.6835042",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "d513b735-fd2f-423c-b1e1-4db290ba51be",
+                                        "Flags": 0,
+                                        "Name": "ValveBiped_Bip01_L_Forearm",
+                                        "Position": "19.63587,-0.3167133,1.66045",
+                                        "Rotation": "0.004065289,0.00006776838,-0.03363119,0.9994261",
+                                        "Enabled": true,
+                                        "Children": [
+                                          {
+                                            "__guid": "93b24bbc-2827-4278-9fbd-e3ae8dadf81f",
+                                            "Flags": 0,
+                                            "Name": "ValveBiped_Bip01_L_Hand",
+                                            "Position": "11.4596,-0.03308105,1.333824",
+                                            "Rotation": "0.7080596,0.021212,0.01140471,0.7057419",
+                                            "Enabled": true,
+                                            "Children": [
+                                              {
+                                                "__guid": "203e092f-cbc4-4e68-8975-98e6ce8e4d6f",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_L_Finger4",
+                                                "Position": "4.725076,-1.134125,-2.942856",
+                                                "Rotation": "-0.3314569,0.2918408,0.03318576,0.8965846",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "9bac6c32-a241-4eb9-a66c-4adf5435e977",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_L_Finger41",
+                                                    "Position": "3.389389,-0.1151505,0.7750988",
+                                                    "Rotation": "0.05205441,0.0585038,-0.1781049,0.9808906",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "04fe695c-15c4-4dac-a7e2-c1a51baca397",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_L_Finger42",
+                                                        "Position": "1.903965,-0.3517647,0.6612911",
+                                                        "Rotation": "0.04009965,0.02609509,-0.1063321,0.993179",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "67e02321-5923-4880-ad71-589d191ad972",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_L_Finger42_end",
+                                                            "Position": "-0.00004577637,0.2821121,-0.0000629425",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "92545613-c8e8-42c5-9d75-35eb7ed24bd9",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_L_Finger3",
+                                                "Position": "5.789702,-0.06615829,-0.4533179",
+                                                "Rotation": "-0.05162187,0.07153651,0.06689867,0.9938523",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "fce5830b-5481-41a3-b648-d30a5cb79962",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_L_Finger31",
+                                                    "Position": "3.698025,-0.006824493,-0.3296235",
+                                                    "Rotation": "-0.008594289,0.001467069,-0.09808788,0.9951396",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "f865879e-7553-4570-9ce8-325291ba74ec",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_L_Finger32",
+                                                        "Position": "2.908392,-0.336937,-0.2636094",
+                                                        "Rotation": "-0.0151108,0.008064224,-0.1834719,0.9828757",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "715d92fd-4346-4ad0-a2a6-ca65555b73ab",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_L_Finger32_end",
+                                                            "Position": "-0.00002765656,0.2821121,-0.00005674362",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "cb16da14-f2cc-4b1f-a807-6b87385d57de",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_L_Finger2",
+                                                "Position": "4.250339,-0.07336807,1.180558",
+                                                "Rotation": "0.0367001,-0.01051052,0.04226106,0.998377",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "cada80d2-ca1e-48f4-90c1-32e3242159bc",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_L_Finger21",
+                                                    "Position": "4.541348,0.4730453,0.3320456",
+                                                    "Rotation": "0.0100944,-0.00286773,-0.1437764,0.9895546",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "6dcacc0f-930f-4cd5-9dc3-c88356a9694a",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_L_Finger22",
+                                                        "Position": "3.179411,-0.2233505,0.196383",
+                                                        "Rotation": "0.005129929,-0.002776402,-0.0869756,0.9961935",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "4582432a-93d9-4633-bee9-d95cb9949cdd",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_L_Finger22_end",
+                                                            "Position": "-0.00004959106,0.2821312,-0.00006389618",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "7cb6a269-83df-432f-8fdd-282ee5710e47",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_L_Finger1",
+                                                "Position": "5.564547,0.009243011,4.15543",
+                                                "Rotation": "0.1025334,-0.08354214,0.1044976,0.9856915",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "df3d6d4e-612d-4cb4-9c48-922f054083f0",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_L_Finger11",
+                                                    "Position": "3.680737,0.4590263,0.5380478",
+                                                    "Rotation": "0.02178448,0.004274081,-0.1446112,0.9892395",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "b9b260fd-0425-49fb-bbbc-1dc65f5aaf92",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_L_Finger12",
+                                                        "Position": "2.318888,-0.07076263,0.3495789",
+                                                        "Rotation": "0.01474078,-0.000474099,-0.09811065,0.9950662",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "77088d7a-1afa-4446-bac4-ca2cdb41338d",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_L_Finger12_end",
+                                                            "Position": "-0.00003051758,0.282135,-0.00006961823",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "1c3d2c1c-4678-464b-b4d0-6a274fd0dcc6",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_L_Finger0",
+                                                "Position": "2.122771,-2.272453,3.813069",
+                                                "Rotation": "-0.5665051,-0.1038126,-0.4301286,0.6951865",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "991b1c85-ce11-4d16-8851-bf8f9f472e95",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_L_Finger01",
+                                                    "Position": "3.527496,0.01934409,0.02235413",
+                                                    "Rotation": "-0.002177817,0.01325906,0.1100781,0.9938321",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "5281513a-7318-4591-bb1f-496329fa8daf",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_L_Finger02",
+                                                        "Position": "2.384478,0.04772544,0.05718231",
+                                                        "Rotation": "-0.007677851,0.01928011,0.1763502,0.9841086",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "67fe707d-8419-45dd-8f6e-f04a8199584d",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_L_Finger02_end",
+                                                            "Position": "-0.00005722046,0.2820854,-0.000003814697",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "__guid": "97680b1b-0c9f-4e21-96e0-c71a328ee805",
+                                "Flags": 0,
+                                "Name": "ValveBiped_Bip01_R_Clavicle",
+                                "Position": "4.386292,0.5676489,-2.803935",
+                                "Rotation": "-0.4400957,-0.5653976,0.5930283,-0.3673672",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "bf30c574-a058-4e9c-b9e6-7306582abd67",
+                                    "Flags": 0,
+                                    "Name": "ValveBiped_Bip01_R_UpperArm",
+                                    "Position": "10.83958,2.591827,0.09806395",
+                                    "Rotation": "0.7070726,-0.1914846,-0.1683881,0.6595663",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "8c4009b4-e841-49d2-b9b0-b3ffeb853950",
+                                        "Flags": 0,
+                                        "Name": "ValveBiped_Bip01_R_Forearm",
+                                        "Position": "19.43703,-0.1865926,-1.623058",
+                                        "Rotation": "-0.003956735,-0.00007578217,-0.03416238,0.9994085",
+                                        "Enabled": true,
+                                        "Children": [
+                                          {
+                                            "__guid": "bea7ad95-efd3-4ff5-9dc9-6003bc001949",
+                                            "Flags": 0,
+                                            "Name": "ValveBiped_Bip01_R_Hand",
+                                            "Position": "11.65005,-0.1607187,-2.308006",
+                                            "Rotation": "-0.7053523,-0.01460189,0.01814382,0.7084742",
+                                            "Enabled": true,
+                                            "Children": [
+                                              {
+                                                "__guid": "dd5ae037-f5ed-46b0-bbb0-8977dff1bc9b",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_R_Finger4",
+                                                "Position": "3.709167,-1.365509,3.081353",
+                                                "Rotation": "0.2236791,-0.2633795,0.005640721,0.9383854",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "619ff0f0-8104-4cfa-bf6f-cd8f852961b7",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_R_Finger41",
+                                                    "Position": "3.862592,-0.5151482,-0.4428749",
+                                                    "Rotation": "-0.04318981,-0.03429877,-0.1806033,0.9820085",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "b74ff14b-7e21-4231-b190-31a6c7018028",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_R_Finger42",
+                                                        "Position": "2.517925,0.7069016,-0.6406612",
+                                                        "Rotation": "-0.03050154,-0.01374983,-0.1095398,0.9934192",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "9a3765b9-824b-41e1-86a7-fdff5f20ad51",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_R_Finger42_end",
+                                                            "Position": "0.00002098083,0.2822685,-0.00004768372",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "3aa9e779-ba89-4e95-b23f-7ad119ce9d9d",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_R_Finger3",
+                                                "Position": "5.240154,0.3274307,1.092824",
+                                                "Rotation": "0.2078601,-0.0969649,-0.002082832,0.9733384",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "6d1dc329-8906-4a64-ae45-8bb5e9627e2e",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_R_Finger31",
+                                                    "Position": "4.144113,-0.602562,-0.03829384",
+                                                    "Rotation": "-0.00606117,-0.04256112,-0.09828646,0.9942291",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "fb740545-a757-4e9b-a0d0-2e6170a30fad",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_R_Finger32",
+                                                        "Position": "3.462302,0.2277489,-0.3828602",
+                                                        "Rotation": "-0.03167966,-0.07296753,-0.1814027,0.9801863",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "6cdb0d2b-5126-48d7-9bda-0b4556c7d06f",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_R_Finger32_end",
+                                                            "Position": "0.00001716614,0.2822495,-0.00003814697",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "e0ae8457-aa74-47d4-8d25-de47ede7394c",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_R_Finger2",
+                                                "Position": "5.485183,1.009594,-1.476774",
+                                                "Rotation": "-0.0381621,0.005032128,-0.04066101,0.9984313",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "1449f62f-d312-463d-9951-a7080fc5146a",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_R_Finger21",
+                                                    "Position": "4.126914,-0.6095276,-0.1789589",
+                                                    "Rotation": "-0.01002538,-0.003256975,-0.1437601,0.9895564",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "4f300546-6cc6-4b28-bd1c-2c91c6bf6517",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_R_Finger22",
+                                                        "Position": "3.726603,1.030098,-0.34057",
+                                                        "Rotation": "-0.005736592,-0.0009452927,-0.08690414,0.9961997",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "0fd17ef6-a50e-4e78-b848-6be626e700fa",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_R_Finger22_end",
+                                                            "Position": "0.000007629395,0.2822876,-0.00005197525",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "a6b7317e-3d76-4c7d-8ec5-6fb4b9c1f0ea",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_R_Finger1",
+                                                "Position": "4.741073,0.7778587,-3.398465",
+                                                "Rotation": "-0.265016,0.1100849,0.01216359,0.9578621",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "e327716a-f9a7-4f7b-8f70-c17e9df12161",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_R_Finger11",
+                                                    "Position": "4.188828,0.5245438,-0.6619091",
+                                                    "Rotation": "-0.01712262,0.03878875,-0.1450532,0.988515",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "dfc66cf7-3191-488a-bb02-fccd947ef539",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_R_Finger12",
+                                                        "Position": "2.666749,-0.08073425,-0.1911469",
+                                                        "Rotation": "-0.004258513,0.02838614,-0.09904966,0.9946684",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "ad8f8f7e-6af4-49d4-baf6-9968a2adc2fa",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_R_Finger12_end",
+                                                            "Position": "-0.000005722046,0.2822456,-0.00006866455",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "cc0d564a-0c8f-464d-a5f0-83fc29f7f6ce",
+                                                "Flags": 0,
+                                                "Name": "ValveBiped_Bip01_R_Finger0",
+                                                "Position": "1.908267,-2.347694,-4.80052",
+                                                "Rotation": "0.5628762,0.09621499,-0.4348157,0.6963105",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "45fd91f5-d6b7-4563-8ff9-c00a2276361a",
+                                                    "Flags": 0,
+                                                    "Name": "ValveBiped_Bip01_R_Finger01",
+                                                    "Position": "4.239532,0.02337933,-0.08668137",
+                                                    "Rotation": "0.003758141,-0.01370785,0.110184,0.9938096",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "643cf3ee-f3f7-4e97-b587-98bc86fe8ad7",
+                                                        "Flags": 0,
+                                                        "Name": "ValveBiped_Bip01_R_Finger02",
+                                                        "Position": "2.864861,0.05684233,-0.1155968",
+                                                        "Rotation": "0.01056217,-0.01919349,0.1763289,0.9840875",
+                                                        "Enabled": true,
+                                                        "Children": [
+                                                          {
+                                                            "__guid": "6006ce17-1ce9-4c08-85ed-df92307796e8",
+                                                            "Flags": 0,
+                                                            "Name": "ValveBiped_Bip01_R_Finger02_end",
+                                                            "Position": "-0.0000629425,0.282311,-0.0001449585",
+                                                            "Enabled": true
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "__guid": "84031818-d31b-4096-af10-ae28e97ef0a9",
+                                "Flags": 0,
+                                "Name": "ValveBiped_Bip01_Neck1",
+                                "Position": "5.573952,-0.7696047,-0.00006643933",
+                                "Rotation": "0.9800192,0.1989027,0.0000006200809,-0.000000230567",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "23fb3ff3-014e-4701-9e83-8986d011f799",
+                                    "Flags": 0,
+                                    "Name": "ValveBiped_Bip01_Head1",
+                                    "Position": "4.882504,0.00001525879,-0.0001041178",
+                                    "Rotation": "-0.00000005878887,0.00000009668893,0.2018901,0.9794081",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "6d9bb48c-d8cb-4931-ae3a-8771e42226e5",
+                                        "Flags": 0,
+                                        "Name": "ValveBiped_Bip01_Head1_end",
+                                        "Position": "0.00005340576,0.2821474,-0.0001130634",
+                                        "Enabled": true
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "__guid": "3743fe21-66db-4dc0-adbd-a52e463340ef",
+                "Flags": 0,
+                "Name": "ValveBiped_Bip01_Pelvis",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "678b3c82-8732-44d8-b986-1e6c73da96ba",
+                    "Flags": 0,
+                    "Name": "ValveBiped_Bip01_L_Thigh",
+                    "Position": "7.265965,-0.07036781,-4.341399",
+                    "Rotation": "-0.4817067,0.5046599,-0.4926569,0.5201597",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "d70cf35c-da95-4011-9af4-91ae4f657e76",
+                        "Flags": 0,
+                        "Name": "ValveBiped_Bip01_L_Calf",
+                        "Position": "14.55982,-4.139292,1.479465",
+                        "Rotation": "-0.001564951,0.0004252821,0.01701758,0.9998539",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "bf0fe783-b0ea-4da9-80a6-69e12bb092e2",
+                            "Flags": 0,
+                            "Name": "ValveBiped_Bip01_L_Foot",
+                            "Position": "12.10367,0.3430458,1.139028",
+                            "Rotation": "0.007040386,-0.04003758,-0.5110741,0.8585749",
+                            "Enabled": true,
+                            "Children": [
+                              {
+                                "__guid": "17266de2-e1b1-44f0-8db5-6014f70e4914",
+                                "Flags": 0,
+                                "Name": "ValveBiped_Bip01_L_Toe0",
+                                "Position": "6.714745,-0.000008821487,0.1553812",
+                                "Rotation": "-0.005143646,-0.02658409,-0.2880319,0.957238",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "248073c3-8384-42cf-82e8-9abd779b9cf4",
+                                    "Flags": 0,
+                                    "Name": "ValveBiped_Bip01_L_Toe0_end",
+                                    "Position": "0.000004291534,0.2821544,0.000007629395",
+                                    "Enabled": true
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "__guid": "11253fca-9060-4756-b569-9d4465e1951e",
+                    "Flags": 0,
+                    "Name": "ValveBiped_Bip01_R_Thigh",
+                    "Position": "-7.415311,-0.1480904,-4.279869",
+                    "Rotation": "-0.4916906,0.5221248,-0.4795764,0.505601",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "72db0f74-76c0-4b74-848d-ef15bcbeaf7f",
+                        "Flags": 0,
+                        "Name": "ValveBiped_Bip01_R_Calf",
+                        "Position": "14.46117,-4.137696,-2.127489",
+                        "Rotation": "0.002301247,-0.0004484339,0.01692602,0.999854",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "32dc2fed-e90a-4b08-b183-170f5ec4f78f",
+                            "Flags": 0,
+                            "Name": "ValveBiped_Bip01_R_Foot",
+                            "Position": "12.04292,0.3429968,-1.662731",
+                            "Rotation": "-0.01866573,0.0473084,-0.5110539,0.8580428",
+                            "Enabled": true,
+                            "Children": [
+                              {
+                                "__guid": "765b08c5-b405-4c7e-a47d-d94622f9e7b9",
+                                "Flags": 0,
+                                "Name": "ValveBiped_Bip01_R_Toe0",
+                                "Position": "6.710273,0.00004076958,-0.289958",
+                                "Rotation": "-0.04035858,0.04826823,-0.2877235,0.9556445",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "47394e52-5581-4f8b-9598-92413c940401",
+                                    "Flags": 0,
+                                    "Name": "ValveBiped_Bip01_R_Toe0_end",
+                                    "Position": "0.000004291534,0.2821928,-0.00002098083",
+                                    "Enabled": true
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "__guid": "5fa467d4-4487-4c0c-b92e-517c15d9cc1e",
+            "Flags": 0,
+            "Name": "bip01_pelvis",
+            "Position": "0.5336165,0.000004661145,38.56691",
+            "Rotation": "0.4999999,0.4999999,0.4999999,0.5000002",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "86f189e1-8690-4ab6-8a8b-97c0f298bebc",
+                "Flags": 0,
+                "Name": "bip01_spine",
+                "Position": "0.000007168407,3.345116,-2.981887",
+                "Rotation": "0.4787751,0.5203596,0.4787751,0.52036",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "ae7cbe38-66e1-4982-a8b1-313dbe8e779a",
+                    "Flags": 0,
+                    "Name": "bip01_spine1",
+                    "Position": "3.995811,0.000009536743,0.000008763485",
+                    "Rotation": "0.00000006353559,-0.00000004732998,-0.01440745,0.9998963",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "d4247e9d-fb2d-4a47-9b80-00ea5425f844",
+                        "Flags": 0,
+                        "Name": "bip01_spine2",
+                        "Position": "3.520271,0.000009059906,0.000009162976",
+                        "Rotation": "0.00000005660127,-0.00000005530881,0.04863436,0.9988167",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "b5bcf74f-07c0-49a9-a261-7b6c5807c4e8",
+                            "Flags": 0,
+                            "Name": "bip01_spine4",
+                            "Position": "8.921432,0.00001382828,0.00001236914",
+                            "Rotation": "0.00000004392034,-0.00000006632327,0.09307165,0.9956594",
+                            "Enabled": true,
+                            "Children": [
+                              {
+                                "__guid": "bc41d1ef-031c-45f5-a0b6-e1224c670531",
+                                "Flags": 0,
+                                "Name": "bip01_neck1",
+                                "Position": "3.30632,0.00004386902,0.00001162088",
+                                "Rotation": "0.9794551,0.201662,0.0000003081221,0.000001090107",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "6007bb71-7c25-4a67-9ad2-b6f776c9f705",
+                                    "Flags": 0,
+                                    "Name": "bip01_head1",
+                                    "Position": "3.601959,-0.00004577637,-0.00001283743",
+                                    "Rotation": "0.0000001575194,-0.0000004278992,0.2011349,0.9795635",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "7f511828-8c99-4f2e-b180-e2640d866cda",
+                                        "Flags": 0,
+                                        "Name": "forward",
+                                        "Position": "1.99995,-3.000021,-0.00001066176",
+                                        "Rotation": "-0.5572075,0.4353384,-0.4353381,0.5572082",
+                                        "Enabled": true
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "__guid": "1ae79cbf-d58c-44b9-b606-35076ba9718e",
+                                "Flags": 0,
+                                "Name": "bip01_r_clavicle",
+                                "Position": "2.059479,0.977951,-1.937647",
+                                "Rotation": "-0.459069,-0.5495158,0.5793997,-0.3893378",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "0d36e1f0-0279-4213-8f40-5b5ebb99ba77",
+                                    "Flags": 0,
+                                    "Name": "bip01_r_upperarm",
+                                    "Position": "6.028128,-0.00009155273,-0.000020504",
+                                    "Rotation": "0.6966637,-0.2147206,-0.193812,0.6564996",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "06c32e56-26ce-4a82-a501-e55129875596",
+                                        "Flags": 0,
+                                        "Name": "bip01_r_forearm",
+                                        "Position": "11.69257,-0.00001192093,0.00007629395",
+                                        "Rotation": "0.00000006261645,-0.00000005998056,-0.03018134,0.9995444",
+                                        "Enabled": true,
+                                        "Children": [
+                                          {
+                                            "__guid": "2f1d1617-6b16-4fda-a8f1-a18c93ef4e48",
+                                            "Flags": 0,
+                                            "Name": "bip01_r_hand",
+                                            "Position": "11.48171,-0.000007390976,0.00007247925",
+                                            "Rotation": "-0.7032785,0.001089897,0.02640682,0.710423",
+                                            "Enabled": true,
+                                            "Children": [
+                                              {
+                                                "__guid": "5ebce5cf-64a1-45b7-b292-2cd1269d043c",
+                                                "Flags": 0,
+                                                "Name": "bip01_r_finger2",
+                                                "Position": "3.881353,0.2112846,-0.4020343",
+                                                "Rotation": "-0.04695546,-0.006000292,-0.2574061,0.9651432",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "583116a3-765d-489a-a56d-4053f33c846c",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_r_finger21",
+                                                    "Position": "1.719633,-0.00005340576,-0.00001764297",
+                                                    "Rotation": "-0.0006908971,-0.003728614,-0.1821973,0.9832547",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "9b0de077-8491-4271-b2a8-578d6b09b494",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_r_finger22",
+                                                        "Position": "1.209251,-0.00003051758,-0.00001716614",
+                                                        "Rotation": "-0.0002289527,-0.002108194,-0.1079788,0.9941509",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "13795e75-7f05-4717-8d9f-70fee7061fa5",
+                                                "Flags": 0,
+                                                "Name": "bip01_r_finger1",
+                                                "Position": "3.871274,0.1065407,-1.301838",
+                                                "Rotation": "-0.1673025,0.05433273,-0.2238765,0.9586121",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "d68d6056-f681-42c1-8908-c45df9c7a990",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_r_finger11",
+                                                    "Position": "1.719492,-0.00005340576,-0.00002861023",
+                                                    "Rotation": "-0.0006982519,-0.003805006,-0.1804807,0.9835709",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "2436ac49-1751-459f-ba30-865feec8b38e",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_r_finger12",
+                                                        "Position": "1.099728,-0.00003242493,-0.00002670288",
+                                                        "Rotation": "-0.0003008546,-0.002446141,-0.1218436,0.9925463",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "aff956f4-edd3-4c49-8062-e791bac16bd7",
+                                                "Flags": 0,
+                                                "Name": "bip01_r_finger0",
+                                                "Position": "0.8388319,-0.3112755,-1.310243",
+                                                "Rotation": "0.6103073,0.05154597,-0.4502083,0.6497542",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "30fde446-37d2-4524-a8aa-5fe6ae6ad69c",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_r_finger01",
+                                                    "Position": "1.789852,0.00002098083,0.00006103516",
+                                                    "Rotation": "-0.0001863261,0.001628792,0.1140595,0.9934725",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "1b777bc5-30d4-42bc-879b-e10d9a15f45a",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_r_finger02",
+                                                        "Position": "1.207073,0.000008583069,0.0000629425",
+                                                        "Rotation": "-0.0004519911,0.002463739,0.1805021,0.9835714",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "11c58573-6265-40cf-832a-bacf42761688",
+                                                "Flags": 0,
+                                                "Name": "bip01_r_finger4",
+                                                "Position": "3.859686,-0.1326561,1.193096",
+                                                "Rotation": "0.1813247,-0.1702655,-0.3950505,0.8843451",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "37776675-b961-4b42-8801-d19d5b0b4c3c",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_r_finger41",
+                                                    "Position": "1.312634,-0.00004768372,-0.00000333786",
+                                                    "Rotation": "-0.001300828,-0.005822516,-0.2180655,0.9759159",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "1a1a946b-8dbd-476b-b15b-0f3a53e244a9",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_r_finger42",
+                                                        "Position": "0.7294464,-0.000008106232,-0.00000500679",
+                                                        "Rotation": "-0.000373488,-0.0030442,-0.1218314,0.9925461",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "79003cef-052d-4e55-b308-0fc65b776e33",
+                                                "Flags": 0,
+                                                "Name": "bip01_r_finger3",
+                                                "Position": "3.942315,0.05024719,0.4310324",
+                                                "Rotation": "0.05552306,-0.06681335,-0.3898004,0.9167927",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "a2ff4c25-bec8-4836-9437-06f5dd1f755f",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_r_finger31",
+                                                    "Position": "1.539169,-0.00004386902,-0.00000834465",
+                                                    "Rotation": "-0.0003616044,-0.002904661,-0.1235683,0.9923318",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "f04a964f-a35b-439d-98bc-e7870617e0e5",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_r_finger32",
+                                                        "Position": "1.1964,-0.00002193451,-0.000009298325",
+                                                        "Rotation": "-0.001032449,-0.004719919,-0.2137165,0.9768837",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "e04900f6-578a-435d-b69f-039489b051bf",
+                                                "Flags": 0,
+                                                "Name": "anim_attachment_rh",
+                                                "Position": "2.676103,-1.712528,-0.00001740456",
+                                                "Rotation": "-0.5000001,0.4999997,-0.4999993,0.5000009",
+                                                "Enabled": true
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "__guid": "27ee8788-e505-41c2-87d3-1f61f158fa54",
+                                "Flags": 0,
+                                "Name": "bip01_l_clavicle",
+                                "Position": "2.059433,0.9779768,1.937688",
+                                "Rotation": "0.4727532,0.5283565,0.5987579,-0.3726027",
+                                "Enabled": true,
+                                "Children": [
+                                  {
+                                    "__guid": "d18ce75d-ca05-4a18-8790-4f6ca143468b",
+                                    "Flags": 0,
+                                    "Name": "bip01_l_upperarm",
+                                    "Position": "6.028172,-0.00008392334,0.00004255772",
+                                    "Rotation": "-0.6726415,0.2215412,-0.1859764,0.6810917",
+                                    "Enabled": true,
+                                    "Children": [
+                                      {
+                                        "__guid": "a532d413-2549-4f88-a959-dea4bea3b16d",
+                                        "Flags": 0,
+                                        "Name": "bip01_l_forearm",
+                                        "Position": "11.69258,-0.00004386902,-0.00004959106",
+                                        "Rotation": "-0.0000002697376,-0.0000001230842,-0.03018142,0.9995444",
+                                        "Enabled": true,
+                                        "Children": [
+                                          {
+                                            "__guid": "471a37c6-7329-4e9f-ab5d-9a84a6b15100",
+                                            "Flags": 0,
+                                            "Name": "bip01_l_hand",
+                                            "Position": "11.48168,-0.00004315376,-0.00009155273",
+                                            "Rotation": "0.7062206,-0.0009832091,0.02641397,0.7074983",
+                                            "Enabled": true,
+                                            "Children": [
+                                              {
+                                                "__guid": "79d1e8ae-a7f8-4a60-9138-a07187faf0d2",
+                                                "Flags": 0,
+                                                "Name": "bip01_l_finger2",
+                                                "Position": "3.881391,0.2146263,0.4002998",
+                                                "Rotation": "0.0464239,0.004005841,-0.2574481,0.965168",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "ca0247ba-801f-4f21-9ff7-daa7ee917ada",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_l_finger21",
+                                                    "Position": "1.719639,-0.00004196167,0.00004577637",
+                                                    "Rotation": "0.0004561792,0.002460815,-0.1822187,0.9832548",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "7239b036-33dd-4b3a-84f1-e285e02bd94c",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_l_finger22",
+                                                        "Position": "1.20924,-0.00002479553,0.00004482269",
+                                                        "Rotation": "0.000151215,0.001391055,-0.107991,0.9941509",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "2ab1269f-336f-4573-bab4-c63d7d57d50a",
+                                                "Flags": 0,
+                                                "Name": "bip01_l_finger1",
+                                                "Position": "3.871307,0.1173668,1.300944",
+                                                "Rotation": "0.1668748,-0.05608915,-0.2234463,0.9586859",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "ae84bad8-4bd2-4cf8-a100-32647026a9cc",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_l_finger11",
+                                                    "Position": "1.719477,-0.00003051758,0.00005054474",
+                                                    "Rotation": "0.0004610017,0.00251172,-0.1805032,0.9835711",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "9aa7a19c-6f98-47f2-82f6-0e56eca3b7f5",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_l_finger12",
+                                                        "Position": "1.099709,-0.00001144409,0.00005054474",
+                                                        "Rotation": "0.0001983529,0.001615539,-0.1218584,0.9925462",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "4770d5ad-d0dd-47c5-8d19-88a33a6105da",
+                                                "Flags": 0,
+                                                "Name": "bip01_l_finger0",
+                                                "Position": "0.8388634,-0.3003616,1.312804",
+                                                "Rotation": "-0.6113951,-0.05452519,-0.449859,0.6487293",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "d3e5a11d-7f9a-4ed7-9fd8-fffe4edb97dd",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_l_finger01",
+                                                    "Position": "1.789865,0.00001335144,-0.00004005432",
+                                                    "Rotation": "0.0001229738,-0.001072516,0.1140662,0.9934726",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "43f8f088-6ce3-43e5-8ee5-e0c6c32c1c86",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_l_finger02",
+                                                        "Position": "1.207094,-0.000005722046,-0.00004196167",
+                                                        "Rotation": "0.0002976687,-0.001622879,0.1805118,0.9835715",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "6d3c735e-4bce-4273-92fa-ab9b6f4fcb74",
+                                                "Flags": 0,
+                                                "Name": "bip01_l_finger4",
+                                                "Position": "3.859734,-0.1424637,-1.191928",
+                                                "Rotation": "-0.182619,0.1675823,-0.3962005,0.8840768",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "2ab8afac-a3c3-4f2e-80cd-36d69dd22c6e",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_l_finger41",
+                                                    "Position": "1.312614,-0.00003433228,0.0000398159",
+                                                    "Rotation": "0.001053974,0.004716448,-0.2180903,0.9759167",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "3d9182bd-413d-457b-911b-ba9501bb66df",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_l_finger42",
+                                                        "Position": "0.7294159,-0.00000834465,0.00004005432",
+                                                        "Rotation": "0.0003028515,0.002467295,-0.1218455,0.9925459",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "befc1891-fc91-43a8-a276-48507c44acf0",
+                                                "Flags": 0,
+                                                "Name": "bip01_l_finger3",
+                                                "Position": "3.942346,0.04669952,-0.4313972",
+                                                "Rotation": "-0.05669703,0.06409601,-0.3902602,0.9167192",
+                                                "Enabled": true,
+                                                "Children": [
+                                                  {
+                                                    "__guid": "ff73f3b0-13f6-4921-831a-381fcb990475",
+                                                    "Flags": 0,
+                                                    "Name": "bip01_l_finger31",
+                                                    "Position": "1.539158,-0.00002861023,0.00004196167",
+                                                    "Rotation": "0.0002757485,0.002213154,-0.1235814,0.9923319",
+                                                    "Enabled": true,
+                                                    "Children": [
+                                                      {
+                                                        "__guid": "1793cc7c-d75e-4d81-a653-755c3ecd3902",
+                                                        "Flags": 0,
+                                                        "Name": "bip01_l_finger32",
+                                                        "Position": "1.196392,-0.00002002716,0.00004148483",
+                                                        "Rotation": "0.0007867101,0.003595741,-0.2137376,0.9768841",
+                                                        "Enabled": true
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "__guid": "60dfa710-660c-45d7-b2f6-c2b95dc093b1",
+                                                "Flags": 0,
+                                                "Name": "anim_attachment_lh",
+                                                "Position": "2.676116,-1.712498,0.000041008",
+                                                "Rotation": "0.5000002,0.5000013,0.5,0.4999986",
+                                                "Enabled": true
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "__guid": "16cb79eb-fb6d-4a37-8580-526ca07d65f9",
+                "Flags": 0,
+                "Name": "bip01_r_thigh",
+                "Position": "-3.890449,-0.00003814697,-0.00001138449",
+                "Rotation": "-0.485533,0.5140597,-0.4882106,0.5115181",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "71ed5c54-34a7-4b27-9347-9fc70c1f4f38",
+                    "Flags": 0,
+                    "Name": "bip01_r_calf",
+                    "Position": "17.84817,0.000004172325,-0.0000004768372",
+                    "Rotation": "-0.0000001082416,0.00000007864855,0.01709926,0.9998538",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "2d03af0e-9457-4f41-9970-263db0f320b9",
+                        "Flags": 0,
+                        "Name": "bip01_r_foot",
+                        "Position": "16.52523,0.0000002384186,0.000002384186",
+                        "Rotation": "0.02700211,0.007675047,-0.5106829,0.8593107",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "9f9a1140-5456-4589-9c12-82d364b94df9",
+                            "Flags": 0,
+                            "Name": "bip01_r_toe0",
+                            "Position": "6.879432,0.000003814697,0.000009536743",
+                            "Rotation": "-0.039357,0.01029985,-0.2878657,0.9568064",
+                            "Enabled": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "__guid": "0c06f796-53a4-46f1-a23e-c72d1279fb50",
+                "Flags": 0,
+                "Name": "bip01_l_thigh",
+                "Position": "3.890437,-0.00003051758,-0.000002205372",
+                "Rotation": "-0.4882108,0.5115173,-0.485533,0.5140603",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "a6cee12a-5dbf-4b84-bd3e-918434fcd050",
+                    "Flags": 0,
+                    "Name": "bip01_l_calf",
+                    "Position": "17.84817,0.000001072884,-0.000006198883",
+                    "Rotation": "-0.00000008160903,0.0000001100881,0.01709926,0.9998538",
+                    "Enabled": true,
+                    "Children": [
+                      {
+                        "__guid": "d8500d1e-6124-44b4-897d-f9aa4b87de67",
+                        "Flags": 0,
+                        "Name": "bip01_l_foot",
+                        "Position": "16.52523,-0.000002622604,-0.000006198883",
+                        "Rotation": "-0.02240707,-0.01040565,-0.5106341,0.8594431",
+                        "Enabled": true,
+                        "Children": [
+                          {
+                            "__guid": "38d81839-ab1e-4fc7-b0b0-32feb79288e7",
+                            "Flags": 0,
+                            "Name": "bip01_l_toe0",
+                            "Position": "6.879432,0.000003814697,0.0000004768372",
+                            "Rotation": "-0.003919885,-0.0003617836,-0.2880497,0.9576074",
+                            "Enabled": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
