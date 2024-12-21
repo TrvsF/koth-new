@@ -94,9 +94,6 @@ public class PlayerId : Component, IGameEventHandler<TeamChangedEvent>
 
 	void IGameEventHandler<TeamChangedEvent>.OnGameEvent(TeamChangedEvent eventArgs)
 	{
-		if (GameNetworkManager.Instance == null)
-			return;
-
 		TeamUpdate(eventArgs.Before, eventArgs.After);
 	}
 }

@@ -28,7 +28,7 @@
       "Components": [
         {
           "__type": "KOTH.GameNetworkManager",
-          "__guid": "5d9bbbde-69e1-480e-bb38-0ea23aeb4107",
+          "__guid": "7b2af182-d5fb-4f7b-befa-36fd43818d43",
           "NetworkMode": "Multiplayer",
           "PlayerStatePrefab": {
             "_type": "gameobject",
@@ -1005,6 +1005,8 @@
           "EnableCollision": true,
           "MapName": "maps/botz/botz.vmap",
           "NoOrigin": false,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         }
       ],

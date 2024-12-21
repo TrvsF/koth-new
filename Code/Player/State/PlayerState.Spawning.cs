@@ -125,6 +125,7 @@ public partial class PlayerState
 	private void CameraDisableHack()
 	{
 		// HACK : understand the camera system more, surely there's a better way!
+		Log.Info($"Camera Disable {Scene.Camera}");
 		if (AssumedSceneCameraObject == null)
 		{
 			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();
@@ -136,6 +137,7 @@ public partial class PlayerState
 	[Rpc.Broadcast]
 	private void CameraEnableHack()
 	{
+		Log.Info($"Camera Enable {Scene.Camera}");
 		if (AssumedSceneCameraObject == null)
 		{
 			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();

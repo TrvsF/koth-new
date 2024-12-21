@@ -15,7 +15,7 @@ public enum EGameNetworkMode
 	Multiplayer,
 }
 
-public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>, Component.INetworkListener
+public sealed class GameNetworkManager : Component, Component.INetworkListener
 {
 	private GameObject Actor { get; set; }
 
