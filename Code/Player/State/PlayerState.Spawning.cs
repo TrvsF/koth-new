@@ -114,22 +114,33 @@ public partial class PlayerState
 		PlayerPawn.OnDeath += OnPlayerPawnDeath;
 		PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 
+		Log.Info("aaa");
 		using (Rpc.FilterInclude(Connection))
 		{
 			CameraDisableHack();
 		}
 	}
 
-	private ScreenPanel AssumedSceneCameraObject = null;
+	private GameObject AssumedSceneCameraObject = null;
 	[Rpc.Broadcast]
 	private void CameraDisableHack()
 	{
-		// HACK : understand the camera system more, surely there's a better way!
-		Log.Info($"Camera Disable {Scene.Camera}");
-		if (AssumedSceneCameraObject == null)
-		{
-			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();
-		}
+		//Log.Info("aaa");
+		//// HACK : understand the camera system more, surely there's a better way!
+		//Log.Info($"Camera Disable {Scene.Camera}");
+		//if (AssumedSceneCameraObject == null)
+		//{
+		//	if (Scene.Camera.GameObject == null)
+		//	{
+		//		var CameraObject = Scene.CreateObject();
+		//		// CameraObject.WorldPosition = new(816, 272, 256);
+		//		CameraObject.Components.Create<CameraComponent>();
+		//		CameraObject.Components.Create<ScreenPanel>();
+		//	}
+
+		//	Log.Info(Scene.Camera.GameObject);
+		//	AssumedSceneCameraObject = Scene.Camera.GameObject;
+		//}
 		AssumedSceneCameraObject.Enabled = false;
 		//
 	}
@@ -137,13 +148,22 @@ public partial class PlayerState
 	[Rpc.Broadcast]
 	private void CameraEnableHack()
 	{
-		Log.Info($"Camera Enable {Scene.Camera}");
-		if (AssumedSceneCameraObject == null)
-		{
-			AssumedSceneCameraObject = Scene.Camera.GameObject.Components.Get<ScreenPanel>();
-		}
+		//Log.Warning($"Camera Enable {Scene.Camera}");
+		//if (AssumedSceneCameraObject == null)
+		//{
+		//	if (Scene.Camera == null)
+		//	{
+		//		var CameraObject = Scene.CreateObject();
+		//		// CameraObject.WorldPosition = new(816, 272, 256);
+		//		CameraObject.Components.Create<CameraComponent>();
+		//		CameraObject.Components.Create<ScreenPanel>();
+		//		CameraObject.Components.Create<PlayerMenuComponent>();
+		//	}
+
+		//	Log.Info(Scene.Camera.GameObject);
+		//	AssumedSceneCameraObject = Scene.Camera.GameObject;
+		//}
 		AssumedSceneCameraObject.Enabled = true;
-		Log.Info(AssumedSceneCameraObject.GameObject);
 	}
 
 	[Rpc.Host]

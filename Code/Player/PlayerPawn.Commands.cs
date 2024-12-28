@@ -18,7 +18,7 @@ public partial class PlayerPawn
 		Host_Suicide();
 	}
 
-	[Authority]
+	[Rpc.Owner]
 	private static void Host_Suicide()
 	{
 		var LocalPawn = Game.ActiveScene.GetAllComponents<PlayerPawn>()

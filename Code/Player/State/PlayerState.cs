@@ -77,6 +77,25 @@ public partial class PlayerState : Component
 	public void ClientInitilize()
 	{
 		Local = this;
+
+		Log.Warning($"Camera Enable {Scene.Camera}");
+		if (AssumedSceneCameraObject == null)
+		{
+			// if (Scene.Camera == null)
+			{
+				Log.Info("CREATE!");
+				var CameraObject = Scene.CreateObject();
+				// CameraObject.WorldPosition = new(816, 272, 256);
+				var CameraComp = CameraObject.Components.Create<CameraComponent>();
+				CameraComp.Priority = 100;
+				CameraObject.Components.Create<ScreenPanel>();
+				CameraObject.Components.Create<PlayerMenuComponent>();
+			}
+
+			Log.Info(Scene.Camera.GameObject);
+			AssumedSceneCameraObject = Scene.Camera.GameObject;
+		}
+		AssumedSceneCameraObject.Enabled = true;
 	}
 
 	public void AssignTeam(Team team)

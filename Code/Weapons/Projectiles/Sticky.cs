@@ -84,19 +84,6 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		AttachedGameObject = HitObject;
 		InitArmedWorldTransformAttachedObject = HitObject.WorldTransform;
 		InitArmedWorldTransformSticky = GameObject.Root.WorldTransform;
-
-		//if (!HitObject.Tags.Contains("player"))
-		//{
-		//	Rigidbody.Velocity = Vector3.Zero;
-		//	Rigidbody.MotionEnabled = false;
-		//	AttachedGameObject = HitObject;
-		//}
-		//else
-		//{
-		//	Rigidbody.MotionEnabled = false;
-
-		//	AttachedGameObject = HitObject;
-		//}
 	}
 
 	[Obsolete]
