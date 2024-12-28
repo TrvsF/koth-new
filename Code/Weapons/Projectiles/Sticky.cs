@@ -13,11 +13,17 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
+	private GameObject AttachedGameObject = null;
+	private Transform InitArmedWorldTransformSticky;
+	private Transform InitArmedWorldTransformAttachedObject;
+
+	/////////////////////////////////////////////////////////////////////////////////////
+
 	public TimeSince AliveTime { get; private set; } = new();
 
 	public void SetSpin()
 	{
-
+		// TODO : imp
 	}
 
 	protected override void OnStart()
@@ -30,6 +36,14 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
+
+		// TODO : make logic seperate 
+		if (AttachedGameObject != null)
+		{
+			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
+			GameObject.WorldPosition = InitArmedWorldTransformSticky.Position + GameObjectOffset;
+			// GameObject.WorldPosition = AttachedGameObject.WorldPosition;
+		}
 
 		// TODO : this is expensive, make a timed lambda
 		if (AliveTime >= MinDetTime)
@@ -58,16 +72,31 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 			return;
 		}
 
-		if (!EventArgs.ProjectileCollision.HitObject.IsValid())
+		var HitObject = EventArgs.ProjectileCollision.HitObject;
+
+		if (!HitObject.IsValid())
 		{
 			return;
 		}
 
-		if (!EventArgs.ProjectileCollision.HitObject.Tags.Contains("player"))
-		{
-			Rigidbody.Velocity = Vector3.Zero;
-			Rigidbody.MotionEnabled = false;
-		}
+		Rigidbody.Velocity = Vector3.Zero;
+		Rigidbody.MotionEnabled = false;
+		AttachedGameObject = HitObject;
+		InitArmedWorldTransformAttachedObject = HitObject.WorldTransform;
+		InitArmedWorldTransformSticky = GameObject.Root.WorldTransform;
+
+		//if (!HitObject.Tags.Contains("player"))
+		//{
+		//	Rigidbody.Velocity = Vector3.Zero;
+		//	Rigidbody.MotionEnabled = false;
+		//	AttachedGameObject = HitObject;
+		//}
+		//else
+		//{
+		//	Rigidbody.MotionEnabled = false;
+
+		//	AttachedGameObject = HitObject;
+		//}
 	}
 
 	[Obsolete]

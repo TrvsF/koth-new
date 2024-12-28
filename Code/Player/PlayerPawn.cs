@@ -88,6 +88,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Body.Renderer.Enabled = false;
 			Tags.Add("self");
 		}
+		else
+		{
+			// HACK : turns back on rendering if the host disabled it globally for themself
+			Body.Renderer.Enabled = true;
+			
+		}
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
 		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);
@@ -99,12 +105,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, false);
 			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
-		}
-
-		// HACK : turns back on rendering if the host disabled it globally for themself
-		if (IsProxy)
-		{
-			Body.Renderer.Enabled = true;
 		}
 	}
 
