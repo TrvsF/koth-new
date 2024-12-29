@@ -81,7 +81,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		var AttackerPlayerPawn = DamageRequest.AttackerPlayerPawn;
 		var Damage = DamageRequest.BaseDamage;
 
-		// // ---------------------- we've taken damage without an attacker pawn, apply & return early
+		// we've taken damage without an attacker pawn, apply & return early ////////////////////////////////
 		if (!AttackerPlayerPawn.IsValid())
 		{
 			FDamageTaken EnvDamageTaken = new()
@@ -96,16 +96,16 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return; // NOTE : early return
 		}
 
-		// ---------------------- team check
+		// team check ////////////////////////////////
 		if (TargetPlayerPawn.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
 		{
-			return; // NOTE : early return
+			// return; // NOTE : early return
 		}
 
 		var TargetPoint = TargetPlayerPawn.CenterPosition;
 		var TargetToAttackerDistance = TargetPoint.Distance(AttackerPlayerPawn.CenterPosition);
 
-		// ---------------------- calculate damage
+		// calculate damage ////////////////////////////////
 		switch (DamageRequest.DamageType)
 		{
 			case EDamageType.HitScan:
@@ -158,7 +158,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			DamageLocation = DamageOrigin,
 		};
 
-		// ---------------------- deal the damage
+		// deal the damage ////////////////////////////////
 		if (KnockbackOnly)
 		{
 			TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);

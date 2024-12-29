@@ -33,7 +33,7 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	[HostSync] public static NetList<PlayerState> PlayerStates { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] public static NetList<PlayerState> PlayerStates { get; set; } = new();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 

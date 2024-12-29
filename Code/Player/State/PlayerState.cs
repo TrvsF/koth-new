@@ -20,7 +20,7 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync] public EPlayerState PlayerStateState { get; private set; }
+	[Sync(SyncFlags.FromHost)] public EPlayerState PlayerStateState { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
@@ -31,14 +31,14 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync, Property] public ulong SteamId { get; private set; }
-	[HostSync, Property] public string SteamName { get; private set; }
+	[Sync(SyncFlags.FromHost), Property] public ulong SteamId { get; private set; }
+	[Sync(SyncFlags.FromHost), Property] public string SteamName { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync, Property] public Team Team { get; private set; } // TODO : listen to onteamchange
-	[HostSync, ValidOrNull] public PlayerPawn PlayerPawn { get; private set; }
-	[HostSync, ValidOrNull] public PlayerPawn SpectatingTarget { get; private set; }
+	[Sync(SyncFlags.FromHost), Property] public Team Team { get; private set; } // TODO : listen to onteamchange
+	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn PlayerPawn { get; private set; }
+	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn SpectatingTarget { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
@@ -62,7 +62,7 @@ public partial class PlayerState : Component
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
 		Team = Team.Unassigned;
-		RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
+		// RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
 
 		// client rpc
 		using (Rpc.FilterInclude(Connection))
@@ -73,26 +73,28 @@ public partial class PlayerState : Component
 		return true;
 	}
 
+	private GameObject AssumedSceneCameraObject = null;
 	[Rpc.Broadcast]
 	public void ClientInitilize()
 	{
 		Local = this;
 
-		Log.Warning($"Camera Enable {Scene.Camera}");
 		if (AssumedSceneCameraObject == null)
 		{
+			// HACK : cameras that are placed within the scene via the editor are not behaving
+			// to how i would assume they would. Workaround for now
 			// if (Scene.Camera == null)
 			{
-				Log.Info("CREATE!");
 				var CameraObject = Scene.CreateObject();
 				// CameraObject.WorldPosition = new(816, 272, 256);
 				var CameraComp = CameraObject.Components.Create<CameraComponent>();
 				CameraComp.Priority = 100;
 				CameraObject.Components.Create<ScreenPanel>();
 				CameraObject.Components.Create<PlayerMenuComponent>();
+				CameraObject.Name = "TEMPCAMERA";
+				CameraObject.NetworkMode = NetworkMode.Never;
 			}
 
-			Log.Info(Scene.Camera.GameObject);
 			AssumedSceneCameraObject = Scene.Camera.GameObject;
 		}
 		AssumedSceneCameraObject.Enabled = true;

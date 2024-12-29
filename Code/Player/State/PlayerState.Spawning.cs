@@ -66,27 +66,46 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Sync] public CharacterDefinition RequestedCharacterDefinition { get; private set; }
+	/*
+	 * NOTE : Sync will only care about the vaule given by an object's host, so bc this player state is owned 
+	 * by the server the requested character def will never sync! this is the workaround for now..
+	 */
 
-	//////////////////////////////////////////////////////////////////////////////////
+	/*[Sync]*/
+	public CharacterDefinition RequestedCharacterDefinition { get; private set; } = null;
+
+	private void OnRequestedCharacterDefinitionChanged(CharacterDefinition OldDefinition, CharacterDefinition NewDefinition)
+	{
+		if (NewDefinition != null)
+		{
+			PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
+		}
+
+		Log.Info($"old : {OldDefinition} | new : {NewDefinition}");
+		Log.Info($"Requested Character change 2 {RequestedCharacterDefinition}");
+	}
 
 	public void RequestCharacterDefinition(CharacterDefinition CharacterDefintionIn)
 	{
-		Log.Info("Requested Character");
+		Log.Info($"Requested Character {CharacterDefintionIn}");
 
 		RequestedCharacterDefinition = CharacterDefintionIn;
-		HACKPlayerSpawnState();
+
+		HACKPlayerSpawnState(CharacterDefintionIn);
 	}
 
 	[Rpc.Host]
-	private void HACKPlayerSpawnState()
+	private void HACKPlayerSpawnState(CharacterDefinition CIN)
 	{
+		RequestedCharacterDefinition = CIN;
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+
 	public void RequestSpawn(SpawnPointInfo SpawnPoint)
 	{
-		Log.Info("Requested Spawn");
+		Assert.True(Networking.IsHost);
 
 		if (PlayerStateSpawningState != EPlayerStateSpawningState.WaitingForSpawn)
 		{
@@ -110,59 +129,24 @@ public partial class PlayerState
 		Assert.True(Networking.IsHost);
 		Assert.True(PlayerPawn.IsValid());
 
-		// PlayerPawn = PlayerPawnOut;
 		PlayerPawn.OnDeath += OnPlayerPawnDeath;
 		PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 
-		Log.Info("aaa");
 		using (Rpc.FilterInclude(Connection))
 		{
 			CameraDisableHack();
 		}
 	}
 
-	private GameObject AssumedSceneCameraObject = null;
 	[Rpc.Broadcast]
 	private void CameraDisableHack()
 	{
-		//Log.Info("aaa");
-		//// HACK : understand the camera system more, surely there's a better way!
-		//Log.Info($"Camera Disable {Scene.Camera}");
-		//if (AssumedSceneCameraObject == null)
-		//{
-		//	if (Scene.Camera.GameObject == null)
-		//	{
-		//		var CameraObject = Scene.CreateObject();
-		//		// CameraObject.WorldPosition = new(816, 272, 256);
-		//		CameraObject.Components.Create<CameraComponent>();
-		//		CameraObject.Components.Create<ScreenPanel>();
-		//	}
-
-		//	Log.Info(Scene.Camera.GameObject);
-		//	AssumedSceneCameraObject = Scene.Camera.GameObject;
-		//}
 		AssumedSceneCameraObject.Enabled = false;
-		//
 	}
 
 	[Rpc.Broadcast]
 	private void CameraEnableHack()
 	{
-		//Log.Warning($"Camera Enable {Scene.Camera}");
-		//if (AssumedSceneCameraObject == null)
-		//{
-		//	if (Scene.Camera == null)
-		//	{
-		//		var CameraObject = Scene.CreateObject();
-		//		// CameraObject.WorldPosition = new(816, 272, 256);
-		//		CameraObject.Components.Create<CameraComponent>();
-		//		CameraObject.Components.Create<ScreenPanel>();
-		//		CameraObject.Components.Create<PlayerMenuComponent>();
-		//	}
-
-		//	Log.Info(Scene.Camera.GameObject);
-		//	AssumedSceneCameraObject = Scene.Camera.GameObject;
-		//}
 		AssumedSceneCameraObject.Enabled = true;
 	}
 
@@ -170,6 +154,8 @@ public partial class PlayerState
 	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, SpawnPointInfo SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
+
+		Log.Info($"attempting to spawn player {RequestedCharacterDefinition} via {OwningConnection}");
 
 		var SpawnPlayerPawnPrefab = DefaultPlayerPawnPrefab.Clone(SpawnPoint.Transform, null, true);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
@@ -179,7 +165,7 @@ public partial class PlayerState
 
 		PlayerPawnDefinition PlayerPawnDefinition = new()
 		{
-			CharacterDefinition = CharacterDefinition,
+			CharacterDefinition = RequestedCharacterDefinition,
 			Name = Name,
 		};
 

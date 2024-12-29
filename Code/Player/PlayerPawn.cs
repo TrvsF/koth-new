@@ -128,8 +128,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 				Boom.WorldRotation = EyeAngles.ToRotation();
 			}
-
-			
 		}
 		else
 		{
@@ -137,7 +135,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		}
 
 		// TODO : move me?
-		if (IsAlive)
+		if (IsAlive /*HACK for proxy characters when body dies b4 health knows*/&& Body.IsValid())
 		{
 			Assert.True(Body.IsValid());
 			Assert.True(AnimationHelper.IsValid());
@@ -189,7 +187,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			return; // NOTE : early return
 		}
 
-		if (DamageComponent == null || !IsAlive || !IsLocallyControlled)
+		if (!IsAlive || !IsLocallyControlled)
 		{
 			return; // NOTE : early return
 		}

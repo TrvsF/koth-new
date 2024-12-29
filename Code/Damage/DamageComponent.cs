@@ -13,11 +13,11 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[HostSync, /*Change(nameof(OnHealthPropertyChanged))*/] public float Health { get; private set; } = 100f;
-	[HostSync] public float MaxBaseHealth { get; private set; } = 125f;
+	[Sync(SyncFlags.FromHost), /*Change(nameof(OnHealthPropertyChanged))*/] public float Health { get; private set; } = 100f;
+	[Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
 	public bool IsDead => Health < 0f;
 
-	private float OverhealFactor = 1.3f;
+	private float OverhealFactor = 1.33f;
 	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +51,11 @@ public sealed class DamageComponent : Component
 	public void SetHealth(float MaxBaseHealthIn)
 	{
 		Assert.True(Networking.IsHost);
+
+		Log.Info($"setting hp to {MaxBaseHealthIn}");
+
+		// NOTE : this doesn't seem to work for clients??
+		// the new syncs are werid..
 
 		MaxBaseHealth = MaxBaseHealthIn;
 		Health = MaxBaseHealthIn;

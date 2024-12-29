@@ -940,6 +940,8 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },
@@ -951,6 +953,8 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },

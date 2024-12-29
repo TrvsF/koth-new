@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace KOTH.Utils
-{
+{     
 	internal static class WorldUtil
 	{
 		public static CharacterDefinition GetRandomCharacter()
