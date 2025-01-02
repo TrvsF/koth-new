@@ -18,6 +18,20 @@ public sealed partial class PlayerPawn
 	[Property] public GameObject Boom { get; private set; }
 	[Property] public float BaseFOV { get; private set; } = 90f;
 
+	private void CameraTick()
+	{
+		if (IsAlive)
+		{
+			EyeAngles += Input.AnalogLook;
+			EyeAngles = EyeAngles.WithPitch(EyeAngles.pitch.Clamp(-90, 90));
+
+			Camera.LocalPosition = Vector3.Zero.WithZ(IsCrouching ? -16 : 0);
+			Camera.LocalRotation = Rotation.Identity;
+
+			Boom.WorldRotation = EyeAngles.ToRotation();
+		}
+	}
+
 	public bool CreatePlayerCamera()
 	{
 		var CameraPrefabConfig = new CloneConfig()
@@ -36,17 +50,4 @@ public sealed partial class PlayerPawn
 
 		return true;
 	}
-
-	//internal void ResetFromEyes(float eyeHeight)
-	//{
-	//	// all transform effects are additive to camera local position, so we need to reset it before anything is applied
-	//	Camera.LocalPosition = Vector3.Zero;
-	//	Camera.LocalRotation = Rotation.Identity;
-
-	//	Boom.WorldRotation = EyeAngles.ToRotation();
-	//}
-
-	///////////////////////////////////////////////////////////////////
-	// TODO : proper screenshake?
-	///////////////////////////////////////////////////////////////////
 }

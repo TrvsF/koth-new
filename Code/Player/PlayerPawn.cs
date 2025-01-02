@@ -118,16 +118,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	{
 		if (IsLocallyControlled)
 		{
-			if (IsAlive)
-			{
-				EyeAngles += Input.AnalogLook;
-				EyeAngles = EyeAngles.WithPitch(EyeAngles.pitch.Clamp(-90, 90));
-
-				Camera.LocalPosition = Vector3.Zero;
-				Camera.LocalRotation = Rotation.Identity;
-
-				Boom.WorldRotation = EyeAngles.ToRotation();
-			}
+			CameraTick();
 		}
 		else
 		{

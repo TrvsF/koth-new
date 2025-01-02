@@ -170,7 +170,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			var viewModelGameObject = Resource.ViewModelPrefab.Clone(new CloneConfig()
 			{
 				Transform = new(),
-				Parent = Owner.Boom,
+				Parent = Owner.Camera.GameObject,
 				StartEnabled = true,
 			});
 

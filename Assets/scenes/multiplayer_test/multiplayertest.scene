@@ -1022,7 +1022,7 @@
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 86,
     "NetworkInterpolation": true,
-    "PhysicsSubSteps": 4,
+    "PhysicsSubSteps": 8,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "UseFixedUpdate": true,
