@@ -81,6 +81,6 @@ public partial class PlayerPawn :
 			return;
 		}
 
-		CurrentEquipment.CreateViewModel(playDeployEffects);
+		// CurrentEquipment.CreateViewModel(playDeployEffects);
 	}
 }

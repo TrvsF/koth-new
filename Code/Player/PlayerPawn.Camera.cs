@@ -32,7 +32,7 @@ public sealed partial class PlayerPawn
 		}
 	}
 
-	public bool CreatePlayerCamera()
+	private bool CreatePlayerCamera()
 	{
 		var CameraPrefabConfig = new CloneConfig()
 		{

@@ -156,9 +156,10 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			ViewModel.GameObject.Destroy();
 	}
 
-	public void CreateViewModel(bool playDeployEffects = true)
+	private void CreateViewModel(bool playDeployEffects = true)
 	{
 		Assert.IsValid(Owner);
+		Assert.IsValid(Owner.Camera);
 		Assert.IsValid(Resource);
 
 		ClearViewModel();

@@ -18,7 +18,6 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	// special bool for jumper gamemode
 	[Property] public bool KnockbackOnly { get; private set; } = false;
 
-
 	const float SelfDamageMultiplyer = 0.2f;
 	const float PlayerDistanceFalloffMaxBound = 1600;
 

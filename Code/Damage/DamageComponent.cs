@@ -13,8 +13,8 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost), /*Change(nameof(OnHealthPropertyChanged))*/] public float Health { get; private set; } = 100f;
-	[Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
+	[Property, Sync(SyncFlags.FromHost)] public float Health { get; private set; } = 100f;
+	[Property, Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
 	public bool IsDead => Health < 0f;
 
 	private float OverhealFactor = 1.33f;
@@ -30,6 +30,14 @@ public sealed class DamageComponent : Component
 		base.OnAwake();
 
 		OwnerPawn = GameObject.Root.Components.Get<PlayerPawn>();
+
+		// HACK : even worse, health is being overwritten because Sync(SyncFlags.FromHost)
+		// will still accept values from the owning pawn even if not the host
+		if (OwnerPawn.IsValid() && OwnerPawn.PlayerPawnDefinition.IsValid())
+		{
+			MaxBaseHealth = OwnerPawn.PlayerPawnDefinition.CharacterDefinition.MaxHealth;
+			Health = OwnerPawn.PlayerPawnDefinition.CharacterDefinition.MaxHealth;
+		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -82,6 +90,8 @@ public sealed class DamageComponent : Component
 	public void TakeDamage(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
+
+		Log.Info(Health);
 
 		Health -= DamageTaken.Damage;
 		BroadcastDamage(DamageTaken);

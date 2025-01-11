@@ -9,8 +9,6 @@ public partial class PlayerPawn :
 	IGameEventHandler<DamageTakenEvent>,
 	IGameEventHandler<HealingGivenEvent>
 {
-	public DamageComponent DamageComponent => Components.Get<DamageComponent>();
-
 	public float Health => DamageComponent.IsValid ? DamageComponent.Health : -1;
 	public float MaxHealth => DamageComponent.IsValid ? DamageComponent.MaxBaseHealth : -1;
 	public bool IsAlive => DamageComponent.IsValid && !DamageComponent.IsDead;

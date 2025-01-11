@@ -25,12 +25,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	[Property] public PlayerBody Body { get; set; }
 	[Property] public GameObject Head { get; set; }
-	[Property] public GameObject GibPrefab { get; set; } // this should be in character def
+	[Property] public GameObject GibPrefab { get; set; } // TODO : this should be in character def
 	[Property] public AnimationHelper AnimationHelper { get; set; }
 	[Property] public BoxCollider PlayerBoxCollider { get; set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
+	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
 	[RequireComponent] public TagBinder TagBinder { get; private set; }
 	[RequireComponent] public CharacterController CharacterController { get; private set; }
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
