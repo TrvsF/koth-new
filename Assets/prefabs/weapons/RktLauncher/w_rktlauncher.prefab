@@ -30,13 +30,25 @@
           "_type": "gameobject",
           "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
         },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Resource": "prefabs/weapons/rktlauncher/rktlauncher.equip",
         "SpeedPenalty": 40,
         "UseCrosshair": true
       },
       {
         "__type": "KOTH.TagBinder",
-        "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2"
+        "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
@@ -51,10 +63,21 @@
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
+            "AnimationGraph": null,
             "BodyGroups": 3,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
             "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
             "Model": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
             "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "Parameters": {
               "bools": {},
               "ints": {},
@@ -69,6 +92,9 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
             "Tint": "0.81395,0.77193,0.39373,1",
             "UseAnimGraph": true
           }
@@ -97,30 +123,27 @@
         "Enabled": true,
         "Components": [
           {
-            "__type": "KOTH.AmmoComponent",
-            "__guid": "809891ef-b6af-4974-bab3-3e2f8ec5423b",
-            "Ammo": 4,
-            "HasAmmo": true,
-            "MaxAmmo": 4
-          },
-          {
             "__type": "KOTH.ReloadWeaponComponent",
             "__guid": "01933652-6cd6-48ce-90d1-09986c59921a",
-            "AmmoComponent": {
-              "_type": "component",
-              "component_id": "809891ef-b6af-4974-bab3-3e2f8ec5423b",
-              "go": "8f9b0f89-d493-4656-be19-e23bb64f2cea",
-              "component_type": "AmmoComponent"
-            },
+            "Ammo": 0,
             "EmptyReloadSounds": {
               "0": "sounds/guns/mp5/reload/mp5.move.sound",
               "0.5": "sounds/guns/mp5/reload/mp5.mag.sound",
               "1.2": "sounds/guns/mp5/reload/mp5.mag.load.sound",
               "2": "sounds/guns/mp5/reload/mp5.mag.sound"
             },
+            "HasAmmo": false,
             "InputActions": [
               "Reload"
             ],
+            "MaxAmmo": 30,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnInputAction": null,
             "ReloadTime": 0.8,
             "ReloadType": "Single",
             "ReloadWhileNotActive": false,
@@ -134,10 +157,20 @@
           {
             "__type": "KOTH.ProjectileWeaponComponent",
             "__guid": "46febf9d-7f42-43b8-8c31-40461db28072",
+            "Ammo": 4,
             "FireRate": 0.8,
+            "HasAmmo": true,
             "InputActions": [
               "Attack1"
             ],
+            "MaxAmmo": 4,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnInputAction": null,
             "ProjectileHorizontalSpeed": 1200,
             "ProjectilePrefab": {
               "_type": "gameobject",

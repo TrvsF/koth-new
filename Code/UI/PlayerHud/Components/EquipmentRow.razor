@@ -26,12 +26,11 @@
     /// </summary>
     public Equipment Equipment { get; set; }
 
-    private AmmoComponent AmmoComponent => Equipment?.Components.Get<AmmoComponent>( FindMode.EverythingInSelfAndDescendants );
     public PlayerPawn Player => Equipment?.Owner;
     public bool IsActive => Player?.CurrentEquipment == Equipment;
 
     protected override int BuildHash()
     {
-        return HashCode.Combine( IsActive, Equipment, AmmoComponent?.Ammo );
+        return HashCode.Combine(Time.Now);
     }   
 }

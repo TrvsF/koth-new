@@ -38,10 +38,6 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	[Property, Group("Effects")]
 	public ParticleSystem SecondaryTracer { get; set; } = ParticleSystem.Load("particles/gameplay/guns/trail/rico_trail_smoke.vpcf");
 
-	[Property, Category("Ammo")] public AmmoComponent AmmoComponent { get; set; }
-	[Property, Category("Ammo")] public bool RequiresAmmoComponent { get; set; } = false;
-
-
 	[Property, Group("Fire Modes")] public float FireModeSwitchDelay { get; set; } = 0.3f;
 	[Property, Group("Fire Modes")]
 	public List<FireMode> SupportedFireModes { get; set; } = new()
@@ -132,7 +128,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 
 		if (ShootSound is not null)
 		{
-			if (Sound.Play(ShootSound, Equipment.Transform.Position) is { } snd)
+			if (Sound.Play(ShootSound, Equipment.WorldPosition) is { } snd)
 			{
 				snd.ListenLocal = Equipment.Owner?.IsViewer ?? false;
 				Log.Trace($"ShootWeaponComponent: ShootSound {ShootSound.ResourceName}");
@@ -151,8 +147,8 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	private LegacyParticleSystem CreateParticleSystem(ParticleSystem particleSystem, Vector3 pos, Rotation rot, float decay = 5f)
 	{
 		var gameObject = Scene.CreateObject();
-		gameObject.Transform.Position = pos;
-		gameObject.Transform.Rotation = rot;
+		gameObject.WorldPosition = pos;
+		gameObject.WorldRotation = rot;
 
 		var p = gameObject.Components.Create<LegacyParticleSystem>();
 		p.Particles = particleSystem;
@@ -185,11 +181,11 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	private DecalRenderer CreateDecal(Material material, Vector3 pos, Vector3 normal, float rotation, float size, float depth, float destroyTime = 3f)
 	{
 		var gameObject = Scene.CreateObject();
-		gameObject.Transform.Position = pos;
-		gameObject.Transform.Rotation = Rotation.LookAt(-normal);
+		gameObject.WorldPosition = pos;
+		gameObject.WorldRotation = Rotation.LookAt(-normal);
 
 		// Random rotation
-		gameObject.Transform.Rotation *= Rotation.FromAxis(Vector3.Forward, rotation);
+		gameObject.WorldRotation *= Rotation.FromAxis(Vector3.Forward, rotation);
 
 		var decalRenderer = gameObject.Components.Create<DecalRenderer>();
 		decalRenderer.Material = material;
@@ -224,10 +220,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	{
 		TimeSinceShoot = 0;
 
-		if (AmmoComponent is not null)
-		{
-			AmmoComponent.Ammo--;
-		}
+		Ammo--;
 
 		if (CurrentFireMode == FireMode.Burst)
 		{
@@ -291,7 +284,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	private bool IsNearby(Vector3 position)
 	{
 		if (!Scene.Camera.IsValid()) return false;
-		return position.DistanceSquared(Scene.Camera.Transform.Position) < MaxEffectsPlayDistance;
+		return position.DistanceSquared(Scene.Camera.WorldPosition) < MaxEffectsPlayDistance;
 	}
 
 	/// <summary>
@@ -302,7 +295,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	{
 		if (!IsNearby(startPosition) || !IsNearby(endPosition)) return;
 
-		var origin = count == 0 ? Effector?.Muzzle?.Transform.Position ?? Equipment.Transform.Position : startPosition;
+		var origin = count == 0 ? Effector?.Muzzle?.WorldPosition ?? Equipment.WorldPosition : startPosition;
 		var ps = CreateParticleSystem(count == 0 ? PrimaryTracer : SecondaryTracer, origin, Rotation.Identity, 1f);
 		ps.SceneObject.SetControlPoint(0, origin);
 		ps.SceneObject.SetControlPoint(1, endPosition);
@@ -320,7 +313,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	{
 		if (DryFireSound is not null)
 		{
-			var snd = Sound.Play(DryFireSound, Equipment.Transform.Position);
+			var snd = Sound.Play(DryFireSound, Equipment.WorldPosition);
 			snd.ListenLocal = !IsProxy;
 			Log.Trace($"ShootWeaponComponent: ShootSound {DryFireSound.ResourceName}");
 		}
@@ -454,7 +447,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 			return false;
 
 		// Ammo checks
-		if (RequiresAmmoComponent && (AmmoComponent == null || !AmmoComponent.HasAmmo))
+		if (!HasAmmo)
 			return false;
 
 		return true;
@@ -501,7 +494,7 @@ public class ShootWeaponComponent : InputWeaponComponent,
 			if (!CanShoot())
 			{
 				// Dry fire
-				if (!AmmoComponent.HasAmmo)
+				if (!HasAmmo)
 				{
 					if (Tags.Has("reloading"))
 						return;

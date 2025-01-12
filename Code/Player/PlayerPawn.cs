@@ -37,6 +37,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public Spotter Spotter { get; private set; }
 	[RequireComponent] public Spottable Spottable { get; private set; }
+	[RequireComponent] public PlayerInventory Inventory { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -46,7 +47,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	[RequireComponent] public PlayerInventory Inventory { get; private set; }
 	[Sync(SyncFlags.FromHost)] public TimeSince TimeSinceLastRespawn { get; private set; }
 
 	public Team Team;

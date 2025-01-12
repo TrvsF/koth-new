@@ -27,18 +27,6 @@ public partial class PlayerInventory : Component
 		}
 	}
 
-	[Rpc.Owner(NetFlags.HostOnly)]
-	public void RefillAmmo()
-	{
-		foreach (var wpn in Equipment)
-		{
-			if (wpn.Components.Get<AmmoComponent>(FindMode.EnabledInSelfAndDescendants) is { } ammo)
-			{
-				ammo.Ammo = ammo.MaxAmmo;
-			}
-		}
-	}
-
 	/// <summary>
 	/// Try to drop the given held equipment item.
 	/// </summary>

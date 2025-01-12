@@ -117,8 +117,8 @@ public partial class ViewModel : Component, IEquipment
 		// Handedness
 		ModelRenderer.Set("b_twohanded", true);
 
-		// Weapon state
-		ModelRenderer.Set("b_empty", !Equipment.Components.Get<AmmoComponent>(FindMode.EnabledInSelfAndDescendants)?.HasAmmo ?? false);
+		//// Weapon state
+		//ModelRenderer.Set("b_empty", !Equipment.Components.Get<AmmoComponent>(FindMode.EnabledInSelfAndDescendants)?.HasAmmo ?? false);
 	}
 
 	public bool PlayDeployEffects

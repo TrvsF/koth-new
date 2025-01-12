@@ -4,12 +4,12 @@ using Sandbox.Events;
 using System.Net.Http;
 using System;
 using System.Text;
+using Sandbox.Diagnostics;
 
 namespace KOTH;
 
 [Title("Projectile Shooter"), Group("Weapon Components")]
-public class ProjectileWeaponComponent : InputWeaponComponent,
-	IGameEventHandler<EquipmentHolsteredEvent>
+public class ProjectileWeaponComponent : InputWeaponComponent
 {
 	[Property, Group("Projectile"), EquipmentResourceProperty] public GameObject ProjectilePrefab { get; set; }
 	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
@@ -18,34 +18,18 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 
 	////////////////////////////////////////////////////////////////////////
 
-	protected AmmoComponent AmmoComponent { get; set; }
-	protected ReloadWeaponComponent ReloadComponent { get; set; }
-
 	// TODO : sticky only, look into doing a better way
 	public bool IsStickyLauncher { get => StickyTrackerComponent.IsValid(); }
 	public int ActiveStickies { get => StickyTrackerComponent.IsValid() ? StickyTrackerComponent.StickyCount : 0; }
 	protected StickyTrackerComponent StickyTrackerComponent { get; set; }
-
-	public void OnGameEvent(EquipmentHolsteredEvent eventArgs)
-	{ }
+	
+	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnAwake()
 	{
 		base.OnAwake();
 
-		AmmoComponent = Components.Get<AmmoComponent>();
-		if (!AmmoComponent.IsValid())
-		{
-			Log.Warning($"{this} does not have a valid ammo component");
-		}
-
-		ReloadComponent = Components.Get<ReloadWeaponComponent>();
-		if (!ReloadComponent.IsValid())
-		{
-			Log.Warning($"{this} does not have a reload component");
-		}
-
-		// this one's specualtive
+		// TODO : revisit, sticky only
 		StickyTrackerComponent = Components.Get<StickyTrackerComponent>();
 	}
 
@@ -75,12 +59,12 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 		}
 
 		TimeSinceShot = 0;
-		AmmoComponent.Ammo--;
+		Ammo--;
 
 		var AimForward = PlayerPawn.AimRay.Forward;
 
 		// create projectile object from prefab
-		var ProjectilePosition = PlayerPawn.AimRay.Position + (Vector3.Down * 4f);
+		var ProjectilePosition = PlayerPawn.AimRay.Position + (Vector3.Down * 4f); // magic
 		var ProjectileRotation = Rotation.LookAt(AimForward);
 		var Projectile = ProjectilePrefab.Clone(ProjectilePosition, ProjectileRotation);
 
@@ -115,9 +99,9 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 		if (!Equipment.IsValid()) return false;
 		if (!Equipment.Owner.IsValid()) return false;
 
-		if (ReloadComponent.IsReloading && AmmoComponent.Ammo > 0)
+		if (IsReloading && Ammo > 0)
 		{
-			ReloadComponent.TryCancelReload();
+			TryCancelReload();
 		}
 
 		if (Equipment.Owner.IsFrozen)
@@ -129,23 +113,27 @@ public class ProjectileWeaponComponent : InputWeaponComponent,
 		if (TimeSinceShot < FireRate)
 			return false;
 
-		if (!AmmoComponent.HasAmmo)
+		if (!HasAmmo)
 			return false;
 
 		return true;
 	}
 }
 
+////////////////////////////////////////////////////////////////////////
+
+// NOTE : i think this should now just be a 'mode' within the base projectile comp
+
 [Title("Sticky Shooter"), Group("Weapon Components")]
 public class StickyWeaponComponent : ProjectileWeaponComponent
 {
-	[Property] public float MaxChargeTime { get; private set; } = 1.6f;
+	[Property, Category("Sticky")] public float MaxChargeTime { get; private set; } = 1.6f;
 
 	// TODO : THIS IS QUICKLY BECOMING A MESS!
 
 	public TimeSince TimeSinceInputFirstDown { get; private set; } = new();
 	public bool WasInputDownLastTick { get; private set; } = false;
-	protected override void OnInputUpdate()
+	protected override void OnInputUpdate() // TODO : OnInput()?
 	{
 		bool KeyDown = IsDown();
 
