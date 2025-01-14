@@ -10,8 +10,7 @@ public abstract class InputWeaponComponent : EquipmentComponent
 	const float FirstTimeReloadFactor = 1.2f;
 
 	private bool _IsReloading;
-	[Sync]
-	public bool IsReloading
+	[Sync] public bool IsReloading
 	{
 		get => _IsReloading;
 		private set

@@ -10,10 +10,19 @@
         {
           "__type": "Sandbox.SceneInformation",
           "__guid": "ced114fb-7484-443f-a258-c98a22438cc9",
+          "Author": null,
           "Changes": "",
           "Description": "",
+          "Group": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "SceneTags": "",
-          "Title": "jump1"
+          "Title": "jump1",
+          "Version": null
         }
       ]
     },
@@ -30,6 +39,12 @@
           "__type": "KOTH.GameNetworkManager",
           "__guid": "7b2af182-d5fb-4f7b-befa-36fd43818d43",
           "NetworkMode": "Multiplayer",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PlayerStatePrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/playerstate.prefab"
@@ -49,13 +64,25 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "e1ddd168-dee3-463d-af9e-682151c03381",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Title": "Botz"
         },
         {
           "__type": "KOTH.DamageManager",
           "__guid": "d35d41ad-e4a9-44e8-afc6-de2e0cad48b7",
           "HitSound": "sounds/hitsound.sound",
-          "KnockbackOnly": false
+          "KnockbackOnly": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.ClassList",
@@ -64,27 +91,50 @@
             "prefabs/classes/alan.chardef",
             "prefabs/classes/alex.chardef",
             "prefabs/classes/donny.chardef"
-          ]
+          ],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.Stats",
-          "__guid": "2cda8473-d9be-46f8-9b72-85c25751b14a"
+          "__guid": "2cda8473-d9be-46f8-9b72-85c25751b14a",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.TeamAssigner",
           "__guid": "e20c3584-2e0c-4b06-8be3-1e2a33c1df76",
           "AutoBalanceMode": "Random",
           "MaxTeamSize": 5,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "TargetRatio": 1
         },
         {
           "__type": "KOTH.BotSystem",
           "__guid": "5310c536-7649-4a31-b9af-bc3a53146ebd",
-          "__enabled": false,
           "DummyPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/dummy.prefab"
-          }
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
@@ -103,7 +153,13 @@
                 "component_id": "854b92d5-e054-4f97-b2c0-660b81094490",
                 "go": "7240c3cf-4c6c-4755-aecb-81daa9bda1bc",
                 "component_type": "StateComponent"
-              }
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ],
           "Children": [
@@ -117,13 +173,29 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "854b92d5-e054-4f97-b2c0-660b81094490",
-                  "DefaultDuration": -1
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null,
+                  "DefaultDuration": -1,
+                  "DefaultNextState": null,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 },
                 {
                   "__type": "KOTH.ShowStatusText",
                   "__guid": "bd350265-e1f9-4990-a148-c27d5ff812fe",
                   "BothTeams": true,
                   "IsKoth": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
                   "StatusText": "waiting for players",
                   "Team": "Unassigned"
                 },
@@ -131,6 +203,12 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
                   "AllowSpectatorsToSpawn": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
                   "RespawnDelaySeconds": 1
                 }
               ]
@@ -151,6 +229,12 @@
           "__type": "TeamSpawnPoint",
           "__guid": "575c7894-fbc8-4456-b2c1-a823e821e477",
           "IsDummy": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Team": "Unassigned"
         }
       ]
@@ -167,6 +251,12 @@
           "__type": "TeamSpawnPoint",
           "__guid": "21edcc6f-188c-4f90-ae4c-5e6b56f7defc",
           "IsDummy": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Team": "Unassigned"
         }
       ]
@@ -183,6 +273,12 @@
           "__type": "TeamSpawnPoint",
           "__guid": "0a75eff8-aa0e-4c5e-a52b-7d67f4c3acae",
           "IsDummy": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Team": "Unassigned"
         }
       ]
@@ -206,6 +302,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "9026f985-9372-4350-a3ca-cef218d6b727",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -222,6 +324,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "befd7178-30ac-499a-b877-274113842292",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -238,6 +346,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "755cbdb3-5767-45cf-b654-2a75b49c0c3b",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -254,6 +368,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "d4360aff-c390-4020-af67-648afee4c7a8",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -270,6 +390,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "953c2e34-9359-43f9-bcdc-7a78f84889a5",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -286,6 +412,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "bb1633f6-3461-4e89-8b59-d8f142a044c6",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -302,6 +434,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "2dd77004-5018-4ac0-97df-4937f1e01343",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -318,6 +456,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "a08903f9-e695-4b63-aca7-d724cce65e98",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -334,6 +478,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "df398128-3efa-4ff6-ad89-1068da50fe8b",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -350,6 +500,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "899d6c38-3cb0-4bef-8843-447e02110316",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -366,6 +522,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "96789686-e9b5-412a-8630-b2c8a0a9576e",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -382,6 +544,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "7fdd3972-0f5c-4823-ada1-f426235650f9",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -398,6 +566,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "8e42070d-9ca3-459d-92bb-00aa3f5db949",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -414,6 +588,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "75170771-b6c7-46f0-8462-7e749aae0db9",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -430,6 +610,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "ce957f20-8574-4c9a-ac39-ed4de523411a",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -446,6 +632,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "9053f5ad-b7c2-4dba-b9c5-e63f1b305320",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -462,6 +654,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "d9007a4b-d471-4ccd-84cb-debcad0d688e",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -478,6 +676,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "9584e988-a33c-4d52-b0c9-59afaf0028a1",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -494,6 +698,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "a89a1e85-586b-4e8a-a2ea-b50823e13d03",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -510,6 +720,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "3a1bc56f-e0b8-4c73-8ef4-685fb621b820",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -526,6 +742,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "6e28fbee-a540-420e-abbb-3e859aca5e94",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -542,6 +764,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "66635439-017c-4510-bef9-1c5a1d847f3a",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -558,6 +786,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "b78719a2-6891-4cbe-a542-a48e0a1a20f5",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -574,6 +808,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "c06a2f19-cd57-41df-8877-36197c61918b",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -590,6 +830,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "56474437-80f0-4195-af96-2c97a7d426db",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -606,6 +852,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "376b2168-1c85-4ec8-9f07-2d059236ea70",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -622,6 +874,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "61b57699-a3b1-4f4a-904b-4b70dc26adaa",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -638,6 +896,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "879a2335-0ede-43f2-a5e3-9317c0e81c49",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -654,6 +918,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "16a071a1-1bc1-4fb7-aac1-a25fb33fc07e",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -670,6 +940,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "fada6785-9c00-4e15-a368-55c0f12f246c",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -686,6 +962,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "69952651-7972-4e1c-a715-456b0e170c87",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -702,6 +984,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "dfeb4780-19d4-4471-b3dd-6ea57581669f",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -718,6 +1006,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "b5add923-317b-4b5f-a1d9-cd55d5da25aa",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -734,6 +1028,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "afea8108-1bc9-43b1-bd3e-c0210a7388ac",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -750,6 +1050,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "09943eb4-35e0-413d-8aca-8d4247cb909f",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -766,6 +1072,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "0afacdb4-8b4f-4d70-a7a6-e2bb3aee3301",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -782,6 +1094,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "7130ccf7-ab4f-40aa-a92a-363bb7702b38",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -798,6 +1116,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "354a80d0-62c6-4478-a90a-b7ef9f5d9378",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -814,6 +1138,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "e17cfa1d-9923-43f4-84b9-b83f809ae45f",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -830,6 +1160,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "21044029-b09c-447c-94d7-6255cc10a21a",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -846,6 +1182,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "a973885f-243c-4f74-94e9-d042fc507abc",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -862,6 +1204,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "b6d84476-bd6a-4145-8876-e8976c3d62d7",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -878,6 +1226,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "833db2c9-d90e-458b-9c13-acac2744b36c",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -894,6 +1248,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "2963b3cb-2cfd-420f-8437-08447dbdb2ce",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -910,6 +1270,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "14b93085-8ae2-48da-866b-67c8220fc901",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -926,6 +1292,12 @@
               "__type": "TeamSpawnPoint",
               "__guid": "bf99fed2-3e2d-4a50-af1a-c9afa7063aab",
               "IsDummy": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "Team": "Unassigned"
             }
           ]
@@ -971,6 +1343,12 @@
           "ClearFlags": "All",
           "FieldOfView": 60,
           "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Orthographic": false,
           "OrthographicHeight": 1204,
           "Priority": 8,
@@ -983,12 +1361,24 @@
         },
         {
           "__type": "KOTH.UI.PlayerMenuComponent",
-          "__guid": "28d01382-2e74-44c1-99c5-73659cbf5294"
+          "__guid": "28d01382-2e74-44c1-99c5-73659cbf5294",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "de8c4ae0-cb03-4ffd-a234-3080f3afe0f7",
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -1009,6 +1399,12 @@
           "EnableCollision": true,
           "MapName": "maps/botz/botz.vmap",
           "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
           "UseMapFromLaunch": true

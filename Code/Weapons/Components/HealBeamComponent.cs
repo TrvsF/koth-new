@@ -3,8 +3,7 @@ using Sandbox.Events;
 
 namespace KOTH;
 
-public sealed class HealBeamComponent : InputWeaponComponent,
-	IGameEventHandler<EquipmentHolsteredEvent>
+public sealed class HealBeamComponent : InputWeaponComponent
 {
 	[Property, Category("Healing")] public float HealsPerTick { get; private set; } = .45f;
 	[Property, Category("Healing")] public float MaxHealDistance { get; private set; } = 340f;
@@ -13,16 +12,6 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 
 	public PlayerPawn HealTarget { get; private set; }
 	private PlayerPawn PlayerPawn { get => Equipment.Owner; }
-
-	public void OnGameEvent(EquipmentHolsteredEvent eventArgs)
-	{
-
-	}
-
-	protected override void OnAwake()
-	{
-		base.OnAwake();
-	}
 
 	protected override void OnFixedUpdate()
 	{
@@ -39,48 +28,50 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 	private TimeSince TimeSinceBeamHealingDone = new();
 	protected override void OnInputUpdate()
 	{
+		// TODO : left click for healing right click for swinging
 		bool IsActive = IsDown();
 
-		if (IsActive)
-		{
-			if (!PlayerPawn.IsValid())
-			{
-				Log.Error($"local player pawn not valid on heal beam component {this}");
-				return;
-			}
-
-			// if we've got a heal target keep healing them
-			if (HealTarget.IsValid())
-			{
-				return; // NOTE : early return
-			}
-
-			// figure out what action we're gonna take (heal or meele)
-			var EnemyPawn = GetEnemyTargetIfAny();
-			var FriendlyPawn = GetFriendlyTargetIfAny();
-
-			if (EnemyPawn.IsValid() && EnemyPawn.IsAlive)
-			{
-				TryToHitTarget(EnemyPawn);
-			}
-			else if (FriendlyPawn.IsValid())
-			{
-				HealTarget = FriendlyPawn;
-				TimeSinceBeamHealingDone = 0;
-			}
-			else
-			{
-				Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true); // ?
-			}
-		}
-		else
+		if (!IsActive)
 		{
 			// disconnect beam if the inputs been gone long enough
 			if (HealTarget.IsValid() && TimeSinceBeamHealingDone > .1f)
 			{
 				HealTarget = null;
 			}
+
+			return; // NOTE : early return
 		}
+
+		if (!PlayerPawn.IsValid())
+		{
+			Log.Error($"local player pawn not valid on heal beam component {this}");
+			return; // NOTE : early return
+		}
+
+		// if we've got a heal target keep healing them
+		if (HealTarget.IsValid())
+		{
+			return; // NOTE : early return
+		}
+
+		// figure out what action we're gonna take (heal or meele)
+		var EnemyPawn = GetEnemyTargetIfAny();
+		var FriendlyPawn = GetFriendlyTargetIfAny();
+
+		if (EnemyPawn.IsValid() && EnemyPawn.IsAlive)
+		{
+			TryToHitTarget(EnemyPawn);
+		}
+		else if (FriendlyPawn.IsValid())
+		{
+			HealTarget = FriendlyPawn;
+			TimeSinceBeamHealingDone = 0;
+		}
+		else
+		{
+			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true); // ?
+		}
+
 	}
 
 	private float HitDelay = 1.66f;
@@ -99,7 +90,7 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 		{
 			TargetPlayerPawn = EnemyPawn,
 			AttackerPlayerPawn = PlayerPawn,
-			DamageOrigin = PlayerPawn.Transform.Position,
+			DamageOrigin = PlayerPawn.WorldPosition,
 			BaseDamage = BaseDamage,
 			BaseKnockbackStrength = BaseKnockback,
 			DirectImpact = true,
@@ -115,13 +106,15 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 		{
 			return; // NOTE : early return
 		}
-		if (HealTarget.Transform.Position.Distance(PlayerPawn.Transform.Position) > MaxHealDistance
-			|| !HealTarget.IsAlive)
+
+		var TargetToPlayerDistance = HealTarget.WorldPosition.Distance(PlayerPawn.WorldPosition);
+		if (TargetToPlayerDistance > MaxHealDistance || !HealTarget.IsAlive)
 		{
 			HealTarget = null;
 			return; // NOTE : early return
 		}
 
+		// heal em ////////////////////////////////////////////////////
 		TimeSinceBeamHealingDone = 0;
 
 		FHealingRequest HealingRequest = new()
@@ -129,7 +122,7 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 			TargetPlayerPawn = HealTarget,
 			AttackerPlayerPawn = PlayerPawn,
 			BaseHealing = HealsPerTick,
-			HealingOrigin = PlayerPawn.Transform.Position,
+			HealingOrigin = PlayerPawn.WorldPosition,
 			AllowOverheal = true,
 		};
 		Scene.Dispatch(new HealingRequestEvent(HealingRequest));
@@ -140,6 +133,7 @@ public sealed class HealBeamComponent : InputWeaponComponent,
 		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 200, TeamExtensions.GetOpponents(PlayerPawn.Team), 10);
 		return UniqueTargets.Any() ? UniqueTargets.First() : null;
 
+		// TODO : maybe use a box instead?
 		//Vector3 BoxBounds = new(150, 100, 50);
 		//BBox Box = BBox.FromPositionAndSize(PlayerPawn.Head.Transform.Position, BoxBounds);
 

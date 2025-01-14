@@ -361,28 +361,33 @@ public class ShootWeaponComponent : InputWeaponComponent,
 	/// <returns></returns>
 	protected virtual IEnumerable<SceneTraceResult> GetShootTrace()
 	{
-		var hits = new List<SceneTraceResult>();
+		var ShotHits = new List<SceneTraceResult>();
 
-		var start = WeaponRay.Position;
-		var rot = Rotation.LookAt(WeaponRay.Forward);
+		var TraceStart = WeaponRay.Position;
+		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
+		var TraceForward = StartRotation.Forward.Normal;
 
-		var forward = rot.Forward;
 		// forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * (Equipment.Owner.Spread) * 0.25f;
-		forward = forward.Normal;
+		// forward = forward.Normal;
 
-		var original = DoTraceBullet(start, WeaponRay.Position + forward * MaxRange, BulletSize);
+		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * MaxRange)
+		   .UseHitboxes()
+		   .IgnoreGameObjectHierarchy(GameObject.Root)
+		   .WithoutTags("trigger", "playerclip", "movement")
+		   .Size(Vector3.One)
+		   .RunAll();
 
-		if (original.Count() < 1) return original;
+		if (!TraceResults.Any()) return TraceResults;
 
 		// Run through and fix the start positions for the traces
 		// By using the last end position as the start
 
 		int depth = 0;
-		Vector3 startPos = original.ElementAt(0).StartPosition;
+		Vector3 startPos = TraceResults.ElementAt(0).StartPosition;
 		List<SceneTraceResult> fixedPath = new();
-		for (int i = 0; i < original.Count(); i++)
+		for (int i = 0; i < TraceResults.Count(); i++)
 		{
-			var el = original.ElementAt(i);
+			var el = TraceResults.ElementAt(i);
 
 			fixedPath.Add(el with { StartPosition = startPos });
 			startPos = el.EndPosition;
@@ -415,12 +420,12 @@ public class ShootWeaponComponent : InputWeaponComponent,
 			if (accThickness >= PenetrationThickness)
 				break;
 
-			hits.Add(el.Trace);
+			ShotHits.Add(el.Trace);
 			// DrawLineSegment( el.Trace.StartPosition, el.Trace.EndPosition, depth, fixedPath.Count() );
 			depth++;
 		}
 
-		return hits;
+		return ShotHits;
 	}
 
 	protected float RPMToSeconds()

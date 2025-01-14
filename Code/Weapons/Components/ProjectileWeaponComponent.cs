@@ -50,7 +50,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 		}
 	}
 
-	protected virtual GameObject Shoot()
+	protected virtual GameObject Shoot() // TODO : revisit the return
 	{
 		var PlayerPawn = Equipment.Owner;
 		if (!PlayerPawn.IsValid())

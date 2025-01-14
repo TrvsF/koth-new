@@ -3,7 +3,7 @@ using Sandbox;
 namespace KOTH;
 
 [GameResource("koth/CharacterDefinition", "chardef", "", IconBgColor = "#C45A21", Icon = "track_changes")]
-public class CharacterDefinition : GameResource
+public partial class CharacterDefinition : GameResource
 {
 	[Category("Character")] public string CharacterName { get; set; } = "Mark Nutt";
 	[Category("Character")] public string Description { get; set; } = "suck my nutt";

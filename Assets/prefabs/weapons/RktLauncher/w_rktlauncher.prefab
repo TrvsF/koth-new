@@ -123,38 +123,6 @@
         "Enabled": true,
         "Components": [
           {
-            "__type": "KOTH.ReloadWeaponComponent",
-            "__guid": "01933652-6cd6-48ce-90d1-09986c59921a",
-            "Ammo": 0,
-            "EmptyReloadSounds": {
-              "0": "sounds/guns/mp5/reload/mp5.move.sound",
-              "0.5": "sounds/guns/mp5/reload/mp5.mag.sound",
-              "1.2": "sounds/guns/mp5/reload/mp5.mag.load.sound",
-              "2": "sounds/guns/mp5/reload/mp5.mag.sound"
-            },
-            "HasAmmo": false,
-            "InputActions": [
-              "Reload"
-            ],
-            "MaxAmmo": 30,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnInputAction": null,
-            "ReloadTime": 0.8,
-            "ReloadType": "Single",
-            "ReloadWhileNotActive": false,
-            "RequiresAllInputActions": false,
-            "TimedReloadSounds": {
-              "0": "sounds/guns/mp5/reload/mp5.move.sound",
-              "0.5": "sounds/guns/mp5/reload/mp5.mag.sound",
-              "1.2": "sounds/guns/mp5/reload/mp5.mag.load.sound"
-            }
-          },
-          {
             "__type": "KOTH.ProjectileWeaponComponent",
             "__guid": "46febf9d-7f42-43b8-8c31-40461db28072",
             "Ammo": 4,
@@ -177,6 +145,9 @@
               "prefab": "prefabs/weapons/rktlauncher/p_rkt.prefab"
             },
             "ProjectileVerticalSpeed": 0,
+            "ReloadTime": 1,
+            "ReloadType": "None",
+            "ReloadWhileNotActive": false,
             "RequiresAllInputActions": false
           }
         ]

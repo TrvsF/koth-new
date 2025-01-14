@@ -11,7 +11,34 @@ namespace KOTH;
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
-	[Property, Group("HitScan"), EquipmentResourceProperty] public GameObject ProjectilePrefab { get; set; }
+	private enum EHitscanFireType
+	{
+		SingleShot,
+		Continuous,
+		Infinite,
+	}
+
+	[Property, Group("HitScan"), EquipmentResourceProperty] private EHitscanFireType FireType
+	{
+		get => GetFireType();
+	}
+
+	private EHitscanFireType GetFireType()
+	{
+		if (MaxAmmo == -1)
+		{
+			return EHitscanFireType.Infinite;
+		}
+		else if (MaxAmmo == 1)
+		{
+			return EHitscanFireType.SingleShot;
+		}
+		else
+		{
+			return EHitscanFireType.Continuous;
+		}
+	}
+
 	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
 	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileVerticalSpeed { get; set; } = 0f;
 	[Property, Group("Projectile"), EquipmentResourceProperty] public float FireRate { get; set; } = 0.2f;
@@ -35,12 +62,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		}
 	}
 
-	protected virtual GameObject Shoot()
+	protected virtual void Shoot()
 	{
 		var PlayerPawn = Equipment.Owner;
 		if (!PlayerPawn.IsValid())
 		{
-			return null;
+			return;
 		}
 
 		TimeSinceShot = 0;
@@ -48,28 +75,23 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		var AimForward = PlayerPawn.AimRay.Forward;
 
-		// create projectile object from prefab
-		var ProjectilePosition = PlayerPawn.AimRay.Position + (Vector3.Down * 4f); // magic
-		var ProjectileRotation = Rotation.LookAt(AimForward);
-		var Projectile = ProjectilePrefab.Clone(ProjectilePosition, ProjectileRotation);
+		foreach (var TraceElement in GetShootTraceElements())
+		{
+			if (!TraceElement.Hit)
+				continue;
 
-		// give it the player
-		var ProjectileComponent = Projectile.Components.Get<Projectile>();
-		ProjectileComponent.OwnerPlayerPawn = PlayerPawn;
+			if (TraceElement.Distance == 0)
+				continue;
 
-		var Rigidbody = Projectile.Components.Get<Rigidbody>();
-		SetProjectileVelocity(Rigidbody, AimForward);
+			if (TraceElement.GameObject?.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } player)
+			{
+				Log.Info("HIT PLAYER");
+			}
 
-		Projectile.Root.Tags.Add("self");
-		Projectile.NetworkSpawn();
-		return Projectile;
-	}
-
-	protected virtual void SetProjectileVelocity(Rigidbody ProjectileRigidbody, Vector3 AimForward)
-	{
-		ProjectileRigidbody.Velocity = AimForward * ProjectileHorizontalSpeed;
-		ProjectileRigidbody.Velocity += Vector3.Up * ProjectileVerticalSpeed;
-		ProjectileRigidbody.PhysicsBody.EnableSolidCollisions = false;
+			// TODO
+			// var damage = CalculateDamageFalloff(BaseDamage, tr.Distance);
+			// damage = damage.CeilToInt();
+		}
 	}
 
 	protected TimeSince TimeSinceShot = new();
@@ -97,5 +119,83 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			return false;
 
 		return true;
+	}
+
+	//////////////////////////////////////////////////////////////
+
+	protected Ray WeaponRay => Equipment.Owner.AimRay;
+
+	protected virtual IEnumerable<SceneTraceResult> GetShootTraceElements()
+	{
+		var ShotHits = new List<SceneTraceResult>();
+
+		var TraceStart = WeaponRay.Position;
+		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
+		var TraceForward = StartRotation.Forward.Normal;
+
+		// forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * (Equipment.Owner.Spread) * 0.25f;
+		// forward = forward.Normal;
+
+		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * 500f) // magic
+		   .UseHitboxes()
+		   .IgnoreGameObjectHierarchy(GameObject.Root)
+		   .WithoutTags("trigger", "playerclip", "movement")
+		   .Size(Vector3.One)
+		   .RunAll();
+
+		if (!TraceResults.Any()) return TraceResults;
+
+		// Run through and fix the start positions for the traces
+		// By using the last end position as the start
+
+		int depth = 0;
+		Vector3 startPos = TraceResults.ElementAt(0).StartPosition;
+		List<SceneTraceResult> fixedPath = new();
+		for (int i = 0; i < TraceResults.Count(); i++)
+		{
+			var el = TraceResults.ElementAt(i);
+
+			fixedPath.Add(el with { StartPosition = startPos });
+			startPos = el.EndPosition;
+		}
+
+		var entries = new List<(SceneTraceResult Trace, float Thickness)>();
+
+		// Then, trace backwards from the end so we can get exit points and thickness
+		for (int i = fixedPath.Count - 1; i >= 0; i--)
+		{
+			var TraceElement = fixedPath.ElementAt(i);
+
+			// Do a trace back, from the end position to the start, this'll give us the LAST entry's exit point.
+			var backTrace = Scene.Trace.Ray(TraceElement.EndPosition, TraceElement.StartPosition)
+			.UseHitboxes()
+			.IgnoreGameObjectHierarchy(GameObject.Root)
+			.WithoutTags("trigger", "playerclip", "movement")
+			.Size(Vector3.One)
+			.Run();
+			var impact = backTrace.EndPosition;
+
+			// From that, we can calculate the surface thickness
+			float thickness = (TraceElement.StartPosition - impact).Length;
+
+			// Return the element starting at the exit point, it's more useful that way.
+			TraceElement = TraceElement with { StartPosition = impact };
+			entries.Insert(0, (TraceElement, thickness));
+		}
+
+		depth = 0;
+		float accThickness = 0;
+		foreach (var el in entries)
+		{
+			accThickness += el.Thickness;
+			if (accThickness >= 100)
+				break;
+
+			ShotHits.Add(el.Trace);
+			// DrawLineSegment( el.Trace.StartPosition, el.Trace.EndPosition, depth, fixedPath.Count() );
+			depth++;
+		}
+
+		return ShotHits;
 	}
 }
