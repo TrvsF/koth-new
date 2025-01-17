@@ -25,7 +25,7 @@ public sealed class EquipmentResourceEditor : BaseResourceEditor<EquipmentResour
 	{
 		base.SavedToDisk();
 
-		var prefabFile = Resource?.MainPrefab?.Scene?.Source as PrefabFile;
+		var prefabFile = Resource?.WorldPrefab?.Scene?.Source as PrefabFile;
 		if ( prefabFile is null ) return;
 
 		var prefabAsset = AssetSystem.FindByPath( prefabFile.ResourcePath );
@@ -59,7 +59,7 @@ public sealed class EquipmentResourceEditor : BaseResourceEditor<EquipmentResour
 			return;
 		}
 
-		var prefabFile = Resource?.MainPrefab?.Scene?.Source as PrefabFile;
+		var prefabFile = Resource?.WorldPrefab?.Scene?.Source as PrefabFile;
 		var prefabJson = prefabFile?.RootObject;
 		if ( prefabJson is null ) return;
 

@@ -8,7 +8,7 @@
             <span style="gap: 4px; align-items: flex-end;">
                 @if ( IsActive )
                 {
-                    <label class="gunname">@Equipment.Resource.Name</label>
+                    <label class="gunname">@Equipment.Name</label>
                 }
             </span>
     }
@@ -19,7 +19,7 @@
     /// <summary>
     ///  The equipment's slot
     /// </summary>
-    public EEquipmentSlot Slot => Equipment?.Resource.Slot ?? default;
+    public EEquipmentSlot Slot => Equipment.Slot;
 
     /// <summary>
     /// The player's equipment.

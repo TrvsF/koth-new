@@ -8,34 +8,35 @@ public record EquipmentDeployedEvent(Equipment Equipment) : IGameEvent;
 public record EquipmentHolsteredEvent(Equipment Equipment) : IGameEvent;
 public record EquipmentDestroyedEvent(Equipment Equipment) : IGameEvent;
 
-/// <summary>
-/// An equipment component.
-/// </summary>
+// TODO : this could do with a proper look at
 public partial class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
 {
 	internal void BindTag(string tag, Func<bool> predicate) => TagBinder.BindTag(tag, predicate);
 	[RequireComponent] public TagBinder TagBinder { get; set; }
 
-	[Property, Group("Resources")] public EquipmentResource Resource { get; set; }
+	//////////////////////////////////////////////////////////////////////////////////////
+
+	[Sync(SyncFlags.FromHost)] public string Name { get; set; }
+	[Sync(SyncFlags.FromHost)] public GameObject ViewmodelPrefab { get; set; }
+	[Sync(SyncFlags.FromHost)] public EEquipmentSlot Slot { get; set; }
+
+	//////////////////////////////////////////////////////////////////////////////////////
+
 	[Property, Group("Components")] public SkinnedModelRenderer ModelRenderer { get; set; }
 	[Property, Group("Animation")] protected AnimationHelper.HoldTypes HoldType { get; set; } = AnimationHelper.HoldTypes.Rifle;
 	[Property, Group("Animation")] public AnimationHelper.Hand Handedness { get; set; } = AnimationHelper.Hand.Right;
 	[Property, Group("Sounds")] public SoundEvent DeploySound { get; set; }
-	[Property, Group("Movement")] public float SpeedPenalty { get; set; } = 0f;
 	[Property, Group("GameObjects")] public GameObject Muzzle { get; set; }
 	[Property, Group("GameObjects")] public GameObject EjectionPort { get; set; }
 	[Property, Group("Mount Points")] public GameObject MountedPrefab { get; set; }
-	[Property, Group("UI")] public bool UseCrosshair { get; set; } = true;
 
-
-	[HostSync] public Guid OwnerId { get; set; }
 	private PlayerPawn owner;
 	public PlayerPawn Owner
 	{
-		get => owner ??= Scene.Directory.FindComponentByGuid(OwnerId) as PlayerPawn;
+		get => owner ??= GameObject.Root.GetComponent<PlayerPawn>(true);
 	}
 
-	string IDescription.DisplayName => Resource.Name;
+	//////////////////////////////////////////////////////////////////////////////////////
 
 	[Sync, Change(nameof(OnIsDeployedPropertyChanged))]
 	public bool IsDeployed { get; private set; }
@@ -82,14 +83,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 
 	void INetworkListener.OnDisconnected(Connection connection)
 	{
-		if (!Networking.IsHost)
-			return;
 
-		if (!Resource.DropOnDisconnect)
-			return;
-
-		var player = GameUtils.PlayerPawns.FirstOrDefault(x => x.Network.Owner == connection);
-		if (!player.IsValid()) return;
 	}
 
 	[Rpc.Owner]
@@ -101,7 +95,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		// We must first holster all other equipment items.
 		if (Owner.IsValid())
 		{
-			var equipment = Owner.Inventory.Equipment.ToList();
+			var equipment = Owner.Inventory.PlayerEquipment.ToList();
 
 			foreach (var item in equipment)
 				item.Holster();
@@ -160,29 +154,26 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 	{
 		Assert.IsValid(Owner);
 		Assert.IsValid(Owner.Camera);
-		Assert.IsValid(Resource);
+		Assert.IsValid(ViewmodelPrefab);
 
 		ClearViewModel();
 		UpdateRenderMode();
 
-		if (Resource.ViewModelPrefab.IsValid())
+		// Create the equipment prefab and put it on the equipment gameobject.
+		var viewModelGameObject = ViewmodelPrefab.Clone(new CloneConfig()
 		{
-			// Create the equipment prefab and put it on the equipment gameobject.
-			var viewModelGameObject = Resource.ViewModelPrefab.Clone(new CloneConfig()
-			{
-				Transform = new(),
-				Parent = Owner.Camera.GameObject,
-				StartEnabled = true,
-			});
+			Transform = new(),
+			Parent = Owner.Camera.GameObject,
+			StartEnabled = true,
+		});
 
-			var ViewModelComponent = viewModelGameObject.Components.Get<ViewModel>();
-			ViewModelComponent.PlayDeployEffects = playDeployEffects;
+		var ViewModelComponent = viewModelGameObject.Components.Get<ViewModel>();
+		ViewModelComponent.PlayDeployEffects = playDeployEffects;
 
-			// equipment needs to know about the ViewModel
-			ViewModel = ViewModelComponent;
+		// equipment needs to know about the ViewModel
+		ViewModel = ViewModelComponent;
 
-			viewModelGameObject.BreakFromPrefab();
-		}
+		viewModelGameObject.BreakFromPrefab();
 
 		if (!playDeployEffects)
 		{
@@ -197,7 +188,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		var Sound = Sandbox.Sound.Play(DeploySound, WorldPosition);
 		if (!Sound.IsValid())
 		{
-			return; 
+			return;
 		}
 
 		Sound.ListenLocal = !IsProxy;

@@ -23,6 +23,13 @@ public sealed class PlayerAutoRespawner : Component,
 				continue;
 			}
 
+			// NOTE : there appear to be cases where a playerstate can become inactive
+			// but still remain in the PlayerStates NetList. Ignore them for now......
+			if (!PlayerState.Active)
+			{
+				continue;
+			}
+
 			if (PlayerState.PlayerStateSpawningState == EPlayerStateSpawningState.WaitingForSpawn)
 			{
 				if (!PlayersWaitingForSpawn.ContainsKey(PlayerState))

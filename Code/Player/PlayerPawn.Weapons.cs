@@ -67,7 +67,7 @@ public partial class PlayerPawn :
 
 	public void ClearViewModel()
 	{
-		foreach (var Weapon in Inventory.Equipment)
+		foreach (var Weapon in Inventory.PlayerEquipment)
 		{
 			Weapon.ClearViewModel();
 		}

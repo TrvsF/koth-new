@@ -69,7 +69,7 @@ public sealed class EquipmentMountPoints : Component,
 
 	public MountPoint GetMount(Equipment equipment)
 	{
-		var mount = MountPoints.FirstOrDefault(x => x.Slot == equipment.Resource.Slot);
+		var mount = MountPoints.FirstOrDefault(x => x.Slot == equipment.Slot);
 		return mount;
 	}
 

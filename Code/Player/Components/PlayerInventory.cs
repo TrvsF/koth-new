@@ -8,7 +8,7 @@ public partial class PlayerInventory : Component
 {
 	[RequireComponent] PlayerPawn Player { get; set; }
 
-	public IEnumerable<Equipment> Equipment => Player.Components.GetAll<Equipment>(FindMode.EverythingInSelfAndDescendants);
+	public IEnumerable<Equipment> PlayerEquipment => Player.Components.GetAll<Equipment>(FindMode.EverythingInSelfAndDescendants);
 
 	[Property] public GameObject WeaponGameObject { get; set; }
 	[Property] public bool CanUnequipCurrentWeapon { get; set; } = false;
@@ -19,7 +19,7 @@ public partial class PlayerInventory : Component
 	{
 		Assert.True(Networking.IsHost);
 
-		foreach (var Weapon in Equipment)
+		foreach (var Weapon in PlayerEquipment)
 		{
 			Weapon.ViewModel?.Destroy();
 			Weapon.GameObject.Destroy();
@@ -27,66 +27,10 @@ public partial class PlayerInventory : Component
 		}
 	}
 
-	/// <summary>
-	/// Try to drop the given held equipment item.
-	/// </summary>
-	/// <param name="weapon">Item to drop.</param>
-	/// <param name="forceRemove">If we can't drop, remove it from the inventory anyway.</param>
-	public void Drop(Equipment weapon, bool forceRemove = false)
-	{
-		using (Rpc.FilterInclude(Connection.Host))
-		{
-			DropHost(weapon, forceRemove);
-		}
-	}
-
-	[Rpc.Broadcast]
-	private void DropHost(Equipment weapon, bool forceRemove)
-	{
-		//if (!Networking.IsHost)
-		//	return;
-
-		//if (!weapon.IsValid())
-		//	return;
-
-		//var canDrop = GameMode.Instance.Get<EquipmentDropper>() is { } dropper && dropper.CanDrop(Player, weapon);
-
-		//if (canDrop)
-		//{
-		//	var tr = Scene.Trace.Ray(new Ray(Player.AimRay.Position, Player.AimRay.Forward), 128)
-		//		.IgnoreGameObjectHierarchy(GameObject.Root)
-		//		.WithoutTags("trigger")
-		//		.Run();
-
-		//	var position = tr.Hit ? tr.HitPosition + tr.Normal * weapon.Resource.WorldModel.Bounds.Size.Length : Player.AimRay.Position + Player.AimRay.Forward * 32f;
-		//	var rotation = Rotation.From(0, Player.EyeAngles.yaw + 90, 90);
-
-		//	var baseVelocity = Player.CharacterController.Velocity;
-		//	var droppedWeapon = DroppedEquipment.Create(weapon.Resource, position, rotation, weapon);
-
-		//	if (!tr.Hit)
-		//	{
-		//		droppedWeapon.Rigidbody.Velocity = baseVelocity + Player.AimRay.Forward * 200.0f + Vector3.Up * 50;
-		//		droppedWeapon.Rigidbody.AngularVelocity = Vector3.Random * 8.0f;
-		//	}
-		//}
-
-		//if (canDrop || forceRemove)
-		//{
-		//	RemoveWeapon(weapon);
-		//}
-	}
-
 	protected override void OnUpdate()
 	{
 		if (!Player.IsLocallyControlled)
 			return;
-
-		if (Input.Pressed("Drop") && Current.IsValid())
-		{
-			Drop(Current);
-			return;
-		}
 
 		foreach (var slot in Enum.GetValues<EEquipmentSlot>())
 		{
@@ -108,7 +52,7 @@ public partial class PlayerInventory : Component
 
 		if (wheel.y == 0f) return;
 
-		var availableWeapons = Equipment.OrderBy(x => x.Resource.Slot).ToList();
+		var availableWeapons = PlayerEquipment.OrderBy(x => x.Slot).ToList();
 		if (availableWeapons.Count == 0)
 			return;
 
@@ -138,26 +82,6 @@ public partial class PlayerInventory : Component
 		Switch(weaponToSwitchTo);
 	}
 
-	public void SwitchToBest()
-	{
-		if (!Equipment.Any())
-			return;
-
-		if (HasInSlot(EEquipmentSlot.Primary))
-		{
-			SwitchToSlot(EEquipmentSlot.Primary);
-			return;
-		}
-
-		if (HasInSlot(EEquipmentSlot.Secondary))
-		{
-			SwitchToSlot(EEquipmentSlot.Secondary);
-			return;
-		}
-
-		Switch(Equipment.FirstOrDefault());
-	}
-
 	public void HolsterCurrent()
 	{
 		Assert.True(!IsProxy || Networking.IsHost);
@@ -168,8 +92,8 @@ public partial class PlayerInventory : Component
 	{
 		Assert.True(!IsProxy || Networking.IsHost);
 
-		var equipment = Equipment
-			.Where(x => x.Resource.Slot == slot)
+		var equipment = PlayerEquipment
+			.Where(x => x.Slot == slot)
 			.ToArray();
 
 		if (equipment.Length == 0)
@@ -191,7 +115,7 @@ public partial class PlayerInventory : Component
 	{
 		Assert.True(!IsProxy || Networking.IsHost);
 
-		if (!Equipment.Contains(equipment))
+		if (!PlayerEquipment.Contains(equipment))
 			return;
 
 		if (TimeSinceLastSwitch < SwitchCooldown)
@@ -207,12 +131,12 @@ public partial class PlayerInventory : Component
 	{
 		Assert.True(Networking.IsHost);
 
-		if (!Equipment.Contains(equipment)) return;
+		if (!PlayerEquipment.Contains(equipment)) return;
 
 		if (Current == equipment)
 		{
-			var otherEquipment = Equipment.Where(x => x != equipment);
-			var orderedBySlot = otherEquipment.OrderBy(x => x.Resource.Slot);
+			var otherEquipment = PlayerEquipment.Where(x => x != equipment);
+			var orderedBySlot = otherEquipment.OrderBy(x => x.Slot);
 			var targetWeapon = orderedBySlot.FirstOrDefault();
 
 			if (targetWeapon.IsValid())
@@ -223,66 +147,45 @@ public partial class PlayerInventory : Component
 		equipment.Enabled = false;
 	}
 
-	/// <summary>
-	/// Removes the given weapon (by its resource data) and destroys it.
-	/// </summary>
-	public void Remove(EquipmentResource resource)
-	{
-		var equipment = Equipment.FirstOrDefault(w => w.Resource == resource);
-		if (!equipment.IsValid()) return;
-		RemoveWeapon(equipment);
-	}
-
-	//public void OnGameEvent(EquipmentRequentEvent EventArgs)
-	//{
-	//	var Equipment = EventArgs.Equipment;
-
-	//	using (Rpc.FilterInclude(Connection.Host))
-	//	{
-	//		Give(Equipment, true);
-	//	}
-	//}
-
-	public Equipment Give(EquipmentResource resource, bool MakeActive = true)
+	public void Give(EquipmentResource EquipmentResource, bool MakeActive = true)
 	{
 		Assert.True(Networking.IsHost);
 
-		if (resource == null || !Player.IsValid())
-		{
-			return null;
-		}
+		Assert.NotNull(EquipmentResource);
+		Assert.IsValid(EquipmentResource.WorldPrefab);
+		Assert.IsValid(EquipmentResource.ViewModelPrefab);
+		Assert.IsValid(Player);
 
-		if (!resource.MainPrefab.IsValid())
-		{
-			Log.Error($"equipment doesn't have a prefab? {resource}, {resource.MainPrefab}, {resource.ViewModelPrefab}");
-			return null;
-		}
-
-		// Create the equipment prefab and put it on the GameObject.
-		var gameObject = resource.MainPrefab.Clone(new CloneConfig()
+		var EquipmentObject = EquipmentResource.WorldPrefab.Clone(new CloneConfig()
 		{
 			Transform = new(),
 			Parent = WeaponGameObject
 		});
-		var component = gameObject.Components.Get<Equipment>(FindMode.EverythingInSelfAndDescendants);
-		gameObject.NetworkSpawn(Player.Network.Owner);
-		component.OwnerId = Player.Id;
+
+		var EquipmentComponent = EquipmentObject.Components.Get<Equipment>(FindMode.EverythingInSelfAndDescendants);
+		if (EquipmentComponent == null)
+		{
+			Log.Warning($"Failed to correctly spawn equipment on player {Player}");
+			return;
+		}
+
+		// NOTE : loading dat when spawning an object is a common paradime, need to understand
+		// the best way to do this
+
+		EquipmentComponent.Name = EquipmentResource.Name;
+		EquipmentComponent.ViewmodelPrefab = EquipmentResource.ViewModelPrefab;
+		EquipmentComponent.Slot = EquipmentResource.Slot;
+
+		EquipmentObject.NetworkSpawn(Player.Network.Owner);
 
 		if (MakeActive)
 		{
-			Player.SetCurrentEquipment(component);
+			Player.SetCurrentEquipment(EquipmentComponent);
 		}
-
-		return component;
-	}
-
-	public bool Has(EquipmentResource resource)
-	{
-		return Equipment.Any(weapon => weapon.Enabled && weapon.Resource == resource);
 	}
 
 	public bool HasInSlot(EEquipmentSlot slot)
 	{
-		return Equipment.Any(weapon => weapon.Enabled && weapon.Resource.Slot == slot);
+		return PlayerEquipment.Any(weapon => weapon.Enabled && weapon.Slot == slot);
 	}
 }

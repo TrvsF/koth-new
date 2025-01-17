@@ -125,6 +125,7 @@
         {
           "__type": "KOTH.BotSystem",
           "__guid": "5310c536-7649-4a31-b9af-bc3a53146ebd",
+          "__enabled": false,
           "DummyPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/dummy.prefab"

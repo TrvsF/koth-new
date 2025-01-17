@@ -36,7 +36,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Resource": "weapons/mp5/mp5.equip",
+        "Resource": "prefabs/weapons/mp5/mp5.equip",
         "SpeedPenalty": 30,
         "UseCrosshair": true
       },
@@ -187,7 +187,7 @@
             "PenetrationThickness": 32,
             "PrimaryTracer": "particles/gameplay/guns/trail/trail_smoke.vpcf",
             "ReloadTime": 1,
-            "ReloadType": "None",
+            "ReloadType": "Mag",
             "ReloadWhileNotActive": false,
             "RequiresAllInputActions": false,
             "SecondaryTracer": "particles/gameplay/guns/trail/rico_trail_smoke.vpcf",

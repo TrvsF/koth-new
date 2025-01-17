@@ -11,10 +11,10 @@ namespace KOTH;
 [Title("Projectile Shooter"), Group("Weapon Components")]
 public class ProjectileWeaponComponent : InputWeaponComponent
 {
-	[Property, Group("Projectile"), EquipmentResourceProperty] public GameObject ProjectilePrefab { get; set; }
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileVerticalSpeed { get; set; } = 0f;
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float FireRate { get; set; } = 0.2f;
+	[Property, Group("Projectile")] public GameObject ProjectilePrefab { get; set; }
+	[Property, Group("Projectile")] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
+	[Property, Group("Projectile")] public float ProjectileVerticalSpeed { get; set; } = 0f;
+	[Property, Group("Projectile")] public float FireRate { get; set; } = 0.2f;
 
 	////////////////////////////////////////////////////////////////////////
 
