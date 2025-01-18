@@ -11,7 +11,7 @@ public enum FireMode
 	Burst
 }
 
-[Title("Hitscan Shooter"), Group("Weapon Components")]
+[Title("Hitscan Shooter OLD"), Group("Weapon Components")]
 public class ShootWeaponComponent : InputWeaponComponent,
 	IGameEventHandler<EquipmentHolsteredEvent>
 {

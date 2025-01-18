@@ -18,7 +18,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Infinite,
 	}
 
-	[Property, Group("HitScan"), EquipmentResourceProperty] private EHitscanFireType FireType
+	[Property, Group("HitScan")] private EHitscanFireType FireType
 	{
 		get => GetFireType();
 	}
@@ -39,9 +39,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		}
 	}
 
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float ProjectileVerticalSpeed { get; set; } = 0f;
-	[Property, Group("Projectile"), EquipmentResourceProperty] public float FireRate { get; set; } = 0.2f;
+	[Property, Group("Hitscan")] public float FireRate { get; set; } = 0.2f;
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -49,7 +47,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	{
 		bool IsShooting = IsDown() && CanShoot();
 
-		// we only care about projectiles spawned directly by a client
 		// TODO : should this be a host/server rpc?
 		if (IsProxy)
 		{
@@ -69,6 +66,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		{
 			return;
 		}
+
+		Log.Info("shoot");
 
 		TimeSinceShot = 0;
 		Ammo--;
@@ -136,7 +135,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		// forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * (Equipment.Owner.Spread) * 0.25f;
 		// forward = forward.Normal;
 
-		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * 500f) // magic
+		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * 9999f) // magic
 		   .UseHitboxes()
 		   .IgnoreGameObjectHierarchy(GameObject.Root)
 		   .WithoutTags("trigger", "playerclip", "movement")

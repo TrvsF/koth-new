@@ -9,7 +9,7 @@ public record EquipmentHolsteredEvent(Equipment Equipment) : IGameEvent;
 public record EquipmentDestroyedEvent(Equipment Equipment) : IGameEvent;
 
 // TODO : this could do with a proper look at
-public partial class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
+public sealed class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
 {
 	internal void BindTag(string tag, Func<bool> predicate) => TagBinder.BindTag(tag, predicate);
 	[RequireComponent] public TagBinder TagBinder { get; set; }
@@ -36,6 +36,19 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		get => owner ??= GameObject.Root.GetComponent<PlayerPawn>(true);
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////////
+	
+	public string GetAmmoString()
+	{
+		var WeaponComponent = GameObject.GetComponentInChildren<InputWeaponComponent>();
+		if (!WeaponComponent.IsValid())
+		{
+			return "NA";
+		}
+
+		return WeaponComponent.Ammo.ToString();
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	[Sync, Change(nameof(OnIsDeployedPropertyChanged))]
@@ -65,21 +78,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 			: Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
 	}
 
-	private ViewModel viewModel;
-
-	public ViewModel ViewModel
-	{
-		get => viewModel;
-		set
-		{
-			viewModel = value;
-
-			if (viewModel.IsValid())
-			{
-				viewModel.Equipment = this;
-			}
-		}
-	}
+	public ViewModel ViewModel { get; private set; }
 
 	void INetworkListener.OnDisconnected(Connection connection)
 	{
@@ -113,7 +112,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		IsDeployed = false;
 	}
 
-	public virtual AnimationHelper.HoldTypes GetHoldType()
+	public AnimationHelper.HoldTypes GetHoldType()
 	{
 		return HoldType;
 	}
@@ -159,39 +158,22 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		ClearViewModel();
 		UpdateRenderMode();
 
-		// Create the equipment prefab and put it on the equipment gameobject.
-		var viewModelGameObject = ViewmodelPrefab.Clone(new CloneConfig()
+		var ViewmodelGameObject = ViewmodelPrefab.Clone(new CloneConfig()
 		{
 			Transform = new(),
 			Parent = Owner.Camera.GameObject,
 			StartEnabled = true,
 		});
 
-		var ViewModelComponent = viewModelGameObject.Components.Get<ViewModel>();
+		var ViewModelComponent = ViewmodelGameObject.Components.Get<ViewModel>();
+		if (ViewModelComponent == null)
+		{
+			Log.Warning($"viewmodel component not valid after spawning viewmodel for {Owner}");
+			return;
+		}
+
 		ViewModelComponent.PlayDeployEffects = playDeployEffects;
-
-		// equipment needs to know about the ViewModel
 		ViewModel = ViewModelComponent;
-
-		viewModelGameObject.BreakFromPrefab();
-
-		if (!playDeployEffects)
-		{
-			return;
-		}
-
-		if (DeploySound is null)
-		{
-			return;
-		}
-
-		var Sound = Sandbox.Sound.Play(DeploySound, WorldPosition);
-		if (!Sound.IsValid())
-		{
-			return;
-		}
-
-		Sound.ListenLocal = !IsProxy;
 	}
 
 	protected override void OnStart()
@@ -210,7 +192,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 
 	bool HasCreatedViewModel { get; set; } = false;
 
-	protected virtual void OnDeployed()
+	private void OnDeployed()
 	{
 		// SOMETIMES OWNER ISN'T VALID WHEN WE GET HERE & THAT ISNT GOOD
 
@@ -237,7 +219,7 @@ public partial class Equipment : Component, Component.INetworkListener, IEquipme
 		GameObject.Root.Dispatch(new EquipmentDeployedEvent(this));
 	}
 
-	protected virtual void OnHolstered()
+	private void OnHolstered()
 	{
 		UpdateRenderMode();
 		ClearViewModel();

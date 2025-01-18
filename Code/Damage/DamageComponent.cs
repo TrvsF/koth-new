@@ -60,11 +60,6 @@ public sealed class DamageComponent : Component
 	{
 		Assert.True(Networking.IsHost);
 
-		Log.Info($"setting hp to {MaxBaseHealthIn}");
-
-		// NOTE : this doesn't seem to work for clients??
-		// the new syncs are werid..
-
 		MaxBaseHealth = MaxBaseHealthIn;
 		Health = MaxBaseHealthIn;
 	}
@@ -90,8 +85,6 @@ public sealed class DamageComponent : Component
 	public void TakeDamage(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
-
-		Log.Info(Health);
 
 		Health -= DamageTaken.Damage;
 		BroadcastDamage(DamageTaken);

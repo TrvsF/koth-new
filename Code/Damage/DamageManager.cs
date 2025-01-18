@@ -173,7 +173,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
 
-		Log.Info($"{Damage} damage has been taken {AttackerPlayerPawn?.DisplayName} -> {TargetPlayerPawn.DisplayName}");
+		Log.Info($"{Damage} damage has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health} -> {TargetPlayerPawn.DisplayName}:{TargetPlayerPawn.Health}");
 
 
 		// ---------------------- stats

@@ -5,13 +5,17 @@
 @if ( !Player.IsValid() )
     return;
 
+@if ( !Player.CurrentEquipment.IsValid() )
+    return;
+
 <root>
-    <label class="hp" style="color: @(Color.Lerp(Color.Red, Color.White, Player.Health / Player.MaxHealth).Hex);">@(Player.DamageComponent.GetHealthString() ?? "∞")</label>
+    <label class="ammo">@(Player.CurrentEquipment.GetAmmoString())</label>
 </root>
 
 @code
 {
     public PlayerPawn Player => PlayerState.Local.PlayerPawn;
+    public InputWeaponComponent WeaponComponent;
 
     protected override int BuildHash()
     {
