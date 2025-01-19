@@ -27,7 +27,7 @@ public partial class PlayerState : Component
 	public Color PlayerColor => PlayerColors.Instance?.GetColor(this) ?? Team.GetColor(false);
 
 	[RequireComponent] public PlayerId PlayerId { get; private set; }
-	[RequireComponent] public LocalStats LocalStatsSnapshot { get; private set; }
+	[RequireComponent] public MedicPlayer LocalStatsSnapshot { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 

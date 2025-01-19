@@ -1,6 +1,9 @@
 {
   "CharacterName": "Alan",
   "Description": "detonate your primary weapon\u0027s stickies using mouse2; lock out areas of the map \u0026 cause massive damage!",
+  "SpecificComponents": [
+    "KOTH.MedicPlayer"
+  ],
   "MaxHealth": 150,
   "WeightFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/stickylauncher/stickylauncher.equip",
@@ -17,6 +20,5 @@
   "MaxAcceleration": 16,
   "AirMaxAcceleration": 64,
   "__references": [],
-  "IsValid": true,
   "__version": 0
 }

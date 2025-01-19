@@ -20,7 +20,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	[Property] public GameObject ImpactPrefab { get; set; }
 	[Property] public GameObject ImpactPlayerPrefab { get; set; }
 
-	[HostSync] public PlayerPawn OwnerPlayerPawn { get; set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPlayerPawn { get; set; }
 
 	////////////////////////////////////////////////////////////////////////
 

@@ -80,6 +80,14 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
 		Assert.True(SetMovementVariables(CharacterDefinition));
+		foreach (Type ComponentT in CharacterDefinition.SpecificComponents)
+		{
+			if (ComponentT.IsSubclassOf(typeof(Component)))
+			{
+				GameObject.AddComponent<EngiePlayer>();
+			}
+		}
+
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
 
@@ -93,7 +101,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			// HACK : turns back on rendering if the host disabled it globally for themself
 			Body.Renderer.Enabled = true;
-			
+
 		}
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)

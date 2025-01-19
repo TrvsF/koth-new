@@ -25,8 +25,9 @@ public sealed partial class PlayerPawn
 			EyeAngles += Input.AnalogLook;
 			EyeAngles = EyeAngles.WithPitch(EyeAngles.pitch.Clamp(-90, 90));
 
-			Camera.LocalPosition = Vector3.Zero.WithZ(IsCrouching ? -16 : 0);
+			// TODO : crouching
 			Camera.LocalRotation = Rotation.Identity;
+			Camera.LocalPosition = Vector3.Zero;
 
 			Boom.WorldRotation = EyeAngles.ToRotation();
 		}

@@ -40,6 +40,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 	[Property, Group("Hitscan")] public float FireRate { get; set; } = 0.2f;
+	[Property, Group("Hitscan")] public float BaseDamage { get; set; } = 100f;
+	[Property, Group("Hitscan")] public float KnockbackStrength { get; set; } = 100f;
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -61,44 +63,60 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 	protected virtual void Shoot()
 	{
-		var PlayerPawn = Equipment.Owner;
-		if (!PlayerPawn.IsValid())
+		var LocalPlayerPawn = Equipment.Owner;
+		if (!LocalPlayerPawn.IsValid())
 		{
 			return;
 		}
 
-		Log.Info("shoot");
+		Log.Info("BANG");
 
 		TimeSinceShot = 0;
 		Ammo--;
 
-		var AimForward = PlayerPawn.AimRay.Forward;
-
 		foreach (var TraceElement in GetShootTraceElements())
 		{
 			if (!TraceElement.Hit)
+			{ 
 				continue;
-
-			if (TraceElement.Distance == 0)
-				continue;
-
-			if (TraceElement.GameObject?.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } player)
-			{
-				Log.Info("HIT PLAYER");
 			}
 
-			// TODO
-			// var damage = CalculateDamageFalloff(BaseDamage, tr.Distance);
-			// damage = damage.CeilToInt();
+			// HACK
+			if (!TraceElement.Tags.Contains("player_collider"))
+			{
+				return;
+			}
+
+			if (TraceElement.GameObject.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } HitPlayerPawn)
+			{
+				if (!Network.IsOwner)
+				{
+					return;
+				}
+
+				FDamageRequest DamageRequest = new()
+				{
+					TargetPlayerPawn = HitPlayerPawn,
+					AttackerPlayerPawn = LocalPlayerPawn,
+					DamageOrigin = TraceElement.HitPosition,
+					BaseDamage = BaseDamage,
+					BaseKnockbackStrength = KnockbackStrength,
+					DamageType = EDamageType.HitScan,
+					DamageFalloffType = EDamageFalloffType.Falloff,
+					DoesLessSelfDamage = true,
+					MaxFalloffDistance = 5000,
+				};
+
+				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+			}
 		}
 	}
 
 	protected TimeSince TimeSinceShot = new();
 	protected virtual bool CanShoot()
 	{
-		// these 2 should be ensures?
-		if (!Equipment.IsValid()) return false;
-		if (!Equipment.Owner.IsValid()) return false;
+		Assert.IsValid(Equipment);
+		Assert.IsValid(Equipment.Owner);
 
 		if (IsReloading && Ammo > 0)
 		{
@@ -138,7 +156,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * 9999f) // magic
 		   .UseHitboxes()
 		   .IgnoreGameObjectHierarchy(GameObject.Root)
-		   .WithoutTags("trigger", "playerclip", "movement")
+		   .WithoutTags("trigger", "self")
 		   .Size(Vector3.One)
 		   .RunAll();
 

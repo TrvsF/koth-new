@@ -9,6 +9,10 @@ public partial class CharacterDefinition : GameResource
 	[Category("Character")] public string Description { get; set; } = "suck my nutt";
 
 	//////////////////////////////////////////////////////////////////////////
+	
+	[Category("Code")] public List<Type> SpecificComponents { get; set; }
+	
+	//////////////////////////////////////////////////////////////////////////
 
 	[Category("Damage")] public float MaxHealth { get; set; } = 100f;
 	[Category("Damage")] public float WeightFactor { get; set; } = 1f;
