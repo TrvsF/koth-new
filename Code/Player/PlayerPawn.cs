@@ -80,13 +80,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
 		Assert.True(SetMovementVariables(CharacterDefinition));
-		foreach (Type ComponentT in CharacterDefinition.SpecificComponents)
-		{
-			if (ComponentT.IsSubclassOf(typeof(Component)))
-			{
-				GameObject.AddComponent<EngiePlayer>();
-			}
-		}
+		//foreach (Type ComponentT in CharacterDefinition.SpecificComponents)
+		//{
+		//	if (ComponentT.IsSubclassOf(typeof(Component)))
+		//	{
+		//		GameObject.AddComponent<EngiePlayer>();
+		//	}
+		//}
 
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;

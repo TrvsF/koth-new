@@ -20,6 +20,8 @@ public sealed partial class PlayerPawn
 
 	private void CameraTick()
 	{
+		Assert.IsValid(Camera);
+
 		if (IsAlive)
 		{
 			EyeAngles += Input.AnalogLook;
