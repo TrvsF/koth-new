@@ -10,7 +10,7 @@ namespace KOTH;
 
 public static class ShootHelper
 {
-	public static List<String> IgnoreTags { get; private set; } = [""];
+	// public static List<String> IgnoreTags { get; private set; } = [""];
 
 	public static IEnumerable<SceneTraceResult> GetShootTraceElements(SceneTrace SceneTrace, GameObject OriginObject, Vector3 OriginPoint, Vector3 TargetPoint, DebugOverlaySystem DebugOverlay = null)
 	{
@@ -19,7 +19,7 @@ public static class ShootHelper
 		var TraceResults = SceneTrace.Ray(OriginPoint, TargetPoint) // magic
 			.UseHitboxes()
 			.IgnoreGameObjectHierarchy(OriginObject.Root)
-			.WithoutTags([.. IgnoreTags])
+			// .WithoutTags([.. IgnoreTags])
 			.Size(Vector3.One)
 			.RunAll();
 
@@ -75,7 +75,7 @@ public static class ShootHelper
 		foreach (var Element in Entries)
 		{
 			Thickness += Element.Thickness;
-			if (Thickness >= 10)
+			if (Thickness >= 100)
 				break;
 
 			ShotHits.Add(Element.Trace);
@@ -134,7 +134,7 @@ public sealed class TurretComponent : Component
 					TargetPlayerPawn = HitPlayerPawn,
 					// AttackerPlayerPawn = LocalPlayerPawn,
 					DamageOrigin = TraceElement.HitPosition,
-					BaseDamage = 0,
+					BaseDamage = 1,
 					BaseKnockbackStrength = 500,
 					DamageType = EDamageType.HitScan,
 					DamageFalloffType = EDamageFalloffType.Falloff,

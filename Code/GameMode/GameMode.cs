@@ -14,6 +14,14 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 
 	/////////////////////////////////////////////////////////////
 
+	[RequireComponent] public DamageManager DamageManager { get; private set; }
+	[RequireComponent] public ClassList ClassList { get; private set; }
+	[RequireComponent] public Stats Stats { get; private set; }
+	[RequireComponent] public TeamAssigner TeamAssigner { get; private set; }
+	[RequireComponent] public BotSystem BotSystem { get; private set; }
+
+	/////////////////////////////////////////////////////////////
+
 	public static string ActivePath { get; private set; }
 
 	public static void SetCurrent(GameModeInfo gameMode)

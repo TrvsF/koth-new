@@ -6,11 +6,29 @@ namespace KOTH;
 
 public sealed class EngiePlayer : Component
 {
-	[Property] public GameObject TurretPrefab { get; private set; }
+	public TurretComponent ActiveTurretComponent { get; private set; }
+	public bool IsTurretInWorld { get => ActiveTurretComponent.IsValid(); }
 
-	////////////////////////////////////////////////////////////////////////
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
 
-	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPlayerPawn { get; set; }
+		if (IsProxy)
+		{
+/**/		return;
+		}
 
+		bool RequestBuilding = Input.Down("deploy");
+
+		if (RequestBuilding && !IsTurretInWorld)
+		{
+			Log.Info("deploy");
+
+			var Projectile = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition, Rotation.Identity);
+			ActiveTurretComponent = Projectile.Components.Get<TurretComponent>();
+
+			Projectile.NetworkSpawn();
+		}
+	}
 
 }

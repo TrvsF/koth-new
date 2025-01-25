@@ -10,7 +10,7 @@ public partial class CharacterDefinition : GameResource
 
 	//////////////////////////////////////////////////////////////////////////
 	
-	[Category("Code")] public List<Type> SpecificComponents { get; set; }
+	[Category("Class")] public List<Type> SpecificComponents { get; set; }
 	
 	//////////////////////////////////////////////////////////////////////////
 

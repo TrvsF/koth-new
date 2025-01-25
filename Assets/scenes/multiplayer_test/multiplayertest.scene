@@ -90,14 +90,19 @@
           "ClassDefinitions": [
             "prefabs/classes/alan.chardef",
             "prefabs/classes/alex.chardef",
-            "prefabs/classes/donny.chardef"
+            "prefabs/classes/donny.chardef",
+            "prefabs/classes/dimitri.chardef"
           ],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "TurretPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/buildings/turret/turret.prefab"
+          }
         },
         {
           "__type": "KOTH.Stats",
@@ -1417,7 +1422,7 @@
       "Flags": 0,
       "Name": "turret",
       "Position": "47.99999,496,160",
-      "Enabled": true,
+      "Tags": "turret",
       "__Prefab": "prefabs/buildings/turret/turret.prefab",
       "__PrefabVariables": {}
     }

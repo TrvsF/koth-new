@@ -74,7 +74,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		TimeSinceShot = 0;
 		Ammo--;
 
-		foreach (var TraceElement in GetShootTraceElements())
+		var TraceStart = WeaponRay.Position;
+		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
+		var TraceForward = StartRotation.Forward.Normal;
+
+		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, WeaponRay.Position + TraceForward * 9999f, DebugOverlay);
+		foreach (var TraceElement in ShotTraces)
 		{
 			if (!TraceElement.Hit)
 			{ 
@@ -141,78 +146,4 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	//////////////////////////////////////////////////////////////
 
 	protected Ray WeaponRay => Equipment.Owner.AimRay;
-
-	protected virtual IEnumerable<SceneTraceResult> GetShootTraceElements()
-	{
-		var ShotHits = new List<SceneTraceResult>();
-
-		var TraceStart = WeaponRay.Position;
-		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
-		var TraceForward = StartRotation.Forward.Normal;
-
-		// forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * (Equipment.Owner.Spread) * 0.25f;
-		// forward = forward.Normal;
-
-		var TraceResults = Scene.Trace.Ray(TraceStart, WeaponRay.Position + TraceForward * 9999f) // magic
-		   .UseHitboxes()
-		   .IgnoreGameObjectHierarchy(GameObject.Root)
-		   .WithoutTags("trigger", "self")
-		   .Size(Vector3.One)
-		   .RunAll();
-
-		if (!TraceResults.Any()) return TraceResults;
-
-		// Run through and fix the start positions for the traces
-		// By using the last end position as the start
-
-		int depth = 0;
-		Vector3 startPos = TraceResults.ElementAt(0).StartPosition;
-		List<SceneTraceResult> fixedPath = new();
-		for (int i = 0; i < TraceResults.Count(); i++)
-		{
-			var el = TraceResults.ElementAt(i);
-
-			fixedPath.Add(el with { StartPosition = startPos });
-			startPos = el.EndPosition;
-		}
-
-		var entries = new List<(SceneTraceResult Trace, float Thickness)>();
-
-		// Then, trace backwards from the end so we can get exit points and thickness
-		for (int i = fixedPath.Count - 1; i >= 0; i--)
-		{
-			var TraceElement = fixedPath.ElementAt(i);
-
-			// Do a trace back, from the end position to the start, this'll give us the LAST entry's exit point.
-			var backTrace = Scene.Trace.Ray(TraceElement.EndPosition, TraceElement.StartPosition)
-			.UseHitboxes()
-			.IgnoreGameObjectHierarchy(GameObject.Root)
-			.WithoutTags("trigger", "playerclip", "movement")
-			.Size(Vector3.One)
-			.Run();
-			var impact = backTrace.EndPosition;
-
-			// From that, we can calculate the surface thickness
-			float thickness = (TraceElement.StartPosition - impact).Length;
-
-			// Return the element starting at the exit point, it's more useful that way.
-			TraceElement = TraceElement with { StartPosition = impact };
-			entries.Insert(0, (TraceElement, thickness));
-		}
-
-		depth = 0;
-		float accThickness = 0;
-		foreach (var el in entries)
-		{
-			accThickness += el.Thickness;
-			if (accThickness >= 100)
-				break;
-
-			ShotHits.Add(el.Trace);
-			// DrawLineSegment( el.Trace.StartPosition, el.Trace.EndPosition, depth, fixedPath.Count() );
-			depth++;
-		}
-
-		return ShotHits;
-	}
 }

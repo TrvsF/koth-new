@@ -95,7 +95,7 @@
       },
       {
         "__type": "KOTH.TurretComponent",
-        "__guid": "b83f37ad-3440-47d0-b2d7-a0d92bbd31de",
+        "__guid": "ba259a58-950e-4166-ac62-830fc1e0d97d",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

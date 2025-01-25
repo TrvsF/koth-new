@@ -1,6 +1,9 @@
 {
   "CharacterName": "Alexandra",
   "Description": "heal your teammates using the hose or fire projectiles at them with your needler",
+  "SpecificComponents": [
+    "KOTH.MedicPlayer"
+  ],
   "MaxHealth": 125,
   "WeightFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/mp5/mp5.equip",

@@ -1,12 +1,14 @@
 {
-  "CharacterName": "Alan",
-  "Description": "detonate your primary weapon\u0027s stickies using mouse2; lock out areas of the map \u0026 cause massive damage!",
-  "SpecificComponents": [],
-  "MaxHealth": 150,
+  "CharacterName": "Dimitri",
+  "Description": "\u041A\u043E\u0433\u0434\u0430-\u0442\u043E \u0442\u044B \u0431\u044B\u043B \u0431\u0438\u0442\u043D\u0438\u043A\u043E\u043C",
+  "SpecificComponents": [
+    "KOTH.EngiePlayer"
+  ],
+  "MaxHealth": 130,
   "WeightFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/stickylauncher/stickylauncher.equip",
   "SecondaryWeapon": "prefabs/weapons/grenadelauncher/grenadelauncher.equip",
-  "WalkSpeed": 250,
+  "WalkSpeed": 280,
   "WalkFriction": 5.5,
   "CrouchingFriction": 7,
   "JumpPower": 320,
