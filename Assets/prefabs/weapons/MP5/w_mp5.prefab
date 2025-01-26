@@ -46,6 +46,31 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.HitscanWeaponComponent",
+        "__guid": "4c2b8be7-aaf9-495a-8ef4-788c8678a404",
+        "Ammo": 0,
+        "BaseDamage": 100,
+        "FireRate": 0.2,
+        "FireType": "Continuous",
+        "HasAmmo": false,
+        "InputActions": [
+          "Attack1"
+        ],
+        "KnockbackStrength": 100,
+        "MaxAmmo": 30,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnInputAction": null,
+        "ReloadTime": 1,
+        "ReloadType": "Mag",
+        "ReloadWhileNotActive": false,
+        "RequiresAllInputActions": false
       }
     ],
     "Children": [
@@ -113,39 +138,6 @@
             "Scale": "1.153846,1.153846,1.153846",
             "Tags": "particles",
             "Enabled": true
-          }
-        ]
-      },
-      {
-        "__guid": "634fbee8-5495-4fe2-bf7d-d7ab75d22c66",
-        "Flags": 0,
-        "Name": "Functions",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "KOTH.HitscanWeaponComponent",
-            "__guid": "9660fe75-2bba-4370-b183-c782a3ab5188",
-            "Ammo": 0,
-            "FireRate": 0.2,
-            "FireType": "Continuous",
-            "HasAmmo": false,
-            "InputActions": [
-              "Attack1"
-            ],
-            "MaxAmmo": 30,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnInputAction": null,
-            "ProjectileHorizontalSpeed": 600,
-            "ProjectileVerticalSpeed": 0,
-            "ReloadTime": 1,
-            "ReloadType": "Mag",
-            "ReloadWhileNotActive": false,
-            "RequiresAllInputActions": false
           }
         ]
       }

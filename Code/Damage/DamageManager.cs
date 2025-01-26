@@ -7,7 +7,6 @@ using static Sandbox.PhysicsContact;
 
 namespace KOTH;
 
-// TODO : why is this a singleton? what is a singleton in this sense? <- is it the rpcs?
 // TODO : rename health manager
 public sealed class DamageManager : SingletonComponent<DamageManager>,
 	IGameEventHandler<DamageRequestEvent>,
@@ -20,6 +19,8 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 	const float SelfDamageMultiplyer = 0.2f;
 	const float PlayerDistanceFalloffMaxBound = 1600;
+
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	public void OnGameEvent(HealingRequestEvent EventArgs)
 	{
@@ -55,6 +56,8 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		// tell server to do damage from request
 		ServerInflictDamageToPlayer(DamageRequest);
 	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	const float MaxKB = 1200f;
 	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightFactor, bool IsCrouching)

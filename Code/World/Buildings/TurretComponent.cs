@@ -98,10 +98,7 @@ public sealed class TurretComponent : Component
 
 	protected override void OnFixedUpdate()
 	{
-		if (!Networking.IsHost)
-		{
-			return;
-		}
+
 
 		ShootTargetPlayerPawn();
 	}
@@ -111,7 +108,7 @@ public sealed class TurretComponent : Component
 		var TargetPlayerPawn = GetTargetPlayerPawn();
 		if (TargetPlayerPawn == null)
 		{
-/**/		return false;
+			return false;
 		}
 
 		var TargetPosition = TargetPlayerPawn.CenterPosition;
@@ -129,22 +126,25 @@ public sealed class TurretComponent : Component
 
 			if (TraceElement.GameObject.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } HitPlayerPawn)
 			{
-				FDamageRequest DamageRequest = new()
+				if (Networking.IsHost)
 				{
-					TargetPlayerPawn = HitPlayerPawn,
-					// AttackerPlayerPawn = LocalPlayerPawn,
-					DamageOrigin = TraceElement.HitPosition,
-					BaseDamage = 1,
-					BaseKnockbackStrength = 500,
-					DamageType = EDamageType.HitScan,
-					DamageFalloffType = EDamageFalloffType.Falloff,
-					DoesLessSelfDamage = true,
-					MaxFalloffDistance = 5000,
-				};
+					FDamageRequest DamageRequest = new()
+					{
+						TargetPlayerPawn = HitPlayerPawn,
+						// AttackerPlayerPawn = LocalPlayerPawn,
+						DamageOrigin = TraceElement.HitPosition,
+						BaseDamage = 1,
+						BaseKnockbackStrength = 500,
+						DamageType = EDamageType.HitScan,
+						DamageFalloffType = EDamageFalloffType.Falloff,
+						DoesLessSelfDamage = true,
+						MaxFalloffDistance = 5000,
+					};
 
-				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+					Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+				}
 
-/**/			return true;
+				return true;
 			}
 		}
 

@@ -35,10 +35,7 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "Resource": "prefabs/weapons/rktlauncher/rktlauncher.equip",
-        "SpeedPenalty": 40,
-        "UseCrosshair": true
+        "OnComponentUpdate": null
       },
       {
         "__type": "KOTH.TagBinder",
@@ -49,6 +46,34 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.ProjectileWeaponComponent",
+        "__guid": "33efd8ff-6449-459e-9095-9ff2b0e4cebb",
+        "Ammo": 4,
+        "FireRate": 0.8,
+        "HasAmmo": true,
+        "InputActions": [
+          "Attack1"
+        ],
+        "MaxAmmo": 4,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnInputAction": null,
+        "ProjectileHorizontalSpeed": 1200,
+        "ProjectilePrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/weapons/rktlauncher/p_rkt.prefab"
+        },
+        "ProjectileVerticalSpeed": 0,
+        "ReloadTime": 1,
+        "ReloadType": "Single",
+        "ReloadWhileNotActive": false,
+        "RequiresAllInputActions": false
       }
     ],
     "Children": [
@@ -113,42 +138,6 @@
             "Name": "EjectionPort",
             "Position": "1.774985,-0.4210945,7.672482",
             "Enabled": true
-          }
-        ]
-      },
-      {
-        "__guid": "8f9b0f89-d493-4656-be19-e23bb64f2cea",
-        "Flags": 0,
-        "Name": "Functions",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "KOTH.ProjectileWeaponComponent",
-            "__guid": "46febf9d-7f42-43b8-8c31-40461db28072",
-            "Ammo": 4,
-            "FireRate": 0.8,
-            "HasAmmo": true,
-            "InputActions": [
-              "Attack1"
-            ],
-            "MaxAmmo": 4,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnInputAction": null,
-            "ProjectileHorizontalSpeed": 1200,
-            "ProjectilePrefab": {
-              "_type": "gameobject",
-              "prefab": "prefabs/weapons/rktlauncher/p_rkt.prefab"
-            },
-            "ProjectileVerticalSpeed": 0,
-            "ReloadTime": 1,
-            "ReloadType": "None",
-            "ReloadWhileNotActive": false,
-            "RequiresAllInputActions": false
           }
         ]
       }

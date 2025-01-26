@@ -35,14 +35,50 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "Resource": "prefabs/weapons/stickylauncher/stickylauncher.equip",
-        "SpeedPenalty": 40,
-        "UseCrosshair": true
+        "OnComponentUpdate": null
       },
       {
         "__type": "KOTH.TagBinder",
         "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.StickyWeaponComponent",
+        "__guid": "41b5e062-e995-403c-b35e-1712558fdf7e",
+        "Ammo": 6,
+        "FireRate": 0.66,
+        "HasAmmo": true,
+        "InputActions": [
+          "Attack1"
+        ],
+        "MaxAmmo": 6,
+        "MaxChargeTime": 1.6,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnInputAction": null,
+        "ProjectileHorizontalSpeed": 720,
+        "ProjectilePrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
+        },
+        "ProjectileVerticalSpeed": 160,
+        "ReloadTime": 1,
+        "ReloadType": "Single",
+        "ReloadWhileNotActive": false,
+        "RequiresAllInputActions": false
+      },
+      {
+        "__type": "KOTH.StickyTrackerComponent",
+        "__guid": "306d74ae-e94f-4b1f-ab39-4bc6da629282",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -113,53 +149,6 @@
             "Name": "EjectionPort",
             "Position": "1.774985,-0.4210945,7.672482",
             "Enabled": true
-          }
-        ]
-      },
-      {
-        "__guid": "8f9b0f89-d493-4656-be19-e23bb64f2cea",
-        "Flags": 0,
-        "Name": "Functions",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "KOTH.StickyTrackerComponent",
-            "__guid": "096d1acc-b365-40a3-ba12-3709e248bdf8",
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null
-          },
-          {
-            "__type": "KOTH.StickyWeaponComponent",
-            "__guid": "0cd0d38f-af07-490f-abe7-d2e9d19641ef",
-            "Ammo": 6,
-            "FireRate": 0.66,
-            "HasAmmo": true,
-            "InputActions": [
-              "Attack1"
-            ],
-            "MaxAmmo": 6,
-            "MaxChargeTime": 1.6,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnInputAction": null,
-            "ProjectileHorizontalSpeed": 720,
-            "ProjectilePrefab": {
-              "_type": "gameobject",
-              "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
-            },
-            "ProjectileVerticalSpeed": 160,
-            "ReloadTime": 1,
-            "ReloadType": "Single",
-            "ReloadWhileNotActive": false,
-            "RequiresAllInputActions": false
           }
         ]
       }
