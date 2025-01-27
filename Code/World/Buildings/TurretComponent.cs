@@ -1,10 +1,9 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.VR;
 using System;
 using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using static Sandbox.PhysicsContact;
 
 namespace KOTH;
 
@@ -88,22 +87,72 @@ public static class ShootHelper
 
 public sealed class TurretComponent : Component
 {
-	[Property] public GameObject TurretMuzzleObject { get; private set; }
+	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
+
+	public bool SetFromWeaponGameObject(GameObject WeaponObject)
+	{
+		// TODO : check ownership!
+
+		if (!WeaponObject.IsValid())
+		{
+			return false;
+		}
+
+		var WeaponComponent = WeaponObject.GetComponent<InputWeaponComponent>();
+		if (!WeaponComponent.IsValid())
+		{
+			return false;
+		}
+
+		var IsDataLoaded = LoadDataFromInputWeaponComponent(WeaponComponent);
+
+		if (IsDataLoaded)
+		{
+			EquippedWeaponGameObject = WeaponObject;
+			return true;
+		}
+
+		return false;
+	}
+
+	private bool LoadDataFromInputWeaponComponent(InputWeaponComponent InputWeaponComponent)
+	{
+		if (!InputWeaponComponent.IsValid())
+		{
+			return false;
+		}
+
+		// TODO : check ownership!
+
+		Damage = InputWeaponComponent.BaseDamage;
+		Firerate = InputWeaponComponent.FireRate;
+		KnockbackStrength = InputWeaponComponent.KnockbackStrength;
+
+		return true;
+	}
+
+	[Property] public float Damage { get; private set; } = 1f;
+	[Property] public float KnockbackStrength { get; private set; } = 1f;
+	[Property] public float Firerate { get; private set; } = 1f;
+	[Property] public GameObject TurretMuzzleObject { get; private set; } = null;
 
 	////////////////////////////////////////////////////////////////////////
 
-	public PlayerPawn OwnerPawn { get; private set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnFixedUpdate()
 	{
+		if (Networking.IsHost)
+		{
+			GetTargetPlayerPawn();
+		}
 
-
-		ShootTargetPlayerPawn();
+		ShootTargetIfExists();
 	}
 
-	private bool ShootTargetPlayerPawn()
+	private bool ShootTargetIfExists()
 	{
 		var TargetPlayerPawn = GetTargetPlayerPawn();
 		if (TargetPlayerPawn == null)
@@ -116,6 +165,24 @@ public sealed class TurretComponent : Component
 		var TargetForwardVector = TurretMuzzleObject.WorldPosition - TargetPosition;
 		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TargetForwardVector);
 
+		FireShot(TargetPosition);
+
+		return false;
+	}
+
+	private TimeSince TimeSinceShot = new();
+	private void FireShot(Vector3 TargetPosition)
+	{
+		if (!Networking.IsHost)
+		{
+			return;
+		}
+
+		if (TimeSinceShot < Firerate)
+		{
+			return;
+		}
+
 		var Shots = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TurretMuzzleObject.WorldPosition, TargetPosition, DebugOverlay);
 		foreach (var TraceElement in Shots)
 		{
@@ -126,33 +193,35 @@ public sealed class TurretComponent : Component
 
 			if (TraceElement.GameObject.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } HitPlayerPawn)
 			{
-				if (Networking.IsHost)
+				FDamageRequest DamageRequest = new()
 				{
-					FDamageRequest DamageRequest = new()
-					{
-						TargetPlayerPawn = HitPlayerPawn,
-						// AttackerPlayerPawn = LocalPlayerPawn,
-						DamageOrigin = TraceElement.HitPosition,
-						BaseDamage = 1,
-						BaseKnockbackStrength = 500,
-						DamageType = EDamageType.HitScan,
-						DamageFalloffType = EDamageFalloffType.Falloff,
-						DoesLessSelfDamage = true,
-						MaxFalloffDistance = 5000,
-					};
+					TargetPlayerPawn = HitPlayerPawn,
+					// AttackerPlayerPawn = LocalPlayerPawn,
+					DamageOrigin = TraceElement.HitPosition,
+					BaseDamage = Damage,
+					BaseKnockbackStrength = KnockbackStrength,
+					DamageType = EDamageType.HitScan,
+					DamageFalloffType = EDamageFalloffType.Falloff,
+					DoesLessSelfDamage = true,
+					MaxFalloffDistance = 5000,
+				};
 
-					Scene.Dispatch(new DamageRequestEvent(DamageRequest));
-				}
-
-				return true;
+				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 		}
 
-		return false;
+		TimeSinceShot = 0;
 	}
 
 	private PlayerPawn GetTargetPlayerPawn()
 	{
-		return PlayerState.Local.PlayerPawn;
+		var Player = PlayerState.Local.PlayerPawn;
+		if (!Player.IsValid())
+		{
+			return null;
+		}
+
+		var Distance = Math.Abs((Player.WorldPosition - GameObject.WorldPosition).Length);
+		return Distance < 256 ? Player : null;
 	}
 }

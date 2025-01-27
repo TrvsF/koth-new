@@ -24,19 +24,50 @@ public sealed class EngiePlayer : Component
 
 		if (IsProxy)
 		{
-/**/		return;
+			return;
 		}
+
+		// TODO : make methods
+
+		///////////////////////////////////////////////////
 
 		bool RequestBuilding = Input.Down("deploy");
 
 		if (RequestBuilding && !IsTurretInWorld)
 		{
-			Log.Info("deploy");
-
 			var Projectile = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition + (OwnerPawn.AimRay.Forward * 128), Rotation.Identity);
 			ActiveTurretComponent = Projectile.Components.Get<TurretComponent>();
 
-			Projectile.NetworkSpawn();
+			// can this be Connection.Local rather than PlayerState.Local.Connection ?
+			Projectile.NetworkSpawn(true, PlayerState.Local.Connection);
+		}
+
+		//////////////////////////////////////////////////
+
+		bool RequestWeaponEquip = Input.Down("attack2");
+
+		if (RequestWeaponEquip)
+		{
+			var TraceResults = Scene.Trace.Ray(OwnerPawn.CenterPosition, OwnerPawn.CenterPosition + (OwnerPawn.AimRay.Forward * 256f)) // magic
+			.UseHitboxes()
+			.IgnoreGameObjectHierarchy(OwnerPawn.GameObject.Root)
+			.Size(Vector3.One)
+			.RunAll();
+
+			foreach (var TraceElement in TraceResults)
+			{
+				if (!TraceElement.Hit)
+				{
+					continue;
+				}
+
+				if (TraceElement.GameObject.Root.Components.Get<TurretComponent>(FindMode.EnabledInSelfAndDescendants) is { } HitTurret)
+				{
+					HitTurret.SetFromWeaponGameObject(OwnerPawn.Inventory.CurrentWeaponGameObject);
+					// unequip weapon
+					// cooldown etc
+				}
+			}
 		}
 	}
 

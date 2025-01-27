@@ -109,6 +109,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 
 		if (!IsInitialHit)
 		{
+			Log.Warning($"Projectile {this} hit twice");
 			return;
 		}
 
@@ -116,6 +117,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 
 		if (ContactPoint == Vector3.Zero)
 		{
+			Log.Warning($"Projectile {this} has mising contact point");
 			return;
 		}
 

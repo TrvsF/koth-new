@@ -39,10 +39,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		}
 	}
 
-	[Property, Group("Hitscan")] public float FireRate { get; set; } = 0.2f;
-	[Property, Group("Hitscan")] public float BaseDamage { get; set; } = 100f;
-	[Property, Group("Hitscan")] public float KnockbackStrength { get; set; } = 100f;
-
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnInputUpdate()

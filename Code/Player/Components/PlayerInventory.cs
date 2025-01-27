@@ -10,9 +10,10 @@ public partial class PlayerInventory : Component
 
 	public IEnumerable<Equipment> PlayerEquipment => Player.Components.GetAll<Equipment>(FindMode.EverythingInSelfAndDescendants);
 
-	[Property] public GameObject WeaponGameObject { get; set; }
+	[Property] public GameObject WeaponGameObject { get; set; } // weapon holder
 	[Property] public bool CanUnequipCurrentWeapon { get; set; } = false;
 
+	public GameObject CurrentWeaponGameObject { get => Current.GameObject; }
 	private Equipment Current => Player.CurrentEquipment;
 
 	public void Clear()

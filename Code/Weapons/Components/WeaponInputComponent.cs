@@ -2,15 +2,17 @@ using Sandbox.Events;
 
 namespace KOTH;
 
-public abstract class InputWeaponComponent : EquipmentComponent
+// Reload /////////////////////////////////////////////////////////////
+public abstract partial class InputWeaponComponent : EquipmentComponent
 {
-	[Property, Group("Reload")] public EReloadType ReloadType { get; set; } = EReloadType.None;
-	[Property, Group("Reload")] public bool ReloadWhileNotActive { get; set; } = false;
-	[Property, Group("Reload")] public float ReloadTime { get; set; } = 1.0f;
+	[Property, Group(".Reload")] public EReloadType ReloadType { get; set; } = EReloadType.None;
+	[Property, Group(".Reload")] public bool ReloadWhileNotActive { get; set; } = false;
+	[Property, Group(".Reload")] public float ReloadTime { get; set; } = 1.0f;
 	const float FirstTimeReloadFactor = 1.2f;
 
 	private bool _IsReloading;
-	[Sync] public bool IsReloading
+	[Sync]
+	public bool IsReloading
 	{
 		get => _IsReloading;
 		private set
@@ -167,20 +169,25 @@ public abstract class InputWeaponComponent : EquipmentComponent
 
 		GameObject?.PlaySound(snd);
 	}
+}
 
-	////////////////////////////////////////////////////////////////////////
-	
-	[Property, Group("Ammo"), Sync] public int Ammo { get; set; } = 0;
-	[Property, Group("Ammo")] public int MaxAmmo { get; set; } = 30;
-	[Property, Group("Ammo")] public bool HasAmmo => Ammo > 0;
 
-	public bool IsAmmoFull => Ammo == MaxAmmo;
+// damage /////////////////////////////////////////////////////////////
+// TODO : this is only setup for hitscan weapons!! need to set dmg on projectiles
+public abstract partial class InputWeaponComponent : EquipmentComponent
+{
+	[Property, Group(".Damage")] public float FireRate { get; set; } = 0.2f;
+	[Property, Group(".Damage")] public float BaseDamage { get; set; } = 100f;
+	[Property, Group(".Damage")] public float KnockbackStrength { get; set; } = 100f;
+}
 
-	////////////////////////////////////////////////////////////////////////
+// input //////////////////////////////////////////////////////////////
+public abstract partial class InputWeaponComponent : EquipmentComponent
+{
 
-	[Property, Category("Base")] public List<string> InputActions { get; set; } = new() { "Attack1" };
-	[Property, Category("Base")] public bool RequiresAllInputActions { get; set; }
-	[Property, Category("Base")] public Action<InputWeaponComponent> OnInputAction { get; set; }
+	[Property, Category(".Input")] public List<string> InputActions { get; set; } = new() { "Attack1" };
+	[Property, Category(".Input")] public bool RequiresAllInputActions { get; set; }
+	[Property, Category(".Input")] public Action<InputWeaponComponent> OnInputAction { get; set; }
 
 	bool isDown = false;
 
@@ -261,4 +268,14 @@ public abstract class InputWeaponComponent : EquipmentComponent
 			}
 		}
 	}
+}
+
+// ammo ///////////////////////////////////////////////////////////////
+public abstract partial class InputWeaponComponent : EquipmentComponent
+{
+	[Property, Group(".Ammo"), Sync] public int Ammo { get; set; } = 99;
+	[Property, Group(".Ammo")] public int MaxAmmo { get; set; } = 99;
+	[Property, Group(".Ammo")] public bool HasAmmo { get => Ammo > 0; }
+
+	public bool IsAmmoFull => Ammo == MaxAmmo;
 }
