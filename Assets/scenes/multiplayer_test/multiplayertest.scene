@@ -1417,15 +1417,6 @@
         }
       ],
       "Children": []
-    },
-    {
-      "__guid": "955ea7ed-fc63-4f3c-a756-b39856a2c648",
-      "Flags": 0,
-      "Name": "turret",
-      "Position": "47.99999,496,160",
-      "Tags": "turret",
-      "__Prefab": "prefabs/buildings/turret/turret.prefab",
-      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

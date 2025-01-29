@@ -130,25 +130,24 @@ public sealed class TurretComponent : Component
 
 		return true;
 	}
+	
+	////////////////////////////////////////////////////////////////////////
 
 	[Property] public float Damage { get; private set; } = 1f;
 	[Property] public float KnockbackStrength { get; private set; } = 1f;
 	[Property] public float Firerate { get; private set; } = 1f;
-	[Property] public GameObject TurretMuzzleObject { get; private set; } = null;
+	[Property] public float Range { get; private set; } = 256f;
+	[Property] public GameObject TurretMuzzleObject { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
 
 	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; private set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnFixedUpdate()
 	{
-		if (Networking.IsHost)
-		{
-			GetTargetPlayerPawn();
-		}
-
 		ShootTargetIfExists();
 	}
 
@@ -213,15 +212,62 @@ public sealed class TurretComponent : Component
 		TimeSinceShot = 0;
 	}
 
-	private PlayerPawn GetTargetPlayerPawn()
+	private bool IsPlayerPawnValidTarget(PlayerPawn PlayerPawn, out float OutDistance)
 	{
-		var Player = PlayerState.Local.PlayerPawn;
-		if (!Player.IsValid())
+		OutDistance = float.PositiveInfinity;
+
+		if (!PlayerPawn.IsValid() || !PlayerPawn.IsAlive)
 		{
-			return null;
+			return false;
 		}
 
-		var Distance = Math.Abs((Player.WorldPosition - GameObject.WorldPosition).Length);
-		return Distance < 256 ? Player : null;
+		var Distance = Math.Abs((PlayerPawn.WorldPosition - GameObject.WorldPosition).Length);
+		OutDistance = Distance;
+
+		if (Distance > Range)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	private PlayerPawn GetTargetPlayerPawn()
+	{
+		if (IsPlayerPawnValidTarget(TargetPawn, out _))
+		{
+			return TargetPawn;
+		}
+
+		PlayerPawn BestTarget = null;
+		float ShortestDistance = float.PositiveInfinity;
+
+	 	foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		{
+			if (!PlayerState.IsValid())
+			{
+				Log.Warning("player state not valid when finding turret target");
+				continue;
+			}
+
+			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive)
+			{
+				continue;
+			}
+
+			var Player = PlayerState.PlayerPawn;
+			if (IsPlayerPawnValidTarget(Player, out var Distance))
+			{
+				if (Distance > ShortestDistance)
+				{
+					continue;
+				}
+
+				ShortestDistance = Distance;
+				BestTarget = Player;
+			}
+		}
+
+		return BestTarget;
 	}
 }

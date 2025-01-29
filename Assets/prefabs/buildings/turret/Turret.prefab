@@ -5,7 +5,6 @@
     "Name": "turret",
     "Tags": "turret",
     "Enabled": true,
-    "NetworkMode": 1,
     "Components": [
       {
         "__type": "Sandbox.SkinnedModelRenderer",
@@ -96,12 +95,17 @@
       {
         "__type": "KOTH.TurretComponent",
         "__guid": "ba259a58-950e-4166-ac62-830fc1e0d97d",
+        "Damage": 1,
+        "EquippedWeaponGameObject": null,
+        "Firerate": 1,
+        "KnockbackStrength": 1,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "Range": 256,
         "TurretMuzzleObject": {
           "_type": "gameobject",
           "go": "f03fae92-9d30-4658-bf37-4791aa85d90c"
@@ -115,7 +119,6 @@
         "Name": "Muzzel",
         "Position": "0,0,24",
         "Enabled": true,
-        "NetworkMode": 1,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",

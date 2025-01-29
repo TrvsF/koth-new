@@ -231,6 +231,6 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 	{
 		ClearViewModel();
 
-		GameObject.Root.Dispatch(new EquipmentDestroyedEvent(this));
+		// GameObject.Root.Dispatch(new EquipmentDestroyedEvent(this));
 	}
 }
