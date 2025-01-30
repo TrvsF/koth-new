@@ -121,19 +121,30 @@
         "Enabled": true,
         "Components": [
           {
-            "__type": "Sandbox.ModelRenderer",
-            "__guid": "454c17be-5068-44f5-bb1a-c50389ed97ed",
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "e6411e1a-510a-4ab2-ac8b-0a805e4f7d6a",
+            "AnimationGraph": null,
             "BodyGroups": 18446744073709551615,
+            "BoneMergeTarget": null,
             "CreateAttachments": false,
+            "CreateBoneObjects": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Model": "models/3dmodelscc0/gunsexplosives/ak-47/ak47.vmdl",
+            "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -141,7 +152,11 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
           }
         ]
       }

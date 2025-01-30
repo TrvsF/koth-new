@@ -89,33 +89,46 @@ public sealed class TurretComponent : Component
 {
 	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
 
-	public bool SetFromWeaponGameObject(GameObject WeaponObject)
+	[Rpc.Broadcast(NetFlags.OwnerOnly)]
+	public void SetFromWeaponGameObject(GameObject WeaponObject)
 	{
-		// TODO : check ownership!
-
 		if (!WeaponObject.IsValid())
 		{
-			return false;
+			return;
 		}
 
 		var WeaponComponent = WeaponObject.GetComponent<InputWeaponComponent>();
 		if (!WeaponComponent.IsValid())
 		{
-			return false;
+			return;
 		}
 
-		var IsDataLoaded = LoadDataFromInputWeaponComponent(WeaponComponent);
+		Model WeaponModel = null;
+		Color WeaponTint = Color.Black;
+		// TODO : make work
+		// if (WeaponComponent.GameObject.Children.Any())
+		//{
+		//	var SkinnedModelRenderer = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>();
+		//	if (SkinnedModelRenderer.IsValid())
+		//	{
+
+		//		WeaponModel = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>().Model;
+		//		WeaponTint = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>().Tint;
+		//	}
+		//}
+
+		var IsDataLoaded = LoadDataFromInputWeaponComponent(WeaponComponent, WeaponModel, WeaponTint);
 
 		if (IsDataLoaded)
 		{
 			EquippedWeaponGameObject = WeaponObject;
-			return true;
+			return;
 		}
 
-		return false;
+		return;
 	}
 
-	private bool LoadDataFromInputWeaponComponent(InputWeaponComponent InputWeaponComponent)
+	private bool LoadDataFromInputWeaponComponent(InputWeaponComponent InputWeaponComponent, Model WeaponModel, Color WeaponTint)
 	{
 		if (!InputWeaponComponent.IsValid())
 		{
@@ -128,9 +141,16 @@ public sealed class TurretComponent : Component
 		Firerate = InputWeaponComponent.FireRate;
 		KnockbackStrength = InputWeaponComponent.KnockbackStrength;
 
+		var TurretModelRenderer = TurretMuzzleObject.GetComponent<ModelRenderer>();
+		if (TurretModelRenderer.IsValid() && WeaponModel.IsValid())
+		{
+			TurretModelRenderer.Model = WeaponModel;
+			TurretModelRenderer.Tint = WeaponTint;
+		}
+
 		return true;
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////
 
 	[Property] public float Damage { get; private set; } = 1f;
@@ -151,35 +171,37 @@ public sealed class TurretComponent : Component
 		ShootTargetIfExists();
 	}
 
-	private bool ShootTargetIfExists()
+	private void ShootTargetIfExists()
 	{
 		var TargetPlayerPawn = GetTargetPlayerPawn();
 		if (TargetPlayerPawn == null)
 		{
-			return false;
+			return;
 		}
 
 		var TargetPosition = TargetPlayerPawn.CenterPosition;
 
-		var TargetForwardVector = TurretMuzzleObject.WorldPosition - TargetPosition;
+		var HasFiredShot = FireShot(TargetPosition);
+		DoTurretFX(TurretMuzzleObject.WorldPosition - TargetPosition, HasFiredShot);
+	}
+
+	[Rpc.Broadcast(NetFlags.OwnerOnly)]
+	public void DoTurretFX(Vector3 TargetForwardVector, bool IsShooting)
+	{
 		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TargetForwardVector);
-
-		FireShot(TargetPosition);
-
-		return false;
 	}
 
 	private TimeSince TimeSinceShot = new();
-	private void FireShot(Vector3 TargetPosition)
+	private bool FireShot(Vector3 TargetPosition)
 	{
 		if (!Networking.IsHost)
 		{
-			return;
+			return false;
 		}
 
 		if (TimeSinceShot < Firerate)
 		{
-			return;
+			return false;
 		}
 
 		var Shots = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TurretMuzzleObject.WorldPosition, TargetPosition, DebugOverlay);
@@ -210,6 +232,7 @@ public sealed class TurretComponent : Component
 		}
 
 		TimeSinceShot = 0;
+		return true;
 	}
 
 	private bool IsPlayerPawnValidTarget(PlayerPawn PlayerPawn, out float OutDistance)
@@ -242,7 +265,7 @@ public sealed class TurretComponent : Component
 		PlayerPawn BestTarget = null;
 		float ShortestDistance = float.PositiveInfinity;
 
-	 	foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
 			if (!PlayerState.IsValid())
 			{

@@ -51,11 +51,13 @@
         "__type": "KOTH.ProjectileWeaponComponent",
         "__guid": "33efd8ff-6449-459e-9095-9ff2b0e4cebb",
         "Ammo": 4,
+        "BaseDamage": 100,
         "FireRate": 0.8,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
         ],
+        "KnockbackStrength": 100,
         "MaxAmmo": 4,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
