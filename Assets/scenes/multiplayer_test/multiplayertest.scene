@@ -179,9 +179,6 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "854b92d5-e054-4f97-b2c0-660b81094490",
-                  "OnEnterState": null,
-                  "OnLeaveState": null,
-                  "OnUpdateState": null,
                   "DefaultDuration": -1,
                   "DefaultNextState": null,
                   "OnComponentDestroy": null,
@@ -189,7 +186,10 @@
                   "OnComponentEnabled": null,
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
-                  "OnComponentUpdate": null
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
                 },
                 {
                   "__type": "KOTH.ShowStatusText",
@@ -1417,6 +1417,17 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "75cb1419-ae6a-4ca2-954d-16b3e514ab28",
+      "Flags": 0,
+      "Name": "cart",
+      "Position": "-16,208,128",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/payload/cart.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

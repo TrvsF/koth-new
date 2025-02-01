@@ -3,7 +3,7 @@
 /// A region of the map with some specific gameplay purpose.
 /// The extents of the zone are defined by <see cref="BoxCollider"/>s attached to this object.
 /// </summary>
-public sealed class Zone : Component
+public class Zone : Component
 {
 	[Property] public Color Color { get; set; } = Color.White;
 
