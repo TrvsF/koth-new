@@ -7,7 +7,7 @@ public sealed class PayloadCart : Component
 {
 	public CaptureZone CaptureZone { get => GameObject.GetComponentInChildren<CaptureZone>(); }
 
-	[Property] public float BaseSpeed { get; private set; } = .66f;
+	[Property] public float BaseSpeed { get; private set; } = 3.33f;
 
 	// TODO : hookup to teams
 

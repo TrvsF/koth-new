@@ -157,7 +157,7 @@ public sealed class TurretComponent : Component
 	[Property] public float KnockbackStrength { get; private set; } = 1f;
 	[Property] public float Firerate { get; private set; } = 1f;
 	[Property] public float Range { get; private set; } = 256f;
-	[Property] public GameObject TurretMuzzleObject { get; private set; }
+	[Property] public GameObject TurretMuzzleObject { get; set; }
 
 	////////////////////////////////////////////////////////////////////////
 

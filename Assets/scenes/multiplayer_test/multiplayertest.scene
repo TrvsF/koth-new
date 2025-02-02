@@ -1488,14 +1488,123 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefabs/map_shared/payload/cart.prefab",
-      "__PrefabVariables": {}
+      "Components": [
+        {
+          "__type": "KOTH.PayloadCart",
+          "__guid": "68911d6c-88a3-49b4-abf2-e00848b9a1ab",
+          "BaseSpeed": 3.33,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "4af8579c-8de8-47ad-ba54-be1601f4b43d",
+          "Center": "0,0,0",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "56,24,32",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "d788e3c3-341e-4662-8c20-534edae47c22",
+          "Flags": 0,
+          "Name": "capturezone",
+          "Position": "0,0,22.56093",
+          "Tags": "zone",
+          "Enabled": true,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "8f8dfced-622a-4220-9b09-af45425633e9",
+              "Center": "0,0,0",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "75.19995,47.89992,42.29996",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "KOTH.World.CaptureZone",
+              "__guid": "a687a95f-f863-4e5c-9116-a2147ed401ba",
+              "Color": "0.37741,0.56744,0.55477,1",
+              "DisplayName": null,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ]
+        },
+        {
+          "__guid": "55766830-e6c6-4c0f-b26b-4e5e7a838082",
+          "Flags": 0,
+          "Name": "model",
+          "Scale": "0.33,0.33,0.77",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "82c04f05-dc74-4b0e-af4e-08d7326381c4",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "pr/gta5_car_adder.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.18914,0.42791,0.18509,1"
+            }
+          ]
+        }
+      ]
     },
     {
       "__guid": "c5cb589b-900a-4365-803d-36acdc33a557",
       "Flags": 0,
       "Name": "cartpath",
-      "Position": "64,479.9999,130",
       "Enabled": true,
       "Components": [
         {
@@ -1512,8 +1621,9 @@
           "PathSegments": [
             {
               "SegmentPoints": [
-                "-115.7999,0,0",
-                "0,0,0"
+                "51.20006,252.8,150.6",
+                "51.20006,521.5992,150.6",
+                "277.0007,394.999,150.6"
               ]
             }
           ]
@@ -1549,6 +1659,8 @@
   "ResourceVersion": 2,
   "Title": "jump1",
   "Description": null,
-  "__references": [],
+  "__references": [
+    "twinsd.gta5caradder#84193"
+  ],
   "__version": 2
 }

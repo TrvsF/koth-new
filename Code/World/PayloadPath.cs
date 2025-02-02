@@ -18,6 +18,8 @@ public sealed class PayloadPath : Component
 	[Property] public Color NodeColour { get; set; } = Color.Green;
 	[Property] public List<PayloadPathNode> PathSegments { get; set; } = [];
 
+	public List<Vector3> AllSegmentPoints => PathSegments.SelectMany(Node => Node.SegmentPoints).ToList();
+
 	public (Vector3 Position, Rotation Rotation) GetStartPositionRotation()
 	{
 		if (PathSegments.Count == 0 || !PathSegments[0].IsValidPath())
@@ -26,12 +28,21 @@ public sealed class PayloadPath : Component
 			return (Vector3.Zero, Rotation.Identity);
 		}
 
-		var FirstSegment = PathSegments[0];
-		var StartLocation = FirstSegment.SegmentPoints[0];
-		var StartForward = FirstSegment.SegmentPoints[1] - StartLocation;
-		var StartRotaion = Rotation.LookAt(StartForward.Normal);
-		return (StartLocation + GameObject.WorldPosition, StartRotaion);
+		var StartLocation = AllSegmentPoints[0];
+		var OutRotation = GetRotationFromNodeIndexes(0, 1);
+
+		return (StartLocation, OutRotation);
 	}
+
+	public Rotation GetRotationFromNodeIndexes(int IndexFrom, int IndexTo)
+	{
+		var StartLocation = AllSegmentPoints[IndexFrom];
+		var StartForward = AllSegmentPoints[IndexTo] - StartLocation;
+		var StartRotaion = Rotation.LookAt(StartForward.Normal);
+
+		return StartRotaion;
+	}
+
 
 	protected override void DrawGizmos()
 	{
