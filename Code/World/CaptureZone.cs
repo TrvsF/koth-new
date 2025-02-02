@@ -8,18 +8,7 @@ namespace KOTH.World
 {
 	public sealed class CaptureZone : Zone, Component.ITriggerListener
 	{
-		[Property] public float BaseSpeed { get; private set; } = 10f;
 		[Sync(SyncFlags.FromHost)] public NetList<PlayerPawn> CapturingPlayers { get; private set; } = new();
-
-		protected override void OnFixedUpdate()
-		{
-			base.OnFixedUpdate();
-
-			if (CapturingPlayers.Any())
-			{
-				GameObject.Root.WorldPosition += Vector3.Forward * BaseSpeed;
-			}
-		}
 
 		void ITriggerListener.OnTriggerEnter(Collider Collider)
 		{

@@ -7,8 +7,8 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 {
 	[RequireComponent] ModelRenderer Model { get; set; }
 
-	[Property] public float HealthPercent { get; private set; } = 0.5f;
-	[Property] public float RespawnTime { get; private set; } = 10f;
+	[Property] public float HealthPercent { get; set; } = 0.5f;
+	[Property] public float RespawnTime { get; set; } = 10f;
 	[HostSync] public bool IsAcitve { get; private set; } = true;
 
 	protected override void OnFixedUpdate()

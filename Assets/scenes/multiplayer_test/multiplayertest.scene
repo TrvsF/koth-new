@@ -150,6 +150,7 @@
           "Name": "States",
           "Enabled": true,
           "NetworkMode": 1,
+          "NetworkOrphaned": 1,
           "Components": [
             {
               "__type": "Sandbox.Events.StateMachineComponent",
@@ -175,12 +176,18 @@
               "Name": "Waiting",
               "Enabled": true,
               "NetworkMode": 1,
+              "NetworkOrphaned": 1,
               "Components": [
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "854b92d5-e054-4f97-b2c0-660b81094490",
                   "DefaultDuration": -1,
-                  "DefaultNextState": null,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "2c0976a4-d9df-4578-bbb1-f16e635f3546",
+                    "go": "46d44699-cf9c-47d5-80ff-581beeab0f2d",
+                    "component_type": "StateComponent"
+                  },
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -208,6 +215,61 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
+                  "AllowSpectatorsToSpawn": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RespawnDelaySeconds": 1
+                }
+              ]
+            },
+            {
+              "__guid": "46d44699-cf9c-47d5-80ff-581beeab0f2d",
+              "Flags": 0,
+              "Name": "PayloadPlay",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "2c0976a4-d9df-4578-bbb1-f16e635f3546",
+                  "DefaultDuration": -1,
+                  "DefaultNextState": null,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.PayloadGamemode",
+                  "__guid": "efeee7a8-3508-4cc3-933b-3f20b10ae850",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "PayloadGameobject": {
+                    "_type": "gameobject",
+                    "go": "28ddb3f2-ebcc-41cd-8991-c8c719067038"
+                  },
+                  "PayloadPathGameobject": {
+                    "_type": "gameobject",
+                    "go": "c5cb589b-900a-4365-803d-36acdc33a557"
+                  }
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "20fad055-c9f5-4fce-b92a-c8bd1246df95",
                   "AllowSpectatorsToSpawn": false,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
@@ -1419,15 +1481,44 @@
       "Children": []
     },
     {
-      "__guid": "75cb1419-ae6a-4ca2-954d-16b3e514ab28",
+      "__guid": "28ddb3f2-ebcc-41cd-8991-c8c719067038",
       "Flags": 0,
       "Name": "cart",
-      "Position": "-16,208,128",
+      "Position": "-47.99999,399.9999,128",
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/payload/cart.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "c5cb589b-900a-4365-803d-36acdc33a557",
+      "Flags": 0,
+      "Name": "cartpath",
+      "Position": "64,479.9999,130",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "KOTH.PayloadPath",
+          "__guid": "54eb23e7-d27c-473b-9fb3-ee5816e1a954",
+          "CaptureNodeColour": "1,0,0,1",
+          "NodeColour": "0,1,0,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PathSegments": [
+            {
+              "SegmentPoints": [
+                "-115.7999,0,0",
+                "0,0,0"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {
