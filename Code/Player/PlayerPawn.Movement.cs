@@ -177,7 +177,7 @@ public partial class PlayerPawn
 	{
 		IsCrouching = Input.Down("Duck") && !IsNoclipping;
 
-		if (Input.Pressed("Duck"))
+		if (IsCrouching)
 		{
 			TimeSinceCrouchPressed = 0;
 			if (IsGrounded)

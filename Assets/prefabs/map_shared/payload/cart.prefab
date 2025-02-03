@@ -3,7 +3,7 @@
     "__guid": "690d1c8b-630f-4c56-8b02-32952c9e09f4",
     "Flags": 0,
     "Name": "cart",
-    "Position": "0,0,18.19915",
+    "Tags": "cart",
     "Enabled": true,
     "NetworkMode": 1,
     "NetworkOrphaned": 1,
@@ -67,7 +67,7 @@
             "OnObjectTriggerExit": null,
             "OnTriggerEnter": null,
             "OnTriggerExit": null,
-            "Scale": "75.19995,47.89992,42.29996",
+            "Scale": "107.7,94.69972,70.39993",
             "Static": false,
             "Surface": null,
             "SurfaceVelocity": "0,0,0"

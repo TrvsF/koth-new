@@ -1485,6 +1485,7 @@
       "Flags": 0,
       "Name": "cart",
       "Position": "-47.99999,399.9999,128",
+      "Tags": "cart",
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
@@ -1492,13 +1493,15 @@
         {
           "__type": "KOTH.PayloadCart",
           "__guid": "68911d6c-88a3-49b4-abf2-e00848b9a1ab",
-          "BaseSpeed": 3.33,
+          "BaseHealing": 0.05,
+          "BaseSpeed": 2.2,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null
+          "OnComponentUpdate": null,
+          "Team": "Unassigned"
         },
         {
           "__type": "Sandbox.BoxCollider",
@@ -1621,9 +1624,16 @@
           "PathSegments": [
             {
               "SegmentPoints": [
-                "51.20006,252.8,150.6",
-                "51.20006,521.5992,150.6",
-                "277.0007,394.999,150.6"
+                "542.0999,250.6001,10.69983",
+                "715.499,250.6001,10.69983",
+                "864.8993,94.79983,10.69983"
+              ]
+            },
+            {
+              "SegmentPoints": [
+                "511.3004,-165.2996,10.69983",
+                "942.7992,-246.9998,10.69983",
+                "1032.899,94.79983,10.69983"
               ]
             }
           ]

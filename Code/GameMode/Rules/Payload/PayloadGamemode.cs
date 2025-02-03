@@ -41,7 +41,6 @@ public sealed class PayloadGamemode : Component,
 		}
 
 		var (IsCapturing, CaptureFactor) = PayloadCartComponent.GetCaptureData();
-		Log.Info(IsCapturing);
 
 		if (!IsCapturing)
 		{
