@@ -9,7 +9,7 @@ public sealed class TeamSpawnPoint : Component
 	private static Model Model = Model.Load("models/editor/spawnpoint.vmdl");
 
 	[Property] public bool IsDummy { get; set; } = false;
-	// [Property][HideIf("IsDummy", false)] public DummyType DummyType { get; set; } = DummyType.None;
+	[Property][HideIf("IsDummy", true)] public GameObject SpawnZone { get; set; } = null;
 	[Property][HideIf("IsDummy", true)] public Team Team { get; set; } = Team.Unassigned;
 
 	protected override void DrawGizmos()

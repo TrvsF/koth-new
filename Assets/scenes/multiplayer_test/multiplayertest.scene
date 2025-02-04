@@ -303,6 +303,10 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "SpawnZone": {
+            "_type": "gameobject",
+            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
+          },
           "Team": "Unassigned"
         }
       ]
@@ -325,6 +329,10 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "SpawnZone": {
+            "_type": "gameobject",
+            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
+          },
           "Team": "Unassigned"
         }
       ]
@@ -347,6 +355,10 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
+          "SpawnZone": {
+            "_type": "gameobject",
+            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
+          },
           "Team": "Unassigned"
         }
       ]
@@ -376,6 +388,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -398,6 +411,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -420,6 +434,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -442,6 +457,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -464,6 +480,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -486,6 +503,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -508,6 +526,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -530,6 +549,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -552,6 +572,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -574,6 +595,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -596,6 +618,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -618,6 +641,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -640,6 +664,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -662,6 +687,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -684,6 +710,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -706,6 +733,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -728,6 +756,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -750,6 +779,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -772,6 +802,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -794,6 +825,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -816,6 +848,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -838,6 +871,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -860,6 +894,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -882,6 +917,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -904,6 +940,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -926,6 +963,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -948,6 +986,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -970,6 +1009,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -992,6 +1032,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1014,6 +1055,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1036,6 +1078,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1058,6 +1101,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1080,6 +1124,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1102,6 +1147,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1124,6 +1170,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1146,6 +1193,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1168,6 +1216,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1190,6 +1239,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1212,6 +1262,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1234,6 +1285,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1256,6 +1308,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1278,6 +1331,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1300,6 +1354,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1322,6 +1377,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1344,6 +1400,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1366,6 +1423,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnZone": null,
               "Team": "Unassigned"
             }
           ]
@@ -1637,6 +1695,50 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "__guid": "4b881bab-5a07-4ee5-8dd6-976295cb9f89",
+      "Flags": 0,
+      "Name": "spawnzone",
+      "Position": "32,927.9999,192",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "62629bb2-b481-476d-bec4-bc90a124f093",
+          "Center": "0,0,0",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "500,500,100",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "KOTH.SpawnZone",
+          "__guid": "e919e3bb-cb83-4b55-8249-21343a1ca090",
+          "Color": "1,1,1,1",
+          "DisplayName": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Unassigned"
         }
       ]
     }

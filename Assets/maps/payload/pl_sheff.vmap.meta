@@ -1,0 +1,21 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Pl Sheff",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "plsheff",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/payload/pl_sheff.vmap",
+        "ParentPackage": "wurstsoftware.koth"
+      }
+    }
+  }
+}
