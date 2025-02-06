@@ -1,4 +1,5 @@
-﻿using Sandbox.Events;
+﻿using KOTH.Utils;
+using Sandbox.Events;
 
 namespace KOTH;
 
@@ -91,6 +92,37 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 				.Select(x => (Name: x.Key, Count: x.Count()))
 				.OrderByDescending(x => x.Count)
 				.FirstOrDefault();
+		}
+	}
+
+	public Team GetStarterTeam()
+	{
+		int Ts = 0;
+		int CTs = 0;
+
+		foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		{
+			if (PlayerState.IsValid())
+			{
+				if (PlayerState.Team == Team.CounterTerrorist)
+				{
+					++CTs;
+				}
+
+				if (PlayerState.Team == Team.Terrorist)
+				{
+					++Ts;
+				}
+			}
+		}
+
+		if (Ts > CTs)
+		{
+			return Team.CounterTerrorist;
+		}
+		else
+		{
+			return Team.Terrorist;
 		}
 	}
 

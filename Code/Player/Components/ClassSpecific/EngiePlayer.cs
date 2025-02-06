@@ -18,6 +18,13 @@ public sealed class EngiePlayer : Component
 		// TODO : get all owned objects & assign turret to us
 	}
 
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+
+		ActiveTurretComponent?.GameObject.Root.Destroy();
+	}
+
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -48,6 +55,11 @@ public sealed class EngiePlayer : Component
 
 		if (RequestWeaponEquip)
 		{
+			if (!Scene.IsValid())
+			{
+				Log.Warning($"the scene isn't fucking valid.. on engie component {this} attached to player {OwnerPawn}");
+			}
+
 			var TraceResults = Scene.Trace.Ray(OwnerPawn.CenterPosition, OwnerPawn.CenterPosition + (OwnerPawn.AimRay.Forward * 256f)) // magic
 			.UseHitboxes()
 			.IgnoreGameObjectHierarchy(OwnerPawn.GameObject.Root)

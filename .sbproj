@@ -40,7 +40,10 @@
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
       "NoWarn": "1701;1702;1591;",
       "WarningsAsErrors": "",
+      "TreatWarningsAsErrors": false,
+      "Nullables": false,
       "Whitelist": true,
+      "ReleaseMode": "Debug",
       "AssemblyReferences": [],
       "IgnoreFolders": [
         "editor",
@@ -157,7 +160,7 @@
     "HttpAllowList": null,
     "TickRate": 30,
     "LaunchMode": "Normal",
-    "StartupScene": "scenes/multiplayer_test/multiplayertest.scene",
-    "DedicatedServerStartupScene": "scenes/multiplayer_test/multiplayertest.scene"
+    "StartupScene": "scenes/pl_sheff/sheff.scene",
+    "DedicatedServerStartupScene": "scenes/pl_sheff/sheff.scene"
   }
 }

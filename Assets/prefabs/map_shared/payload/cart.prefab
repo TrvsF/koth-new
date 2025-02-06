@@ -11,13 +11,15 @@
       {
         "__type": "KOTH.PayloadCart",
         "__guid": "40d8be31-bea7-452f-a888-2e8c4b25b43b",
-        "BaseSpeed": 0.66,
+        "BaseHealing": 0.066,
+        "BaseSpeed": 1.33,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Team": "Terrorist"
       },
       {
         "__type": "Sandbox.BoxCollider",
@@ -46,7 +48,6 @@
         "__guid": "4696fd0a-86bd-4417-b549-7755887e8f63",
         "Flags": 0,
         "Name": "capturezone",
-        "Position": "0,0,22.56093",
         "Tags": "zone",
         "Enabled": true,
         "NetworkOrphaned": 1,
@@ -54,7 +55,7 @@
           {
             "__type": "Sandbox.BoxCollider",
             "__guid": "7eaa258f-e108-454d-b671-2e75d8ab3f7c",
-            "Center": "0,0,0",
+            "Center": "0,0,44.60009",
             "Friction": null,
             "IsTrigger": true,
             "OnComponentDestroy": null,
@@ -67,7 +68,7 @@
             "OnObjectTriggerExit": null,
             "OnTriggerEnter": null,
             "OnTriggerExit": null,
-            "Scale": "107.7,94.69972,70.39993",
+            "Scale": "152.6,139.5997,92.69978",
             "Static": false,
             "Surface": null,
             "SurfaceVelocity": "0,0,0"
@@ -90,7 +91,7 @@
         "__guid": "5c3d3061-ab85-49ae-b38e-612c7e2622d0",
         "Flags": 0,
         "Name": "model",
-        "Scale": "0.33,0.33,0.77",
+        "Scale": "0.5,0.5,0.8",
         "Enabled": true,
         "Components": [
           {
@@ -100,7 +101,7 @@
             "CreateAttachments": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "pr/gta5_car_adder.vmdl",
+            "Model": "models/dev/vehicle/van_damage_dev.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -114,7 +115,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "0.18914,0.42791,0.18509,1"
+            "Tint": "162.8703,368.4776,159.3829,1"
           }
         ]
       }
@@ -150,7 +151,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "twinsd.gta5caradder#84193"
+    "facepunch.van_damage_dev#59227"
   ],
   "__version": 1
 }

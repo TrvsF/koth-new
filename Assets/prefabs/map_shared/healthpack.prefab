@@ -6,6 +6,7 @@
     "Scale": "25,25,25",
     "Tags": "consumable",
     "Enabled": true,
+    "NetworkMode": 1,
     "NetworkOrphaned": 1,
     "Components": [
       {

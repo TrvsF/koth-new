@@ -209,7 +209,7 @@
                   "OnComponentUpdate": null,
                   "PayloadGameobject": {
                     "_type": "gameobject",
-                    "go": "a7c7a9f3-5485-4acc-90bc-3e234a571d9c"
+                    "go": "93317bae-87c5-4512-9796-6690f9fe455f"
                   },
                   "PayloadPathGameobject": {
                     "_type": "gameobject",
@@ -314,32 +314,9 @@
     {
       "__guid": "9dd3bf00-4a9e-4b3d-bae6-993b7e2a9615",
       "Flags": 0,
-      "Name": "basespawns",
+      "Name": "attackspawns",
       "Enabled": true,
       "Children": [
-        {
-          "__guid": "87e42d29-4e75-4cae-8688-b9d6c8be74cf",
-          "Flags": 0,
-          "Name": "spawnpoint",
-          "Position": "1360,-176,2",
-          "Rotation": "0,0,0.7933533,0.6087615",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "TeamSpawnPoint",
-              "__guid": "45ae502c-5ad9-40f3-be66-63b3f48b55f6",
-              "IsDummy": false,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnZone": null,
-              "Team": "Unassigned"
-            }
-          ]
-        },
         {
           "__guid": "8a2dd879-3acf-49ce-9b8f-b6f2ee5a6e1a",
           "Flags": 0,
@@ -359,7 +336,7 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "SpawnZone": null,
-              "Team": "Unassigned"
+              "Team": "Terrorist"
             }
           ]
         },
@@ -382,7 +359,7 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "SpawnZone": null,
-              "Team": "Unassigned"
+              "Team": "Terrorist"
             }
           ]
         },
@@ -405,134 +382,124 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "SpawnZone": null,
-              "Team": "Unassigned"
+              "Team": "Terrorist"
             }
           ]
         }
       ]
     },
     {
-      "__guid": "a7c7a9f3-5485-4acc-90bc-3e234a571d9c",
+      "__guid": "5a498e38-2aab-4a28-95e8-7a5e23615adf",
       "Flags": 0,
-      "Name": "cart",
-      "Tags": "cart",
+      "Name": "defencespawns",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "Components": [
-        {
-          "__type": "KOTH.PayloadCart",
-          "__guid": "87be9391-1fd9-49fe-b198-a6287786f31c",
-          "BaseHealing": 0.066,
-          "BaseSpeed": 1.33,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Team": "Unassigned"
-        },
-        {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "8ba96680-3bd2-4130-90a7-fc9f1d9e1cc6",
-          "Center": "0,0,0",
-          "Friction": null,
-          "IsTrigger": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OnObjectTriggerEnter": null,
-          "OnObjectTriggerExit": null,
-          "OnTriggerEnter": null,
-          "OnTriggerExit": null,
-          "Scale": "56,24,32",
-          "Static": false,
-          "Surface": null,
-          "SurfaceVelocity": "0,0,0"
-        }
-      ],
       "Children": [
         {
-          "__guid": "44fb9598-125d-4874-b0f4-7942179a715d",
+          "__guid": "87e42d29-4e75-4cae-8688-b9d6c8be74cf",
           "Flags": 0,
-          "Name": "capturezone",
-          "Position": "0,0,22.56093",
-          "Tags": "zone",
+          "Name": "spawnpoint",
+          "Position": "-3583.455,277.5717,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
           "Enabled": true,
-          "NetworkOrphaned": 1,
           "Components": [
             {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "d3fa28fc-bbe2-46ff-ba4f-950e35c5b15e",
-              "Center": "0,0,0",
-              "Friction": null,
-              "IsTrigger": true,
+              "__type": "TeamSpawnPoint",
+              "__guid": "45ae502c-5ad9-40f3-be66-63b3f48b55f6",
+              "IsDummy": false,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "75.19995,47.89992,42.29996",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "KOTH.World.CaptureZone",
-              "__guid": "663d6036-0120-4026-87ce-bc6a3b07ff21",
-              "Color": "0.37741,0.56744,0.55477,1",
-              "DisplayName": null,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
+              "SpawnZone": null,
+              "Team": "CounterTerrorist"
             }
           ]
         },
         {
-          "__guid": "967292d9-5851-404e-94c0-bfe829b4f3e1",
+          "__guid": "217f11ba-2003-43c7-8de5-dfb74bb8b577",
           "Flags": 0,
-          "Name": "model",
-          "Scale": "0.33,0.33,0.77",
+          "Name": "spawnpoint (1)",
+          "Position": "-3643.459,277.5717,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
           "Enabled": true,
           "Components": [
             {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "bfdae5cd-388c-4405-8a8a-7682e3dbfd72",
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "pr/gta5_car_adder.vmdl",
+              "__type": "TeamSpawnPoint",
+              "__guid": "5d499b23-672f-43c0-85d3-c4f390180c58",
+              "IsDummy": false,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "0.18914,0.42791,0.18509,1"
+              "SpawnZone": null,
+              "Team": "CounterTerrorist"
+            }
+          ]
+        },
+        {
+          "__guid": "4394efcf-6a8f-417c-8594-330792cbc65d",
+          "Flags": 0,
+          "Name": "spawnpoint (2)",
+          "Position": "-3643.459,152.2714,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "4cdec562-48cb-4829-92f6-979d73092abe",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist"
+            }
+          ]
+        },
+        {
+          "__guid": "5506d5e0-6651-4d97-b7dc-b2eb92d2ffeb",
+          "Flags": 0,
+          "Name": "spawnpoint (3)",
+          "Position": "-3643.459,466.7709,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "99505943-b931-4ecd-87c0-266d35e97e39",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist"
             }
           ]
         }
       ]
+    },
+    {
+      "__guid": "93317bae-87c5-4512-9796-6690f9fe455f",
+      "Flags": 0,
+      "Name": "cart",
+      "Position": "17.60067,-31.9999,9.168242",
+      "Rotation": "-0.0000002281017,0.07632354,0.000002979892,0.9970832",
+      "Tags": "cart",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/payload/cart.prefab",
+      "__PrefabVariables": {}
     },
     {
       "__guid": "c21448b9-c0e3-447b-9546-71cb38c36f23",
@@ -565,6 +532,70 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "e9687f69-f21a-4a35-b214-02cb2575055e",
+      "Flags": 0,
+      "Name": "healthpack",
+      "Position": "-40.32752,-122.9446,30.36968",
+      "Rotation": "0.01071715,0.04539832,-0.2295029,0.9721895",
+      "Scale": "25,25,25",
+      "Tags": "consumable",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "de62b93b-8ecd-4b20-862e-2844a41510c1",
+      "Flags": 0,
+      "Name": "healthpack (1)",
+      "Position": "-687.9999,863.9999,121",
+      "Scale": "25,25,25",
+      "Tags": "consumable",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "bb580f92-50fd-479a-b3d5-d999b79c0fcb",
+      "Flags": 0,
+      "Name": "healthpack (2)",
+      "Position": "-2160,287.9999,121",
+      "Scale": "25,25,25",
+      "Tags": "consumable",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "f07229f5-61ad-438f-b70f-712a74702bf6",
+      "Flags": 0,
+      "Name": "healthpack (3)",
+      "Position": "-2208,-343.8953,133.3152",
+      "Rotation": "-0.02353105,0.02353057,0.7067153,0.7067149",
+      "Scale": "25,25,25",
+      "Tags": "consumable",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "cd842069-ba13-4e93-b931-64c6f2cd44ab",
+      "Flags": 0,
+      "Name": "KillZone",
+      "Position": "-144,944,-912",
+      "Tags": "zone",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/killzone.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {
@@ -597,8 +628,6 @@
   "ResourceVersion": 2,
   "Title": "pl_sheff",
   "Description": null,
-  "__references": [
-    "twinsd.gta5caradder#84193"
-  ],
+  "__references": [],
   "__version": 2
 }

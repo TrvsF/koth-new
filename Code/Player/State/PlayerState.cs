@@ -53,6 +53,7 @@ public partial class PlayerState : Component
 		//}
 	}
 
+	private int TeamIndex = 0;
 	public bool Initilize(Connection ConnectionIn)
 	{
 		Assert.True(Networking.IsHost);
@@ -61,7 +62,7 @@ public partial class PlayerState : Component
 		Connection = ConnectionIn;
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
-		Team = Team.Unassigned;
+		Team = GameMode.Instance.GetStarterTeam();
 		// RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
 
 		// client rpc

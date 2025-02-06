@@ -9,15 +9,15 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 
 	[Property] public float HealthPercent { get; set; } = 0.5f;
 	[Property] public float RespawnTime { get; set; } = 10f;
-	[HostSync] public bool IsAcitve { get; private set; } = true;
+	[Sync(SyncFlags.FromHost), Change(nameof(OnActiveChange))] public bool IsAcitve { get; private set; } = true;
 
 	protected override void OnFixedUpdate()
 	{
-		Transform.Rotation = Rotation.FromYaw(Transform.Rotation.Yaw() + 1);
+		WorldRotation = Rotation.FromYaw(WorldRotation.Yaw() + 1);
 
 		if (!IsAcitve && TimeSinceDeativate >= RespawnTime)
 		{
-			Activate();
+			IsAcitve = true;
 		}
 	}
 
@@ -40,25 +40,20 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 					AllowOverheal = false,
 				};
 				Scene.Dispatch(new HealingRequestEvent(HealingRequest));
-				Deativate();
+				IsAcitve = false;
 			}
 		}
 	}
 
 	private RealTimeSince TimeSinceDeativate = new();
 
-	[Broadcast]
-	private void Deativate()
+	private void OnActiveChange(bool OldValue, bool NewValue)
 	{
-		IsAcitve = false;
-		Model.Enabled = false;
-		TimeSinceDeativate = 0;
-	}
-
-	[Broadcast]
-	private void Activate()
-	{
-		IsAcitve = true;
-		Model.Enabled = true;
+		IsAcitve = NewValue;
+		Model.Enabled = NewValue;
+		if (!NewValue)
+		{
+			TimeSinceDeativate = 0;
+		}
 	}
 }
