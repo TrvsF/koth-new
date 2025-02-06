@@ -1,0 +1,604 @@
+{
+  "__guid": "5c4c7d35-8a44-48e7-ad79-79b86dfd714a",
+  "GameObjects": [
+    {
+      "__guid": "558d1da8-bde9-4d9c-8693-4989bf4e96a8",
+      "Flags": 0,
+      "Name": "GameMode",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": false,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "KOTH.GameMode",
+          "__guid": "c3199629-5a1e-4b65-8e76-f26b489edff8",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Title": "Botz"
+        },
+        {
+          "__type": "KOTH.DamageManager",
+          "__guid": "2e565ed8-4047-4345-b6ac-6349f636f32b",
+          "HitSound": "sounds/hitsound.sound",
+          "KnockbackOnly": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.ClassList",
+          "__guid": "421c259f-ae05-494e-8664-0a334a200db6",
+          "ClassDefinitions": [
+            "prefabs/classes/alan.chardef",
+            "prefabs/classes/alex.chardef",
+            "prefabs/classes/donny.chardef",
+            "prefabs/classes/dimitri.chardef"
+          ],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TurretPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/buildings/turret/turret.prefab"
+          }
+        },
+        {
+          "__type": "KOTH.Stats",
+          "__guid": "2b821f9f-ce32-4cac-8550-93ee83be67f1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.TeamAssigner",
+          "__guid": "eb58d993-0da9-450d-bfcb-83412e5ec7b7",
+          "AutoBalanceMode": "Random",
+          "MaxTeamSize": 5,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TargetRatio": 1
+        },
+        {
+          "__type": "KOTH.BotSystem",
+          "__guid": "b4290247-0b46-49f6-9366-018b5c10f58f",
+          "__enabled": false,
+          "DummyPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/dummy.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "3cf9bb8d-c7cb-46bb-b885-f39717a13d86",
+          "Flags": 0,
+          "Name": "States",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.Events.StateMachineComponent",
+              "__guid": "9c24f55c-91ee-4c25-b820-c91d56589e3a",
+              "CurrentState": {
+                "_type": "component",
+                "component_id": "6042e389-31ad-4c97-8074-775cf2cd7d4c",
+                "go": "ceedd810-0e2d-4f8f-a2d7-043b6869da20",
+                "component_type": "StateComponent"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "ceedd810-0e2d-4f8f-a2d7-043b6869da20",
+              "Flags": 0,
+              "Name": "Waiting",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "6042e389-31ad-4c97-8074-775cf2cd7d4c",
+                  "DefaultDuration": -1,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "c15b2515-eb85-4244-babe-1e396072e03e",
+                    "go": "df822720-2382-4fde-aeaa-fdd479d5b9ea",
+                    "component_type": "StateComponent"
+                  },
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.ShowStatusText",
+                  "__guid": "9101943f-4be6-489a-b2c7-75db893c4976",
+                  "BothTeams": true,
+                  "IsKoth": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "StatusText": "waiting for players",
+                  "Team": "Unassigned"
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "881306aa-c383-4c2b-b163-b36ec6c60017",
+                  "AllowSpectatorsToSpawn": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RespawnDelaySeconds": 1
+                }
+              ]
+            },
+            {
+              "__guid": "df822720-2382-4fde-aeaa-fdd479d5b9ea",
+              "Flags": 0,
+              "Name": "PayloadPlay",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "c15b2515-eb85-4244-babe-1e396072e03e",
+                  "DefaultDuration": -1,
+                  "DefaultNextState": null,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.PayloadGamemode",
+                  "__guid": "f8944979-bb97-4bb3-a885-4c396c48b4d3",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "PayloadGameobject": {
+                    "_type": "gameobject",
+                    "go": "a7c7a9f3-5485-4acc-90bc-3e234a571d9c"
+                  },
+                  "PayloadPathGameobject": {
+                    "_type": "gameobject",
+                    "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
+                  }
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "3f947822-4562-4b89-af86-6a57d584489d",
+                  "AllowSpectatorsToSpawn": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RespawnDelaySeconds": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "50d2eb3d-a1f8-4f13-b91b-095f138d028e",
+      "Flags": 0,
+      "Name": "GameState",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": false,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "KOTH.GameNetworkManager",
+          "__guid": "6c2e8274-ba5d-4d50-9193-d126c3ffbdee",
+          "NetworkMode": "Multiplayer",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerStatePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerstate.prefab"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "013ddc23-dc8c-44ed-af68-434fb7c7c869",
+      "Flags": 0,
+      "Name": "Scene Information",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SceneInformation",
+          "__guid": "93c473b7-3c49-4b99-afd5-54a86af3896c",
+          "Author": "trvsf",
+          "Changes": "",
+          "Description": "",
+          "Group": "wurst+",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SceneTags": "",
+          "Title": "pl_sheff",
+          "Version": null
+        }
+      ]
+    },
+    {
+      "__guid": "e5c58978-1b06-4465-9d2a-53287cba7907",
+      "Flags": 0,
+      "Name": "MapInstance",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "4b53ceba-b295-4f36-a61b-7eb5d7cc233f",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "maps/payload/pl_sheff.vmap",
+          "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "9dd3bf00-4a9e-4b3d-bae6-993b7e2a9615",
+      "Flags": 0,
+      "Name": "basespawns",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "87e42d29-4e75-4cae-8688-b9d6c8be74cf",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1360,-176,2",
+          "Rotation": "0,0,0.7933533,0.6087615",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "45ae502c-5ad9-40f3-be66-63b3f48b55f6",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned"
+            }
+          ]
+        },
+        {
+          "__guid": "8a2dd879-3acf-49ce-9b8f-b6f2ee5a6e1a",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1309.669,-189.4864,2",
+          "Rotation": "0,0,0.7933533,0.6087615",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "4da9e580-ea41-416c-a99b-176f52b23a32",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned"
+            }
+          ]
+        },
+        {
+          "__guid": "6b933d92-78bc-42de-9577-c2fa601cc5fd",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1263.304,-201.9097,2",
+          "Rotation": "0,0,0.7933533,0.6087615",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "580ae6c0-ce80-4be7-bdcd-029840aaff1a",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned"
+            }
+          ]
+        },
+        {
+          "__guid": "19b9107f-4399-46a0-8b65-91ce0be820f7",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1216.94,-214.3332,2",
+          "Rotation": "0,0,0.7933533,0.6087615",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "26f12480-c3e6-4dfb-ac45-bf846355c627",
+              "IsDummy": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "a7c7a9f3-5485-4acc-90bc-3e234a571d9c",
+      "Flags": 0,
+      "Name": "cart",
+      "Tags": "cart",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "KOTH.PayloadCart",
+          "__guid": "87be9391-1fd9-49fe-b198-a6287786f31c",
+          "BaseHealing": 0.066,
+          "BaseSpeed": 1.33,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Unassigned"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "8ba96680-3bd2-4130-90a7-fc9f1d9e1cc6",
+          "Center": "0,0,0",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "56,24,32",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "44fb9598-125d-4874-b0f4-7942179a715d",
+          "Flags": 0,
+          "Name": "capturezone",
+          "Position": "0,0,22.56093",
+          "Tags": "zone",
+          "Enabled": true,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "d3fa28fc-bbe2-46ff-ba4f-950e35c5b15e",
+              "Center": "0,0,0",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "75.19995,47.89992,42.29996",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "KOTH.World.CaptureZone",
+              "__guid": "663d6036-0120-4026-87ce-bc6a3b07ff21",
+              "Color": "0.37741,0.56744,0.55477,1",
+              "DisplayName": null,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ]
+        },
+        {
+          "__guid": "967292d9-5851-404e-94c0-bfe829b4f3e1",
+          "Flags": 0,
+          "Name": "model",
+          "Scale": "0.33,0.33,0.77",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "bfdae5cd-388c-4405-8a8a-7682e3dbfd72",
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "pr/gta5_car_adder.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "0.18914,0.42791,0.18509,1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "c21448b9-c0e3-447b-9546-71cb38c36f23",
+      "Flags": 0,
+      "Name": "cartpath",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "KOTH.PayloadPath",
+          "__guid": "48bdf220-3747-4d48-acb5-d1cefed58191",
+          "CaptureNodeColour": "1,0,0,1",
+          "NodeColour": "0,1,0,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PathSegments": [
+            {
+              "SegmentPoints": [
+                "273.1998,-320.4994,2",
+                "77.30001,-320.4994,2",
+                "-404.8992,-466.0988,66.30015",
+                "-519.3005,13.60123,97.30009",
+                "-779.6997,500,94.19991",
+                "-1471.099,500,97.30009"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 8,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {
+      "Title": "pl_sheff",
+      "Group": "wurst+",
+      "Author": "trvsf"
+    },
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": "pl_sheff",
+  "Description": null,
+  "__references": [
+    "twinsd.gta5caradder#84193"
+  ],
+  "__version": 2
+}

@@ -10,8 +10,19 @@ public sealed class PayloadGamemode : Component,
 	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<EnterStateEvent>
 {
-	[Property] public GameObject PayloadGameobject { get; set; }
-	[Property] public GameObject PayloadPathGameobject { get; set; }
+	[Property] public GameObject PayloadGameobject { get; set; } = null;
+	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		if (PayloadGameobject == null || PayloadPathGameobject == null)
+		{
+			Log.Warning("tried to start payload gameobject without payload/payloadpath gameobject set");
+			Enabled = false;
+		}
+	}
 
 	PayloadCart PayloadCartComponent { get => PayloadGameobject.GetComponent<PayloadCart>(); }
 	PayloadPath PayloadPathComponent { get => PayloadPathGameobject.GetComponent<PayloadPath>(); }
