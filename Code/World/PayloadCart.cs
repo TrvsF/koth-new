@@ -55,8 +55,13 @@ public sealed class PayloadCart : Component
 			return (false, 0);
 		}
 
-		// TODO : class check for cap rate
-		var CaptureAmount = CaptureZone.CapturingPlayers.Count;
+		var EnemyCount = CaptureZone.CapturingPlayers.Count(Player => Player.Team.GetOpponents() == Team);
+		if (EnemyCount > 0)
+		{
+			return (false, 0);
+		}
+
+		var CaptureAmount = CaptureZone.CapturingPlayers.Count(Player => Player.Team == Team);
 		return (CaptureAmount > 0, CaptureAmount);
 	}
 }

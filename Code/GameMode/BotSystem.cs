@@ -50,7 +50,7 @@ public sealed class BotSystem : Component,
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();
 		Assert.NotNull(SpawnPlayerPawnComponent);
 
-		PlayerPawnDefinition PlayerPawnDefinition = new()
+		FPlayerPawnDefinition PlayerPawnDefinition = new()
 		{
 			CharacterDefinition = CharacterDefinition,
 			Name = Name,

@@ -8,9 +8,9 @@ using System.Xml.Linq;
 
 namespace KOTH;
 
-public struct PlayerPawnDefinition
+public struct FPlayerPawnDefinition
 {
-	public PlayerPawnDefinition()
+	public FPlayerPawnDefinition()
 	{
 	}
 
@@ -18,6 +18,7 @@ public struct PlayerPawnDefinition
 	// public PlayerState OwnerPlayerState { get; init; }
 
 	public string Name { get; init; } = "UNINITALIZED";
+	public Team Team { get; init; } = Team.Unassigned;
 	public bool IsDummy { get; init; } = false;
 
 	public bool IsValid()
@@ -163,10 +164,12 @@ public partial class PlayerState
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();
 		Assert.NotNull(SpawnPlayerPawnComponent);
 
-		PlayerPawnDefinition PlayerPawnDefinition = new()
+		var TeamIn = Team; // :P
+		FPlayerPawnDefinition PlayerPawnDefinition = new()
 		{
 			CharacterDefinition = RequestedCharacterDefinition,
 			Name = Name,
+			Team = TeamIn,
 		};
 
 		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);

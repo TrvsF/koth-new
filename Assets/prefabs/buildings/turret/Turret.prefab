@@ -117,7 +117,8 @@
         "__guid": "f03fae92-9d30-4658-bf37-4791aa85d90c",
         "Flags": 0,
         "Name": "Muzzel",
-        "Position": "0,0,24",
+        "Position": "0,0,32",
+        "Scale": "2.5,2.5,2.5",
         "Enabled": true,
         "Components": [
           {
@@ -155,7 +156,7 @@
             "Sequence": {
               "Name": null
             },
-            "Tint": "1,1,1,1",
+            "Tint": "1,0,0,1",
             "UseAnimGraph": true
           }
         ]

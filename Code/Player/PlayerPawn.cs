@@ -10,15 +10,16 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
 {
-	[Sync(SyncFlags.FromHost)] public PlayerPawnDefinition PlayerPawnDefinition { get; private set; }
+	[Sync(SyncFlags.FromHost)] public FPlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
-	public void SetPlayerPawnDefinition(PlayerPawnDefinition PlayerPawnDefinitionIn)
+	public void SetPlayerPawnDefinition(FPlayerPawnDefinition PlayerPawnDefinitionIn)
 	{
 		Assert.True(Networking.IsHost);
 
 		PlayerPawnDefinition = PlayerPawnDefinitionIn;
 		IsDummy = PlayerPawnDefinitionIn.IsDummy;
+		Team = PlayerPawnDefinitionIn.Team;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +29,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[Property] public GameObject GibPrefab { get; set; } // TODO : this should be in character def
 	[Property] public AnimationHelper AnimationHelper { get; set; }
 	[Property] public BoxCollider PlayerBoxCollider { get; set; }
+	[Property] public Team DisplayTeam { get => Team; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
