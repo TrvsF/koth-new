@@ -2,7 +2,7 @@
   "RootObject": {
     "__guid": "42a3c29d-4bb2-4aa8-ba33-8b8323783b56",
     "Flags": 0,
-    "Name": "vm_rktlauncher",
+    "Name": "vm_boltaction",
     "Tags": "player,viewmodel",
     "Enabled": true,
     "NetworkMode": 0,

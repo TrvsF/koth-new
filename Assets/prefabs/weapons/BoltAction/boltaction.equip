@@ -1,0 +1,19 @@
+{
+  "Name": "Bolt Action",
+  "Description": "",
+  "Slot": "Primary",
+  "Icon": "ui/weapons/guns/mp5_01.png",
+  "WorldPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/boltaction/w_boltaction.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/boltaction/vm_boltaction.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+  "__references": [
+    "facepunch.w_mp5#33703"
+  ],
+  "__version": 0
+}

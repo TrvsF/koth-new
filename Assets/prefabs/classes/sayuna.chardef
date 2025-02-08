@@ -1,0 +1,24 @@
+{
+  "CharacterName": "Sayuna",
+  "Description": "run fast",
+  "SpecificComponents": [
+    "KOTH.ScoutPlayer"
+  ],
+  "MaxHealth": 100,
+  "WeightFactor": 0.8,
+  "PrimaryWeapon": "prefabs/weapons/mp5/mp5.equip",
+  "SecondaryWeapon": "prefabs/weapons/pistol/pistol.equip",
+  "WalkSpeed": 400,
+  "WalkFriction": 4,
+  "CrouchingFriction": 6,
+  "JumpPower": 350,
+  "CrouchLerpSpeed": 60,
+  "SlowCrouchLerpSpeed": 60,
+  "AirAcceleration": 16,
+  "BaseAcceleration": 10,
+  "CrouchingAcceleration": 8,
+  "MaxAcceleration": 12,
+  "AirMaxAcceleration": 64,
+  "__references": [],
+  "__version": 0
+}

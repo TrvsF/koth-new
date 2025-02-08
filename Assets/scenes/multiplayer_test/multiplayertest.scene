@@ -130,7 +130,6 @@
         {
           "__type": "KOTH.BotSystem",
           "__guid": "5310c536-7649-4a31-b9af-bc3a53146ebd",
-          "__enabled": false,
           "DummyPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/dummy.prefab"
@@ -307,7 +306,7 @@
             "_type": "gameobject",
             "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
           },
-          "Team": "Unassigned"
+          "Team": "Terrorist"
         }
       ]
     },
@@ -333,7 +332,7 @@
             "_type": "gameobject",
             "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
           },
-          "Team": "Unassigned"
+          "Team": "CounterTerrorist"
         }
       ]
     },
@@ -1535,7 +1534,8 @@
           "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "28ddb3f2-ebcc-41cd-8991-c8c719067038",

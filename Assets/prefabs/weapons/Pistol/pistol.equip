@@ -1,0 +1,19 @@
+{
+  "Name": "Pistol",
+  "Description": "",
+  "Slot": "Secondary",
+  "Icon": "ui/weapons/guns/mp5_01.png",
+  "WorldPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/pistol/w_pistol.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/pistol/wm_pistol.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+  "__references": [
+    "facepunch.w_mp5#33703"
+  ],
+  "__version": 0
+}

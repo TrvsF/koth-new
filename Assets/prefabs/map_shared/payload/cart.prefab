@@ -20,27 +20,6 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Team": "Terrorist"
-      },
-      {
-        "__type": "Sandbox.BoxCollider",
-        "__guid": "6a070003-723a-4fd8-8a58-c491dc63600e",
-        "Center": "0,0,0",
-        "Friction": null,
-        "IsTrigger": false,
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "OnObjectTriggerEnter": null,
-        "OnObjectTriggerExit": null,
-        "OnTriggerEnter": null,
-        "OnTriggerExit": null,
-        "Scale": "56,24,32",
-        "Static": false,
-        "Surface": null,
-        "SurfaceVelocity": "0,0,0"
       }
     ],
     "Children": [
@@ -116,6 +95,26 @@
             },
             "RenderType": "On",
             "Tint": "162.8703,368.4776,159.3829,1"
+          },
+          {
+            "__type": "Sandbox.ModelCollider",
+            "__guid": "a4802484-9fff-41fd-abec-f67a1cb6bd3e",
+            "Friction": null,
+            "IsTrigger": false,
+            "Model": "models/dev/vehicle/van_damage_dev.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
           }
         ]
       }

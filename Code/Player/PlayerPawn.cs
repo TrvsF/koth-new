@@ -213,6 +213,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		ApplyAcceleration();
 		ApplyMovement();
+		DebugUpdate();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

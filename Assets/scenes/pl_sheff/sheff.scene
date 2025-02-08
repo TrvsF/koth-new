@@ -40,7 +40,8 @@
             "prefabs/classes/alan.chardef",
             "prefabs/classes/alex.chardef",
             "prefabs/classes/donny.chardef",
-            "prefabs/classes/dimitri.chardef"
+            "prefabs/classes/dimitri.chardef",
+            "prefabs/classes/sayuna.chardef"
           ],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

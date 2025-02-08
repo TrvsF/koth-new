@@ -21,8 +21,6 @@ public sealed class EngiePlayer : Component
 	protected override void OnDestroy()
 	{
 		base.OnDestroy();
-
-		ActiveTurretComponent?.GameObject.Root.Destroy();
 	}
 
 	protected override void OnUpdate()

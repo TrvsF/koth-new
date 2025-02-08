@@ -213,10 +213,15 @@ public partial class PlayerPawn
 		{
 			if (Input.Pressed("Jump"))
 			{
-				CharacterController.Punch(Vector3.Up * JumpPower);
-				BroadcastPlayerJumped();
+				Jump();
 			}
 		}
+	}
+
+	public void Jump()
+	{
+		CharacterController.Punch(Vector3.Up * JumpPower);
+		BroadcastPlayerJumped();
 	}
 
 	public SceneTraceResult TraceBBox(Vector3 start, Vector3 end, float liftFeet = 0.0f, float liftHead = 0.0f)
