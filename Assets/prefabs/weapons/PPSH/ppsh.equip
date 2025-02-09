@@ -1,15 +1,15 @@
 {
-  "Name": "Bolt Action",
+  "Name": "PPSH",
   "Description": "",
   "Slot": "Primary",
   "Icon": "ui/weapons/guns/mp5_01.png",
   "WorldPrefab": {
     "_type": "gameobject",
-    "prefab": "prefabs/weapons/boltaction/w_boltaction.prefab"
+    "prefab": "prefabs/weapons/ppsh/w_ppsh.prefab"
   },
   "ViewModelPrefab": {
     "_type": "gameobject",
-    "prefab": "prefabs/weapons/boltaction/vm_boltaction.prefab"
+    "prefab": "prefabs/weapons/ppsh/vm_ppsh.prefab"
   },
   "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
   "__references": [

@@ -6,7 +6,7 @@
   ],
   "MaxHealth": 100,
   "WeightFactor": 0.8,
-  "PrimaryWeapon": "prefabs/weapons/mp5/mp5.equip",
+  "PrimaryWeapon": "prefabs/weapons/scattergun/scattergun.equip",
   "SecondaryWeapon": "prefabs/weapons/pistol/pistol.equip",
   "WalkSpeed": 400,
   "WalkFriction": 4,

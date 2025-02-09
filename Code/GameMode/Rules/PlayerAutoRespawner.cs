@@ -8,7 +8,6 @@ public sealed class PlayerAutoRespawner : Component,
 	IGameEventHandler<UpdateStateEvent>
 {
 	[Property, Sync(SyncFlags.FromHost)] public float RespawnDelaySeconds { get; private set; } = 0f;
-	[Property] public bool AllowSpectatorsToSpawn { get; set; } = false;
 
 	private Dictionary<PlayerState, TimeSince> PlayersWaitingForSpawn = new();
 

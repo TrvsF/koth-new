@@ -6,7 +6,7 @@
   ],
   "MaxHealth": 125,
   "WeightFactor": 1,
-  "PrimaryWeapon": "prefabs/weapons/mp5/mp5.equip",
+  "PrimaryWeapon": "prefabs/weapons/medigun/medigun.equip",
   "SecondaryWeapon": "prefabs/weapons/needlegun/needlegun.equip",
   "WalkSpeed": 320,
   "WalkFriction": 5,

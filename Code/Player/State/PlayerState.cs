@@ -84,17 +84,25 @@ public partial class PlayerState : Component
 		{
 			// HACK : cameras that are placed within the scene via the editor are not behaving
 			// to how i would assume they would. Workaround for now
-			// if (Scene.Camera == null)
+			
+			var CameraObject = Scene.CreateObject();
+			CameraObject.Components.Create<ScreenPanel>();
+			CameraObject.Components.Create<PlayerMenuComponent>();
+			CameraObject.Name = "TEMPCAMERA";
+			CameraObject.NetworkMode = NetworkMode.Never;
+
+			// HACK : further silly hack to use the transform of a placed camera within the level
+			foreach (var Object in Scene.GetAllObjects(false))
 			{
-				var CameraObject = Scene.CreateObject();
-				// CameraObject.WorldPosition = new(816, 272, 256);
-				var CameraComp = CameraObject.Components.Create<CameraComponent>();
-				CameraComp.Priority = 100;
-				CameraObject.Components.Create<ScreenPanel>();
-				CameraObject.Components.Create<PlayerMenuComponent>();
-				CameraObject.Name = "TEMPCAMERA";
-				CameraObject.NetworkMode = NetworkMode.Never;
+				if (Object.Tags.Contains("scenecamera"))
+				{
+					CameraObject.WorldPosition = Object.WorldPosition;
+					CameraObject.WorldRotation = Object.WorldRotation;
+				}
 			}
+
+			var CameraComp = CameraObject.Components.Create<CameraComponent>();
+			CameraComp.Priority = 100;
 
 			AssumedSceneCameraObject = Scene.Camera.GameObject;
 		}

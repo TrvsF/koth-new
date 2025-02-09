@@ -22,8 +22,4 @@ public partial class EquipmentResource : GameResource
 	[Group("Base"), ImageAssetPath] public string Icon { get; set; }
 	[Category("Prefabs")] public GameObject WorldPrefab { get; set; }
 	[Category("Prefabs")] public GameObject ViewModelPrefab { get; set; }
-
-	// this gives us a reference to its bounds(?)
-	[Category("Information")]
-	public Model WorldModel { get; set; }
 }

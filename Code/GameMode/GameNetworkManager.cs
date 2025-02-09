@@ -53,18 +53,28 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
 	{
+		Assert.True(Networking.IsHost);
 		Log.Info("disconnection event");
 
+		PlayerState PlayerStateToDestroy = null;
 		foreach (var PlayerState in PlayerStates)
 		{
 			if (PlayerState.Connection == ConnectionChannel)
 			{
-				if (PlayerState.PlayerPawn.IsValid())
-				{
-					PlayerState.PlayerPawn.GameObject.Root.Destroy();
-				}
-				PlayerState.GameObject.Root.Destroy();
+				PlayerStateToDestroy = PlayerState;
 			}
+		}
+
+		if (PlayerStateToDestroy != null)
+		{
+			PlayerStates.Remove(PlayerStateToDestroy);
+
+			if (PlayerStateToDestroy.PlayerPawn.IsValid())
+			{
+				PlayerStateToDestroy.PlayerPawn.GameObject.Root.Destroy();
+			}
+
+			PlayerStateToDestroy.GameObject.Root.Destroy();
 		}
 	}
 
@@ -85,7 +95,7 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 				StartClient(Connection.Local);
 				break;
 			case EGameNetworkMode.Multiplayer:
-				bool Joined = await Networking.JoinBestLobby("koth");
+				bool Joined = await Networking.JoinBestLobby(Game.Ident);
 				if (!Joined)
 				{
 					Log.Info("starting own lobby...");

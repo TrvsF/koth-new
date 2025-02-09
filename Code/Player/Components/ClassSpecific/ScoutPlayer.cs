@@ -21,6 +21,7 @@ public sealed class ScoutPlayer : Component
 		base.OnDestroy();
 	}
 
+	const float MaxWallDistance = 10f;
 	private bool HasWallKicked = false;
 
 	protected override void OnUpdate()
@@ -33,6 +34,23 @@ public sealed class ScoutPlayer : Component
 		}
 
 		Assert.IsValid(OwnerPawn);
+		
+		if (OwnerPawn.IsGrounded)
+		{
+			HasWallKicked = false;
+			return;
+		}
+
+		bool RequestedWallKick = Input.Pressed("jump") && !HasWallKicked;
+		if (!RequestedWallKick)
+		{
+			return;
+		}
+
+		var WishInput = OwnerPawn.WishMove;
+		Log.Info(WishInput);
+		OwnerPawn.Jump();
+		HasWallKicked = true;
 	}
 
 }

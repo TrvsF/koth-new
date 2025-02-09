@@ -45,13 +45,8 @@ public partial class PlayerInventory : Component
 			return;
 		}
 
-		var wheel = Input.MouseWheel;
-
-		// gamepad input
-		if (Input.Pressed("NextSlot")) wheel.y = -1;
-		if (Input.Pressed("PrevSlot")) wheel.y = 1;
-
-		if (wheel.y == 0f) return;
+		var MouseWheelInput = Input.MouseWheel;
+		if (MouseWheelInput.y == 0f) return;
 
 		var availableWeapons = PlayerEquipment.OrderBy(x => x.Slot).ToList();
 		if (availableWeapons.Count == 0)
@@ -68,7 +63,7 @@ public partial class PlayerInventory : Component
 			break;
 		}
 
-		var slotDelta = wheel.y > 0f ? 1 : -1;
+		var slotDelta = MouseWheelInput.y > 0f ? 1 : -1;
 		currentSlot += slotDelta;
 
 		if (currentSlot < 0)
@@ -170,8 +165,8 @@ public partial class PlayerInventory : Component
 			return;
 		}
 
-		// NOTE : loading dat when spawning an object is a common paradime, need to understand
-		// the best way to do this
+		// NOTE : loading data when spawning an object is a common paradime, need to understand
+		// the best way to do this & have a nice way to repeat...
 
 		EquipmentComponent.Name = EquipmentResource.Name;
 		EquipmentComponent.ViewmodelPrefab = EquipmentResource.ViewModelPrefab;

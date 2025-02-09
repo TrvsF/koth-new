@@ -10,23 +10,27 @@
 
 <style>
 	button:hover {
-		background-color: #535353AA;
+		background-color: #F35353AA;
+		border-radius: 12px;
 	}
 </style>
 
 <root class="flex absolute inset-0 align-center justify-center">
-	<table class="with-padding-lg layout" style="background-color: #53535344;">
-		<div class="title" style="font-size: 60px;">
+	<table class="with-padding-lg layout" style="background-color: #AA535344;">
+		<div class="title" style="font-size: 24px;">
 			Select Class
 		</div>
 
 		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
 		{
-			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 100px;">@Class.CharacterName | @Class.Description</button>
+			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 50px;">@Class.CharacterName | @Class.Description</button>
 		}
 	</table>
 
-	<label style="position: absolute; top: 5%; font-size: 50px; color: antiquewhite;">@(Math.Round(PlayerState.Local.TimeTilAttemptedSpawn))</label>
+	@if (PlayerState.Local.TimeTilAttemptedSpawn != -1)
+	{
+		<label style="position: absolute; top: 5%; font-size: 50px; color: antiquewhite;">@(Math.Round(PlayerState.Local.TimeTilAttemptedSpawn))</label>
+	}
 </root>
 
 @code

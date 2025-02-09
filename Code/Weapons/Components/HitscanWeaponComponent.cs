@@ -65,8 +65,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			return;
 		}
 
-		Log.Info("BANG");
-
 		TimeSinceShot = 0;
 		Ammo--;
 

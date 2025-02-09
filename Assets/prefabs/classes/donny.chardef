@@ -5,7 +5,7 @@
   "MaxHealth": 175,
   "WeightFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/rktlauncher/rktlauncher.equip",
-  "SecondaryWeapon": "prefabs/weapons/mp5/mp5.equip",
+  "SecondaryWeapon": "prefabs/weapons/rktlauncher/rktlauncher.equip",
   "WalkSpeed": 240,
   "WalkFriction": 4.8,
   "CrouchingFriction": 7,

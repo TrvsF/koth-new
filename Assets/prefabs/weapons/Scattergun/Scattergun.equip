@@ -1,21 +1,16 @@
 {
-  "Name": "My Equipment",
+  "Name": "Scattergun",
   "Description": "",
-  "Slot": "Undefined",
-  "Team": "Unassigned",
-  "CanOtherTeamPickUp": true,
-  "DropOnDisconnect": false,
+  "Slot": "Primary",
   "Icon": null,
-  "IsPurchasable": true,
-  "Price": 0,
-  "KillReward": 300,
-  "MainPrefab": null,
-  "ViewModelPrefab": null,
-  "WorldModel": null,
-  "DroppedSize": "8,2,8",
-  "DroppedCenter": "0,0,0",
-  "ArmorReduction": null,
-  "HelmetReduction": null,
+  "WorldPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/scattergun/w_scattergun.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "prefabs/weapons/scattergun/vm_scattergun.prefab"
+  },
   "__references": [],
   "__version": 0
 }

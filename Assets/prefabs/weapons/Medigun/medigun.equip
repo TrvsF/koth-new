@@ -2,14 +2,8 @@
   "Name": "The Hose",
   "Description": "",
   "Slot": "Primary",
-  "Team": "Unassigned",
-  "CanOtherTeamPickUp": true,
-  "DropOnDisconnect": false,
   "Icon": "rust.drone/thumb.png",
-  "IsPurchasable": false,
-  "Price": 0,
-  "KillReward": 300,
-  "MainPrefab": {
+  "WorldPrefab": {
     "_type": "gameobject",
     "prefab": "prefabs/weapons/medigun/w_medigun.prefab"
   },
@@ -17,10 +11,8 @@
     "_type": "gameobject",
     "prefab": "prefabs/weapons/medigun/vm_medigun.prefab"
   },
-  "WorldModel": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
-  "DroppedSize": "8,2,8",
-  "DroppedCenter": "0,0,0",
-  "ArmorReduction": null,
-  "HelmetReduction": null,
+  "__references": [
+    "rust.drone#26713"
+  ],
   "__version": 0
 }
