@@ -22,12 +22,12 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 	protected override void OnStart()
 	{
 		base.OnStart();
-	
+
 		if (!GameObject.Root.IsValid())
 		{
 			throw new Exception($"Expected a valid object for the game network manager");
 		}
-	
+
 		Actor = GameObject.Root;
 	}
 
@@ -39,44 +39,6 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	[Property] public GameObject PlayerStatePrefab { get; set; } = null;
 	[Property] public EGameNetworkMode NetworkMode { get; set; } = EGameNetworkMode.None;
-
-	////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// NOTE : only called on host
-	void INetworkListener.OnActive(Connection ConnectionChannel)
-	{
-		Log.Info($"Connection activating with name = {ConnectionChannel.DisplayName}:{ConnectionChannel.Ping} | is host = {ConnectionChannel.IsHost}");
-
-		// TODO : if we're server don't do any of this, but still init the world
-		StartClient(ConnectionChannel);
-	}
-
-	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
-	{
-		Assert.True(Networking.IsHost);
-		Log.Info("disconnection event");
-
-		PlayerState PlayerStateToDestroy = null;
-		foreach (var PlayerState in PlayerStates)
-		{
-			if (PlayerState.Connection == ConnectionChannel)
-			{
-				PlayerStateToDestroy = PlayerState;
-			}
-		}
-
-		if (PlayerStateToDestroy != null)
-		{
-			PlayerStates.Remove(PlayerStateToDestroy);
-
-			if (PlayerStateToDestroy.PlayerPawn.IsValid())
-			{
-				PlayerStateToDestroy.PlayerPawn.GameObject.Root.Destroy();
-			}
-
-			PlayerStateToDestroy.GameObject.Root.Destroy();
-		}
-	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -118,17 +80,67 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
+	private static bool CreateLobby(string LobbyName = "awesomelobby", LobbyPrivacy Privacy = LobbyPrivacy.Public)
+	{
+		LobbyConfig Config = new();
+		Config.Name = LobbyName;
+		Config.DestroyWhenHostLeaves = false;
+		Config.MaxPlayers = 16;
+		Config.Privacy = Privacy;
+
+		Networking.CreateLobby(Config);
+
+		return true;
+	}
+
+	void INetworkListener.OnActive(Connection ConnectionChannel)
+	{
+		Log.Info($"Connection activating with name = {ConnectionChannel.DisplayName}:{ConnectionChannel.Ping} | is host = {ConnectionChannel.IsHost}");
+
+		// TODO : if we're a dedicated server init a different way!
+		StartClient(ConnectionChannel);
+	}
+
+	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
+	{
+		Assert.True(Networking.IsHost);
+		Log.Info("disconnection event");
+
+		PlayerState PlayerStateToDestroy = null;
+		foreach (var PlayerState in PlayerStates)
+		{
+			if (PlayerState.Connection == ConnectionChannel)
+			{
+				PlayerStateToDestroy = PlayerState;
+			}
+		}
+
+		if (PlayerStateToDestroy != null)
+		{
+			PlayerStates.Remove(PlayerStateToDestroy);
+
+			if (PlayerStateToDestroy.PlayerPawn.IsValid())
+			{
+				PlayerStateToDestroy.PlayerPawn.GameObject.Root.Destroy();
+			}
+
+			PlayerStateToDestroy.GameObject.Root.Destroy();
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private void StartClient(Connection ConnectionChannel)
 	{
-		if (CreatePlayerState(ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent))
-		{
-			// SpawnCreatePlayer(PlayerStateComponent, ConnectionChannel);
-		}
-		else
+		bool CreatedPlayerState = CreatePlayerState(ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent);
+		
+		if (!CreatedPlayerState)
 		{
 			Networking.Disconnect();
 			throw new Exception($"Something went wrong when trying to create PlayerState for {ConnectionChannel.DisplayName}");
 		}
+
+		PlayerStates.Add(PlayerStateComponent);
 	}
 
 	bool CreatePlayerState(Connection ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent)
@@ -136,23 +148,19 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 		Assert.True(Networking.IsHost);
 		Assert.True(PlayerStatePrefab.IsValid(), "Could not spawn player as no PlayerStatePrefab assigned to network manager");
 
-		var CloneConfig = new CloneConfig()
-		{
-			StartEnabled = true,
-			Parent = Actor,
-			Transform = new Transform()
-		};
+		// TODO : visit
+		//CloneConfig CloneConfig = new();
+		//CloneConfig.StartEnabled = true;
+		//CloneConfig.Parent = Actor;
+		//CloneConfig.Transform = new();
 
 		PlayerState = PlayerStatePrefab.Clone(/*CloneConfig*/);
 		PlayerState.Name = $"PlayerState:{ConnectionChannel.DisplayName}";
 		PlayerState.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
 		PlayerState.NetworkSpawn(Connection.Host);
 
-		// TODO : set player state gameobject parent to our actor
-		// PlayerState.Root.SetParent(Actor);
-
 		PlayerStateComponent = PlayerState.Components.Get<PlayerState>();
-			
+
 		if (!PlayerStateComponent.IsValid())
 		{
 			throw new Exception($"Could not spawn player as no PlayerStatePrefab assigned to network manager for {ConnectionChannel.DisplayName}");
@@ -160,22 +168,10 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 		if (PlayerStateComponent.Initilize(ConnectionChannel))
 		{
-			PlayerStates.Add(PlayerStateComponent);
 			return true;
 		}
 
 		PlayerState.DestroyImmediate();
 		return false;
-	}
-
-	private bool CreateLobby()
-	{
-		LobbyConfig Config = new();
-		Config.Name = "awesomelobby";
-		Config.DestroyWhenHostLeaves = true;
-
-		Networking.CreateLobby(Config);
-
-		return true;
 	}
 }

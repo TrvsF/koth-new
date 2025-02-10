@@ -10,7 +10,7 @@ namespace KOTH;
 
 public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
 {
-	[Sync(SyncFlags.FromHost)] public FPlayerPawnDefinition PlayerPawnDefinition { get; private set; }
+	[Property, Sync(SyncFlags.FromHost)] public FPlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";
 
 	public void SetPlayerPawnDefinition(FPlayerPawnDefinition PlayerPawnDefinitionIn)
@@ -98,8 +98,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		if (IsLocallyControlled)
 		{
 			Assert.True(CreatePlayerCamera());
+
 			Body.Renderer.Enabled = false;
 			Tags.Add("self");
+
+			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, true);
+			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
 		}
 		else
 		{
@@ -115,15 +119,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
 		{
-			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, false);
-			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
 		}
 	}
 
-	[Rpc.Host]
 	private void GiveWeaponToPawn(EquipmentResource Weapon, bool ShouldActivate)
 	{
+		Log.Info($"{Weapon} : {ShouldActivate}");
 		Inventory.Give(Weapon, ShouldActivate);
 	}
 

@@ -145,8 +145,6 @@ public partial class PlayerInventory : Component
 
 	public void Give(EquipmentResource EquipmentResource, bool MakeActive = true)
 	{
-		Assert.True(Networking.IsHost);
-
 		Assert.NotNull(EquipmentResource);
 		Assert.IsValid(EquipmentResource.WorldPrefab);
 		Assert.IsValid(EquipmentResource.ViewModelPrefab);
@@ -168,9 +166,11 @@ public partial class PlayerInventory : Component
 		// NOTE : loading data when spawning an object is a common paradime, need to understand
 		// the best way to do this & have a nice way to repeat...
 
-		EquipmentComponent.Name = EquipmentResource.Name;
-		EquipmentComponent.ViewmodelPrefab = EquipmentResource.ViewModelPrefab;
-		EquipmentComponent.Slot = EquipmentResource.Slot;
+		FEquipmentDefinition EquipmentComponentStruct = new();
+		EquipmentComponentStruct.Name = EquipmentResource.Name;
+		EquipmentComponentStruct.ViewmodelPrefab = EquipmentResource.ViewModelPrefab;
+		EquipmentComponentStruct.EquipmentSlot = EquipmentResource.Slot;
+		EquipmentComponent.Init(EquipmentComponentStruct);
 
 		EquipmentObject.NetworkSpawn(Player.Network.Owner);
 

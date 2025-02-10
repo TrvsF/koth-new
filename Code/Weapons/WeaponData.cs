@@ -19,7 +19,6 @@ public partial class EquipmentResource : GameResource
 	[Category("Base")] public string Name { get; set; } = "My Equipment";
 	[Category("Base")] public string Description { get; set; } = "";
 	[Category("Base")] public EEquipmentSlot Slot { get; set; }
-	[Group("Base"), ImageAssetPath] public string Icon { get; set; }
 	[Category("Prefabs")] public GameObject WorldPrefab { get; set; }
 	[Category("Prefabs")] public GameObject ViewModelPrefab { get; set; }
 }

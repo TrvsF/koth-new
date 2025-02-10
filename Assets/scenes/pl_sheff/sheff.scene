@@ -165,7 +165,6 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "881306aa-c383-4c2b-b163-b36ec6c60017",
-                  "AllowSpectatorsToSpawn": false,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -220,7 +219,6 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "3f947822-4562-4b89-af86-6a57d584489d",
-                  "AllowSpectatorsToSpawn": false,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -497,8 +495,6 @@
       "Rotation": "-0.0000002281017,0.07632354,0.000002979892,0.9970832",
       "Tags": "cart",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/payload/cart.prefab",
       "__PrefabVariables": {}
     },
@@ -543,8 +539,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },
@@ -556,8 +550,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },
@@ -569,8 +561,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },
@@ -583,8 +573,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },

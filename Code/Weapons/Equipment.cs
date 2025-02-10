@@ -8,6 +8,18 @@ public record EquipmentDeployedEvent(Equipment Equipment) : IGameEvent;
 public record EquipmentHolsteredEvent(Equipment Equipment) : IGameEvent;
 public record EquipmentDestroyedEvent(Equipment Equipment) : IGameEvent;
 
+public struct FEquipmentDefinition
+{
+	public FEquipmentDefinition()
+	{
+	}
+
+	public string Name { get; set; } = "UNINIT";
+	public GameObject ViewmodelPrefab { get; set; } = null;
+	public EEquipmentSlot EquipmentSlot { get; set; }
+}
+
+
 // TODO : this could do with a proper look at
 public sealed class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
 {
@@ -16,9 +28,16 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost)] public string Name { get; set; }
-	[Sync(SyncFlags.FromHost)] public GameObject ViewmodelPrefab { get; set; }
-	[Sync(SyncFlags.FromHost)] public EEquipmentSlot Slot { get; set; }
+	public void Init(FEquipmentDefinition Definition)
+	{
+		Name = Definition.Name;
+		ViewmodelPrefab = Definition.ViewmodelPrefab;
+		Slot = Definition.EquipmentSlot;
+	}
+
+	[Property] public string Name { get; private set; }
+	[Property] public GameObject ViewmodelPrefab { get; private set; }
+	[Property] public EEquipmentSlot Slot { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -37,7 +56,14 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		//Log.Info(ViewmodelPrefab);
+	}
+
 	public string GetAmmoString()
 	{
 		var WeaponComponent = GameObject.GetComponentInChildren<InputWeaponComponent>();
@@ -48,7 +74,7 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 
 		return WeaponComponent.Ammo.ToString();
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	[Sync, Change(nameof(OnIsDeployedPropertyChanged))]
@@ -99,6 +125,8 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 			foreach (var item in equipment)
 				item.Holster();
 		}
+
+		Log.Info(ViewmodelPrefab);
 
 		IsDeployed = true;
 	}
