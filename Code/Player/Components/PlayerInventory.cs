@@ -143,6 +143,7 @@ public partial class PlayerInventory : Component
 		equipment.Enabled = false;
 	}
 
+	[Rpc.Owner]
 	public void Give(EquipmentResource EquipmentResource, bool MakeActive = true)
 	{
 		Assert.NotNull(EquipmentResource);

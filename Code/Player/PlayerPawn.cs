@@ -78,7 +78,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	{
 		Assert.NotNull(Head);
 		Assert.True(PlayerPawnDefinition.IsValid());
-		// Assert.NotNull(GibPrefab);
 
 		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
 		Assert.True(SetMovementVariables(CharacterDefinition));
@@ -102,14 +101,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Body.Renderer.Enabled = false;
 			Tags.Add("self");
 
-			GiveWeaponToPawn(CharacterDefinition.SecondaryWeapon, true);
-			GiveWeaponToPawn(CharacterDefinition.PrimaryWeapon, true);
+			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
+			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
 		}
 		else
 		{
 			// HACK : turns back on rendering if the host disabled it globally for themself
 			Body.Renderer.Enabled = true;
-
 		}
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
@@ -121,12 +119,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
 		}
-	}
-
-	private void GiveWeaponToPawn(EquipmentResource Weapon, bool ShouldActivate)
-	{
-		Log.Info($"{Weapon} : {ShouldActivate}");
-		Inventory.Give(Weapon, ShouldActivate);
 	}
 
 	protected override void OnUpdate()

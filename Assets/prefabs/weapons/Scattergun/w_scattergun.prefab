@@ -30,12 +30,15 @@
           "_type": "gameobject",
           "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
         },
+        "Name": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Slot": "Undefined",
+        "ViewmodelPrefab": null
       },
       {
         "__type": "KOTH.TagBinder",
@@ -52,7 +55,7 @@
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 6,
         "BaseDamage": 60,
-        "FireRate": 0.66,
+        "FireRate": 0.75,
         "FireType": "Continuous",
         "HasAmmo": true,
         "InputActions": [
@@ -67,7 +70,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "OnInputAction": null,
-        "ReloadTime": 2,
+        "ReloadTime": 0.66,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false

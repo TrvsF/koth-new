@@ -106,6 +106,8 @@ public partial class PlayerState : Component
 
 			AssumedSceneCameraObject = Scene.Camera.GameObject;
 		}
+
+		Assert.IsValid(AssumedSceneCameraObject);
 		AssumedSceneCameraObject.Enabled = true;
 	}
 

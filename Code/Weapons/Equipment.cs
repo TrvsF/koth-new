@@ -57,13 +57,6 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-	protected override void OnUpdate()
-	{
-		base.OnUpdate();
-
-		//Log.Info(ViewmodelPrefab);
-	}
-
 	public string GetAmmoString()
 	{
 		var WeaponComponent = GameObject.GetComponentInChildren<InputWeaponComponent>();
@@ -125,8 +118,6 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 			foreach (var item in equipment)
 				item.Holster();
 		}
-
-		Log.Info(ViewmodelPrefab);
 
 		IsDeployed = true;
 	}

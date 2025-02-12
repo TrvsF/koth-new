@@ -69,7 +69,7 @@
           "BloomLayer": false,
           "AfterUILayer": false
         },
-        "RenderType": "Off",
+        "RenderType": "On",
         "Sequence": {
           "Name": null
         },

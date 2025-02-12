@@ -10,7 +10,9 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
+      "EditorReferences": [
+        "fish.roblox_skybox#8534"
+      ],
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/payload/pl_sheff.vmap",

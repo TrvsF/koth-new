@@ -12,6 +12,12 @@
         "ClearFlags": "All",
         "FieldOfView": 90,
         "IsMainCamera": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Orthographic": false,
         "OrthographicHeight": 1204,
         "Priority": 8,
@@ -25,65 +31,34 @@
       {
         "__type": "Sandbox.AudioListener",
         "__guid": "c283a749-a1b4-4d71-97cd-6cfe6e0269f0",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "UseCameraDirection": true
       },
       {
         "__type": "Sandbox.Highlight",
-        "__guid": "9a1e8dd1-ce52-4988-a0a6-2192d8401241"
-      },
-      {
-        "__type": "Sandbox.Bloom",
-        "__guid": "aa00f6d6-044f-4303-b133-b1db76e26a95",
-        "BloomColor": {
-          "blend": "Linear",
-          "color": [
-            {
-              "t": 0,
-              "c": "1,1,1,1"
-            },
-            {
-              "t": 1,
-              "c": "1,1,1,1"
-            }
-          ],
-          "alpha": []
-        },
-        "BloomCurve": [
-          {
-            "x": 0,
-            "y": 0.5,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          },
-          {
-            "x": 1,
-            "y": 1,
-            "in": 0,
-            "out": 0,
-            "mode": "Mirrored"
-          }
-        ],
-        "Mode": "Additive",
-        "Strength": 0.15,
-        "Threshold": 0.66,
-        "ThresholdWidth": 1.65
+        "__guid": "9a1e8dd1-ce52-4988-a0a6-2192d8401241",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       },
       {
         "__type": "Sandbox.Sharpen",
         "__guid": "09775e98-d3bd-4fe7-b742-4888e27b545c",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Scale": 0.1
-      },
-      {
-        "__type": "Sandbox.ChromaticAberration",
-        "__guid": "a1574d00-56c9-4791-9885-9c2ce4d6d170",
-        "Offset": "2,3,0",
-        "Scale": 0
-      },
-      {
-        "__type": "Sandbox.Pixelate",
-        "__guid": "fea821b4-2c14-4aa3-ab38-da30ee64a3a3",
-        "Scale": 0
       },
       {
         "__type": "Sandbox.AmbientOcclusion",
@@ -92,18 +67,36 @@
         "DenoiseMode": "Temporal",
         "FalloffRange": 0.75,
         "Intensity": 0.15,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Quality": "High",
         "Radius": 128,
         "ThinCompensation": 0
       },
       {
         "__type": "KOTH.UI.MainHUD",
-        "__guid": "4e66919c-4bda-43e8-a9b8-3d0bb3fb8907"
+        "__guid": "4e66919c-4bda-43e8-a9b8-3d0bb3fb8907",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       },
       {
         "__type": "Sandbox.ScreenPanel",
         "__guid": "d3a300f5-d5ff-4b9a-8ebd-62206e6ab506",
         "AutoScreenScale": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Opacity": 1,
         "Scale": 1,
         "ScaleStrategy": "ConsistentHeight",
