@@ -220,7 +220,13 @@ public partial class PlayerPawn
 
 	public void Jump()
 	{
-		CharacterController.Punch(Vector3.Up * JumpPower);
+		Punch(Vector3.Up * JumpPower);
+	}
+
+	public void Punch(Vector3 Vector)
+	{
+		Log.Info(Vector);
+		CharacterController.Punch(Vector);
 		BroadcastPlayerJumped();
 	}
 
