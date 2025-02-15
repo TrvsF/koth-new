@@ -225,7 +225,6 @@ public partial class PlayerPawn
 
 	public void Punch(Vector3 Vector)
 	{
-		Log.Info(Vector);
 		CharacterController.Punch(Vector);
 		BroadcastPlayerJumped();
 	}

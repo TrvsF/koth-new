@@ -1,9 +1,4 @@
-﻿using Sandbox;
-using Sandbox.Diagnostics;
-using Sandbox.Events;
-using System;
-using System.Runtime.InteropServices;
-using static Sandbox.PhysicsContact;
+﻿using Sandbox.Diagnostics;
 
 namespace KOTH;
 
@@ -11,21 +6,12 @@ public sealed class ScoutPlayer : Component
 {
 	public PlayerPawn OwnerPawn { get => GameObject.Root.GetComponent<PlayerPawn>(); }
 
-	protected override void OnStart()
-	{
-		base.OnStart();
-
-		// TODO : get all owned objects & assign turret to us
-	}
-
-	protected override void OnDestroy()
-	{
-		base.OnDestroy();
-	}
-
+	const float WallkickPower = 300f;
 	const float MaxWallDistance = 48f;
 	private bool HasWallKicked = false;
 
+	Vector3 LastDifferentInput = Vector3.Zero;
+	Vector3 LastInput = Vector3.Zero;
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -36,52 +22,75 @@ public sealed class ScoutPlayer : Component
 		}
 
 		Assert.IsValid(OwnerPawn);
-		
+
+		var WishInput = OwnerPawn.WishMove.WithZ(0);
+		if (WishInput != LastInput)
+		{
+			LastDifferentInput = LastInput;
+		}
+		LastInput = WishInput;
+
 		if (OwnerPawn.IsGrounded)
 		{
 			HasWallKicked = false;
-			return;
+			return; // !
 		}
 
 		bool RequestedWallKick = Input.Pressed("jump") && !HasWallKicked;
 		if (!RequestedWallKick)
 		{
-			return;
+			return; // !
 		}
 
-		var WishInput = OwnerPawn.WishMove;
-		var WishInputInverted = WishInput * -1f;
-		var YawRotation = OwnerPawn.Camera.WorldRotation.Yaw();
-
-		Log.Info(WishInputInverted);
-		Log.Info(YawRotation);
-
-		var RotatedInput = WishInput.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
-		var RotatedInputInverted = WishInputInverted.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
-		RotatedInputInverted = RotatedInputInverted.Normal;
-
-		Log.Info(RotatedInputInverted);
-		Ray HitRay = new(OwnerPawn.WorldPosition, RotatedInputInverted);
-
-		Line HitLine = new(OwnerPawn.WorldPosition, RotatedInputInverted, MaxWallDistance);
-		DebugOverlay.Line(HitLine, Color.Red, 100);
-		
-		var Hits = Scene.Trace.Ray(HitRay, MaxWallDistance)
-			.IgnoreGameObjectHierarchy(OwnerPawn.GameObject)
-			.RunAll();
-
-		foreach (var Hit in Hits)
+		if (HasWallKicked = CanAttemptWallKick(WishInput, OwnerPawn, Scene, out Vector3 PunchVector))
 		{
-			Log.Info(Hit.GameObject);
-			var PunchVector = RotatedInput.WithZ(1f) * 250f;
 			OwnerPawn.Punch(PunchVector);
 			HasWallKicked = true;
-			return;
+			return; // !
+		}
+
+		// try try again
+		if (!HasWallKicked)
+		{
+			if (HasWallKicked = CanAttemptWallKick(LastDifferentInput, OwnerPawn, Scene, out Vector3 DontCarePunchVector))
+			{
+				OwnerPawn.Punch(PunchVector * 0.8f);
+			}
 		}
 	}
 
-	private bool CanWallkick()
+	private static bool CanAttemptWallKick(Vector3 WishMove, PlayerPawn PlayerPawn, Scene Scene, out Vector3 PunchVector)
 	{
-		return false;
+		if (!PlayerPawn.IsValid() || !Scene.IsValid())
+		{
+			PunchVector = Vector3.Zero;
+			return false;
+		}
+
+		var WishInputInverted = WishMove * -1f;
+		var YawRotation = PlayerPawn.Camera.WorldRotation.Yaw();
+
+		var RotatedInput = WishMove.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
+		var RotatedInputInverted = WishInputInverted.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
+		RotatedInputInverted = RotatedInputInverted.Normal;
+
+		PunchVector = RotatedInput.WithZ(1f) * WallkickPower;
+
+		Ray HitRay = new(PlayerPawn.WorldPosition, RotatedInputInverted);
+		var Hits = Scene.Trace.Ray(HitRay, MaxWallDistance)
+			.IgnoreGameObjectHierarchy(PlayerPawn.GameObject)
+			.RunAll();
+
+		bool CanWallKick = false;
+		foreach (var _ in Hits) // asuming it geometry
+		{
+			CanWallKick = true;
+		}
+
+		// debug
+		//Line HitLine = new(OwnerPawn.WorldPosition, RotatedInputInverted, MaxWallDistance);
+		//DebugOverlay.Line(HitLine, CanWallKick ? Color.Green : Color.Red, 100);
+
+		return CanWallKick;
 	}
 }
