@@ -59,7 +59,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
-	const float MaxKB = 1200f;
+	const float MaxKB = 1800f;
 	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightFactor, bool IsCrouching)
 	{
 		var CrouchFactor = IsCrouching ? 62 : 82;

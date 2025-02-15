@@ -5,8 +5,6 @@ namespace KOTH;
 
 public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
-	[Property, Group("Explosion")] public float Damage { get; set; } = 90f;
-	[Property, Group("Explosion")] public float KnockbackStrength { get; set; } = 300f;
 	[Property, Group("Explosion")] public float MinDetTime { get; set; } = 0.66f;
 	[Property, Group("Explosion")] public GameObject ExplosionPrefab { get; set; }
 	[Property, Group("Explosion")] public SoundEvent ExplodeSound { get; set; }
@@ -125,8 +123,8 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 				TargetPlayerPawn = PlayerPawn,
 				AttackerPlayerPawn = OwnerPlayerPawn,
 				DamageOrigin = ProjectileCollision.HitLocation,
-				BaseDamage = Damage,
-				BaseKnockbackStrength = KnockbackStrength,
+				BaseDamage = BaseDamage,
+				BaseKnockbackStrength = BaseKnockbackStrength,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,
 				MaxFalloffDistance = ExplosionRadius,

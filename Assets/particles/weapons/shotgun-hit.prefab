@@ -2,7 +2,7 @@
   "RootObject": {
     "__guid": "6f7e2629-4eed-4fe1-b3be-b5de689301a0",
     "Flags": 0,
-    "Name": "blue-hit",
+    "Name": "shotgun-hit",
     "Enabled": true,
     "Components": [
       {
@@ -14,11 +14,11 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Time": 0.5,
+        "Time": 3,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -354.88898,
-          "Passed": 354.88898,
+          "Relative": -5143.551,
+          "Passed": 5143.551,
           "Fraction": 1
         }
       }

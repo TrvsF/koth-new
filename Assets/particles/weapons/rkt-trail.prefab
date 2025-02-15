@@ -2,7 +2,7 @@
   "RootObject": {
     "__guid": "6f7e2629-4eed-4fe1-b3be-b5de689301a0",
     "Flags": 0,
-    "Name": "blue-hit",
+    "Name": "rkt-trail",
     "Enabled": true,
     "Components": [
       {
@@ -14,11 +14,11 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Time": 0.5,
+        "Time": 0.1,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -354.88898,
-          "Passed": 354.88898,
+          "Relative": -6268.309,
+          "Passed": 6268.309,
           "Fraction": 1
         }
       }
@@ -28,6 +28,7 @@
         "__guid": "c565589a-6515-4e75-8bb7-68f27211bdcd",
         "Flags": 0,
         "Name": "Spray",
+        "Rotation": "0,-0.7071067,0,0.7071068",
         "Tags": "particles",
         "Enabled": true,
         "Components": [
@@ -86,7 +87,7 @@
             "DieOnCollisionChance": 0.3,
             "Force": true,
             "ForceDirection": "0,0,0",
-            "ForceScale": 8.9,
+            "ForceScale": 0.1,
             "ForceSpace": "World",
             "Friction": 1,
             "Gradient": {
@@ -115,8 +116,30 @@
               "ConstantA": "0.98515,0.92604,0,1",
               "ConstantB": "1,0.22,0,1"
             },
-            "Lifetime": 0.5,
-            "MaxParticles": 500,
+            "Lifetime": {
+              "Type": "Range",
+              "Evaluation": "Particle",
+              "CurveA": [
+                {
+                  "x": 0.5,
+                  "y": 0.5,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
+                }
+              ],
+              "CurveB": [
+                {
+                  "x": 0.5,
+                  "y": 0.5,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
+                }
+              ],
+              "Constants": "0.05,0.33,0,0"
+            },
+            "MaxParticles": 100,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -126,11 +149,11 @@
             "OnParticleCreated": null,
             "OnParticleDestroyed": null,
             "OrbitalForce": {
-              "X": 0,
-              "Y": 0,
-              "Z": 0
+              "X": 5,
+              "Y": 5,
+              "Z": 5
             },
-            "OrbitalPull": 0,
+            "OrbitalPull": 100,
             "PerParticleTimeScale": 1,
             "Pitch": 0,
             "PreWarm": 0,
@@ -159,8 +182,8 @@
               "Constants": "0,180,0,0"
             },
             "Scale": {
-              "Type": "Curve",
-              "Evaluation": "Life",
+              "Type": "Range",
+              "Evaluation": "Particle",
               "CurveA": {
                 "rangey": "0,13",
                 "frames": [
@@ -203,7 +226,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "1,0,0,0"
+              "Constants": "0.33,0.33,0,0"
             },
             "SequenceId": 0,
             "SequenceSpeed": {
@@ -273,7 +296,7 @@
             "FaceVelocity": false,
             "FogStrength": 1,
             "LeadingTrail": true,
-            "Lighting": true,
+            "Lighting": false,
             "MotionBlur": false,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -290,18 +313,25 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 1,
+            "Scale": 6,
             "Shadows": true,
             "SortMode": "Unsorted",
-            "Texture": "particles/gameplay/money/hit_atlas_color.vtex"
+            "Texture": {
+              "$compiler": "texture",
+              "$source": "color",
+              "data": {
+                "Color": "1,1,1,1"
+              },
+              "compiled": null
+            }
           },
           {
-            "__type": "Sandbox.ParticleBoxEmitter",
-            "__guid": "9f4c30c0-26c5-44eb-8181-fe0396840dc8",
-            "Burst": 245.24,
+            "__type": "Sandbox.ParticleSphereEmitter",
+            "__guid": "7596412f-ca5c-4a83-9ef5-35713754a73a",
+            "Burst": 350,
             "Delay": 0,
             "DestroyOnEnd": true,
-            "Duration": 0.5,
+            "Duration": 0.1,
             "Loop": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -310,9 +340,10 @@
             "OnComponentStart": null,
             "OnComponentUpdate": null,
             "OnEdge": false,
+            "Radius": 1,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Size": "50,50,50"
+            "Velocity": 0
           }
         ]
       }

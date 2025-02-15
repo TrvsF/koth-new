@@ -137,9 +137,10 @@ public sealed class TurretComponent : Component
 
 		// TODO : check ownership!
 
-		Damage = InputWeaponComponent.BaseDamage;
-		Firerate = InputWeaponComponent.FireRate;
-		KnockbackStrength = InputWeaponComponent.KnockbackStrength;
+		var WeaponStats = InputWeaponComponent.GetWeaponStats();
+		Damage = WeaponStats.BaseDamage;
+		Firerate = WeaponStats.FireRate;
+		KnockbackStrength = WeaponStats.KnockbackStrength;
 
 		var TurretModelRenderer = TurretMuzzleObject.GetComponent<ModelRenderer>();
 		if (TurretModelRenderer.IsValid() && WeaponModel.IsValid())

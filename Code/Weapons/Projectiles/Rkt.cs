@@ -1,12 +1,13 @@
-﻿using Sandbox.Events;
+﻿using Sandbox.Diagnostics;
+using Sandbox.Events;
 using System;
 
 namespace KOTH;
 
 public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
-	[Property, Group("Explosion")] public float Damage { get; set; } = 50f;
-	[Property, Group("Explosion")] public float KnockbackStrength { get; set; } = 300f;
+	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
+	[Property, Group("VFX")] public GameObject ExplosionPrefab { get; set; }
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -18,11 +19,30 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 		DestroyComponent.Time = MaxAliveTime;
 	}
 
-	protected override void OnUpdate()
+	protected override void OnFixedUpdate()
 	{
-		base.OnUpdate();
+		base.OnFixedUpdate();
 
-		// WorldRotation = WorldRotation.RotateAroundAxis(WorldTransform.Forward, 1f);
+		Assert.IsValid(TrailPrefab);
+		TrailPrefab.Clone(WorldPosition);
+	}
+
+	[Rpc.Broadcast]
+	public void DoExplosionVfx()
+	{
+		Assert.IsValid(ExplosionPrefab);
+		ExplosionPrefab.Clone(WorldPosition);
+	}
+
+	protected override void OnDestroy()
+	{
+		if (Scene.Active)
+		{
+			Assert.IsValid(ExplosionPrefab);
+			ExplosionPrefab.Clone(WorldPosition);
+		}
+		
+		base.OnDestroy();
 	}
 
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
@@ -41,8 +61,8 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 				TargetPlayerPawn = PlayerPawn,
 				AttackerPlayerPawn = OwnerPlayerPawn,
 				DamageOrigin = Collision.HitLocation,
-				BaseDamage = Damage,
-				BaseKnockbackStrength = KnockbackStrength,
+				BaseDamage = BaseDamage,
+				BaseKnockbackStrength = BaseKnockbackStrength,
 				DirectImpact = PlayerPawn.GameObject.Root == Collision.HitObject?.Root,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,

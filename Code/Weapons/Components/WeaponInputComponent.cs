@@ -173,12 +173,32 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 
 // damage /////////////////////////////////////////////////////////////
-// TODO : this is only setup for hitscan weapons!! need to set dmg on projectiles
 public abstract partial class InputWeaponComponent : EquipmentComponent
 {
-	[Property, Group(".Damage")] public float FireRate { get; set; } = 0.2f;
-	[Property, Group(".Damage")] public float BaseDamage { get; set; } = 100f;
-	[Property, Group(".Damage")] public float KnockbackStrength { get; set; } = 100f;
+	[Property, Group(".Damage")] protected float FireRate { get; set; } = 0.2f;
+	[Property, Group(".Damage")] protected float BaseDamage { get; set; } = 100f;
+	[Property, Group(".Damage")] protected float KnockbackStrength { get; set; } = 100f;
+
+	bool IsProjectile { get => this is ProjectileWeaponComponent; }
+	public (float BaseDamage, float FireRate, float KnockbackStrength) GetWeaponStats()
+	{
+		var Damage = BaseDamage;
+		var Kb = KnockbackStrength;
+		
+		if (IsProjectile)
+		{
+			var ProjectileShooter = (ProjectileWeaponComponent)this;
+			var ProjectileComp = ProjectileShooter.ProjectilePrefab.GetComponent<Projectile>();
+
+			if (ProjectileComp.IsValid())
+			{
+				Damage = ProjectileComp.BaseDamage;
+				Kb = ProjectileComp.BaseKnockbackStrength;
+			}
+		}
+
+		return (Damage, FireRate, Kb);
+	}
 }
 
 // input //////////////////////////////////////////////////////////////

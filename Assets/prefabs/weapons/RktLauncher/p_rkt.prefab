@@ -59,20 +59,23 @@
       {
         "__type": "KOTH.Rkt",
         "__guid": "b9f278af-2a58-4500-9544-dddff82a1fd9",
-        "Damage": 90,
-        "ExplosionRadius": 112,
-        "ImpactPlayerPrefab": null,
-        "ImpactPrefab": {
+        "BaseDamage": 90,
+        "BaseKnockbackStrength": 480,
+        "ExplosionPrefab": {
           "_type": "gameobject",
-          "prefab": "particles/gameplay/money/hit_burst.prefab"
+          "prefab": "particles/weapons/blue-hit.prefab"
         },
-        "KnockbackStrength": 360,
+        "ExplosionRadius": 112,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/rkt-trail.prefab"
+        }
       }
     ],
     "Children": [
@@ -81,7 +84,7 @@
         "Flags": 0,
         "Name": "Rkt",
         "Rotation": "0.7071068,0.0000001376788,-0.7071068,0.0000001376788",
-        "Scale": "0.05,0.05,0.05",
+        "Scale": "0.08,0.08,0.05",
         "Enabled": true,
         "Components": [
           {
@@ -90,7 +93,7 @@
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
             "MaterialGroup": null,
-            "MaterialOverride": null,
+            "MaterialOverride": "materials/natural/lava/lava.vmat",
             "Model": "models/projectiles/rocket-2.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -105,7 +108,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "0.74419,0.18691,0.18691,1"
+            "Tint": "0.17209,0.17209,0.17209,1"
           }
         ]
       }
@@ -140,6 +143,8 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "droppod.lava#37772"
+  ],
   "__version": 1
 }

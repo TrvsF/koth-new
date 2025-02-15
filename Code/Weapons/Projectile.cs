@@ -4,6 +4,7 @@ using static Sandbox.PhysicsContact;
 
 namespace KOTH;
 
+/* should only be fired from the owning connection */
 public record ProjectileCollideEvent(FProjectileCollision ProjectileCollision) : IGameEvent;
 
 public record FProjectileCollision
@@ -16,38 +17,13 @@ public record FProjectileCollision
 
 public abstract class Projectile : Component, Component.ICollisionListener
 {
-	[Property] public float ExplosionRadius { get; set; } = 128f;
-	[Property] public GameObject ImpactPrefab { get; set; }
-	[Property] public GameObject ImpactPlayerPrefab { get; set; }
+	[Property, Group("Base")] public float BaseDamage { get; set; } = 50f;
+	[Property, Group("Base")] public float BaseKnockbackStrength { get; set; } = 300f;
+	[Property, Group("Base")] public float ExplosionRadius { get; set; } = 128f;
 
 	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPlayerPawn { get; set; }
 
 	////////////////////////////////////////////////////////////////////////
-
-	[Rpc.Broadcast]
-	private void DoSurfaceHitFx(Vector3 Location, bool CollideWithPlayer = false)
-	{
-		if (Networking.IsHost)
-		{
-			if (CollideWithPlayer)
-			{
-				//var PlayerImpact = ImpactPlayerPrefab.Clone(Location);
-				//if (PlayerImpact.IsValid())
-				//{
-				//	PlayerImpact.NetworkSpawn();
-				//}
-			}
-
-			if (ImpactPrefab.IsValid())
-			{
-				var Impact = ImpactPrefab.Clone(Location);
-				if (Impact.IsValid())
-				{
-					Impact.NetworkSpawn();
-				}
-			}
-		}
-	}
 
 	protected void SimulateExplode(out FProjectileCollision OutProjectileCollision, Vector3 ExplosionPoint, GameObject CollisionObject = null)
 	{
@@ -123,8 +99,6 @@ public abstract class Projectile : Component, Component.ICollisionListener
 
 		SimulateExplode(out FProjectileCollision ProjectileCollision, ContactPoint, OtherRoot);
 		GameObject.Root.Dispatch(new ProjectileCollideEvent(ProjectileCollision));
-
-		DoSurfaceHitFx(ContactPoint, OtherRoot.Components.Get<PlayerPawn>().IsValid());
 
 		IsInitialHit = false;
 	}
