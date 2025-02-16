@@ -36,19 +36,15 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
 	{
-		Log.Info("collide!");
 		var Collision = EventArgs.ProjectileCollision;
 
-		Log.Info(Collision.TracedPlayers.Count);
 		foreach (var PlayerPawn in Collision.TracedPlayers)
 		{
 			if (!PlayerPawn.IsValid())
 			{
-				Log.Warning("no");
 				continue;
 			}
 
-			Log.Info("fire");
 			FDamageRequest DamageRequest = new()
 			{
 				TargetPlayerPawn = PlayerPawn,

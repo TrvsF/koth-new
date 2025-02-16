@@ -6,8 +6,7 @@ namespace KOTH;
 
 public partial class PlayerPawn : 
 	IGameEventHandler<DamageGivenEvent>, 
-	IGameEventHandler<DamageTakenEvent>,
-	IGameEventHandler<HealingGivenEvent>
+	IGameEventHandler<DamageTakenEvent>
 {
 	public float Health => DamageComponent.IsValid ? DamageComponent.Health : -1;
 	public float MaxHealth => DamageComponent.IsValid ? DamageComponent.MaxBaseHealth : -1;

@@ -66,13 +66,10 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	private bool IsInitialHit = true;
 	void ICollisionListener.OnCollisionStart(Collision Collision)
 	{
-		Log.Info("aaa");
 		if (!Network.IsOwner)
 		{
 			return;
 		}
-
-		Log.Info("aaa2");
 
 		var OtherRoot = Collision.Other.GameObject?.Root;
 		if (!OtherRoot.IsValid())
@@ -113,14 +110,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 			ProjectileCollision.TracedPlayers.Add(HitPlayerPawn);
 		}
 
-		Log.Info($"count {ProjectileCollision.TracedPlayers.Count}");
-		foreach (var Player in ProjectileCollision.TracedPlayers)
-		{
-			Log.Info(Player);
-		}
-
 		GameObject.Root.Dispatch(new ProjectileCollideEvent(ProjectileCollision));
-		Log.Info("DJHFKSDKJFHSD");
 		IsInitialHit = false;
 	}
 }
