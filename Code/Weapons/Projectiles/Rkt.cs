@@ -34,28 +34,21 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 		ExplosionPrefab.Clone(WorldPosition);
 	}
 
-	//protected override void OnDestroy()
-	//{
-	//	if (Scene.Active)
-	//	{
-	//		Assert.IsValid(ExplosionPrefab);
-	//		ExplosionPrefab.Clone(WorldPosition);
-	//	}
-		
-	//	base.OnDestroy();
-	//}
-
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
 	{
+		Log.Info("collide!");
 		var Collision = EventArgs.ProjectileCollision;
 
+		Log.Info(Collision.TracedPlayers.Count);
 		foreach (var PlayerPawn in Collision.TracedPlayers)
 		{
 			if (!PlayerPawn.IsValid())
 			{
+				Log.Warning("no");
 				continue;
 			}
 
+			Log.Info("fire");
 			FDamageRequest DamageRequest = new()
 			{
 				TargetPlayerPawn = PlayerPawn,

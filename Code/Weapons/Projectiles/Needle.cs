@@ -6,11 +6,10 @@ namespace KOTH;
 
 public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
-	[Property, Group("Healing")] public float MinHealing { get; set; } = 65f;
-	[Property, Group("Healing")] public float MaxHealing { get; set; } = 125f;
-	[Property, Group("Damage")] public float MinDamage { get; set; } = 35f;
-	[Property, Group("Damage")] public float MaxDamage { get; set; } = 75f;
-	[Property, Group("Damage")] public float KnockbackStrength { get; set; } = 300f;
+	[Property, Group("Healing")] public float MinHealing { get; set; } = 50f;
+	[Property, Group("Healing")] public float MaxHealing { get; set; } = 100f;
+	[Property, Group("Damage")] public float MinDamage { get; set; } = 40f;
+	[Property, Group("Damage")] public float MaxDamage { get; set; } = 90f;
 
 	public TimedDestroyComponent DestroyComponent { get; private set; }
 
@@ -61,7 +60,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 					AttackerPlayerPawn = OwnerPlayerPawn,
 					DamageOrigin = Collision.HitLocation,
 					BaseDamage = Damage,
-					BaseKnockbackStrength = KnockbackStrength,
+					BaseKnockbackStrength = BaseKnockbackStrength,
 					DirectImpact = true,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Rampup,

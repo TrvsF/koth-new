@@ -12,16 +12,6 @@ public sealed class BotSystem : Component,
 	[Property] public GameObject DummyPrefab { get; private set; } = null;
 	public static List<PlayerPawn> DummyPlayerPawns { get; private set; } = new();
 
-	private static void AddDummy(PlayerPawn Dummy)
-	{
-		if (!Dummy.IsDummy)
-		{
-			return;
-		}
-
-		DummyPlayerPawns.Add(Dummy);
-	}
-
 	protected override void OnStart()
 	{
 		base.OnStart();

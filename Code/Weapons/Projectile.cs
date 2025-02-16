@@ -10,7 +10,7 @@ public record ProjectileCollideEvent(FProjectileCollision ProjectileCollision) :
 public record FProjectileCollision
 {
 	public GameObject HitObject { get; init; }
-	public List<PlayerPawn> TracedPlayers { get; init; }
+	public HashSet<PlayerPawn> TracedPlayers { get; init; }
 	public Vector3 HitLocation { get; init; }
 	public bool IsFirstHit { get; init; }
 }
@@ -21,7 +21,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	[Property, Group("Base")] public float BaseKnockbackStrength { get; set; } = 300f;
 	[Property, Group("Base")] public float ExplosionRadius { get; set; } = 128f;
 
-	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPlayerPawn { get; set; }
+	public PlayerPawn OwnerPlayerPawn { get; set; }
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -34,7 +34,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 			.WithoutTags("consumable")
 			.RunAll();
 
-		List<PlayerPawn> TracedPawns = new();
+		HashSet<PlayerPawn> TracedPawns = new();
 		foreach (var Hit in ExplosionTrace)
 		{
 			var Target = Hit.GameObject?.Root;
@@ -44,10 +44,10 @@ public abstract class Projectile : Component, Component.ICollisionListener
 				continue;
 			}
 
-			var TargetPlayerPawn = Target.Components.Get<PlayerPawn>();
+			var TargetPlayerPawn = Target.Root.Components.Get<PlayerPawn>();
 			if (!TargetPlayerPawn.IsValid())
 			{
-				// Log.Warning("cannot find player pawn while doing explosion trace");
+				Log.Warning("cannot find player pawn while doing explosion trace");
 				continue;
 			}
 
@@ -66,18 +66,28 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	private bool IsInitialHit = true;
 	void ICollisionListener.OnCollisionStart(Collision Collision)
 	{
+		Log.Info("aaa");
 		if (!Network.IsOwner)
 		{
 			return;
 		}
 
+		Log.Info("aaa2");
+
 		var OtherRoot = Collision.Other.GameObject?.Root;
 		if (!OtherRoot.IsValid())
 		{
+			Log.Warning($"Projectile {this} is hit something invalid!");
 			return;
 		}
 
-		if (OtherRoot == null || OtherRoot == OwnerPlayerPawn?.GameObject.Root)
+		if (OtherRoot == null)
+		{
+			Log.Warning($"Projectile {this} is hit something invalid!");
+			return;
+		}
+		
+		if (OtherRoot == OwnerPlayerPawn?.GameObject.Root)
 		{
 			Log.Warning($"Projectile {this} is colliding with spawner player!");
 			return;
@@ -98,8 +108,19 @@ public abstract class Projectile : Component, Component.ICollisionListener
 		}
 
 		SimulateExplode(out FProjectileCollision ProjectileCollision, ContactPoint, OtherRoot);
-		GameObject.Root.Dispatch(new ProjectileCollideEvent(ProjectileCollision));
+		if (OtherRoot.Components.Get<PlayerPawn>() is PlayerPawn HitPlayerPawn)
+		{
+			ProjectileCollision.TracedPlayers.Add(HitPlayerPawn);
+		}
 
+		Log.Info($"count {ProjectileCollision.TracedPlayers.Count}");
+		foreach (var Player in ProjectileCollision.TracedPlayers)
+		{
+			Log.Info(Player);
+		}
+
+		GameObject.Root.Dispatch(new ProjectileCollideEvent(ProjectileCollision));
+		Log.Info("DJHFKSDKJFHSD");
 		IsInitialHit = false;
 	}
 }

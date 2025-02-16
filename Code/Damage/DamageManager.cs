@@ -83,6 +83,11 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		var AttackerPlayerPawn = DamageRequest.AttackerPlayerPawn;
 		var Damage = DamageRequest.BaseDamage;
 
+		if (!TargetPlayerPawn.IsValid() || !TargetPlayerPawn.IsAlive)
+		{
+			return;
+		}
+
 		// we've taken damage without an attacker pawn, apply & return early ////////////////////////////////
 		if (!AttackerPlayerPawn.IsValid())
 		{

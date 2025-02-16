@@ -7,11 +7,13 @@ public sealed class HealBeamComponent : InputWeaponComponent
 {
 	[Property, Category("Healing")] public float HealsPerTick { get; private set; } = .45f;
 	[Property, Category("Healing")] public float MaxHealDistance { get; private set; } = 340f;
-	[Property, Category("Swing")] public float BaseDamage { get; private set; } = 40f;
-	[Property, Category("Swing")] public float BaseKnockback { get; private set; } = 50f;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public PlayerPawn HealTarget { get; private set; }
 	private PlayerPawn PlayerPawn { get => Equipment.Owner; }
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	protected override void OnFixedUpdate()
 	{
@@ -28,23 +30,28 @@ public sealed class HealBeamComponent : InputWeaponComponent
 	private TimeSince TimeSinceBeamHealingDone = new();
 	protected override void OnInputUpdate()
 	{
-		// TODO : left click for healing right click for swinging
-		bool IsActive = IsDown();
-
-		if (!IsActive)
+		if (!PlayerPawn.IsValid())
 		{
-			// disconnect beam if the inputs been gone long enough
-			if (HealTarget.IsValid() && TimeSinceBeamHealingDone > .1f)
+			Log.Error($"local player pawn not valid on heal beam component {this}");
+			return; // NOTE : early return
+		}
+
+		bool HealInput = IsDown();
+		bool MeleeInput = Input.Pressed("attack2");
+
+		if (!HealInput)
+		{
+			// disconnect beam if the inputs been gone long enough, or if we're meleeing
+			if (HealTarget.IsValid() && TimeSinceBeamHealingDone > .1f || MeleeInput)
 			{
 				HealTarget = null;
 			}
 
-			return; // NOTE : early return
-		}
+			if (MeleeInput)
+			{
+				MeleeSwing();
+			}
 
-		if (!PlayerPawn.IsValid())
-		{
-			Log.Error($"local player pawn not valid on heal beam component {this}");
 			return; // NOTE : early return
 		}
 
@@ -54,37 +61,37 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return; // NOTE : early return
 		}
 
-		// figure out what action we're gonna take (heal or meele)
-		var EnemyPawn = GetEnemyTargetIfAny();
 		var FriendlyPawn = GetFriendlyTargetIfAny();
 
-		if (EnemyPawn.IsValid() && EnemyPawn.IsAlive)
-		{
-			TryToHitTarget(EnemyPawn);
-		}
-		else if (FriendlyPawn.IsValid())
+		if (FriendlyPawn.IsValid())
 		{
 			HealTarget = FriendlyPawn;
 			TimeSinceBeamHealingDone = 0;
 		}
-		else
-		{
-			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true); // ?
-		}
-
 	}
 
-	private float HitDelay = 1.66f;
-	private TimeSince TimeSinceLastAttemptedHit = new();
-	private void TryToHitTarget(PlayerPawn EnemyPawn)
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	private bool MeleeSwing()
 	{
-		if (TimeSinceLastAttemptedHit < HitDelay)
+		if (TimeSinceLastAttemptedHit < FireRate)
 		{
-			return;
+			return false;
 		}
 
-		// Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true);
+		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", true);
+		
+		var EnemyPawn = GetEnemyTargetIfAny();
+		if (EnemyPawn.IsValid() && EnemyPawn.IsAlive)
+		{
+			TryToHitTarget(EnemyPawn);
+		}
 
+		return true;
+	}
+
+	private TimeSince TimeSinceLastAttemptedHit = new();
+	private void TryToHitTarget(PlayerPawn EnemyPawn)
+	{	
 		TimeSinceLastAttemptedHit = 0;
 		FDamageRequest DamageRequest = new()
 		{
@@ -92,12 +99,20 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			AttackerPlayerPawn = PlayerPawn,
 			DamageOrigin = PlayerPawn.WorldPosition,
 			BaseDamage = BaseDamage,
-			BaseKnockbackStrength = BaseKnockback,
+			BaseKnockbackStrength = KnockbackStrength,
 			DirectImpact = true,
 			DamageType = EDamageType.Melee,
 		};
 		Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 	}
+
+	private PlayerPawn GetEnemyTargetIfAny()
+	{
+		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 200, TeamExtensions.GetOpponents(PlayerPawn.Team), 10);
+		return UniqueTargets.Any() ? UniqueTargets.First() : null;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private void TryDoHealingToTarget()
 	{
@@ -114,9 +129,6 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return; // NOTE : early return
 		}
 
-		// heal em ////////////////////////////////////////////////////
-		TimeSinceBeamHealingDone = 0;
-
 		FHealingRequest HealingRequest = new()
 		{
 			TargetPlayerPawn = HealTarget,
@@ -126,24 +138,11 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			AllowOverheal = true,
 		};
 		Scene.Dispatch(new HealingRequestEvent(HealingRequest));
+
+		TimeSinceBeamHealingDone = 0;
 	}
 
-	private PlayerPawn GetEnemyTargetIfAny()
-	{
-		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 200, TeamExtensions.GetOpponents(PlayerPawn.Team), 10);
-		return UniqueTargets.Any() ? UniqueTargets.First() : null;
-
-		// TODO : maybe use a box instead?
-		//Vector3 BoxBounds = new(150, 100, 50);
-		//BBox Box = BBox.FromPositionAndSize(PlayerPawn.Head.Transform.Position, BoxBounds);
-
-		//var EnemyPawn = Scene.Trace.Box(Box, PlayerPawn.AimRay, 150);
-		//var EnemyPawnTraceBox = EnemyPawn.WithTag("player")
-		//	.WithoutTags("hill")
-		//	.RunAll();
-	}
-
-	private float PlayerSwitchDelay = .4f;
+	const float PlayerSwitchDelay = .4f;
 	private PlayerPawn GetFriendlyTargetIfAny()
 	{
 		// TODO : fix
@@ -155,6 +154,8 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 280, PlayerPawn.Team, 25);
 		return UniqueTargets.Any() ? UniqueTargets.First() : null;
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private List<PlayerPawn> GetAllPlayerPawnsIntront(Ray AimRay, int Distance, Team PlayerTeam, int WiderOffset = 0)
 	{

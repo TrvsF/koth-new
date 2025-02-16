@@ -30,24 +30,50 @@
           "_type": "gameobject",
           "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
         },
-        "Resource": "prefabs/weapons/medigun/medigun.equip",
-        "SpeedPenalty": 40,
-        "UseCrosshair": true
+        "Name": null,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Slot": "Undefined",
+        "ViewmodelPrefab": null
       },
       {
         "__type": "KOTH.TagBinder",
-        "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2"
+        "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       },
       {
         "__type": "KOTH.HealBeamComponent",
         "__guid": "5469cd32-6e57-4452-af41-d61185fe8424",
-        "BaseDamage": 40,
-        "BaseKnockback": 50,
-        "HealsPerTick": 0.55,
+        "Ammo": -1,
+        "BaseDamage": 33,
+        "FireRate": 1.66,
+        "HasAmmo": false,
+        "HealsPerTick": 0.5,
         "InputActions": [
           "Attack1"
         ],
+        "KnockbackStrength": 260,
+        "MaxAmmo": -1,
         "MaxHealDistance": 340,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnInputAction": null,
+        "ReloadTime": 1,
+        "ReloadType": "None",
+        "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false
       }
     ],
@@ -63,10 +89,39 @@
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
-            "BodyGroups": 427,
+            "AnimationGraph": null,
+            "BodyGroups": 18446744073709551615,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
             "CreateBoneObjects": false,
-            "Model": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/sbox_melee_crowbar/w_crowbar.vmdl",
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 1,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
             "Tint": "1,1,1,1",
             "UseAnimGraph": true
           }
@@ -89,13 +144,38 @@
         ]
       }
     ],
-    "__variables": []
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "facepunch.w_crowbar#38177"
+  ],
   "__version": 1
 }

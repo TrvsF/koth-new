@@ -106,8 +106,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		}
 		else
 		{
-			// HACK : turns back on rendering if the host disabled it globally for themself
+			// HACK : all these are HACKS!
 			Body.Renderer.Enabled = true;
+			Tags.Remove("self");
 		}
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
@@ -166,6 +167,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		if (!CharacterController.IsValid() || !DamageComponent.IsValid())
 		{
+			Log.Warning("shitbox strikes again!");
 			return;
 		}
 
@@ -215,14 +217,14 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	private void DoDummyMovement()
 	{
 		// if (DummyType.HasFlag(DummyType.Jumper))
-		{
-			IsCrouching = true;
-			if (CharacterController.IsOnGround)
-			{
-				CharacterController.Punch(Vector3.Up * JumpPower);
-				BroadcastPlayerJumped();
-			}
-		}
+		//{
+		//	IsCrouching = true;
+		//	if (CharacterController.IsOnGround)
+		//	{
+		//		CharacterController.Punch(Vector3.Up * JumpPower);
+		//		BroadcastPlayerJumped();
+		//	}
+		//}
 
 		//if (DummyType.HasFlag(DummyType.Walker))
 		//{
