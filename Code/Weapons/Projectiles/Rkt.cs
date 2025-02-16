@@ -19,9 +19,9 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 		DestroyComponent.Time = MaxAliveTime;
 	}
 
-	protected override void OnFixedUpdate()
+	protected override void OnUpdate()
 	{
-		base.OnFixedUpdate();
+		base.OnUpdate();
 
 		Assert.IsValid(TrailPrefab);
 		TrailPrefab.Clone(WorldPosition);
@@ -34,16 +34,16 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 		ExplosionPrefab.Clone(WorldPosition);
 	}
 
-	protected override void OnDestroy()
-	{
-		if (Scene.Active)
-		{
-			Assert.IsValid(ExplosionPrefab);
-			ExplosionPrefab.Clone(WorldPosition);
-		}
+	//protected override void OnDestroy()
+	//{
+	//	if (Scene.Active)
+	//	{
+	//		Assert.IsValid(ExplosionPrefab);
+	//		ExplosionPrefab.Clone(WorldPosition);
+	//	}
 		
-		base.OnDestroy();
-	}
+	//	base.OnDestroy();
+	//}
 
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
 	{
@@ -71,6 +71,8 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 			};
 			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 		}
+
+		DoExplosionVfx();
 
 		GameObject.Root.Destroy();
 	}

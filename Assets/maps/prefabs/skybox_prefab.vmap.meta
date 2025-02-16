@@ -23,7 +23,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/prefabs/skybox_prefab.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

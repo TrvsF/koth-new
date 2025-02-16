@@ -38,7 +38,7 @@
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "7b2af182-d5fb-4f7b-befa-36fd43818d43",
-          "NetworkMode": "Multiplayer",
+          "NetworkMode": "Singleplayer",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -91,7 +91,8 @@
             "prefabs/classes/alan.chardef",
             "prefabs/classes/alex.chardef",
             "prefabs/classes/donny.chardef",
-            "prefabs/classes/dimitri.chardef"
+            "prefabs/classes/dimitri.chardef",
+            "prefabs/classes/sayuna.chardef"
           ],
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -214,7 +215,6 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
-                  "AllowSpectatorsToSpawn": false,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -269,7 +269,6 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "20fad055-c9f5-4fce-b92a-c8bd1246df95",
-                  "AllowSpectatorsToSpawn": false,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -1437,8 +1436,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },
@@ -1450,8 +1447,6 @@
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
     },

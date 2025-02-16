@@ -21,7 +21,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/prefabs/tower.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

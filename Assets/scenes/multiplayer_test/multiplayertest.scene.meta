@@ -14,7 +14,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "scenes/multiplayer_test/multiplayertest.scene",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

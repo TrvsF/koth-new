@@ -7,7 +7,7 @@
   "IncludeSourceFiles": false,
   "Resources": "/fonts/*\n/UI/*\n*.png",
   "PackageReferences": [],
-  "EditorReferences": null,
+  "EditorReferences": [],
   "IsWhitelistDisabled": false,
   "Metadata": {
     "MaxPlayers": 16,
@@ -43,7 +43,7 @@
       "TreatWarningsAsErrors": false,
       "Nullables": false,
       "Whitelist": true,
-      "ReleaseMode": "Debug",
+      "ReleaseMode": "Release",
       "AssemblyReferences": [],
       "IgnoreFolders": [
         "editor",
@@ -156,7 +156,7 @@
     "Description": "",
     "ReplaceTags": "firstperson fps shooter class team",
     "Public": true,
-    "CsProjName": "",
+    "CsProjName": "koth",
     "HttpAllowList": null,
     "TickRate": 30,
     "LaunchMode": "Normal",

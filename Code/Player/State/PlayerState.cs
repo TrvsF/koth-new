@@ -53,17 +53,20 @@ public partial class PlayerState : Component
 		//}
 	}
 
-	private int TeamIndex = 0;
 	public bool Initilize(Connection ConnectionIn)
 	{
 		Assert.True(Networking.IsHost);
-		Assert.True(ConnectionIn != null);
+		Assert.NotNull(ConnectionIn);
 
 		Connection = ConnectionIn;
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
-		Team = GameMode.Instance.GetStarterTeam();
-		// RequestedCharacterDefinition = WorldUtil.GetRandomCharacter();
+
+		// we don't assign a team for singleplayer
+		if (GameMode.Instance != null) 
+		{
+			Team = GameMode.Instance.GetStarterTeam();
+		}
 
 		// client rpc
 		using (Rpc.FilterInclude(Connection))
@@ -104,7 +107,7 @@ public partial class PlayerState : Component
 			var CameraComp = CameraObject.Components.Create<CameraComponent>();
 			CameraComp.Priority = 100;
 
-			AssumedSceneCameraObject = Scene.Camera.GameObject;
+			AssumedSceneCameraObject = CameraObject;
 		}
 
 		Assert.IsValid(AssumedSceneCameraObject);

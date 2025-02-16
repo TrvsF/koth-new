@@ -14,11 +14,11 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Time": 0.1,
+        "Time": 0.5,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -6268.309,
-          "Passed": 6268.309,
+          "Relative": -10795.613,
+          "Passed": 10795.613,
           "Fraction": 1
         }
       }
@@ -87,7 +87,7 @@
             "DieOnCollisionChance": 0.3,
             "Force": true,
             "ForceDirection": "0,0,0",
-            "ForceScale": 0.1,
+            "ForceScale": 1,
             "ForceSpace": "World",
             "Friction": 1,
             "Gradient": {
@@ -137,9 +137,9 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.05,0.33,0,0"
+              "Constants": "0.05,0.5,0,0"
             },
-            "MaxParticles": 100,
+            "MaxParticles": 200,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -304,7 +304,7 @@
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null,
-            "Opaque": true,
+            "Opaque": false,
             "Pivot": "0.5,0.5",
             "RenderOptions": {
               "GameLayer": true,
@@ -313,14 +313,14 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 6,
-            "Shadows": true,
+            "Scale": 3,
+            "Shadows": false,
             "SortMode": "Unsorted",
             "Texture": {
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "1,1,1,1"
+                "Color": "91.27,91.27,91.27,0.005"
               },
               "compiled": null
             }
@@ -328,10 +328,10 @@
           {
             "__type": "Sandbox.ParticleSphereEmitter",
             "__guid": "7596412f-ca5c-4a83-9ef5-35713754a73a",
-            "Burst": 350,
+            "Burst": 50,
             "Delay": 0,
             "DestroyOnEnd": true,
-            "Duration": 0.1,
+            "Duration": 0.5,
             "Loop": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -343,7 +343,7 @@
             "Radius": 1,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Velocity": 0
+            "Velocity": 25
           }
         ]
       }

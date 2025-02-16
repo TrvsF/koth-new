@@ -36,7 +36,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/prefabs/sky_house_1.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

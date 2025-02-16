@@ -69,4 +69,26 @@ public partial class PlayerPawn
 
 		// Components.Get<HumanOutfitter>(FindMode.EnabledInSelfAndDescendants)?.UpdateFromTeam(Team);
 	}
+
+	public void OnGameEvent(HealingGivenEvent EventArgs)
+	{
+		if (!IsViewer)
+		{
+			return;
+		}
+
+		var HealInfo = EventArgs.HealingRequest;
+		DamageNumbers.Instance?.OnHealth(HealInfo.Healing, HealInfo.TargetPlayerPawn);
+	}
+
+	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
+	{
+		if (!IsViewer)
+		{
+			return;
+		}
+
+		var DamageEvent = EventArgs.DamageEvent;
+		DamageNumbers.Instance?.OnHit(DamageEvent.Damage, DamageEvent.VictimPlayerPawn);
+	}
 }

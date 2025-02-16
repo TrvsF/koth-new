@@ -83,25 +83,4 @@ public partial class PlayerPawn :
 		//	snd.ListenLocal = IsViewer;
 		//}
 	}
-
-	// TODO : everything IsViewer needs to happen on the camera
-
-	public void OnGameEvent(HealingGivenEvent EventArgs)
-	{
-		//if (IsViewer)
-		//{
-		//	var HealInfo = EventArgs.HealingRequest;
-
-		//	DamageNumbers.Instance?.OnHealth(HealInfo.Healing, HealInfo.TargetPlayerPawn);
-		//}
-	}
-
-	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
-	{
-		//if (IsViewer)
-		//{
-		//	var DamageEvent = EventArgs.DamageEvent;
-		//	DamageNumbers.Instance?.OnHit(DamageEvent.Damage, DamageEvent.VictimPlayerPawn);
-		//}
-	}
 }

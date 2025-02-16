@@ -2,20 +2,18 @@
   "publish": {
     "Enabled": true,
     "ProjectConfig": {
-      "Title": "Pl Sheff",
+      "Title": "Sheff",
       "Type": "map",
-      "Org": "local",
-      "Ident": "plsheff",
+      "Org": "wurstsoftware",
+      "Ident": "sheff",
       "Schema": 0,
-      "IncludeSourceFiles": false,
+      "IncludeSourceFiles": true,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [
-        "fish.roblox_skybox#8534"
-      ],
+      "EditorReferences": null,
       "IsWhitelistDisabled": false,
       "Metadata": {
-        "SingleAssetSource": "maps/payload/pl_sheff.vmap",
+        "SingleAssetSource": "scenes/pl_sheff/sheff.scene",
         "ParentPackage": "wurstsoftware.koth"
       }
     }

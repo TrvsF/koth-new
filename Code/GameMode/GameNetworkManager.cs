@@ -57,11 +57,14 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 				StartClient(Connection.Local);
 				break;
 			case EGameNetworkMode.Multiplayer:
-				bool Joined = await Networking.JoinBestLobby(Game.Ident);
-				if (!Joined)
+				if (!Networking.IsActive)
 				{
-					Log.Info("starting own lobby...");
-					CreateLobby();
+					bool Joined = await Networking.JoinBestLobby(Game.Ident);
+					if (!Joined)
+					{
+						Log.Info("starting own lobby...");
+						CreateLobby();
+					}
 				}
 				break;
 			case EGameNetworkMode.Menu:
@@ -133,7 +136,7 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 	private void StartClient(Connection ConnectionChannel)
 	{
 		bool CreatedPlayerState = CreatePlayerState(ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent);
-		
+
 		if (!CreatedPlayerState)
 		{
 			Networking.Disconnect();

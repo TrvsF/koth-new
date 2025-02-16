@@ -137,7 +137,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/de_garry/de_garry.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

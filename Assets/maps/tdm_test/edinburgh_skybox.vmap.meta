@@ -28,7 +28,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/tdm_test/edinburgh_skybox.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }

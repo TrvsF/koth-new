@@ -39,7 +39,7 @@
       "IsWhitelistDisabled": false,
       "Metadata": {
         "SingleAssetSource": "maps/de_garry/prefabs/de_g_ct_to_a.vmap",
-        "ParentPackage": "wurstsoftware.koth"
+
       }
     }
   }
