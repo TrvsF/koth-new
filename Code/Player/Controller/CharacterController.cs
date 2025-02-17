@@ -282,6 +282,8 @@ public class CharacterController : Component
 
 		_stuckTries++;
 
+		Log.Info("trying to unstick");
+
 		return true;
 	}
 

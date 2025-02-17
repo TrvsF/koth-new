@@ -47,7 +47,7 @@
             "OnObjectTriggerExit": null,
             "OnTriggerEnter": null,
             "OnTriggerExit": null,
-            "Scale": "152.6,139.5997,92.69978",
+            "Scale": "250,180,92.69978",
             "Static": false,
             "Surface": null,
             "SurfaceVelocity": "0,0,0"
@@ -80,7 +80,7 @@
             "CreateAttachments": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "models/dev/vehicle/van_damage_dev.vmdl",
+            "Model": "models/dev/vehicle/swat_dev.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -94,14 +94,14 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "162.8703,368.4776,159.3829,1"
+            "Tint": "1,1,1,1"
           },
           {
             "__type": "Sandbox.ModelCollider",
             "__guid": "a4802484-9fff-41fd-abec-f67a1cb6bd3e",
             "Friction": null,
             "IsTrigger": false,
-            "Model": "models/dev/vehicle/van_damage_dev.vmdl",
+            "Model": "models/dev/vehicle/swat_dev.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -150,7 +150,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "facepunch.van_damage_dev#59227"
+    "facepunch.swat_dev#58061"
   ],
   "__version": 1
 }

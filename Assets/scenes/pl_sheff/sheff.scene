@@ -320,7 +320,7 @@
           "__guid": "8a2dd879-3acf-49ce-9b8f-b6f2ee5a6e1a",
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1309.669,-189.4864,2",
+          "Position": "1309.669,-189.4864,80",
           "Rotation": "0,0,0.7933533,0.6087615",
           "Enabled": true,
           "Components": [
@@ -343,7 +343,7 @@
           "__guid": "6b933d92-78bc-42de-9577-c2fa601cc5fd",
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1263.304,-201.9097,2",
+          "Position": "1263.304,-201.9097,80",
           "Rotation": "0,0,0.7933533,0.6087615",
           "Enabled": true,
           "Components": [
@@ -366,7 +366,7 @@
           "__guid": "19b9107f-4399-46a0-8b65-91ce0be820f7",
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1216.94,-214.3332,2",
+          "Position": "1216.94,-214.3332,80",
           "Rotation": "0,0,0.7933533,0.6087615",
           "Enabled": true,
           "Components": [
@@ -535,7 +535,7 @@
       "__guid": "e9687f69-f21a-4a35-b214-02cb2575055e",
       "Flags": 0,
       "Name": "healthpack",
-      "Position": "9.511284,-165.7525,24.40547",
+      "Position": "16,-96,16",
       "Scale": "25,25,25",
       "Tags": "consumable",
       "Enabled": true,

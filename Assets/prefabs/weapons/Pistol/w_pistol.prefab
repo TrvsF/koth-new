@@ -30,12 +30,15 @@
           "_type": "gameobject",
           "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
         },
+        "Name": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Slot": "Undefined",
+        "ViewmodelPrefab": null
       },
       {
         "__type": "KOTH.TagBinder",
@@ -70,7 +73,11 @@
         "ReloadTime": 1,
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "RequiresAllInputActions": false,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/hitscan-trial.prefab"
+        }
       }
     ],
     "Children": [
@@ -107,6 +114,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

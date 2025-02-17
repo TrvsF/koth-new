@@ -73,7 +73,11 @@
         "ReloadTime": 0.66,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "RequiresAllInputActions": false,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/hitscan-trial.prefab"
+        }
       }
     ],
     "Children": [
@@ -110,6 +114,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

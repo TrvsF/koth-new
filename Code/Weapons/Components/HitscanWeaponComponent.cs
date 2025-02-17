@@ -18,7 +18,9 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Infinite,
 	}
 
-	[Property, Group("HitScan")] private EHitscanFireType FireType
+	[Property, Group("HitScan")] private GameObject TrailPrefab { get; set; }
+	[Property, Group("HitScan")]
+	private EHitscanFireType FireType
 	{
 		get => GetFireType();
 	}
@@ -71,12 +73,24 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceStart = WeaponRay.Position;
 		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
 		var TraceForward = StartRotation.Forward.Normal;
+		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
 
-		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, WeaponRay.Position + TraceForward * 9999f, DebugOverlay);
+		if (TrailPrefab.IsValid())
+		{
+			var Lerp = 0f;
+			while (Lerp < 1f)
+			{
+				var Position = Vector3.Lerp(TraceStart, TraceEnd, Lerp);
+				TrailPrefab.Clone(Position);
+				Lerp += 0.005f;
+			}
+		}
+
+		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd, DebugOverlay);
 		foreach (var TraceElement in ShotTraces)
 		{
 			if (!TraceElement.Hit)
-			{ 
+			{
 				continue;
 			}
 
