@@ -52,15 +52,7 @@
 		if (!Weapon.IsValid() || !Weapon.IsDeployed)
 			return null;
 
-		ProjectileWeaponComponent ProjectileWeaponComponent = null;
-		foreach (var Child in Weapon.GameObject.Children)
-		{
-			ProjectileWeaponComponent = Child.Components.Get<ProjectileWeaponComponent>();
-			if (ProjectileWeaponComponent.IsValid())
-			{
-				break;
-			}
-		}
+		var ProjectileWeaponComponent = Weapon.GameObject.Components.Get<ProjectileWeaponComponent>();
 		return ProjectileWeaponComponent;
 	}
 

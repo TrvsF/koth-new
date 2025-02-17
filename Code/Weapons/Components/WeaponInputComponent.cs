@@ -28,6 +28,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 	private TimeUntil TimeUntilReload { get; set; }
 
+	private bool LastReload = false;
 	protected override void OnUpdate()
 	{
 		if (!Player.IsValid())
@@ -36,20 +37,30 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		if (!Player.IsLocallyControlled)
 			return;
 
+		if (IsReloading && !LastReload)
+		{
+			StartReload();
+			LastReload = true;
+		}
+
 		if (CanReload() && !IsReloading)
 		{
-			IsFirstReloadInSequence = true;
-			StartReload();
+			IsReloading = true;
+			return;
 		}
 
-		if (!Equipment.IsDeployed && !ReloadWhileNotActive)
-		{
-			CancelReload();
-		}
 
-		if (IsReloading && TimeUntilReload)
+		//if (!Equipment.IsDeployed && !ReloadWhileNotActive)
+		//{
+		//	Log.Info("what");
+		//	CancelReload();
+		//}
+
+		// Log.Info($"{IsReloading} {TimeUntilReload}");
+		if (IsReloading && 0 > TimeUntilReload)
 		{
 			EndReload();
+			LastReload = false;
 		}
 	}
 
@@ -63,7 +74,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 	private bool CanReload()
 	{
-		return !IsReloading && !IsAmmoFull;
+		return !IsAmmoFull;
 	}
 
 	private float GetReloadTime()
@@ -88,12 +99,11 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	{
 		if (!IsProxy)
 		{
-			IsReloading = true;
 			TimeUntilReload = GetReloadTime();
+			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true);
 		}
 
 		// Tags will be better so we can just react to stimuli.
-		Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true);
 		// Equipment.Owner?.BodyRenderer?.Set("b_reload", true);
 	}
 
@@ -101,10 +111,13 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	void CancelReload()
 	{
 		if (!IsProxy)
+		{
 			IsReloading = false;
+			LastReload = false;
+			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", false);
+		}
 
 		// TODO : this doesn't seem to work?
-		Equipment.ViewModel?.ModelRenderer?.Set("b_reload", false);
 		// Equipment.Owner?.BodyRenderer?.Set("b_reload", false);
 	}
 
@@ -215,10 +228,6 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 	protected virtual void OnInput()
 	{
-		if (CanReload())
-		{
-			StartReload();
-		}
 	}
 
 	protected virtual void OnInputUp()

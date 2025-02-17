@@ -47,7 +47,6 @@ public abstract class Projectile : Component, Component.ICollisionListener
 			var TargetPlayerPawn = Target.Root.Components.Get<PlayerPawn>();
 			if (!TargetPlayerPawn.IsValid())
 			{
-				Log.Warning("cannot find player pawn while doing explosion trace");
 				continue;
 			}
 

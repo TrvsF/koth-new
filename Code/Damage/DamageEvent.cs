@@ -19,7 +19,7 @@ public record FDamageRequest
 	public float BaseDamage { get; init; } = 0f;
 	public float BaseKnockbackStrength { get; init; } = 0f;
 
-	public EDamageFalloffType DamageFalloffType { get; init; } = EDamageFalloffType.None;
+	public EDamageFalloffType DamageFalloffType { get; init; } = EDamageFalloffType.Falloff;
 	public float MaxFalloffDistance { get; init; } = 300f;
 	public bool DirectImpact { get; init; } = false;
 	public bool DoesLessSelfDamage { get; init; } = false;

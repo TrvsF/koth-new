@@ -67,7 +67,7 @@
           "prefab": "particles/gameplay/money/hit_burst.prefab"
         },
         "ExplosionRadius": 156,
-        "MinDetTime": 0.66,
+        "MinDetTime": 0.76,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -81,7 +81,7 @@
         "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
         "Flags": 0,
         "Name": "Model",
-        "Scale": "0.025,0.025,0.025",
+        "Scale": "0.033,0.033,0.033",
         "Enabled": true,
         "Components": [
           {
@@ -105,7 +105,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "0.9907,0.08755,0.08755,1"
+            "Tint": "916.2791,916.2791,916.2791,1"
           }
         ]
       }

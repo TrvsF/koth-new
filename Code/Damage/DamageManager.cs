@@ -60,13 +60,13 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	const float MaxKB = 1800f;
-	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightFactor, bool IsCrouching)
+	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightKnockbackFactor, bool IsCrouching)
 	{
 		var CrouchFactor = IsCrouching ? 62 : 82;
 		var KnockbackFactor = Damage * (WeaponKnockbackStrength / CrouchFactor);
 
 		KnockbackFactor = Math.Min(KnockbackFactor, MaxKB);
-		return DirectionVec * KnockbackFactor * WeightFactor;
+		return DirectionVec * KnockbackFactor * WeightKnockbackFactor;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,10 +115,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		// calculate damage ////////////////////////////////
 		switch (DamageRequest.DamageType)
 		{
-			case EDamageType.HitScan:
-				// TODO
-				break;
-
+			case EDamageType.HitScan: // meant to follow thru
 			case EDamageType.Projectile:
 				{
 					var TargetToImpactDistance = TargetPoint.Distance(DamageOrigin);

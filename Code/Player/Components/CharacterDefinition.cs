@@ -15,7 +15,7 @@ public partial class CharacterDefinition : GameResource
 	//////////////////////////////////////////////////////////////////////////
 
 	[Category("Damage")] public float MaxHealth { get; set; } = 100f;
-	[Category("Damage")] public float WeightFactor { get; set; } = 1f;
+	[Category("Damage")] public float WeightKnockbackFactor { get; set; } = 1f;
 
 	//////////////////////////////////////////////////////////////////////////
 

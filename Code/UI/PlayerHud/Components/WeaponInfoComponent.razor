@@ -4,7 +4,7 @@
 
 @if (!Player.IsValid()) return;
 
-<root class="hud with-deadzone column">
+<root class="">
 	@foreach (var SlotGroup in Inventory.PlayerEquipment.OrderBy(x => x.Slot).GroupBy(x => x.Slot))
 	{
 		<div class="" style="padding-right: 60px;">

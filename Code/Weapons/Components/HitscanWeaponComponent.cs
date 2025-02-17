@@ -43,8 +43,13 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 	////////////////////////////////////////////////////////////////////////
 
+	[Property] public int Sides { get; set; } = 1;
+
 	protected override void OnInputUpdate()
 	{
+		Assert.IsValid(Equipment);
+		Assert.IsValid(Equipment.Owner);
+
 		bool IsShooting = IsDown() && CanShoot();
 
 		// TODO : should this be a host/server rpc?
@@ -55,21 +60,35 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		if (IsShooting)
 		{
-			Shoot();
+			var Boom = Equipment.Owner.Boom;
+			if (!Equipment.Owner.Boom.IsValid())
+			{
+				Log.Warning($"shooting without a boom {this}");
+			}
+
+			Shoot(Equipment.Owner.AimRay);
+
+			if (Sides >= 3)
+			{
+				const float Radius = 8f;
+				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
+				{
+					double angle = 2 * Math.PI * SideIndex / Sides;
+					float x = (float)(Radius * Math.Cos(angle));
+					float y = (float)(Radius * Math.Sin(angle));
+					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * y) + (Boom.WorldRotation.Right * x)), Boom.WorldRotation.Forward);
+					Shoot(ShapeRay);
+				}
+			}
+			
+			TimeSinceShot = 0;
+			Ammo--;
 		}
+		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
-	protected virtual void Shoot()
+	protected virtual void Shoot(Ray WeaponRay)
 	{
-		var LocalPlayerPawn = Equipment.Owner;
-		if (!LocalPlayerPawn.IsValid())
-		{
-			return;
-		}
-
-		TimeSinceShot = 0;
-		Ammo--;
-
 		var TraceStart = WeaponRay.Position;
 		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
 		var TraceForward = StartRotation.Forward.Normal;
@@ -82,11 +101,11 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			{
 				var Position = Vector3.Lerp(TraceStart, TraceEnd, Lerp);
 				TrailPrefab.Clone(Position);
-				Lerp += 0.005f;
+				Lerp += 0.025f;
 			}
 		}
 
-		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd, DebugOverlay);
+		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd);
 		foreach (var TraceElement in ShotTraces)
 		{
 			if (!TraceElement.Hit)
@@ -110,7 +129,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				FDamageRequest DamageRequest = new()
 				{
 					TargetPlayerPawn = HitPlayerPawn,
-					AttackerPlayerPawn = LocalPlayerPawn,
+					AttackerPlayerPawn = Equipment.Owner,
 					DamageOrigin = TraceElement.HitPosition,
 					BaseDamage = BaseDamage,
 					BaseKnockbackStrength = KnockbackStrength,

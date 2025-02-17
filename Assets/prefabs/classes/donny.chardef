@@ -3,7 +3,7 @@
   "Description": "blow people (& yourself) up with a rocket launcher",
   "SpecificComponents": [],
   "MaxHealth": 175,
-  "WeightFactor": 1,
+  "WeightKnockbackFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/rktlauncher/rktlauncher.equip",
   "SecondaryWeapon": "prefabs/weapons/pistol/pistol.equip",
   "WalkSpeed": 240,
@@ -16,7 +16,7 @@
   "BaseAcceleration": 10,
   "CrouchingAcceleration": 6,
   "MaxAcceleration": 10,
-  "AirMaxAcceleration": 64,
+  "AirMaxAcceleration": 76,
   "__references": [],
   "__version": 0
 }

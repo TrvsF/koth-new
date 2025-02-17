@@ -5,6 +5,7 @@ using System.Net.Http;
 using System;
 using System.Text;
 using Sandbox.Diagnostics;
+using System.Data.Common;
 
 namespace KOTH;
 
@@ -47,6 +48,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 		{
 			Shoot();
 		}
+		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
 	protected virtual GameObject Shoot() // TODO : revisit the return
@@ -161,7 +163,8 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 
 	protected override void SetProjectileVelocity(Rigidbody ProjectileRigidbody, Vector3 AimForward)
 	{
-		var SpeedFactor = 1 + (Math.Min(TimeSinceInputFirstDown, MaxChargeTime) * 0.40f);
+		const float Factor = .66f;
+		var SpeedFactor = 1 + (Math.Min(TimeSinceInputFirstDown, MaxChargeTime) * Factor);
 		ProjectileRigidbody.Velocity = AimForward * ProjectileHorizontalSpeed * SpeedFactor;
 		ProjectileRigidbody.Velocity += Vector3.Up * ProjectileVerticalSpeed;
 		ProjectileRigidbody.PhysicsBody.EnableSolidCollisions = false;

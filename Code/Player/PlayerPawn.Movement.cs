@@ -38,7 +38,7 @@ public partial class PlayerPawn
 			return false;
 		}
 
-		WeightFactor = CharacterDefinitionIn.WeightFactor;
+		WeightFactor = CharacterDefinitionIn.WeightKnockbackFactor;
 		AirMaxAcceleration = CharacterDefinitionIn.AirMaxAcceleration;
 		MaxAcceleration = CharacterDefinitionIn.MaxAcceleration;
 		SlowCrouchLerpSpeed = CharacterDefinitionIn.SlowCrouchLerpSpeed;

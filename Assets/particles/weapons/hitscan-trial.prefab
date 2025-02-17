@@ -17,8 +17,8 @@
         "Time": 0.5,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -13213.337,
-          "Passed": 13213.337,
+          "Relative": -7035.663,
+          "Passed": 7035.663,
           "Fraction": 1
         }
       }
@@ -87,7 +87,7 @@
             "DieOnCollisionChance": 0.3,
             "Force": true,
             "ForceDirection": "0,0,0",
-            "ForceScale": 1,
+            "ForceScale": -200,
             "ForceSpace": "World",
             "Friction": 1,
             "Gradient": {
@@ -137,7 +137,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.05,0.5,0,0"
+              "Constants": "0.2,0.5,0,0"
             },
             "MaxParticles": 5,
             "OnComponentDestroy": null,
@@ -313,14 +313,14 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 1.2,
+            "Scale": 0.5,
             "Shadows": false,
             "SortMode": "Unsorted",
             "Texture": {
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "91.27,91.27,91.27,0.1"
+                "Color": "1,1,1,0.48"
               },
               "compiled": null
             }

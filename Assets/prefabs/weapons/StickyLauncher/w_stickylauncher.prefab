@@ -30,12 +30,15 @@
           "_type": "gameobject",
           "go": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979"
         },
+        "Name": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Slot": "Undefined",
+        "ViewmodelPrefab": null
       },
       {
         "__type": "KOTH.TagBinder",
@@ -51,11 +54,13 @@
         "__type": "KOTH.StickyWeaponComponent",
         "__guid": "41b5e062-e995-403c-b35e-1712558fdf7e",
         "Ammo": 6,
+        "BaseDamage": 100,
         "FireRate": 0.66,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
         ],
+        "KnockbackStrength": 100,
         "MaxAmmo": 6,
         "MaxChargeTime": 1.6,
         "OnComponentDestroy": null,
@@ -65,12 +70,12 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "OnInputAction": null,
-        "ProjectileHorizontalSpeed": 720,
+        "ProjectileHorizontalSpeed": 666,
         "ProjectilePrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
         },
-        "ProjectileVerticalSpeed": 160,
+        "ProjectileVerticalSpeed": 240,
         "ReloadTime": 1,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
@@ -121,6 +126,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

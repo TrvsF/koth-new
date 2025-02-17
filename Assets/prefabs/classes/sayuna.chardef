@@ -5,7 +5,7 @@
     "KOTH.ScoutPlayer"
   ],
   "MaxHealth": 100,
-  "WeightFactor": 0.8,
+  "WeightKnockbackFactor": 1.33,
   "PrimaryWeapon": "prefabs/weapons/scattergun/scattergun.equip",
   "SecondaryWeapon": "prefabs/weapons/pistol/pistol.equip",
   "WalkSpeed": 400,
