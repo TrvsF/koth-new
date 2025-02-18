@@ -160,9 +160,11 @@ public sealed class TurretComponent : Component
 	[Property] public float Range { get; private set; } = 256f;
 	[Property] public GameObject TurretMuzzleObject { get; set; }
 
+	[Property] public GameObject TrailPrefab { get; set; }
+
 	////////////////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; private set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; set; }
 	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
@@ -183,13 +185,35 @@ public sealed class TurretComponent : Component
 		var TargetPosition = TargetPlayerPawn.CenterPosition;
 
 		var HasFiredShot = FireShot(TargetPosition);
-		DoTurretFX(TurretMuzzleObject.WorldPosition - TargetPosition, HasFiredShot);
+		DoTurretFX(TargetPosition, HasFiredShot);
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
-	public void DoTurretFX(Vector3 TargetForwardVector, bool IsShooting)
+	public void DoTurretFX(Vector3 TargetPosition, bool IsShooting)
 	{
-		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TargetForwardVector);
+		if (!TurretMuzzleObject.IsValid())
+		{
+			Log.Warning($"no muzzle m8 {this}");
+			return;
+		}
+
+		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TurretMuzzleObject.WorldPosition - TargetPosition);
+
+		if (!IsShooting)
+		{
+			return;
+		}
+
+		if (TrailPrefab.IsValid())
+		{
+			var Lerp = 0f;
+			while (Lerp < 1f)
+			{
+				var Position = Vector3.Lerp(TurretMuzzleObject.WorldPosition, TargetPosition, Lerp);
+				TrailPrefab.Clone(Position);
+				Lerp += 0.033f;
+			}
+		}
 	}
 
 	private TimeSince TimeSinceShot = new();
@@ -218,22 +242,22 @@ public sealed class TurretComponent : Component
 				FDamageRequest DamageRequest = new()
 				{
 					TargetPlayerPawn = HitPlayerPawn,
-					// AttackerPlayerPawn = LocalPlayerPawn,
+					AttackerPlayerPawn = OwnerPawn,
 					DamageOrigin = TraceElement.HitPosition,
 					BaseDamage = Damage,
 					BaseKnockbackStrength = KnockbackStrength,
 					DamageType = EDamageType.HitScan,
 					DamageFalloffType = EDamageFalloffType.Falloff,
-					DoesLessSelfDamage = true,
-					MaxFalloffDistance = 5000,
 				};
 
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+				
+				TimeSinceShot = 0;
+				return true;
 			}
 		}
 
-		TimeSinceShot = 0;
-		return true;
+		return false;
 	}
 
 	private bool IsPlayerPawnValidTarget(PlayerPawn PlayerPawn, out float OutDistance)

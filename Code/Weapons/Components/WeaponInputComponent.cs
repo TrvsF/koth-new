@@ -49,18 +49,18 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 			return;
 		}
 
-
-		//if (!Equipment.IsDeployed && !ReloadWhileNotActive)
-		//{
-		//	Log.Info("what");
-		//	CancelReload();
-		//}
-
-		// Log.Info($"{IsReloading} {TimeUntilReload}");
-		if (IsReloading && 0 > TimeUntilReload)
+		if (IsReloading)
 		{
-			EndReload();
-			LastReload = false;
+			if (!Equipment.IsDeployed && !ReloadWhileNotActive)
+			{
+				CancelReload();
+			}
+
+			if (0 > TimeUntilReload)
+			{
+				EndReload();
+				LastReload = false;
+			}
 		}
 	}
 

@@ -42,6 +42,7 @@ public sealed class EngiePlayer : Component
 		{
 			var Projectile = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition + (OwnerPawn.AimRay.Forward * 128), Rotation.Identity);
 			ActiveTurretComponent = Projectile.Components.Get<TurretComponent>();
+			ActiveTurretComponent.OwnerPawn = OwnerPawn;
 
 			// can this be Connection.Local rather than PlayerState.Local.Connection ?
 			Projectile.NetworkSpawn(true, PlayerState.Local.Connection);
@@ -73,9 +74,13 @@ public sealed class EngiePlayer : Component
 
 				if (TraceElement.GameObject.Root.Components.Get<TurretComponent>(FindMode.EnabledInSelfAndDescendants) is { } HitTurret)
 				{
-					HitTurret.SetFromWeaponGameObject(OwnerPawn.Inventory.CurrentWeaponGameObject);
-					// unequip weapon
-					// cooldown etc
+					if (HitTurret.OwnerPawn == OwnerPawn)
+					{
+						HitTurret.SetFromWeaponGameObject(OwnerPawn.Inventory.CurrentWeaponGameObject);
+						// TODO
+						// unequip weapon
+						// cooldown etc
+					}
 				}
 			}
 		}

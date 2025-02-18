@@ -31,6 +31,7 @@
           "vectors": {},
           "rotations": {}
         },
+        "PlaybackRate": 1,
         "RenderOptions": {
           "GameLayer": true,
           "OverlayLayer": false,
@@ -106,6 +107,10 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Range": 256,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/hitscan-trial.prefab"
+        },
         "TurretMuzzleObject": {
           "_type": "gameobject",
           "go": "f03fae92-9d30-4658-bf37-4791aa85d90c"
@@ -146,6 +151,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,

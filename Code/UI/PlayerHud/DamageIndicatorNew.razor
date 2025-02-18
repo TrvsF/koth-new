@@ -18,9 +18,39 @@
 			TimeSince = 0;
 		}
 
-		public float Rotation { get; init; } = 0;
-		public Vector2 TopRightOffset { get; init; } = new(1, 0);
+		public PlayerPawn LocalPlayerPawn { get; init; } = null;
+		public Vector3 HitLocation { get; init; } = Vector3.Zero;
+		public float Rotation { get => GetRotationOffset().Rotation; }
+		public Vector2 TopRightOffset { get => GetRotationOffset().TopRightOffset; }
 		public TimeSince TimeSince { get; init; } = new();
+
+		public (float Rotation, Vector2 TopRightOffset) GetRotationOffset()
+		{
+			if (!LocalPlayerPawn.IsValid())
+			{
+				return (0, Vector2.Zero);
+			}
+
+			// ---------------
+			// rotation
+			var PlayerToHit = HitLocation - LocalPlayerPawn.Transform.Position;
+			var PlayerToHit2d = new Vector2(PlayerToHit.x, PlayerToHit.y).Normal;
+
+			var PlayerForward = LocalPlayerPawn.AimRay.Forward.Normal;
+
+			var Angle1 = Math.Atan2(PlayerForward.y, PlayerForward.x);
+			var Angle2 = Math.Atan2(PlayerToHit.y, PlayerToHit.x);
+
+			var AngleR = Angle1 - Angle2;
+			var Angle = AngleR * (180.0 / Math.PI);
+			var Rotation = (float)Angle;
+
+			// ---------------
+			// position
+			var TopRight = new Vector2((float)Math.Sin(AngleR) * 300f, (float)Math.Cos(AngleR) * 300f);
+
+			return (Rotation, TopRight);
+		}
 
 		public float GetOpacity()
 		{
@@ -65,7 +95,6 @@
 		var PlayerToHit2d = new Vector2(PlayerToHit.x, PlayerToHit.y).Normal;
 
 		var PlayerForward = LocalPlayerPawn.AimRay.Forward.Normal;
-		var PlayerForward2d = new Vector2(PlayerForward.x, PlayerForward.y);
 
 		var Angle1 = Math.Atan2(PlayerForward.y, PlayerForward.x);
 		var Angle2 = Math.Atan2(PlayerToHit.y, PlayerToHit.x);
@@ -78,7 +107,7 @@
 		// position
 		TopRight = new((float)Math.Sin(AngleR) * 300f, (float)Math.Cos(AngleR) * 300f);
 
-		DamageTris.Add(new() { Rotation = Rotation, TopRightOffset = TopRight });
+		DamageTris.Add(new() { HitLocation = DamageLocation, LocalPlayerPawn = LocalPlayerPawn });
 		// TODO : currently leaking memory, remove em
 	}
 

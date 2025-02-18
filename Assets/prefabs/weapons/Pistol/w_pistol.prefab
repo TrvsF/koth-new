@@ -54,14 +54,14 @@
         "__type": "KOTH.HitscanWeaponComponent",
         "__guid": "6b8f59f4-8f42-4df6-a16a-1a856b9feb5a",
         "Ammo": 12,
-        "BaseDamage": 10,
+        "BaseDamage": 13,
         "FireRate": 0.2,
         "FireType": "Continuous",
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 50,
+        "KnockbackStrength": 100,
         "MaxAmmo": 12,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -74,6 +74,7 @@
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/hitscan-trial.prefab"
@@ -93,13 +94,13 @@
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
             "AnimationGraph": null,
-            "BodyGroups": 9493,
+            "BodyGroups": 18446744073709551615,
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "models/dev/error.vmdl",
+            "Model": "weapons/rust_pistol/rust_pistol.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -177,6 +178,8 @@
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "rust.rust_pistol#43964"
+  ],
   "__version": 1
 }

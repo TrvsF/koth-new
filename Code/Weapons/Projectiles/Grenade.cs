@@ -5,8 +5,6 @@ namespace KOTH;
 
 public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
-	[Property, Group("Explosion")] public float Damage { get; set; } = 80f;
-	[Property, Group("Explosion")] public float KnockbackStrength { get; set; } = 300f;
 	[Property, Group("Explosion")] public float ExplosionFuse { get; set; } = 3f;
 	[Property, Group("Explosion")] public GameObject ExplosionPrefab { get; set; }
 
@@ -42,8 +40,8 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 					TargetPlayerPawn = PlayerPawn,
 					AttackerPlayerPawn = OwnerPlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
-					BaseDamage = Damage * .33f,
-					BaseKnockbackStrength = KnockbackStrength,
+					BaseDamage = BaseDamage * .33f,
+					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					MaxFalloffDistance = ExplosionRadius,
@@ -68,10 +66,11 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 				TargetPlayerPawn = HitPlayerPawn,
 				AttackerPlayerPawn = OwnerPlayerPawn,
 				DamageOrigin = Collision.HitLocation,
-				BaseDamage = Damage,
-				BaseKnockbackStrength = KnockbackStrength,
+				BaseDamage = BaseDamage,
+				BaseKnockbackStrength = BaseKnockbackStrength,
 				DirectImpact = true,
 				DamageType = EDamageType.Projectile,
+				DamageFalloffType = EDamageFalloffType.None,
 				MaxFalloffDistance = ExplosionRadius,
 			};
 			Scene.Dispatch(new DamageRequestEvent(DirectDamageRequest));
@@ -92,8 +91,8 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 					TargetPlayerPawn = PlayerPawn,
 					AttackerPlayerPawn = OwnerPlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
-					BaseDamage = Damage * .66f,
-					BaseKnockbackStrength = KnockbackStrength,
+					BaseDamage = BaseDamage * .66f,
+					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					MaxFalloffDistance = ExplosionRadius,

@@ -222,12 +222,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	{
 		// if (DummyType.HasFlag(DummyType.Jumper))
 		//{
-		//	IsCrouching = true;
-		//	if (CharacterController.IsOnGround)
-		//	{
-		//		CharacterController.Punch(Vector3.Up * JumpPower);
-		//		BroadcastPlayerJumped();
-		//	}
+		IsCrouching = true;
+		if (CharacterController.IsOnGround)
+		{
+			CharacterController.Punch(Vector3.Up * JumpPower);
+			BroadcastPlayerJumped();
+		}
 		//}
 
 		//if (DummyType.HasFlag(DummyType.Walker))

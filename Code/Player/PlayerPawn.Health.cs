@@ -44,39 +44,4 @@ public partial class PlayerPawn :
 
 		OnDeath?.Invoke();
 	}
-
-	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
-	{
-		var DamageEvent = EventArgs.DamageEvent;
-
-		var VictimGameobject = GameUtils.GetPlayerFromComponent(DamageEvent.AttackerPlayerPawn);
-		var DamageLocation = DamageEvent.DamageLocation;
-
-		// TODO : repplace
-		AnimationHelper.ProceduralHitReaction(DamageEvent.Damage / 100f, DamageLocation);
-
-		//if (IsViewer)
-		//{
-		//	DamageIndicator.Current?.OnHit(DamageLocation);
-		//	DamageIndicatorNew.Instance?.OnHit(DamageLocation);
-		//}
-
-		// --------------------
-		// fx
-		//if (BloodEffect.IsValid())
-		//{
-		//	BloodEffect?.Clone(new CloneConfig()
-		//	{
-		//		StartEnabled = true,
-		//		Transform = new(DamageLocation),
-		//		Name = $"Blood effect from ({GameObject})"
-		//	});
-		//}
-
-		//if (BloodImpactSound is not null)
-		//{
-		//	var snd = Sound.Play(BloodImpactSound, DamageLocation);
-		//	snd.ListenLocal = IsViewer;
-		//}
-	}
 }

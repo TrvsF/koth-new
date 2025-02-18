@@ -60,7 +60,7 @@
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 36000,
+        "KnockbackStrength": 480,
         "MaxAmmo": 4,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -115,6 +115,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
