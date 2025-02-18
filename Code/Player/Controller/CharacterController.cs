@@ -1,5 +1,7 @@
 namespace KOTH;
 
+// TODO : visit, CharacterControllerHelper seems like a mess
+
 [Category("Physics")]
 [Icon("directions_walk")]
 [EditorHandle("materials/gizmo/charactercontroller.png")]
@@ -93,12 +95,12 @@ public class CharacterController : Component
 	/// </summary>
 	public SceneTraceResult TraceDirection(Vector3 direction)
 	{
-		return BuildTrace(GameObject.Transform.Position, GameObject.Transform.Position + direction).Run();
+		return BuildTrace(GameObject.WorldPosition, GameObject.WorldPosition + direction).Run();
 	}
 
-	void Move(bool step)
+	void Move(bool WithStep)
 	{
-		if (step && IsOnGround)
+		if (WithStep && IsOnGround)
 		{
 			Velocity = Velocity.WithZ(0);
 		}
@@ -109,25 +111,25 @@ public class CharacterController : Component
 			return;
 		}
 
-		var pos = GameObject.Transform.Position;
+		var CharacterMover = new CharacterControllerHelper(BuildTrace(WorldPosition, WorldPosition), WorldPosition, Velocity);
+		CharacterMover.Bounce = 0;
+		CharacterMover.MaxStandableAngle = 70f;
 
-		var mover = new CharacterControllerHelper(BuildTrace(pos, pos), pos, Velocity);
-		mover.Bounce = Bounciness;
-		mover.MaxStandableAngle = GroundAngle;
-
-		if (step && IsOnGround)
+		if (WithStep && IsOnGround)
 		{
-			mover.TryMoveWithStep(Time.Delta, StepHeight);
+			CharacterMover.TryMoveWithStep(Time.Delta, StepHeight);
+			// CharacterMover.TryMove(Time.Delta);
 		}
 		else
 		{
-			mover.TryMove(Time.Delta);
+			CharacterMover.TryMove(Time.Delta);
 		}
 
-		Transform.Position = mover.Position;
-		Velocity = mover.Velocity;
+		WorldPosition = CharacterMover.Position;
+		Velocity = CharacterMover.Velocity;
 	}
 
+	const float MinSurfVelocity = 600f;
 	void CategorizePosition()
 	{
 		var Position = Transform.Position;
@@ -135,8 +137,8 @@ public class CharacterController : Component
 		var vBumpOrigin = Position;
 		var wasOnGround = IsOnGround;
 
-		// We're flying upwards too fast, never land on ground
-		if (!IsOnGround && Velocity.z > 40.0f)
+		// TODO : check we're on ramp (with scene rays?)
+		if (!IsOnGround && Velocity.Length >= MinSurfVelocity)
 		{
 			ClearGround();
 			return;

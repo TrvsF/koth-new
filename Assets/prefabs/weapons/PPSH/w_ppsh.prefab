@@ -53,16 +53,16 @@
       {
         "__type": "KOTH.HitscanWeaponComponent",
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
-        "Ammo": 60,
+        "Ammo": 64,
         "BaseDamage": 3.33,
-        "FireRate": 0.11,
+        "FireRate": 0.08,
         "FireType": "Continuous",
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 400,
-        "MaxAmmo": 60,
+        "KnockbackStrength": 500,
+        "MaxAmmo": 64,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -74,6 +74,7 @@
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/hitscan-trial.prefab"

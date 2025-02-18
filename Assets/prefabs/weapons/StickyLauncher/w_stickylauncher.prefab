@@ -55,7 +55,7 @@
         "__guid": "41b5e062-e995-403c-b35e-1712558fdf7e",
         "Ammo": 6,
         "BaseDamage": 100,
-        "FireRate": 0.66,
+        "FireRate": 0.72,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"

@@ -70,13 +70,16 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 			if (Sides >= 3)
 			{
-				const float Radius = 8f;
+				const float Radius = 16f;
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
-					double angle = 2 * Math.PI * SideIndex / Sides;
-					float x = (float)(Radius * Math.Cos(angle));
-					float y = (float)(Radius * Math.Sin(angle));
-					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * y) + (Boom.WorldRotation.Right * x)), Boom.WorldRotation.Forward);
+					double Angle = 2 * Math.PI * SideIndex / Sides;
+					float X = (float)(Radius * Math.Cos(Angle));
+					float Y = (float)(Radius * Math.Sin(Angle));
+
+					var RotateVectorOffset = new Vector3(X * 0.0033f, 0, Y * 0.0033f);
+					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), Boom.WorldRotation.Forward + RotateVectorOffset);
+					
 					Shoot(ShapeRay);
 				}
 			}
@@ -88,16 +91,19 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 	[Rpc.Broadcast]
-	public void TrailFx(Vector3 TraceStart, Vector3 TraceEnd)
+	public void TrailFx(Vector3 HitObjectPosition)
 	{
 		if (TrailPrefab.IsValid())
 		{
+			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
+			EstimatedStartPositionWorld.z += 12f;
+
 			var Lerp = 0f;
 			while (Lerp < 1f)
 			{
-				var Position = Vector3.Lerp(TraceStart, TraceEnd, Lerp);
+				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
 				TrailPrefab.Clone(Position);
-				Lerp += 0.025f;
+				Lerp += 0.033f;
 			}
 		}
 	}
@@ -109,9 +115,9 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceForward = StartRotation.Forward.Normal;
 		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
 
-		TrailFx(TraceStart, TraceEnd);
-
 		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd);
+
+		var FirstObjectHitPosition = TraceEnd; // !
 		foreach (var TraceElement in ShotTraces)
 		{
 			if (!TraceElement.Hit)
@@ -119,17 +125,19 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				continue;
 			}
 
+			FirstObjectHitPosition = TraceElement.HitPosition;
+
 			// HACK
 			if (!TraceElement.Tags.Contains("player_collider"))
 			{
-				return;
+				continue;
 			}
 
 			if (TraceElement.GameObject.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } HitPlayerPawn)
 			{
 				if (!Network.IsOwner)
 				{
-					return;
+					continue;
 				}
 
 				FDamageRequest DamageRequest = new()
@@ -148,6 +156,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 		}
+
+		TrailFx(FirstObjectHitPosition);
 	}
 
 	protected TimeSince TimeSinceShot = new();

@@ -138,7 +138,7 @@ public sealed class TurretComponent : Component
 		// TODO : check ownership!
 
 		var WeaponStats = InputWeaponComponent.GetWeaponStats();
-		Damage = WeaponStats.BaseDamage;
+		Damage = WeaponStats.BaseDamage * 0.66f; // !
 		Firerate = WeaponStats.FireRate;
 		KnockbackStrength = WeaponStats.KnockbackStrength;
 

@@ -61,9 +61,6 @@ public partial class PlayerPawn :
 		//	DamageIndicatorNew.Instance?.OnHit(DamageLocation);
 		//}
 
-		TimeUntilAccelerationRecovered = 1;
-		AccelerationAddedScale = 0.5f;
-
 		// --------------------
 		// fx
 		//if (BloodEffect.IsValid())

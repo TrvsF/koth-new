@@ -67,7 +67,7 @@
           "prefab": "particles/gameplay/money/hit_burst.prefab"
         },
         "ExplosionRadius": 156,
-        "MinDetTime": 0.76,
+        "MinDetTime": 0.8,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

@@ -82,17 +82,9 @@ public partial class PlayerPawn
 
 	//////////////////////////////////////////////////////////////
 
-	TimeUntil TimeUntilAccelerationRecovered = 0;
-	float AccelerationAddedScale = 0;
-
 	private void ApplyAcceleration()
 	{
-		var relative = TimeUntilAccelerationRecovered.Fraction.Clamp(0, 1);
-		var acceleration = GetAcceleration();
-
-		acceleration *= (relative + AccelerationAddedScale).Clamp(0, 1);
-
-		CharacterController.Acceleration = acceleration;
+		CharacterController.Acceleration = GetAcceleration();
 	}
 
 	// TODO : revisit
