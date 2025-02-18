@@ -208,8 +208,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		BuildInput();
 
 		// TODO : move me!
-		CurrentEquipment.ViewModel?.ModelRenderer?.Set("b_sprint", WishMove == Vector3.Forward);
-		CurrentEquipment.ViewModel?.ModelRenderer?.Set("move_bob", IsGrounded ? 0f : 1f);
+		CurrentEquipment?.ViewModel?.ModelRenderer?.Set("b_sprint", WishMove == Vector3.Forward);
+		CurrentEquipment?.ViewModel?.ModelRenderer?.Set("move_bob", IsGrounded ? 0f : 1f);
 
 		ApplyAcceleration();
 		ApplyMovement();

@@ -87,13 +87,9 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
-	protected virtual void Shoot(Ray WeaponRay)
+	[Rpc.Broadcast]
+	public void TrailFx(Vector3 TraceStart, Vector3 TraceEnd)
 	{
-		var TraceStart = WeaponRay.Position;
-		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
-		var TraceForward = StartRotation.Forward.Normal;
-		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
-
 		if (TrailPrefab.IsValid())
 		{
 			var Lerp = 0f;
@@ -104,6 +100,16 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				Lerp += 0.025f;
 			}
 		}
+	}
+
+	protected virtual void Shoot(Ray WeaponRay)
+	{
+		var TraceStart = WeaponRay.Position;
+		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
+		var TraceForward = StartRotation.Forward.Normal;
+		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
+
+		TrailFx(TraceStart, TraceEnd);
 
 		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd);
 		foreach (var TraceElement in ShotTraces)

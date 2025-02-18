@@ -98,6 +98,11 @@ public partial class PlayerState
 	[Rpc.Host]
 	private void HACKPlayerSpawnState(CharacterDefinition CIN)
 	{
+		if (!CIN.IsValid())
+		{
+			return;
+		}
+
 		RequestedCharacterDefinition = CIN;
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
