@@ -13,8 +13,17 @@ public partial class PlayerPawn
 	[DeveloperCommand("Suicide", "Player"), ConCmd("kill")]
 	private static void Command_Suicide()
 	{
-		var player = PlayerState.Local?.PlayerPawn;
-		if (player is null) return;
-		Log.Info("kill");
+		var LocalPlayerPawn = PlayerState.Local?.PlayerPawn;
+
+		if (LocalPlayerPawn.IsValid() && LocalPlayerPawn.IsAlive && Game.ActiveScene.IsValid())
+		{
+			FDamageRequest DamageRequest = new()
+			{
+				TargetPlayerPawn = LocalPlayerPawn,
+				BaseDamage = 9999,
+			};
+			Game.ActiveScene.Dispatch(new DamageRequestEvent(DamageRequest));
+			Log.Info("kill");
+		}
 	}
 }

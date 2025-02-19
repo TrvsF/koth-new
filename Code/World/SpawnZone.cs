@@ -17,11 +17,11 @@ public sealed class SpawnZone : Zone, Component.ITriggerListener
 			return;
 		}
 
-		var BoxTrace = Scene.Trace.Box(Box.KeyframeBody.GetBounds(), WorldPosition, WorldPosition).RunAll();
-		foreach (var Hits in BoxTrace)
-		{
-			Log.Info(Hits.GameObject);
-		}
+		//var BoxTrace = Scene.Trace.Box(Box.KeyframeBody.GetBounds(), WorldPosition, WorldPosition).RunAll();
+		//foreach (var Hits in BoxTrace)
+		//{
+		//	Log.Info(Hits.GameObject);
+		//}
 	}
 
 	void ITriggerListener.OnTriggerEnter(Collider Collider)

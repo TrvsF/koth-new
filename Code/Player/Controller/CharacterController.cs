@@ -129,10 +129,10 @@ public class CharacterController : Component
 		Velocity = CharacterMover.Velocity;
 	}
 
-	const float MinSurfVelocity = 600f;
+	const float MinSurfVelocity = 1200f;
 	void CategorizePosition()
 	{
-		var Position = Transform.Position;
+		var Position = WorldPosition;
 		var point = Position + Vector3.Down * 2;
 		var vBumpOrigin = Position;
 		var wasOnGround = IsOnGround;
@@ -174,7 +174,7 @@ public class CharacterController : Component
 		//
 		if (wasOnGround && !pm.StartedSolid && pm.Fraction > 0.0f && pm.Fraction < 1.0f)
 		{
-			Transform.Position = pm.EndPosition + pm.Normal * 0.01f;
+			WorldPosition = pm.EndPosition + pm.Normal * 0.01f;
 		}
 	}
 

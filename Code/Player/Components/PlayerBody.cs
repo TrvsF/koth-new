@@ -33,6 +33,9 @@ public partial class PlayerBody : Component
 			ApplyRagdollImpulses(DamageTakenPosition, DamageTakenForce);
 
 		Transform.ClearInterpolation();
+		
+		var TimedDestroyComponent = GameObject.AddComponent<TimedDestroyComponent>();
+		TimedDestroyComponent.Time = 10f;
 	}
 
 	internal void ApplyRagdollImpulses(Vector3 Position, Vector3 Force)

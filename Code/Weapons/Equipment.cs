@@ -21,7 +21,7 @@ public struct FEquipmentDefinition
 
 
 // TODO : this could do with a proper look at
-public sealed class Equipment : Component, Component.INetworkListener, IEquipment, IDescription
+public sealed class Equipment : Component, IEquipment, IDescription
 {
 	internal void BindTag(string tag, Func<bool> predicate) => TagBinder.BindTag(tag, predicate);
 	[RequireComponent] public TagBinder TagBinder { get; set; }
@@ -98,11 +98,6 @@ public sealed class Equipment : Component, Component.INetworkListener, IEquipmen
 	}
 
 	public ViewModel ViewModel { get; private set; }
-
-	void INetworkListener.OnDisconnected(Connection connection)
-	{
-
-	}
 
 	[Rpc.Owner]
 	public void Deploy()

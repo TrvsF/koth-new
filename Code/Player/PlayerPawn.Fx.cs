@@ -89,12 +89,12 @@ public partial class PlayerPawn
 		var DamageLocation = DamageEvent.DamageLocation;
 
 		// TODO : repplace
-		AnimationHelper.ProceduralHitReaction(DamageEvent.Damage / 100f, DamageLocation);
+		//AnimationHelper.ProceduralHitReaction(DamageEvent.Damage / 100f, DamageLocation);
 
-		if (IsViewer)
-		{
-			DamageIndicatorNew.Instance?.OnHit(DamageLocation);
-		}
+		//if (IsViewer)
+		//{
+		//	DamageIndicatorNew.Instance?.OnHit(DamageLocation);
+		//}
 
 		// --------------------
 		// fx

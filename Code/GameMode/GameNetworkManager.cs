@@ -106,7 +106,8 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
 	{
-		Assert.True(Networking.IsHost);
+		// after changing hosts this assert fails :)
+		// Assert.True(Networking.IsHost);
 		Log.Info("disconnection event");
 
 		PlayerState PlayerStateToDestroy = null;

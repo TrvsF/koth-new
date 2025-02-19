@@ -18,7 +18,7 @@ public partial class PlayerPawn
 	public float CrouchAmount { get; set; }
 	[Sync] public bool IsNoclipping { get; set; }
 	[Sync] public TimeSince TimeSinceLastInput { get; private set; }
-	[Sync] AnimationHelper.HoldTypes CurrentHoldType { get; set; } = AnimationHelper.HoldTypes.None;
+	// [Sync] AnimationHelper.HoldTypes CurrentHoldType { get; set; } = AnimationHelper.HoldTypes.None;
 
 	private Vector3 WishVelocity { get; set; }
 	public Vector3 WishMove { get; private set; }

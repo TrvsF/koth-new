@@ -5,7 +5,7 @@ namespace KOTH;
 
 public sealed class HealthPickup : Component, Component.ITriggerListener
 {
-	[RequireComponent] ModelRenderer Model { get; set; }
+	[Property] ModelRenderer Model { get; set; }
 
 	[Property] public float HealthPercent { get; set; } = 0.5f;
 	[Property] public float RespawnTime { get; set; } = 10f;
@@ -13,6 +13,8 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 
 	protected override void OnFixedUpdate()
 	{
+		base.OnFixedUpdate();
+
 		WorldRotation = Rotation.FromYaw(WorldRotation.Yaw() + 1);
 
 		if (!IsAcitve && TimeSinceDeativate >= RespawnTime)

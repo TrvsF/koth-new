@@ -93,7 +93,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		{
 			FDamageTaken EnvDamageTaken = new()
 			{
-				AttackerPlayerPawn = AttackerPlayerPawn,
+				AttackerPlayerPawn = null,
 				VictimPlayerPawn = TargetPlayerPawn,
 				Damage = Damage,
 				DamageLocation = DamageOrigin,
@@ -109,8 +109,8 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			// return; // NOTE : early return
 		}
 
+		// we want to target the hit object's center of mass
 		var TargetPoint = TargetPlayerPawn.CenterPosition;
-		var TargetToAttackerDistance = TargetPoint.Distance(AttackerPlayerPawn.CenterPosition);
 
 		// calculate damage ////////////////////////////////
 		switch (DamageRequest.DamageType)
@@ -119,11 +119,13 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			case EDamageType.Projectile:
 				{
 					var TargetToImpactDistance = TargetPoint.Distance(DamageOrigin);
+					var TargetToAttackerDistance = TargetPoint.Distance(AttackerPlayerPawn.CenterPosition);
 
 					if (DamageRequest.DamageFalloffType == EDamageFalloffType.Falloff)
 					{
 						float MaxDamageInterpFactor = TargetToAttackerDistance / PlayerDistanceFalloffMaxBound;
-						float MaxDamage = MathX.Lerp(Damage, Damage * 0.33f, MaxDamageInterpFactor);
+						float MaxDamage = MathX.Lerp(Damage, Damage * .33f, MaxDamageInterpFactor);
+
 						// if a direct then tighten its damage falloff
 						float MinDamage = DamageRequest.DirectImpact ? Damage * .33f : Damage * .15f;
 
@@ -133,7 +135,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 					else if (DamageRequest.DamageFalloffType == EDamageFalloffType.Rampup)
 					{
 						float MinDamage = DamageRequest.DirectImpact ? Damage * 0.4f : Damage * .15f;
-						float InterpFactor = TargetToImpactDistance / 300;
+						float InterpFactor = TargetToImpactDistance / 300f;
 						Damage = MathX.Lerp(MinDamage, Damage, InterpFactor);
 					}
 				}
@@ -178,8 +180,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
 
-		Log.Info($"{Damage} damage has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health} -> {TargetPlayerPawn.DisplayName}:{TargetPlayerPawn.Health}");
-
+		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health} -> {TargetPlayerPawn.DisplayName}:{TargetPlayerPawn.Health}");
 
 		// ---------------------- stats
 		//if (TargetPlayerPawn.PlayerState.IsValid())

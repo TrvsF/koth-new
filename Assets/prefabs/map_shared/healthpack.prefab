@@ -10,32 +10,15 @@
     "NetworkOrphaned": 1,
     "Components": [
       {
-        "__type": "Sandbox.ModelRenderer",
-        "__guid": "d0e14df0-594b-4072-8df2-c99e1391243b",
-        "BodyGroups": 18446744073709551615,
-        "CreateAttachments": false,
-        "MaterialGroup": null,
-        "MaterialOverride": null,
-        "Model": "models/koth/health_cans.vmdl",
-        "OnComponentDestroy": null,
-        "OnComponentDisabled": null,
-        "OnComponentEnabled": null,
-        "OnComponentFixedUpdate": null,
-        "OnComponentStart": null,
-        "OnComponentUpdate": null,
-        "RenderOptions": {
-          "GameLayer": true,
-          "OverlayLayer": false,
-          "BloomLayer": false,
-          "AfterUILayer": false
-        },
-        "RenderType": "On",
-        "Tint": "1,1,1,1"
-      },
-      {
         "__type": "KOTH.HealthPickup",
         "__guid": "73ca2ae5-ce2c-4104-b073-cf013116e342",
         "HealthPercent": 0.5,
+        "Model": {
+          "_type": "component",
+          "component_id": "f0f420fe-0565-4b0b-97ac-e7eea9da59a9",
+          "go": "7fda5b4f-b5eb-4037-968a-959441f2924c",
+          "component_type": "ModelRenderer"
+        },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -47,7 +30,7 @@
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "ad5f8fd5-3eb0-408c-a40f-a9d99f2aaef4",
-        "Center": "0,0,0.3",
+        "Center": "0,0,0.5",
         "Friction": null,
         "IsTrigger": true,
         "OnComponentDestroy": null,
@@ -60,13 +43,46 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Scale": "1,1,0.8",
+        "Scale": "1.25,1.25,1",
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
       }
     ],
-    "Children": [],
+    "Children": [
+      {
+        "__guid": "7fda5b4f-b5eb-4037-968a-959441f2924c",
+        "Flags": 0,
+        "Name": "Model",
+        "Scale": "33,33,33",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "f0f420fe-0565-4b0b-97ac-e7eea9da59a9",
+            "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/koth/health_cans.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
     "__variables": [],
     "__properties": {
       "FixedUpdateFrequency": 50,

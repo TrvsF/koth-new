@@ -61,7 +61,7 @@
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 500,
+        "KnockbackStrength": 800,
         "MaxAmmo": 64,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

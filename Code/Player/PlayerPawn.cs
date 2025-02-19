@@ -1,6 +1,7 @@
 using KOTH.UI;
 using KOTH.Utils;
 using Sandbox;
+using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.Services;
@@ -27,7 +28,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[Property] public PlayerBody Body { get; set; }
 	[Property] public GameObject Head { get; set; }
 	[Property] public GameObject GibPrefab { get; set; } // TODO : this should be in character def
-	[Property] public AnimationHelper AnimationHelper { get; set; }
+	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 	[Property] public BoxCollider PlayerBoxCollider { get; set; }
 	[Property] public Team DisplayTeam { get => Team; }
 
@@ -144,14 +145,18 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			AnimationHelper.WithVelocity(CharacterController.Velocity);
 			AnimationHelper.WithWishVelocity(WishVelocity);
 			AnimationHelper.IsGrounded = IsGrounded;
+			AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
 			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
-			AnimationHelper.MoveStyle = AnimationHelper.MoveStyles.Run;
-			AnimationHelper.DuckLevel = (MathF.Abs(_smoothEyeHeight) / 32.0f);
-			AnimationHelper.HoldType = CurrentHoldType;
-			AnimationHelper.Handedness = CurrentEquipment.IsValid() ? CurrentEquipment.Handedness : AnimationHelper.Hand.Both;
-			AnimationHelper.AimBodyWeight = 0.1f;
+			AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
+			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
+			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
+			AnimationHelper.IsWeaponLowered = false;
+			AnimationHelper.AimBodyWeight = 1f;
+			// AnimationHelper.DuckLevel = (MathF.Abs(_smoothEyeHeight) / 32.0f);
+			// AnimationHelper.HoldType = CurrentHoldType;
+			// AnimationHelper.Handedness = CurrentEquipment.IsValid() ? CurrentEquipment.Handedness : AnimationHelper.Hand.Both;
 
-			CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
+			// CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
 		}
 
 		UpdateCrouch();
@@ -223,11 +228,11 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		// if (DummyType.HasFlag(DummyType.Jumper))
 		//{
 		IsCrouching = true;
-		if (CharacterController.IsOnGround)
-		{
-			CharacterController.Punch(Vector3.Up * JumpPower);
-			BroadcastPlayerJumped();
-		}
+		//if (CharacterController.IsOnGround)
+		//{
+		//	CharacterController.Punch(Vector3.Up * JumpPower);
+		//	BroadcastPlayerJumped();
+		//}
 		//}
 
 		//if (DummyType.HasFlag(DummyType.Walker))

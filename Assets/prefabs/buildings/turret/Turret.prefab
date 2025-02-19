@@ -16,7 +16,7 @@
         "CreateBoneObjects": false,
         "MaterialGroup": null,
         "MaterialOverride": null,
-        "Model": "models/tnt.vmdl",
+        "Model": "models/untitled_1.vmdl",
         "Morphs": {},
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -75,7 +75,7 @@
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "eec77925-41c6-4c8f-91c8-bb2c7ce14aad",
-        "Center": "0,0,0",
+        "Center": "0,0,16.5",
         "Friction": null,
         "IsTrigger": false,
         "OnComponentDestroy": null,
@@ -122,7 +122,7 @@
         "__guid": "f03fae92-9d30-4658-bf37-4791aa85d90c",
         "Flags": 0,
         "Name": "Muzzel",
-        "Position": "0,0,32",
+        "Position": "0,0,48",
         "Scale": "2.5,2.5,2.5",
         "Enabled": true,
         "Components": [
@@ -199,7 +199,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "tbt.methtnt#1194",
+    "debelizmik.sentry_turret#33214",
     "titanovsky.ak47#53945"
   ],
   "__version": 1
