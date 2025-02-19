@@ -37,8 +37,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Slot": "Undefined",
-        "ViewmodelPrefab": null
+        "Slot": "Secondary"
       },
       {
         "__type": "KOTH.TagBinder",

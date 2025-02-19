@@ -36,8 +36,8 @@ public sealed class Equipment : Component, IEquipment, IDescription
 	}
 
 	[Property] public string Name { get; private set; }
-	[Property] public GameObject ViewmodelPrefab { get; private set; }
 	[Property] public EEquipmentSlot Slot { get; private set; }
+	public GameObject ViewmodelPrefab { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////////
 

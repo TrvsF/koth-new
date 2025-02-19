@@ -37,8 +37,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Slot": "Undefined",
-        "ViewmodelPrefab": null
+        "Slot": "Primary"
       },
       {
         "__type": "KOTH.TagBinder",
@@ -86,6 +85,7 @@
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
         "Flags": 0,
         "Name": "Model",
+        "Rotation": "0,-0.7071068,0,0.7071068",
         "Enabled": true,
         "Components": [
           {
