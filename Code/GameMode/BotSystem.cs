@@ -60,29 +60,5 @@ public sealed class BotSystem : Component,
 
 	void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent EventArgs)
 	{
-		var DeadPawn = EventArgs.DamageEvent.VictimPlayerPawn;
-		if (!DeadPawn.IsValid())
-		{
-			Log.Warning("trying to handle the respawn of an invalid pawn");
-			return;
-		}
-
-		// if (!DeadPawn.IsDummy)
-		{
-			return;
-		}
-
-		if (!DummyPrefab.IsValid())
-		{
-			return;
-		}
-
-		// var Spawns = GameUtils.GetDummySpawnPoints(DeadPawn.DummyType).Shuffle();
-		// if (Spawns.Any())
-		{
-			// SpawnDummy(DeadPawn.DummyType, Spawns[0].Transform);
-		}
-
-		DeadPawn.DestroyGameObject();
 	}
 }

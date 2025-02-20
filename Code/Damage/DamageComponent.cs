@@ -9,9 +9,10 @@ namespace KOTH;
 public sealed class DamageComponent : Component
 {
 	[Property, HostSync] public bool IsGodMode { get; private set; } = false;
-	[Property] public Action<float, float> OnHealthChanged { get; set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
+
+	public event Action<FDamageTaken> OnDeath;
 
 	[Property, Sync(SyncFlags.FromHost)] public float Health { get; private set; } = 100f;
 	[Property, Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
@@ -24,12 +25,11 @@ public sealed class DamageComponent : Component
 
 	// HACK : TODO REWORK
 
-	private PlayerPawn OwnerPawn;
 	protected override void OnAwake()
 	{
 		base.OnAwake();
 
-		OwnerPawn = GameObject.Root.Components.Get<PlayerPawn>();
+		var OwnerPawn = GameObject.Root.Components.Get<PlayerPawn>();
 
 		// HACK : even worse, health is being overwritten because Sync(SyncFlags.FromHost)
 		// will still accept values from the owning pawn even if not the host
@@ -92,13 +92,8 @@ public sealed class DamageComponent : Component
 		if (Health <= 0f)
 		{
 			BroadcastKill(DamageTaken);
-			OwnerPawn.OnKill(DamageTaken);
+			OnDeath?.Invoke(DamageTaken);
 		}
-	}
-	
-	public void TakeKnockback(Vector3 Knockback)
-	{
-		GameUtils.GetPlayerFromComponent(this)?.DoKnockback(Knockback);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

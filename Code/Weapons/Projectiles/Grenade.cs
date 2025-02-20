@@ -37,9 +37,11 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = PlayerPawn,
+					TargetDamageComponent = PlayerPawn.DamageComponent,
 					AttackerPlayerPawn = OwnerPlayerPawn,
+					TargetPlayerPawn = PlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
+					TargetOrigin = PlayerPawn.CenterPosition,
 					BaseDamage = BaseDamage * .33f,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
@@ -63,9 +65,11 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 		{
 			FDamageRequest DirectDamageRequest = new()
 			{
-				TargetPlayerPawn = HitPlayerPawn,
+				TargetDamageComponent = HitPlayerPawn.DamageComponent,
 				AttackerPlayerPawn = OwnerPlayerPawn,
+				TargetPlayerPawn = HitPlayerPawn,
 				DamageOrigin = Collision.HitLocation,
+				TargetOrigin = HitPlayerPawn.CenterPosition,
 				BaseDamage = BaseDamage,
 				BaseKnockbackStrength = BaseKnockbackStrength,
 				DirectImpact = true,
@@ -88,9 +92,11 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = PlayerPawn,
+					TargetDamageComponent = PlayerPawn.DamageComponent,
 					AttackerPlayerPawn = OwnerPlayerPawn,
+					TargetPlayerPawn = PlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
+					TargetOrigin = PlayerPawn.CenterPosition,
 					BaseDamage = BaseDamage * .66f,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,

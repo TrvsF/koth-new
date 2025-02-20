@@ -153,6 +153,10 @@ public sealed class TurretComponent : Component
 	}
 
 	////////////////////////////////////////////////////////////////////////
+	
+	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
+
+	////////////////////////////////////////////////////////////////////////
 
 	[Property] public float Damage { get; private set; } = 1f;
 	[Property] public float KnockbackStrength { get; private set; } = 1f;
@@ -167,6 +171,22 @@ public sealed class TurretComponent : Component
 	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; set; }
 	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
+	////////////////////////////////////////////////////////////////////////
+
+	protected override void OnEnabled()
+	{
+		base.OnEnabled();
+
+		Assert.NotNull(DamageComponent);
+
+		DamageComponent.OnDeath += OnKill;
+	}
+
+	private void OnKill(FDamageTaken DamageTaken)
+	{
+		GameObject.Root.Destroy();
+	}
+	
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnFixedUpdate()
@@ -188,6 +208,8 @@ public sealed class TurretComponent : Component
 		DoTurretFX(TargetPosition, HasFiredShot);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	public void DoTurretFX(Vector3 TargetPosition, bool IsShooting)
 	{
@@ -241,9 +263,11 @@ public sealed class TurretComponent : Component
 			{
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = HitPlayerPawn,
+					TargetDamageComponent = HitPlayerPawn.DamageComponent,
 					AttackerPlayerPawn = OwnerPawn,
+					TargetPlayerPawn = HitPlayerPawn,
 					DamageOrigin = TraceElement.HitPosition,
+					TargetOrigin = HitPlayerPawn.CenterPosition,
 					BaseDamage = Damage,
 					BaseKnockbackStrength = KnockbackStrength,
 					DamageType = EDamageType.HitScan,

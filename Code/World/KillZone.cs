@@ -14,7 +14,7 @@ public sealed class KillZone : Component, Component.ITriggerListener
 		{
 			FDamageRequest DamageRequest = new()
 			{
-				TargetPlayerPawn = PlayerPawn,
+				TargetDamageComponent = PlayerPawn.DamageComponent,
 				AttackerPlayerPawn = null,
 				DamageOrigin = 0,
 				BaseDamage = float.MaxValue,

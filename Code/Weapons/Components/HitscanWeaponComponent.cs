@@ -128,12 +128,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			FirstObjectHitPosition = TraceElement.HitPosition;
 
 			// HACK
-			if (!TraceElement.Tags.Contains("player_collider"))
-			{
-				continue;
-			}
+			//if (!TraceElement.Tags.Contains("player_collider"))
+			//{
+			//	continue;
+			//}
 
-			if (TraceElement.GameObject.Root.Components.Get<PlayerPawn>(FindMode.EnabledInSelfAndDescendants) is { } HitPlayerPawn)
+			if (TraceElement.GameObject.Root.Components.Get<DamageComponent>(FindMode.EnabledInSelfAndDescendants) is { } DamageComponent)
 			{
 				if (!Network.IsOwner)
 				{
@@ -142,16 +142,23 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = HitPlayerPawn,
+					TargetDamageComponent = DamageComponent,
 					AttackerPlayerPawn = Equipment.Owner,
 					DamageOrigin = TraceElement.HitPosition,
 					BaseDamage = BaseDamage,
+					TargetOrigin = GameObject.WorldPosition,
 					BaseKnockbackStrength = KnockbackStrength,
 					DamageType = EDamageType.HitScan,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					DoesLessSelfDamage = true,
-					MaxFalloffDistance = 5000,
+					MaxFalloffDistance = 2400,
 				};
+
+				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+				{
+					DamageRequest.TargetPlayerPawn = PlayerPawn;
+					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+				}
 
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}

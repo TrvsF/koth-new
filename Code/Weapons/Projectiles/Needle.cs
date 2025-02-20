@@ -56,9 +56,11 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 				var Damage = MathX.Lerp(MinDamage, MaxDamage, InterpFactor);
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = CollidePlayerPawn,
+					TargetDamageComponent = CollidePlayerPawn.DamageComponent,
 					AttackerPlayerPawn = OwnerPlayerPawn,
+					TargetPlayerPawn = CollidePlayerPawn,
 					DamageOrigin = Collision.HitLocation,
+					TargetOrigin = CollidePlayerPawn.CenterPosition,
 					BaseDamage = Damage,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DirectImpact = true,

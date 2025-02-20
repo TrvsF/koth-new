@@ -1,7 +1,6 @@
 @namespace KOTH.UI
 @using Sandbox.Events
 @inherits PanelComponent
-@implements IGameEventHandler<OnScoreAddedEvent>
 
 @if (!IsHudEnabled)
 	return;
@@ -50,14 +49,6 @@
 	}
 
 	public ScoringSystem ScoringSystem { get; set; }
-
-	void IGameEventHandler<OnScoreAddedEvent>.OnGameEvent(OnScoreAddedEvent eventArgs)
-	{
-		if (ScoringSystem != null)
-		{
-			ScoringSystem.OnScore(eventArgs.Score, eventArgs.Reason);
-		}
-	}
 
 	protected override int BuildHash()
 	{

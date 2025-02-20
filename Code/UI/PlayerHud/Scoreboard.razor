@@ -33,11 +33,7 @@
                     <label class="col stat-small small"></label>
                     <label class="col stat-small small"></label>
                     <label class="col playername small"></label>
-                   
-                    @foreach ( var x in IScore.Find( PlayerState.Local ) )
-                    {
-                        <label class="col stat">@(x.Attribute.Name)</label>
-                    }
+                  
                 </div>
 
                 @foreach ( var player in group )
@@ -69,7 +65,7 @@
     {
         get
         {
-            var sortedPlayers = PlayerStates.OrderByDescending(x => x.Components.Get<PlayerScore>().Score);
+            var sortedPlayers = PlayerStates;
             var groupedPlayers = sortedPlayers.GroupBy(x => x.Team);
             return groupedPlayers.ToList();
         }

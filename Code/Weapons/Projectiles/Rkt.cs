@@ -47,9 +47,11 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 
 			FDamageRequest DamageRequest = new()
 			{
-				TargetPlayerPawn = PlayerPawn,
+				TargetDamageComponent = PlayerPawn.DamageComponent,
 				AttackerPlayerPawn = OwnerPlayerPawn,
+				TargetPlayerPawn = PlayerPawn,
 				DamageOrigin = Collision.HitLocation,
+				TargetOrigin = PlayerPawn.CenterPosition,
 				BaseDamage = BaseDamage,
 				BaseKnockbackStrength = BaseKnockbackStrength,
 				DirectImpact = PlayerPawn.GameObject.Root == Collision.HitObject?.Root,

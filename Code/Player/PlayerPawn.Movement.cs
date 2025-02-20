@@ -278,9 +278,11 @@ public partial class PlayerPawn
 				PlayFallSound();
 				FDamageRequest DamageRequest = new()
 				{
-					TargetPlayerPawn = this,
+					TargetDamageComponent = DamageComponent,
 					AttackerPlayerPawn = this,
+					TargetPlayerPawn = this,
 					DamageOrigin = WorldPosition,
+					TargetOrigin = CenterPosition,
 					BaseDamage = FallDamage,
 					BaseKnockbackStrength = 0,
 					DirectImpact = true,

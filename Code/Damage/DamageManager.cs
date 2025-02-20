@@ -79,11 +79,11 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		Assert.True(Networking.IsHost);
 
 		var DamageOrigin = DamageRequest.DamageOrigin;
-		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
+		var TargetDamageComponent = DamageRequest.TargetDamageComponent;
 		var AttackerPlayerPawn = DamageRequest.AttackerPlayerPawn;
 		var Damage = DamageRequest.BaseDamage;
 
-		if (!TargetPlayerPawn.IsValid() || !TargetPlayerPawn.IsAlive)
+		if (!TargetDamageComponent.IsValid() || TargetDamageComponent.Health <= 0)
 		{
 			return;
 		}
@@ -94,25 +94,25 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			FDamageTaken EnvDamageTaken = new()
 			{
 				AttackerPlayerPawn = null,
-				VictimPlayerPawn = TargetPlayerPawn,
+				VictimPlayerPawn = DamageRequest.TargetPlayerPawn,
 				Damage = Damage,
 				DamageLocation = DamageOrigin,
 			};
 
-			TargetPlayerPawn.DamageComponent.TakeDamage(EnvDamageTaken);
+			TargetDamageComponent.TakeDamage(EnvDamageTaken);
 			return; // NOTE : early return
 		}
 
 		// team check ////////////////////////////////
-		if (TargetPlayerPawn.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
-		{
-			// return; // NOTE : early return
-		}
+		//if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetDamageComponent != AttackerPlayerPawn && !TargetDamageComponent.IsDummy)
+		//{
+		//	// return; // NOTE : early return
+		//}
 
 		// we want to target the hit object's center of mass
-		var TargetPoint = TargetPlayerPawn.CenterPosition;
+		var TargetPoint = DamageRequest.TargetOrigin;
 
-		// calculate damage ////////////////////////////////
+		// calculate damage /////////////
 		switch (DamageRequest.DamageType)
 		{
 			case EDamageType.HitScan: // meant to follow thru
@@ -146,11 +146,18 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 				break;
 		}
 
-		var DirectionVec = (TargetPoint - DamageOrigin).Normal;
-		var Knockback = CalculateKnockback(DirectionVec, Damage, DamageRequest.BaseKnockbackStrength,
-			TargetPlayerPawn.WeightFactor, TargetPlayerPawn.IsCrouching);
+		// knockback ////////////////
+		var Knockback = Vector3.Zero;
+		if (DamageRequest.TargetPlayerPawn.IsValid())
+		{ 
+			var DirectionVec = (TargetPoint - DamageOrigin).Normal;
+			Knockback = CalculateKnockback(DirectionVec, Damage, DamageRequest.BaseKnockbackStrength,
+				DamageRequest.TargetPlayerPawn.WeightFactor, DamageRequest.TargetPlayerPawn.IsCrouching);
 
-		bool WasSelfDamage = TargetPlayerPawn == AttackerPlayerPawn;
+			DamageRequest.TargetPlayerPawn.DoKnockback(Knockback);
+		}
+
+		bool WasSelfDamage = DamageRequest.TargetPlayerPawn == AttackerPlayerPawn;
 		if (WasSelfDamage && DamageRequest.DoesLessSelfDamage)
 		{
 			Damage *= SelfDamageMultiplyer;
@@ -159,42 +166,23 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		FDamageTaken DamageTaken = new()
 		{
 			AttackerPlayerPawn = AttackerPlayerPawn,
-			VictimPlayerPawn = TargetPlayerPawn,
+			VictimPlayerPawn = DamageRequest.TargetPlayerPawn,
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
 		};
 
-		// deal the damage ////////////////////////////////
 		if (KnockbackOnly)
 		{
-			TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);
 			return;
 		}
 
-		if (TargetPlayerPawn.Body.IsValid()) // TODO : move me
-		{
-			TargetPlayerPawn.Body.DamageTakenForce = Knockback * .66f;
-		}
-		TargetPlayerPawn.DamageComponent.TakeKnockback(Knockback);
-		TargetPlayerPawn.DamageComponent.TakeDamage(DamageTaken);
+		// deal the damage ///////////////////////////
+		TargetDamageComponent.TakeDamage(DamageTaken);
 
 		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
 
-		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health} -> {TargetPlayerPawn.DisplayName}:{TargetPlayerPawn.Health}");
-
-		// ---------------------- stats
-		//if (TargetPlayerPawn.PlayerState.IsValid())
-		//{
-
-		//}
-
-		//if (AttackerPlayerPawn.PlayerState.IsValid())
-		//{
-		//	using (Rpc.FilterInclude(AttackerPlayerPawn.PlayerState.Connection))
-		//	{
-		//		ClientDidDamage(AttackerPlayerPawn.PlayerState, AttackerPlayerPawn, Damage, WasSelfDamage);
-		//	}
-		//}
+		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health}" +
+			$" -> {DamageRequest.TargetPlayerPawn?.DisplayName}:{TargetDamageComponent.Health}");
 	}
 
 	[Rpc.Host]

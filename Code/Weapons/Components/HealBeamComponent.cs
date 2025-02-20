@@ -95,9 +95,11 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		TimeSinceLastAttemptedHit = 0;
 		FDamageRequest DamageRequest = new()
 		{
-			TargetPlayerPawn = EnemyPawn,
+			TargetDamageComponent = EnemyPawn.DamageComponent,
 			AttackerPlayerPawn = PlayerPawn,
+			TargetPlayerPawn = EnemyPawn,
 			DamageOrigin = PlayerPawn.WorldPosition,
+			TargetOrigin = EnemyPawn.CenterPosition,
 			BaseDamage = BaseDamage,
 			BaseKnockbackStrength = KnockbackStrength,
 			DirectImpact = true,

@@ -120,9 +120,11 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 			FDamageRequest DamageRequest = new()
 			{
-				TargetPlayerPawn = PlayerPawn,
+				TargetDamageComponent = PlayerPawn.DamageComponent,
 				AttackerPlayerPawn = OwnerPlayerPawn,
+				TargetPlayerPawn = PlayerPawn,
 				DamageOrigin = ProjectileCollision.HitLocation,
+				TargetOrigin = PlayerPawn.CenterPosition,
 				BaseDamage = BaseDamage,
 				BaseKnockbackStrength = BaseKnockbackStrength,
 				DamageType = EDamageType.Projectile,

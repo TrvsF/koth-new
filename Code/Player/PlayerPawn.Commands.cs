@@ -19,7 +19,7 @@ public partial class PlayerPawn
 		{
 			FDamageRequest DamageRequest = new()
 			{
-				TargetPlayerPawn = LocalPlayerPawn,
+				TargetDamageComponent = LocalPlayerPawn.DamageComponent,
 				BaseDamage = 9999,
 			};
 			Game.ActiveScene.Dispatch(new DamageRequestEvent(DamageRequest));

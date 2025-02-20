@@ -115,6 +115,19 @@
           "_type": "gameobject",
           "go": "f03fae92-9d30-4658-bf37-4791aa85d90c"
         }
+      },
+      {
+        "__type": "KOTH.DamageComponent",
+        "__guid": "733e751d-c2bd-440b-a9f2-83df5b266475",
+        "Health": 100,
+        "IsGodMode": false,
+        "MaxBaseHealth": 100,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
@@ -123,6 +136,7 @@
         "Flags": 0,
         "Name": "Muzzel",
         "Position": "0,0,48",
+        "Rotation": "0,0,1,-0.00000004371139",
         "Scale": "2.5,2.5,2.5",
         "Enabled": true,
         "Components": [
