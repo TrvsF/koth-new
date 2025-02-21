@@ -55,7 +55,6 @@
         "Ammo": 6,
         "BaseDamage": 15,
         "FireRate": 0.75,
-        "FireType": "Continuous",
         "HasAmmo": true,
         "InputActions": [
           "Attack1"

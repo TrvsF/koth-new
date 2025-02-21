@@ -5,12 +5,16 @@ namespace KOTH;
 
 public sealed class HealBeamComponent : InputWeaponComponent
 {
-	[Property, Category("Healing")] public float HealsPerTick { get; private set; } = .45f;
-	[Property, Category("Healing")] public float MaxHealDistance { get; private set; } = 340f;
+	[Property, Category("Healing")] public float HealsPerTick { get; set; } = .45f;
+	[Property, Category("Healing")] public float MaxHealDistance { get; set; } = 340f;
+	[Property, Category("Healing")] public float ChargeBuildRate { get; set; } = .03f;
+	[Property, Category("Healing")] public float ChargeDegradeRate { get; set; } = .05f;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public PlayerPawn HealTarget { get; private set; }
+	[Sync] public PlayerPawn HealTarget { get; private set; }
+	[Sync] public bool IsUbered { get; private set; } = false;
+	[Sync] public float Charge { get; private set; } = 0f;
 	private PlayerPawn PlayerPawn { get => Equipment.Owner; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +28,20 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return;
 		}
 
-		TryDoHealingToTarget();
+		if (!IsProxy)
+		{
+			TryDoHealingToTarget();
+
+			if (IsUbered)
+			{
+				Charge -= ChargeDegradeRate;
+
+				if (Charge < 0)
+				{
+					Charge = 0;
+				}
+			}
+		}
 	}
 
 	private TimeSince TimeSinceBeamHealingDone = new();
@@ -36,8 +53,30 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return; // NOTE : early return
 		}
 
+		if (IsProxy)
+		{
+			return;
+		}
+
 		bool HealInput = IsDown();
-		bool MeleeInput = Input.Pressed("attack2");
+		bool UberInput = Input.Pressed("attack2");
+		bool MeleeInput = Input.Pressed("attack3");
+
+		if (IsUbered)
+		{
+			if (HealTarget.IsValid())
+			{
+				if (Charge > 3)
+				{
+					HealTarget.Uber();
+				}
+			}
+		}
+		
+		if (UberInput)
+		{
+			IsUbered = !IsUbered;
+		}
 
 		if (!HealInput)
 		{
@@ -71,6 +110,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	private bool MeleeSwing()
 	{
 		if (TimeSinceLastAttemptedHit < FireRate)
@@ -140,6 +180,11 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			AllowOverheal = true,
 		};
 		Scene.Dispatch(new HealingRequestEvent(HealingRequest));
+
+		if (!IsUbered)
+		{
+			Charge += ChargeBuildRate;
+		}
 
 		TimeSinceBeamHealingDone = 0;
 	}

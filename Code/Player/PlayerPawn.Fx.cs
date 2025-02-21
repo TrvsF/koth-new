@@ -1,5 +1,6 @@
 using KOTH.UI;
 using Sandbox;
+using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 
@@ -7,18 +8,56 @@ namespace KOTH;
 
 public partial class PlayerPawn
 {
+
+	private void TickVFXs()
+	{
+		if (IsAlive /*HACK for proxy characters when body dies b4 health knows*/&& Body.IsValid())
+		{
+			Assert.True(Body.IsValid());
+			Assert.True(AnimationHelper.IsValid());
+
+			Body.WorldRotation = Rotation.FromYaw(EyeAngles.yaw);
+
+			AnimationHelper.WithVelocity(CharacterController.Velocity);
+			AnimationHelper.WithWishVelocity(WishVelocity);
+			AnimationHelper.IsGrounded = IsGrounded;
+			AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
+			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
+			AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
+			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
+			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
+			AnimationHelper.IsWeaponLowered = false;
+			AnimationHelper.AimBodyWeight = 1f;
+			// AnimationHelper.DuckLevel = (MathF.Abs(_smoothEyeHeight) / 32.0f);
+			// AnimationHelper.HoldType = CurrentHoldType;
+			// AnimationHelper.Handedness = CurrentEquipment.IsValid() ? CurrentEquipment.Handedness : AnimationHelper.Hand.Both;
+
+			// CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
+		}
+
+		if (TimeSinceLastUberMessage > .8f)
+		{
+			ClearMaterial();
+		}
+	}
+
+	TimeSince TimeSinceLastUberMessage = 0;
+	[Rpc.Broadcast] // TODO : make host only
+	public void Uber()
+	{
+		TimeSinceLastUberMessage = 0;
+		Body.Renderer.SetMaterial(UberMaterial);
+	}
+
+	[Rpc.Broadcast]
+	public void ClearMaterial()
+	{
+		Body.Renderer.ClearMaterialOverrides();
+	}
+
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void CreateGibs()
 	{
-		if (Body.IsValid())
-		{
-			Body.SetRagdoll(true);
-			Body.GameObject.SetParent(null, true);
-			// Body.GameObject.Name = $"Ragdoll ({DisplayName})";
-			var DestroyComponent = Body.Components.Create<TimedDestroyComponent>();
-			DestroyComponent.Time = 0;
-		}
-
 		if (GibPrefab.IsValid())
 		{
 			var Gibs = GibPrefab.Clone(WorldPosition);
@@ -33,7 +72,7 @@ public partial class PlayerPawn
 			Gibs.NetworkSpawn();
 		}
 
-		// Body = null;
+		Body?.Destroy();
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
@@ -44,18 +83,6 @@ public partial class PlayerPawn
 
 		Body.SetRagdoll(true);
 		Body.GameObject.SetParent(null, true);
-		// Body.GameObject.Name = $"Ragdoll ({DisplayName})";
-
-		//var ev = new OnPlayerRagdolledEvent();
-		//Scene.Dispatch(ev);
-
-		//if (ev.DestroyTime > 0f)
-		//{
-		//	var comp = Body.Components.Create<TimedDestroyComponent>();
-		//	comp.Time = ev.DestroyTime;
-		//}
-
-		// Body = null;
 	}
 
 	private void ResetBody()
@@ -70,49 +97,12 @@ public partial class PlayerPawn
 		// Components.Get<HumanOutfitter>(FindMode.EnabledInSelfAndDescendants)?.UpdateFromTeam(Team);
 	}
 
-	//public void OnGameEvent(HealingGivenEvent EventArgs)
-	//{
-	//	if (!IsViewer)
-	//	{
-	//		return;
-	//	}
-
-	//	var HealInfo = EventArgs.HealingRequest;
-	//	DamageNumbers.Instance?.OnHealth(HealInfo.Healing, HealInfo.TargetPlayerPawn);
-	//}
-
 	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
 	{
 		var DamageEvent = EventArgs.DamageEvent;
 
 		var VictimGameobject = GameUtils.GetPlayerFromComponent(DamageEvent.AttackerPlayerPawn);
 		var DamageLocation = DamageEvent.DamageLocation;
-
-		// TODO : repplace
-		//AnimationHelper.ProceduralHitReaction(DamageEvent.Damage / 100f, DamageLocation);
-
-		//if (IsViewer)
-		//{
-		//	DamageIndicatorNew.Instance?.OnHit(DamageLocation);
-		//}
-
-		// --------------------
-		// fx
-		//if (BloodEffect.IsValid())
-		//{
-		//	BloodEffect?.Clone(new CloneConfig()
-		//	{
-		//		StartEnabled = true,
-		//		Transform = new(DamageLocation),
-		//		Name = $"Blood effect from ({GameObject})"
-		//	});
-		//}
-
-		//if (BloodImpactSound is not null)
-		//{
-		//	var snd = Sound.Play(BloodImpactSound, DamageLocation);
-		//	snd.ListenLocal = IsViewer;
-		//}
 	}
 
 	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)

@@ -49,8 +49,16 @@
 
 		public void Init()
 		{
+			if (!TargetPawn.IsValid() || !PlayerPawn.IsValid())
+			{
+				return;
+			}
+
+			var TargetDistance = PlayerPawn.WorldPosition.Distance(TargetPawn.WorldPosition);
+			var ZOffset = MathX.Lerp(0, 64, (1 / TargetDistance) * 10);
+
 			Location = TargetPawn.Transform.Position;
-			Location.z = Location.z + 50f;
+			Location.z = Location.z + ZOffset;
 			DisplayedTime = 0;
 		}
 

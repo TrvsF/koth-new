@@ -30,10 +30,12 @@ public partial class PlayerBody : Component
 		}
 
 		if (IsRagdoll && DamageTakenForce.LengthSquared > 0f)
+		{
 			ApplyRagdollImpulses(DamageTakenPosition, DamageTakenForce);
+		}
 
 		Transform.ClearInterpolation();
-		
+
 		var TimedDestroyComponent = GameObject.AddComponent<TimedDestroyComponent>();
 		TimedDestroyComponent.Time = 10f;
 	}

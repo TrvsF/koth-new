@@ -3,13 +3,43 @@ using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.VR;
 using System;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace KOTH;
 
+public class DamageComponentTupleComparer : IEqualityComparer<(DamageComponent DamageComponent, Vector3 HitLocation)>
+{
+	public bool Equals((DamageComponent DamageComponent, Vector3 HitLocation) x, (DamageComponent DamageComponent, Vector3 HitLocation) y)
+	{
+		// Compare only the DamageComponent part
+		return x.DamageComponent == y.DamageComponent;
+	}
+
+	public int GetHashCode((DamageComponent DamageComponent, Vector3 HitLocation) obj)
+	{
+		// Use the hash code of the DamageComponent
+		return obj.DamageComponent.GetHashCode();
+	}
+}
+
 public static class ShootHelper
 {
 	// public static List<String> IgnoreTags { get; private set; } = [""];
+
+	public static HashSet<(DamageComponent DamageComponent, Vector3 HitLocation)> GetDamageComponentsFromTrace(SceneTrace SceneTrace, GameObject OriginObject, Vector3 OriginPoint, Vector3 TargetPoint, out Vector3 FirstImpactLocation, DebugOverlaySystem DebugOverlay = null)
+	{
+		var TraceElements = GetShootTraceElements(SceneTrace, OriginObject, OriginPoint, TargetPoint, DebugOverlay);
+
+		FirstImpactLocation = TraceElements.FirstOrDefault().HitPosition;
+
+		var TraceElementsFiltered = TraceElements
+			.Where(Trace => Trace.Hit)
+			.Where(Trace => Trace.GameObject.Root.GetComponent<DamageComponent>() != null)
+			.Select(Trace => (Trace.GameObject.Root.GetComponent<DamageComponent>(), Trace.HitPosition));
+
+		return TraceElementsFiltered.ToHashSet(new DamageComponentTupleComparer());
+	}
 
 	public static IEnumerable<SceneTraceResult> GetShootTraceElements(SceneTrace SceneTrace, GameObject OriginObject, Vector3 OriginPoint, Vector3 TargetPoint, DebugOverlaySystem DebugOverlay = null)
 	{

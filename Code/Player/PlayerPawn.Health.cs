@@ -8,6 +8,8 @@ public partial class PlayerPawn :
 	IGameEventHandler<DamageGivenEvent>, 
 	IGameEventHandler<DamageTakenEvent>
 {
+	[Property] Material UberMaterial { get; set; }
+
 	public float Health => DamageComponent.IsValid ? DamageComponent.Health : -1;
 	public float MaxHealth => DamageComponent.IsValid ? DamageComponent.MaxBaseHealth : -1;
 	public bool IsAlive => DamageComponent.IsValid && !DamageComponent.IsDead;

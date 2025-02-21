@@ -18,10 +18,12 @@ public sealed class DamageComponent : Component
 	[Property, Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
 	public bool IsDead => Health < 0f;
 
-	private float OverhealFactor = 1.33f;
 	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	//////////////////////////////////////////////////////////////////////////////////
+	
+	const float OverhealFactor = 1.5f;
+	const float HealDegradePerSecond = 7f;
 
 	// HACK : TODO REWORK
 
@@ -40,9 +42,6 @@ public sealed class DamageComponent : Component
 		}
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////
-
-	private float HealDegradeFactor = 7f;
 	protected override void OnFixedUpdate()
 	{
 		base.OnFixedUpdate();
@@ -50,7 +49,7 @@ public sealed class DamageComponent : Component
 		// if we have overheal slowly drain it
 		if (Health > MaxBaseHealth)
 		{
-			Health = Math.Max(MaxBaseHealth, Health - (Time.Delta * HealDegradeFactor));
+			Health = Math.Max(MaxBaseHealth, Health - (Time.Delta * HealDegradePerSecond));
 		}
 	}
 

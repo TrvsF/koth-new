@@ -11,39 +11,8 @@ namespace KOTH;
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
-	private enum EHitscanFireType
-	{
-		SingleShot,
-		Continuous,
-		Infinite,
-	}
-
 	[Property, Group("HitScan")] private GameObject TrailPrefab { get; set; }
-	[Property, Group("HitScan")]
-	private EHitscanFireType FireType
-	{
-		get => GetFireType();
-	}
-
-	private EHitscanFireType GetFireType()
-	{
-		if (MaxAmmo == -1)
-		{
-			return EHitscanFireType.Infinite;
-		}
-		else if (MaxAmmo == 1)
-		{
-			return EHitscanFireType.SingleShot;
-		}
-		else
-		{
-			return EHitscanFireType.Continuous;
-		}
-	}
-
-	////////////////////////////////////////////////////////////////////////
-
-	[Property] public int Sides { get; set; } = 1;
+	[Property, Group("Spread")] public int Sides { get; set; } = 1;
 
 	protected override void OnInputUpdate()
 	{
@@ -51,8 +20,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Assert.IsValid(Equipment.Owner);
 
 		bool IsShooting = IsDown() && CanShoot();
+		WorldShotVFX();
 
-		// TODO : should this be a host/server rpc?
 		if (IsProxy)
 		{
 			return;
@@ -70,14 +39,14 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 			if (Sides >= 3)
 			{
-				const float Radius = 16f;
+				const float Radius = 6f;
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
 					double Angle = 2 * Math.PI * SideIndex / Sides;
 					float X = (float)(Radius * Math.Cos(Angle));
 					float Y = (float)(Radius * Math.Sin(Angle));
 
-					var RotateVectorOffset = new Vector3(X * 0.0033f, 0, Y * 0.0033f);
+					var RotateVectorOffset = new Vector3(X * 0.01f, 0, Y * 0.01f);
 					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), Boom.WorldRotation.Forward + RotateVectorOffset);
 					
 					Shoot(ShapeRay);
@@ -91,7 +60,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 	[Rpc.Broadcast]
-	public void TrailFx(Vector3 HitObjectPosition)
+	public void WorldShotVFX()
+	{
+	}
+
+	[Rpc.Broadcast]
+	public void BulletTrialVFX(Vector3 HitObjectPosition)
 	{
 		if (TrailPrefab.IsValid())
 		{
@@ -108,6 +82,10 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	
+	protected Ray WeaponRay => Equipment.Owner.AimRay;
+
 	protected virtual void Shoot(Ray WeaponRay)
 	{
 		var TraceStart = WeaponRay.Position;
@@ -115,43 +93,26 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceForward = StartRotation.Forward.Normal;
 		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
 
-		var ShotTraces = ShootHelper.GetShootTraceElements(Scene.Trace, GameObject, TraceStart, TraceEnd);
+		var DamageComponentsHit = ShootHelper.GetDamageComponentsFromTrace(Scene.Trace, GameObject, TraceStart, TraceEnd, out var FirstImpactLocation);
 
-		var FirstObjectHitPosition = TraceEnd; // !
-		foreach (var TraceElement in ShotTraces)
+		var TotalBaseDamage = 0f;
+		if (Network.IsOwner)
 		{
-			if (!TraceElement.Hit)
+			foreach (var (DamageComponent, HitLocation) in DamageComponentsHit)
 			{
-				continue;
-			}
-
-			FirstObjectHitPosition = TraceElement.HitPosition;
-
-			// HACK
-			//if (!TraceElement.Tags.Contains("player_collider"))
-			//{
-			//	continue;
-			//}
-
-			if (TraceElement.GameObject.Root.Components.Get<DamageComponent>(FindMode.EnabledInSelfAndDescendants) is { } DamageComponent)
-			{
-				if (!Network.IsOwner)
-				{
-					continue;
-				}
-
 				FDamageRequest DamageRequest = new()
 				{
 					TargetDamageComponent = DamageComponent,
 					AttackerPlayerPawn = Equipment.Owner,
-					DamageOrigin = TraceElement.HitPosition,
+					DamageOrigin = HitLocation,
 					BaseDamage = BaseDamage,
-					TargetOrigin = GameObject.WorldPosition,
+					TargetOrigin = DamageComponent.GameObject.WorldPosition,
 					BaseKnockbackStrength = KnockbackStrength,
 					DamageType = EDamageType.HitScan,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					DoesLessSelfDamage = true,
-					MaxFalloffDistance = 2400,
+					MaxFalloffDistance = 600,
+					DirectImpact = true,
 				};
 
 				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
@@ -160,11 +121,13 @@ public class HitscanWeaponComponent : InputWeaponComponent
 					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
 				}
 
+				TotalBaseDamage += BaseDamage;
+
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 		}
 
-		TrailFx(FirstObjectHitPosition);
+		BulletTrialVFX(FirstImpactLocation);
 	}
 
 	protected TimeSince TimeSinceShot = new();
@@ -192,8 +155,4 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		return true;
 	}
-
-	//////////////////////////////////////////////////////////////
-
-	protected Ray WeaponRay => Equipment.Owner.AimRay;
 }

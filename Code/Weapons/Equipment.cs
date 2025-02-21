@@ -65,6 +65,12 @@ public sealed class Equipment : Component, IEquipment, IDescription
 			return "NA";
 		}
 
+		if (WeaponComponent is HealBeamComponent)
+		{
+			var HealBeamComponent = (HealBeamComponent)WeaponComponent;
+			return HealBeamComponent.Charge.CeilToInt().ToString();
+		}
+
 		return WeaponComponent.Ammo.ToString();
 	}
 

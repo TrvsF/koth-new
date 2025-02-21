@@ -134,32 +134,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			_smoothEyeAngles = Angles.Lerp(_smoothEyeAngles, _rawEyeAngles, Time.Delta / Scene.NetworkRate);
 		}
 
-		// TODO : move me?
-		if (IsAlive /*HACK for proxy characters when body dies b4 health knows*/&& Body.IsValid())
-		{
-			Assert.True(Body.IsValid());
-			Assert.True(AnimationHelper.IsValid());
-
-			Body.WorldRotation = Rotation.FromYaw(EyeAngles.yaw);
-
-			AnimationHelper.WithVelocity(CharacterController.Velocity);
-			AnimationHelper.WithWishVelocity(WishVelocity);
-			AnimationHelper.IsGrounded = IsGrounded;
-			AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
-			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
-			AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
-			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
-			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
-			AnimationHelper.IsWeaponLowered = false;
-			AnimationHelper.AimBodyWeight = 1f;
-			// AnimationHelper.DuckLevel = (MathF.Abs(_smoothEyeHeight) / 32.0f);
-			// AnimationHelper.HoldType = CurrentHoldType;
-			// AnimationHelper.Handedness = CurrentEquipment.IsValid() ? CurrentEquipment.Handedness : AnimationHelper.Hand.Both;
-
-			// CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
-		}
-
 		UpdateCrouch();
+		TickVFXs();
 	}
 
 	public SceneTraceResult CachedEyeTrace { get; private set; }
@@ -186,7 +162,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		UpdateZones();
 
-		if (IsDummy)
+		if (IsDummy && IsAlive)
 		{
 			DoDummyMovement();
 			return; // NOTE : early return

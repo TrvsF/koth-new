@@ -18,7 +18,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	[Property] public bool KnockbackOnly { get; private set; } = false;
 
 	const float SelfDamageMultiplyer = 0.2f;
-	const float PlayerDistanceFalloffMaxBound = 1600;
+	const float PlayerDistanceFalloffMaxBound = 1000;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -130,6 +130,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 						float MinDamage = DamageRequest.DirectImpact ? Damage * .33f : Damage * .15f;
 
 						float DamageInterpFactor = TargetToImpactDistance / 200f;
+						Log.Info($"max : {MaxDamage}, min : {MinDamage}, Lerp : {DamageInterpFactor}");
 						Damage = MathX.Lerp(MaxDamage, MinDamage, DamageInterpFactor);
 					}
 					else if (DamageRequest.DamageFalloffType == EDamageFalloffType.Rampup)
