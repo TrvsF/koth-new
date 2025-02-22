@@ -19,9 +19,9 @@ public partial class PlayerPawn
 
 			AnimationHelper.WithVelocity(CharacterController.Velocity);
 			AnimationHelper.WithWishVelocity(WishVelocity);
+			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
 			AnimationHelper.IsGrounded = IsGrounded;
 			AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
-			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
 			AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
 			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
 			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
@@ -40,16 +40,16 @@ public partial class PlayerPawn
 
 			var ClosestPlayerObject = GetClosestPlayerGameobject();
 
-			if (ClosestPlayerObject != null)
-			{
-				AnimationHelper.LookAtEnabled = true;
-				AnimationHelper.LookAt = ClosestPlayerObject;
-			}
-			else
-			{
-				AnimationHelper.LookAtEnabled = false;
-			}
-			// CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
+			// TODO : this would be fun but its causing issues with base look
+			//if (ClosestPlayerObject != null)
+			//{
+			//	AnimationHelper.LookAtEnabled = true;
+			//	AnimationHelper.LookAt = ClosestPlayerObject;
+			//}
+			//else
+			//{
+			//	AnimationHelper.LookAtEnabled = false;
+			//}
 		}
 
 		if (TimeSinceLastUberMessage > .8f)
@@ -59,13 +59,13 @@ public partial class PlayerPawn
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////
-	
+
 	private GameObject GetClosestPlayerGameobject()
 	{
 		GameObject ClosestPlayerObject = null;
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
-			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive)
+			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive || PlayerState == PlayerState.Local)
 			{
 				continue;
 			}
@@ -106,7 +106,7 @@ public partial class PlayerPawn
 
 	/////////////////////////////////////////////////////////////////////////////////
 
-	const float GibMinDamage = 60f; // TODO : should be based on last hp!
+	const float GibMinDamage = 50f; // TODO : should be based on last hp!
 	const float GibForce = 66f;
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]

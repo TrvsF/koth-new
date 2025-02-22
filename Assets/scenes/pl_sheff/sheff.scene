@@ -65,19 +65,6 @@
           "OnComponentUpdate": null
         },
         {
-          "__type": "KOTH.TeamAssigner",
-          "__guid": "eb58d993-0da9-450d-bfcb-83412e5ec7b7",
-          "AutoBalanceMode": "Random",
-          "MaxTeamSize": 5,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "TargetRatio": 1
-        },
-        {
           "__type": "KOTH.BotSystem",
           "__guid": "b4290247-0b46-49f6-9366-018b5c10f58f",
           "__enabled": false,

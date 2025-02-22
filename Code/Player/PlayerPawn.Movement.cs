@@ -11,8 +11,6 @@ public partial class PlayerPawn
 	//////////////////////////////////////////////////////////////
 
 	[HostSync] public bool IsFrozen { get; set; }
-	[Sync] private Angles _rawEyeAngles { get; set; }
-	private Angles _smoothEyeAngles;
 
 	[Sync] public bool IsCrouching { get; set; }
 	public float CrouchAmount { get; set; }
@@ -70,15 +68,7 @@ public partial class PlayerPawn
 	//////////////////////////////////////////////////////////////
 
 	public Vector3 CenterPosition { get => PlayerBoxCollider.Center + WorldPosition; }
-	public Angles EyeAngles
-	{
-		get => _smoothEyeAngles;
-		set
-		{
-			if (!IsProxy) _smoothEyeAngles = value;
-			_rawEyeAngles = value;
-		}
-	}
+	[Sync] public Angles EyeAngles { get; set; }
 
 	//////////////////////////////////////////////////////////////
 

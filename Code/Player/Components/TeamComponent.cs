@@ -97,7 +97,7 @@ public static class TeamExtensions
 	{
 		{ Team.CounterTerrorist, new(new(33, 122, 37), new(49, 183, 56)) },
 		{ Team.Terrorist, new(new(181, 64, 56), new(241, 85, 73)) },
-		{ Team.Unassigned, new(new(255, 255, 255), new(255, 255, 255)) },
+		{ Team.Unassigned, new(new(150, 150, 150), Color.White) },
 	};
 
 	public static Color GetColor(this Team team, bool Dark)

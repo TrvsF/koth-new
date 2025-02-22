@@ -94,6 +94,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
+		Body.Renderer.Tint = Team.GetColor(false);
 
 		if (IsLocallyControlled)
 		{
@@ -128,10 +129,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		if (IsLocallyControlled)
 		{
 			CameraTick();
-		}
-		else
-		{
-			_smoothEyeAngles = Angles.Lerp(_smoothEyeAngles, _rawEyeAngles, Time.Delta / Scene.NetworkRate);
 		}
 
 		UpdateCrouch();
