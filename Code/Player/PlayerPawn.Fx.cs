@@ -107,17 +107,17 @@ public partial class PlayerPawn
 
 	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
 	{
-		OnDamageGiven(EventArgs.DamageEvent.VictimPlayerPawn, EventArgs.DamageEvent.Damage);
+		OnDamageGiven(EventArgs.DamageEvent);
 	}
 
 	[Rpc.Broadcast]
-	void OnDamageGiven(PlayerPawn Target, float Damage)
+	void OnDamageGiven(FDamageTaken DamageTaken)
 	{
 		if (!IsViewer)
 		{
 			return;
 		}
 
-		DamageNumbers.Instance?.OnHit(Damage, Target);
+		DamageNumbers.Instance?.OnHit(DamageTaken);
 	}
 }

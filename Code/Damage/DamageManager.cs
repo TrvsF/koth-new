@@ -130,7 +130,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 						float MinDamage = DamageRequest.DirectImpact ? Damage * .33f : Damage * .15f;
 
 						float DamageInterpFactor = TargetToImpactDistance / 200f;
-						Log.Info($"max : {MaxDamage}, min : {MinDamage}, Lerp : {DamageInterpFactor}");
+						//Log.Info($"max : {MaxDamage}, min : {MinDamage}, Lerp : {DamageInterpFactor}");
 						Damage = MathX.Lerp(MaxDamage, MinDamage, DamageInterpFactor);
 					}
 					else if (DamageRequest.DamageFalloffType == EDamageFalloffType.Rampup)
@@ -164,6 +164,11 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			Damage *= SelfDamageMultiplyer;
 		}
 
+		if (KnockbackOnly)
+		{
+			return;
+		}
+		
 		FDamageTaken DamageTaken = new()
 		{
 			AttackerPlayerPawn = AttackerPlayerPawn,
@@ -171,11 +176,6 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
 		};
-
-		if (KnockbackOnly)
-		{
-			return;
-		}
 
 		// deal the damage ///////////////////////////
 		TargetDamageComponent.TakeDamage(DamageTaken);

@@ -15,10 +15,9 @@
 {
 	// TODO : put these in a helper somewhere
 
-	public Vector2 GetScreenPosFromPlayerPawn(PlayerPawn PlayerPawn, out bool IsBehind)
+	public Vector2 GetScreenPosFromPosition(Vector3 Position, out bool IsBehind)
 	{
-		var Position = LocalPlayerPawn.Camera.PointToScreenNormal(PlayerPawn.Transform.Position, out IsBehind);
-		return Position;
+		return LocalPlayerPawn.Camera.PointToScreenNormal(Position, out IsBehind);
 	}
 
 	public Vector2 GetScreenOffset(float Distance = 0f)
@@ -28,87 +27,6 @@
 		float XOffset = (float)(Random.Shared.NextDouble() * DistanceFactor * 2) - DistanceFactor;
 		float YOffset = (float)(Random.Shared.NextDouble() * (0.15f - DistanceFactor)) + DistanceFactor;
 		return new Vector2(XOffset, -YOffset);
-	}
-
-	////////////////////////////////////////////////////////////////////////////////////////
-
-	class FScreenNumberElement
-	{
-		public PlayerPawn PlayerPawn { get; set; } = null;
-		public PlayerPawn TargetPawn { get; set; } = null;
-		public Vector2 ScreenOffset { get; set; } = Vector2.Zero;
-		public float Damage { get; set; } = 0f;
-		public bool IsDamage { get; set; } = true;
-		public TimeUntil DisplayedTime { get; set; } = new();
-
-		public bool IsVisable { get; private set; } = true;
-
-		public Vector3 Location = Vector3.Zero;
-
-		public FScreenNumberElement(){}
-
-		public void Init()
-		{
-			if (!TargetPawn.IsValid() || !PlayerPawn.IsValid())
-			{
-				return;
-			}
-
-			var TargetDistance = PlayerPawn.WorldPosition.Distance(TargetPawn.WorldPosition);
-			var ZOffset = MathX.Lerp(0, 64, (1 / TargetDistance) * 10);
-
-			Location = TargetPawn.Transform.Position;
-			Location.z = Location.z + ZOffset;
-			DisplayedTime = 0;
-		}
-
-		public Vector2 GetScreenPos()
-		{
-			var IsBehind = false;
-			var ScreenPos = PlayerPawn.Camera.PointToScreenNormal(Location, out IsBehind);
-			ScreenPos.y += (DisplayedTime * 0.075f);
-
-			return ScreenPos + ScreenOffset;
-		}
-
-		public void AddDamage(float InDamage)
-		{
-			Damage += InDamage;
-		}
-
-		public override string ToString()
-		{
-			if (IsDamage)
-			{
-				return $"-{Damage.CeilToInt()}";
-			}
-			else
-			{
-				return $"+{Damage.CeilToInt()}";
-			}
-		}
-
-		// TODO : all these need to be cached, and all instances like it
-		public Color GetColour()
-		{
-			if (IsDamage)
-			{
-				return Color.Yellow;
-			}
-			else
-			{
-				return TeamExtensions.GetColor(PlayerPawn.Team, false);
-			}
-		}
-
-		public int GetSizePx()
-		{
-			if (Damage < 50)
-			{
-				return 24;
-			}
-			return (int) Math.Max(24, Math.Min(48, Math.Round(Damage * 0.7f)));
-		}
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////
@@ -123,55 +41,55 @@
 	List<FScreenNumberElement> DamageNumberElements = new();
 	PlayerPawn LocalPlayerPawn => PlayerState.Local.IsValid() ? PlayerState.Local.PlayerPawn : null;
 
-	public void OnHealth(float Health, PlayerPawn HitPawn)
+	// public void OnHealth(float Health, PlayerPawn HitPawn)
+	// {
+	// 	if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || HitPawn == LocalPlayerPawn)
+	// 	{
+	// 		return;
+	// 	}
+
+	// 	bool IsBehind;
+	// 	var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
+	// 	var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
+	// 	if (IsHidden || IsBehind)
+	// 	{
+	// 		return;
+	// 	}
+	// 	var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
+	// 	FScreenNumberElement DamageNumberElement = new()
+	// 		{
+	// 			PlayerPawn = LocalPlayerPawn,
+	// 			TargetPawn = HitPawn,
+	// 			ScreenOffset = GetScreenOffset(Distance),
+	// 			Damage = Health,
+	// 			IsDamage = false,
+	// 			DisplayedTime = 0,
+	// 		};
+	// 	DamageNumberElement.Init();
+	// 	DamageNumberElements.Add(DamageNumberElement);
+	// }
+
+	public void OnHit(FDamageTaken DamageGiven)
 	{
-		if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || HitPawn == LocalPlayerPawn)
+		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || DamageGiven.VictimPlayerPawn == LocalPlayerPawn)
 		{
 			return;
 		}
 
 		bool IsBehind;
-		var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
-		var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
-		if (IsHidden || IsBehind)
-		{
-			return;
-		}
-		var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
-		FScreenNumberElement DamageNumberElement = new()
-			{
-				PlayerPawn = LocalPlayerPawn,
-				TargetPawn = HitPawn,
-				ScreenOffset = GetScreenOffset(Distance),
-				Damage = Health,
-				IsDamage = false,
-				DisplayedTime = 0,
-			};
-		DamageNumberElement.Init();
-		DamageNumberElements.Add(DamageNumberElement);
-	}
+		var PositionVec = GetScreenPosFromPosition(DamageGiven.DamageLocation, out IsBehind);
 
-	public void OnHit(float Damage, PlayerPawn HitPawn)
-	{
-		if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || HitPawn == LocalPlayerPawn)
+		if (IsBehind)
 		{
 			return;
 		}
-
-		bool IsBehind;
-		var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
-		var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
-		if (IsHidden || IsBehind)
-		{
-			return;
-		}
-		var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
+		var Distance = DamageGiven.DamageLocation.Distance(LocalPlayerPawn.Transform.Position);
 
 		foreach (var Element in DamageNumberElements)
 		{
-			if (Element.TargetPawn == HitPawn)
+			if (Element.TargetPawn == DamageGiven.VictimPlayerPawn)
 			{
-				Element.AddDamage(Damage);
+				Element.AddDamage(DamageGiven.Damage);
 				Element.Init();
 
 				return; // NOTE : early return
@@ -182,10 +100,11 @@
 		FScreenNumberElement DamageNumberElement = new()
 			{
 				PlayerPawn = LocalPlayerPawn,
-				TargetPawn = HitPawn,
+				TargetPawn = DamageGiven.VictimPlayerPawn,
 				ScreenOffset = GetScreenOffset(Distance),
-				Damage = Damage,
+				Damage = DamageGiven.Damage,
 				DisplayedTime = 0,
+				Location = DamageGiven.DamageLocation,
 			};
 		DamageNumberElement.Init();
 		DamageNumberElements.Add(DamageNumberElement);

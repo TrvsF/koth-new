@@ -23,6 +23,11 @@ public sealed class EngiePlayer : Component
 		base.OnDestroy();
 	}
 
+	private void OnTurretDestroy()
+	{
+		//
+	}
+
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -43,6 +48,7 @@ public sealed class EngiePlayer : Component
 			var Projectile = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition + (OwnerPawn.AimRay.Forward * 128), Rotation.Identity);
 			ActiveTurretComponent = Projectile.Components.Get<TurretComponent>();
 			ActiveTurretComponent.OwnerPawn = OwnerPawn;
+			ActiveTurretComponent.OnDestroyed += OnTurretDestroy;
 
 			// can this be Connection.Local rather than PlayerState.Local.Connection ?
 			Projectile.NetworkSpawn(true, PlayerState.Local.Connection);

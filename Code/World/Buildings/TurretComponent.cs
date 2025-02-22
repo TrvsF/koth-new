@@ -117,6 +117,27 @@ public static class ShootHelper
 
 public sealed class TurretComponent : Component
 {
+	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
+
+	////////////////////////////////////////////////////////////////////////
+
+	[Property] public float Damage { get; private set; } = 1f;
+	[Property] public float KnockbackStrength { get; private set; } = 1f;
+	[Property] public float Firerate { get; private set; } = 1f;
+	[Property] public float Range { get; private set; } = 256f;
+	[Property] public GameObject TurretMuzzleObject { get; set; }
+
+	[Property] public GameObject TrailPrefab { get; set; }
+
+	////////////////////////////////////////////////////////////////////////
+
+	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; set; }
+	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
+
+	public Action OnDestroyed = null;
+
+	////////////////////////////////////////////////////////////////////////
+
 	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
@@ -183,25 +204,6 @@ public sealed class TurretComponent : Component
 	}
 
 	////////////////////////////////////////////////////////////////////////
-	
-	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
-
-	////////////////////////////////////////////////////////////////////////
-
-	[Property] public float Damage { get; private set; } = 1f;
-	[Property] public float KnockbackStrength { get; private set; } = 1f;
-	[Property] public float Firerate { get; private set; } = 1f;
-	[Property] public float Range { get; private set; } = 256f;
-	[Property] public GameObject TurretMuzzleObject { get; set; }
-
-	[Property] public GameObject TrailPrefab { get; set; }
-
-	////////////////////////////////////////////////////////////////////////
-
-	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; set; }
-	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
-
-	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnEnabled()
 	{
@@ -214,6 +216,7 @@ public sealed class TurretComponent : Component
 
 	private void OnKill(FDamageTaken DamageTaken)
 	{
+		OnDestroyed?.Invoke();
 		GameObject.Root.Destroy();
 	}
 	

@@ -8,15 +8,24 @@ namespace KOTH;
 
 public sealed class MedicPlayer : Component
 {
+	[Property] float HealsPerTick { get; set; } = 0.01f;
+
 	public PlayerPawn OwnerPawn { get => GameObject.Root.GetComponent<PlayerPawn>(); }
 
-	public void Uber(float UberAmount)
+	protected override void OnFixedUpdate()
 	{
-		Assert.True(Networking.IsHost);
-			
-		Assert.IsValid(OwnerPawn);
-		Assert.IsValid(OwnerPawn.DamageComponent);
+		base.OnFixedUpdate();
 
-		Log.Info($"uber {UberAmount}");
+		if (Networking.IsHost && OwnerPawn.IsValid())
+		{
+			FHealingRequest HealingRequest = new()
+			{
+				TargetPlayerPawn = OwnerPawn,
+				BaseHealing = HealsPerTick,
+				HealingOrigin = GameObject.WorldPosition,
+				AllowOverheal = false,
+			};
+			Scene.Dispatch(new HealingRequestEvent(HealingRequest));
+		}
 	}
 }
