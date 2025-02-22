@@ -14,11 +14,11 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Time": 0.5,
+        "Time": 0.33,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -7035.663,
-          "Passed": 7035.663,
+          "Relative": -2912.354,
+          "Passed": 2912.354,
           "Fraction": 1
         }
       }
@@ -87,7 +87,7 @@
             "DieOnCollisionChance": 0.3,
             "Force": true,
             "ForceDirection": "0,0,0",
-            "ForceScale": -200,
+            "ForceScale": 200,
             "ForceSpace": "World",
             "Friction": 1,
             "Gradient": {
@@ -137,9 +137,9 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.2,0.5,0,0"
+              "Constants": "0.05,0.33,0,0"
             },
-            "MaxParticles": 5,
+            "MaxParticles": 30,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -153,7 +153,7 @@
               "Y": 5,
               "Z": 5
             },
-            "OrbitalPull": 100,
+            "OrbitalPull": 0,
             "PerParticleTimeScale": 1,
             "Pitch": 0,
             "PreWarm": 0,
@@ -313,37 +313,17 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 0.5,
+            "Scale": 1,
             "Shadows": false,
             "SortMode": "Unsorted",
             "Texture": {
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "1,1,1,0.48"
+                "Color": "33,33,33,0.05"
               },
               "compiled": null
             }
-          },
-          {
-            "__type": "Sandbox.ParticleSphereEmitter",
-            "__guid": "7596412f-ca5c-4a83-9ef5-35713754a73a",
-            "Burst": 50,
-            "Delay": 0,
-            "DestroyOnEnd": true,
-            "Duration": 0.5,
-            "Loop": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnEdge": false,
-            "Radius": 1,
-            "Rate": 0,
-            "RateOverDistance": 0,
-            "Velocity": 5
           },
           {
             "__type": "Sandbox.ParticleLightRenderer",
@@ -388,6 +368,32 @@
             "Ratio": 1,
             "Scale": 32,
             "UseParticleColor": true
+          },
+          {
+            "__type": "Sandbox.ParticleConeEmitter",
+            "__guid": "b076ee09-162c-4c37-8ccd-2a40ab934e5e",
+            "Burst": 662.96,
+            "CenterBias": 0,
+            "CenterBiasVelocity": 0,
+            "ConeAngle": 30,
+            "ConeFar": 50,
+            "ConeNear": 1,
+            "Delay": 0,
+            "DestroyOnEnd": false,
+            "Duration": 0.3,
+            "InVolume": false,
+            "Loop": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnEdge": false,
+            "Rate": 0,
+            "RateOverDistance": 0,
+            "VelocityMultiplier": 1,
+            "VelocityRandom": 0
           }
         ]
       }

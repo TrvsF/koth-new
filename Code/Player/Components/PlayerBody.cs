@@ -1,6 +1,8 @@
-﻿namespace KOTH;
+﻿using static Sandbox.VertexLayout;
 
-public partial class PlayerBody : Component
+namespace KOTH;
+
+public sealed class PlayerBody : Component
 {
 	[Property] public SkinnedModelRenderer Renderer { get; set; }
 	[Property] public ModelPhysics Physics { get; set; }
@@ -8,46 +10,21 @@ public partial class PlayerBody : Component
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	// TODO : hookup to internal death event?
-	public Vector3 DamageTakenPosition { get; set; }
-	public Vector3 DamageTakenForce { get; set; }
-
-	public bool IsRagdoll => Physics.Enabled;
-
-	////////////////////////////////////////////////////////////////////////////////////////////////
-
-	internal void SetRagdoll(bool IsRagdoll)
+	internal void Ragdoll(FDamageTaken DamageTaken)
 	{
-		Physics.Enabled = IsRagdoll;
-		Renderer.UseAnimGraph = !IsRagdoll;
+		Physics.Enabled = true;
+		Renderer.UseAnimGraph = false;
 
-		GameObject.Tags.Set("ragdoll", IsRagdoll);
+		GameObject.Tags.Set("ragdoll", true);
 
-		if (!IsRagdoll)
+		foreach (var Body in Physics.PhysicsGroup.Bodies)
 		{
-			GameObject.LocalPosition = Vector3.Zero;
-			GameObject.LocalRotation = Rotation.Identity;
-		}
-
-		if (IsRagdoll && DamageTakenForce.LengthSquared > 0f)
-		{
-			ApplyRagdollImpulses(DamageTakenPosition, DamageTakenForce);
+			Body.ApplyImpulseAt(DamageTaken.DamageLocation, DamageTaken.Damage * 5f);
 		}
 
 		Transform.ClearInterpolation();
 
 		var TimedDestroyComponent = GameObject.AddComponent<TimedDestroyComponent>();
 		TimedDestroyComponent.Time = 10f;
-	}
-
-	internal void ApplyRagdollImpulses(Vector3 Position, Vector3 Force)
-	{
-		if (!Physics.IsValid() || !Physics.PhysicsGroup.IsValid())
-			return;
-
-		foreach (var body in Physics.PhysicsGroup.Bodies)
-		{
-			body.ApplyImpulseAt(Position, Force);
-		}
 	}
 }

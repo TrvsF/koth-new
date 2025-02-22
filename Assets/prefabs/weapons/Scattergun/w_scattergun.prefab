@@ -54,6 +54,7 @@
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 6,
         "BaseDamage": 15,
+        "DecalDefinition": "prefabs/decals/bulletdecal.decal",
         "FireRate": 0.75,
         "HasAmmo": true,
         "InputActions": [
@@ -76,7 +77,8 @@
         "TrailPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/hitscan-trial.prefab"
-        }
+        },
+        "TrialAmount": 50
       }
     ],
     "Children": [

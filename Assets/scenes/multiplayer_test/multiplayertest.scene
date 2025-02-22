@@ -294,7 +294,7 @@
         {
           "__type": "TeamSpawnPoint",
           "__guid": "575c7894-fbc8-4456-b2c1-a823e821e477",
-          "IsDummy": false,
+          "IsDummy": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

@@ -8,7 +8,6 @@ namespace KOTH;
 
 public partial class PlayerPawn
 {
-
 	private void TickVFXs()
 	{
 		if (IsAlive /*HACK for proxy characters when body dies b4 health knows*/&& Body.IsValid())
@@ -40,9 +39,11 @@ public partial class PlayerPawn
 			ClearMaterial();
 		}
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////////
 
 	TimeSince TimeSinceLastUberMessage = 0;
-	[Rpc.Broadcast] // TODO : make host only
+	[Rpc.Broadcast]
 	public void Uber()
 	{
 		TimeSinceLastUberMessage = 0;
@@ -55,8 +56,32 @@ public partial class PlayerPawn
 		Body.Renderer.ClearMaterialOverrides();
 	}
 
+	/////////////////////////////////////////////////////////////////////////////////
+
+	const float GibMinDamage = 60f; // TODO : should be based on last hp!
+	const float GibForce = 66f;
+
 	[Rpc.Broadcast(NetFlags.HostOnly)]
-	private void CreateGibs()
+	private void BroadcastOnPlayerDeath(FDamageTaken DamageTaken)
+	{
+		if (!Body.IsValid())
+		{
+			return;
+		}
+
+		if (DamageTaken.Damage > GibMinDamage)
+		{
+			CreateGibs(DamageTaken);
+			Body.Destroy();
+		}
+		else
+		{
+			Body.Ragdoll(DamageTaken);
+			Body.GameObject.SetParent(null, true);
+		}
+	}
+
+	private void CreateGibs(FDamageTaken DamageTaken)
 	{
 		if (GibPrefab.IsValid())
 		{
@@ -66,36 +91,15 @@ public partial class PlayerPawn
 				var Rigidbody = ChildGib.Components.Get<Rigidbody>();
 				if (Rigidbody.IsValid())
 				{
-					Rigidbody.Velocity = new(Random.Shared.Int(-1000, 1000), Random.Shared.Int(-1000, 1000), Random.Shared.Int(-1000, 1000));
+					// TODO : explode more outward
+					Rigidbody.Velocity = (CenterPosition - DamageTaken.DamageLocation) * GibForce;
 				}
 			}
 			Gibs.NetworkSpawn();
 		}
-
-		Body?.Destroy();
 	}
 
-	[Rpc.Broadcast(NetFlags.HostOnly)]
-	private void CreateRagdoll()
-	{
-		if (!Body.IsValid())
-			return;
-
-		Body.SetRagdoll(true);
-		Body.GameObject.SetParent(null, true);
-	}
-
-	private void ResetBody()
-	{
-		if (Body is not null)
-		{
-			Body.DamageTakenForce = Vector3.Zero;
-		}
-
-		PlayerBoxCollider.Enabled = true;
-
-		// Components.Get<HumanOutfitter>(FindMode.EnabledInSelfAndDescendants)?.UpdateFromTeam(Team);
-	}
+	/////////////////////////////////////////////////////////////////////////////////
 
 	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
 	{

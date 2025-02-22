@@ -59,7 +59,7 @@
       {
         "__type": "KOTH.Sticky",
         "__guid": "1afd1993-ed95-474a-a132-302d3fdd977f",
-        "BaseDamage": 80,
+        "BaseDamage": 90,
         "BaseKnockbackStrength": 666,
         "ExplodeSound": "sounds/weapons/grenade/he_grenade_explode.sound",
         "ExplosionPrefab": {

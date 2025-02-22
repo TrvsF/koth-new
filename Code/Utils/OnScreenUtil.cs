@@ -32,12 +32,12 @@ public class FScreenNumberElement
 			return;
 		}
 
-		if (TargetPawn.IsValid())
-		{
-			var TargetDistance = PlayerPawn.WorldPosition.Distance(TargetPawn.WorldPosition);
-			var ZOffset = MathX.Lerp(0, 64, (1 / TargetDistance) * 10);
-			Location.z += ZOffset;
-		}
+		//if (TargetPawn.IsValid())
+		//{
+		//	var TargetDistance = PlayerPawn.WorldPosition.Distance(TargetPawn.WorldPosition);
+		//	var ZOffset = MathX.Lerp(0, 64, (1 / TargetDistance) * 10);
+		//	Location.z += ZOffset;
+		//}
 
 		DisplayedTime = 0;
 	}

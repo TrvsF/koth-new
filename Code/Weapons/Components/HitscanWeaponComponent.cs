@@ -5,14 +5,18 @@ using System.Net.Http;
 using System;
 using System.Text;
 using Sandbox.Diagnostics;
+using static Sandbox.VertexLayout;
+using System.Numerics;
 
 namespace KOTH;
 
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
-	[Property, Group("HitScan")] private GameObject TrailPrefab { get; set; }
 	[Property, Group("Spread")] public int Sides { get; set; } = 1;
+	[Property, Group("VFX")] public DecalDefinition DecalDefinition { get; set; }
+	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
+	[Property, Group("VFX")] public float TrialAmount { get; set; } = 50f;
 
 	protected override void OnInputUpdate()
 	{
@@ -39,15 +43,18 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 			if (Sides >= 3)
 			{
-				const float Radius = 6f;
+				const float Radius = 4f;
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
 					double Angle = 2 * Math.PI * SideIndex / Sides;
 					float X = (float)(Radius * Math.Cos(Angle));
 					float Y = (float)(Radius * Math.Sin(Angle));
 
-					var RotateVectorOffset = new Vector3(X * 0.01f, 0, Y * 0.01f);
-					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), Boom.WorldRotation.Forward + RotateVectorOffset);
+					var Forward = Vector3.Forward;
+					var ShootVector = Forward.RotateAround(Vector3.Zero, Rotation.From(X * .5f, Y * .5f, 0));
+					ShootVector = ShootVector.RotateAround(Vector3.Zero, Boom.WorldRotation);
+
+					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), ShootVector);
 					
 					Shoot(ShapeRay);
 				}
@@ -65,20 +72,44 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 	[Rpc.Broadcast]
-	public void BulletTrialVFX(Vector3 HitObjectPosition)
+	public void BulletHitVFX(Vector3 HitObjectPosition)
 	{
 		if (TrailPrefab.IsValid())
 		{
-			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
-			EstimatedStartPositionWorld.z += 12f;
+			var EstimatedStartPositionWorld = Equipment.Owner.AimRay.Position + Vector3.Down * 8f;
+			//var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
+			//EstimatedStartPositionWorld.z += 12f;
 
+			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
+
+			bool HACKskipfirstone = true;
 			var Lerp = 0f;
 			while (Lerp < 1f)
 			{
+				if (HACKskipfirstone)
+				{
+					HACKskipfirstone = false;
+					continue;
+				}
+
 				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
 				TrailPrefab.Clone(Position);
-				Lerp += 0.033f;
+				Lerp += LerpFactor;
 			}
+		}
+
+		if (DecalDefinition.IsValid())
+		{
+			var Decal = Game.Random.FromList(DecalDefinition.Decals);
+
+			var DecalObject = Scene.CreateObject();
+			DecalObject.WorldPosition = HitObjectPosition;
+
+			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
+			DecalRenderer.Material = Decal.Material;
+			DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
+
+			DecalObject.NetworkSpawn();
 		}
 	}
 
@@ -91,7 +122,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceStart = WeaponRay.Position;
 		var StartRotation = Rotation.LookAt(WeaponRay.Forward);
 		var TraceForward = StartRotation.Forward.Normal;
-		var TraceEnd = WeaponRay.Position + TraceForward * 1600f;
+		var TraceEnd = WeaponRay.Position + TraceForward * 80000f; // TODO : silly number, but if this doesn't hit we shoot at world.forward
 
 		var DamageComponentsHit = ShootHelper.GetDamageComponentsFromTrace(Scene.Trace, GameObject, TraceStart, TraceEnd, out var FirstImpactLocation);
 
@@ -127,7 +158,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			}
 		}
 
-		BulletTrialVFX(FirstImpactLocation);
+		BulletHitVFX(FirstImpactLocation);
 	}
 
 	protected TimeSince TimeSinceShot = new();

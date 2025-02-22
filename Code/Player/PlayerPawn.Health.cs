@@ -4,8 +4,8 @@ using Sandbox.Events;
 
 namespace KOTH;
 
-public partial class PlayerPawn : 
-	IGameEventHandler<DamageGivenEvent>, 
+public partial class PlayerPawn :
+	IGameEventHandler<DamageGivenEvent>,
 	IGameEventHandler<DamageTakenEvent>
 {
 	[Property] Material UberMaterial { get; set; }
@@ -32,14 +32,7 @@ public partial class PlayerPawn :
 
 		Inventory.Clear();
 
-		if (DamageTaken.Damage > 56)
-		{
-			CreateGibs();
-		}
-		else
-		{
-			CreateRagdoll();
-		}
+		BroadcastOnPlayerDeath(DamageTaken);
 
 		if (Camera.IsValid())
 		{
@@ -47,5 +40,6 @@ public partial class PlayerPawn :
 		}
 
 		OnDeath?.Invoke();
+		GameObject.Root.Destroy();
 	}
 }

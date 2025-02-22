@@ -1,0 +1,18 @@
+{
+  "Decals": [
+    {
+      "Material": "blood_splatter_04_decal.vmat",
+      "Width": "5",
+      "Height": "5",
+      "KeepAspect": false,
+      "Depth": "3",
+      "Rotation": "0 360",
+      "FadeTime": "30",
+      "FadeDuration": "1"
+    }
+  ],
+  "__references": [
+    "jase.bloodsplatter04#11953"
+  ],
+  "__version": 0
+}
