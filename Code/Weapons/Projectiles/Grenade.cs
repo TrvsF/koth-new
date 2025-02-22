@@ -28,26 +28,32 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 			FProjectileCollision ProjectileCollision;
 			SimulateExplode(out ProjectileCollision, WorldPosition);
 
-			foreach (var PlayerPawn in ProjectileCollision.TracedPlayers)
+			foreach (var DamageComponent in ProjectileCollision.TracedDamageComponents)
 			{
-				if (!PlayerPawn.IsValid())
+				if (!DamageComponent.IsValid())
 				{
 					continue;
 				}
 
 				FDamageRequest DamageRequest = new()
 				{
-					TargetDamageComponent = PlayerPawn.DamageComponent,
+					TargetDamageComponent = DamageComponent,
 					AttackerPlayerPawn = OwnerPlayerPawn,
-					TargetPlayerPawn = PlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
-					TargetOrigin = PlayerPawn.CenterPosition,
+					TargetOrigin = DamageComponent.WorldPosition,
 					BaseDamage = BaseDamage * .33f,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					MaxFalloffDistance = ExplosionRadius,
 				};
+
+				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+				{
+					DamageRequest.TargetPlayerPawn = PlayerPawn;
+					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+				}
+
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 
@@ -83,26 +89,32 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 			FProjectileCollision ProjectileCollision;
 			SimulateExplode(out ProjectileCollision, Collision.HitLocation);
 
-			foreach (var PlayerPawn in ProjectileCollision.TracedPlayers)
+			foreach (var DamageComponent in ProjectileCollision.TracedDamageComponents)
 			{
-				if (!PlayerPawn.IsValid() || PlayerPawn == HitPlayerPawn)
+				if (!DamageComponent.IsValid())
 				{
 					continue;
 				}
 
 				FDamageRequest DamageRequest = new()
 				{
-					TargetDamageComponent = PlayerPawn.DamageComponent,
+					TargetDamageComponent = DamageComponent,
 					AttackerPlayerPawn = OwnerPlayerPawn,
-					TargetPlayerPawn = PlayerPawn,
 					DamageOrigin = ProjectileCollision.HitLocation,
-					TargetOrigin = PlayerPawn.CenterPosition,
+					TargetOrigin = DamageComponent.WorldPosition,
 					BaseDamage = BaseDamage * .66f,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
 					MaxFalloffDistance = ExplosionRadius,
 				};
+
+				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+				{
+					DamageRequest.TargetPlayerPawn = PlayerPawn;
+					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+				}
+
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 

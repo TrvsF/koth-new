@@ -109,6 +109,9 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			DecalRenderer.Material = Decal.Material;
 			DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
 
+			var Destroy = DecalObject.AddComponent<TimedDestroyComponent>();
+			Destroy.Time = 15f;
+
 			DecalObject.NetworkSpawn();
 		}
 	}
@@ -126,7 +129,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		var DamageComponentsHit = ShootHelper.GetDamageComponentsFromTrace(Scene.Trace, GameObject, TraceStart, TraceEnd, out var FirstImpactLocation);
 
-		var TotalBaseDamage = 0f;
 		if (Network.IsOwner)
 		{
 			foreach (var (DamageComponent, HitLocation) in DamageComponentsHit)
@@ -151,8 +153,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 					DamageRequest.TargetPlayerPawn = PlayerPawn;
 					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
 				}
-
-				TotalBaseDamage += BaseDamage;
 
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}

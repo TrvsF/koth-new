@@ -27,10 +27,28 @@ public partial class PlayerPawn
 			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
 			AnimationHelper.IsWeaponLowered = false;
 			AnimationHelper.AimBodyWeight = 1f;
-			// AnimationHelper.DuckLevel = (MathF.Abs(_smoothEyeHeight) / 32.0f);
-			// AnimationHelper.HoldType = CurrentHoldType;
-			// AnimationHelper.Handedness = CurrentEquipment.IsValid() ? CurrentEquipment.Handedness : AnimationHelper.Hand.Both;
 
+			if (CurrentEquipment.IsValid())
+			{
+				AnimationHelper.HoldType = CurrentEquipment.HoldType;
+				AnimationHelper.Handedness = CurrentEquipment.Handedness;
+			}
+			else
+			{
+				AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.None;
+			}
+
+			var ClosestPlayerObject = GetClosestPlayerGameobject();
+
+			if (ClosestPlayerObject != null)
+			{
+				AnimationHelper.LookAtEnabled = true;
+				AnimationHelper.LookAt = ClosestPlayerObject;
+			}
+			else
+			{
+				AnimationHelper.LookAtEnabled = false;
+			}
 			// CurrentHoldType = CurrentEquipment.IsValid() ? CurrentEquipment.GetHoldType() : AnimationHelper.HoldTypes.None;
 		}
 
@@ -39,7 +57,37 @@ public partial class PlayerPawn
 			ClearMaterial();
 		}
 	}
+
+	/////////////////////////////////////////////////////////////////////////////////
 	
+	private GameObject GetClosestPlayerGameobject()
+	{
+		GameObject ClosestPlayerObject = null;
+		foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		{
+			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive)
+			{
+				continue;
+			}
+
+			var Distance = Boom.WorldPosition.Distance(PlayerState.PlayerPawn.Boom.WorldPosition);
+
+			if (ClosestPlayerObject == null && Distance < 500f)
+			{
+				ClosestPlayerObject = PlayerState.PlayerPawn.Boom;
+			}
+			else if (ClosestPlayerObject.IsValid())
+			{
+				if (Boom.WorldPosition.Distance(ClosestPlayerObject.WorldPosition) > Distance)
+				{
+					ClosestPlayerObject = PlayerState.PlayerPawn.Boom;
+				}
+			}
+		}
+
+		return ClosestPlayerObject;
+	}
+
 	/////////////////////////////////////////////////////////////////////////////////
 
 	TimeSince TimeSinceLastUberMessage = 0;

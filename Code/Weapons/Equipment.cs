@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 
@@ -42,8 +43,8 @@ public sealed class Equipment : Component, IEquipment, IDescription
 	//////////////////////////////////////////////////////////////////////////////////////
 
 	[Property, Group("Components")] public SkinnedModelRenderer ModelRenderer { get; set; }
-	[Property, Group("Animation")] protected AnimationHelper.HoldTypes HoldType { get; set; } = AnimationHelper.HoldTypes.Rifle;
-	[Property, Group("Animation")] public AnimationHelper.Hand Handedness { get; set; } = AnimationHelper.Hand.Right;
+	[Property, Group("Animation")] public CitizenAnimationHelper.HoldTypes HoldType { get; set; } = CitizenAnimationHelper.HoldTypes.Pistol;
+	[Property, Group("Animation")] public CitizenAnimationHelper.Hand Handedness { get; set; } = CitizenAnimationHelper.Hand.Right;
 	[Property, Group("Sounds")] public SoundEvent DeploySound { get; set; }
 	[Property, Group("GameObjects")] public GameObject Muzzle { get; set; }
 	[Property, Group("GameObjects")] public GameObject EjectionPort { get; set; }
@@ -130,11 +131,6 @@ public sealed class Equipment : Component, IEquipment, IDescription
 			return;
 
 		IsDeployed = false;
-	}
-
-	public AnimationHelper.HoldTypes GetHoldType()
-	{
-		return HoldType;
 	}
 
 	private void OnIsDeployedPropertyChanged(bool oldValue, bool newValue)

@@ -38,28 +38,34 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	{
 		var Collision = EventArgs.ProjectileCollision;
 
-		foreach (var PlayerPawn in Collision.TracedPlayers)
+		foreach (var DamageComponent in Collision.TracedDamageComponents)
 		{
-			if (!PlayerPawn.IsValid())
+			if (!DamageComponent.IsValid())
 			{
 				continue;
 			}
 
 			FDamageRequest DamageRequest = new()
 			{
-				TargetDamageComponent = PlayerPawn.DamageComponent,
+				TargetDamageComponent = DamageComponent,
 				AttackerPlayerPawn = OwnerPlayerPawn,
-				TargetPlayerPawn = PlayerPawn,
 				DamageOrigin = Collision.HitLocation,
-				TargetOrigin = PlayerPawn.CenterPosition,
+				TargetOrigin = DamageComponent.WorldPosition,
 				BaseDamage = BaseDamage,
 				BaseKnockbackStrength = BaseKnockbackStrength,
-				DirectImpact = PlayerPawn.GameObject.Root == Collision.HitObject?.Root,
+				DirectImpact = DamageComponent.GameObject.Root == Collision.HitObject?.Root,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,
 				DoesLessSelfDamage = true,
 				MaxFalloffDistance = ExplosionRadius,
 			};
+
+			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+			{
+				DamageRequest.TargetPlayerPawn = PlayerPawn;
+				DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+			}
+
 			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 		}
 

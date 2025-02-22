@@ -37,8 +37,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Slot": "Undefined",
-        "ViewmodelPrefab": null
+        "Slot": "Undefined"
       },
       {
         "__type": "KOTH.TagBinder",
@@ -55,8 +54,8 @@
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 1,
         "BaseDamage": 90,
+        "DecalDefinition": null,
         "FireRate": 2,
-        "FireType": "SingleShot",
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
@@ -78,7 +77,8 @@
         "TrailPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/hitscan-trial.prefab"
-        }
+        },
+        "TrialAmount": 50
       }
     ],
     "Children": [
@@ -86,21 +86,21 @@
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
         "Flags": 0,
         "Name": "Model",
-        "Position": "-0.1607628,-1.758964,-3.878195",
-        "Rotation": "0.08670059,-0.02514087,-0.3245313,0.9415574",
+        "Position": "9.446745,-3.454088,-1.226502",
+        "Rotation": "-0.7035083,-0.01204248,0.07124574,0.7070041",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
             "AnimationGraph": null,
-            "BodyGroups": 3,
+            "BodyGroups": 171,
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
+            "Model": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -179,7 +179,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "facepunch.w_spaghellim4#58057"
+    "facepunch.w_m4a1#60166"
   ],
   "__version": 1
 }

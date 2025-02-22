@@ -37,8 +37,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Slot": "Undefined",
-        "ViewmodelPrefab": null
+        "Slot": "Undefined"
       },
       {
         "__type": "KOTH.TagBinder",
@@ -55,6 +54,8 @@
         "__guid": "5469cd32-6e57-4452-af41-d61185fe8424",
         "Ammo": -1,
         "BaseDamage": 33,
+        "ChargeBuildRate": 0.03,
+        "ChargeDegradeRate": 0.05,
         "FireRate": 1.66,
         "HasAmmo": false,
         "HealsPerTick": 0.5,
@@ -82,8 +83,8 @@
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
         "Flags": 0,
         "Name": "Model",
-        "Position": "-0.1607628,-1.758964,-3.878195",
-        "Rotation": "0.08670059,-0.02514087,-0.3245313,0.9415574",
+        "Position": "-3.560176,1.262129,-2.315973",
+        "Rotation": "-0.4272498,0.5239754,-0.5014793,0.5398389",
         "Enabled": true,
         "Components": [
           {

@@ -14,8 +14,8 @@
           "_type": "gameobject",
           "go": "a1749d19-0334-479c-a43d-57577da6d589"
         },
-        "Handedness": "Right",
-        "HoldType": "Rifle",
+        "Handedness": "Left",
+        "HoldType": "Pistol",
         "ModelRenderer": {
           "_type": "component",
           "component_id": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
@@ -37,8 +37,7 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Slot": "Undefined",
-        "ViewmodelPrefab": null
+        "Slot": "Undefined"
       },
       {
         "__type": "KOTH.TagBinder",
@@ -97,8 +96,8 @@
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
         "Flags": 0,
         "Name": "Model",
-        "Position": "-0.1607628,-1.758964,-3.878195",
-        "Rotation": "0.08670059,-0.02514087,-0.3245313,0.9415574",
+        "Position": "7.381615,-2.291098,-1.215292",
+        "Rotation": "-0.7380018,-0.02302234,0.02521095,0.6739343",
         "Enabled": true,
         "Components": [
           {

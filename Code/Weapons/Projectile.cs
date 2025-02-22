@@ -10,7 +10,7 @@ public record ProjectileCollideEvent(FProjectileCollision ProjectileCollision) :
 public record FProjectileCollision
 {
 	public GameObject HitObject { get; init; }
-	public HashSet<PlayerPawn> TracedPlayers { get; init; }
+	public HashSet<DamageComponent> TracedDamageComponents { get; init; }
 	public Vector3 HitLocation { get; init; }
 	public bool IsFirstHit { get; init; }
 }
@@ -34,7 +34,7 @@ public abstract class Projectile : Component, Component.ICollisionListener
 			.WithoutTags("consumable")
 			.RunAll();
 
-		HashSet<PlayerPawn> TracedPawns = new();
+		HashSet<DamageComponent> TracedPawns = new();
 		foreach (var Hit in ExplosionTrace)
 		{
 			var Target = Hit.GameObject?.Root;
@@ -44,19 +44,19 @@ public abstract class Projectile : Component, Component.ICollisionListener
 				continue;
 			}
 
-			var TargetPlayerPawn = Target.Root.Components.Get<PlayerPawn>();
-			if (!TargetPlayerPawn.IsValid())
+			var TargetDamageComponent = Target.Root.Components.Get<DamageComponent>();
+			if (!TargetDamageComponent.IsValid())
 			{
 				continue;
 			}
 
-			TracedPawns.Add(TargetPlayerPawn);
+			TracedPawns.Add(TargetDamageComponent);
 		}
 
 		OutProjectileCollision = new()
 		{
 			HitObject = CollisionObject,
-			TracedPlayers = TracedPawns,
+			TracedDamageComponents = TracedPawns,
 			HitLocation = ExplosionLocation,
 			IsFirstHit = IsInitialHit,
 		};
@@ -104,9 +104,9 @@ public abstract class Projectile : Component, Component.ICollisionListener
 		}
 
 		SimulateExplode(out FProjectileCollision ProjectileCollision, ContactPoint, OtherRoot);
-		if (OtherRoot.Components.Get<PlayerPawn>() is PlayerPawn HitPlayerPawn)
+		if (OtherRoot.Components.Get<DamageComponent>() is DamageComponent HitDamageComponent)
 		{
-			ProjectileCollision.TracedPlayers.Add(HitPlayerPawn);
+			ProjectileCollision.TracedDamageComponents.Add(HitDamageComponent);
 		}
 
 		GameObject.Root.Dispatch(new ProjectileCollideEvent(ProjectileCollision));

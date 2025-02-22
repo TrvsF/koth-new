@@ -15,7 +15,7 @@
           "go": "a1749d19-0334-479c-a43d-57577da6d589"
         },
         "Handedness": "Right",
-        "HoldType": "Rifle",
+        "HoldType": "Shotgun",
         "ModelRenderer": {
           "_type": "component",
           "component_id": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
@@ -86,7 +86,8 @@
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
         "Flags": 0,
         "Name": "Model",
-        "Rotation": "0,-0.7071068,0,0.7071068",
+        "Position": "12.80474,2.716229,0",
+        "Rotation": "-0.6901777,-0.1538007,0.1538007,0.6901777",
         "Enabled": true,
         "Components": [
           {

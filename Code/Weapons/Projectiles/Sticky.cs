@@ -111,26 +111,32 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 		SimulateExplode(out FProjectileCollision ProjectileCollision, Transform.Position);
 
-		foreach (var PlayerPawn in ProjectileCollision.TracedPlayers)
+		foreach (var DamageComponent in ProjectileCollision.TracedDamageComponents)
 		{
-			if (!PlayerPawn.IsValid())
+			if (!DamageComponent.IsValid())
 			{
 				continue;
 			}
 
 			FDamageRequest DamageRequest = new()
 			{
-				TargetDamageComponent = PlayerPawn.DamageComponent,
+				TargetDamageComponent = DamageComponent,
 				AttackerPlayerPawn = OwnerPlayerPawn,
-				TargetPlayerPawn = PlayerPawn,
 				DamageOrigin = ProjectileCollision.HitLocation,
-				TargetOrigin = PlayerPawn.CenterPosition,
+				TargetOrigin = DamageComponent.WorldPosition,
 				BaseDamage = BaseDamage,
 				BaseKnockbackStrength = BaseKnockbackStrength,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,
 				MaxFalloffDistance = ExplosionRadius,
 			};
+
+			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+			{
+				DamageRequest.TargetPlayerPawn = PlayerPawn;
+				DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+			}
+
 			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 		}
 
