@@ -76,9 +76,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	{
 		if (TrailPrefab.IsValid())
 		{
-			var EstimatedStartPositionWorld = Equipment.Owner.AimRay.Position + Vector3.Down * 8f;
-			//var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
-			//EstimatedStartPositionWorld.z += 12f;
+			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
 
 			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
 
