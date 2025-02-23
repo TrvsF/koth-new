@@ -35,6 +35,14 @@
 	</canvas>
 
 	<Scoreboard />
+
+	<div class="hud flex column justify-start bottom-left chat">
+		@foreach (var VisableMessage in TextChat.Instance.GetVisableMessages())
+		{
+			<label class="message no-shadow">@VisableMessage.GetChatMessage()</label>
+		}
+		<TextChatBox @ref="TextChat.Instance.InputBox" onsubmit="@TextChat.Instance.InputBox.SendMessage"></TextChatBox>
+	</div>
 </root>
 
 @code
@@ -49,6 +57,21 @@
 	}
 
 	public ScoringSystem ScoringSystem { get; set; }
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if (!PlayerState.Local.PlayerPawn.IsValid())
+		{
+			return;
+		}
+
+		if (Input.Pressed("chat"))
+		{
+			TextChat.Instance.InputBox.Focus();
+		}
+	}
 
 	protected override int BuildHash()
 	{

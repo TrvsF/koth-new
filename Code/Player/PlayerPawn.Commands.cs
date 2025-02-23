@@ -13,6 +13,12 @@ public partial class PlayerPawn
 	[DeveloperCommand("Suicide", "Player"), ConCmd("kill")]
 	private static void Command_Suicide()
 	{
+		// TODO : FIX!
+		if (!Networking.IsHost)
+		{
+			return;
+		}
+
 		var LocalPlayerPawn = PlayerState.Local?.PlayerPawn;
 
 		if (LocalPlayerPawn.IsValid() && LocalPlayerPawn.IsAlive && Game.ActiveScene.IsValid())

@@ -1,6 +1,6 @@
 ﻿namespace KOTH.UI;
 
-internal class ChatBox : TextEntry
+internal class ChatBoxWhat : TextEntry
 {
 	public Action OnTabPressed { get; set; }
 

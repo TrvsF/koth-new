@@ -16,7 +16,6 @@ public partial class PlayerState : Component
 {
 	public Connection Connection { get; private set; }
 	public bool IsConnected => Connection != null && Connection.IsActive;
-	public string DisplayName => $"{SteamName}{(!IsConnected ? " (Disconnected)" : "")}";
 
 	//////////////////////////////////////////////////////////////
 

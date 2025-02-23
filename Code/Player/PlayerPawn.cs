@@ -105,6 +105,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
+
+			TextChat.Instance.InputBox = new(); // HACK!!!
+												// HOW DOES THE HUD HANDLE DESTROY?DEFOCUS???
 		}
 		else
 		{

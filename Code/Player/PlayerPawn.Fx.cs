@@ -153,23 +153,17 @@ public partial class PlayerPawn
 	{
 		var DamageEvent = EventArgs.DamageEvent;
 
-		var VictimGameobject = GameUtils.GetPlayerFromComponent(DamageEvent.AttackerPlayerPawn);
-		var DamageLocation = DamageEvent.DamageLocation;
+		if (DamageEvent.VictimPlayerPawn == this)
+		{
+			var DamageLocation = DamageEvent.DamageLocation;
+			DamageIndicatorNew.Instance?.OnHit(DamageLocation);
+		}
 	}
 
 	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
 	{
-		OnDamageGiven(EventArgs.DamageEvent);
-	}
+		var DamageEvent = EventArgs.DamageEvent;
 
-	[Rpc.Broadcast]
-	void OnDamageGiven(FDamageTaken DamageTaken)
-	{
-		if (!IsViewer)
-		{
-			return;
-		}
-
-		DamageNumbers.Instance?.OnHit(DamageTaken);
+		DamageNumbers.Instance?.OnHit(DamageEvent);
 	}
 }

@@ -106,7 +106,7 @@ public static partial class GameUtils
 		{
 			writer.WriteLine($"  {player.GameObject.Name}:");
 			writer.WriteLine($"    Id: {player.Id}");
-			writer.WriteLine($"    DisplayName: {player.DisplayName}");
+			writer.WriteLine($"    DisplayName: {player.SteamName}");
 			writer.WriteLine($"    IsConnected: {player.IsConnected}");
 			// writer.WriteLine($"    IsLocalPlayer: {player.}");
 			writer.WriteLine($"    Connection: {(player.Connection is { } connection ? $"{connection.Id} ({connection.DisplayName})" : "null")}");
