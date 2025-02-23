@@ -19,7 +19,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Title": "Botz"
+          "Title": "Payload"
         },
         {
           "__type": "KOTH.DamageManager",
@@ -57,21 +57,6 @@
         {
           "__type": "KOTH.Stats",
           "__guid": "2b821f9f-ce32-4cac-8550-93ee83be67f1",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.BotSystem",
-          "__guid": "b4290247-0b46-49f6-9366-018b5c10f58f",
-          "__enabled": false,
-          "DummyPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/player/dummy.prefab"
-          },
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -609,6 +594,92 @@
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
           "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "dda13b66-ab1c-40a6-a757-4657ebafffe8",
+      "Flags": 0,
+      "Name": "spawnzone",
+      "Position": "463.9999,-351.9999,96",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "910853a3-3f37-48e5-bdb0-a946b4ead8b6",
+          "Center": "0,-3.037674,-1.794678",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "100,210.2761,197.9871",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "KOTH.SpawnZone",
+          "__guid": "44458d80-0337-4038-a1fc-512a6852db70",
+          "Color": "1,0.13488,0.13488,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Terrorist"
+        }
+      ]
+    },
+    {
+      "__guid": "2360a3f5-9631-4425-a1b3-9c9bf7ce0945",
+      "Flags": 0,
+      "Name": "spawnzone (1)",
+      "Position": "463.9999,-592,96",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "7d697dd1-a2cc-4c00-985d-d0c888fc4ad1",
+          "Center": "0,-3.037674,-1.794678",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "100,210.2761,197.9871",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "KOTH.SpawnZone",
+          "__guid": "2944bfb5-82d3-4b05-839d-3c8b76fe50d4",
+          "Color": "1,0.13488,0.13488,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Team": "Terrorist"
         }
       ]
     }

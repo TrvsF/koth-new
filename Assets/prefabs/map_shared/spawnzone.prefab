@@ -22,7 +22,7 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Scale": "500,500,100",
+        "Scale": "100,100,100",
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
@@ -31,7 +31,6 @@
         "__type": "KOTH.SpawnZone",
         "__guid": "ba8c06f2-8d75-482d-8bea-8a33ee426128",
         "Color": "1,1,1,1",
-        "DisplayName": null,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

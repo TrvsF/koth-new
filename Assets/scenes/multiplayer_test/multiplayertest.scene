@@ -291,17 +291,14 @@
         {
           "__type": "TeamSpawnPoint",
           "__guid": "575c7894-fbc8-4456-b2c1-a823e821e477",
-          "IsDummy": true,
+          "IsDummy": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SpawnZone": {
-            "_type": "gameobject",
-            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
-          },
+          "SpawnZone": null,
           "Team": "Terrorist"
         }
       ]
@@ -324,10 +321,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SpawnZone": {
-            "_type": "gameobject",
-            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
-          },
+          "SpawnZone": null,
           "Team": "CounterTerrorist"
         }
       ]
@@ -350,10 +344,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SpawnZone": {
-            "_type": "gameobject",
-            "go": "4b881bab-5a07-4ee5-8dd6-976295cb9f89"
-          },
+          "SpawnZone": null,
           "Team": "Unassigned"
         }
       ]
@@ -1607,7 +1598,6 @@
               "__type": "KOTH.World.CaptureZone",
               "__guid": "a687a95f-f863-4e5c-9116-a2147ed401ba",
               "Color": "0.37741,0.56744,0.55477,1",
-              "DisplayName": null,
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -1688,17 +1678,38 @@
       ]
     },
     {
-      "__guid": "4b881bab-5a07-4ee5-8dd6-976295cb9f89",
+      "__guid": "e8afcd28-7327-4de9-a702-1d8d854c16ff",
       "Flags": 0,
       "Name": "spawnzone",
-      "Position": "32,927.9999,192",
-      "Tags": "zone",
+      "Position": "-495.9999,608,48",
+      "Tags": "terrorist-spawn",
       "Enabled": true,
       "Components": [
         {
           "__type": "Sandbox.BoxCollider",
-          "__guid": "62629bb2-b481-476d-bec4-bc90a124f093",
-          "Center": "0,0,0",
+          "__guid": "78711ae7-e63a-4d1f-9759-cb03fb7e636d",
+          "Center": "28.32197,20.74741,0",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "181.9328,182.6651,100",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "06d59041-759d-46e6-8272-bf7501076afb",
+          "Center": "28.32197,20.74741,0",
           "Friction": null,
           "IsTrigger": true,
           "OnComponentDestroy": null,
@@ -1711,23 +1722,22 @@
           "OnObjectTriggerExit": null,
           "OnTriggerEnter": null,
           "OnTriggerExit": null,
-          "Scale": "500,500,100",
+          "Scale": "181.9328,182.6651,100",
           "Static": false,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
         },
         {
           "__type": "KOTH.SpawnZone",
-          "__guid": "e919e3bb-cb83-4b55-8249-21343a1ca090",
-          "Color": "1,1,1,1",
-          "DisplayName": null,
+          "__guid": "c8af9606-e934-4796-96bb-14ead62cfe27",
+          "Color": "1,0,0,1",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Team": "Unassigned"
+          "Team": "Terrorist"
         }
       ]
     }

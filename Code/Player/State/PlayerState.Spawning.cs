@@ -141,16 +141,23 @@ public partial class PlayerState
 		using (Rpc.FilterInclude(Connection))
 		{
 			CameraDisableHack();
+			BroadcastPlayerSpawn(PlayerPawn);
 		}
 	}
 
-	[Rpc.Broadcast]
+	[Rpc.Broadcast] // broadcast filter
+	private void BroadcastPlayerSpawn(PlayerPawn PlayerPawn)
+	{
+		Scene.Dispatch(new PlayerSpawnedEvent(PlayerPawn));
+	}
+
+	[Rpc.Broadcast] // broadcast filter
 	private void CameraDisableHack()
 	{
 		AssumedSceneCameraObject.Enabled = false;
 	}
 
-	[Rpc.Broadcast]
+	[Rpc.Broadcast] // broadcast filter
 	private void CameraEnableHack()
 	{
 		AssumedSceneCameraObject.Enabled = true;

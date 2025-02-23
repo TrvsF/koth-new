@@ -1,15 +1,13 @@
 ﻿using KOTH.Utils;
+using Sandbox.Diagnostics;
 using Sandbox.Events;
 
 namespace KOTH;
 
 public record GamemodeInitializedEvent(string Title) : IGameEvent;
 
-/// <summary>
-/// Handles the main game loop, using components that listen to state change
-/// events to handle game logic.
-/// </summary>
-public sealed partial class GameMode : SingletonComponent<GameMode>, Component.INetworkListener
+public sealed partial class GameMode : SingletonComponent<GameMode>,
+	IGameEventHandler<PlayerSpawnedEvent>
 {
 	[Property] public string Title { get; set; }
 
@@ -18,44 +16,19 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 	[RequireComponent] public DamageManager DamageManager { get; private set; }
 	[RequireComponent] public ClassList ClassList { get; private set; }
 	[RequireComponent] public Stats Stats { get; private set; }
-	[RequireComponent] public BotSystem BotSystem { get; private set; }
+	[RequireComponent] public TextChat TextChat { get; private set; }
 
 	/////////////////////////////////////////////////////////////
 
-	public static string ActivePath { get; private set; }
-
-	public static void SetCurrent(GameModeInfo gameMode)
-	{
-		if (gameMode is null)
-		{
-			ActivePath = null;
-			return;
-		}
-
-		ActivePath = gameMode.Path;
-	}
-
-
 	private StateMachineComponent _stateMachine;
-
 	public StateMachineComponent StateMachine => _stateMachine ??= Components.GetInDescendantsOrSelf<StateMachineComponent>();
 
-	private TimeSince _sinceLastSoundHandleLog;
+	/////////////////////////////////////////////////////////////
 
 	protected override void OnAwake()
 	{
 		if (Networking.IsHost)
 		{
-			// Only stay enabled if host chose this game mode
-
-			if (ActivePath is { } path && !path.Equals(GameObject.GetScenePath(), StringComparison.OrdinalIgnoreCase))
-			{
-				GameObject.Enabled = false;
-				return;
-			}
-
-			// Fallback for testing in editor - just use first active game mode
-
 			if (Instance is { IsValid: true, Active: true, Scene: { } scene } && scene == Scene)
 			{
 				GameObject.Enabled = false;
@@ -66,33 +39,27 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 		base.OnAwake();
 	}
 
-	protected override void OnStart()
+	/////////////////////////////////////////////////////////////
+
+	void IGameEventHandler<PlayerSpawnedEvent>.OnGameEvent(PlayerSpawnedEvent PlayerSpawnedEvent)
 	{
-		Scene.Dispatch(new GamemodeInitializedEvent(Title));
-
-		base.OnStart();
-
-		GameUtils.LogPlayers();
-	}
-
-	protected override void OnUpdate()
-	{
-		base.OnUpdate();
-
-		if (_sinceLastSoundHandleLog > 5f)
+		var SpawnedPlayer = PlayerSpawnedEvent.Player;
+		if (!SpawnedPlayer.IsValid())
 		{
-			_sinceLastSoundHandleLog = 0f;
+			Log.Warning($"{this} got invalid player for PlayerSpawnedEvent");
+			return;
+		}
 
-			var list = new List<SoundHandle>();
-			SoundHandle.GetActive(list);
-
-			var mostCommon = list
-				.GroupBy(x => x.Name)
-				.Select(x => (Name: x.Key, Count: x.Count()))
-				.OrderByDescending(x => x.Count)
-				.FirstOrDefault();
+		foreach (var Object in Scene.GetAllObjects(true))
+		{
+			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
+			{
+				SpawnZone.SetupForLocal();
+			}
 		}
 	}
+
+	/////////////////////////////////////////////////////////////
 
 	public Team GetStarterTeam()
 	{
@@ -130,11 +97,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>, Component.I
 		return Components.Get<Stats>();
 	}
 
-	// TODO : MAKE THIS WORK!!!
-	void INetworkListener.OnBecameHost(Connection previousHost)
-	{
-		GameUtils.LogPlayers();
-	}
+	/////////////////////////////////////////////////////////////
 
 	private StateComponent _prevState;
 	private readonly Dictionary<Type, Component> _componentCache = new();

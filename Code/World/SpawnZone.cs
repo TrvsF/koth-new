@@ -1,46 +1,69 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 
 namespace KOTH;
 
 public sealed class SpawnZone : Zone, Component.ITriggerListener
 {
+	[RequireComponent] BoxCollider TriggerBoxCollider { get; set; }
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
 
+	private BoxCollider BlockingBox { get; set; } = null;
 	private List<PlayerPawn> CurrentPlayerPawns = new();
+
+	public bool SetupForLocal()
+	{
+		bool NeedsBlockingBox = Team.GetOpponents() == PlayerState.Local.Team;
+
+		if (!NeedsBlockingBox && BlockingBox == null || NeedsBlockingBox && BlockingBox.IsValid())
+		{
+			return true;
+		}
+
+		if (NeedsBlockingBox)
+		{
+			BlockingBox = GameObject.AddComponent<BoxCollider>();
+			BlockingBox = TriggerBoxCollider;
+			BlockingBox.IsTrigger = false;
+		}
+		else
+		{
+			TriggerBoxCollider.IsTrigger = true;
+			BlockingBox.Destroy();
+			BlockingBox = null;
+		}
+
+		return true;
+	}
 
 	protected override void OnStart()
 	{
-		var Box = GameObject.GetComponent<BoxCollider>();
-		if (!Box.IsValid())
-		{
-			Log.Warning($"Box is invalid on spawnzone {this}");
-			return;
-		}
+		base.OnStart();
 
-		//var BoxTrace = Scene.Trace.Box(Box.KeyframeBody.GetBounds(), WorldPosition, WorldPosition).RunAll();
-		//foreach (var Hits in BoxTrace)
-		//{
-		//	Log.Info(Hits.GameObject);
-		//}
+		Tags.Add($"{Team}-spawn");
 	}
 
 	void ITriggerListener.OnTriggerEnter(Collider Collider)
 	{
 		var PlayerPawn = Collider.GameObject.Root.Components.Get<PlayerPawn>();
-		if (PlayerPawn.IsValid() && PlayerPawn.Team == Team)
+
+		if (!PlayerPawn.IsValid())
 		{
-			CurrentPlayerPawns.Add(PlayerPawn);
-			PlayerPawn.DamageComponent.SetGodmode(true);
+			return;
 		}
+
+
 	}
 
 	void ITriggerListener.OnTriggerExit(Collider Collider)
 	{
 		var PlayerPawn = Collider.GameObject.Root.Components.Get<PlayerPawn>();
-		if (PlayerPawn.IsValid() && PlayerPawn.Team == Team)
+		
+		if (!PlayerPawn.IsValid())
 		{
-			CurrentPlayerPawns.Remove(PlayerPawn);
-			PlayerPawn.DamageComponent.SetGodmode(false);
+			return;
 		}
+
+
 	}
 }

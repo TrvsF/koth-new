@@ -7,11 +7,6 @@ public class Zone : Component
 {
 	[Property] public Color Color { get; set; } = Color.White;
 
-	/// <summary>
-	/// Optional name to show in the HUD.
-	/// </summary>
-	[Property] public string DisplayName { get; set; }
-
 	private readonly HashSet<BoxCollider> _colliders = new();
 
 	protected override void OnValidate()

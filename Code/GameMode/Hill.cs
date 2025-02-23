@@ -24,7 +24,6 @@ public sealed class Hill : Component, Component.ITriggerListener,
 		base.OnValidate();
 
 		Zone.Color = Color.Yellow;
-		Zone.DisplayName = "Hill";
 	}
 
 	protected override void OnStart()

@@ -60,7 +60,7 @@
         "__type": "KOTH.Rkt",
         "__guid": "b9f278af-2a58-4500-9544-dddff82a1fd9",
         "BaseDamage": 90,
-        "BaseKnockbackStrength": 480,
+        "BaseKnockbackStrength": 500,
         "ExplosionPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/blue-hit.prefab"

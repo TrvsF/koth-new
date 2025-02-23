@@ -51,8 +51,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Sync(SyncFlags.FromHost)] public TimeSince TimeSinceLastRespawn { get; private set; }
-
-	public Team Team;
+	public Team Team { get; set; } = Team.Unassigned;
+	public Action OnPlayerStart;
 
 	public void Teleport(Transform transform)
 	{
@@ -94,7 +94,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
+
 		Body.Renderer.Tint = Team.GetColor(false);
+		Tags.Add($"{Team}");
 
 		if (IsLocallyControlled)
 		{
@@ -105,9 +107,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
-
-			TextChat.Instance.InputBox = new(); // HACK!!!
-												// HOW DOES THE HUD HANDLE DESTROY?DEFOCUS???
 		}
 		else
 		{
@@ -125,6 +124,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
 		}
+
+		OnPlayerStart?.Invoke();
 	}
 
 	protected override void OnUpdate()

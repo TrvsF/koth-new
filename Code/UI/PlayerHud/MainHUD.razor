@@ -39,6 +39,10 @@
 	<div class="hud flex column justify-start bottom-left chat">
 		@foreach (var VisableMessage in TextChat.Instance.GetVisableMessages())
 		{
+			@if (VisableMessage.AuthorSteamID > 0)
+			{
+				<div class="square rounded shrink-0" style="background-image: url( avatar:@VisableMessage.AuthorSteamID )"></div>
+			}
 			<label class="message no-shadow">@VisableMessage.GetChatMessage()</label>
 		}
 		<TextChatBox @ref="TextChat.Instance.InputBox" onsubmit="@TextChat.Instance.InputBox.SendMessage"></TextChatBox>
@@ -58,18 +62,25 @@
 
 	public ScoringSystem ScoringSystem { get; set; }
 
+	protected override void OnEnabled()
+	{
+		base.OnEnabled();
+
+		TextChat.Instance.InputBox = new();
+	}
+
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
 
-		if (!PlayerState.Local.PlayerPawn.IsValid())
+		if (!PlayerState.Local.IsValid() || !PlayerState.Local.PlayerPawn.IsValid())
 		{
 			return;
 		}
 
 		if (Input.Pressed("chat"))
 		{
-			TextChat.Instance.InputBox.Focus();
+			TextChat.Instance?.InputBox?.Focus();
 		}
 	}
 

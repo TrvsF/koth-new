@@ -35,7 +35,7 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost), Property] public Team Team { get; private set; } // TODO : listen to onteamchange
+	[Sync(SyncFlags.FromHost), Property] public Team Team { get; set; } // TODO : listen to onteamchange
 	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn PlayerPawn { get; private set; }
 	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn SpectatingTarget { get; private set; }
 
@@ -61,8 +61,12 @@ public partial class PlayerState : Component
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
 
-		// we don't assign a team for singleplayer
-		if (GameMode.Instance != null) 
+		// TODO : this happens on singleplayer
+		if (!GameMode.Instance.IsValid())
+		{
+			Log.Warning($"gamemode not valid when {this} init");
+		}
+		else
 		{
 			Team = GameMode.Instance.GetStarterTeam();
 		}

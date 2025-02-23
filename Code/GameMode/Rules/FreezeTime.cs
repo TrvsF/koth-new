@@ -5,10 +5,7 @@ namespace KOTH;
 /// <summary>
 /// Keep players frozen while this state is active.
 /// </summary>
-public sealed class FreezePlayers : Component,
-	IGameEventHandler<EnterStateEvent>,
-	IGameEventHandler<LeaveStateEvent>,
-	IGameEventHandler<PlayerSpawnedEvent>
+public sealed class FreezePlayers : Component
 {
 	[Property][HostSync] public int FreezeTime { get; set; }
 
@@ -16,27 +13,6 @@ public sealed class FreezePlayers : Component,
 
 	[HostSync] private bool IsFrozen { get; set; } = true;
 	[HostSync] private TimeSince TimeSinceEnterState { get; set; } = new();
-
-	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
-	{
-		foreach (var player in GameUtils.PlayerPawns)
-		{
-			player.IsFrozen = IsFrozen;
-		}
-	}
-
-	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
-	{
-		foreach (var player in GameUtils.PlayerPawns)
-		{
-			player.IsFrozen = false;
-		}
-	}
-
-	void IGameEventHandler<PlayerSpawnedEvent>.OnGameEvent(PlayerSpawnedEvent eventArgs)
-	{
-		eventArgs.Player.IsFrozen = IsFrozen;
-	}
 
 	protected override void OnUpdate()
 	{

@@ -15,7 +15,7 @@ public enum EGameNetworkMode
 	Multiplayer,
 }
 
-public sealed class GameNetworkManager : Component, Component.INetworkListener
+public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>, Component.INetworkListener
 {
 	private GameObject Actor { get; set; }
 
@@ -33,6 +33,7 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
+	public static Action<PlayerState> OnNewPlayerState;
 	[Sync(SyncFlags.FromHost)] public static NetList<PlayerState> PlayerStates { get; set; } = new();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,8 +107,8 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 
 	void INetworkListener.OnDisconnected(Connection ConnectionChannel)
 	{
-		// after changing hosts this assert fails :)
-		// Assert.True(Networking.IsHost);
+		// Assert.True(Networking.IsHost); // after changing hosts this assert fails :)
+
 		Log.Info("disconnection event");
 
 		PlayerState PlayerStateToDestroy = null;
@@ -144,6 +145,7 @@ public sealed class GameNetworkManager : Component, Component.INetworkListener
 			throw new Exception($"Something went wrong when trying to create PlayerState for {ConnectionChannel.DisplayName}");
 		}
 
+		OnNewPlayerState?.Invoke(PlayerStateComponent);
 		PlayerStates.Add(PlayerStateComponent);
 	}
 

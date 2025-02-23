@@ -1,6 +1,5 @@
 using Sandbox;
 using System.Text.RegularExpressions;
-using static KOTH.MapVoteSystem;
 
 namespace KOTH;
 
