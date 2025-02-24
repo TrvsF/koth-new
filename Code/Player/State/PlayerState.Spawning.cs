@@ -72,7 +72,6 @@ public partial class PlayerState
 	 * by the server the requested character def will never sync! this is the workaround for now..
 	 */
 
-	/*[Sync]*/
 	public CharacterDefinition RequestedCharacterDefinition { get; private set; } = null;
 
 	private void OnRequestedCharacterDefinitionChanged(CharacterDefinition OldDefinition, CharacterDefinition NewDefinition)

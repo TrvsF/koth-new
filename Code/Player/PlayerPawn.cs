@@ -96,6 +96,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		GameObject.Name = DisplayName;
 
 		Body.Renderer.Tint = Team.GetColor(false);
+		Body.Dresser.ApplyClothing(); // this thing is fkn weird
+		Body.Dresser.SetupClothes();
+
 		Tags.Add($"{Team}");
 
 		if (IsLocallyControlled)
@@ -103,6 +106,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Assert.True(CreatePlayerCamera());
 
 			Body.Renderer.Enabled = false;
+			
 			Tags.Add("self");
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
@@ -196,6 +200,17 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		ApplyAcceleration();
 		ApplyMovement();
 		DebugUpdate();
+	}
+
+	// HACK : we should be holding these Objects on the dresser
+	private List<GameObject> GetLocalClothes()
+	{
+		List<GameObject> Clothes = new();
+		//foreach (var Child in Body.GameObject.Children)
+		//{
+		//	if (Child.)
+		//}
+		return Clothes;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

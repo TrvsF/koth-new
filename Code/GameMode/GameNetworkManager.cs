@@ -33,7 +33,6 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public static Action<PlayerState> OnNewPlayerState;
 	[Sync(SyncFlags.FromHost)] public static NetList<PlayerState> PlayerStates { get; set; } = new();
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,7 +144,6 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 			throw new Exception($"Something went wrong when trying to create PlayerState for {ConnectionChannel.DisplayName}");
 		}
 
-		OnNewPlayerState?.Invoke(PlayerStateComponent);
 		PlayerStates.Add(PlayerStateComponent);
 	}
 

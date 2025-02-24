@@ -4,8 +4,9 @@ namespace KOTH;
 
 public sealed class PlayerBody : Component
 {
-	[Property] public SkinnedModelRenderer Renderer { get; set; }
-	[Property] public ModelPhysics Physics { get; set; }
+	[RequireComponent] public SkinnedModelRenderer Renderer { get; set; }
+	[RequireComponent] public PlayerDresser Dresser{ get; set; }
+	[RequireComponent] public ModelPhysics Physics { get; set; }
 	[Property] public PlayerPawn Player { get; set; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////

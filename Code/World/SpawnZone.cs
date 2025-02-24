@@ -13,23 +13,26 @@ public sealed class SpawnZone : Zone, Component.ITriggerListener
 
 	public bool SetupForLocal()
 	{
+		Log.Info("setup");
+
 		bool NeedsBlockingBox = Team.GetOpponents() == PlayerState.Local.Team;
 
-		if (!NeedsBlockingBox && BlockingBox == null || NeedsBlockingBox && BlockingBox.IsValid())
-		{
-			return true;
-		}
+		//if (!NeedsBlockingBox && BlockingBox == null || NeedsBlockingBox && BlockingBox.IsValid())
+		//{
+		//	return true;
+		//}
 
 		if (NeedsBlockingBox)
 		{
-			BlockingBox = GameObject.AddComponent<BoxCollider>();
-			BlockingBox = TriggerBoxCollider;
+			BlockingBox = GameObject.Components.Create<BoxCollider>(true);
+			BlockingBox.Center = TriggerBoxCollider.Center;
+			BlockingBox.Scale = TriggerBoxCollider.Scale;
 			BlockingBox.IsTrigger = false;
 		}
 		else
 		{
 			TriggerBoxCollider.IsTrigger = true;
-			BlockingBox.Destroy();
+			BlockingBox?.Destroy();
 			BlockingBox = null;
 		}
 
