@@ -22,8 +22,6 @@ public partial class PlayerPawn :
 		Assert.NotNull(DamageComponent);
 
 		DamageComponent.OnDeath += OnKill;
-
-		// TODO : attempt retry or throw 
 	}
 
 	public void OnKill(FDamageTaken DamageTaken)

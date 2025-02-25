@@ -141,16 +141,13 @@ public partial class PlayerState
 		{
 			CameraDisableHack();
 			BroadcastPlayerSpawn(PlayerPawn);
-
-			Log.Info("playerspawn");
 		}
 	}
 
 	[Rpc.Broadcast] // broadcast filter
 	private void BroadcastPlayerSpawn(PlayerPawn PlayerPawn)
 	{
-		Log.Info("Broadcastplayerspawn");
-		Scene.Dispatch(new PlayerSpawnedEvent(PlayerPawn));
+		Scene.Dispatch(new LocalPlayerSpawnedEvent(PlayerPawn));
 	}
 
 	[Rpc.Broadcast] // broadcast filter
@@ -207,6 +204,13 @@ public partial class PlayerState
 		using (Rpc.FilterInclude(Connection))
 		{
 			CameraEnableHack();
+			OnLocalDeath();
 		}
+	}
+
+	[Rpc.Broadcast]
+	public void OnLocalDeath()
+	{
+		Scene.Dispatch(new LocalPlayerDiedEvent());
 	}
 }

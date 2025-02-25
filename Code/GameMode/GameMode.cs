@@ -7,7 +7,8 @@ namespace KOTH;
 public record GamemodeInitializedEvent(string Title) : IGameEvent;
 
 public sealed partial class GameMode : SingletonComponent<GameMode>,
-	IGameEventHandler<PlayerSpawnedEvent>
+	IGameEventHandler<LocalPlayerSpawnedEvent>,
+	IGameEventHandler<LocalPlayerDiedEvent>
 {
 	[Property] public string Title { get; set; }
 
@@ -39,12 +40,26 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		base.OnAwake();
 	}
 
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		foreach (var Object in Scene.GetAllObjects(true))
+		{
+			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
+			{
+				MapSpawnZones.Add(Object);
+			}
+		}
+	}
+
 	/////////////////////////////////////////////////////////////
 
-	void IGameEventHandler<PlayerSpawnedEvent>.OnGameEvent(PlayerSpawnedEvent PlayerSpawnedEvent)
-	{
-		Log.Info("player spawn event");
+	private List<GameObject> MapSpawnZones = new();
+	private List<GameObject> SpawnZoneBlockers = new();
 
+	void IGameEventHandler<LocalPlayerSpawnedEvent>.OnGameEvent(LocalPlayerSpawnedEvent PlayerSpawnedEvent)
+	{
 		var SpawnedPlayer = PlayerSpawnedEvent.Player;
 		if (!SpawnedPlayer.IsValid())
 		{
@@ -54,23 +69,45 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 		// TODO : we want to accept the scene's version of the spawn as truth but create our own
 		// not-networked version that we can act on. This spawns another zone every time u spawn :(
-		foreach (var Object in Scene.GetAllObjects(false))
+
+		foreach (var SpawnZoneObject in MapSpawnZones)
 		{
-			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
+			var SpawnZone = SpawnZoneObject.GetComponent<SpawnZone>();
+
+			if (!SpawnZone.IsValid())
 			{
-				var ClonedSpawnObject = Object.Clone(Object.WorldPosition, Object.WorldRotation, Object.WorldScale);
+				Log.Warning($"Invalid spawnzone in MapSpawnZones on {this}");
+				continue;
+			}
+
+			if (SpawnZone.Team.GetOpponents() == PlayerState.Local.Team)
+			{
+				var ClonedSpawnObject = SpawnZoneObject.Clone(SpawnZoneObject.WorldPosition, SpawnZoneObject.WorldRotation, SpawnZoneObject.WorldScale);
 				ClonedSpawnObject.NetworkMode = NetworkMode.Never;
+
 				var ClonedSpawnZone = ClonedSpawnObject.GetComponent<SpawnZone>();
 				if (ClonedSpawnZone.IsValid())
 				{
-					ClonedSpawnZone.SetupForLocal();
+					ClonedSpawnZone.CreatePlayerCollisionBox();
+					SpawnZoneBlockers.Add(ClonedSpawnObject);
 				}
 				else
 				{
-					Log.Warning("FUCK");
+					Log.Warning($"failed to create clone of spawn zone {SpawnZone}");
+					ClonedSpawnObject.Destroy();
 				}
 			}
 		}
+	}
+
+	void IGameEventHandler<LocalPlayerDiedEvent>.OnGameEvent(LocalPlayerDiedEvent PlayerDiedEvent)
+	{
+		foreach (var TempZone in SpawnZoneBlockers)
+		{
+			TempZone.Destroy();
+		}
+
+		SpawnZoneBlockers.Clear();
 	}
 
 	/////////////////////////////////////////////////////////////

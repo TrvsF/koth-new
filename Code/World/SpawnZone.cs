@@ -8,42 +8,13 @@ public sealed class SpawnZone : Zone, Component.ITriggerListener
 	[RequireComponent] BoxCollider TriggerBoxCollider { get; set; }
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
 
-	private BoxCollider PlayerBoxCollider { get; set; }
 	private List<PlayerPawn> CurrentPlayerPawns = new();
 
-	public bool SetupForLocal()
+	public void CreatePlayerCollisionBox()
 	{
-		bool NeedsBlockingBox = Team.GetOpponents() == PlayerState.Local.Team;
+		Assert.True(Team.GetOpponents() == PlayerState.Local.Team);
 
-		if (!NeedsBlockingBox && PlayerBoxCollider == null || NeedsBlockingBox && PlayerBoxCollider.IsValid())
-		{
-			return true;
-		}
-
-		if (!PlayerBoxCollider.IsValid())
-		{
-			PlayerBoxCollider = GameObject.Components.Create<BoxCollider>();
-		}
-
-		if (NeedsBlockingBox)
-		{
-			PlayerBoxCollider.Center = TriggerBoxCollider.Center;
-			PlayerBoxCollider.Scale = TriggerBoxCollider.Scale;
-			PlayerBoxCollider.Enabled = true;
-		}
-		else
-		{
-			PlayerBoxCollider.Enabled = false;
-		}
-
-		TriggerBoxCollider.IsTrigger = true;
-		PlayerBoxCollider.IsTrigger = false;
-
-		Log.Info($"SetupForLocal NeedsBlockingBox : {NeedsBlockingBox}\n" +
-			$"{TriggerBoxCollider} {TriggerBoxCollider.Enabled}\n" +
-			$"{PlayerBoxCollider} {PlayerBoxCollider.Enabled}");
-
-		return true;
+		TriggerBoxCollider.IsTrigger = false;
 	}
 
 	protected override void OnStart()
