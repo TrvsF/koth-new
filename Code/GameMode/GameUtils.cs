@@ -18,6 +18,11 @@ public static partial class GameUtils
 	public static IEnumerable<PlayerState> AllPlayers => Game.ActiveScene.GetAllComponents<PlayerState>();
 
 	/// <summary>
+	/// Gets a player by their id.
+	/// </summary>
+	public static PlayerState GetPlayer(Guid id) => AllPlayers.FirstOrDefault(n => n.PlayerPawn.Id == id);
+
+	/// <summary>
 	/// Get all players on a team.
 	/// </summary>
 	public static IEnumerable<PlayerState> GetPlayers(Team team) => AllPlayers.Where(x => x.Team == team);
