@@ -43,6 +43,8 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	void IGameEventHandler<PlayerSpawnedEvent>.OnGameEvent(PlayerSpawnedEvent PlayerSpawnedEvent)
 	{
+		Log.Info("player spawn event");
+
 		var SpawnedPlayer = PlayerSpawnedEvent.Player;
 		if (!SpawnedPlayer.IsValid())
 		{
@@ -50,11 +52,23 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 			return;
 		}
 
-		foreach (var Object in Scene.GetAllObjects(true))
+		// TODO : we want to accept the scene's version of the spawn as truth but create our own
+		// not-networked version that we can act on. This spawns another zone every time u spawn :(
+		foreach (var Object in Scene.GetAllObjects(false))
 		{
 			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
 			{
-				SpawnZone.SetupForLocal();
+				var ClonedSpawnObject = Object.Clone(Object.WorldPosition, Object.WorldRotation, Object.WorldScale);
+				ClonedSpawnObject.NetworkMode = NetworkMode.Never;
+				var ClonedSpawnZone = ClonedSpawnObject.GetComponent<SpawnZone>();
+				if (ClonedSpawnZone.IsValid())
+				{
+					ClonedSpawnZone.SetupForLocal();
+				}
+				else
+				{
+					Log.Warning("FUCK");
+				}
 			}
 		}
 	}

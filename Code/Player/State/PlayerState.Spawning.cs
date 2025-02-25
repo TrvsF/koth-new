@@ -141,12 +141,15 @@ public partial class PlayerState
 		{
 			CameraDisableHack();
 			BroadcastPlayerSpawn(PlayerPawn);
+
+			Log.Info("playerspawn");
 		}
 	}
 
 	[Rpc.Broadcast] // broadcast filter
 	private void BroadcastPlayerSpawn(PlayerPawn PlayerPawn)
 	{
+		Log.Info("Broadcastplayerspawn");
 		Scene.Dispatch(new PlayerSpawnedEvent(PlayerPawn));
 	}
 

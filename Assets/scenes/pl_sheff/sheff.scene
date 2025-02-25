@@ -299,6 +299,49 @@
       "Enabled": true,
       "Children": [
         {
+          "__guid": "56288ba5-8bb4-44b3-9442-61a6bbff51bd",
+          "Flags": 0,
+          "Name": "spawnzone",
+          "Position": "687.9999,-352,160",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "a175c98f-31f1-45e1-8edf-b8dd5c7131fe",
+              "Center": "263.7111,18.90735,-55.73116",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "1060.035,1502.484,211.4622",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "KOTH.SpawnZone",
+              "__guid": "f2c79e55-49bc-41b6-ba6e-c7266fa0d3f4",
+              "Color": "1,0,0,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Team": "Terrorist"
+            }
+          ]
+        },
+        {
           "__guid": "8a2dd879-3acf-49ce-9b8f-b6f2ee5a6e1a",
           "Flags": 0,
           "Name": "spawnpoint",
@@ -363,94 +406,6 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "SpawnZone": null,
-              "Team": "Terrorist"
-            }
-          ]
-        },
-        {
-          "__guid": "56288ba5-8bb4-44b3-9442-61a6bbff51bd",
-          "Flags": 0,
-          "Name": "spawnzone",
-          "Position": "687.9999,-352,160",
-          "Tags": "zone",
-          "Enabled": true,
-          "NetworkMode": 0,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "a175c98f-31f1-45e1-8edf-b8dd5c7131fe",
-              "Center": "263.7111,18.90735,-55.73116",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "1060.035,1502.484,211.4622",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "KOTH.SpawnZone",
-              "__guid": "f2c79e55-49bc-41b6-ba6e-c7266fa0d3f4",
-              "Color": "1,0,0,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Team": "Terrorist"
-            }
-          ]
-        },
-        {
-          "__guid": "f7ae0afa-e252-403d-85d3-f66000d96674",
-          "Flags": 0,
-          "Name": "spawnzone",
-          "Position": "176,-895.9999,96",
-          "Tags": "zone",
-          "Enabled": true,
-          "NetworkMode": 0,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "a4a4f00f-2f1c-4c42-841b-e5ca9818f4c8",
-              "Center": "-19.9017,11.97708,-0.8516846",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "564.6188,222.2296,192.2125",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "KOTH.SpawnZone",
-              "__guid": "03ea7b5d-586a-45be-b3cc-103f4c818cdb",
-              "Color": "1,0,0,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
               "Team": "Terrorist"
             }
           ]
@@ -539,7 +494,6 @@
           "Position": "-3728,240,304",
           "Tags": "zone",
           "Enabled": true,
-          "NetworkMode": 0,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
@@ -573,6 +527,49 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Team": "CounterTerrorist"
+            }
+          ]
+        },
+        {
+          "__guid": "f7ae0afa-e252-403d-85d3-f66000d96674",
+          "Flags": 0,
+          "Name": "spawnzone",
+          "Position": "176,-895.9999,96",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "a4a4f00f-2f1c-4c42-841b-e5ca9818f4c8",
+              "Center": "-19.9017,11.97708,-0.8516846",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "564.6188,222.2296,192.2125",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "KOTH.SpawnZone",
+              "__guid": "03ea7b5d-586a-45be-b3cc-103f4c818cdb",
+              "Color": "1,0,0,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Team": "Terrorist"
             }
           ]
         },
