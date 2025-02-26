@@ -6,6 +6,7 @@ using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.Services;
 using System.Reflection.Metadata.Ecma335;
+using KOTH.PlayerExp;
 
 namespace KOTH;
 
@@ -41,6 +42,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public Spotter Spotter { get; private set; }
 	[RequireComponent] public Spottable Spottable { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
+
+	[RequireComponent] public ExpManager ExpManager { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 

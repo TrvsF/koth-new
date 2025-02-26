@@ -22,7 +22,7 @@ public sealed class DamageComponent : Component
 	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
 	const float OverhealFactor = 1.5f;
 	const float HealDegradePerSecond = 7f;
 
@@ -65,6 +65,7 @@ public sealed class DamageComponent : Component
 	}
 
 	TimeSince TimeSinceLastHeal = new();
+
 	public void Heal(float Healing, bool AllowOverheal)
 	{
 		Assert.True(Networking.IsHost);
@@ -108,7 +109,6 @@ public sealed class DamageComponent : Component
 	private void BroadcastKill(FDamageTaken DamageTaken)
 	{
 		Scene.Dispatch(new KillEvent(DamageTaken));
-		ExpManager.BroadcastExpEvent(new ExpEvent(1, ExpOrigins.Kill), DamageTaken.AttackerPlayerPawn);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
