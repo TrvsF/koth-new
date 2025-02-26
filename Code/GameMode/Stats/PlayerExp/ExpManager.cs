@@ -1,7 +1,12 @@
-﻿namespace KOTH.PlayerExp;
+﻿using Sandbox.Events;
+
+namespace KOTH.PlayerExp;
 
 public class ExpManager : Component
 {
+
+	private readonly float _levelFactor = 1.4f;
+	private readonly int _firstLevelExp = 300;
 
 	/// <summary>
 	///  Broadcasts exp event to player to be recorded in Sandbox's 'Stats' Service.
@@ -44,8 +49,32 @@ public class ExpManager : Component
 	{
 		Log.Info($"Received exp event {expEvent.Amount} from {expEvent.Origin}");
 		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin.ToString());
-		var exp = Sandbox.Services.Stats.LocalPlayer.Get("player_exp");
-		Log.Info($"Player exp is now {exp.Sum}");
+		Sandbox.Services.Stats.Increment("player_exp_current", expEvent.Amount, "origin", expEvent.Origin.ToString());
+		CheckLevelUp();
+	}
+
+	/// <summary>
+	/// Checks if the player has accumulated enough experience points to level up.
+	/// If the threshold for leveling up is met or exceeded, the player's level is incremented,
+	/// and the current experience value is adjusted accordingly.
+	/// </summary>
+	public void CheckLevelUp()
+	{
+		var exp = Sandbox.Services.Stats.LocalPlayer.Get("player_exp_current");
+		var level = Sandbox.Services.Stats.LocalPlayer.Get("player_level");
+		// probably dont need to use floor but its safer and stops rounding errors
+		var threshold = (int)Math.Floor((level.LastValue * _firstLevelExp) / _levelFactor);
+
+		if (exp.Sum >= threshold)
+		{
+			// sets value instead of increment
+			Sandbox.Services.Stats.SetValue("player_level", level.LastValue + 1);
+			Sandbox.Services.Stats.SetValue("player_exp_current", exp.Sum > threshold ? exp.Sum - threshold : 0);
+			Log.Info($"Player leveled up: {level.LastValue + 1}");
+
+			// TODO display level up on hud
+			GameObject.Root.Dispatch(new LevelUpEvent((int) level.LastValue + 1));
+		}
 	}
 
 }
