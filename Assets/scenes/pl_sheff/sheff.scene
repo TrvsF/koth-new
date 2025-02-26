@@ -105,7 +105,7 @@
             {
               "__guid": "ceedd810-0e2d-4f8f-a2d7-043b6869da20",
               "Flags": 0,
-              "Name": "Waiting",
+              "Name": "WaitingForPlayers",
               "Enabled": true,
               "NetworkMode": 1,
               "NetworkOrphaned": 1,
@@ -113,7 +113,7 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "6042e389-31ad-4c97-8074-775cf2cd7d4c",
-                  "DefaultDuration": -1,
+                  "DefaultDuration": 999,
                   "DefaultNextState": {
                     "_type": "component",
                     "component_id": "c15b2515-eb85-4244-babe-1e396072e03e",
@@ -131,20 +131,6 @@
                   "OnUpdateState": null
                 },
                 {
-                  "__type": "KOTH.ShowStatusText",
-                  "__guid": "9101943f-4be6-489a-b2c7-75db893c4976",
-                  "BothTeams": true,
-                  "IsKoth": false,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "StatusText": "waiting for players",
-                  "Team": "Unassigned"
-                },
-                {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "881306aa-c383-4c2b-b163-b36ec6c60017",
                   "OnComponentDestroy": null,
@@ -153,7 +139,18 @@
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 3
+                  "RespawnDelaySeconds": 7
+                },
+                {
+                  "__type": "KOTH.WaitForPlayers",
+                  "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
+                  "MinPlayerCount": 2,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             },
@@ -168,8 +165,13 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "c15b2515-eb85-4244-babe-1e396072e03e",
-                  "DefaultDuration": -1,
-                  "DefaultNextState": null,
+                  "DefaultDuration": 180,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "5d78d7ca-8c29-4eb6-8569-cb6e469b1fd6",
+                    "go": "140c390e-242b-46ba-90a0-8ab841befc30",
+                    "component_type": "StateComponent"
+                  },
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -207,7 +209,60 @@
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 2
+                  "RespawnDelaySeconds": 9
+                }
+              ]
+            },
+            {
+              "__guid": "140c390e-242b-46ba-90a0-8ab841befc30",
+              "Flags": 0,
+              "Name": "GameOver",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "5d78d7ca-8c29-4eb6-8569-cb6e469b1fd6",
+                  "DefaultDuration": 15,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "c15b2515-eb85-4244-babe-1e396072e03e",
+                    "go": "df822720-2382-4fde-aeaa-fdd479d5b9ea",
+                    "component_type": "StateComponent"
+                  },
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "a9c63096-ea7b-446b-9749-8dbaef839553",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "RespawnDelaySeconds": 3
+                },
+                {
+                  "__type": "KOTH.WaitForPlayers",
+                  "__guid": "af37b660-ec77-4a92-b191-e22d29042811",
+                  "__enabled": false,
+                  "MinPlayerCount": 4,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             }
@@ -603,8 +658,8 @@
       "__guid": "93317bae-87c5-4512-9796-6690f9fe455f",
       "Flags": 0,
       "Name": "cart",
-      "Position": "17.60067,-31.9999,9.168242",
-      "Rotation": "-0.0000002281017,0.07632354,0.000002979892,0.9970832",
+      "Position": "0,0,-208",
+      "Rotation": "-0.0000000000004744861,-0.000000000000000001418053,0.000002988609,1",
       "Tags": "cart",
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/payload/cart.prefab",

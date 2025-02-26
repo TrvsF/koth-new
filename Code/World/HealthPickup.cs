@@ -6,9 +6,9 @@ namespace KOTH;
 public sealed class HealthPickup : Component, Component.ITriggerListener
 {
 	[Property] ModelRenderer Model { get; set; }
-
 	[Property] public float HealthPercent { get; set; } = 0.5f;
 	[Property] public float RespawnTime { get; set; } = 10f;
+
 	[Sync(SyncFlags.FromHost), Change(nameof(OnActiveChange))] public bool IsAcitve { get; private set; } = true;
 
 	protected override void OnFixedUpdate()
@@ -51,6 +51,14 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 
 	private void OnActiveChange(bool OldValue, bool NewValue)
 	{
+		// NOTE : the model should never be invalid
+		// but we've had cases where it is, probably
+		// because this is fires on 'Active' being replicated
+		if (!Model.IsValid())
+		{
+			return;
+		}
+
 		IsAcitve = NewValue;
 		Model.Enabled = NewValue;
 		if (!NewValue)

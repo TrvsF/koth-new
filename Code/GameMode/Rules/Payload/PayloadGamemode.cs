@@ -48,6 +48,11 @@ public sealed class PayloadGamemode : Component,
 		if (HasCartFinished)
 		{
 			Log.Info("the cart has stopped");
+			if (GameObject.GetComponent<StateComponent>() is { } ParentState)
+			{
+				Assert.IsValid(ParentState.DefaultNextState);
+				GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
+			}
 			return;
 		}
 

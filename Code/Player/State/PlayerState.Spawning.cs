@@ -37,8 +37,9 @@ public struct FPlayerPawnDefinition
  */
 public enum EPlayerStateSpawningState
 {
-	Menu,
+	MainMenu,
 	WaitingForSpawn,
+	InstantSpawn,
 	Alive,
 	Spectating,
 }
@@ -47,7 +48,7 @@ public enum EPlayerStateSpawningState
 
 public partial class PlayerState
 {
-	[Sync(SyncFlags.FromHost)/*, Change(nameof(OnPlayerStateSpawningStateChanged))*/] public EPlayerStateSpawningState PlayerStateSpawningState { get; private set; } = EPlayerStateSpawningState.Menu;
+	[Sync(SyncFlags.FromHost)/*, Change(nameof(OnPlayerStateSpawningStateChanged))*/] public EPlayerStateSpawningState PlayerStateSpawningState { get; private set; } = EPlayerStateSpawningState.MainMenu;
 
 	private void OnPlayerStateSpawningStateChanged()
 	{
@@ -71,7 +72,6 @@ public partial class PlayerState
 	 * NOTE : Sync will only care about the vaule given by an object's host, so bc this player state is owned 
 	 * by the server the requested character def will never sync! this is the workaround for now..
 	 */
-
 	public CharacterDefinition RequestedCharacterDefinition { get; private set; } = null;
 
 	private void OnRequestedCharacterDefinitionChanged(CharacterDefinition OldDefinition, CharacterDefinition NewDefinition)
@@ -91,31 +91,36 @@ public partial class PlayerState
 
 		RequestedCharacterDefinition = CharacterDefintionIn;
 
-		HACKPlayerSpawnState(CharacterDefintionIn);
+		// HACK : we should ensure the owner is requesting this
+		// (same with damage, TODO : )
+		HostSetCharacterDefinition(CharacterDefintionIn);
 	}
 
 	[Rpc.Host]
-	private void HACKPlayerSpawnState(CharacterDefinition CIN)
+	private void HostSetCharacterDefinition(CharacterDefinition CharacterDefinition)
 	{
-		if (!CIN.IsValid())
+		if (!CharacterDefinition.IsValid())
 		{
 			return;
 		}
 
-		RequestedCharacterDefinition = CIN;
+		RequestedCharacterDefinition = CharacterDefinition;
+
+		// if we come from the main menu we want to spawn instantly
+		if (PlayerStateSpawningState == EPlayerStateSpawningState.MainMenu)
+		{
+			PlayerStateSpawningState = EPlayerStateSpawningState.InstantSpawn;
+			return;
+		}
+
 		PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public void RequestSpawn(SpawnPointInfo SpawnPoint)
+	public void SpawnPlayerPawn(SpawnPointInfo SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
-
-		if (PlayerStateSpawningState != EPlayerStateSpawningState.WaitingForSpawn)
-		{
-			return;
-		}
 
 		if (PlayerPawn.IsValid())
 		{

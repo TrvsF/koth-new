@@ -29,6 +29,12 @@ public sealed class PlayerAutoRespawner : Component,
 				continue;
 			}
 
+			if (PlayerState.PlayerStateSpawningState == EPlayerStateSpawningState.InstantSpawn)
+			{
+				SpawnPlayer(PlayerState);
+				return;
+			}
+			
 			if (PlayerState.PlayerStateSpawningState == EPlayerStateSpawningState.WaitingForSpawn)
 			{
 				if (!PlayersWaitingForSpawn.ContainsKey(PlayerState))
@@ -46,11 +52,16 @@ public sealed class PlayerAutoRespawner : Component,
 					continue;
 				}
 
-				SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
-				PlayerState.RequestSpawn(SpawnPoint);
-				PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
-				PlayersWaitingForSpawn.Remove(PlayerState);
+				SpawnPlayer(PlayerState);
 			}
 		}
+	}
+
+	public void SpawnPlayer(PlayerState PlayerState)
+	{
+		SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
+		PlayerState.SpawnPlayerPawn(SpawnPoint);
+		PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
+		PlayersWaitingForSpawn.Remove(PlayerState);
 	}
 }
