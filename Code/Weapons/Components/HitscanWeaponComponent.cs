@@ -10,13 +10,25 @@ using System.Numerics;
 
 namespace KOTH;
 
+struct FFXHitscanShotTrail // TODO : visit
+{
+	public GameObject TrialObject { get; init; }
+	public Vector3 EndPosition { get; init; }
+	public float LerpDistance { get; init; }
+
+	public bool IsValid()
+	{
+		return TrialObject.IsValid();
+	}
+};
+
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
 	[Property, Group("Spread")] public int Sides { get; set; } = 1;
 	[Property, Group("VFX")] public DecalDefinition DecalDefinition { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
-	[Property, Group("VFX")] public float TrialAmount { get; set; } = 50f;
+	[Property, Group("VFX")] public float TrialAmount { get; set; } = 10f;
 
 	protected override void OnInputUpdate()
 	{
@@ -39,11 +51,13 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				Log.Warning($"shooting without a boom {this}");
 			}
 
+			ShotParticles = 0; // !
 			Shoot(Equipment.Owner.AimRay);
 
 			if (Sides >= 3)
 			{
 				const float Radius = 4f;
+				const float OutwardFactor = .77f;
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
 					double Angle = 2 * Math.PI * SideIndex / Sides;
@@ -51,7 +65,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 					float Y = (float)(Radius * Math.Sin(Angle));
 
 					var Forward = Vector3.Forward;
-					var ShootVector = Forward.RotateAround(Vector3.Zero, Rotation.From(X * .5f, Y * .5f, 0));
+					var ShootVector = Forward.RotateAround(Vector3.Zero, Rotation.From(X * OutwardFactor, Y * OutwardFactor, 0));
 					ShootVector = ShootVector.RotateAround(Vector3.Zero, Boom.WorldRotation);
 
 					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), ShootVector);
@@ -66,33 +80,43 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
+
+	List<FFXHitscanShotTrail> FXTrails = new();
+	protected override void OnFixedUpdate()
+	{
+		base.OnFixedUpdate();
+
+		
+	}
+
 	[Rpc.Broadcast]
 	public void WorldShotVFX()
 	{
 	}
 
+	const int MaxParticlesPerShot = 200;
+	int ShotParticles = 0;
+	
 	[Rpc.Broadcast]
 	public void BulletHitVFX(Vector3 HitObjectPosition)
 	{
 		if (TrailPrefab.IsValid())
 		{
-			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
-
+			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
 			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
 
-			bool HACKskipfirstone = true;
-			var Lerp = 0f;
+			var Lerp = 0.05f;
 			while (Lerp < 1f)
 			{
-				if (HACKskipfirstone)
-				{
-					HACKskipfirstone = false;
-					continue;
-				}
-
 				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
 				TrailPrefab.Clone(Position);
 				Lerp += LerpFactor;
+				++ShotParticles;
+
+				if (ShotParticles > MaxParticlesPerShot)
+				{
+					break;
+				}
 			}
 		}
 
@@ -101,6 +125,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			var Decal = Game.Random.FromList(DecalDefinition.Decals);
 
 			var DecalObject = Scene.CreateObject();
+			DecalObject.NetworkMode = NetworkMode.Never;
 			DecalObject.WorldPosition = HitObjectPosition;
 
 			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();

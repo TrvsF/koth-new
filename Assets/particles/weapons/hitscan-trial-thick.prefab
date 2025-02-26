@@ -2,7 +2,7 @@
   "RootObject": {
     "__guid": "6f7e2629-4eed-4fe1-b3be-b5de689301a0",
     "Flags": 0,
-    "Name": "hitscan-trial",
+    "Name": "hitscan-trial-thick",
     "Enabled": true,
     "Components": [
       {
@@ -14,11 +14,11 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "Time": 0.15,
+        "Time": 0.25,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4549.2964,
-          "Passed": 4549.2964,
+          "Relative": -4625.7324,
+          "Passed": 4625.7324,
           "Fraction": 1
         }
       }
@@ -137,9 +137,9 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.01,0.15,0,0"
+              "Constants": "0.1,0.25,0,0"
             },
-            "MaxParticles": 30,
+            "MaxParticles": 100,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -320,7 +320,7 @@
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "33,33,33,0.001"
+                "Color": "33,33,33,0.01"
               },
               "compiled": null
             }
@@ -380,7 +380,7 @@
             "ConeNear": 1,
             "Delay": 0,
             "DestroyOnEnd": false,
-            "Duration": 0.15,
+            "Duration": 0.25,
             "InVolume": false,
             "Loop": true,
             "OnComponentDestroy": null,

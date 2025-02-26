@@ -6,24 +6,27 @@
 
 @attribute [StyleSheet]
 
-@*TODO : tidy this is a piece of shit*@
-
 <style>
 	button:hover {
-		background-color: #F35353AA;
+		background-color: #BEBECC33;
+		border-radius: 12px;
+	}
+
+	.requested {
+		background-color: #A3ABFF22;
 		border-radius: 12px;
 	}
 </style>
 
 <root class="flex absolute inset-0 align-center justify-center">
-	<table class="with-padding-lg layout" style="background-color: #AA535344;">
+	<table class="with-padding-lg layout" style="background-color: #BEBEBE22;">
 		<div class="title" style="font-size: 24px;">
 			Select Class
 		</div>
 
 		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
 		{
-			<button onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 50px;">@Class.CharacterName | @Class.Description</button>
+			<button class="@(Class == PlayerState.Local.RequestedCharacterDefinition ? "requested" : "")" onclick="@(() => SelectClass(Class))" style="cursor: pointer; padding: 50px;">@Class.CharacterName | @Class.Description</button>
 		}
 	</table>
 

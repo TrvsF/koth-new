@@ -78,7 +78,7 @@
           "_type": "gameobject",
           "prefab": "particles/weapons/hitscan-trial.prefab"
         },
-        "TrialAmount": 50
+        "TrialAmount": 10
       }
     ],
     "Children": [

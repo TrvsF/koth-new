@@ -76,9 +76,9 @@
         "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",
-          "prefab": "particles/weapons/hitscan-trial.prefab"
+          "prefab": "particles/weapons/hitscan-trial-thick.prefab"
         },
-        "TrialAmount": 50
+        "TrialAmount": 8
       }
     ],
     "Children": [

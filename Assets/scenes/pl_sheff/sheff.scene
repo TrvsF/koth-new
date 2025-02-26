@@ -139,7 +139,7 @@
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 7
+                  "RespawnDelaySeconds": 5
                 },
                 {
                   "__type": "KOTH.WaitForPlayers",
