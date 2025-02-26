@@ -1,3 +1,4 @@
+using KOTH.PlayerExp;
 using KOTH.UI;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -107,6 +108,7 @@ public sealed class DamageComponent : Component
 	private void BroadcastKill(FDamageTaken DamageTaken)
 	{
 		Scene.Dispatch(new KillEvent(DamageTaken));
+		ExpManager.BroadcastExpEvent(new ExpEvent(1, ExpOrigins.Kill), DamageTaken.AttackerPlayerPawn);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

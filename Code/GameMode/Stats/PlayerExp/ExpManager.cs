@@ -10,10 +10,11 @@ public class ExpManager : Component
 	/// </summary>
 	/// <param name="expEvent">The Event Containing how much exp the player should receive</param>
 	/// <param name="player">The player receiving the exp</param>
-	public void BroadcastExpEvent(ExpEvent expEvent, PlayerPawn player)
+	public static void BroadcastExpEvent(ExpEvent expEvent, PlayerPawn player)
 	{
 		var playerState = GameUtils.GetPlayer(player.Id);
 
+		Log.Info("Broadcasting exp event");
 		using (Rpc.FilterInclude(n => n.SteamId == playerState.SteamId))
 		{
 			ProcessExpEvent(expEvent);
@@ -26,9 +27,10 @@ public class ExpManager : Component
 	/// </summary>
 	/// <param name="expEvent">The event received from the server</param>
 	[Rpc.Broadcast]
-	private void ProcessExpEvent(ExpEvent expEvent)
+	private static void ProcessExpEvent(ExpEvent expEvent)
 	{
-		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin);
+		Log.Info("Received exp event");
+		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin.ToString());
 	}
 
 }
