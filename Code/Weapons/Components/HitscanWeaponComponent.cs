@@ -94,7 +94,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	{
 	}
 
-	const int MaxParticlesPerShot = 200;
+	const int MaxParticlesPerShot = 250;
 	int ShotParticles = 0;
 	
 	[Rpc.Broadcast]
@@ -125,7 +125,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			var Decal = Game.Random.FromList(DecalDefinition.Decals);
 
 			var DecalObject = Scene.CreateObject();
-			DecalObject.NetworkMode = NetworkMode.Never;
+			// DecalObject.NetworkMode = NetworkMode.Never;
 			DecalObject.WorldPosition = HitObjectPosition;
 
 			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();

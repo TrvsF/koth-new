@@ -38,8 +38,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public TagBinder TagBinder { get; private set; }
 	[RequireComponent] public CharacterController CharacterController { get; private set; }
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
-	[RequireComponent] public Spotter Spotter { get; private set; }
-	[RequireComponent] public Spottable Spottable { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -95,10 +93,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
 
-		Body.Renderer.Tint = Team.GetColor(false);
-		Body.Dresser.ApplyClothing(); // this thing is fkn weird
-		Body.Dresser.SetupClothes();
-
 		Tags.Add($"{Team}");
 
 		if (IsLocallyControlled)
@@ -106,6 +100,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Assert.True(CreatePlayerCamera());
 
 			Body.Renderer.Enabled = false;
+			Body.Dresser.ApplyClothing(); // this thing is fkn weird
 			
 			Tags.Add("self");
 
@@ -118,6 +113,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Body.Renderer.Enabled = true;
 			Tags.Remove("self");
 		}
+
+		Body.Renderer.Tint = Team.GetColor(false);
+		Body.Dresser.SetupClothes();
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
 		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);

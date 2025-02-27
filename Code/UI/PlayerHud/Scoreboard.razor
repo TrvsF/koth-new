@@ -7,109 +7,98 @@
 @attribute [StyleSheet]
 
 <root class="hidden flex absolute inset-0 align-center justify-center">
-    <table class="with-padding-lg layout">
-        <div class="title">
-            <label class="important uppercase left">@(Status is null ? Name : $"{Name} - {Status}")</label>
-            <label class="important uppercase center">@(RoundNumber is { } roundNumber && RoundLimit is { } roundLimit ? $"Round {roundNumber} of {roundLimit}" : "")</label>
-            <label class="important uppercase right">@(Time?.ToString( @"m\:ss" ) ?? " ")</label>
-        </div>
+	<table class="with-padding-lg layout">
+		<div class="title">
+			<label class="important uppercase left">@(Status is null ? Name : $"{Name} - {Status}")</label>
+			<label class="important uppercase right">@(Time?.ToString(@"m\:ss") ?? " ")</label>
+		</div>
 
-        @for ( int i = 0; i < GroupedPlayers.Count(); i++ )
-        {
-            @{
-                var group = GroupedPlayers[i];
-            }
+		@for (int i = 0; i < GroupedPlayers.Count(); i++)
+		{
+			@{
+				var group = GroupedPlayers[i];
+			}
 
-            @if ( group.Key == Team.Unassigned )
-            {
-                <div class="flex gap-sm align-center">
-                    <Icon file="/ui/teams/spectator.png" size="16" />
-                    <label class="small grey">@(string.Join(", ", group.Select(x => x.SteamName))</label>
-                </div>
-            }
-            else
-            {
-                <div class="row header with-px-lg with-py-sm">
-                    <label class="col stat-small small"></label>
-                    <label class="col stat-small small"></label>
-                    <label class="col playername small"></label>
-                  
-                </div>
+			@if (group.Key == Team.Unassigned)
+			{
+				<div class="flex gap-sm align-center">
+					<Icon file="/ui/teams/spectator.png" size="16" />
+					<label class="small grey">@(string.Join(", ", group.Select(x => x.SteamName))</label>
+				</div>
+			}
+			else
+			{
+				<div class="row header with-px-lg with-py-sm">
+					<label class="col stat-small small"></label>
+					<label class="col stat-small small"></label>
+					<label class="col playername small"></label>
 
-                @foreach ( var player in group )
-                {
-                    // <ScoreboardRow PlayerState="@player" />
-                }
+				</div>
 
-                @if ( i == 0 )
-                {
-                    <GameOverview />
-                }
-            }
-        }
-    </table>
+				@foreach (var player in group)
+				{
+					// <ScoreboardRow PlayerState="@player" />
+				}
+			}
+		}
+	</table>
 </root>
 
 @code
 {
-    public string Status => GameMode.Instance?.DisplayedStatus;
-    public string Name => GameMode.Instance?.Title;
-    public TimeSpan? Time => GameMode.Instance?.DisplayedTime;
+	public string Status => GameMode.Instance?.DisplayedStatus;
+	public string Name => GameMode.Instance?.Title;
+	public TimeSpan? Time => GameMode.Instance?.DisplayedTime;
 
-    public int? RoundNumber => GameMode.Instance.Get<RoundCounter>()?.Round;
-    public int? RoundLimit => GameMode.Instance.Get<RoundLimit>()?.MaxRounds;
+	public IEnumerable<PlayerState> PlayerStates => GameNetworkManager.PlayerStates;
 
-    public IEnumerable<PlayerState> PlayerStates => GameNetworkManager.PlayerStates;
+	private List<IGrouping<Team, PlayerState>> GroupedPlayers
+	{
+		get
+		{
+			var sortedPlayers = PlayerStates;
+			var groupedPlayers = sortedPlayers.GroupBy(x => x.Team);
+			return groupedPlayers.ToList();
+		}
+	}
 
-    private List<IGrouping<Team, PlayerState>> GroupedPlayers
-    {
-        get
-        {
-            var sortedPlayers = PlayerStates;
-            var groupedPlayers = sortedPlayers.GroupBy(x => x.Team);
-            return groupedPlayers.ToList();
-        }
-    }
+	public bool IsActive { get; set; }
 
-    public bool IsActive { get; set; }
+	protected override int BuildHash()
+	{
+		if (!IsActive) return 0;
 
-    protected override int BuildHash()
-    {
-        if ( !IsActive ) return 0;
+		var hash = new HashCode();
 
-        var hash = new HashCode();
+		hash.Add(IsActive);
+		hash.Add(Status);
+		hash.Add(Time?.TotalSeconds);
 
-        hash.Add( IsActive );
-        hash.Add( Status );
-        hash.Add( Time?.TotalSeconds );
-        hash.Add( RoundNumber );
-        hash.Add( RoundLimit );
+		foreach (var team in GroupedPlayers)
+		{
+			hash.Add(team.Key);
 
-        foreach ( var team in GroupedPlayers )
-        {
-            hash.Add( team.Key );
+			foreach (var player in team)
+			{
+				hash.Add(player.Id);
+			}
+		}
 
-            foreach ( var player in team )
-            {
-                hash.Add( player.Id );
-            }
-        }
+		return hash.ToHashCode();
+	}
 
-        return hash.ToHashCode();
-    }
+	public override void Tick()
+	{
+		if (Input.Pressed("Score"))
+		{
+			IsActive = Input.Pressed("Score");
+			SetClass("visible", true);
+		}
 
-    public override void Tick()
-    {
-        if ( Input.Pressed( "Score" ) )
-        {
-            IsActive = Input.Pressed( "Score" );
-            SetClass( "visible", true );
-        }
-
-        if ( Input.Released( "Score" ) )
-        {
-            SetClass( "visible", false );
-            IsActive = false;
-        }
-    }
+		if (Input.Released("Score"))
+		{
+			SetClass("visible", false);
+			IsActive = false;
+		}
+	}
 }

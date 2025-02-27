@@ -210,6 +210,16 @@
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
                   "RespawnDelaySeconds": 9
+                },
+                {
+                  "__type": "KOTH.ResetGame",
+                  "__guid": "905bc03b-558f-4db1-8779-cbd613c7854a",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             },
