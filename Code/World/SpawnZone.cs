@@ -7,6 +7,7 @@ public sealed class SpawnZone : Zone, Component.ITriggerListener
 {
 	[RequireComponent] BoxCollider TriggerBoxCollider { get; set; }
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
+	[Property] public float SpawnTime { get; private set; } = 0f;
 
 	private List<PlayerPawn> CurrentPlayerPawns = new();
 

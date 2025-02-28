@@ -7,11 +7,14 @@ using System.ComponentModel.DataAnnotations;
 namespace KOTH;
 
 public sealed class PayloadGamemode : Component,
+	ITeamSpawnTime,
 	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<EnterStateEvent>
 {
 	[Property] public GameObject PayloadGameobject { get; set; } = null;
 	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
+	[Property] public GameObject TActiveSpawn { get; set; } = null;
+	[Property] public GameObject CTActiveSpawn { get; set; } = null;
 
 	protected override void OnStart()
 	{
@@ -26,6 +29,9 @@ public sealed class PayloadGamemode : Component,
 
 	PayloadCart PayloadCartComponent { get => PayloadGameobject.GetComponent<PayloadCart>(); }
 	PayloadPath PayloadPathComponent { get => PayloadPathGameobject.GetComponent<PayloadPath>(); }
+
+	public float TSpawnTime => TActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
+	public float CTSpawnTime => CTActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{

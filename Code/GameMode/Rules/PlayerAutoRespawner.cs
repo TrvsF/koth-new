@@ -7,7 +7,9 @@ namespace KOTH;
 public sealed class PlayerAutoRespawner : Component,
 	IGameEventHandler<UpdateStateEvent>
 {
-	[Property, Sync(SyncFlags.FromHost)] public float RespawnDelaySeconds { get; private set; } = 0f;
+	[Property, Sync(SyncFlags.FromHost)] public bool TryUseGamemodeRespawnTime { get; private set; } = false;
+	[Property, Sync(SyncFlags.FromHost)] public bool UseSpawnWaves { get; private set; } = false;
+	[Property, Sync(SyncFlags.FromHost)] public float DefaultRespawnDelaySeconds { get; private set; } = 0f;
 
 	private Dictionary<PlayerState, TimeSince> PlayersWaitingForSpawn = new();
 
@@ -34,16 +36,17 @@ public sealed class PlayerAutoRespawner : Component,
 				SpawnPlayer(PlayerState);
 				return;
 			}
-			
+
 			if (PlayerState.PlayerStateSpawningState == EPlayerStateSpawningState.WaitingForSpawn)
 			{
 				if (!PlayersWaitingForSpawn.ContainsKey(PlayerState))
 				{
-					PlayersWaitingForSpawn.Add(PlayerState, 0);
+					EmplacePlayerInSpawnMap(PlayerState);
 				}
 
 				var TimeWaitingForSpawn = PlayersWaitingForSpawn[PlayerState];
 
+				var RespawnDelaySeconds = GetPlayerRespawnTime(PlayerState);
 				var TimeTilSpawn = RespawnDelaySeconds - TimeWaitingForSpawn;
 				PlayerState.SetTimeTilAttemptedSpawn(TimeTilSpawn);
 
@@ -57,11 +60,66 @@ public sealed class PlayerAutoRespawner : Component,
 		}
 	}
 
-	public void SpawnPlayer(PlayerState PlayerState)
+	private void SpawnPlayer(PlayerState PlayerState)
 	{
+		Assert.IsValid(PlayerState);
+
 		SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
 		PlayerState.SpawnPlayerPawn(SpawnPoint);
 		PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
 		PlayersWaitingForSpawn.Remove(PlayerState);
+	}
+
+	private void EmplacePlayerInSpawnMap(PlayerState PlayerState)
+	{
+		if (UseSpawnWaves)
+		{
+			foreach (var (FoundPlayer, Time) in PlayersWaitingForSpawn)
+			{
+				if (PlayerState.Team == FoundPlayer.Team)
+				{
+					if (Time < 3f)
+					{
+						PlayersWaitingForSpawn.Add(PlayerState, Time);
+						return;
+					}
+				}
+			}
+
+			PlayersWaitingForSpawn.Add(PlayerState, 0);
+		}
+		else
+		{
+			PlayersWaitingForSpawn.Add(PlayerState, 0);
+		}
+	}
+
+	private float GetPlayerRespawnTime(PlayerState PlayerState)
+	{
+		Assert.IsValid(PlayerState);
+
+		var RespawnTime = DefaultRespawnDelaySeconds;
+
+		if (TryUseGamemodeRespawnTime)
+		{
+			foreach (var GameRule in GameObject.Components.GetAll())
+			{
+				if (GameRule is ITeamSpawnTime TeamSpawnTime)
+				{
+					if (PlayerState.Team == Team.CounterTerrorist)
+					{
+						RespawnTime = TeamSpawnTime.CTSpawnTime;
+						break;
+					}
+					else
+					{
+						RespawnTime = TeamSpawnTime.TSpawnTime;
+						break;
+					}
+				}
+			}
+		}
+
+		return RespawnTime;
 	}
 }

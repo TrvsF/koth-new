@@ -133,13 +133,15 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "881306aa-c383-4c2b-b163-b36ec6c60017",
+                  "DefaultRespawnDelaySeconds": 5,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 5
+                  "TryUseGamemodeRespawnTime": false,
+                  "UseSpawnWaves": false
                 },
                 {
                   "__type": "KOTH.WaitForPlayers",
@@ -185,6 +187,10 @@
                 {
                   "__type": "KOTH.PayloadGamemode",
                   "__guid": "f8944979-bb97-4bb3-a885-4c396c48b4d3",
+                  "CTActiveSpawn": {
+                    "_type": "gameobject",
+                    "go": "1b974669-0bce-4ea0-97ee-9093f207f579"
+                  },
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -198,18 +204,24 @@
                   "PayloadPathGameobject": {
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
+                  },
+                  "TActiveSpawn": {
+                    "_type": "gameobject",
+                    "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"
                   }
                 },
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "3f947822-4562-4b89-af86-6a57d584489d",
+                  "DefaultRespawnDelaySeconds": 10,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 9
+                  "TryUseGamemodeRespawnTime": true,
+                  "UseSpawnWaves": true
                 },
                 {
                   "__type": "KOTH.ResetGame",
@@ -254,13 +266,15 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "a9c63096-ea7b-446b-9749-8dbaef839553",
+                  "DefaultRespawnDelaySeconds": 0,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null,
-                  "RespawnDelaySeconds": 3
+                  "TryUseGamemodeRespawnTime": false,
+                  "UseSpawnWaves": false
                 },
                 {
                   "__type": "KOTH.WaitForPlayers",
@@ -402,6 +416,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnTime": 6,
               "Team": "Terrorist"
             }
           ]
@@ -445,6 +460,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnTime": 0,
               "Team": "Terrorist"
             }
           ]
@@ -634,6 +650,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnTime": 10,
               "Team": "CounterTerrorist"
             }
           ]
