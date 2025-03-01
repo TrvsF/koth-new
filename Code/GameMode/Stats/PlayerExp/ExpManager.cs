@@ -1,4 +1,5 @@
-﻿using Sandbox.Events;
+﻿using Sandbox.Diagnostics;
+using Sandbox.Events;
 
 namespace KOTH.PlayerExp;
 
@@ -15,12 +16,14 @@ public class ExpManager : Component
 	/// </summary>
 	/// <param name="expEvent">The Event Containing how much exp the player should receive</param>
 	/// <param name="player">The player receiving the exp</param>
-	public void BroadcastExpEvent(ExpEvent expEvent, PlayerPawn player)
+	public void BroadcastExpEvent(FExpEvent expEvent, PlayerPawn player)
 	{
-		var playerState = GameUtils.GetPlayer(player.Id);
+		Assert.True(Networking.IsHost);
 
-		Log.Info($"Broadcasting exp event to {player}");
-		using (Rpc.FilterInclude(n => n.SteamId == playerState.SteamId))
+		var PlayerState = GameUtils.GetPlayer(player.Id);
+
+		Log.Info($"Broadcasting exp event to {player}:{PlayerState}:{PlayerState.SteamId}");
+		using (Rpc.FilterInclude(PlayerState.Connection))
 		{
 			ProcessExpEvent(expEvent);
 		}
@@ -45,7 +48,7 @@ public class ExpManager : Component
 	/// </summary>
 	/// <param name="expEvent">The event received from the server</param>
 	[Rpc.Broadcast]
-	private void ProcessExpEvent(ExpEvent expEvent)
+	private void ProcessExpEvent(FExpEvent expEvent)
 	{
 		Log.Info($"Received exp event {expEvent.Amount} from {expEvent.Origin}");
 		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin.ToString());

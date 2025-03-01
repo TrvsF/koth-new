@@ -7,7 +7,11 @@ namespace KOTH.PlayerExp;
 /// </summary>
 /// <param name="Amount">Amount of exp</param>
 /// <param name="Origin">Where the exp originated from</param>
-public record ExpEvent(int Amount, ExpOrigins Origin) : IGameEvent;
+public struct FExpEvent
+{
+	public int Amount { get; init; }
+	public ExpOrigins Origin { get; init; }
+}
 
 /// <summary>
 /// Event for broadcasting player level-up notifications.

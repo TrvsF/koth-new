@@ -41,9 +41,13 @@ public partial class PlayerPawn :
 		// UNCOMMENT ID CHECK BEFORE PUBLISHING
 		if (this is { IsDummy: false } && DamageTaken.AttackerPlayerPawn is { IsDummy: false } /*&& Id != DamageTaken.VictimPlayerPawn.Id*/)
 		{
-			ExpManager.BroadcastExpEvent(
-				new ExpEvent(ExpManager.CalculateExp(10, 5), ExpOrigins.Kill),
-				DamageTaken.AttackerPlayerPawn);
+			FExpEvent ExpEvent = new()
+			{
+				Amount = ExpManager.CalculateExp(10, 5),
+				Origin = ExpOrigins.Kill,
+			};
+
+			ExpManager.BroadcastExpEvent(ExpEvent, DamageTaken.AttackerPlayerPawn);
 		}
 
 		OnDeath?.Invoke();
