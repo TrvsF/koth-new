@@ -157,7 +157,7 @@ public partial class PlayerPawn
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void OnDamageTaken(FDamageTaken DamageTaken)
 	{
-		if (!IsProxy)
+		if (!IsProxy && !IsDummy)
 		{
 			var DamageLocation = DamageTaken.DamageLocation;
 			DamageIndicatorNew.Instance?.OnHit(DamageLocation);

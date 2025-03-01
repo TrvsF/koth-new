@@ -17,8 +17,8 @@
         "Time": 0.15,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4549.2964,
-          "Passed": 4549.2964,
+          "Relative": -6572.5464,
+          "Passed": 6572.5464,
           "Fraction": 1
         }
       }
@@ -139,7 +139,7 @@
               ],
               "Constants": "0.01,0.15,0,0"
             },
-            "MaxParticles": 30,
+            "MaxParticles": 50,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -372,6 +372,7 @@
           {
             "__type": "Sandbox.ParticleConeEmitter",
             "__guid": "b076ee09-162c-4c37-8ccd-2a40ab934e5e",
+            "__enabled": false,
             "Burst": 1000,
             "CenterBias": 0,
             "CenterBiasVelocity": 0,
@@ -394,6 +395,25 @@
             "RateOverDistance": 0,
             "VelocityMultiplier": 1,
             "VelocityRandom": 0
+          },
+          {
+            "__type": "Sandbox.ParticleBoxEmitter",
+            "__guid": "8a32073b-ea33-414e-b0a7-10817603f476",
+            "Burst": 100,
+            "Delay": 0,
+            "DestroyOnEnd": false,
+            "Duration": 0.15,
+            "Loop": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnEdge": false,
+            "Rate": 0,
+            "RateOverDistance": 0,
+            "Size": "0.5,0.5,25"
           }
         ]
       }

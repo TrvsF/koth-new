@@ -39,6 +39,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 	/////////////////////////////////////////////////////////////
 
+	List<RealTimeSince> BulletsShot = new(); // appended to in Shoot()
+
 	protected override void OnInputUpdate()
 	{
 		Assert.IsValid(Equipment);
@@ -72,9 +74,11 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			{
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
+					var RadiusIn = Radius + (BulletsShot.Count / 2f); 
+
 					double Angle = 2 * Math.PI * SideIndex / Sides;
-					float X = (float)(Radius * Math.Cos(Angle));
-					float Y = (float)(Radius * Math.Sin(Angle));
+					float X = (float)(RadiusIn * Math.Cos(Angle));
+					float Y = (float)(RadiusIn * Math.Sin(Angle));
 
 					var ShootVector = Forward.RotateAround(Vector3.Zero, Rotation.From(X * OutwardFactor, Y * OutwardFactor, 0));
 					ShootVector = ShootVector.RotateAround(Vector3.Zero, Boom.WorldRotation);
@@ -92,9 +96,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 	const float RecoilBulletDecayTime = 1.33f;
-	List<RealTimeSince> BulletsShot = new(); // appended to in Shoot()
-
-	float LastSide = 0;
 	private Rotation GetNextShotOffset()
 	{
 		BulletsShot.RemoveAll(Bullet => Bullet > RecoilBulletDecayTime);
@@ -106,7 +107,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			return Rotation.Identity;
 		}
 
-		Random Random = new Random();
+		Random Random = new();
 		float Side = MathX.Lerp(0, MaxOutwardDistance, RecoilBulletsLerp);
 		float Distance = MathX.Lerp(0, MaxUpwardDistance, RecoilBulletsLerp);
 
@@ -159,7 +160,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				DamageType = EDamageType.HitScan,
 				DamageFalloffType = EDamageFalloffType.Falloff,
 				DoesLessSelfDamage = true,
-				MaxFalloffDistance = 600,
 				DirectImpact = true,
 			};
 
@@ -220,6 +220,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	[Rpc.Broadcast]
 	public void BulletHitVFX(Vector3 HitObjectPosition)
 	{
+		if (!Equipment.Owner.IsValid())
+		{
+			Log.Warning($"owner not valid on hitscan comp {this}");
+			return;
+		}
+
 		if (TrailPrefab.IsValid())
 		{
 			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
@@ -229,7 +235,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			while (Lerp < 1f)
 			{
 				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
-				TrailPrefab.Clone(Position);
+				TrailPrefab.Clone(Position, Equipment.Owner.Boom.WorldRotation);
 				Lerp += LerpFactor;
 				++ShotParticles;
 

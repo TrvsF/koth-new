@@ -45,7 +45,7 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
-					MaxFalloffDistance = ExplosionRadius,
+					MaxDamageImpactDistance = ExplosionRadius,
 				};
 
 				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
@@ -81,7 +81,7 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 				DirectImpact = true,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.None,
-				MaxFalloffDistance = ExplosionRadius,
+				MaxDamageImpactDistance = ExplosionRadius,
 			};
 			Scene.Dispatch(new DamageRequestEvent(DirectDamageRequest));
 
@@ -106,7 +106,7 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Falloff,
-					MaxFalloffDistance = ExplosionRadius,
+					MaxDamageImpactDistance = ExplosionRadius,
 				};
 
 				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)

@@ -14,8 +14,6 @@ public record FHealingRequest
 	public bool AllowOverheal { get; init; } = false;
 
 	public EHealingType HealingType { get; init; } = EHealingType.Continuous;
-	// hitscan only
-	// projectile only
 	public Vector3 HealingOrigin { get; init; } = Vector3.Zero;
 
 	public RealTimeSince TimeSinceEvent { get; init; } = 0;
