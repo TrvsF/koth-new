@@ -27,26 +27,20 @@
 
 		@if (notification != null && notification.Zone == NotificationZone.TopCenter)
 		{
-			<div class="top-middle" style="color: @notification.Color; @notification.Css">
-				<strong>
-					@notification.Message
-				</strong>
+			<div class="notification-center-top" style="color: @notification.Color; @notification.Css">
+				<label class="notification">@notification.Message</label>
 			</div>
 		}
 		@if (notification != null && notification.Zone == NotificationZone.Center)
 		{
-			<div class="middle" style="color: @notification.Color; @notification.Css">
-				<strong>
-					@notification.Message
-				</strong>
+			<div class="notification-center" style="color: @notification.Color;">
+				<label class="notification" style="@notification.Css">@notification.Message</label>
 			</div>
 		}
 		@if (notification != null && notification.Zone == NotificationZone.LowerCenter)
 		{
-			<div class="bottom-middle" style="color: @notification.Color; @notification.Css">
-				<strong>
-					@notification.Message
-				</strong>
+			<div class="notification-center-lower" style="color: @notification.Color; @notification.Css">
+				<label class="notification">@notification.Message</label>
 			</div>
 		}
 
@@ -111,7 +105,7 @@
 
 		if (Input.Pressed("chat"))
 		{
-			NotificationManager.Instance.AddNotification(new Notification("Test 1", 30, NotificationZone.TopCenter));
+			NotificationManager.Instance.AddNotification(new Notification("Test 1", 30, NotificationZone.LowerCenter));
 			TextChat.Instance?.InputBox?.Focus();
 		}
 	}
