@@ -1,4 +1,6 @@
-﻿using KOTH.Utils;
+﻿using KOTH.Notification;
+using KOTH.PlayerExp;
+using KOTH.Utils;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 
@@ -8,7 +10,8 @@ public record GamemodeInitializedEvent(string Title) : IGameEvent;
 
 public sealed partial class GameMode : SingletonComponent<GameMode>,
 	IGameEventHandler<LocalPlayerSpawnedEvent>,
-	IGameEventHandler<LocalPlayerDiedEvent>
+	IGameEventHandler<LocalPlayerDiedEvent>,
+	IGameEventHandler<LevelUpEvent>
 {
 	[Property] public string Title { get; set; }
 
@@ -18,6 +21,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	[RequireComponent] public ClassList ClassList { get; private set; }
 	[RequireComponent] public Stats Stats { get; private set; }
 	[RequireComponent] public TextChat TextChat { get; private set; }
+	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
 
 	/////////////////////////////////////////////////////////////
 
@@ -177,5 +181,10 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		}
 
 		return component as T;
+	}
+
+	public void OnGameEvent(LevelUpEvent eventArgs)
+	{
+		NotificationManager.AddNotification(new Notification.Notification($"Level Up: {eventArgs.Level}", 30, NotificationZone.TopCenter));
 	}
 }

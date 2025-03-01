@@ -1,4 +1,5 @@
 @namespace KOTH.UI
+@using KOTH.Notification
 @using Sandbox.Events
 @inherits PanelComponent
 
@@ -22,6 +23,26 @@
 		<Ammo />
 
 		<RoundStateDisplay />
+
+
+		@if (notification != null && notification.Zone == NotificationZone.TopCenter)
+		{
+			<div class="notification-center-top" style="color: @notification.Color; @notification.Css">
+				<label class="notification">@notification.Message</label>
+			</div>
+		}
+		@if (notification != null && notification.Zone == NotificationZone.Center)
+		{
+			<div class="notification-center" style="color: @notification.Color;">
+				<label class="notification" style="@notification.Css">@notification.Message</label>
+			</div>
+		}
+		@if (notification != null && notification.Zone == NotificationZone.LowerCenter)
+		{
+			<div class="notification-center-lower" style="color: @notification.Color; @notification.Css">
+				<label class="notification">@notification.Message</label>
+			</div>
+		}
 
 		<div class="right">
 			<div class="flex-grow" />
@@ -51,6 +72,8 @@
 
 @code
 {
+	public Notification notification { get; set; }
+
 	[ConVar("cl_drawhud")]
 	public static bool IsHudEnabled { get; set; } = true;
 
@@ -78,8 +101,11 @@
 			return;
 		}
 
+		notification = NotificationManager.Instance.GetNotification();
+
 		if (Input.Pressed("chat"))
 		{
+			NotificationManager.Instance.AddNotification(new Notification("Test 1", 30, NotificationZone.LowerCenter));
 			TextChat.Instance?.InputBox?.Focus();
 		}
 	}

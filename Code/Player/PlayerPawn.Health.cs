@@ -1,3 +1,4 @@
+using KOTH.PlayerExp;
 using KOTH.UI;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -35,6 +36,14 @@ public partial class PlayerPawn :
 		if (Camera.IsValid())
 		{
 			Camera.GameObject.Root.Destroy();
+		}
+
+		// UNCOMMENT ID CHECK BEFORE PUBLISHING
+		if (this is { IsDummy: false } && DamageTaken.VictimPlayerPawn is { IsDummy: false } /*&& Id != DamageTaken.VictimPlayerPawn.Id*/)
+		{
+			ExpManager.BroadcastExpEvent(
+				new ExpEvent(ExpManager.CalculateExp(10, 5), ExpOrigins.Kill),
+				this);
 		}
 
 		OnDeath?.Invoke();

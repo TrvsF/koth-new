@@ -1,3 +1,4 @@
+using KOTH.PlayerExp;
 using KOTH.UI;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -21,7 +22,7 @@ public sealed class DamageComponent : Component
 	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
 	const float OverhealFactor = 1.5f;
 	const float HealDegradePerSecond = 7f;
 
@@ -64,6 +65,7 @@ public sealed class DamageComponent : Component
 	}
 
 	TimeSince TimeSinceLastHeal = new();
+
 	public void Heal(float Healing, bool AllowOverheal)
 	{
 		Assert.True(Networking.IsHost);

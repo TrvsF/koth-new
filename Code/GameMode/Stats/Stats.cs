@@ -9,7 +9,7 @@ using static Sandbox.Services.Stats;
 
 public sealed class Stats : Component
 {
-	// const string PackageName = "wurstsoftware.koth";
+	public static readonly string PackageName = "wurstsoftware.koth";
 
 	// private static async void GetStats()
 	// {
