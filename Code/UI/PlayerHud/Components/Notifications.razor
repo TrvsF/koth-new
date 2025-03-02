@@ -4,7 +4,7 @@
 @attribute [StyleSheet]
 
 <root>
-    @if (notification != null && notification.Value.Zone == NotificationZone.TopCenter)
+    @if (notification != null && notification.Value.Zone == ENotificationZone.TopCenter)
     {
         <div class="notification-center-top" style="color: @notification.Value.Color; @notification.Value.Css">
             @if (notification.Value.Image != null)
@@ -14,7 +14,7 @@
             <label class="notification">@notification.Value.Message</label>
         </div>
     }
-    @if (notification != null && notification.Value.Zone == NotificationZone.Center)
+    @if (notification != null && notification.Value.Zone == ENotificationZone.Center)
     {
         <div class="notification-center" style="color: @notification.Value.Color;">
             @if (notification.Value.Image != null)
@@ -24,7 +24,7 @@
             <label class="notification" style="@notification.Value.Css">@notification.Value.Message</label>
         </div>
     }
-    @if (notification != null && notification.Value.Zone == NotificationZone.LowerCenter)
+    @if (notification != null && notification.Value.Zone == ENotificationZone.LowerCenter)
     {
         <div class="notification-center-lower " style="color: @notification.Value.Color; @notification.Value.Css">
             <div class="notification-container">
@@ -40,7 +40,7 @@
 
 @code
 {
-    public Notification? notification => NotificationManager.Instance.GetNotification();
+    public FNotification? notification => NotificationManager.Instance.GetNotification();
 
     protected override int BuildHash()
     {

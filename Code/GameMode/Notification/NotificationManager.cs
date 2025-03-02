@@ -7,18 +7,18 @@
 public class NotificationManager: SingletonComponent<NotificationManager>
 {
 	// Queue of notifications
-	public Queue<Notification> NotificationQueue { get; set; } = new();
+	public Queue<FNotification> NotificationQueue { get; set; } = new();
 
 	// Notification - Time Display Ends
-	public KeyValuePair<Notification, DateTime>? CurrentNotifications { get; set; } = null;
+	public KeyValuePair<FNotification, DateTime>? CurrentNotifications { get; set; } = null;
 
 	/// <summary>
 	/// Adds a new notification to the notification queue.
 	/// </summary>
-	/// <param name="notification">The notification to be added to the queue.</param>
-	public void AddNotification(Notification notification)
+	/// <param name="fNotification">The notification to be added to the queue.</param>
+	public void AddNotification(FNotification fNotification)
 	{
-		NotificationQueue.Enqueue(notification);
+		NotificationQueue.Enqueue(fNotification);
 	}
 
 	/// <summary>
@@ -27,7 +27,7 @@ public class NotificationManager: SingletonComponent<NotificationManager>
 	/// <returns>
 	/// The currently active notification or null if no notification is active.
 	/// </returns>
-	public Notification? GetNotification()
+	public FNotification? GetNotification()
 	{
 		if (CurrentNotifications == null) return null;
 
@@ -49,7 +49,7 @@ public class NotificationManager: SingletonComponent<NotificationManager>
 		if (CurrentNotifications == null && NotificationQueue.Count > 0)
 		{
 			var notification = NotificationQueue.Dequeue();
-			CurrentNotifications = new KeyValuePair<Notification, DateTime>(notification, DateTime.Now.AddSeconds(notification.Duration));
+			CurrentNotifications = new KeyValuePair<FNotification, DateTime>(notification, DateTime.Now.AddSeconds(notification.Duration));
 		}
 	}
 }

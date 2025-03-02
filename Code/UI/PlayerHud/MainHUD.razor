@@ -85,7 +85,7 @@
 		if (Input.Pressed("chat"))
 		{
 			NotificationManager.Instance.AddNotification(
-				new Notification() { Message = "Test 1", Duration = 30, Zone = NotificationZone.LowerCenter, Image = "images/koth-not-test.png"}
+				new FNotification() { Message = "Test 1", Duration = 30, Zone = ENotificationZone.LowerCenter, Image = "images/koth-not-test.png"}
 			);
 			TextChat.Instance?.InputBox?.Focus();
 		}

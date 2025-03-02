@@ -10,12 +10,12 @@
 /// <param name="Color">The color code of the notification text. Defaults to white (#FFFFFF).</param>
 /// <param name="Css">Optional parameter to provide custom CSS style for the notification. Defaults to an empty string.</param>
 /// <param name="Image">Optional parameter to provide an image path to the notification. Defaults to null.</param>
-public struct Notification()
+public struct FNotification()
 {
 	public string Message { get; init; } = "";
 
 	public int Duration { get; init; } = 0;
-	public NotificationZone Zone { get; init; } = NotificationZone.TopCenter;
+	public ENotificationZone Zone { get; init; } = ENotificationZone.TopCenter;
 	public string Color { get; init; } = "#FFFFFF";
 	public string Css { get; init; } = "";
 

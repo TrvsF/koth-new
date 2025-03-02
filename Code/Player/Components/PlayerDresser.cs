@@ -25,6 +25,7 @@ public sealed class PlayerDresser : Component
 		Assert.IsValid(BodyTarget);
 
 		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
+		EquippedClothes.Clothing.Clear();
 
 		if (!ApplyHeightScale)
 		{
