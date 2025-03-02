@@ -9,7 +9,7 @@
         <div class="notification-center-top" style="color: @notification.Value.Color; @notification.Value.Css">
             @if (notification.Value.Image != null)
             {
-                <img class="notification-image" src="@notification.Value.Image" />
+                <img class="notification-image" src="@notification.Value.Image"/>
             }
             <label class="notification">@notification.Value.Message</label>
         </div>
@@ -19,21 +19,21 @@
         <div class="notification-center" style="color: @notification.Value.Color;">
             @if (notification.Value.Image != null)
             {
-                <img class="notification-image" src="@notification.Value.Image" />
+                <img class="notification-image" src="@notification.Value.Image"/>
             }
             <label class="notification" style="@notification.Value.Css">@notification.Value.Message</label>
         </div>
     }
     @if (notification != null && notification.Value.Zone == NotificationZone.LowerCenter)
     {
-        <div class="notification-center-lower" style="color: @notification.Value.Color; @notification.Value.Css">
-            @if (notification.Value.Image != null)
-            {
-                <div>
-                    <img class="notification-image" src="@notification.Value.Image" />
-                </div>
-            }
-            <label class="notification">@notification.Value.Message</label>
+        <div class="notification-center-lower " style="color: @notification.Value.Color; @notification.Value.Css">
+            <div class="notification-container">
+                @if (notification.Value.Image != null)
+                {
+                    <img class="notification-image" src="@notification.Value.Image"/>
+                }
+                <label class="notification">@notification.Value.Message</label>
+            </div>
         </div>
     }
 </root>
