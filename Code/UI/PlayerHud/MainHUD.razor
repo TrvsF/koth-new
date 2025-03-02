@@ -11,59 +11,42 @@
 
 <root>
 	<canvas>
-		<Watermark />
-		<DamageNumbers />
-		<Toast />
-		<DamageIndicatorNew />
-		<StickyOverlay />
-		<HealStatus />
-		<SmallClassSelect />
-		<XHair />
-		<Health />
-		<Ammo />
+		<Watermark/>
+		<Notifications/>
+		<DamageNumbers/>
+		<Toast/>
+		<DamageIndicatorNew/>
+		<StickyOverlay/>
+		<HealStatus/>
+		<SmallClassSelect/>
+		<XHair/>
+		<Health/>
+		<Ammo/>
 
-		<RoundStateDisplay />
-
-
-		@if (notification != null && notification.Zone == NotificationZone.TopCenter)
-		{
-			<div class="notification-center-top" style="color: @notification.Color; @notification.Css">
-				<label class="notification">@notification.Message</label>
-			</div>
-		}
-		@if (notification != null && notification.Zone == NotificationZone.Center)
-		{
-			<div class="notification-center" style="color: @notification.Color;">
-				<label class="notification" style="@notification.Css">@notification.Message</label>
-			</div>
-		}
-		@if (notification != null && notification.Zone == NotificationZone.LowerCenter)
-		{
-			<div class="notification-center-lower" style="color: @notification.Color; @notification.Css">
-				<label class="notification">@notification.Message</label>
-			</div>
-		}
+		<RoundStateDisplay/>
 
 		<div class="right">
-			<div class="flex-grow" />
-			<Voices />
-			<WeaponInfoComponent />
+			<div class="flex-grow"/>
+			<Voices/>
+			<WeaponInfoComponent/>
 		</div>
 
-		<Radio />
+		<Radio/>
 
-		<ScoringSystem @ref="ScoringSystem" />
+		<ScoringSystem @ref="ScoringSystem"/>
 	</canvas>
 
-	<Scoreboard />
+	<Scoreboard/>
 
 	<div class="hud flex column justify-start bottom-left chat">
 		@foreach (var VisableMessage in TextChat.Instance.GetVisableMessages())
 		{
 			@if (VisableMessage.AuthorSteamID > 0)
 			{
-				<div class="square rounded shrink-0" style="background-image: url( avatar:@VisableMessage.AuthorSteamID )"></div>
+				<div class="square rounded shrink-0"
+				     style="background-image: url( avatar:@VisableMessage.AuthorSteamID )"></div>
 			}
+
 			<label class="message no-shadow">@VisableMessage.GetChatMessage()</label>
 		}
 		<TextChatBox @ref="TextChat.Instance.InputBox" onsubmit="@TextChat.Instance.InputBox.SendMessage"></TextChatBox>
@@ -72,10 +55,8 @@
 
 @code
 {
-	public Notification notification { get; set; }
 
-	[ConVar("cl_drawhud")]
-	public static bool IsHudEnabled { get; set; } = true;
+	[ConVar("cl_drawhud")] public static bool IsHudEnabled { get; set; } = true;
 
 	[DeveloperCommand("Toggle HUD", "Visuals")]
 	private static void Command_ToggleHUD()
@@ -101,10 +82,11 @@
 			return;
 		}
 
-		notification = NotificationManager.Instance.GetNotification();
-
 		if (Input.Pressed("chat"))
 		{
+			NotificationManager.Instance.AddNotification(
+				new Notification() { Message = "Test 1", Duration = 30, Zone = NotificationZone.LowerCenter, Image = "images/koth-not-test.png"}
+			);
 			TextChat.Instance?.InputBox?.Focus();
 		}
 	}

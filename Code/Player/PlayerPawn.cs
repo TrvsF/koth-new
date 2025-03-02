@@ -41,8 +41,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
 
-	[RequireComponent] public ExpManager ExpManager { get; private set; }
-
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Property] public bool IsDummy { get; private set; } = false;

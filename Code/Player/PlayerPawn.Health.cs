@@ -43,11 +43,11 @@ public partial class PlayerPawn :
 		{
 			FExpEvent ExpEvent = new()
 			{
-				Amount = ExpManager.CalculateExp(10, 5),
+				Amount = ExpManager.Instance.CalculateExp(10, 5),
 				Origin = ExpOrigins.Kill,
 			};
 
-			ExpManager.BroadcastExpEvent(ExpEvent, DamageTaken.AttackerPlayerPawn);
+			ExpManager.Instance.BroadcastExpEvent(ExpEvent, DamageTaken.AttackerPlayerPawn);
 		}
 
 		OnDeath?.Invoke();

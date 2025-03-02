@@ -22,11 +22,14 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	[RequireComponent] public Stats Stats { get; private set; }
 	[RequireComponent] public TextChat TextChat { get; private set; }
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
+	[RequireComponent] public ExpManager ExpManager { get; private set; }
 
 	/////////////////////////////////////////////////////////////
 
 	private StateMachineComponent _stateMachine;
-	public StateMachineComponent StateMachine => _stateMachine ??= Components.GetInDescendantsOrSelf<StateMachineComponent>();
+
+	public StateMachineComponent StateMachine =>
+		_stateMachine ??= Components.GetInDescendantsOrSelf<StateMachineComponent>();
 
 	/////////////////////////////////////////////////////////////
 
@@ -86,7 +89,8 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 			if (SpawnZone.Team.GetOpponents() == PlayerState.Local.Team)
 			{
-				var ClonedSpawnObject = SpawnZoneObject.Clone(SpawnZoneObject.WorldPosition, SpawnZoneObject.WorldRotation, SpawnZoneObject.WorldScale);
+				var ClonedSpawnObject = SpawnZoneObject.Clone(SpawnZoneObject.WorldPosition,
+					SpawnZoneObject.WorldRotation, SpawnZoneObject.WorldScale);
 				ClonedSpawnObject.NetworkMode = NetworkMode.Never;
 
 				var ClonedSpawnZone = ClonedSpawnObject.GetComponent<SpawnZone>();
@@ -169,7 +173,8 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 			_componentCache.Clear();
 		}
 
-		if (!_componentCache.TryGetValue(typeof(T), out var component) || component is { IsValid: false } || component is { Active: false })
+		if (!_componentCache.TryGetValue(typeof(T), out var component) || component is { IsValid: false } ||
+		    component is { Active: false })
 		{
 			component = Components.GetInDescendantsOrSelf<T>() as Component;
 			_componentCache[typeof(T)] = component;
@@ -185,6 +190,9 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	public void OnGameEvent(LevelUpEvent eventArgs)
 	{
-		NotificationManager.AddNotification(new Notification.Notification($"Level Up: {eventArgs.Level}", 30, NotificationZone.TopCenter));
+		NotificationManager.AddNotification(new Notification.Notification()
+		{
+			Message = $"Level Up: {eventArgs.Level}", Duration = 30, Zone = NotificationZone.TopCenter
+		});
 	}
 }
