@@ -25,7 +25,7 @@ struct FFXHitscanShotTrail // TODO : visit
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
-	[Property, Group("Recoil")] public int BulletsPerSecondBeforeMax { get; set; } = 0;
+	[Property, Group("Recoil")] public float RecoilAddFactor { get; set; } = 0.2f;
 	[Property, Group("Recoil")] public float MaxOutwardDistance { get; set; } = 0f;
 	[Property, Group("Recoil")] public float MaxUpwardDistance { get; set; } = 0f;
 
@@ -74,7 +74,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			{
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
-					var RadiusIn = Radius + (BulletsShot.Count / 2f); 
+					var RadiusIn = Radius + (BulletsShot.Count * 0.2f); 
 
 					double Angle = 2 * Math.PI * SideIndex / Sides;
 					float X = (float)(RadiusIn * Math.Cos(Angle));
@@ -95,16 +95,22 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
-	const float RecoilBulletDecayTime = 1.33f;
+
+	// silly thing that gets added to when we fire a shot
+	// used when lerping to MaxUpwardDistance etc 
+	float BulletRecoilFactorer = 0;
+	// TODO : should probably get combined with below somehow
+	const float RecoilBulletDecayTime = 10f;
+	
 	private Rotation GetNextShotOffset()
 	{
 		BulletsShot.RemoveAll(Bullet => Bullet > RecoilBulletDecayTime);
 		int BulletCount = BulletsShot.Count;
 
-		float RecoilBulletsLerp = (float)BulletCount / (float)BulletsPerSecondBeforeMax;
-		if (RecoilBulletsLerp == 0)
+		float RecoilBulletsLerp = 0;
+		if (BulletRecoilFactorer > 0)
 		{
-			return Rotation.Identity;
+			RecoilBulletsLerp = BulletRecoilFactorer / 1;
 		}
 
 		Random Random = new();
@@ -122,12 +128,19 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		Rotation ShotVectorAngleOffset = Rotation.From(Pitch, Yaw, 0);
 
-		Log.Info($"count:{BulletCount}, angle:{Side}, distance:{Distance}");
-		Log.Info($"{Yaw}:{Pitch}");
+		BulletRecoilFactorer += RecoilAddFactor;
 
 		return ShotVectorAngleOffset;
 	}
 
+	protected override void OnFixedUpdate()
+	{
+		BulletRecoilFactorer -= 0.015f;
+		BulletRecoilFactorer = Math.Clamp(BulletRecoilFactorer, 0, 1);
+
+		base.OnFixedUpdate();
+	}
+	
 	/////////////////////////////////////////////////////////////
 
 	protected virtual void Shoot(Ray WeaponRay)
@@ -201,13 +214,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 	/////////////////////////////////////////////////////////////
 
-	List<FFXHitscanShotTrail> FXTrails = new();
-	protected override void OnFixedUpdate()
-	{
-		base.OnFixedUpdate();
-
-
-	}
 
 	[Rpc.Broadcast]
 	public void WorldShotVFX()
