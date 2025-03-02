@@ -12,8 +12,6 @@ public sealed class PayloadCart : Component
 	[Property] public float BaseHealing { get; set; } = 0.05f;
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
 
-	// TODO : hookup to teams
-
 	protected override void OnFixedUpdate()
 	{
 		base.OnFixedUpdate();

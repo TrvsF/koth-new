@@ -85,13 +85,9 @@ public sealed class PlayerAutoRespawner : Component,
 					}
 				}
 			}
+		}
 
-			PlayersWaitingForSpawn.Add(PlayerState, 0);
-		}
-		else
-		{
-			PlayersWaitingForSpawn.Add(PlayerState, 0);
-		}
+		PlayersWaitingForSpawn.Add(PlayerState, 0);
 	}
 
 	private float GetPlayerRespawnTime(PlayerState PlayerState)

@@ -33,6 +33,10 @@ public sealed class PayloadGamemode : Component,
 	public float TSpawnTime => TActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 	public float CTSpawnTime => CTActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 
+	private bool HasCartFinished = false;
+	private int CurrentSegmentIndex = 0;
+	private float TargetTransitionFactor = 0;
+	
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
 		Assert.IsValid(PayloadCartComponent);
@@ -41,11 +45,11 @@ public sealed class PayloadGamemode : Component,
 		var StartLocationRotation = PayloadPathComponent.GetStartPositionRotation();
 		PayloadGameobject.WorldPosition = StartLocationRotation.Position;
 		PayloadGameobject.WorldRotation = StartLocationRotation.Rotation;
-	}
 
-	bool HasCartFinished = false;
-	int CurrentSegmentIndex = 0;
-	float TargetTransitionFactor = 0;
+		HasCartFinished = false;
+		CurrentSegmentIndex = 0;
+		TargetTransitionFactor = 0;
+	}
 
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
