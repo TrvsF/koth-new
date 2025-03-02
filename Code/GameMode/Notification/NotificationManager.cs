@@ -15,10 +15,10 @@ public class NotificationManager: SingletonComponent<NotificationManager>
 	/// <summary>
 	/// Adds a new notification to the notification queue.
 	/// </summary>
-	/// <param name="fNotification">The notification to be added to the queue.</param>
-	public void AddNotification(FNotification fNotification)
+	/// <param name="Notification">The notification to be added to the queue.</param>
+	public void AddNotification(FNotification Notification)
 	{
-		NotificationQueue.Enqueue(fNotification);
+		NotificationQueue.Enqueue(Notification);
 	}
 
 	/// <summary>
