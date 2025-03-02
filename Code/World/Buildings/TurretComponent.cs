@@ -114,13 +114,13 @@ public static class ShootHelper
 	}
 }
 
-
 public sealed class TurretComponent : Component
 {
 	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
 
+	[Property] public float MaxHealth { get; private set; } = 1f;
 	[Property] public float Damage { get; private set; } = 1f;
 	[Property] public float KnockbackStrength { get; private set; } = 1f;
 	[Property] public float Firerate { get; private set; } = 1f;
@@ -131,7 +131,7 @@ public sealed class TurretComponent : Component
 
 	////////////////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost)] public PlayerPawn OwnerPawn { get; set; }
+	[Sync(SyncFlags.FromHost)] public PlayerState OwnerState { get; set; }
 	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
 	public Action OnDestroyed = null;
@@ -205,13 +205,18 @@ public sealed class TurretComponent : Component
 
 	////////////////////////////////////////////////////////////////////////
 
-	protected override void OnEnabled()
+	protected override void OnStart()
 	{
-		base.OnEnabled();
+		base.OnStart();
 
 		Assert.NotNull(DamageComponent);
 
 		DamageComponent.OnDeath += OnKill;
+
+		if (Networking.IsHost)
+		{
+			DamageComponent.Initalize(MaxHealth, OwnerState.Team);
+		}
 	}
 
 	private void OnKill(FDamageTaken DamageTaken)
@@ -297,7 +302,7 @@ public sealed class TurretComponent : Component
 				FDamageRequest DamageRequest = new()
 				{
 					TargetDamageComponent = HitPlayerPawn.DamageComponent,
-					AttackerPlayerPawn = OwnerPawn,
+					AttackerPlayerPawn = OwnerState.PlayerPawn,
 					TargetPlayerPawn = HitPlayerPawn,
 					DamageOrigin = TraceElement.HitPosition,
 					TargetOrigin = HitPlayerPawn.CenterPosition,

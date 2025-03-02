@@ -17,8 +17,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	// special bool for jumper gamemode
 	[Property] public bool KnockbackOnly { get; private set; } = false;
 
-	const float SelfDamageMultiplyer = 0.2f;
-	const float PlayerDistanceFalloffMaxBound = 1000;
+	const float SelfDamageMultiplyer = 0.25f;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -58,18 +57,6 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
-
-	const float MaxKB = 1800f;
-	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightKnockbackFactor, bool IsCrouching)
-	{
-		var CrouchFactor = IsCrouching ? 62 : 82;
-		var KnockbackFactor = Damage * (WeaponKnockbackStrength / CrouchFactor);
-
-		KnockbackFactor = Math.Min(KnockbackFactor, MaxKB);
-		return DirectionVec * KnockbackFactor * WeightKnockbackFactor;
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////
 	// host only broadcasts
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,12 +75,11 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
-		// we've taken damage without an attacker pawn, apply & return early ////////////////////////////////
+		// we've taken damage without an attacker pawn, apply & return early ///////////////////
 		if (!AttackerPlayerPawn.IsValid())
 		{
 			FDamageTaken EnvDamageTaken = new()
 			{
-				AttackerPlayerPawn = null,
 				VictimPlayerPawn = DamageRequest.TargetPlayerPawn,
 				Damage = Damage,
 				DamageLocation = DamageOrigin,
@@ -103,87 +89,80 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return; // NOTE : early return
 		}
 
-		// team check ////////////////////////////////
-		//if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetDamageComponent != AttackerPlayerPawn && !TargetDamageComponent.IsDummy)
-		//{
-		//	// return; // NOTE : early return
-		//}
-
-		// we want to target the hit object's center of mass
-		var TargetPoint = DamageRequest.TargetOrigin;
-
-		// calculate damage /////////////
-		switch (DamageRequest.DamageType)
+		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
+		
+		// team check ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
 		{
-			case EDamageType.HitScan: // meant to follow thru
-			case EDamageType.Projectile:
-				{
-					var TargetToImpactDistance = TargetPoint.Distance(DamageOrigin);
-					var TargetToAttackerDistance = TargetPoint.Distance(AttackerPlayerPawn.CenterPosition);
-
-					if (DamageRequest.DamageFalloffType == EDamageFalloffType.Falloff)
-					{
-						float MaxDamageInterpFactor = TargetToAttackerDistance / PlayerDistanceFalloffMaxBound;
-						float MaxDamage = MathX.Lerp(Damage, Damage * .33f, MaxDamageInterpFactor);
-
-						// if a direct then tighten its damage falloff
-						float MinDamage = DamageRequest.DirectImpact ? Damage * .33f : Damage * .15f;
-
-						float DamageInterpFactor = TargetToImpactDistance / 200f;
-						//Log.Info($"max : {MaxDamage}, min : {MinDamage}, Lerp : {DamageInterpFactor}");
-						Damage = MathX.Lerp(MaxDamage, MinDamage, DamageInterpFactor);
-					}
-					else if (DamageRequest.DamageFalloffType == EDamageFalloffType.Rampup)
-					{
-						float MinDamage = DamageRequest.DirectImpact ? Damage * 0.4f : Damage * .15f;
-						float InterpFactor = TargetToImpactDistance / 300f;
-						Damage = MathX.Lerp(MinDamage, Damage, InterpFactor);
-					}
-				}
-				break;
-
-			case EDamageType.Melee:
-				// TODO
-				break;
+			return; // NOTE : early return
 		}
+
+		var TargetCenter = DamageRequest.TargetOrigin;
+
+		// calculate damage ///////////////////////////////////////////
+		if (DamageRequest.DamageFalloffType != EDamageFalloffType.None)
+		{
+			var TargetToImpactDistance = TargetCenter.Distance(DamageOrigin);
+			var TargetToAttackerDistance = TargetCenter.Distance(AttackerPlayerPawn.CenterPosition);
+
+			float MaxDamage = Damage;
+			if (DamageRequest.DamageType == EDamageType.Projectile && !DamageRequest.DirectImpact)
+			{
+				var DamageDistanceLerp = TargetToImpactDistance / DamageRequest.MaxDamageImpactDistance;
+				MaxDamage = MathX.Lerp(MaxDamage, MaxDamage * 0.5f, DamageDistanceLerp);
+			}
+
+			float MinDamage = MaxDamage * 0.33f;
+			float DamageLerp = TargetToAttackerDistance / 1600f;
+
+			if (DamageRequest.DamageFalloffType == EDamageFalloffType.Falloff)
+			{
+				Damage = MathX.Lerp(MaxDamage, MinDamage, DamageLerp);
+			}
+			else
+			{
+				Damage = MathX.Lerp(MinDamage, MaxDamage, DamageLerp);
+			}
+		}
+
 
 		// knockback ////////////////
-		var Knockback = Vector3.Zero;
-		if (DamageRequest.TargetPlayerPawn.IsValid())
-		{ 
-			var DirectionVec = (TargetPoint - DamageOrigin).Normal;
-			Knockback = CalculateKnockback(DirectionVec, Damage, DamageRequest.BaseKnockbackStrength,
-				DamageRequest.TargetPlayerPawn.WeightFactor, DamageRequest.TargetPlayerPawn.IsCrouching);
+		var Knockback = Vector3.Zero; 
+		if (TargetPlayerPawn.IsValid())
+		{
+			var DirectionVec = (TargetCenter - DamageOrigin).Normal;
+			var CrouchFactor = TargetPlayerPawn.IsCrouching ? 62 : 82;
+			var KnockbackFactor = Damage * (DamageRequest.BaseKnockbackStrength / CrouchFactor);
 
-			DamageRequest.TargetPlayerPawn.DoKnockback(Knockback);
+			Knockback = DirectionVec * KnockbackFactor * TargetPlayerPawn.WeightFactor;
+			TargetPlayerPawn.DoKnockback(Knockback);
 		}
 
-		bool WasSelfDamage = DamageRequest.TargetPlayerPawn == AttackerPlayerPawn;
+		if (KnockbackOnly)
+		{
+			return; // !
+		}
+
+		// deal the damage /////////////////////////////////////////
+		bool WasSelfDamage = TargetPlayerPawn == AttackerPlayerPawn;
 		if (WasSelfDamage && DamageRequest.DoesLessSelfDamage)
 		{
 			Damage *= SelfDamageMultiplyer;
 		}
 
-		if (KnockbackOnly)
-		{
-			return;
-		}
-		
 		FDamageTaken DamageTaken = new()
 		{
 			AttackerPlayerPawn = AttackerPlayerPawn,
-			VictimPlayerPawn = DamageRequest.TargetPlayerPawn,
+			VictimPlayerPawn = TargetPlayerPawn,
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
 		};
 
-		// deal the damage ///////////////////////////
 		TargetDamageComponent.TakeDamage(DamageTaken);
-
 		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
 
 		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health}" +
-			$" -> {DamageRequest.TargetPlayerPawn?.DisplayName}:{TargetDamageComponent.Health}");
+			$" -> {TargetPlayerPawn?.DisplayName}:{TargetDamageComponent.Health}");
 	}
 
 	[Rpc.Host]

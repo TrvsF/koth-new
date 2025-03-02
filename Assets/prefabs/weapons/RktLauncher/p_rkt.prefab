@@ -59,13 +59,17 @@
       {
         "__type": "KOTH.Rkt",
         "__guid": "b9f278af-2a58-4500-9544-dddff82a1fd9",
+        "AuraPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/rkt-aura.prefab"
+        },
         "BaseDamage": 90,
         "BaseKnockbackStrength": 500,
         "ExplosionPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/blue-hit.prefab"
         },
-        "ExplosionRadius": 156,
+        "ExplosionRadius": 96,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -93,7 +97,7 @@
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
             "MaterialGroup": null,
-            "MaterialOverride": "materials/natural/lava/lava.vmat",
+            "MaterialOverride": "materials/surfaces/dev_grey3.vmat",
             "Model": "models/projectiles/rocket-2.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -108,7 +112,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Tint": "0.17209,0.17209,0.17209,1"
+            "Tint": "194.44,194.44,194.44,1"
           }
         ]
       }
@@ -144,7 +148,7 @@
   "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [
-    "droppod.lava#37772"
+    "fishum.dev_grey3#25839"
   ],
   "__version": 1
 }

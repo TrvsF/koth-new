@@ -25,10 +25,21 @@ struct FFXHitscanShotTrail // TODO : visit
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
+	[Property, Group("Recoil")] public float RecoilAddFactor { get; set; } = 0.2f;
+	[Property, Group("Recoil")] public float MaxOutwardDistance { get; set; } = 0f;
+	[Property, Group("Recoil")] public float MaxUpwardDistance { get; set; } = 0f;
+
 	[Property, Group("Spread")] public int Sides { get; set; } = 1;
+	[Property, Group("Spread")] public float Radius { get; set; } = 4f;
+	[Property, Group("Spread")] public float OutwardFactor { get; set; } = .77f;
+
 	[Property, Group("VFX")] public DecalDefinition DecalDefinition { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
 	[Property, Group("VFX")] public float TrialAmount { get; set; } = 10f;
+
+	/////////////////////////////////////////////////////////////
+
+	List<RealTimeSince> BulletsShot = new(); // appended to in Shoot()
 
 	protected override void OnInputUpdate()
 	{
@@ -52,28 +63,32 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			}
 
 			ShotParticles = 0; // !
-			Shoot(Equipment.Owner.AimRay);
+
+			var Forward = Vector3.Forward;
+			var OffsetVector = Forward.RotateAround(Vector3.Zero, GetNextShotOffset());
+			OffsetVector = OffsetVector.RotateAround(Vector3.Zero, Boom.WorldRotation);
+
+			Shoot(new(Boom.WorldPosition + OffsetVector, OffsetVector));
 
 			if (Sides >= 3)
 			{
-				const float Radius = 4f;
-				const float OutwardFactor = .77f;
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
-					double Angle = 2 * Math.PI * SideIndex / Sides;
-					float X = (float)(Radius * Math.Cos(Angle));
-					float Y = (float)(Radius * Math.Sin(Angle));
+					var RadiusIn = Radius + (BulletsShot.Count * 0.2f); 
 
-					var Forward = Vector3.Forward;
+					double Angle = 2 * Math.PI * SideIndex / Sides;
+					float X = (float)(RadiusIn * Math.Cos(Angle));
+					float Y = (float)(RadiusIn * Math.Sin(Angle));
+
 					var ShootVector = Forward.RotateAround(Vector3.Zero, Rotation.From(X * OutwardFactor, Y * OutwardFactor, 0));
 					ShootVector = ShootVector.RotateAround(Vector3.Zero, Boom.WorldRotation);
 
 					Ray ShapeRay = new(Boom.WorldPosition + ((Boom.WorldRotation.Up * Y) + (Boom.WorldRotation.Right * X)), ShootVector);
-					
+
 					Shoot(ShapeRay);
 				}
 			}
-			
+
 			TimeSinceShot = 0;
 			Ammo--;
 		}
@@ -81,67 +96,52 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 
-	List<FFXHitscanShotTrail> FXTrails = new();
+	// silly thing that gets added to when we fire a shot
+	// used when lerping to MaxUpwardDistance etc 
+	float BulletRecoilFactorer = 0;
+	// TODO : should probably get combined with below somehow
+	const float RecoilBulletDecayTime = 10f;
+	
+	private Rotation GetNextShotOffset()
+	{
+		BulletsShot.RemoveAll(Bullet => Bullet > RecoilBulletDecayTime);
+		int BulletCount = BulletsShot.Count;
+
+		float RecoilBulletsLerp = 0;
+		if (BulletRecoilFactorer > 0)
+		{
+			RecoilBulletsLerp = BulletRecoilFactorer / 1;
+		}
+
+		Random Random = new();
+		float Side = MathX.Lerp(0, MaxOutwardDistance, RecoilBulletsLerp);
+		float Distance = MathX.Lerp(0, MaxUpwardDistance, RecoilBulletsLerp);
+
+		const double YawMaxOffset = 0.2;
+		const double PitchMaxOffset = 0.05;
+
+		Side *= Random.Next(-1, 2);
+		Distance *= -1;
+
+		float Yaw = (float)(Random.NextDouble() * (YawMaxOffset * 2) - YawMaxOffset) + Side;
+		float Pitch = (float)(Random.NextDouble() * (PitchMaxOffset * 2) - PitchMaxOffset) + Distance;
+
+		Rotation ShotVectorAngleOffset = Rotation.From(Pitch, Yaw, 0);
+
+		BulletRecoilFactorer += RecoilAddFactor;
+
+		return ShotVectorAngleOffset;
+	}
+
 	protected override void OnFixedUpdate()
 	{
+		BulletRecoilFactorer -= 0.015f;
+		BulletRecoilFactorer = Math.Clamp(BulletRecoilFactorer, 0, 1);
+
 		base.OnFixedUpdate();
-
-		
 	}
-
-	[Rpc.Broadcast]
-	public void WorldShotVFX()
-	{
-	}
-
-	const int MaxParticlesPerShot = 250;
-	int ShotParticles = 0;
 	
-	[Rpc.Broadcast]
-	public void BulletHitVFX(Vector3 HitObjectPosition)
-	{
-		if (TrailPrefab.IsValid())
-		{
-			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
-			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
-
-			var Lerp = 0.05f;
-			while (Lerp < 1f)
-			{
-				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
-				TrailPrefab.Clone(Position);
-				Lerp += LerpFactor;
-				++ShotParticles;
-
-				if (ShotParticles > MaxParticlesPerShot)
-				{
-					break;
-				}
-			}
-		}
-
-		if (DecalDefinition.IsValid())
-		{
-			var Decal = Game.Random.FromList(DecalDefinition.Decals);
-
-			var DecalObject = Scene.CreateObject();
-			// DecalObject.NetworkMode = NetworkMode.Never;
-			DecalObject.WorldPosition = HitObjectPosition;
-
-			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
-			DecalRenderer.Material = Decal.Material;
-			DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
-
-			var Destroy = DecalObject.AddComponent<TimedDestroyComponent>();
-			Destroy.Time = 15f;
-
-			DecalObject.NetworkSpawn();
-		}
-	}
-
-	////////////////////////////////////////////////////////////////////////
-	
-	protected Ray WeaponRay => Equipment.Owner.AimRay;
+	/////////////////////////////////////////////////////////////
 
 	protected virtual void Shoot(Ray WeaponRay)
 	{
@@ -151,37 +151,39 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		var TraceEnd = WeaponRay.Position + TraceForward * 80000f; // TODO : silly number, but if this doesn't hit we shoot at world.forward
 
 		var DamageComponentsHit = ShootHelper.GetDamageComponentsFromTrace(Scene.Trace, GameObject, TraceStart, TraceEnd, out var FirstImpactLocation);
+		BulletHitVFX(FirstImpactLocation);
+		BulletsShot.Add(0);
 
-		if (Network.IsOwner)
+		if (!Network.IsOwner)
 		{
-			foreach (var (DamageComponent, HitLocation) in DamageComponentsHit)
-			{
-				FDamageRequest DamageRequest = new()
-				{
-					TargetDamageComponent = DamageComponent,
-					AttackerPlayerPawn = Equipment.Owner,
-					DamageOrigin = HitLocation,
-					BaseDamage = BaseDamage,
-					TargetOrigin = DamageComponent.GameObject.WorldPosition,
-					BaseKnockbackStrength = KnockbackStrength,
-					DamageType = EDamageType.HitScan,
-					DamageFalloffType = EDamageFalloffType.Falloff,
-					DoesLessSelfDamage = true,
-					MaxFalloffDistance = 600,
-					DirectImpact = true,
-				};
-
-				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
-				{
-					DamageRequest.TargetPlayerPawn = PlayerPawn;
-					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
-				}
-
-				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
-			}
+			return;
 		}
 
-		BulletHitVFX(FirstImpactLocation);
+		// request the damage /\/\/\/\/\/\/\///////////////////////////////
+		foreach (var (DamageComponent, HitLocation) in DamageComponentsHit)
+		{
+			FDamageRequest DamageRequest = new()
+			{
+				TargetDamageComponent = DamageComponent,
+				AttackerPlayerPawn = Equipment.Owner,
+				DamageOrigin = HitLocation,
+				BaseDamage = BaseDamage,
+				TargetOrigin = DamageComponent.GameObject.WorldPosition,
+				BaseKnockbackStrength = KnockbackStrength,
+				DamageType = EDamageType.HitScan,
+				DamageFalloffType = EDamageFalloffType.Falloff,
+				DoesLessSelfDamage = true,
+				DirectImpact = true,
+			};
+
+			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+			{
+				DamageRequest.TargetPlayerPawn = PlayerPawn;
+				DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+			}
+
+			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+		}
 	}
 
 	protected TimeSince TimeSinceShot = new();
@@ -208,5 +210,64 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			return false;
 
 		return true;
+	}
+
+	/////////////////////////////////////////////////////////////
+
+
+	[Rpc.Broadcast]
+	public void WorldShotVFX()
+	{
+	}
+
+	const int MaxParticlesPerShot = 250;
+	int ShotParticles = 0;
+
+	[Rpc.Broadcast]
+	public void BulletHitVFX(Vector3 HitObjectPosition)
+	{
+		if (!Equipment.Owner.IsValid())
+		{
+			Log.Warning($"owner not valid on hitscan comp {this}");
+			return;
+		}
+
+		if (TrailPrefab.IsValid())
+		{
+			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
+			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
+
+			var Lerp = 0.05f;
+			while (Lerp < 1f)
+			{
+				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
+				TrailPrefab.Clone(Position, Equipment.Owner.Boom.WorldRotation);
+				Lerp += LerpFactor;
+				++ShotParticles;
+
+				if (ShotParticles > MaxParticlesPerShot)
+				{
+					break;
+				}
+			}
+		}
+
+		if (DecalDefinition.IsValid())
+		{
+			var Decal = Game.Random.FromList(DecalDefinition.Decals);
+
+			var DecalObject = Scene.CreateObject();
+			DecalObject.NetworkMode = NetworkMode.Never;
+			DecalObject.WorldPosition = HitObjectPosition;
+
+			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
+			DecalRenderer.Material = Decal.Material;
+			DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
+
+			var Destroy = DecalObject.AddComponent<TimedDestroyComponent>();
+			Destroy.Time = 15f;
+
+			DecalObject.NetworkSpawn();
+		}
 	}
 }

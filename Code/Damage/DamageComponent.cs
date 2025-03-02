@@ -9,25 +9,20 @@ namespace KOTH;
 
 public sealed class DamageComponent : Component
 {
-	[Property, HostSync] public bool IsGodMode { get; private set; } = false;
-
-	//////////////////////////////////////////////////////////////////////////////////
-
 	public event Action<FDamageTaken> OnDeath;
 
 	[Property, Sync(SyncFlags.FromHost)] public float Health { get; private set; } = 100f;
 	[Property, Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
+	[Sync(SyncFlags.FromHost)] public Team Team { get; private set; } = Team.Unassigned;
 	public bool IsDead => Health < 0f;
-
-	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
 	const float OverhealFactor = 1.5f;
 	const float HealDegradePerSecond = 7f;
+	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
 
 	// HACK : TODO REWORK
-
 	protected override void OnAwake()
 	{
 		base.OnAwake();
@@ -56,12 +51,13 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public void SetHealth(float MaxBaseHealthIn)
+	public void Initalize(float MaxBaseHealthIn, Team TeamIn)
 	{
 		Assert.True(Networking.IsHost);
 
 		MaxBaseHealth = MaxBaseHealthIn;
 		Health = MaxBaseHealthIn;
+		Team = TeamIn;
 	}
 
 	TimeSince TimeSinceLastHeal = new();
@@ -121,13 +117,5 @@ public sealed class DamageComponent : Component
 	public string GetMaxHealthString()
 	{
 		return MaxBaseHealth.CeilToInt().ToString();
-	}
-
-	//////////////////////////////////////////////////////////////////////////////////
-
-	[Rpc.Broadcast(NetFlags.HostOnly)]
-	public void SetGodmode(bool GodMode)
-	{
-		IsGodMode = GodMode;
 	}
 }

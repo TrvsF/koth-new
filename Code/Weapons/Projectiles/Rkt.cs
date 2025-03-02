@@ -6,6 +6,7 @@ namespace KOTH;
 
 public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
+	[Property, Group("VFX")] public GameObject AuraPrefab { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
 	[Property, Group("VFX")] public GameObject ExplosionPrefab { get; set; }
 
@@ -23,15 +24,30 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	{
 		base.OnUpdate();
 
-		Assert.IsValid(TrailPrefab);
-		TrailPrefab.Clone(WorldPosition);
+		if (TrailPrefab.IsValid())
+		{
+			TrailPrefab.Clone(WorldPosition);
+		}
+
+		if (AuraPrefab.IsValid())
+		{
+			var TeamAura = AuraPrefab;
+			if (TeamAura.GetComponent<ParticleSpriteRenderer>() is { } Sprite)
+			{
+				Sprite.Texture = Texture.Create(1, 1).WithData(new byte[4] { 0, 0, 0, 255 }).Finish();
+			}
+
+			TeamAura.Clone(WorldPosition, WorldRotation);
+		}
 	}
 
 	[Rpc.Broadcast]
-	public void DoExplosionVfx()
+	public void DoExplosionVfx(Vector3 EndLocation)
 	{
-		Assert.IsValid(ExplosionPrefab);
-		ExplosionPrefab.Clone(WorldPosition);
+		if (ExplosionPrefab.IsValid())
+		{
+			ExplosionPrefab.Clone(EndLocation);
+		}
 	}
 
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
@@ -57,7 +73,7 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,
 				DoesLessSelfDamage = true,
-				MaxFalloffDistance = ExplosionRadius,
+				MaxDamageImpactDistance = ExplosionRadius,
 			};
 
 			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
@@ -69,7 +85,7 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 		}
 
-		DoExplosionVfx();
+		DoExplosionVfx(Collision.HitLocation);
 
 		GameObject.Root.Destroy();
 	}

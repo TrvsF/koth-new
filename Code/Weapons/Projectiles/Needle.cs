@@ -11,6 +11,14 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 	[Property, Group("Damage")] public float MinDamage { get; set; } = 40f;
 	[Property, Group("Damage")] public float MaxDamage { get; set; } = 90f;
 
+	/////////////////////////////////////////////////////////////////////////////////////
+
+	private GameObject AttachedGameObject = null;
+	private Vector3 HitLocation;
+	private Transform InitArmedWorldTransformAttachedObject;
+
+	/////////////////////////////////////////////////////////////////////////////////////
+
 	public TimedDestroyComponent DestroyComponent { get; private set; }
 
 	private readonly float MaxAliveTime = 30; // seconds
@@ -18,6 +26,17 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 	{
 		DestroyComponent = Components.Create<TimedDestroyComponent>();
 		DestroyComponent.Time = MaxAliveTime;
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if (AttachedGameObject != null)
+		{
+			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
+			GameObject.WorldPosition = HitLocation + GameObjectOffset;
+		}
 	}
 
 	private float MaxDistance = 1800f;
@@ -61,17 +80,27 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 					TargetPlayerPawn = CollidePlayerPawn,
 					DamageOrigin = Collision.HitLocation,
 					TargetOrigin = CollidePlayerPawn.CenterPosition,
-					BaseDamage = Damage,
+					BaseDamage = MaxDamage,
 					BaseKnockbackStrength = BaseKnockbackStrength,
 					DirectImpact = true,
 					DamageType = EDamageType.Projectile,
 					DamageFalloffType = EDamageFalloffType.Rampup,
-					MaxFalloffDistance = ExplosionRadius,
+					MaxDamageImpactDistance = ExplosionRadius,
 				};
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 			}
 		}
 
-		GameObject.Root.Destroy();
+		var Rigidbody = GameObject.Root.Components.Get<Rigidbody>();
+		if (!Rigidbody.IsValid())
+		{
+			Log.Warning($"cannot find rigidboy comp on needle {this}");
+		}
+
+		Rigidbody.Velocity = Vector3.Zero;
+		Rigidbody.MotionEnabled = false;
+		AttachedGameObject = Collision.HitObject;
+		InitArmedWorldTransformAttachedObject = Collision.HitObject.WorldTransform;
+		HitLocation = Collision.HitLocation;
 	}
 }

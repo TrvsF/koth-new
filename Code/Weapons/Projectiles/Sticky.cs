@@ -12,7 +12,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 	/////////////////////////////////////////////////////////////////////////////////////
 
 	private GameObject AttachedGameObject = null;
-	private Transform InitArmedWorldTransformSticky;
+	private Vector3 InitArmedWorldPosition;
 	private Transform InitArmedWorldTransformAttachedObject;
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -39,8 +39,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		if (AttachedGameObject != null)
 		{
 			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
-			GameObject.WorldPosition = InitArmedWorldTransformSticky.Position + GameObjectOffset;
-			// GameObject.WorldPosition = AttachedGameObject.WorldPosition;
+			GameObject.WorldPosition = InitArmedWorldPosition + GameObjectOffset;
 		}
 
 		// TODO : this is expensive, make a timed lambda
@@ -81,7 +80,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		Rigidbody.MotionEnabled = false;
 		AttachedGameObject = HitObject;
 		InitArmedWorldTransformAttachedObject = HitObject.WorldTransform;
-		InitArmedWorldTransformSticky = GameObject.Root.WorldTransform;
+		InitArmedWorldPosition = EventArgs.ProjectileCollision.HitLocation;
 	}
 
 	[Obsolete]
@@ -128,7 +127,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 				BaseKnockbackStrength = BaseKnockbackStrength,
 				DamageType = EDamageType.Projectile,
 				DamageFalloffType = EDamageFalloffType.Falloff,
-				MaxFalloffDistance = ExplosionRadius,
+				MaxDamageImpactDistance = ExplosionRadius,
 			};
 
 			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)

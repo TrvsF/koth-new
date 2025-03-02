@@ -80,7 +80,7 @@
         "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
         "Flags": 0,
         "Name": "Sphere",
-        "Scale": "1,0.3,0.3",
+        "Scale": "0.5,0.15,0.15",
         "Enabled": true,
         "Components": [
           {

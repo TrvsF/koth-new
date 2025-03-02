@@ -59,14 +59,14 @@
       {
         "__type": "KOTH.Sticky",
         "__guid": "1afd1993-ed95-474a-a132-302d3fdd977f",
-        "BaseDamage": 90,
+        "BaseDamage": 110,
         "BaseKnockbackStrength": 666,
         "ExplodeSound": "sounds/weapons/grenade/he_grenade_explode.sound",
         "ExplosionPrefab": {
           "_type": "gameobject",
           "prefab": "particles/gameplay/money/hit_burst.prefab"
         },
-        "ExplosionRadius": 156,
+        "ExplosionRadius": 128,
         "MinDetTime": 0.8,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

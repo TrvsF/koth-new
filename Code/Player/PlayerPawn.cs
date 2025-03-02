@@ -127,7 +127,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
 		{
-			DamageComponent.SetHealth(CharacterDefinition.MaxHealth);
+			DamageComponent.Initalize(CharacterDefinition.MaxHealth, Team);
 		}
 
 		OnPlayerStart?.Invoke();
