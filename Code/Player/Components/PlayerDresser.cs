@@ -17,15 +17,15 @@ public sealed class PlayerDresser : Component
 
 	public void ApplyClothing()
 	{
-		if (IsProxy)
-		{
-			return;
-		}
-	
+
 		Assert.IsValid(BodyTarget);
 
 		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
-		EquippedClothes.Clothing.Clear();
+
+		if (!IsProxy)
+		{
+			EquippedClothes.Clothing.Clear();
+		}
 
 		if (!ApplyHeightScale)
 		{
@@ -57,7 +57,7 @@ public sealed class PlayerDresser : Component
 					ClothModel.SetMaterial(CTMaterial);
 				}
 				else
-				{ 
+				{
 					ClothModel.SetMaterial(TMaterial);
 				}
 			}

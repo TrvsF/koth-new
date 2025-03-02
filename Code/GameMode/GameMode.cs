@@ -51,6 +51,11 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	{
 		base.OnStart();
 
+		NotificationManager.AddNotification(new FNotification()
+		{
+			Message = $"Welcome to {Title}", Duration = 5, Zone = ENotificationZone.LowerCenter, Image = "images/square.png"
+		});
+
 		foreach (var Object in Scene.GetAllObjects(true))
 		{
 			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
@@ -192,7 +197,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	{
 		NotificationManager.AddNotification(new Notification.FNotification()
 		{
-			Message = $"Level Up: {eventArgs.Level}", Duration = 30, Zone = ENotificationZone.TopCenter
+			Message = $"Level Up: {eventArgs.Level}", Duration = 5, Zone = ENotificationZone.LowerCenter
 		});
 	}
 }
