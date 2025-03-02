@@ -39,8 +39,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 	/////////////////////////////////////////////////////////////
 
-	List<RealTimeSince> BulletsShot = new(); // appended to in Shoot()
-
 	protected override void OnInputUpdate()
 	{
 		Assert.IsValid(Equipment);
@@ -74,7 +72,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			{
 				for (int SideIndex = 0; SideIndex < Sides; ++SideIndex)
 				{
-					var RadiusIn = Radius + (BulletsShot.Count * 0.2f); 
+					var RadiusIn = Radius + (BulletSpreadFactorer * 10f); 
 
 					double Angle = 2 * Math.PI * SideIndex / Sides;
 					float X = (float)(RadiusIn * Math.Cos(Angle));
@@ -89,6 +87,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 				}
 			}
 
+			BulletSpreadFactorer += 0.5f; // !
 			TimeSinceShot = 0;
 			Ammo--;
 		}
@@ -96,17 +95,11 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	}
 
 
-	// silly thing that gets added to when we fire a shot
-	// used when lerping to MaxUpwardDistance etc 
 	float BulletRecoilFactorer = 0;
-	// TODO : should probably get combined with below somehow
-	const float RecoilBulletDecayTime = 10f;
-	
+	float BulletSpreadFactorer = 0;
+
 	private Rotation GetNextShotOffset()
 	{
-		BulletsShot.RemoveAll(Bullet => Bullet > RecoilBulletDecayTime);
-		int BulletCount = BulletsShot.Count;
-
 		float RecoilBulletsLerp = 0;
 		if (BulletRecoilFactorer > 0)
 		{
@@ -137,6 +130,9 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	{
 		BulletRecoilFactorer -= 0.015f;
 		BulletRecoilFactorer = Math.Clamp(BulletRecoilFactorer, 0, 1);
+		
+		BulletSpreadFactorer -= 0.015f;
+		BulletSpreadFactorer = Math.Clamp(BulletSpreadFactorer, 0, 1);
 
 		base.OnFixedUpdate();
 	}
@@ -152,7 +148,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		var DamageComponentsHit = ShootHelper.GetDamageComponentsFromTrace(Scene.Trace, GameObject, TraceStart, TraceEnd, out var FirstImpactLocation);
 		BulletHitVFX(FirstImpactLocation);
-		BulletsShot.Add(0);
 
 		if (!Network.IsOwner)
 		{
