@@ -57,23 +57,6 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
-
-	const float MaxKB = 1800f;
-	private static Vector3 CalculateKnockback(Vector3 DirectionVec, float Damage, float WeaponKnockbackStrength, float WeightKnockbackFactor, bool IsCrouching)
-	{
-		var CrouchFactor = IsCrouching ? 62 : 82;
-		var KnockbackFactor = Damage * (WeaponKnockbackStrength / CrouchFactor);
-
-		KnockbackFactor = Math.Min(KnockbackFactor, MaxKB);
-		return DirectionVec * KnockbackFactor * WeightKnockbackFactor;
-	}
-
-	private static float CalculateDamage(FDamageRequest DamageRequest)
-	{
-		return 0;
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////
 	// host only broadcasts
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -92,7 +75,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
-		// we've taken damage without an attacker pawn, apply & return early ////////////////////////////////
+		// we've taken damage without an attacker pawn, apply & return early ///////////////////
 		if (!AttackerPlayerPawn.IsValid())
 		{
 			FDamageTaken EnvDamageTaken = new()
@@ -106,14 +89,15 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return; // NOTE : early return
 		}
 
-		// team check ////////////////////////////////
-		//if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetDamageComponent != AttackerPlayerPawn && !TargetDamageComponent.IsDummy)
-		//{
-		//	// return; // NOTE : early return
-		//}
+		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
+		
+		// team check ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
+		{
+			return; // NOTE : early return
+		}
 
 		var TargetCenter = DamageRequest.TargetOrigin;
-		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
 
 		// calculate damage ///////////////////////////////////////////
 		if (DamageRequest.DamageFalloffType != EDamageFalloffType.None)
@@ -141,23 +125,25 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			}
 		}
 
+
 		// knockback ////////////////
-		var Knockback = Vector3.Zero;
+		var Knockback = Vector3.Zero; 
 		if (TargetPlayerPawn.IsValid())
 		{
 			var DirectionVec = (TargetCenter - DamageOrigin).Normal;
-			Knockback = CalculateKnockback(DirectionVec, Damage, DamageRequest.BaseKnockbackStrength,
-				TargetPlayerPawn.WeightFactor, TargetPlayerPawn.IsCrouching);
+			var CrouchFactor = TargetPlayerPawn.IsCrouching ? 62 : 82;
+			var KnockbackFactor = Damage * (DamageRequest.BaseKnockbackStrength / CrouchFactor);
 
+			Knockback = DirectionVec * KnockbackFactor * TargetPlayerPawn.WeightFactor;
 			TargetPlayerPawn.DoKnockback(Knockback);
 		}
 
 		if (KnockbackOnly)
 		{
-			return;
+			return; // !
 		}
 
-		// deal the damage ///////////////////////////////////////////////////////
+		// deal the damage /////////////////////////////////////////
 		bool WasSelfDamage = TargetPlayerPawn == AttackerPlayerPawn;
 		if (WasSelfDamage && DamageRequest.DoesLessSelfDamage)
 		{
