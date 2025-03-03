@@ -95,13 +95,13 @@ public partial class PlayerPawn
 	public void Uber()
 	{
 		TimeSinceLastUberMessage = 0;
-		Body.Renderer.SetMaterial(UberMaterial);
+		Body.ModelRenderer.SetMaterial(UberMaterial);
 	}
 
 	[Rpc.Broadcast]
 	public void ClearMaterial()
 	{
-		Body.Renderer.ClearMaterialOverrides();
+		Body.ModelRenderer.ClearMaterialOverrides();
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////
@@ -149,6 +149,8 @@ public partial class PlayerPawn
 
 	/////////////////////////////////////////////////////////////////////////////////
 
+	[Property] public GameObject BloodSquirt { get; set; }
+
 	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
 	{
 		OnDamageTaken(EventArgs.DamageEvent);
@@ -161,6 +163,11 @@ public partial class PlayerPawn
 		{
 			var DamageLocation = DamageTaken.DamageLocation;
 			DamageIndicatorNew.Instance?.OnHit(DamageLocation);
+		}
+
+		if (BloodSquirt.IsValid())
+		{
+			BloodSquirt.Clone(DamageTaken.DamageLocation);
 		}
 	}
 

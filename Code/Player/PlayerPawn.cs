@@ -100,8 +100,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			Assert.True(CreatePlayerCamera());
 
-			Body.Renderer.Enabled = false;
-
 			Tags.Add("self");
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
@@ -109,15 +107,11 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		}
 		else
 		{
-			// HACK : all these are HACKS!
-			Body.Renderer.Enabled = true;
+			// HACK
 			Tags.Remove("self");
 		}
 
-		Body.Dresser.ApplyClothing();
-
-		Body.Renderer.Tint = Team.GetColor(false);
-		Body.Dresser.SetupClothes();
+		Body.ModelRenderer.Tint = Team.GetColor(false);
 
 		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
 		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);
@@ -220,11 +214,11 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		// if (DummyType.HasFlag(DummyType.Jumper))
 		//{
 		IsCrouching = true;
-		//if (CharacterController.IsOnGround)
-		//{
-		//	CharacterController.Punch(Vector3.Up * JumpPower);
-		//	BroadcastPlayerJumped();
-		//}
+		if (CharacterController.IsOnGround)
+		{
+			CharacterController.Punch(Vector3.Up * JumpPower);
+			BroadcastPlayerJumped();
+		}
 		//}
 
 		//if (DummyType.HasFlag(DummyType.Walker))

@@ -15,17 +15,26 @@ public sealed class PlayerDresser : Component
 
 	public ClothingContainer EquippedClothes { get; private set; } = null;
 
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		Assert.IsValid(LocalPlayer);
+
+		if (LocalPlayer.IsLocallyControlled)
+		{
+			ApplyClothing();
+		}
+
+		SetupClothes();
+	}
+
 	public void ApplyClothing()
 	{
-
 		Assert.IsValid(BodyTarget);
 
 		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
-
-		if (!IsProxy)
-		{
-			EquippedClothes.Clothing.Clear();
-		}
+		EquippedClothes.Clothing.Clear();
 
 		if (!ApplyHeightScale)
 		{

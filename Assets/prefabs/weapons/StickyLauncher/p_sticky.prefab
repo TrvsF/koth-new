@@ -62,9 +62,13 @@
         "BaseDamage": 110,
         "BaseKnockbackStrength": 666,
         "ExplodeSound": "sounds/weapons/grenade/he_grenade_explode.sound",
+        "ExplosionParticles": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/gravity-test.prefab"
+        },
         "ExplosionPrefab": {
           "_type": "gameobject",
-          "prefab": "particles/gameplay/money/hit_burst.prefab"
+          "prefab": "particles/weapons/gravity-test.prefab"
         },
         "ExplosionRadius": 128,
         "MinDetTime": 0.8,

@@ -1,20 +1,30 @@
-﻿using static Sandbox.VertexLayout;
+﻿using Sandbox.Diagnostics;
+using static Sandbox.VertexLayout;
 
 namespace KOTH;
 
 public sealed class PlayerBody : Component
 {
-	[RequireComponent] public SkinnedModelRenderer Renderer { get; set; }
-	[RequireComponent] public PlayerDresser Dresser{ get; set; }
+	[RequireComponent] public SkinnedModelRenderer ModelRenderer { get; set; }
+	[RequireComponent] public PlayerDresser Dresser { get; set; }
 	[RequireComponent] public ModelPhysics Physics { get; set; }
 	[Property] public PlayerPawn Player { get; set; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		Assert.IsValid(Player);
+
+		ModelRenderer.Enabled = !Player.IsLocallyControlled;
+	}
+
 	internal void Ragdoll(FDamageTaken DamageTaken)
 	{
 		Physics.Enabled = true;
-		Renderer.UseAnimGraph = false;
+		ModelRenderer.UseAnimGraph = false;
 
 		GameObject.Tags.Set("ragdoll", true);
 
