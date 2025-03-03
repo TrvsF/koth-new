@@ -3,7 +3,7 @@
 /// <summary>
 /// Specifies the layout zones for notifications within the user interface.
 /// </summary>
-public enum NotificationZone
+public enum ENotificationZone
 {
 	/// <summary>
 	/// Specifies a notification display zone located at the top-center of the user interface.

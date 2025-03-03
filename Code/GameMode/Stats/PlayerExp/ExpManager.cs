@@ -3,7 +3,7 @@ using Sandbox.Events;
 
 namespace KOTH.PlayerExp;
 
-public class ExpManager : Component
+public class ExpManager : SingletonComponent<ExpManager>
 {
 
 	private readonly float _levelFactor = 1.4f;

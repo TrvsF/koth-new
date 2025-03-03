@@ -41,8 +41,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
 
-	[RequireComponent] public ExpManager ExpManager { get; private set; }
-
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Property] public bool IsDummy { get; private set; } = false;
@@ -103,8 +101,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Assert.True(CreatePlayerCamera());
 
 			Body.Renderer.Enabled = false;
-			Body.Dresser.ApplyClothing(); // this thing is fkn weird
-			
+
 			Tags.Add("self");
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
@@ -116,6 +113,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Body.Renderer.Enabled = true;
 			Tags.Remove("self");
 		}
+
+		Body.Dresser.ApplyClothing();
 
 		Body.Renderer.Tint = Team.GetColor(false);
 		Body.Dresser.SetupClothes();
