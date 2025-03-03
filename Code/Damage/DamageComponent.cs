@@ -60,13 +60,9 @@ public sealed class DamageComponent : Component
 		Team = TeamIn;
 	}
 
-	TimeSince TimeSinceLastHeal = new();
-
 	public void Heal(float Healing, bool AllowOverheal)
 	{
 		Assert.True(Networking.IsHost);
-
-		TimeSinceLastHeal = 0;
 
 		if (!AllowOverheal && Health >= MaxBaseHealth)
 		{

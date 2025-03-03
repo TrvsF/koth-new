@@ -22,7 +22,6 @@ public sealed class PlayerDresser : Component
 		Assert.IsValid(LocalPlayer);
 
 		ApplyClothing();
-
 		SetupClothes();
 	}
 

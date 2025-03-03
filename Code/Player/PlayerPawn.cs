@@ -1,5 +1,4 @@
 using KOTH.UI;
-using KOTH.Utils;
 using Sandbox;
 using Sandbox.Citizen;
 using Sandbox.Diagnostics;
@@ -47,6 +46,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[Property] public bool IsLocallyControlled => !IsProxy && !IsDummy;
 	[Property] public bool IsViewer => PlayerState.Local?.PlayerPawn == this; // TODO : make spectate target in playerpawn?
 
+	// TODO : dummy only var, refactor
+	public bool IsJumper = false;
+
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Sync(SyncFlags.FromHost)] public TimeSince TimeSinceLastRespawn { get; private set; }
@@ -79,9 +81,15 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		Assert.NotNull(Head);
 		Assert.True(PlayerPawnDefinition.IsValid());
 
+		DisplayName = PlayerPawnDefinition.Name;
+		GameObject.Name = DisplayName;
+
+		Tags.Add($"{Team}");
+		Team = PlayerPawnDefinition.Team;
+
 		CharacterDefinition CharacterDefinition = PlayerPawnDefinition.CharacterDefinition;
 		Assert.True(SetMovementVariables(CharacterDefinition));
-		
+
 		foreach (Type ComponentType in CharacterDefinition.SpecificComponents)
 		{
 			if (ComponentType.IsSubclassOf(typeof(Component)))
@@ -91,14 +99,10 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			}
 		}
 
-		DisplayName = PlayerPawnDefinition.Name;
-		GameObject.Name = DisplayName;
-
-		Tags.Add($"{Team}");
-
 		if (IsLocallyControlled)
 		{
 			Assert.True(CreatePlayerCamera());
+			EyeAngles = WorldRotation.Angles();
 
 			Tags.Add("self");
 
@@ -110,12 +114,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			// HACK
 			Tags.Remove("self");
 		}
-
-		Body.ModelRenderer.Tint = Team.GetColor(false);
-
-		// NOTE : these tags are very good for controlling animations (if those can be sync'd)
-		TagBinder.BindTag("equipping", () => TimeSinceWeaponDeployed < 0.3f);
-		TagBinder.BindTag("no_aiming", () => TimeSinceGroundedChanged < 0.25f);
 
 		// TODO : load in data in a nicer way?
 		if (Networking.IsHost)
@@ -211,22 +209,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	private void DoDummyMovement()
 	{
-		// if (DummyType.HasFlag(DummyType.Jumper))
-		//{
-		IsCrouching = true;
-		if (CharacterController.IsOnGround)
+		if (CharacterController.IsOnGround && IsJumper)
 		{
+			IsCrouching = true;
 			CharacterController.Punch(Vector3.Up * JumpPower);
 			BroadcastPlayerJumped();
 		}
-		//}
-
-		//if (DummyType.HasFlag(DummyType.Walker))
-		//{
-		//	WishMove += Vector3.Forward;
-		//	BuildWishVelocity();
-		//	BuildInput();
-		//}
 
 		ApplyAcceleration();
 		ApplyMovement();

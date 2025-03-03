@@ -1,5 +1,4 @@
 using KOTH.UI;
-using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -46,7 +45,7 @@ public sealed partial class PlayerPawn
 		{
 			StartEnabled = true,
 			Parent = Boom,
-			Transform = new Transform()
+			Transform = new(),
 		};
 
 		PlayerCameraPrefab.Clone(CameraPrefabConfig);

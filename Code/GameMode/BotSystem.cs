@@ -1,4 +1,3 @@
-using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -12,11 +11,21 @@ public sealed class BotSystem : Component,
 	[Property] public GameObject DummyPrefab { get; private set; } = null;
 	public static List<PlayerPawn> DummyPlayerPawns { get; private set; } = new();
 
+	private void OnDummyDeath()
+	{
+
+	}
+
 	protected override void OnStart()
 	{
 		base.OnStart();
 
-		foreach (var SpawnPoint in GameUtils.GetDummySpawnPoints())
+		if (!Networking.IsHost)
+		{
+			return;
+		}
+
+		foreach (var SpawnPoint in GameUtils.GetDummySpawns())
 		{
 			SpawnPlayerPawn(Connection.Host, "Dummy", WorldUtil.GetRandomCharacter(), SpawnPoint);
 		}
@@ -25,16 +34,14 @@ public sealed class BotSystem : Component,
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
-
-		
 	}
 
 	[Rpc.Host]
-	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, SpawnPointInfo SpawnPoint)
+	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
 
-		var SpawnPlayerPawnPrefab = PlayerState.DefaultPlayerPawnPrefab.Clone(SpawnPoint.Transform, null, true);
+		var SpawnPlayerPawnPrefab = PlayerState.DefaultPlayerPawnPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
 
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();
@@ -45,9 +52,12 @@ public sealed class BotSystem : Component,
 			CharacterDefinition = CharacterDefinition,
 			Name = Name,
 			IsDummy = true,
+			Team = SpawnPoint.Team,
 		};
 
 		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);
+		SpawnPlayerPawnComponent.IsJumper = SpawnPoint.Jumper;
+		SpawnPlayerPawnComponent.OnDeath += OnDummyDeath;
 
 		if (!SpawnPlayerPawnPrefab.NetworkSpawn(OwningConnection))
 		{

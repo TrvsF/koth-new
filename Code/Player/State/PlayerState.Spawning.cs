@@ -1,5 +1,4 @@
 ﻿using KOTH.UI;
-using KOTH.Utils;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -118,7 +117,7 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public void SpawnPlayerPawn(SpawnPointInfo SpawnPoint)
+	public void SpawnPlayerPawn(TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
 
@@ -168,13 +167,13 @@ public partial class PlayerState
 	}
 
 	[Rpc.Host]
-	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, SpawnPointInfo SpawnPoint)
+	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
 
 		Log.Info($"attempting to spawn player {RequestedCharacterDefinition} via {OwningConnection}");
 
-		var SpawnPlayerPawnPrefab = DefaultPlayerPawnPrefab.Clone(SpawnPoint.Transform, null, true);
+		var SpawnPlayerPawnPrefab = DefaultPlayerPawnPrefab.Clone(SpawnPoint.GameObject.WorldTransform, null, true);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
 
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();

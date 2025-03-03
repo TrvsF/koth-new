@@ -1,6 +1,5 @@
 ﻿using KOTH.Notification;
 using KOTH.PlayerExp;
-using KOTH.Utils;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 

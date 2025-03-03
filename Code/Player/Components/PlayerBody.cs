@@ -12,13 +12,18 @@ public sealed class PlayerBody : Component
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	protected override void OnStart()
+	protected override void OnAwake()
 	{
-		base.OnStart();
+		base.OnAwake();
 
 		Assert.IsValid(Player);
+		Player.OnPlayerStart += Initialize;
+	}
 
+	private void Initialize()
+	{
 		ModelRenderer.Enabled = !Player.IsLocallyControlled;
+		ModelRenderer.Tint = Player.Team.GetColor(false);
 	}
 
 	internal void Ragdoll(FDamageTaken DamageTaken)

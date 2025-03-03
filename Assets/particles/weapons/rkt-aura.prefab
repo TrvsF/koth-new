@@ -17,8 +17,8 @@
         "Time": 0.05,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4774.81,
-          "Passed": 4774.81,
+          "Relative": -1374.7836,
+          "Passed": 1374.7836,
           "Fraction": 1
         }
       }
@@ -75,11 +75,11 @@
               "Constants": "1,0,0,0"
             },
             "ApplyAlpha": false,
-            "ApplyColor": false,
+            "ApplyColor": true,
             "ApplyRotation": true,
             "ApplyShape": true,
             "Bounce": 0,
-            "Brightness": 1,
+            "Brightness": 100,
             "Bumpiness": 0,
             "Collision": false,
             "CollisionIgnore": null,
@@ -92,8 +92,8 @@
             "ForceSpace": "World",
             "Friction": 1,
             "Gradient": {
-              "Type": "Range",
-              "Evaluation": "Particle",
+              "Type": "Constant",
+              "Evaluation": "Life",
               "GradientA": {
                 "blend": "Linear",
                 "color": [
@@ -114,7 +114,7 @@
                 ],
                 "alpha": []
               },
-              "ConstantA": "0.98515,0.92604,0,1",
+              "ConstantA": "0.07862,0.36744,0.17008,1",
               "ConstantB": "1,0.22,0,1"
             },
             "Lifetime": {
@@ -150,7 +150,7 @@
               ],
               "Constants": "0.001,0.05,0,0"
             },
-            "MaxParticles": 20,
+            "MaxParticles": 100,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -237,7 +237,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.7,0.15,0,0"
+              "Constants": "0.7,0.33,0,0"
             },
             "SequenceId": 0,
             "SequenceSpeed": {
@@ -264,7 +264,7 @@
               "Constants": "2,4,0,0"
             },
             "SequenceTime": 1,
-            "SheetSequence": true,
+            "SheetSequence": false,
             "Space": "World",
             "StartDelay": 0,
             "StartVelocity": {
@@ -292,23 +292,23 @@
             },
             "Stretch": 0,
             "TimeScale": 1,
-            "Tint": "1,1,1,1",
+            "Tint": "0.17445,0.58605,0.44199,1",
             "Yaw": 0
           },
           {
             "__type": "Sandbox.ParticleSpriteRenderer",
             "__guid": "575961b2-b5a5-4f83-97d9-6d5717b5f2cc",
-            "Additive": false,
+            "Additive": true,
             "Alignment": "LookAtCamera",
-            "BlurAmount": 0.07,
-            "BlurOpacity": 0.1,
+            "BlurAmount": 0.81,
+            "BlurOpacity": 0.23,
             "BlurSpacing": 0.08,
             "DepthFeather": 0,
             "FaceVelocity": false,
             "FogStrength": 1,
             "LeadingTrail": true,
             "Lighting": false,
-            "MotionBlur": false,
+            "MotionBlur": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -324,14 +324,14 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 3,
-            "Shadows": false,
+            "Scale": 1.5,
+            "Shadows": true,
             "SortMode": "Unsorted",
             "Texture": {
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "0,0.88333,1,0.21"
+                "Color": "1000,1000,1000,0.1"
               },
               "compiled": null
             }
@@ -386,7 +386,7 @@
             "Delay": 0,
             "DestroyOnEnd": false,
             "Duration": 0.05,
-            "Flatness": 2.500002,
+            "Flatness": 5,
             "Loop": true,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -394,10 +394,10 @@
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null,
-            "Radius": 2,
+            "Radius": 4,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Thickness": 2,
+            "Thickness": 1,
             "VelocityFromCenter": 0,
             "VelocityFromRing": 0
           }

@@ -17,8 +17,8 @@
         "Time": 0.5,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -5114.8965,
-          "Passed": 5114.8965,
+          "Relative": -979.0764,
+          "Passed": 979.0764,
           "Fraction": 1
         }
       }
@@ -144,10 +144,15 @@
                   }
                 ]
               },
-              "CurveB": {
-                "rangex": "0,0",
-                "rangey": "0,0"
-              },
+              "CurveB": [
+                {
+                  "x": 0.5,
+                  "y": 0.5,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
+                }
+              ],
               "Constants": "0.5,0,0,0"
             },
             "MaxParticles": 500,
@@ -315,7 +320,7 @@
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null,
-            "Opaque": true,
+            "Opaque": false,
             "Pivot": "0.5,0.5",
             "RenderOptions": {
               "GameLayer": true,

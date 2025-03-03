@@ -18,7 +18,7 @@ public sealed class ResetGame : Component,
 				continue;
 			}
 
-			SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
+			var SpawnPoint = GameUtils.GetRandomTeamSpawn(PlayerState.Team);
 			PlayerState.SpawnPlayerPawn(SpawnPoint);
 		}
 	}

@@ -1,16 +1,15 @@
 ﻿using System.Text.Json.Nodes;
 using KOTH;
 
-/// <summary>
-/// A team spawn point.
-/// </summary>
 public sealed class TeamSpawnPoint : Component
 {
 	private static Model Model = Model.Load("models/editor/spawnpoint.vmdl");
 
-	[Property] public bool IsDummy { get; set; } = false;
+	[Property] public Team Team { get; set; } = Team.Unassigned;
 	[Property][HideIf("IsDummy", true)] public GameObject SpawnZone { get; set; } = null;
-	[Property][HideIf("IsDummy", true)] public Team Team { get; set; } = Team.Unassigned;
+
+	[Property] public bool IsDummy { get; set; } = false;
+	[Property][HideIf("IsDummy", false)] public bool Jumper { get; set; }
 
 	protected override void DrawGizmos()
 	{

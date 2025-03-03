@@ -17,8 +17,8 @@
         "Time": 7,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -2318.8298,
-          "Passed": 2318.8298,
+          "Relative": -894.76324,
+          "Passed": 894.76324,
           "Fraction": 1
         }
       }
@@ -74,7 +74,7 @@
             },
             "ApplyAlpha": false,
             "ApplyColor": false,
-            "ApplyRotation": false,
+            "ApplyRotation": true,
             "ApplyShape": false,
             "Bounce": 0,
             "Brightness": 1,
@@ -288,9 +288,9 @@
             "__guid": "575961b2-b5a5-4f83-97d9-6d5717b5f2cc",
             "Additive": false,
             "Alignment": "RotateToCamera",
-            "BlurAmount": 0.07,
+            "BlurAmount": 0.65,
             "BlurOpacity": 0.1,
-            "BlurSpacing": 0.08,
+            "BlurSpacing": 0.23,
             "DepthFeather": 0,
             "FaceVelocity": false,
             "FogStrength": 0,

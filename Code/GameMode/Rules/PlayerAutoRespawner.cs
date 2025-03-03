@@ -64,7 +64,7 @@ public sealed class PlayerAutoRespawner : Component,
 	{
 		Assert.IsValid(PlayerState);
 
-		SpawnPointInfo SpawnPoint = GameUtils.GetRandomSpawnPoint(PlayerState.Team);
+		var SpawnPoint = GameUtils.GetRandomTeamSpawn(PlayerState.Team);
 		PlayerState.SpawnPlayerPawn(SpawnPoint);
 		PlayerState.SetTimeTilAttemptedSpawn(-1); // TODO : clean?
 		PlayersWaitingForSpawn.Remove(PlayerState);

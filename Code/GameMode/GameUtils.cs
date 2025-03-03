@@ -40,38 +40,24 @@ public static partial class GameUtils
 	public static IDescription GetDescription(GameObject go) => go?.Components.Get<IDescription>(FindMode.EverythingInSelfAndDescendants);
 	public static IDescription GetDescription(Component component) => GetDescription(component?.GameObject);
 
-	/// <summary>
-	/// Get all spawn point transforms for the given team.
-	/// </summary>
-	public static IEnumerable<SpawnPointInfo> GetPlayerSpawnPoints(Team team, params string[] tags) => Game.ActiveScene
-		.GetAllComponents<TeamSpawnPoint>()
-		.Where(x => x.Team == team)
-		.Where(x => !x.IsDummy)
-		.Where(x => tags.Length == 0 || tags.Any(x.Tags.Contains))
-		.Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray()))
-		.Concat(Game.ActiveScene.GetAllComponents<SpawnPoint>()
-			.Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray())));
-
-	public static IEnumerable<SpawnPointInfo> GetDummySpawnPoints() => Game.ActiveScene
-		.GetAllComponents<TeamSpawnPoint>()
-		.Where(x => x.IsDummy)
-		.Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray()))
-		.Concat(Game.ActiveScene.GetAllComponents<SpawnPoint>()
-			.Select(x => new SpawnPointInfo(x.Transform.World, x.GameObject.Tags.ToArray())));
-
-	/// <summary>
-	/// Pick a random spawn point for the given team.
-	/// </summary>
-	public static SpawnPointInfo GetRandomSpawnPoint(Team team, params string[] tags)
+	public static List<TeamSpawnPoint> GetAllSpawns()
 	{
-		return Random.Shared.FromArray(GetPlayerSpawnPoints(team, tags).ToArray(),
-			new SpawnPointInfo(Transform.Zero, Array.Empty<string>()));
+		if (Game.ActiveScene == null)
+		{
+			return [];
+		}
+
+		return Game.ActiveScene.GetAllComponents<TeamSpawnPoint>().ToList();
 	}
 
-	public static SpawnPointInfo GetRandomDummySpawn()
+	public static TeamSpawnPoint GetRandomTeamSpawn(Team Team)
 	{
-		return Random.Shared.FromArray(GetDummySpawnPoints().ToArray(),
-			new SpawnPointInfo(Transform.Zero, Array.Empty<string>()));
+		return Random.Shared.FromList(GetAllSpawns().Where(Spawn => Spawn.Team == Team && !Spawn.IsDummy).ToList());
+	}
+
+	public static List<TeamSpawnPoint> GetDummySpawns()
+	{
+		return GetAllSpawns().Where(Spawn => Spawn.IsDummy).ToList();
 	}
 
 	/// <summary>
