@@ -21,10 +21,7 @@ public sealed class PlayerDresser : Component
 
 		Assert.IsValid(LocalPlayer);
 
-		if (LocalPlayer.IsLocallyControlled)
-		{
-			ApplyClothing();
-		}
+		ApplyClothing();
 
 		SetupClothes();
 	}
@@ -34,7 +31,13 @@ public sealed class PlayerDresser : Component
 		Assert.IsValid(BodyTarget);
 
 		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
-		EquippedClothes.Clothing.Clear();
+
+		if (LocalPlayer.IsLocallyControlled)
+		{
+			// If player is locally controlled we don't want to render any clothes rendered as they are not networked
+			// We only want to show clothes on other players
+			EquippedClothes.Clothing.Clear();
+		}
 
 		if (!ApplyHeightScale)
 		{
