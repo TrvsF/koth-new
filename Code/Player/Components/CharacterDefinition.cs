@@ -37,4 +37,6 @@ public partial class CharacterDefinition : GameResource
 	[Category("Movement")] public float CrouchingAcceleration { get; set; } = 8f;
 	[Category("Movement")] public float MaxAcceleration { get; set; } = 12f;
 	[Category("Movement")] public float AirMaxAcceleration { get; set; } = 64f;
+
+	[Category("Voices")] public string MedicVoice { get; set; } = "sound/voice/medic.wav";
 }
