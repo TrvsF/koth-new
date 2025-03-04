@@ -1,11 +1,12 @@
 using Sandbox;
 using Sandbox.Diagnostics;
+using System.Numerics;
 
 namespace KOTH;
 
 public sealed class PlayerDresser : Component
 {
-	[Property] public SkinnedModelRenderer BodyTarget { get; set; }
+	[Property] public SkinnedModelRenderer ModelRenderer { get; set; }
 	[Property] public bool ApplyLocalUserClothes { get; set; } = true;
 	[Property] public bool ApplyHeightScale { get; set; } = true;
 	[Property] public List<ClothingContainer.ClothingEntry> Clothing { get; set; }
@@ -15,19 +16,23 @@ public sealed class PlayerDresser : Component
 
 	public ClothingContainer EquippedClothes { get; private set; } = null;
 
-	protected override void OnStart()
+	protected override void OnAwake()
 	{
-		base.OnStart();
+		base.OnAwake();
 
 		Assert.IsValid(LocalPlayer);
+		LocalPlayer.OnPlayerStart += Initialize;
+	}
 
+	private void Initialize()
+	{
 		ApplyClothing();
 		SetupClothes();
 	}
 
 	public void ApplyClothing()
 	{
-		Assert.IsValid(BodyTarget);
+		Assert.IsValid(ModelRenderer);
 
 		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
 
@@ -45,7 +50,7 @@ public sealed class PlayerDresser : Component
 
 		EquippedClothes.AddRange(Clothing);
 		EquippedClothes.Normalize();
-		EquippedClothes.Apply(BodyTarget);
+		EquippedClothes.Apply(ModelRenderer);
 
 		// BodyTarget.PostAnimationUpdate();
 	}
@@ -67,7 +72,7 @@ public sealed class PlayerDresser : Component
 				{
 					ClothModel.SetMaterial(CTMaterial);
 				}
-				else
+				else if (LocalPlayer.Team == Team.CounterTerrorist)
 				{
 					ClothModel.SetMaterial(TMaterial);
 				}

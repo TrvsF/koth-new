@@ -6,7 +6,10 @@ using Sandbox.Events;
 
 namespace KOTH;
 
-public partial class PlayerPawn
+public partial class PlayerPawn :
+	IGameEventHandler<DamageGivenEvent>,
+	IGameEventHandler<DamageTakenEvent>,
+	IGameEventHandler<HealingGivenEvent>
 {
 	private void TickVFXs()
 	{
@@ -106,6 +109,8 @@ public partial class PlayerPawn
 
 	/////////////////////////////////////////////////////////////////////////////////
 
+	[Property] public GameObject DeathBlood { get; set; }
+
 	const float GibMinDamage = 50f; // TODO : should be based on last hp!
 	const float GibForce = 66f;
 
@@ -115,6 +120,11 @@ public partial class PlayerPawn
 		if (!Body.IsValid())
 		{
 			return;
+		}
+
+		if (DeathBlood.IsValid())
+		{
+			DeathBlood.Clone(CenterPosition);
 		}
 
 		if (DamageTaken.Damage > GibMinDamage)
@@ -156,13 +166,33 @@ public partial class PlayerPawn
 		OnDamageTaken(EventArgs.DamageEvent);
 	}
 
+	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
+	{
+		OnDamageGiven(EventArgs.DamageEvent);
+	}
+	
+	void IGameEventHandler<HealingGivenEvent>.OnGameEvent(HealingGivenEvent EventArgs)
+	{
+		OnDamageTaken(EventArgs.HealingRequest);
+	}
+
+	[Rpc.Broadcast(NetFlags.HostOnly)]
+	public void OnDamageTaken(FHealingDone HealingDone)
+	{
+		if (HealingDone.TargetPlayerPawn == this)
+		{
+			UI.Health.Instance?.OnHealing(HealingDone);
+		}
+	}
+
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void OnDamageTaken(FDamageTaken DamageTaken)
 	{
-		if (!IsProxy && !IsDummy)
+		if (IsLocallyControlled)
 		{
 			var DamageLocation = DamageTaken.DamageLocation;
-			DamageIndicatorNew.Instance?.OnHit(DamageLocation);
+			UI.DamageIndicatorNew.Instance?.OnHit(DamageLocation);
+			UI.Health.Instance?.OnDamage(DamageTaken);
 		}
 
 		if (BloodSquirt.IsValid())
@@ -171,17 +201,12 @@ public partial class PlayerPawn
 		}
 	}
 
-	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
-	{
-		OnDamageGiven(EventArgs.DamageEvent);
-	}
-
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void OnDamageGiven(FDamageTaken DamageGiven)
 	{
-		if (!IsProxy)
+		if (IsLocallyControlled)
 		{
-			DamageNumbers.Instance?.OnHit(DamageGiven);
+			UI.DamageNumbers.Instance?.OnHit(DamageGiven);
 		}
 	}
 }

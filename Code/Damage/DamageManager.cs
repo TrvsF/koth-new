@@ -152,10 +152,12 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 		FDamageTaken DamageTaken = new()
 		{
+			VictimGameObject = TargetDamageComponent.GameObject,
 			AttackerPlayerPawn = AttackerPlayerPawn,
 			VictimPlayerPawn = TargetPlayerPawn,
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
+			DamageType = DamageRequest.DamageType,
 		};
 
 		TargetDamageComponent.TakeDamage(DamageTaken);
@@ -166,7 +168,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	}
 
 	[Rpc.Host]
-	private static void ServerInflictHealing(PlayerPawn Target, PlayerPawn Giver, float Healing, bool AllowOverhealing)
+	private void ServerInflictHealing(PlayerPawn Target, PlayerPawn Giver, float Healing, bool AllowOverhealing)
 	{
 		if (!Networking.IsHost)
 		{
@@ -186,18 +188,15 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
+		FHealingDone HealingDone = new()
+		{
+			TargetPlayerPawn = Target,
+			HealerPlayerPawn = Giver,
+			Healing = Healing,
+		};
+		Scene.Dispatch(new HealingGivenEvent(HealingDone));
+
 		Target.DamageComponent.Heal(Healing, AllowOverhealing);
-
-		// ---------------------- stats
-		//if (Target.PlayerState.IsValid())
-		//{
-
-		//}
-
-		//if (Giver.PlayerState.IsValid())
-		//{
-
-		//}
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]

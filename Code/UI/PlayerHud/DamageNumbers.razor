@@ -41,34 +41,6 @@
 	List<FScreenNumberElement> DamageNumberElements = new();
 	PlayerPawn LocalPlayerPawn => PlayerState.Local.IsValid() ? PlayerState.Local.PlayerPawn : null;
 
-	// public void OnHealth(float Health, PlayerPawn HitPawn)
-	// {
-	// 	if (!HitPawn.IsValid() || !LocalPlayerPawn.IsValid() || HitPawn == LocalPlayerPawn)
-	// 	{
-	// 		return;
-	// 	}
-
-	// 	bool IsBehind;
-	// 	var PositionVec = GetScreenPosFromPlayerPawn(HitPawn, out IsBehind);
-	// 	var IsHidden = false;// !Scene.Trace.Ray(HitPawn.Transform.Position, LocalPlayerPawn.Transform.Position).WithAnyTags("Solid").Run().Hit;
-	// 	if (IsHidden || IsBehind)
-	// 	{
-	// 		return;
-	// 	}
-	// 	var Distance = HitPawn.Transform.Position.Distance(LocalPlayerPawn.Transform.Position);
-	// 	FScreenNumberElement DamageNumberElement = new()
-	// 		{
-	// 			PlayerPawn = LocalPlayerPawn,
-	// 			TargetPawn = HitPawn,
-	// 			ScreenOffset = GetScreenOffset(Distance),
-	// 			Damage = Health,
-	// 			IsDamage = false,
-	// 			DisplayedTime = 0,
-	// 		};
-	// 	DamageNumberElement.Init();
-	// 	DamageNumberElements.Add(DamageNumberElement);
-	// }
-
 	public void OnHit(FDamageTaken DamageGiven)
 	{
 		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || DamageGiven.VictimPlayerPawn == LocalPlayerPawn)
@@ -76,21 +48,14 @@
 			return;
 		}
 
-		bool IsBehind;
-		var PositionVec = GetScreenPosFromPosition(DamageGiven.DamageLocation, out IsBehind);
-
-		if (IsBehind)
-		{
-			return;
-		}
-		var Distance = DamageGiven.DamageLocation.Distance(LocalPlayerPawn.Transform.Position);
+		var Distance = DamageGiven.DamageLocation.Distance(LocalPlayerPawn.WorldPosition);
 
 		foreach (var Element in DamageNumberElements)
 		{
 			if (Element.TargetPawn == DamageGiven.VictimPlayerPawn)
 			{
 				Element.AddDamage(DamageGiven.Damage);
-				Element.Init();
+				Element.DisplayedTime = 0;
 
 				return; // NOTE : early return
 			}
@@ -104,9 +69,9 @@
 				ScreenOffset = GetScreenOffset(Distance),
 				Damage = DamageGiven.Damage,
 				DisplayedTime = 0,
-				Location = DamageGiven.DamageLocation,
+				Location = DamageGiven.DamageType == EDamageType.Projectile && DamageGiven.VictimGameObject.IsValid() ? DamageGiven.VictimGameObject.WorldPosition : DamageGiven.DamageLocation,
 			};
-		DamageNumberElement.Init();
+
 		DamageNumberElements.Add(DamageNumberElement);
 	}
 

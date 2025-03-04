@@ -7,11 +7,54 @@
 
 <root>
     <label class="hp" style="color: @(Color.Lerp(Color.Red, Color.White, Player.Health / Player.MaxHealth).Hex);">@(Player.DamageComponent.GetHealthString() ?? "∞")</label>
+    @if (CurrentHealthElement.IsVisable)
+    {
+        <label class="hp-noti">@(CurrentHealthElement)</label>
+    }
+    @* we aint got else ifs? *@
+    @if (!CurrentHealthElement.IsVisable && CurrentDamageElement.IsVisable)
+    {
+        <label class="dmg-noti">@(CurrentDamageElement)</label>
+    }
 </root>
 
 @code
 {
+    public static Health Instance { get; set; }
+
+    public Health()
+    {
+        Instance = this;
+    }
+
     public PlayerPawn Player => PlayerState.Local.PlayerPawn;
+
+    FScreenNumberElement CurrentHealthElement = new()
+        {
+            IsDamage = false,
+            IsVisable = false,
+        };
+
+    FScreenNumberElement CurrentDamageElement = new()
+        {
+            IsDamage = true,
+            IsVisable = false,
+        };
+
+    public override void Tick()
+    {
+        base.Tick();
+
+        if (CurrentHealthElement.DisplayedTime < -1)
+        {
+            CurrentHealthElement.IsVisable = false;
+        }
+        
+        if (CurrentDamageElement.DisplayedTime < -1)
+        {
+            CurrentDamageElement.IsVisable = false;
+        }
+    }
 
     protected override int BuildHash()
     {
@@ -19,5 +62,29 @@
             return 0;
 
         return HashCode.Combine(Time.Now);
+    }
+
+    public void OnHealing(FHealingDone HealingDone)
+    {
+        if (!CurrentHealthElement.IsVisable)
+        {
+            CurrentHealthElement.Damage = 0;
+            CurrentHealthElement.IsVisable = true;
+        }
+        
+        CurrentHealthElement.DisplayedTime = 0;
+        CurrentHealthElement.AddDamage(HealingDone.Healing);
+    }
+
+    public void OnDamage(FDamageTaken DamageTaken)
+    {
+        if (!CurrentDamageElement.IsVisable)
+        {
+            CurrentDamageElement.Damage = 0;
+            CurrentDamageElement.IsVisable = true;
+        }
+
+        CurrentDamageElement.DisplayedTime = 0;
+        CurrentDamageElement.AddDamage(DamageTaken.Damage);
     }
 }

@@ -13,35 +13,24 @@ internal class OnScreenUtil
 
 public class FScreenNumberElement
 {
-	public PlayerPawn PlayerPawn { get; set; } = null;
-	public PlayerPawn TargetPawn { get; set; } = null;
-	public Vector2 ScreenOffset { get; set; } = Vector2.Zero;
-	public float Damage { get; set; } = 0f;
-	public bool IsDamage { get; set; } = true;
-	public TimeUntil DisplayedTime { get; set; } = new();
-	public Vector3 Location = Vector3.Zero;
+	public PlayerPawn PlayerPawn { get; init; } = null;
+	public PlayerPawn TargetPawn { get; init; } = null;
+	public Vector2 ScreenOffset { get; init; } = Vector2.Zero;
+	public bool IsDamage { get; init; } = true;
+	public Vector3 Location { get; init; } = Vector3.Zero;
 
-	public bool IsVisable { get; private set; } = true;
+	public TimeUntil DisplayedTime { get; set; } = new();
+	public float Damage { get; set; } = 0f;
+
+	public bool IsVisable { get; set; } = true;
 
 	public FScreenNumberElement() { }
 
-	public void Init()
+	public Vector2 GetRawScreenPos()
 	{
-		if (!PlayerPawn.IsValid())
-		{
-			return;
-		}
-
-		//if (TargetPawn.IsValid())
-		//{
-		//	var TargetDistance = PlayerPawn.WorldPosition.Distance(TargetPawn.WorldPosition);
-		//	var ZOffset = MathX.Lerp(0, 64, (1 / TargetDistance) * 10);
-		//	Location.z += ZOffset;
-		//}
-
-		DisplayedTime = 0;
+		return ScreenOffset.WithY(ScreenOffset.y + (DisplayedTime * 0.075f));
 	}
-
+	
 	public Vector2 GetScreenPos()
 	{
 		var IsBehind = false;

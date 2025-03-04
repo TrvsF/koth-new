@@ -5,9 +5,7 @@ using Sandbox.Events;
 
 namespace KOTH;
 
-public partial class PlayerPawn :
-	IGameEventHandler<DamageGivenEvent>,
-	IGameEventHandler<DamageTakenEvent>
+public partial class PlayerPawn
 {
 	[Property] Material UberMaterial { get; set; }
 
