@@ -90,7 +90,6 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 	{
 		ProjectileRigidbody.Velocity = AimForward * ProjectileHorizontalSpeed;
 		ProjectileRigidbody.Velocity += Vector3.Up * ProjectileVerticalSpeed;
-		ProjectileRigidbody.PhysicsBody.EnableSolidCollisions = false;
 	}
 
 	protected TimeSince TimeSinceShot = new();
@@ -167,7 +166,6 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 		var SpeedFactor = 1 + (Math.Min(TimeSinceInputFirstDown, MaxChargeTime) * Factor);
 		ProjectileRigidbody.Velocity = AimForward * ProjectileHorizontalSpeed * SpeedFactor;
 		ProjectileRigidbody.Velocity += Vector3.Up * ProjectileVerticalSpeed;
-		ProjectileRigidbody.PhysicsBody.EnableSolidCollisions = false;
 	}
 
 	protected override void OnUpdate()

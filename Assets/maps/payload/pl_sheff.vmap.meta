@@ -13,7 +13,7 @@
       "EditorReferences": [
         "fish.roblox_skybox#8534"
       ],
-      "IsWhitelistDisabled": false,
+      "IsStandaloneOnly": false,
       "Metadata": {
         "SingleAssetSource": "maps/payload/pl_sheff.vmap",
         "ParentPackage": "wurstsoftware.koth"
