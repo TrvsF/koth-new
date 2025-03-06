@@ -10,10 +10,19 @@
         {
           "__type": "Sandbox.SceneInformation",
           "__guid": "783dea40-ea14-435d-93f6-7d401cbc0944",
+          "Author": null,
           "Changes": "",
           "Description": "",
+          "Group": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "SceneTags": "",
-          "Title": "jump1"
+          "Title": "jump1",
+          "Version": null
         }
       ]
     },
@@ -31,12 +40,94 @@
           "EnableCollision": true,
           "MapName": "maps/jump1/jump1.vmap",
           "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "97c56719-132b-48d0-a815-056587429380",
+          "Flags": 0,
+          "Name": "spawnpoint (4)",
+          "Position": "159.6909,449.9329,93.87196",
+          "Rotation": "0,0,-0.8660253,0.5000002",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "f62463d4-c116-4942-a5cd-152d75cd9671",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "2623adfa-1963-4399-bc14-ed02b44aabe0",
+          "Flags": 0,
+          "Name": "spawnpoint (3)",
+          "Position": "114.908,449.9329,93.87196",
+          "Rotation": "0,0,-0.8660253,0.5000002",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "200bbd9e-cbaa-48b5-982c-9773142c4a49",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "46e6cf96-d2c3-4129-94e4-c09879fdd795",
+          "Flags": 0,
+          "Name": "spawnpoint (5)",
+          "Position": "69.52469,449.9329,93.87196",
+          "Rotation": "0,0,-0.8660253,0.5000002",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "5d60e3a5-d4fd-426c-ac35-c19f1d9293f2",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        }
+      ]
     },
     {
       "__guid": "337b45d2-f94a-41a9-b735-093088733043",
@@ -49,6 +140,12 @@
           "__type": "KOTH.GameNetworkManager",
           "__guid": "5d9bbbde-69e1-480e-bb38-0ea23aeb4107",
           "NetworkMode": "Singleplayer",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "PlayerStatePrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player/playerstate.prefab"
@@ -61,10 +158,8 @@
       "Flags": 0,
       "Name": "GameMode",
       "Enabled": true,
-      "NetworkMode": 1,
       "__Prefab": "prefabs/game_modes/jumper.prefab",
       "__PrefabVariables": {
-        "Description": "keep the hill under your control for the longest to win",
         "Title": "KOTH"
       }
     },
@@ -78,12 +173,24 @@
       "Components": [
         {
           "__type": "KOTH.UI.MainHUD",
-          "__guid": "037052d7-7742-4e88-9a45-68529e96e6cd"
+          "__guid": "037052d7-7742-4e88-9a45-68529e96e6cd",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "57867fc6-897f-4925-ba59-16015fff42ac",
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -92,13 +199,25 @@
         {
           "__type": "KOTH.UI.DeveloperMenu",
           "__guid": "072b97fd-94da-4ec9-955f-3ee671c81acd",
-          "__enabled": false
+          "__enabled": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "Sandbox.ScreenPanel",
           "__guid": "57ff3da8-114f-4af5-9f3a-a107792c2adf",
           "__enabled": false,
           "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
@@ -124,19 +243,43 @@
               "__type": "Sandbox.BoxCollider",
               "__guid": "5d51691d-310d-4957-9bbe-fa74360324bb",
               "Center": "0,0,0",
+              "Friction": null,
               "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
               "Scale": "326.6012,728.1995,90.30023",
               "Static": false,
+              "Surface": null,
               "SurfaceVelocity": "0,0,0"
             },
             {
               "__type": "Zone",
               "__guid": "2b76acec-38ac-465f-a33a-9ff5b28a3f93",
-              "Color": "0,1,1,1"
+              "Color": "0,1,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             },
             {
               "__type": "KOTH.TeleportZone",
               "__guid": "34a3d64e-9937-4135-8fcc-93680c662115",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "TeleportLocation": "-349.0072,-15.66235,121.521",
               "TeleportRotation": "0,0,0,1"
             }
@@ -154,19 +297,43 @@
               "__type": "Sandbox.BoxCollider",
               "__guid": "ac21233d-d7e1-42b6-bf02-5b129a68cc58",
               "Center": "0,0,0",
+              "Friction": null,
               "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
               "Scale": "656.6039,728.1995,140.9001",
               "Static": false,
+              "Surface": null,
               "SurfaceVelocity": "0,0,0"
             },
             {
               "__type": "Zone",
               "__guid": "6ace79f4-3a32-403f-81a9-e794db60ea27",
-              "Color": "0,1,1,1"
+              "Color": "0,1,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             },
             {
               "__type": "KOTH.TeleportZone",
               "__guid": "288ec048-1b0c-4b78-818b-3541f11602eb",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
               "TeleportLocation": "-406.2075,-15.66235,169.3215",
               "TeleportRotation": "0,0,0.003490651,0.9999939"
             }
@@ -186,19 +353,43 @@
           "__type": "Sandbox.BoxCollider",
           "__guid": "667fdc9d-db7f-4b7b-a74d-6ede7382772d",
           "Center": "0,0,0",
+          "Friction": null,
           "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
           "Scale": "100,100,100",
           "Static": false,
+          "Surface": null,
           "SurfaceVelocity": "0,0,0"
         },
         {
           "__type": "Zone",
           "__guid": "c52b8594-add7-400c-a9e0-09219533302d",
-          "Color": "1,0,0,1"
+          "Color": "1,0,0,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.KillZone",
-          "__guid": "71e62e49-22cb-47ed-b851-1fced40e53a0"
+          "__guid": "71e62e49-22cb-47ed-b851-1fced40e53a0",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ]
     }

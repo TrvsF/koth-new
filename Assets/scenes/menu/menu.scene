@@ -192,6 +192,31 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "QualityLevel": "High"
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "82d938f5-8e74-42f4-96b3-ef8841bc5cbb",
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "ZIndex": 100
+        },
+        {
+          "__type": "KOTH.UI.MainMenuComponent",
+          "__guid": "3a568cd6-2f37-449c-84b6-bd0592f8aa6a",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
@@ -464,7 +489,7 @@
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
           "MaterialGroup": null,
-          "MaterialOverride": "materials/textures/greengrid.vmat",
+          "MaterialOverride": "materials/textures/green.vmat",
           "Model": "models/menu/t.vmdl",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

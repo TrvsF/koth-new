@@ -789,12 +789,60 @@
           "__guid": "c473219a-6a36-4348-8f68-6a47b5717cdc",
           "Flags": 0,
           "Name": "spawnpoint (3)",
-          "Position": "-1462.367,-422.1223,273.1859",
+          "Position": "-1462.367,-407.6084,273.1859",
           "Enabled": true,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "6688d002-61c1-4b27-bfcc-2b2343dc1862",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": true
+            }
+          ]
+        },
+        {
+          "__guid": "272ee5fe-d083-4c13-8b4d-9d70b6205af4",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1462.367,-502.435,273.1859",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "2de5f6c3-94e6-4b7d-8a28-28228704888e",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": true
+            }
+          ]
+        },
+        {
+          "__guid": "d37bf3cf-6618-496d-8a16-df42d30823db",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1462.367,-326.9053,273.1859",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "5d05c0bd-b92e-4e4f-b83c-a8e2ce7ee593",
               "IsDummy": true,
               "Jumper": false,
               "OnComponentDestroy": null,

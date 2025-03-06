@@ -1,0 +1,81 @@
+@namespace KOTH.UI
+@using Sandbox.Events
+@inherits PanelComponent
+
+<root>
+	<canvas>
+		<Watermark />
+
+		<div class="nav">
+			@if (BaseMenu)
+			{
+				<button onclick=@(() => { BaseMenu = false; SinglePlayer = true; })>SinglePlayer</button>
+				<button onclick=@(() => OnMultiplayer())>Multiplayer</button>
+				<button onclick=@(() => Log.Info("you found the easer egg!"))>Settings</button>
+			}
+
+			@if (SinglePlayer)
+			{
+				<button onclick=@(() => LoadBotz())>Botz</button>
+				<button onclick=@(() => LoadBotz())>Jump Map</button>
+				<button onclick=@(() => { BaseMenu = true; SinglePlayer = false; })>Back</button>
+			}
+		</div>
+
+	</canvas>
+</root>
+
+<style>
+	* {
+		width: auto;
+		pointer-events: all;
+	}
+
+	.nav {
+		position: absolute;
+		top: 90%;
+		right: 50%;
+		font-size: 64px;
+	}
+
+	.nav button {
+		width: 256px;
+	}
+	
+	.nav button:hover {
+		cursor: pointer;
+	}
+</style>
+
+@code
+{
+	bool BaseMenu = true;
+	bool SinglePlayer = false;
+	bool Multiplayer = false;
+	bool Settings = false;
+
+	private void LoadBotz()
+	{
+		Game.ActiveScene.LoadFromFile("scenes/multiplayer_test/multiplayertest.scene");
+	}
+
+	private async void OnMultiplayer()
+	{
+		if (Networking.IsActive)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+			return;
+		}
+
+		bool Joined = await Networking.JoinBestLobby(Game.Ident);
+		if (!Joined)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+		}
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

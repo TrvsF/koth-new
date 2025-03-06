@@ -89,6 +89,11 @@
 	{
 		TimeSinceLastHit = 0;
 
+		if (!LocalPlayerPawn.IsValid())
+		{
+			return;
+		}
+
 		// ---------------
 		// rotation
 		var PlayerToHit = DamageLocation - LocalPlayerPawn.Transform.Position;

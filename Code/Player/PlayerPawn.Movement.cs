@@ -153,9 +153,18 @@ public partial class PlayerPawn
 		return CrouchLerpSpeed;
 	}
 
-	private int CrouchOffset = 16;
-	private int CrouchOffset2 = 8;
-	private void BuildInput()
+	const int CrouchOffset = 16;
+	const int CrouchOffset2 = CrouchOffset / 2;
+
+	float RequestedCenterZ = 32f;
+	float RequestedScaleZ = 64f;
+
+	float RealCenterZ = 32f;
+	float RealScaleZ = 64f;
+
+	float CrouchLerp = 0f;
+
+	private void DoCrouch()
 	{
 		IsCrouching = Input.Down("Duck") && !IsNoclipping;
 
@@ -164,22 +173,40 @@ public partial class PlayerPawn
 			TimeSinceCrouchPressed = 0;
 			if (IsGrounded)
 			{
-				PlayerBoxCollider.Center = new(0, 0, 32 - CrouchOffset2);
-				PlayerBoxCollider.Scale = new(32, 32, 64 - CrouchOffset);
+				RequestedCenterZ = 32f - CrouchOffset2;
+				RequestedScaleZ = 64 - CrouchOffset;
 			}
 			else
 			{
-				PlayerBoxCollider.Center = new(0, 0, 32 + CrouchOffset2);
-				PlayerBoxCollider.Scale = new(32, 32, 64 - CrouchOffset);
+				RequestedCenterZ = 32f + CrouchOffset2;
+				RequestedScaleZ = 64 - CrouchOffset;
 			}
 		}
 
 		if (Input.Released("Duck"))
 		{
 			TimeSinceCrouchReleased = 0;
-			PlayerBoxCollider.Center = new(0, 0, 32);
-			PlayerBoxCollider.Scale = new(32, 32, 64);
+			RequestedCenterZ = 32f;
+			RequestedScaleZ = 64f;
 		}
+
+		var Lerp = Time.Delta * 5f;
+		if (RealCenterZ != RequestedCenterZ)
+		{
+			RealCenterZ = MathX.Lerp(RealCenterZ, RequestedCenterZ, Lerp);
+		}
+		if (RealScaleZ != RequestedScaleZ)
+		{
+			RealScaleZ = MathX.Lerp(RealScaleZ, RequestedScaleZ, Lerp);
+		}
+
+		PlayerBoxCollider.Center = new(0, 0, RealCenterZ);
+		PlayerBoxCollider.Scale = new(32, 32, RealScaleZ);
+	}
+
+	private void BuildInput()
+	{
+		DoCrouch();
 
 		if (Input.Pressed("Noclip") && Game.IsEditor)
 		{

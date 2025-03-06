@@ -160,7 +160,7 @@
     "HttpAllowList": null,
     "TickRate": 30,
     "LaunchMode": "Normal",
-    "StartupScene": "scenes/pl_sheff/sheff.scene",
+    "StartupScene": "scenes/menu/menu.scene",
     "DedicatedServerStartupScene": "scenes/pl_sheff/sheff.scene"
   }
 }

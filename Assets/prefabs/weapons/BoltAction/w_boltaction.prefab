@@ -53,7 +53,7 @@
         "__type": "KOTH.HitscanWeaponComponent",
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 1,
-        "BaseDamage": 90,
+        "BaseDamage": 70,
         "DecalDefinition": null,
         "FireRate": 2,
         "HasAmmo": true,
