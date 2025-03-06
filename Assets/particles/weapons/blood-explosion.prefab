@@ -17,8 +17,8 @@
         "Time": 7,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -1568.2899,
-          "Passed": 1568.2899,
+          "Relative": -2653.8838,
+          "Passed": 2653.8838,
           "Fraction": 1
         }
       }
@@ -85,7 +85,7 @@
             "Damping": 2,
             "DieOnCollisionChance": 0.33,
             "Force": true,
-            "ForceDirection": "0,0,-500",
+            "ForceDirection": "0,0,-150",
             "ForceScale": 5,
             "ForceSpace": "World",
             "Friction": 1,
@@ -276,7 +276,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0,0,0,0"
+              "Constants": "5,100,0,0"
             },
             "Stretch": 0,
             "TimeScale": 1,
@@ -312,7 +312,7 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 0.75,
+            "Scale": 0.5,
             "Shadows": false,
             "SortMode": "ByDistance",
             "Texture": "particles/weapons/blud.vtex"
@@ -320,7 +320,7 @@
           {
             "__type": "Sandbox.ParticleSphereEmitter",
             "__guid": "7596412f-ca5c-4a83-9ef5-35713754a73a",
-            "Burst": 200,
+            "Burst": 500,
             "Delay": 0,
             "DestroyOnEnd": true,
             "Duration": 2,
@@ -332,10 +332,10 @@
             "OnComponentStart": null,
             "OnComponentUpdate": null,
             "OnEdge": false,
-            "Radius": 5,
+            "Radius": 10,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Velocity": 1500
+            "Velocity": 400
           }
         ]
       }

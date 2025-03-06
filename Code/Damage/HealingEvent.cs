@@ -4,7 +4,7 @@ namespace KOTH;
 
 public record HealingRequestEvent(FHealingRequest HealingRequest) : IGameEvent;
 
-public record HealingGivenEvent(FHealingDone HealingRequest) : IGameEvent;
+public record HealingGivenEvent(FHealingReceived HealingRequest) : IGameEvent;
 
 public record FHealingRequest
 {
@@ -24,7 +24,7 @@ public record FHealingRequest
 	}
 }
 
-public record FHealingDone
+public record FHealingReceived
 {
 	public PlayerPawn TargetPlayerPawn { get; init; }
 	public PlayerPawn HealerPlayerPawn { get; init; }

@@ -41,17 +41,6 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	protected override void OnStart()
-	{
-		base.OnStart();
-
-		//var Stats = GameMode.Instance.GetStats();
-		//if (Stats.IsValid())
-		//{
-		//	LocalStatsSnapshot.SetLocalStatsObject(Stats.GetPlayerStatsSnapshot((long)SteamId));
-		//}
-	}
-
 	public bool Initilize(Connection ConnectionIn)
 	{
 		Assert.True(Networking.IsHost);

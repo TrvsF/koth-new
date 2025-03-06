@@ -177,7 +177,7 @@ public partial class PlayerPawn :
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
-	public void OnDamageTaken(FHealingDone HealingDone)
+	public void OnDamageTaken(FHealingReceived HealingDone)
 	{
 		if (HealingDone.TargetPlayerPawn == this)
 		{

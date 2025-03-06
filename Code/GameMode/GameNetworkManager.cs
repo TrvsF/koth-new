@@ -42,6 +42,10 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
+	public bool IsLocalSession { get; private set; } = false;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 	protected override async Task OnLoad()
 	{
 		if (Scene.IsEditor)
@@ -54,23 +58,37 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 		switch (NetworkMode)
 		{
 			case EGameNetworkMode.Singleplayer:
-				StartClient(Connection.Local);
+				IsLocalSession = true;
 				break;
 			case EGameNetworkMode.Multiplayer:
-				if (!Networking.IsActive)
+				if (Networking.IsActive)
 				{
-					bool Joined = await Networking.JoinBestLobby(Game.Ident);
-					if (!Joined)
-					{
-						Log.Info("starting own lobby...");
-						CreateLobby();
-					}
+					// INetworkListener.OnActive will be called
+					return;
+				}
+
+				bool Joined = await Networking.JoinBestLobby(Game.Ident);
+				if (!Joined)
+				{
+					Log.Info("starting own lobby...");
+					CreateLobby();
+					// INetworkListener.OnActive will be called
 				}
 				break;
 			case EGameNetworkMode.Menu:
 				break;
 			case EGameNetworkMode.None:
 				break;
+		}
+	}
+
+	protected override void OnEnabled()
+	{
+		base.OnEnabled();
+
+		if (IsLocalSession)
+		{
+			StartClient(Connection.Local);
 		}
 	}
 

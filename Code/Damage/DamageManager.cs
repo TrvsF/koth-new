@@ -188,14 +188,6 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
-		FHealingDone HealingDone = new()
-		{
-			TargetPlayerPawn = Target,
-			HealerPlayerPawn = Giver,
-			Healing = Healing,
-		};
-		Scene.Dispatch(new HealingGivenEvent(HealingDone));
-
 		Target.DamageComponent.Heal(Healing, AllowOverhealing);
 	}
 

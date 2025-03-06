@@ -27,6 +27,95 @@
       ]
     },
     {
+      "__guid": "9d6bf842-78a9-407d-be22-28b0425a6686",
+      "Flags": 0,
+      "Name": "Background",
+      "Position": "825.2716,2844.246,-170.1353",
+      "Rotation": "0.8592821,0.5103686,0.03198771,-0.01161572",
+      "Scale": "1,10.29122,18.87136",
+      "Tags": "solid",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "64d7fc02-bdae-4b0d-bbaf-0762d38858fe",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/textures/grey.vmat",
+          "Model": "models/dev/box.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.ModelCollider",
+          "__guid": "33f01420-0116-415c-b3b0-42bcee14de55",
+          "Friction": null,
+          "IsTrigger": false,
+          "Model": "models/dev/box.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "92a21081-6bba-4f0f-b193-364670c63819",
+      "Flags": 0,
+      "Name": "Background (1)",
+      "Position": "822.0198,2772.66,-94.894",
+      "Rotation": "0.6302229,0.3690987,-0.5849854,0.3526715",
+      "Scale": "1,10.29122,18.87136",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "ee062f25-9de1-42c1-962b-2a9f926b9602",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/textures/grey.vmat",
+          "Model": "models/dev/box.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
       "__guid": "16925719-04c7-4cd7-89e0-37219ba0352d",
       "Flags": 0,
       "Name": "Camera",
@@ -40,6 +129,7 @@
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
+          "FovAxis": "Horizontal",
           "IsMainCamera": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -106,45 +196,11 @@
       ],
       "Children": [
         {
-          "__guid": "9d6bf842-78a9-407d-be22-28b0425a6686",
-          "Flags": 0,
-          "Name": "Background",
-          "Position": "270.6986,-13.35278,-141.871",
-          "Rotation": "0.00000005960464,-1,-0.00000001955777,0.0000002356246",
-          "Scale": "1,10.29122,18.87136",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "64d7fc02-bdae-4b0d-bbaf-0762d38858fe",
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Model": "models/dev/box.vmdl",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            }
-          ]
-        },
-        {
           "__guid": "7770821b-4ca2-4edb-be45-5630f4180035",
           "Flags": 0,
           "Name": "Spot Light (1)",
           "Position": "4.945578,4.166135,31.76495",
-          "Rotation": "-0.07121407,0.02651583,0.02633587,0.9967608",
+          "Rotation": "0.1874418,0.05039873,-0.1425885,0.9705641",
           "Tags": "light_spot,light",
           "Enabled": true,
           "Components": [
@@ -152,8 +208,8 @@
               "__type": "Sandbox.SpotLight",
               "__guid": "f2439253-b31a-447e-9724-e4fb2f96d943",
               "Attenuation": 0.111,
-              "ConeInner": 34.89,
-              "ConeOuter": 41.76,
+              "ConeInner": 23.9,
+              "ConeOuter": 38.2,
               "Cookie": null,
               "FogMode": "Disabled",
               "FogStrength": 1,
@@ -173,7 +229,7 @@
           "__guid": "5a36e272-f97c-4307-a60b-51a79025caf0",
           "Flags": 0,
           "Name": "Pyramid",
-          "Position": "115.7469,-28.18377,1.104337",
+          "Position": "99.96084,-0.2602921,9.943155",
           "Rotation": "-0.05446505,0.1792945,-0.8577544,0.4786903",
           "Scale": "0.15,0.15,0.15",
           "Enabled": true,
@@ -200,6 +256,16 @@
               },
               "RenderType": "On",
               "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "KOTH.MenuShapeRotator",
+              "__guid": "f1586853-a5b8-48f1-865a-1f9b5ffeb54e",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
             }
           ]
         }
@@ -215,83 +281,10 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "128c32ef-a340-4bbd-9a21-aa0a11e74991",
-      "Flags": 0,
-      "Name": "Text",
-      "Position": "864,2832,0",
-      "Rotation": "0,0,-0.8660254,0.5000001",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.TextRenderer",
-          "__guid": "d2d470cd-453d-4ec1-b4cc-82ad823144e0",
-          "__version": 1,
-          "BlendMode": "Normal",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "Scale": 0.3,
-          "TextAlignment": "Center",
-          "TextScope": {
-            "Text": "Level : ",
-            "TextColor": "1,1,1,1",
-            "FontName": "Henry Blue",
-            "FontSize": 5.22,
-            "FontWeight": 800,
-            "FontItalic": false,
-            "LineHeight": 1,
-            "LetterSpacing": 0,
-            "WordSpacing": 0,
-            "Outline": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,1,1"
-            },
-            "Shadow": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            },
-            "OutlineUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,1,0,1"
-            },
-            "ShadowUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            }
-          }
-        },
-        {
-          "__type": "KOTH.LevelText",
-          "__guid": "f50d7d00-9bd8-435b-9522-07445d511640",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        }
-      ]
-    },
-    {
       "__guid": "0f6b3b26-d629-4509-932b-1f8b1a9b815f",
       "Flags": 0,
       "Name": "NetworkManager",
-      "Position": "816.8995,2737.093,-30.38166",
+      "Position": "976.4133,2974.424,0.7090607",
       "Enabled": true,
       "Components": [
         {
@@ -308,6 +301,218 @@
             "_type": "gameobject",
             "prefab": "prefabs/player/playerstate.prefab"
           }
+        },
+        {
+          "__type": "KOTH.SoundEmitter",
+          "__guid": "2369e6b4-8100-42e4-ba7b-3050c7caf5b9",
+          "DestroyOnFinish": false,
+          "Follow": true,
+          "LifeTime": 1,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SoundEvent": "sounds/menu/menubackgroundnoise.sound",
+          "VolumeModifier": true,
+          "VolumeOverTime": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "2c4766cc-04cd-45b3-8301-7b64a57a16d0",
+      "Flags": 0,
+      "Name": "k (1)",
+      "Position": "931.8641,2867.889,-5.49543",
+      "Rotation": "0,0,0.6087614,0.7933534",
+      "Scale": "0.1,0.1,0.1",
+      "Tags": "solid",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "705c819a-acd9-4777-b245-e388d6e6a34e",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/textures/red.vmat",
+          "Model": "models/menu/k.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.Rigidbody",
+          "__guid": "1f828574-da83-41f7-84f2-3aedd327d4ea",
+          "AngularDamping": 0,
+          "Gravity": false,
+          "LinearDamping": 0,
+          "Locking": {
+            "X": false,
+            "Y": false,
+            "Z": false,
+            "Pitch": false,
+            "Yaw": false,
+            "Roll": false
+          },
+          "MassCenterOverride": "0,0,0",
+          "MassOverride": 0,
+          "MotionEnabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OverrideMassCenter": false,
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
+        },
+        {
+          "__type": "Sandbox.ModelCollider",
+          "__guid": "16c943f0-cde1-45d5-82db-8d2d6923f22b",
+          "Friction": null,
+          "IsTrigger": false,
+          "Model": "models/menu/k.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "be2d22df-7eed-42a5-8c25-99f212e227e0",
+      "Flags": 0,
+      "Name": "t",
+      "Position": "882.0484,2925.929,-5.736909",
+      "Scale": "0.25,0.25,0.25",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "5467872d-fe98-4b35-92c1-1c530bdc7bbf",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/menu/t.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "16af4aaf-209e-4afd-a1b5-872474c96efc",
+      "Flags": 0,
+      "Name": "t (1)",
+      "Position": "882.0484,2925.929,-5.736909",
+      "Scale": "0.25,0.25,0.25",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "081bb745-af04-4630-9f18-7fa34de4027f",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/textures/greengrid.vmat",
+          "Model": "models/menu/t.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "45082b7a-3ec6-4d09-8dad-7eb572d747cd",
+      "Flags": 0,
+      "Name": "h",
+      "Position": "885.6682,2945.411,3.065667",
+      "Scale": "0.05,0.05,0.05",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "ee3a7ca9-0340-494a-948a-e691b36f7684",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/textures/yellow.vmat",
+          "Model": "models/menu/h.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
         }
       ]
     }

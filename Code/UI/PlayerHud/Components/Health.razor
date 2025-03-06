@@ -64,7 +64,7 @@
         return HashCode.Combine(Time.Now);
     }
 
-    public void OnHealing(FHealingDone HealingDone)
+    public void OnHealing(FHealingReceived HealingDone)
     {
         if (!CurrentHealthElement.IsVisable)
         {

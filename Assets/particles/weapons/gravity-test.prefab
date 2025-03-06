@@ -17,8 +17,8 @@
         "Time": 7,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -894.76324,
-          "Passed": 894.76324,
+          "Relative": -2373.2302,
+          "Passed": 2373.2302,
           "Fraction": 1
         }
       }
@@ -80,12 +80,12 @@
             "Brightness": 1,
             "Bumpiness": 2,
             "Collision": true,
-            "CollisionIgnore": "",
+            "CollisionIgnore": "player",
             "CollisionRadius": 1,
             "Damping": 2,
-            "DieOnCollisionChance": 0.33,
+            "DieOnCollisionChance": 0.5,
             "Force": true,
-            "ForceDirection": "0,0,-500",
+            "ForceDirection": "0,0,-250",
             "ForceScale": 5,
             "ForceSpace": "World",
             "Friction": 1,
@@ -138,7 +138,7 @@
               ],
               "Constants": "3,7,0,0"
             },
-            "MaxParticles": 10,
+            "MaxParticles": 15,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -225,7 +225,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "5,3,0,0"
+              "Constants": "0.66,0.66,0,0"
             },
             "SequenceId": 0,
             "SequenceSpeed": {
@@ -312,7 +312,7 @@
               "AfterUILayer": false
             },
             "RotationOffset": 0,
-            "Scale": 0.75,
+            "Scale": 0.5,
             "Shadows": false,
             "SortMode": "ByDistance",
             "Texture": "particles/weapons/blud.vtex"
@@ -332,10 +332,10 @@
             "OnComponentStart": null,
             "OnComponentUpdate": null,
             "OnEdge": false,
-            "Radius": 0.05,
+            "Radius": 1,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Velocity": 20
+            "Velocity": 100
           }
         ]
       }

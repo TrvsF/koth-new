@@ -3,6 +3,7 @@ using KOTH.UI;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using Sandbox.Utility;
 using static Sandbox.PhysicsContact;
 
 namespace KOTH;
@@ -70,7 +71,22 @@ public sealed class DamageComponent : Component
 		}
 
 		var MaxHealth = AllowOverheal ? MaxHealthWithOverheal : MaxBaseHealth;
-		Health = Math.Min(MaxHealth, Health + Healing);
+		var RequestedHealth = Health + Healing;
+
+		if (RequestedHealth > MaxHealth)
+		{
+			Healing = MaxHealth - Health;
+		}
+
+		Health = Math.Min(MaxHealth, RequestedHealth);
+
+		FHealingReceived HealingDoneMessage = new()
+		{
+			TargetPlayerPawn = GameObject.Root.Components.Get<PlayerPawn>(),
+			Healing = Healing,
+		};
+
+		BroadcastHeals(HealingDoneMessage);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +106,12 @@ public sealed class DamageComponent : Component
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
+
+	[Rpc.Broadcast(NetFlags.HostOnly)]
+	private void BroadcastHeals(FHealingReceived HealingDone)
+	{
+		GameObject.Root.Dispatch(new HealingGivenEvent(HealingDone));
+	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastDamage(FDamageTaken DamageTaken)
