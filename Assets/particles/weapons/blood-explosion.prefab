@@ -17,8 +17,8 @@
         "Time": 7,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -2653.8838,
-          "Passed": 2653.8838,
+          "Relative": -2443.155,
+          "Passed": 2443.155,
           "Fraction": 1
         }
       }
@@ -287,7 +287,7 @@
             "__type": "Sandbox.ParticleSpriteRenderer",
             "__guid": "575961b2-b5a5-4f83-97d9-6d5717b5f2cc",
             "Additive": false,
-            "Alignment": "RotateToCamera",
+            "Alignment": "LookAtCamera",
             "BlurAmount": 0.65,
             "BlurOpacity": 0.1,
             "BlurSpacing": 0.23,

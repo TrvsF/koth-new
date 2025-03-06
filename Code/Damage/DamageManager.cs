@@ -92,7 +92,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
 		
 		// team check ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn && !TargetPlayerPawn.IsDummy)
+		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn)
 		{
 			return; // NOTE : early return
 		}

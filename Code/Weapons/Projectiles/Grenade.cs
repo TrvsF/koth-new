@@ -21,8 +21,7 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 	{
 		base.OnUpdate();
 
-		// -------------------- 
-		// explode on our own accord
+		// explode on our own accord //
 		if (AliveTime >= ExplosionFuse)
 		{
 			FProjectileCollision ProjectileCollision;
@@ -65,61 +64,63 @@ public sealed class Grenade : Projectile, IGameEventHandler<ProjectileCollideEve
 	{
 		var Collision = EventArgs.ProjectileCollision;
 
-		// -------------------- the guy we hit
+		// the guy we hit ////////////////////////////////////////////////////////
 		var HitPlayerPawn = Collision.HitObject.Root.Components.Get<PlayerPawn>();
-		if (HitPlayerPawn.IsValid())
+		if (!HitPlayerPawn.IsValid())
 		{
-			FDamageRequest DirectDamageRequest = new()
+			return;
+		}
+		
+		FDamageRequest DirectDamageRequest = new()
+		{
+			TargetDamageComponent = HitPlayerPawn.DamageComponent,
+			AttackerPlayerPawn = OwnerPlayerPawn,
+			TargetPlayerPawn = HitPlayerPawn,
+			DamageOrigin = Collision.HitLocation,
+			TargetOrigin = HitPlayerPawn.CenterPosition,
+			BaseDamage = BaseDamage,
+			BaseKnockbackStrength = BaseKnockbackStrength,
+			DirectImpact = true,
+			DamageType = EDamageType.Projectile,
+			DamageFalloffType = EDamageFalloffType.None,
+			MaxDamageImpactDistance = ExplosionRadius,
+		};
+		Scene.Dispatch(new DamageRequestEvent(DirectDamageRequest));
+
+		// explode on them //////////////////////
+		FProjectileCollision ProjectileCollision;
+		SimulateExplode(out ProjectileCollision, Collision.HitLocation);
+
+		foreach (var DamageComponent in ProjectileCollision.TracedDamageComponents)
+		{
+			if (!DamageComponent.IsValid() || HitPlayerPawn.DamageComponent == DamageComponent)
 			{
-				TargetDamageComponent = HitPlayerPawn.DamageComponent,
-				AttackerPlayerPawn = OwnerPlayerPawn,
-				TargetPlayerPawn = HitPlayerPawn,
-				DamageOrigin = Collision.HitLocation,
-				TargetOrigin = HitPlayerPawn.CenterPosition,
-				BaseDamage = BaseDamage,
-				BaseKnockbackStrength = BaseKnockbackStrength,
-				DirectImpact = true,
-				DamageType = EDamageType.Projectile,
-				DamageFalloffType = EDamageFalloffType.None,
-				MaxDamageImpactDistance = ExplosionRadius,
-			};
-			Scene.Dispatch(new DamageRequestEvent(DirectDamageRequest));
-
-			// -------------------- explode on them
-			FProjectileCollision ProjectileCollision;
-			SimulateExplode(out ProjectileCollision, Collision.HitLocation);
-
-			foreach (var DamageComponent in ProjectileCollision.TracedDamageComponents)
-			{
-				if (!DamageComponent.IsValid())
-				{
-					continue;
-				}
-
-				FDamageRequest DamageRequest = new()
-				{
-					TargetDamageComponent = DamageComponent,
-					AttackerPlayerPawn = OwnerPlayerPawn,
-					DamageOrigin = ProjectileCollision.HitLocation,
-					TargetOrigin = DamageComponent.WorldPosition,
-					BaseDamage = BaseDamage * .66f,
-					BaseKnockbackStrength = BaseKnockbackStrength,
-					DamageType = EDamageType.Projectile,
-					DamageFalloffType = EDamageFalloffType.Falloff,
-					MaxDamageImpactDistance = ExplosionRadius,
-				};
-
-				if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
-				{
-					DamageRequest.TargetPlayerPawn = PlayerPawn;
-					DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
-				}
-
-				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
+				continue;
 			}
 
-			GameObject.Root.Destroy();
+			FDamageRequest DamageRequest = new()
+			{
+				TargetDamageComponent = DamageComponent,
+				AttackerPlayerPawn = OwnerPlayerPawn,
+				DamageOrigin = ProjectileCollision.HitLocation,
+				TargetOrigin = DamageComponent.WorldPosition,
+				BaseDamage = BaseDamage * .66f,
+				BaseKnockbackStrength = BaseKnockbackStrength,
+				DamageType = EDamageType.Projectile,
+				DamageFalloffType = EDamageFalloffType.Falloff,
+				MaxDamageImpactDistance = ExplosionRadius,
+			};
+
+			if (DamageComponent.GameObject.GetComponent<PlayerPawn>() is { } PlayerPawn)
+			{
+				DamageRequest.TargetPlayerPawn = PlayerPawn;
+				DamageRequest.TargetOrigin = PlayerPawn.CenterPosition;
+			}
+
+			Scene.Dispatch(new DamageRequestEvent(DamageRequest));
 		}
+
+		GameObject.Root.Destroy();
 	}
 }
 

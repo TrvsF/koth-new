@@ -48,6 +48,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	// TODO : dummy only var, refactor
 	public bool IsJumper = false;
+	public bool IsWalker = false;
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -214,6 +215,12 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			IsCrouching = true;
 			CharacterController.Punch(Vector3.Up * JumpPower);
 			BroadcastPlayerJumped();
+		}
+
+		if (IsWalker)
+		{
+			WishMove = WorldRotation.Forward;
+			BuildWishVelocity();
 		}
 
 		ApplyAcceleration();

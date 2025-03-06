@@ -32,12 +32,10 @@ public sealed class EngiePlayer : Component
 	{
 		base.OnUpdate();
 
-		if (IsProxy)
+		if (!OwnerPawn.IsValid() || !OwnerPawn.IsLocallyControlled)
 		{
 			return;
 		}
-
-		// TODO : make methods
 
 		///////////////////////////////////////////////////
 

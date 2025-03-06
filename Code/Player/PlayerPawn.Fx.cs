@@ -173,13 +173,13 @@ public partial class PlayerPawn :
 	
 	void IGameEventHandler<HealingGivenEvent>.OnGameEvent(HealingGivenEvent EventArgs)
 	{
-		OnDamageTaken(EventArgs.HealingRequest);
+		OnHealingGiven(EventArgs.HealingRequest);
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
-	public void OnDamageTaken(FHealingReceived HealingDone)
+	public void OnHealingGiven(FHealingReceived HealingDone)
 	{
-		if (HealingDone.TargetPlayerPawn == this)
+		if (IsLocallyControlled && HealingDone.TargetPlayerPawn == this)
 		{
 			UI.Health.Instance?.OnHealing(HealingDone);
 		}

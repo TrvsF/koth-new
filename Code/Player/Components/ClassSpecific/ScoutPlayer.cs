@@ -16,12 +16,10 @@ public sealed class ScoutPlayer : Component
 	{
 		base.OnUpdate();
 
-		if (IsProxy)
+		if (!OwnerPawn.IsValid() || !OwnerPawn.IsLocallyControlled)
 		{
 			return;
 		}
-
-		Assert.IsValid(OwnerPawn);
 
 		var WishInput = OwnerPawn.WishMove.WithZ(0);
 		if (WishInput != LastInput)

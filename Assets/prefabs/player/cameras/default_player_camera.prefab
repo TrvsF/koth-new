@@ -11,6 +11,7 @@
         "BackgroundColor": "0.75478,0.83828,0.87624,1",
         "ClearFlags": "All",
         "FieldOfView": 90,
+        "FovAxis": "Horizontal",
         "IsMainCamera": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,

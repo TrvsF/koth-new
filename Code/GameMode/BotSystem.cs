@@ -1,20 +1,16 @@
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using System;
 using System.Collections.Generic;
 
 namespace KOTH;
 
-public sealed class BotSystem : Component,
+public sealed class BotSystem : SingletonComponent<BotSystem>,
 	IGameEventHandler<KillEvent>
 {
 	[Property] public GameObject DummyPrefab { get; private set; } = null;
-	public static List<PlayerPawn> DummyPlayerPawns { get; private set; } = new();
-
-	private void OnDummyDeath()
-	{
-
-	}
+	public Dictionary<TeamSpawnPoint, PlayerPawn> DummyPlayerPawns { get; private set; }
 
 	protected override void OnStart()
 	{
@@ -25,21 +21,31 @@ public sealed class BotSystem : Component,
 			return;
 		}
 
+		DummyPlayerPawns = new();
+
 		foreach (var SpawnPoint in GameUtils.GetDummySpawns())
 		{
 			SpawnPlayerPawn(Connection.Host, "Dummy", WorldUtil.GetRandomCharacter(), SpawnPoint);
 		}
 	}
 
-	protected override void OnUpdate()
+	protected override void OnFixedUpdate()
 	{
-		base.OnUpdate();
+		base.OnFixedUpdate();
+
+		foreach (var (Spawn, Player) in DummyPlayerPawns)
+		{
+			if (!Player.IsValid() || !Player.IsAlive)
+			{
+				SpawnPlayerPawn(Connection.Host, "Dummy", WorldUtil.GetRandomCharacter(), Spawn);
+			}
+		}
 	}
 
-	[Rpc.Host]
 	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
+		Assert.IsValid(SpawnPoint);
 
 		var SpawnPlayerPawnPrefab = PlayerState.DefaultPlayerPawnPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
@@ -57,7 +63,7 @@ public sealed class BotSystem : Component,
 
 		SpawnPlayerPawnComponent.SetPlayerPawnDefinition(PlayerPawnDefinition);
 		SpawnPlayerPawnComponent.IsJumper = SpawnPoint.Jumper;
-		SpawnPlayerPawnComponent.OnDeath += OnDummyDeath;
+		SpawnPlayerPawnComponent.IsWalker = SpawnPoint.Walker;
 
 		if (!SpawnPlayerPawnPrefab.NetworkSpawn(OwningConnection))
 		{
@@ -65,7 +71,7 @@ public sealed class BotSystem : Component,
 			return;
 		}
 
-		DummyPlayerPawns.Add(SpawnPlayerPawnComponent);
+		DummyPlayerPawns[SpawnPoint] = SpawnPlayerPawnComponent;
 	}
 
 	void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent EventArgs)

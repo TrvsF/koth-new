@@ -2,7 +2,7 @@
   "publish": {
     "Enabled": false,
     "ProjectConfig": {
-      "Title": "botz",
+      "Title": "Botz",
       "Type": "map",
       "Org": "local",
       "Ident": "botz",
@@ -10,11 +10,13 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
-      "IsWhitelistDisabled": false,
+      "EditorReferences": [
+        "fish.roblox_skybox#8534"
+      ],
+      "IsStandaloneOnly": false,
       "Metadata": {
         "SingleAssetSource": "maps/botz/botz.vmap",
-
+        "ParentPackage": "wurstsoftware.koth"
       }
     }
   }

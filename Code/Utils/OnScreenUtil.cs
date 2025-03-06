@@ -17,8 +17,8 @@ public class FScreenNumberElement
 	public PlayerPawn TargetPawn { get; init; } = null;
 	public Vector2 ScreenOffset { get; init; } = Vector2.Zero;
 	public bool IsDamage { get; init; } = true;
-	public Vector3 Location { get; init; } = Vector3.Zero;
 
+	public Vector3 Location { get; set; } = Vector3.Zero;
 	public TimeUntil DisplayedTime { get; set; } = new();
 	public float Damage { get; set; } = 0f;
 

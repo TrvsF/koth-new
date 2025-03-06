@@ -14,7 +14,7 @@ internal static class WorldUtil
 		var ClassList = GameMode.Instance.Components.Get<ClassList>();
 		Assert.NotNull(ClassList);
 
-		return ClassList.ClassDefinitions.FirstOrDefault();
+		return Random.Shared.FromList(ClassList.ClassDefinitions);
 	}
 }
 

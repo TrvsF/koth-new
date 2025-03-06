@@ -2,6 +2,13 @@ using Sandbox.Events;
 
 namespace KOTH;
 
+public enum EReloadType
+{
+	None = 0,
+	Mag,
+	Single,
+}
+
 // Reload /////////////////////////////////////////////////////////////
 public abstract partial class InputWeaponComponent : EquipmentComponent
 {

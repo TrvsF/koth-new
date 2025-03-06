@@ -170,6 +170,7 @@ public partial class PlayerState
 	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
+		Assert.IsValid(SpawnPoint);
 
 		Log.Info($"attempting to spawn player {RequestedCharacterDefinition} via {OwningConnection}");
 

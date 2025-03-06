@@ -49,6 +49,7 @@
 		}
 
 		var Distance = DamageGiven.DamageLocation.Distance(LocalPlayerPawn.WorldPosition);
+		var DamageLocation = DamageGiven.DamageType == EDamageType.Projectile && DamageGiven.VictimGameObject.IsValid() ? DamageGiven.VictimGameObject.WorldPosition : DamageGiven.DamageLocation;
 
 		foreach (var Element in DamageNumberElements)
 		{
@@ -56,6 +57,7 @@
 			{
 				Element.AddDamage(DamageGiven.Damage);
 				Element.DisplayedTime = 0;
+				Element.Location = DamageLocation;
 
 				return; // NOTE : early return
 			}
@@ -69,7 +71,7 @@
 				ScreenOffset = GetScreenOffset(Distance),
 				Damage = DamageGiven.Damage,
 				DisplayedTime = 0,
-				Location = DamageGiven.DamageType == EDamageType.Projectile && DamageGiven.VictimGameObject.IsValid() ? DamageGiven.VictimGameObject.WorldPosition : DamageGiven.DamageLocation,
+				Location = DamageLocation,
 			};
 
 		DamageNumberElements.Add(DamageNumberElement);
