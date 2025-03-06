@@ -5,7 +5,7 @@
     "KOTH.MedicPlayer"
   ],
   "MaxHealth": 125,
-  "WeightFactor": 1,
+  "WeightKnockbackFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/medigun/medigun.equip",
   "SecondaryWeapon": "prefabs/weapons/needlegun/needlegun.equip",
   "WalkSpeed": 320,
@@ -19,6 +19,8 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 12,
   "AirMaxAcceleration": 64,
+  "MedicVoice": "soundsvoice/alex_medic.wav",
+  "MedicVoiceEvent": "sounds/voice/alex_meidc.sound",
   "__references": [],
   "__version": 0
 }

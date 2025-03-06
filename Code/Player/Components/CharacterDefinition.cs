@@ -39,4 +39,5 @@ public partial class CharacterDefinition : GameResource
 	[Category("Movement")] public float AirMaxAcceleration { get; set; } = 64f;
 
 	[Category("Voices")] public string MedicVoice { get; set; } = "sound/voice/medic.wav";
+	[Category("Voices")] public SoundEvent MedicVoiceEvent{ get; set; }
 }

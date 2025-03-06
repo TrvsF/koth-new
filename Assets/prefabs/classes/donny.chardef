@@ -17,6 +17,8 @@
   "CrouchingAcceleration": 6,
   "MaxAcceleration": 10,
   "AirMaxAcceleration": 76,
+  "MedicVoice": "voice/donny_medic.wav",
+  "MedicVoiceEvent": "sounds/voice/donny_medic.sound",
   "__references": [],
   "__version": 0
 }

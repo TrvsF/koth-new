@@ -129,6 +129,10 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		if (IsLocallyControlled)
 		{
 			CameraTick();
+			if (Input.Pressed("Use"))
+			{
+				var h = Sound.Play(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, LocalPosition);
+			}
 		}
 
 		UpdateCrouch();

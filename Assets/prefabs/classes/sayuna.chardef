@@ -19,6 +19,8 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 12,
   "AirMaxAcceleration": 64,
+  "MedicVoice": "sounds/voice/sayuna_medic.wav",
+  "MedicVoiceEvent": "sounds/voice/sayuna_medic.sound",
   "__references": [],
   "__version": 0
 }
