@@ -26,6 +26,11 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		// TODO : imp
 	}
 
+	public void Destroy()
+	{
+		GameObject.Root.Destroy();
+	}
+
 	protected override void OnStart()
 	{
 		base.OnStart();

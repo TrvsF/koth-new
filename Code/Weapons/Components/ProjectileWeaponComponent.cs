@@ -35,15 +35,17 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 
 	protected override void OnInputUpdate()
 	{
-		bool IsShooting = IsDown() && CanShoot();
-
-		// we only care about projectiles spawned directly by a client
-		// TODO : should this be a host/server rpc?
-		if (IsProxy)
+		if (!Equipment.Owner.IsValid())
 		{
 			return;
 		}
 
+		if (!Equipment.Owner.IsLocallyControlled)
+		{
+			return;
+		}
+
+		bool IsShooting = IsDown() && CanShoot();
 		if (IsShooting)
 		{
 			Shoot();
@@ -135,6 +137,16 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 	public bool WasInputDownLastTick { get; private set; } = false;
 	protected override void OnInputUpdate() // TODO : OnInput()?
 	{
+		if (!Equipment.Owner.IsValid())
+		{
+			return;
+		}
+
+		if (!Equipment.Owner.IsLocallyControlled)
+		{
+			return;
+		}
+
 		bool KeyDown = IsDown();
 
 		if (WasInputDownLastTick)
@@ -144,8 +156,7 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 				GameObject Projectile = Shoot();
 				if (Projectile.Components.Get<Sticky>() is Sticky Sticky)
 				{
-					// Equipment.Owner.CharacterController.Velocity
-					Sticky.SetSpin();
+					Equipment.Owner.OnDeath += Sticky.Destroy;
 				}
 			}
 		}

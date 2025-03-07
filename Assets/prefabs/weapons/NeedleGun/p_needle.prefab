@@ -73,6 +73,23 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.TimedDestroyComponent",
+        "__guid": "d80c8cbf-9ca8-48d2-bc94-2db775a48437",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Time": 30,
+        "TimeUntilDestroy": {
+          "Absolute": 510.42886,
+          "Relative": -13.042877,
+          "Passed": 13.042877,
+          "Fraction": 1
+        }
       }
     ],
     "Children": [

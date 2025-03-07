@@ -6,21 +6,6 @@ public partial class StickyTrackerComponent : Component
 	Queue<Sticky> Stickies { get; } = new();
 	public int StickyCount { get => Stickies.Count; }
 
-	protected override void OnDestroy()
-	{
-		for (int Index = 0; Index < StickyCount; ++Index)
-		{
-			var Sticky = Stickies.Dequeue();
-			if (!Sticky.IsValid() || !Sticky.GameObject.Root.IsValid())
-			{
-				Log.Warning("unable to destroy sticky");
-				continue;
-			}
-
-			Sticky.GameObject.Root.Destroy();
-		}
-	}
-
 	public void AddSticky(Sticky Sticky)
 	{
 		if (Stickies.Count == 6)
