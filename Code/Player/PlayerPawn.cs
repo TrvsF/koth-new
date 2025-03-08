@@ -49,6 +49,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	// TODO : dummy only var, refactor
 	public bool IsJumper = false;
 
+	public FSound MedicSound;
+
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Sync(SyncFlags.FromHost)] public TimeSince TimeSinceLastRespawn { get; private set; }
@@ -108,6 +110,14 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
+
+			MedicSound = new FSound()
+			{
+				Owner = this,
+				SoundEvent = CharacterDefinition.MedicVoiceEvent,
+				Position = LocalPosition,
+				UpdatePosition = true
+			};
 		}
 		else
 		{
@@ -129,9 +139,10 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		if (IsLocallyControlled)
 		{
 			CameraTick();
+			SoundTick();
 			if (Input.Pressed("Use"))
 			{
-				var h = Sound.Play(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, LocalPosition);
+				PlaySound(MedicSound);
 			}
 		}
 
