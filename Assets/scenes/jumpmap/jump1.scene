@@ -2,6 +2,78 @@
   "__guid": "60be4b7c-e377-41ce-8407-f8a3df33315c",
   "GameObjects": [
     {
+      "__guid": "46e6cf96-d2c3-4129-94e4-c09879fdd795",
+      "Flags": 0,
+      "Name": "spawnpoint (5)",
+      "Position": "-66.81529,364.2145,-133.6398",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "5d60e3a5-d4fd-426c-ac35-c19f1d9293f2",
+          "IsDummy": false,
+          "Jumper": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnZone": null,
+          "Team": "Terrorist",
+          "Walker": false
+        }
+      ]
+    },
+    {
+      "__guid": "2623adfa-1963-4399-bc14-ed02b44aabe0",
+      "Flags": 0,
+      "Name": "spawnpoint (3)",
+      "Position": "-89.50693,403.5176,-133.6398",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "200bbd9e-cbaa-48b5-982c-9773142c4a49",
+          "IsDummy": false,
+          "Jumper": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnZone": null,
+          "Team": "Unassigned",
+          "Walker": false
+        }
+      ]
+    },
+    {
+      "__guid": "97c56719-132b-48d0-a815-056587429380",
+      "Flags": 0,
+      "Name": "spawnpoint (4)",
+      "Position": "-147.7051,504.3199,-133.6398",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "f62463d4-c116-4942-a5cd-152d75cd9671",
+          "IsDummy": false,
+          "Jumper": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnZone": null,
+          "Team": "CounterTerrorist",
+          "Walker": false
+        }
+      ]
+    },
+    {
       "__guid": "2e9d327f-67ac-42d4-99e7-f9b58dcfb749",
       "Flags": 0,
       "Name": "Scene Information",
@@ -51,117 +123,7 @@
           "UseMapFromLaunch": true
         }
       ],
-      "Children": [
-        {
-          "__guid": "97c56719-132b-48d0-a815-056587429380",
-          "Flags": 0,
-          "Name": "spawnpoint (4)",
-          "Position": "159.6909,449.9329,93.87196",
-          "Rotation": "0,0,-0.8660253,0.5000002",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "TeamSpawnPoint",
-              "__guid": "f62463d4-c116-4942-a5cd-152d75cd9671",
-              "IsDummy": false,
-              "Jumper": false,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnZone": null,
-              "Team": "CounterTerrorist",
-              "Walker": false
-            }
-          ]
-        },
-        {
-          "__guid": "2623adfa-1963-4399-bc14-ed02b44aabe0",
-          "Flags": 0,
-          "Name": "spawnpoint (3)",
-          "Position": "114.908,449.9329,93.87196",
-          "Rotation": "0,0,-0.8660253,0.5000002",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "TeamSpawnPoint",
-              "__guid": "200bbd9e-cbaa-48b5-982c-9773142c4a49",
-              "IsDummy": false,
-              "Jumper": false,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnZone": null,
-              "Team": "Unassigned",
-              "Walker": false
-            }
-          ]
-        },
-        {
-          "__guid": "46e6cf96-d2c3-4129-94e4-c09879fdd795",
-          "Flags": 0,
-          "Name": "spawnpoint (5)",
-          "Position": "69.52469,449.9329,93.87196",
-          "Rotation": "0,0,-0.8660253,0.5000002",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "TeamSpawnPoint",
-              "__guid": "5d60e3a5-d4fd-426c-ac35-c19f1d9293f2",
-              "IsDummy": false,
-              "Jumper": false,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnZone": null,
-              "Team": "Terrorist",
-              "Walker": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__guid": "337b45d2-f94a-41a9-b735-093088733043",
-      "Flags": 0,
-      "Name": "Networking",
-      "Position": "122.1813,507.827,-209.1794",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "KOTH.GameNetworkManager",
-          "__guid": "5d9bbbde-69e1-480e-bb38-0ea23aeb4107",
-          "NetworkMode": "Singleplayer",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "PlayerStatePrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/player/playerstate.prefab"
-          }
-        }
-      ]
-    },
-    {
-      "__guid": "38e7bddb-3a82-492f-91e8-59113b5cbf3b",
-      "Flags": 0,
-      "Name": "GameMode",
-      "Enabled": true,
-      "__Prefab": "prefabs/game_modes/jumper.prefab",
-      "__PrefabVariables": {
-        "Title": "KOTH"
-      }
+      "Children": []
     },
     {
       "__guid": "fed2b91f-4df7-444f-90a0-af6d94dc6c53",
@@ -338,6 +300,60 @@
               "TeleportRotation": "0,0,0.003490651,0.9999939"
             }
           ]
+        },
+        {
+          "__guid": "4f3a5226-9f73-4420-8a1c-9c56ca97b6cd",
+          "Flags": 0,
+          "Name": "teleportzone (1)",
+          "Position": "3026.881,419.6228,-270.4866",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "9815563a-5e3a-4045-b179-ab4ad210a921",
+              "Center": "227.8876,202.2299,-45.90728",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "1112.379,1132.659,49.08528",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "Zone",
+              "__guid": "bbbbdd6e-cfb5-4256-b605-bc787317ab6f",
+              "Color": "0,1,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "KOTH.TeleportZone",
+              "__guid": "112cf2f9-1fd8-4ba6-a0af-100ea4cb7510",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "TeleportLocation": "-406.2075,-15.66235,169.3215",
+              "TeleportRotation": "0,0,0.003490651,0.9999939"
+            }
+          ]
         }
       ]
     },
@@ -345,7 +361,7 @@
       "__guid": "5161b6f6-483d-4a69-8358-723d9aebc201",
       "Flags": 0,
       "Name": "KillZone",
-      "Position": "-63.8437,631.0758,-158.7791",
+      "Position": "-63.8437,631.0758,-623.4144",
       "Tags": "zone",
       "Enabled": true,
       "Components": [
@@ -365,7 +381,7 @@
           "OnObjectTriggerExit": null,
           "OnTriggerEnter": null,
           "OnTriggerExit": null,
-          "Scale": "100,100,100",
+          "Scale": "50000,10000,100",
           "Static": false,
           "Surface": null,
           "SurfaceVelocity": "0,0,0"
@@ -390,6 +406,413 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
+      "__guid": "0830e90e-0a51-4618-9c7c-ceb7b3f5e3f2",
+      "Flags": 0,
+      "Name": "GameState",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": false,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "KOTH.GameNetworkManager",
+          "__guid": "7dc97ee7-1858-4728-9cb5-d561c00ec634",
+          "NetworkMode": "Singleplayer",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerStatePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player/playerstate.prefab"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "c0310615-2b5a-402a-ad67-cee4e07d4cdb",
+      "Flags": 0,
+      "Name": "GameMode",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": false,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "KOTH.GameMode",
+          "__guid": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Title": "Botz"
+        },
+        {
+          "__type": "KOTH.DamageManager",
+          "__guid": "f63bd239-41b8-4348-b7f6-07cac6fb7485",
+          "HitSound": "sounds/hitsound.sound",
+          "KnockbackOnly": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.ClassList",
+          "__guid": "96cf176c-da2a-4d79-bd7e-de804021ec71",
+          "ClassDefinitions": [
+            "prefabs/classes/donny.chardef"
+          ],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TurretPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/buildings/turret/turret.prefab"
+          }
+        },
+        {
+          "__type": "KOTH.Stats",
+          "__guid": "0b5f04de-5505-489b-b4ce-2122f7bb06c1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.TextChat",
+          "__guid": "0164591d-c8ef-4cb3-bdde-b99a3185bf66",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.Notification.NotificationManager",
+          "__guid": "697c69ab-8d8c-4d60-8d6d-1072cbaf44cd",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.PlayerExp.ExpManager",
+          "__guid": "0cd74b6b-6734-469c-a808-a4a45174c3af",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "8b4c3e84-069e-4624-ae11-1ccd49452883",
+          "Flags": 0,
+          "Name": "States",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.Events.StateMachineComponent",
+              "__guid": "98e58b3d-5eee-429b-bd0c-3682075612ba",
+              "CurrentState": {
+                "_type": "component",
+                "component_id": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
+                "go": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
+                "component_type": "StateComponent"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
+              "Flags": 0,
+              "Name": "Waiting",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
+                  "DefaultDuration": -1,
+                  "DefaultNextState": null,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "f9e8c863-1c45-4671-842d-2d04ce3fe336",
+                  "DefaultRespawnDelaySeconds": 0,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "TryUseGamemodeRespawnTime": false,
+                  "UseSpawnWaves": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "f4e7fb7f-c7ab-49fc-8cc1-708988f7d66c",
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "167.6459,445.7328,-160",
+      "Rotation": "0.00000004020403,-0.0754749,-0.00000008292673,0.9971479",
+      "Tags": "scenecamera",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "66fd5605-a517-4d2e-bde6-4925174026dc",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "5f96477b-00f2-4f76-bba1-8ccd03dddb7f",
+      "Flags": 0,
+      "Name": "World",
+      "Position": "577.4293,449.8655,29.12496",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.TextRenderer",
+          "__guid": "c3909ede-32bf-4de5-93c8-ca9669d351f5",
+          "__version": 1,
+          "BlendMode": "Normal",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 1,
+          "TextAlignment": "Center",
+          "TextScope": {
+            "Text": "World Record",
+            "TextColor": "1,1,1,1",
+            "FontName": "Poppins",
+            "FontSize": 32,
+            "FontWeight": 400,
+            "FontItalic": false,
+            "LineHeight": 1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "eceaa25f-cc36-4d50-ac75-3f5f668e437c",
+      "Flags": 0,
+      "Name": "leaderboard_txt",
+      "Position": "129.3838,24.03295,-115.8026",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.TextRenderer",
+          "__guid": "2b88a40a-7258-4122-a71f-3f735252615e",
+          "__version": 1,
+          "BlendMode": "Normal",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 1,
+          "TextAlignment": "Center",
+          "TextScope": {
+            "Text": "Leadboard",
+            "TextColor": "1,1,1,1",
+            "FontName": "Poppins",
+            "FontSize": 32,
+            "FontWeight": 400,
+            "FontItalic": false,
+            "LineHeight": 1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "0a9f8805-b27d-4bca-8525-ec5f997b4604",
+      "Flags": 0,
+      "Name": "worldrecord_txt",
+      "Position": "577.4293,449.8655,-9.571486",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.TextRenderer",
+          "__guid": "a21f8bf1-8fe4-48aa-89a0-524d11e0e616",
+          "__version": 1,
+          "BlendMode": "Normal",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "Scale": 1,
+          "TextAlignment": "Center",
+          "TextScope": {
+            "Text": "travis : 2m 34s",
+            "TextColor": "1,1,1,1",
+            "FontName": "Poppins",
+            "FontSize": 32,
+            "FontWeight": 400,
+            "FontItalic": false,
+            "LineHeight": 1,
+            "LetterSpacing": 0,
+            "WordSpacing": 0,
+            "Outline": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,1,1"
+            },
+            "Shadow": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            },
+            "OutlineUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,1,0,1"
+            },
+            "ShadowUnder": {
+              "Enabled": false,
+              "Size": 4,
+              "Color": "0,0,0,1",
+              "Offset": "4,4"
+            }
+          }
         }
       ]
     }

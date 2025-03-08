@@ -127,6 +127,12 @@ public partial class PlayerState
 			PlayerPawn = null;
 		}
 
+		if (!SpawnPoint.IsValid())
+		{
+			Log.Warning($"trying to spawn player {this} with invalid spawn point");
+			return;
+		}
+
 		SpawnPlayerPawn(Connection, SteamName, RequestedCharacterDefinition, SpawnPoint);
 	}
 

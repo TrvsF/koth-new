@@ -9,8 +9,6 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 	[Property, Group("Explosion")] public GameObject ExplosionPrefab { get; set; }
 	[Property, Group("Explosion")] public SoundEvent ExplodeSound { get; set; }
 
-	[Property, Group("VFX")] public GameObject ExplosionParticles { get; set; }
-
 	/////////////////////////////////////////////////////////////////////////////////////
 
 	private GameObject AttachedGameObject = null;
@@ -26,9 +24,10 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		// TODO : imp
 	}
 
-	public void Destroy()
+	public new void Destroy()
 	{
-		GameObject.Root.Destroy();
+		// PROGrAMmER
+		GameObject?.Root?.Destroy();
 	}
 
 	protected override void OnStart()

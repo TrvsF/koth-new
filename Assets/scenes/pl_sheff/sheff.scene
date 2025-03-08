@@ -187,7 +187,7 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "c15b2515-eb85-4244-babe-1e396072e03e",
-                  "DefaultDuration": 180,
+                  "DefaultDuration": 1200,
                   "DefaultNextState": {
                     "_type": "component",
                     "component_id": "5d78d7ca-8c29-4eb6-8569-cb6e469b1fd6",
@@ -295,18 +295,6 @@
                   "OnComponentUpdate": null,
                   "TryUseGamemodeRespawnTime": false,
                   "UseSpawnWaves": false
-                },
-                {
-                  "__type": "KOTH.WaitForPlayers",
-                  "__guid": "af37b660-ec77-4a92-b191-e22d29042811",
-                  "__enabled": false,
-                  "MinPlayerCount": 4,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null
                 }
               ]
             }
@@ -511,6 +499,56 @@
           ]
         },
         {
+          "__guid": "7ab3cce7-c441-4f0b-ae6c-6bdfe03231db",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1389.572,-33.63545,80.00002",
+          "Rotation": "0,0,0.9238796,0.3826835",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "bbcac0ed-53d8-461c-955d-b742f36662a2",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "39bd806e-d48f-41c8-9f91-0ed09e47bbdb",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1335.826,-187.2142,79.99226",
+          "Rotation": "0,0,0.7071068,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "7c89b44c-f95b-4490-a83a-6ada4ac982bf",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
           "__guid": "6b933d92-78bc-42de-9577-c2fa601cc5fd",
           "Flags": 0,
           "Name": "spawnpoint",
@@ -536,6 +574,56 @@
           ]
         },
         {
+          "__guid": "8f64ab24-5abe-4eb6-912b-bd279247bd92",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1377.148,-80.00045,80.00002",
+          "Rotation": "0,0,0.9659261,0.2588192",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "ae49b11b-19c9-4170-bef1-d1cbd4dee806",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "c031476b-1d4a-4851-abb9-93bb90e77489",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1294.256,-211.214,79.99226",
+          "Rotation": "0,0,0.7933536,0.6087617",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "388f56c6-fb6f-4a50-a3a1-a7c6416d80ab",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
           "__guid": "19b9107f-4399-46a0-8b65-91ce0be820f7",
           "Flags": 0,
           "Name": "spawnpoint",
@@ -546,6 +634,56 @@
             {
               "__type": "TeamSpawnPoint",
               "__guid": "26f12480-c3e6-4dfb-ac45-bf846355c627",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "2ff6509f-64f4-4edd-b689-dc8b91fe5d8e",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1364.725,-126.3645,80.00002",
+          "Rotation": "0,0,0.991445,0.1305263",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "ec6a4d0c-a39a-4560-8491-c2246f7e55ab",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Terrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "df6c044a-c458-4de3-b2dc-066b27f1f18f",
+          "Flags": 0,
+          "Name": "spawnpoint",
+          "Position": "1252.688,-235.214,79.99226",
+          "Rotation": "0,0,0.8660255,0.5000001",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "172ee4e5-16a6-4f4b-bbd4-ae78a95800f1",
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -594,6 +732,81 @@
           ]
         },
         {
+          "__guid": "6c72b0fb-2c50-4cc2-9c57-df8f78ccff02",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-3722.38,277.5717,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "f3a4224f-89d8-4f18-83f6-25456a47b746",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "af2eb4e6-645e-4cf2-a0fd-90d5bf56fdc9",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-3805.713,277.5717,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "f4738bf3-6b0c-406c-b5fc-a9bba7fcc2bd",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "ec35385a-3e91-48f0-ab2c-b1245fd53244",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-3905.497,277.5717,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "fbc4d3ab-a71d-489e-8815-1b5277e2a129",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
           "__guid": "4394efcf-6a8f-417c-8594-330792cbc65d",
           "Flags": 0,
           "Name": "spawnpoint (2)",
@@ -619,6 +832,81 @@
           ]
         },
         {
+          "__guid": "8a101e1b-7d31-42e9-b038-ef2185d9c171",
+          "Flags": 0,
+          "Name": "spawnpoint (2)",
+          "Position": "-3722.38,152.2714,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "c6e5db0d-9d41-48ba-907a-3164040a8c1f",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "e6f01f64-e791-446b-9001-b0d6b1152a7a",
+          "Flags": 0,
+          "Name": "spawnpoint (2)",
+          "Position": "-3805.713,152.2714,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "49f037b5-7d1f-4720-995b-169599700b17",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "51b87609-6b5a-4c16-ae52-dc6dac9c9131",
+          "Flags": 0,
+          "Name": "spawnpoint (2)",
+          "Position": "-3905.497,152.2714,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "bb298adf-b6fd-43e4-8d12-3f6c86446cf7",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
           "__guid": "5506d5e0-6651-4d97-b7dc-b2eb92d2ffeb",
           "Flags": 0,
           "Name": "spawnpoint (3)",
@@ -629,6 +917,81 @@
             {
               "__type": "TeamSpawnPoint",
               "__guid": "99505943-b931-4ecd-87c0-266d35e97e39",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "d3672de9-9f2d-46ee-9ae7-68bd1cb94980",
+          "Flags": 0,
+          "Name": "spawnpoint (3)",
+          "Position": "-3722.38,466.7709,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "2372578a-8171-4201-bc7f-97c713221663",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "9608efcb-6f11-4feb-a8fe-8660e451024b",
+          "Flags": 0,
+          "Name": "spawnpoint (3)",
+          "Position": "-3805.713,466.7709,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "b18e38e7-17e4-4e3e-a042-1cfdf1f91fbf",
+              "IsDummy": false,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "CounterTerrorist",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "0fc11cd7-f810-4e63-878c-36d015917573",
+          "Flags": 0,
+          "Name": "spawnpoint (3)",
+          "Position": "-3905.497,466.7709,264.8997",
+          "Rotation": "0,0,0.0444911,0.9990098",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "e74aad27-e3a6-46a4-8e2d-42d84597802e",
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -684,32 +1047,6 @@
               "OnComponentUpdate": null,
               "SpawnTime": 10,
               "Team": "CounterTerrorist"
-            }
-          ]
-        },
-        {
-          "__guid": "80616e62-7684-4601-b0e7-3a336e095e91",
-          "Flags": 0,
-          "Name": "spawnpoint",
-          "Position": "-3824,277.5717,288",
-          "Rotation": "0,0,0.0444911,0.9990098",
-          "Enabled": true,
-          "NetworkMode": 0,
-          "Components": [
-            {
-              "__type": "TeamSpawnPoint",
-              "__guid": "7de6fa1e-efe7-4d08-b9ab-d13ad929e113",
-              "IsDummy": false,
-              "Jumper": false,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "SpawnZone": null,
-              "Team": "CounterTerrorist",
-              "Walker": false
             }
           ]
         }

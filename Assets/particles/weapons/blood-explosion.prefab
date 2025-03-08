@@ -17,8 +17,8 @@
         "Time": 7,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -2443.155,
-          "Passed": 2443.155,
+          "Relative": -381.12158,
+          "Passed": 381.12158,
           "Fraction": 1
         }
       }
@@ -85,7 +85,7 @@
             "Damping": 2,
             "DieOnCollisionChance": 0.33,
             "Force": true,
-            "ForceDirection": "0,0,-150",
+            "ForceDirection": "0,0,-250",
             "ForceScale": 5,
             "ForceSpace": "World",
             "Friction": 1,
@@ -138,7 +138,7 @@
               ],
               "Constants": "3,7,0,0"
             },
-            "MaxParticles": 1000,
+            "MaxParticles": 50,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -335,7 +335,7 @@
             "Radius": 10,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Velocity": 400
+            "Velocity": 500
           }
         ]
       }

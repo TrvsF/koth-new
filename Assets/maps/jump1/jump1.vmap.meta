@@ -10,10 +10,13 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
-      "IsWhitelistDisabled": false,
+      "EditorReferences": [
+        "quack.skybox_white#13352"
+      ],
+      "IsStandaloneOnly": false,
       "Metadata": {
-        "SingleAssetSource": "maps/jump1/jump1.vmap"
+        "SingleAssetSource": "maps/jump1/jump1.vmap",
+        "ParentPackage": "wurstsoftware.koth"
       }
     }
   }
