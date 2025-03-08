@@ -54,7 +54,7 @@
         "__guid": "6b8f59f4-8f42-4df6-a16a-1a856b9feb5a",
         "Ammo": 12,
         "BaseDamage": 13,
-        "DecalDefinition": null,
+        "DecalDefinition": "prefabs/decals/bulletdecal.decal",
         "FireRate": 0.2,
         "HasAmmo": true,
         "InputActions": [

@@ -90,7 +90,7 @@ public partial class PlayerPawn
 		return CharacterController.IsOnGround ? MaxAcceleration : AirMaxAcceleration;
 	}
 
-	Vector3 Gravity = new Vector3(0, 0, 800); // TODO : move me
+	static Vector3 Gravity = new Vector3(0, 0, 800); // TODO : move me
 	private void ApplyMovement()
 	{
 		CharacterController.ApplyFriction(GetFriction());

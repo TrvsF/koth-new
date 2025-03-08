@@ -114,22 +114,6 @@
             "Static": false,
             "Surface": null,
             "SurfaceVelocity": "0,0,0"
-          },
-          {
-            "__type": "Sandbox.HighlightOutline",
-            "__guid": "0b31bef4-338f-434e-bf46-ca95ca5caf34",
-            "Color": "0,0,0,0.4",
-            "InsideColor": "0,0,0,0",
-            "InsideObscuredColor": "0,0,0,0",
-            "Material": null,
-            "ObscuredColor": "0.42745,0.79216,0.18431,1",
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "Width": 0.25
           }
         ]
       }

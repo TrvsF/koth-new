@@ -68,7 +68,7 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "OnInputAction": null,
-        "ProjectileHorizontalSpeed": 1200,
+        "ProjectileHorizontalSpeed": 1100,
         "ProjectilePrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/weapons/rktlauncher/p_rkt.prefab"

@@ -219,7 +219,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	int ShotParticles = 0;
 
 	[Rpc.Broadcast]
-	public void BulletHitVFX(Vector3 HitObjectPosition)
+	public void BulletHitVFX(Transform HitObjectTransform)
 	{
 		if (!Equipment.Owner.IsValid())
 		{
@@ -230,12 +230,12 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		if (TrailPrefab.IsValid())
 		{
 			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
-			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectPosition);
+			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectTransform.Position);
 
 			var Lerp = 0.05f;
 			while (Lerp < 1f)
 			{
-				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectPosition, Lerp);
+				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectTransform.Position, Lerp);
 				TrailPrefab.Clone(Position, Equipment.Owner.Boom.WorldRotation);
 				Lerp += LerpFactor;
 				++ShotParticles;
@@ -253,7 +253,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 			var DecalObject = Scene.CreateObject();
 			DecalObject.NetworkMode = NetworkMode.Never;
-			DecalObject.WorldPosition = HitObjectPosition;
+			DecalObject.WorldPosition = HitObjectTransform.Position;
+			DecalObject.WorldRotation = HitObjectTransform.Rotation;
 
 			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
 			DecalRenderer.Material = Decal.Material;

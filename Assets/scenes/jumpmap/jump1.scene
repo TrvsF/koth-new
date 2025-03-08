@@ -2,30 +2,6 @@
   "__guid": "60be4b7c-e377-41ce-8407-f8a3df33315c",
   "GameObjects": [
     {
-      "__guid": "46e6cf96-d2c3-4129-94e4-c09879fdd795",
-      "Flags": 0,
-      "Name": "spawnpoint (5)",
-      "Position": "-66.81529,364.2145,-133.6398",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "TeamSpawnPoint",
-          "__guid": "5d60e3a5-d4fd-426c-ac35-c19f1d9293f2",
-          "IsDummy": false,
-          "Jumper": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SpawnZone": null,
-          "Team": "Terrorist",
-          "Walker": false
-        }
-      ]
-    },
-    {
       "__guid": "2623adfa-1963-4399-bc14-ed02b44aabe0",
       "Flags": 0,
       "Name": "spawnpoint (3)",
@@ -258,7 +234,7 @@
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "ac21233d-d7e1-42b6-bf02-5b129a68cc58",
-              "Center": "0,0,0",
+              "Center": "0,0,-12.49805",
               "Friction": null,
               "IsTrigger": true,
               "OnComponentDestroy": null,
@@ -271,7 +247,7 @@
               "OnObjectTriggerExit": null,
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
-              "Scale": "656.6039,728.1995,140.9001",
+              "Scale": "656.6039,728.1995,115.904",
               "Static": false,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -354,6 +330,60 @@
               "TeleportRotation": "0,0,0.003490651,0.9999939"
             }
           ]
+        },
+        {
+          "__guid": "5067cea0-0ae1-498b-88fa-2a3b7b1c61e9",
+          "Flags": 0,
+          "Name": "teleportzone (2)",
+          "Position": "3021.205,2110.783,-39.9803",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "24c2eb7d-0d7c-4453-93bd-6113644bdb76",
+              "Center": "462.0131,-166.8948,-45.90728",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "776.0424,713.1872,49.08528",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "Zone",
+              "__guid": "1a7b1b60-85f6-4cc0-b1bf-6a2446ebb3f2",
+              "Color": "0,1,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "KOTH.TeleportZone",
+              "__guid": "906ab9cc-0b53-4da4-a1d2-497d92679647",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "TeleportLocation": "392.393,-589.863,364.6213",
+              "TeleportRotation": "0,0,0.7071068,0.7071068"
+            }
+          ]
         }
       ]
     },
@@ -361,7 +391,7 @@
       "__guid": "5161b6f6-483d-4a69-8358-723d9aebc201",
       "Flags": 0,
       "Name": "KillZone",
-      "Position": "-63.8437,631.0758,-623.4144",
+      "Position": "-63.8437,631.0758,-1397.045",
       "Tags": "zone",
       "Enabled": true,
       "Components": [
@@ -598,7 +628,7 @@
       "__guid": "f4e7fb7f-c7ab-49fc-8cc1-708988f7d66c",
       "Flags": 0,
       "Name": "Camera",
-      "Position": "167.6459,445.7328,-160",
+      "Position": "167.6459,445.7328,-141.7825",
       "Rotation": "0.00000004020403,-0.0754749,-0.00000008292673,0.9971479",
       "Tags": "scenecamera",
       "Enabled": true,
@@ -813,6 +843,30 @@
               "Offset": "4,4"
             }
           }
+        }
+      ]
+    },
+    {
+      "__guid": "d98ee09c-9464-4f65-9a6e-a6cd90beb28e",
+      "Flags": 0,
+      "Name": "spawnpoint (5)",
+      "Position": "-13.98562,401.1184,-138.1074",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "4bfc8fb6-dedb-48c5-8cff-bbe21db6e73a",
+          "IsDummy": false,
+          "Jumper": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnZone": null,
+          "Team": "Terrorist",
+          "Walker": false
         }
       ]
     }

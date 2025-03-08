@@ -118,6 +118,12 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 	{
 		Log.Info($"Connection activating with name = {ConnectionChannel.DisplayName}:{ConnectionChannel.Ping} | is host = {ConnectionChannel.IsHost}");
 
+		// HACK : to stop the host creating another state if they create a lobby in a singleplayer session
+		if (ConnectionChannel == Connection.Host && IsLocalSession)
+		{
+			return;
+		}
+
 		// TODO : if we're a dedicated server init a different way!
 		StartClient(ConnectionChannel);
 	}

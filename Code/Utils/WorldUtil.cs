@@ -37,11 +37,12 @@ public static class ShootHelper
 {
 	// public static List<String> IgnoreTags { get; private set; } = [""];
 
-	public static HashSet<(DamageComponent DamageComponent, Vector3 HitLocation)> GetDamageComponentsFromTrace(SceneTrace SceneTrace, GameObject OriginObject, Vector3 OriginPoint, Vector3 TargetPoint, out Vector3 FirstImpactLocation, DebugOverlaySystem DebugOverlay = null)
+	public static HashSet<(DamageComponent DamageComponent, Vector3 HitLocation)> GetDamageComponentsFromTrace(SceneTrace SceneTrace, GameObject OriginObject, Vector3 OriginPoint, Vector3 TargetPoint, out Transform FirstImpactTransform, DebugOverlaySystem DebugOverlay = null)
 	{
 		var TraceElements = GetShootTraceElements(SceneTrace, OriginObject, OriginPoint, TargetPoint, DebugOverlay);
 
-		FirstImpactLocation = TraceElements.FirstOrDefault().HitPosition;
+		var FirstTrace = TraceElements.FirstOrDefault();
+		FirstImpactTransform = new(FirstTrace.HitPosition, Rotation.LookAt(-FirstTrace.Normal, Vector3.Random), 0);
 
 		var TraceElementsFiltered = TraceElements
 			.Where(Trace => Trace.Hit)

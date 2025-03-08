@@ -9,12 +9,14 @@ namespace KOTH;
 public sealed class PayloadGamemode : Component,
 	ITeamSpawnTime,
 	IGameEventHandler<UpdateStateEvent>,
-	IGameEventHandler<EnterStateEvent>
+	IGameEventHandler<EnterStateEvent>,
+	IGameEventHandler<LeaveStateEvent>
 {
 	[Property] public GameObject PayloadGameobject { get; set; } = null;
 	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
 	[Property] public GameObject TActiveSpawn { get; set; } = null;
 	[Property] public GameObject CTActiveSpawn { get; set; } = null;
+	[Property] public float SetupTime { get; set; } = 30f;
 
 	protected override void OnStart()
 	{
@@ -33,10 +35,21 @@ public sealed class PayloadGamemode : Component,
 	public float TSpawnTime => TActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 	public float CTSpawnTime => CTActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 
+	public List<SpawnDoor> SpawnDoors => TActiveSpawn.GetComponent<SpawnZone>().SpawnDoors;
+
+	private RealTimeSince TimeSinceStart = 0;
+	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
 	private int CurrentSegmentIndex = 0;
 	private float TargetTransitionFactor = 0;
 	
+	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
+	{
+		var PayloadHightlight = PayloadGameobject.GetOrAddComponent<HighlightOutline>();
+		PayloadHightlight.ObscuredColor = Color.Green.WithAlpha(0);
+		PayloadHightlight.Color = Color.Yellow.WithAlpha(0);
+	}
+
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
 		Assert.IsValid(PayloadCartComponent);
@@ -46,14 +59,40 @@ public sealed class PayloadGamemode : Component,
 		PayloadGameobject.WorldPosition = StartLocationRotation.Position;
 		PayloadGameobject.WorldRotation = StartLocationRotation.Rotation;
 
+		var PayloadHightlight = PayloadGameobject.GetOrAddComponent<HighlightOutline>();
+		PayloadHightlight.ObscuredColor = Color.Green.WithAlpha(0.2f);
+		PayloadHightlight.Color = Color.Yellow.WithAlpha(0.05f);
+
+		TimeSinceStart = 0;
+		IsSetupTime = true;
 		HasCartFinished = false;
 		CurrentSegmentIndex = 0;
 		TargetTransitionFactor = 0;
+
+		foreach (var Door in SpawnDoors)
+		{
+			Door.Open = false;
+		}
 	}
+
 
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
 		Assert.True(Networking.IsHost);
+
+		if (IsSetupTime)
+		{
+			if (TimeSinceStart < SetupTime)
+			{
+				return;
+			}
+
+			IsSetupTime = false;
+			foreach (var Door in SpawnDoors)
+			{
+				Door.Open = true;
+			}
+		}
 
 		if (HasCartFinished)
 		{

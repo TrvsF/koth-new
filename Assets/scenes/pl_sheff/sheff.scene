@@ -166,7 +166,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 1,
+                  "MinPlayerCount": 2,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -225,6 +225,7 @@
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
                   },
+                  "SetupTime": 30,
                   "TActiveSpawn": {
                     "_type": "gameobject",
                     "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"
@@ -388,7 +389,7 @@
         {
           "__guid": "56288ba5-8bb4-44b3-9442-61a6bbff51bd",
           "Flags": 0,
-          "Name": "spawnzone",
+          "Name": "mainspawn",
           "Position": "687.9999,-352,160",
           "Tags": "zone",
           "Enabled": true,
@@ -424,6 +425,26 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnDoors": [
+                {
+                  "_type": "component",
+                  "component_id": "eb08d4a4-178f-4c11-ba0a-f2b55a6de1f5",
+                  "go": "29226d21-c422-4d40-9356-95cd464c78ab",
+                  "component_type": "SpawnDoor"
+                },
+                {
+                  "_type": "component",
+                  "component_id": "973796f7-ec16-4433-84da-c80a83a079f4",
+                  "go": "7088d075-359e-450f-befd-fa9820a7cb00",
+                  "component_type": "SpawnDoor"
+                },
+                {
+                  "_type": "component",
+                  "component_id": "29cb3662-c047-4707-b472-7b8192232ef5",
+                  "go": "cb6ed24d-2ccb-42ad-a966-0ae745c92fa5",
+                  "component_type": "SpawnDoor"
+                }
+              ],
               "SpawnTime": 6,
               "Team": "Terrorist"
             }
@@ -468,6 +489,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnDoors": [],
               "SpawnTime": 0,
               "Team": "Terrorist"
             }
@@ -695,6 +717,317 @@
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "29226d21-c422-4d40-9356-95cd464c78ab",
+          "Flags": 0,
+          "Name": "spawndoor1",
+          "Position": "429.8889,-469.2789,0.9999931",
+          "Rotation": "-0.00000007362976,0.00000001139187,0.7071068,0.7071068",
+          "Scale": "1.650729,1,1.553004",
+          "Tags": "solid",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "KOTH.SpawnDoor",
+              "__guid": "eb08d4a4-178f-4c11-ba0a-f2b55a6de1f5",
+              "ModelRenderer": {
+                "_type": "component",
+                "component_id": "5da8c307-972d-4b38-8b38-14cc2c3923fc",
+                "go": "d9c4ab54-2e1c-41a4-9da0-c377d721907f",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Open": true,
+              "ZOffset": 156
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "d9c4ab54-2e1c-41a4-9da0-c377d721907f",
+              "Flags": 0,
+              "Name": "Model",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.SkinnedModelRenderer",
+                  "__guid": "5da8c307-972d-4b38-8b38-14cc2c3923fc",
+                  "AnimationGraph": null,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": null,
+                  "CreateAttachments": false,
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/props_gameplay/security_fence_section01.vmdl",
+                  "Morphs": {},
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "Parameters": {
+                    "bools": {},
+                    "ints": {},
+                    "floats": {},
+                    "vectors": {},
+                    "rotations": {}
+                  },
+                  "PlaybackRate": 1,
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "Off",
+                  "Sequence": {
+                    "Name": null
+                  },
+                  "Tint": "1,1,1,1",
+                  "UseAnimGraph": true
+                },
+                {
+                  "__type": "Sandbox.BoxCollider",
+                  "__guid": "22abdeb0-c29e-4731-856e-9e083d6a5c5f",
+                  "Center": "2.887207,-1.515848,67.02565",
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "Scale": "256.4691,20.53263,130.8029",
+                  "Static": false,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "__guid": "7088d075-359e-450f-befd-fa9820a7cb00",
+          "Flags": 0,
+          "Name": "spawndoor2",
+          "Position": "-1.601212,-774.3134,-2.072288",
+          "Scale": "1.650729,1,1.553004",
+          "Tags": "solid",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "KOTH.SpawnDoor",
+              "__guid": "973796f7-ec16-4433-84da-c80a83a079f4",
+              "ModelRenderer": {
+                "_type": "component",
+                "component_id": "cae0d437-0418-4ea4-b2fe-5ee54b8e5a65",
+                "go": "fdd7c654-9301-4208-a104-c4db1b00cdc2",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Open": true,
+              "ZOffset": 156
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "fdd7c654-9301-4208-a104-c4db1b00cdc2",
+              "Flags": 0,
+              "Name": "Model",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.SkinnedModelRenderer",
+                  "__guid": "cae0d437-0418-4ea4-b2fe-5ee54b8e5a65",
+                  "AnimationGraph": null,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": null,
+                  "CreateAttachments": false,
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/props_gameplay/security_fence_section01.vmdl",
+                  "Morphs": {},
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "Parameters": {
+                    "bools": {},
+                    "ints": {},
+                    "floats": {},
+                    "vectors": {},
+                    "rotations": {}
+                  },
+                  "PlaybackRate": 1,
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "Off",
+                  "Sequence": {
+                    "Name": null
+                  },
+                  "Tint": "1,1,1,1",
+                  "UseAnimGraph": true
+                },
+                {
+                  "__type": "Sandbox.BoxCollider",
+                  "__guid": "0d514e76-f1cb-4fd3-9085-22ed437a66bc",
+                  "Center": "2.887207,-1.515848,67.02565",
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "Scale": "256.4691,20.53263,130.8029",
+                  "Static": false,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "__guid": "cb6ed24d-2ccb-42ad-a966-0ae745c92fa5",
+          "Flags": 0,
+          "Name": "spawndoor3",
+          "Position": "428.0705,276.6201,31.34225",
+          "Rotation": "-0.00000007362976,0.00000001139187,0.7071068,0.7071068",
+          "Scale": "1.650729,1,1.553004",
+          "Tags": "solid",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkOrphaned": 1,
+          "Components": [
+            {
+              "__type": "KOTH.SpawnDoor",
+              "__guid": "29cb3662-c047-4707-b472-7b8192232ef5",
+              "ModelRenderer": {
+                "_type": "component",
+                "component_id": "72862d1d-c24f-4125-98cf-b8a6a2bfe41a",
+                "go": "ebc13e9a-5d7f-412a-9e16-f1019074f618",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Open": true,
+              "ZOffset": 156
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "ebc13e9a-5d7f-412a-9e16-f1019074f618",
+              "Flags": 0,
+              "Name": "Model",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.SkinnedModelRenderer",
+                  "__guid": "72862d1d-c24f-4125-98cf-b8a6a2bfe41a",
+                  "AnimationGraph": null,
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": null,
+                  "CreateAttachments": false,
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/props_gameplay/security_fence_section01.vmdl",
+                  "Morphs": {},
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "Parameters": {
+                    "bools": {},
+                    "ints": {},
+                    "floats": {},
+                    "vectors": {},
+                    "rotations": {}
+                  },
+                  "PlaybackRate": 1,
+                  "RenderOptions": {
+                    "GameLayer": true,
+                    "OverlayLayer": false,
+                    "BloomLayer": false,
+                    "AfterUILayer": false
+                  },
+                  "RenderType": "Off",
+                  "Sequence": {
+                    "Name": null
+                  },
+                  "Tint": "1,1,1,1",
+                  "UseAnimGraph": true
+                },
+                {
+                  "__type": "Sandbox.BoxCollider",
+                  "__guid": "46ca4879-85d6-43c1-9c3f-1d594cd32c0f",
+                  "Center": "2.887207,-1.515848,67.02565",
+                  "Friction": null,
+                  "IsTrigger": false,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnObjectTriggerEnter": null,
+                  "OnObjectTriggerExit": null,
+                  "OnTriggerEnter": null,
+                  "OnTriggerExit": null,
+                  "Scale": "256.4691,20.53263,130.8029",
+                  "Static": false,
+                  "Surface": null,
+                  "SurfaceVelocity": "0,0,0"
+                }
+              ]
             }
           ]
         }
@@ -1045,6 +1378,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "SpawnDoors": [],
               "SpawnTime": 10,
               "Team": "CounterTerrorist"
             }
@@ -1212,6 +1546,8 @@
   "ResourceVersion": 2,
   "Title": "pl_sheff",
   "Description": null,
-  "__references": [],
+  "__references": [
+    "tfassets.security_fence_section01#20778"
+  ],
   "__version": 2
 }
