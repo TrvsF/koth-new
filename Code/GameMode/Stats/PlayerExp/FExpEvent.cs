@@ -7,7 +7,7 @@ namespace KOTH.PlayerExp;
 /// </summary>
 /// <param name="Amount">Amount of exp</param>
 /// <param name="Origin">Where the exp originated from</param>
-public struct FExpEvent
+public readonly struct FExpEvent
 {
 	public int Amount { get; init; }
 	public ExpOrigins Origin { get; init; }

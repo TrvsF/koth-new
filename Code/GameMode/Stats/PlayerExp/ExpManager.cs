@@ -7,7 +7,7 @@ public class ExpManager : SingletonComponent<ExpManager>
 {
 
 	private readonly float _levelFactor = 1.4f;
-	private readonly int _firstLevelExp = 300;
+	private readonly int _firstLevelExp = 25;
 
 	/// <summary>
 	///  Broadcasts exp event to player to be recorded in Sandbox's 'Stats' Service.
@@ -67,6 +67,7 @@ public class ExpManager : SingletonComponent<ExpManager>
 		var level = Sandbox.Services.Stats.LocalPlayer.Get("player_level");
 		// probably dont need to use floor but its safer and stops rounding errors
 		var threshold = (int)Math.Floor((level.LastValue * _firstLevelExp) / _levelFactor);
+		Log.Info($"{level.LastValue} : {_firstLevelExp} : {_levelFactor} : {threshold} : {exp.Sum}");
 
 		if (exp.Sum >= threshold)
 		{
@@ -75,8 +76,7 @@ public class ExpManager : SingletonComponent<ExpManager>
 			Sandbox.Services.Stats.SetValue("player_exp_current", exp.Sum > threshold ? exp.Sum - threshold : 0);
 			Log.Info($"Player leveled up: {level.LastValue + 1}");
 
-			// TODO display level up on hud
-			GameObject.Root.Dispatch(new LevelUpEvent((int) level.LastValue + 1));
+			Scene.Dispatch(new LevelUpEvent((int) level.LastValue + 1));
 		}
 	}
 

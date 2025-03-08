@@ -194,7 +194,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	public void OnGameEvent(LevelUpEvent eventArgs)
 	{
-		NotificationManager.AddNotification(new Notification.FNotification()
+		NotificationManager.AddNotification(new FNotification()
 		{
 			Message = $"Level Up: {eventArgs.Level}", Duration = 5, Zone = ENotificationZone.Center
 		});
