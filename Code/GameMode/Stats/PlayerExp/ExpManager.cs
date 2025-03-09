@@ -5,7 +5,6 @@ namespace KOTH.PlayerExp;
 
 public class ExpManager : SingletonComponent<ExpManager>
 {
-
 	private readonly float _levelFactor = 1.4f;
 	private readonly int _firstLevelExp = 25;
 
@@ -64,10 +63,9 @@ public class ExpManager : SingletonComponent<ExpManager>
 	public void CheckLevelUp()
 	{
 		var exp = Sandbox.Services.Stats.LocalPlayer.Get("player_exp_current");
-		var level = Sandbox.Services.Stats.LocalPlayer.Get("player_level");
+		var level = GetCurrentLocalLevel();
 		// probably dont need to use floor but its safer and stops rounding errors
 		var threshold = (int)Math.Floor((level.LastValue * _firstLevelExp) / _levelFactor);
-		Log.Info($"{level.LastValue} : {_firstLevelExp} : {_levelFactor} : {threshold} : {exp.Sum}");
 
 		if (exp.Sum >= threshold)
 		{
@@ -80,4 +78,8 @@ public class ExpManager : SingletonComponent<ExpManager>
 		}
 	}
 
+	public static Sandbox.Services.Stats.PlayerStat GetCurrentLocalLevel()
+	{
+		return Sandbox.Services.Stats.LocalPlayer.Get("player_level");
+	}
 }

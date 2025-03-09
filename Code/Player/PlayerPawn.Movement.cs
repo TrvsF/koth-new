@@ -162,8 +162,6 @@ public partial class PlayerPawn
 	float RealCenterZ = 32f;
 	float RealScaleZ = 64f;
 
-	float CrouchLerp = 0f;
-
 	private void DoCrouch()
 	{
 		IsCrouching = Input.Down("Duck") && !IsNoclipping;

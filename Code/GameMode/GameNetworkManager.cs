@@ -76,6 +76,7 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 				}
 				break;
 			case EGameNetworkMode.Menu:
+				CreatePlayerState(Connection.Local, out GameObject PlayerState, out PlayerState PlayerStateComponent, true);
 				break;
 			case EGameNetworkMode.None:
 				break;
@@ -171,7 +172,7 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 		PlayerStates.Add(PlayerStateComponent);
 	}
 
-	bool CreatePlayerState(Connection ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent)
+	bool CreatePlayerState(Connection ConnectionChannel, out GameObject PlayerState, out PlayerState PlayerStateComponent, bool IsMenu = false)
 	{
 		Assert.True(Networking.IsHost);
 		Assert.True(PlayerStatePrefab.IsValid(), "Could not spawn player as no PlayerStatePrefab assigned to network manager");
@@ -194,7 +195,7 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 			throw new Exception($"Could not spawn player as no PlayerStatePrefab assigned to network manager for {ConnectionChannel.DisplayName}");
 		}
 
-		if (PlayerStateComponent.Initilize(ConnectionChannel))
+		if (PlayerStateComponent.Initilize(ConnectionChannel, !IsMenu))
 		{
 			return true;
 		}

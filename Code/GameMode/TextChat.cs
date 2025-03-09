@@ -77,8 +77,6 @@ public sealed class TextChat : SingletonComponent<TextChat>
 			return;
 		}
 
-		Log.Info(Messages);
-
 		// i'm a paranoid man
 		if (Messages.Count > 100)
 		{

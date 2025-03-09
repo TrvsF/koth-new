@@ -26,7 +26,7 @@ public partial class PlayerState : Component
 	public Color PlayerColor => PlayerColors.Instance?.GetColor(this) ?? Team.GetColor(false);
 
 	[RequireComponent] public PlayerId PlayerId { get; private set; }
-	[RequireComponent] public MedicPlayer LocalStatsSnapshot { get; private set; }
+	[RequireComponent] public LocalStats LocalStats { get; private set; }
 
 	//////////////////////////////////////////////////////////////
 
@@ -41,7 +41,10 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	public bool Initilize(Connection ConnectionIn)
+	// HACK : InitForGame controls the creation of the fake camera
+	// the camera system needs a redo for when we do deathcams....
+
+	public bool Initilize(Connection ConnectionIn, bool InitForGame = true)
 	{
 		Assert.True(Networking.IsHost);
 		Assert.NotNull(ConnectionIn);
@@ -50,10 +53,10 @@ public partial class PlayerState : Component
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
 
-		// TODO : this happens on singleplayer
 		if (!GameMode.Instance.IsValid())
 		{
-			Log.Warning($"gamemode not valid when {this} init");
+			// TODO : if not menu
+			// Log.Warning($"gamemode not valid when {this} init");
 		}
 		else
 		{
@@ -63,7 +66,7 @@ public partial class PlayerState : Component
 		// client rpc
 		using (Rpc.FilterInclude(Connection))
 		{
-			ClientInitilize();
+			ClientInitilize(InitForGame);
 		}
 
 		return true;
@@ -71,9 +74,14 @@ public partial class PlayerState : Component
 
 	private GameObject AssumedSceneCameraObject = null;
 	[Rpc.Broadcast]
-	public void ClientInitilize()
+	public void ClientInitilize(bool InitForGame = true)
 	{
 		Local = this;
+
+		if (!InitForGame)
+		{
+			return;
+		}
 
 		if (AssumedSceneCameraObject == null)
 		{

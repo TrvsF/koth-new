@@ -234,13 +234,13 @@
             {
               "__type": "Sandbox.SpotLight",
               "__guid": "f2439253-b31a-447e-9724-e4fb2f96d943",
-              "Attenuation": 0.22,
+              "Attenuation": 1.75,
               "ConeInner": 28.06,
-              "ConeOuter": 47.82,
+              "ConeOuter": 38.29,
               "Cookie": "materials/effects/lightcookie.vtex",
               "FogMode": "Disabled",
               "FogStrength": 1,
-              "LightColor": "0.46531,0.61713,0.63721,1",
+              "LightColor": "0.66605,0.72633,0.8,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,
@@ -287,6 +287,138 @@
             {
               "__type": "KOTH.MenuShapeRotator",
               "__guid": "f1586853-a5b8-48f1-865a-1f9b5ffeb54e",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ]
+        },
+        {
+          "__guid": "d26d19fd-2146-46de-acf8-5831ea1bbf3e",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "-1.387524,84.12957,92.86282",
+          "Rotation": "0.4904227,0.1910974,-0.2507237,0.8124686",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "e3882bbe-918f-4ee6-b756-b1c5b9bbb8c9",
+              "Attenuation": 0.29,
+              "ConeInner": 15,
+              "ConeOuter": 9,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.12529,0.7907,0.11401,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 500,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "45aa603a-cda0-43f4-90d9-596fe50faac0",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "158.6526,-73.66241,155.1351",
+          "Rotation": "0.4070919,0.6205401,-0.4647075,0.4829631",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "1de3e1ee-67bb-41fb-98fa-b30f1ccdf48a",
+              "Attenuation": 1.67,
+              "ConeInner": 8.29,
+              "ConeOuter": 20.65,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.85581,0.1234,0.1234,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 500,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "c14a1231-4410-4517-aaff-21823e302b7e",
+          "Flags": 0,
+          "Name": "Text",
+          "Position": "181.3609,-101.6894,-34.10003",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.TextRenderer",
+              "__guid": "928b61a0-0b01-44ce-bf32-19ad9f04a0ac",
+              "__version": 1,
+              "BlendMode": "Lighten",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": false,
+                "OverlayLayer": true,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "Scale": 0.13,
+              "TextAlignment": "Right",
+              "TextScope": {
+                "Text": "name",
+                "TextColor": "1,1,1,1",
+                "FontName": "Roboto Mono",
+                "FontSize": 32,
+                "FontWeight": 400,
+                "FontItalic": false,
+                "LineHeight": 1,
+                "LetterSpacing": 0,
+                "WordSpacing": 0,
+                "Outline": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,1,1"
+                },
+                "Shadow": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,0,1",
+                  "Offset": "4,4"
+                },
+                "OutlineUnder": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,1,0,1"
+                },
+                "ShadowUnder": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,0,1",
+                  "Offset": "4,4"
+                }
+              }
+            },
+            {
+              "__type": "KOTH.MainMenuText",
+              "__guid": "51a6162f-62dd-417c-9c74-dd55d3802e9b",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
               "OnComponentEnabled": null,

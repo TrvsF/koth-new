@@ -13,19 +13,25 @@
           "_type": "gameobject",
           "prefab": "prefabs/player/player.prefab"
         },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "SteamId": 0,
+        "SteamName": null,
         "Team": "Unassigned"
       },
       {
         "__type": "KOTH.PlayerId",
-        "__guid": "aab3a546-80c0-4d1c-aa86-c834ce2ea541"
-      },
-      {
-        "__type": "KOTH.UI.PlayerScore",
-        "__guid": "f8891149-61b5-4fd3-b42f-6cb6857b3507",
-        "Deaths": 0,
-        "Kills": 0,
-        "Score": 0
+        "__guid": "aab3a546-80c0-4d1c-aa86-c834ce2ea541",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       },
       {
         "__type": "KOTH.PlayerVoiceComponent",
@@ -65,7 +71,15 @@
         "Mode": "PushToTalk",
         "MorphScale": 0.12,
         "MorphSmoothTime": 0.1,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "PlayerState": null,
         "PushToTalkInput": "voice",
+        "Renderer": null,
         "VoiceMixer": {
           "Name": "unknown",
           "Id": "00000000-0000-0000-0000-000000000000"
@@ -75,7 +89,13 @@
       },
       {
         "__type": "KOTH.LocalStats",
-        "__guid": "15f354ef-7255-4bf0-849b-80c32f02e67f"
+        "__guid": "15f354ef-7255-4bf0-849b-80c32f02e67f",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [],

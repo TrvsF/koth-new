@@ -223,7 +223,7 @@ public class CharacterController : Component
 		if (TryUnstuck())
 			return;
 
-		var pos = Transform.Position;
+		var pos = WorldPosition;
 		var delta = targetPosition - pos;
 
 		var mover = new CharacterControllerHelper(BuildTrace(pos, pos), pos, delta);
@@ -238,14 +238,14 @@ public class CharacterController : Component
 			mover.TryMove(1.0f);
 		}
 
-		Transform.Position = mover.Position;
+		WorldPosition = mover.Position;
 	}
 
 	int _stuckTries;
 
 	bool TryUnstuck()
 	{
-		var result = BuildTrace(Transform.Position, Transform.Position).Run();
+		var result = BuildTrace(WorldPosition, WorldPosition).Run();
 
 		// Not stuck, we cool
 		if (!result.StartedSolid)
@@ -264,12 +264,12 @@ public class CharacterController : Component
 
 		for (int i = 0; i < AttemptsPerTick; i++)
 		{
-			var pos = Transform.Position + Vector3.Random.Normal * (((float)_stuckTries) / 2.0f);
+			var pos = WorldPosition + Vector3.Random.Normal * (((float)_stuckTries) / 2.0f);
 
 			// First try the up direction for moving platforms
 			if (i == 0)
 			{
-				pos = Transform.Position + Vector3.Up * 2;
+				pos = WorldPosition + Vector3.Up * 2;
 			}
 
 			result = BuildTrace(pos, pos).Run();
@@ -277,7 +277,7 @@ public class CharacterController : Component
 			if (!result.StartedSolid)
 			{
 				//Log.Info( $"unstuck after {_stuckTries} tries ({_stuckTries * AttemptsPerTick} tests)" );
-				Transform.Position = pos;
+				WorldPosition = pos;
 				return false;
 			}
 		}
