@@ -9,12 +9,16 @@ using System.Data.Common;
 
 namespace KOTH;
 
+// TODO : this piece of shit needs a proper refactor
+
 [Title("Projectile Shooter"), Group("Weapon Components")]
 public class ProjectileWeaponComponent : InputWeaponComponent
 {
 	[Property, Group("Projectile")] public GameObject ProjectilePrefab { get; set; }
 	[Property, Group("Projectile")] public float ProjectileHorizontalSpeed { get; set; } = 600.0f;
 	[Property, Group("Projectile")] public float ProjectileVerticalSpeed { get; set; } = 0f;
+
+	[Property, Group("VFX")] public SoundEvent ShootSound { get; set; }
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +90,18 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 		Projectile.Root.Tags.Add("self");
 		Projectile.NetworkSpawn();
 		return Projectile;
+	}
+
+	[Rpc.Broadcast]
+	public void WorldShotVFX()
+	{
+		if (ShootSound.IsValid())
+		{
+			if (Sound.Play(ShootSound, Equipment.WorldPosition) is { } SoundHandel)
+			{
+
+			}
+		}
 	}
 
 	protected virtual void SetProjectileVelocity(Rigidbody ProjectileRigidbody, Vector3 AimForward)

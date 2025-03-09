@@ -33,6 +33,7 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	[Property, Group("Spread")] public float Radius { get; set; } = 4f;
 	[Property, Group("Spread")] public float OutwardFactor { get; set; } = .77f;
 
+	[Property, Group("VFX")] public SoundEvent ShootSound { get; set; }
 	[Property, Group("VFX")] public DecalDefinition DecalDefinition { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
 	[Property, Group("VFX")] public float TrialAmount { get; set; } = 10f;
@@ -45,7 +46,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 		Assert.IsValid(Equipment.Owner);
 
 		bool IsShooting = IsDown() && CanShoot();
-		WorldShotVFX();
 
 		if (IsProxy)
 		{
@@ -90,7 +90,11 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			BulletSpreadFactorer += 0.5f; // !
 			TimeSinceShot = 0;
 			Ammo--;
+			
+			WorldShotVFX();
 		}
+
+		Equipment.Owner?.Body?.ModelRenderer?.Set("b_attack", IsShooting);
 		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
@@ -213,6 +217,13 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	[Rpc.Broadcast]
 	public void WorldShotVFX()
 	{
+		if (ShootSound.IsValid())
+		{
+			if (Sound.Play(ShootSound, Equipment.WorldPosition) is { } SoundHandel)
+			{
+
+			}
+		}
 	}
 
 	const int MaxParticlesPerShot = 250;

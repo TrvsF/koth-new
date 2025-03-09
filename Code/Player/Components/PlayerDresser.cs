@@ -7,7 +7,6 @@ namespace KOTH;
 public sealed class PlayerDresser : Component
 {
 	[Property] public SkinnedModelRenderer ModelRenderer { get; set; }
-	[Property] public bool ApplyLocalUserClothes { get; set; } = true;
 	[Property] public bool ApplyHeightScale { get; set; } = true;
 	[Property] public List<ClothingContainer.ClothingEntry> Clothing { get; set; }
 	[Property] public PlayerPawn LocalPlayer { get; set; }
@@ -15,16 +14,24 @@ public sealed class PlayerDresser : Component
 	[Property] Material TMaterial { get; set; }
 
 	public ClothingContainer EquippedClothes { get; private set; } = null;
+	[Sync] string ClotheJSON { get; set; }
 
 	protected override void OnAwake()
 	{
 		base.OnAwake();
 
-		Assert.IsValid(LocalPlayer);
-		LocalPlayer.OnPlayerStart += Initialize;
+		if (Scene.IsEditor)
+		{
+			return;
+		}
+
+		if (LocalPlayer.IsLocallyControlled)
+		{
+			ClotheJSON = PlayerState.Local?.Connection?.GetUserData("avatar");
+		}
 	}
 
-	private void Initialize()
+	protected override void OnStart()
 	{
 		ApplyClothing();
 		SetupClothes();
@@ -34,14 +41,7 @@ public sealed class PlayerDresser : Component
 	{
 		Assert.IsValid(ModelRenderer);
 
-		EquippedClothes = ApplyLocalUserClothes ? Sandbox.ClothingContainer.CreateFromLocalUser() : new ClothingContainer();
-
-		if (LocalPlayer.IsLocallyControlled)
-		{
-			// If player is locally controlled we don't want to render any clothes rendered as they are not networked
-			// We only want to show clothes on other players
-			EquippedClothes.Clothing.Clear();
-		}
+		EquippedClothes = ClotheJSON == "" ? new ClothingContainer() : ClothingContainer.CreateFromJson(ClotheJSON);
 
 		if (!ApplyHeightScale)
 		{
@@ -51,8 +51,6 @@ public sealed class PlayerDresser : Component
 		EquippedClothes.AddRange(Clothing);
 		EquippedClothes.Normalize();
 		EquippedClothes.Apply(ModelRenderer);
-
-		// BodyTarget.PostAnimationUpdate();
 	}
 
 	public void SetupClothes()
@@ -72,10 +70,15 @@ public sealed class PlayerDresser : Component
 				{
 					ClothModel.SetMaterial(CTMaterial);
 				}
-				else if (LocalPlayer.Team == Team.CounterTerrorist)
+				else if (LocalPlayer.Team == Team.Terrorist)
 				{
 					ClothModel.SetMaterial(TMaterial);
 				}
+			}
+
+			if (LocalPlayer.IsLocallyControlled)
+			{
+				ChildBodyObject.Enabled = false;
 			}
 		}
 	}

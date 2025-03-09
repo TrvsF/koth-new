@@ -19,8 +19,10 @@ public sealed class MainMenuText : Component
 		var LocalStats = PlayerState.Local.LocalStats;
 
 		var LocalPlayerLevelObject = ExpManager.GetCurrentLocalLevel();
-		var PlayerStats = $"{Connection.Local.DisplayName} : Level {LocalPlayerLevelObject.LastValue} : {LocalStats.KillsStat.Value}";
+		var PlayerWelcome = $"welcome {Connection.Local.DisplayName} : Level {LocalPlayerLevelObject.LastValue}";
+		var PlayerStats = $"kills {LocalStats.KillsStat.Value} : Deaths {LocalStats.KillsStat.Value}";
 
-		TextRenderer.Text = $"{PlayerStats}";
+		TextRenderer.Text = $"{PlayerWelcome}\n" +
+			$"{PlayerStats}";
 	}
 }

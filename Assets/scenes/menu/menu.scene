@@ -2,6 +2,138 @@
   "__guid": "1d8ef449-9ae1-421d-b754-49f414e52d74",
   "GameObjects": [
     {
+      "__guid": "7770821b-4ca2-4edb-be45-5630f4180035",
+      "Flags": 0,
+      "Name": "Spot Light (1)",
+      "Position": "971.3673,3012.673,21.08082",
+      "Rotation": "-0.1683608,0.1195087,0.9073263,-0.3662404",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "f2439253-b31a-447e-9724-e4fb2f96d943",
+          "Attenuation": 0.83,
+          "ConeInner": 19.17,
+          "ConeOuter": 48.61,
+          "Cookie": "materials/effects/lightcookie.vtex",
+          "FogMode": "Disabled",
+          "FogStrength": 1,
+          "LightColor": "0.78866,0.82307,0.86512,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "Shadows": true
+        }
+      ]
+    },
+    {
+      "__guid": "d26d19fd-2146-46de-acf8-5831ea1bbf3e",
+      "Flags": 0,
+      "Name": "Spot Light",
+      "Position": "1041.949,2976.724,83.47504",
+      "Rotation": "-0.4375794,0.306424,0.8256851,-0.1813089",
+      "Tags": "light_spot,light",
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "e3882bbe-918f-4ee6-b756-b1c5b9bbb8c9",
+          "Attenuation": 0.29,
+          "ConeInner": 15,
+          "ConeOuter": 9,
+          "Cookie": null,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.12529,0.7907,0.11401,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "Shadows": true
+        }
+      ]
+    },
+    {
+      "__guid": "45aa603a-cda0-43f4-90d9-596fe50faac0",
+      "Flags": 0,
+      "Name": "Spot Light",
+      "Position": "824.4082,2908.743,132.9056",
+      "Rotation": "-0.7510368,0.01262793,0.6370528,0.1730555",
+      "Tags": "light_spot,light",
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "1de3e1ee-67bb-41fb-98fa-b30f1ccdf48a",
+          "Attenuation": 1.67,
+          "ConeInner": 8.29,
+          "ConeOuter": 20.65,
+          "Cookie": null,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.85581,0.1234,0.1234,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "Shadows": true
+        }
+      ]
+    },
+    {
+      "__guid": "5a36e272-f97c-4307-a60b-51a79025caf0",
+      "Flags": 0,
+      "Name": "Pyramid",
+      "Position": "928.3359,2941.779,-10.9505",
+      "Rotation": "-0.1316161,-0.1713048,0.842733,0.4930851",
+      "Scale": "0.15,0.15,0.15",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "94ba3a07-9a37-4b6c-b851-8405954b42ac",
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "MaterialGroup": null,
+          "MaterialOverride": "models/menu/menutricolour.vmat",
+          "Model": "models/menu/menu-tri.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "KOTH.MenuShapeRotator",
+          "__guid": "f1586853-a5b8-48f1-865a-1f9b5ffeb54e",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ]
+    },
+    {
       "__guid": "bb028d6e-d7e0-4ea8-9fa0-b5a82d0f70ce",
       "Flags": 0,
       "Name": "Scene Information",
@@ -119,7 +251,7 @@
       "__guid": "16925719-04c7-4cd7-89e0-37219ba0352d",
       "Flags": 0,
       "Name": "Camera",
-      "Position": "960,3000,-10.33294",
+      "Position": "975.4917,3031.746,-10.33291",
       "Rotation": "-0.0319875,-0.01161562,0.8592822,-0.5103685",
       "Enabled": true,
       "Components": [
@@ -223,144 +355,10 @@
       ],
       "Children": [
         {
-          "__guid": "7770821b-4ca2-4edb-be45-5630f4180035",
-          "Flags": 0,
-          "Name": "Spot Light (1)",
-          "Position": "4.945578,4.166135,31.76495",
-          "Rotation": "0.1874418,0.05039873,-0.1425885,0.9705641",
-          "Tags": "light_spot,light",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SpotLight",
-              "__guid": "f2439253-b31a-447e-9724-e4fb2f96d943",
-              "Attenuation": 1.75,
-              "ConeInner": 28.06,
-              "ConeOuter": 38.29,
-              "Cookie": "materials/effects/lightcookie.vtex",
-              "FogMode": "Disabled",
-              "FogStrength": 1,
-              "LightColor": "0.66605,0.72633,0.8,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Radius": 500,
-              "Shadows": true
-            }
-          ]
-        },
-        {
-          "__guid": "5a36e272-f97c-4307-a60b-51a79025caf0",
-          "Flags": 0,
-          "Name": "Pyramid",
-          "Position": "89.74143,-0.07226944,5.39315",
-          "Rotation": "-0.05446505,0.1792945,-0.8577544,0.4786903",
-          "Scale": "0.15,0.15,0.15",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.ModelRenderer",
-              "__guid": "94ba3a07-9a37-4b6c-b851-8405954b42ac",
-              "BodyGroups": 18446744073709551615,
-              "CreateAttachments": false,
-              "MaterialGroup": null,
-              "MaterialOverride": "models/menu/menutricolour.vmat",
-              "Model": "models/menu/menu-tri.vmdl",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            },
-            {
-              "__type": "KOTH.MenuShapeRotator",
-              "__guid": "f1586853-a5b8-48f1-865a-1f9b5ffeb54e",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ]
-        },
-        {
-          "__guid": "d26d19fd-2146-46de-acf8-5831ea1bbf3e",
-          "Flags": 0,
-          "Name": "Spot Light",
-          "Position": "-1.387524,84.12957,92.86282",
-          "Rotation": "0.4904227,0.1910974,-0.2507237,0.8124686",
-          "Tags": "light_spot,light",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SpotLight",
-              "__guid": "e3882bbe-918f-4ee6-b756-b1c5b9bbb8c9",
-              "Attenuation": 0.29,
-              "ConeInner": 15,
-              "ConeOuter": 9,
-              "Cookie": null,
-              "FogMode": "Enabled",
-              "FogStrength": 1,
-              "LightColor": "0.12529,0.7907,0.11401,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Radius": 500,
-              "Shadows": true
-            }
-          ]
-        },
-        {
-          "__guid": "45aa603a-cda0-43f4-90d9-596fe50faac0",
-          "Flags": 0,
-          "Name": "Spot Light",
-          "Position": "158.6526,-73.66241,155.1351",
-          "Rotation": "0.4070919,0.6205401,-0.4647075,0.4829631",
-          "Tags": "light_spot,light",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SpotLight",
-              "__guid": "1de3e1ee-67bb-41fb-98fa-b30f1ccdf48a",
-              "Attenuation": 1.67,
-              "ConeInner": 8.29,
-              "ConeOuter": 20.65,
-              "Cookie": null,
-              "FogMode": "Enabled",
-              "FogStrength": 1,
-              "LightColor": "0.85581,0.1234,0.1234,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Radius": 500,
-              "Shadows": true
-            }
-          ]
-        },
-        {
           "__guid": "c14a1231-4410-4517-aaff-21823e302b7e",
           "Flags": 0,
           "Name": "Text",
-          "Position": "181.3609,-101.6894,-34.10003",
+          "Position": "182.6421,-101.9327,-53.22675",
           "Enabled": true,
           "Components": [
             {
@@ -498,7 +496,7 @@
       "__guid": "084f932c-f1d1-4498-85fd-8a5d88b81d54",
       "Flags": 0,
       "Name": "t2",
-      "Position": "890.0957,2927.218,4.388861",
+      "Position": "885.7946,2929.837,8.402948",
       "Rotation": "1,0,0,-0.00000004371139",
       "Scale": "0.1,0.1,0.1",
       "Enabled": true,
@@ -532,7 +530,7 @@
       "__guid": "0e17bb8b-f525-4258-97e1-f8ff737bb4df",
       "Flags": 0,
       "Name": "h2",
-      "Position": "834.7503,2913.863,6.290909",
+      "Position": "834.7503,2913.748,3.634176",
       "Rotation": "0,0,-0.6087614,0.7933534",
       "Scale": "0.2,0.2,0.2",
       "Enabled": true,
@@ -626,6 +624,97 @@
           },
           "RenderType": "On",
           "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "61400a1a-db88-47a9-b49f-2e2a7c958158",
+      "Flags": 0,
+      "Name": "LightMan",
+      "Position": "913.1949,2974.025,-22.51522",
+      "Rotation": "0,0,0.1305262,0.9914449",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "eddd62f9-11a1-43e7-9074-2b791b249aa1",
+          "Attenuation": 1,
+          "ConeInner": 25.99,
+          "ConeOuter": 27.38,
+          "Cookie": null,
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.91373,0.98039,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 100,
+          "Shadows": true
+        },
+        {
+          "__type": "KOTH.LightMan",
+          "__guid": "b9c8348f-37f5-4669-9cc5-28a2ed766f92",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "2c449a17-2bc5-4038-8a00-939eaebd3d16",
+          "Flags": 0,
+          "Name": "body",
+          "Position": "0,0,-5.485996",
+          "Scale": "0.03,0.15,0.3",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SkinnedModelRenderer",
+              "__guid": "9e265c8b-8961-49eb-a939-5d8c9a41356a",
+              "AnimationGraph": null,
+              "BodyGroups": 18446744073709551615,
+              "BoneMergeTarget": null,
+              "CreateAttachments": false,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": null,
+              "Morphs": {},
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Parameters": {
+                "bools": {},
+                "ints": {},
+                "floats": {},
+                "vectors": {},
+                "rotations": {}
+              },
+              "PlaybackRate": 1,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Sequence": {
+                "Name": null
+              },
+              "Tint": "1,1,1,1",
+              "UseAnimGraph": true
+            }
+          ]
         }
       ]
     }

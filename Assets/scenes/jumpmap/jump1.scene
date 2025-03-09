@@ -869,6 +869,16 @@
           "Walker": false
         }
       ]
+    },
+    {
+      "__guid": "7160ef25-22e4-4622-b4f5-cdd1425e5e6b",
+      "Flags": 0,
+      "Name": "healthpack (2)",
+      "Position": "242.5951,424.9337,-199.3778",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

@@ -78,6 +78,7 @@
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "ShootSound": "sounds/weapons/koth/pistol.sound",
         "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",

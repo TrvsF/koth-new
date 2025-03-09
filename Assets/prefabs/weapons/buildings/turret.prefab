@@ -1,0 +1,220 @@
+{
+  "RootObject": {
+    "__guid": "30381366-3618-4cf9-99a8-6fb75679611c",
+    "Flags": 0,
+    "Name": "turret",
+    "Tags": "turret",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "2cb43269-9194-4b6a-b288-66b0edc7b61e",
+        "AnimationGraph": null,
+        "BodyGroups": 18446744073709551615,
+        "BoneMergeTarget": null,
+        "CreateAttachments": false,
+        "CreateBoneObjects": false,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/untitled_1.vmdl",
+        "Morphs": {},
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Parameters": {
+          "bools": {},
+          "ints": {},
+          "floats": {},
+          "vectors": {},
+          "rotations": {}
+        },
+        "PlaybackRate": 1,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Sequence": {
+          "Name": null
+        },
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "52010b3b-7750-4e48-8212-ed765d360997",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 222,
+        "MotionEnabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "eec77925-41c6-4c8f-91c8-bb2c7ce14aad",
+        "Center": "0,0,16.5",
+        "Friction": null,
+        "IsTrigger": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
+        "Scale": "32,32,32",
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "KOTH.TurretComponent",
+        "__guid": "ba259a58-950e-4166-ac62-830fc1e0d97d",
+        "Damage": 1,
+        "EquippedWeaponGameObject": null,
+        "Firerate": 1,
+        "KnockbackStrength": 1,
+        "MaxHealth": 90,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Range": 256,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/hitscan-trial.prefab"
+        },
+        "TurretMuzzleObject": {
+          "_type": "gameobject",
+          "go": "f03fae92-9d30-4658-bf37-4791aa85d90c"
+        }
+      },
+      {
+        "__type": "KOTH.DamageComponent",
+        "__guid": "733e751d-c2bd-440b-a9f2-83df5b266475",
+        "Health": 100,
+        "MaxBaseHealth": 100,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "f03fae92-9d30-4658-bf37-4791aa85d90c",
+        "Flags": 0,
+        "Name": "Muzzel",
+        "Position": "0,0,48",
+        "Rotation": "0,0,1,-0.00000004371139",
+        "Scale": "2.5,2.5,2.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "e6411e1a-510a-4ab2-ac8b-0a805e4f7d6a",
+            "AnimationGraph": null,
+            "BodyGroups": 18446744073709551615,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/3dmodelscc0/gunsexplosives/ak-47/ak47.vmdl",
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 1,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,0,0,1",
+            "UseAnimGraph": true
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [
+    "debelizmik.sentry_turret#33214",
+    "titanovsky.ak47#53945"
+  ],
+  "__version": 1
+}
