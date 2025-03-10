@@ -39,6 +39,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public CharacterController CharacterController { get; private set; }
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
+	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -48,8 +49,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	// TODO : dummy only var, refactor
 	public bool IsJumper = false;
-
-	public FSound MedicSound;
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -133,12 +132,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		{
 			CameraTick();
 			SoundTick();
-			if (Input.Pressed("Use"))
-			{
-				MedicSound = new FSound(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, WorldPosition, this,
-					true);
-				PlaySound(MedicSound);
-			}
 		}
 
 		UpdateCrouch();
