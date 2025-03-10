@@ -39,7 +39,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	[RequireComponent] public CharacterController CharacterController { get; private set; }
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
-	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 

@@ -16,12 +16,12 @@ public partial class PlayerPawn
 	/// </remarks>
 	private void SoundTick()
 	{
-		AudioComponent.SoundTick();
+		AudioComponent.Instance.SoundTick();
 		if (Input.Pressed("Use"))
 		{
 			MedicSound = new FSound(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, WorldPosition, this,
 				true);
-			AudioComponent.PlaySound(MedicSound);
+			AudioComponent.Instance.PlaySound(MedicSound);
 		}
 	}
 }
