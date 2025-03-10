@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace KOTH;
 
-public sealed class PlayerDresser : Component
+public sealed class PlayerDresser : Component, Component.INetworkSpawn
 {
 	[Property] public SkinnedModelRenderer ModelRenderer { get; set; }
 	[Property] public bool ApplyHeightScale { get; set; } = true;
@@ -14,27 +14,20 @@ public sealed class PlayerDresser : Component
 	[Property] Material TMaterial { get; set; }
 
 	public ClothingContainer EquippedClothes { get; private set; } = null;
-	[Sync] string ClotheJSON { get; set; }
-
-	protected override void OnAwake()
-	{
-		base.OnAwake();
-
-		if (Scene.IsEditor)
-		{
-			return;
-		}
-
-		if (LocalPlayer.IsLocallyControlled)
-		{
-			ClotheJSON = PlayerState.Local?.Connection?.GetUserData("avatar");
-		}
-	}
+	string ClotheJSON { get; set; }
 
 	protected override void OnStart()
 	{
-		ApplyClothing();
+		base.OnStart();
+
 		SetupClothes();
+	}
+
+	public void OnNetworkSpawn(Connection Owner)
+	{
+		ClotheJSON = Owner.GetUserData("avatar");
+
+		ApplyClothing();
 	}
 
 	public void ApplyClothing()
@@ -74,12 +67,10 @@ public sealed class PlayerDresser : Component
 				{
 					ClothModel.SetMaterial(TMaterial);
 				}
-			}
 
-			if (LocalPlayer.IsLocallyControlled)
-			{
-				ChildBodyObject.Enabled = false;
+				ClothModel.RenderType = LocalPlayer.IsLocallyControlled ? Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly : Sandbox.ModelRenderer.ShadowRenderType.On;
 			}
 		}
+
 	}
 }

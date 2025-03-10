@@ -22,7 +22,7 @@ public sealed class PlayerBody : Component
 
 	private void Initialize()
 	{
-		ModelRenderer.Enabled = !Player.IsLocallyControlled;
+		ModelRenderer.RenderType = Player.IsLocallyControlled ? Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly : Sandbox.ModelRenderer.ShadowRenderType.On;
 		ModelRenderer.Tint = Player.Team.GetColor(false);
 	}
 

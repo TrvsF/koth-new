@@ -102,7 +102,7 @@
           "OnComponentUpdate": null,
           "TurretPrefab": {
             "_type": "gameobject",
-            "prefab": "prefabs/buildings/turret/turret.prefab"
+            "prefab": "prefabs/weapons/buildings/turret.prefab"
           }
         },
         {

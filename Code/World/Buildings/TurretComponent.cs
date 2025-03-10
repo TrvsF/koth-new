@@ -246,7 +246,7 @@ public sealed class TurretComponent : Component
 		PlayerPawn BestTarget = null;
 		float ShortestDistance = float.PositiveInfinity;
 
-		foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		foreach (var PlayerState in GameNetworkManager.PlayerStates) // TODO : change to player pawns in world
 		{
 			if (!PlayerState.IsValid())
 			{
@@ -254,7 +254,7 @@ public sealed class TurretComponent : Component
 				continue;
 			}
 
-			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive)
+			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive || PlayerState.Team == DamageComponent.Team)
 			{
 				continue;
 			}

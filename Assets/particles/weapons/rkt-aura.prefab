@@ -17,8 +17,8 @@
         "Time": 0.03,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -816.5526,
-          "Passed": 816.5526,
+          "Relative": -128.54903,
+          "Passed": 128.54903,
           "Fraction": 1
         }
       }
@@ -114,7 +114,7 @@
                 ],
                 "alpha": []
               },
-              "ConstantA": "0.07862,0.36744,0.17008,1",
+              "ConstantA": "0.14429,0.21395,0.16635,1",
               "ConstantB": "1,0.22,0,1"
             },
             "Lifetime": {
@@ -292,7 +292,7 @@
             },
             "Stretch": 0,
             "TimeScale": 1,
-            "Tint": "0.22401,0.44186,0.36561,0.41",
+            "Tint": "0.01506,0.11163,0.07783,0.41",
             "Yaw": 0
           },
           {
@@ -329,28 +329,9 @@
             "SortMode": "Unsorted",
             "Texture": {
               "$compiler": "texture",
-              "$source": "imagefile",
+              "$source": "color",
               "data": {
-                "FilePath": "particles/weapons/blud.png",
-                "MaxSize": 4096,
-                "ConvertHeightToNormals": false,
-                "NormalScale": 1,
-                "Rotate": 0,
-                "FlipVertical": false,
-                "FlipHorizontal": false,
-                "Padding": {
-                  "Size": "0,0",
-                  "EdgeSize": "0,0"
-                },
-                "Sharpen": 0,
-                "Blur": 0,
-                "Brightness": 1,
-                "Contrast": 1,
-                "Saturation": 1,
-                "Hue": 0,
-                "Colorize": false,
-                "TargetColor": "0,1,0,1",
-                "CacheToDisk": true
+                "Color": "0,0.38256,0.48837,1"
               },
               "compiled": null
             }
