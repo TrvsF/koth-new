@@ -111,13 +111,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
 
-			MedicSound = new FSound()
-			{
-				Owner = this,
-				SoundEvent = CharacterDefinition.MedicVoiceEvent,
-				Position = LocalPosition,
-				UpdatePosition = true
-			};
 		}
 		else
 		{
@@ -142,6 +135,8 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 			SoundTick();
 			if (Input.Pressed("Use"))
 			{
+				MedicSound = new FSound(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, WorldPosition, this,
+					true);
 				PlaySound(MedicSound);
 			}
 		}

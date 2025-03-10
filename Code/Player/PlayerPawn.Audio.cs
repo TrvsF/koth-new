@@ -5,23 +5,10 @@ namespace KOTH;
 
 public partial class PlayerPawn
 {
-	[Sync(SyncFlags.FromHost)] public NetList<FSound> CurrentSounds { get; set; }
 
 	private List<FSound> _stoppedSounds = new List<FSound>();
 
 	private Dictionary<FSound, SoundHandle> SoundHandles { get; set; } = new();
-
-	protected override void OnAwake()
-	{
-		base.OnAwake();
-
-		if (Networking.IsHost)
-		{
-			CurrentSounds = new();
-		}
-
-		SoundHandles = new();
-	}
 
 	[Rpc.Broadcast]
 	public void PlaySound(FSound soundEvent)
@@ -31,16 +18,25 @@ public partial class PlayerPawn
 			Log.Info("Client PlaySound");
 			Log.Info("Sound Event " + soundEvent);
 		}
+		else
+		{
+			Log.Info("Host PlaySound");
+			Log.Info("Sound Event " + soundEvent.SoundId);
+
+		}
 		var handle = Sound.Play(soundEvent.SoundEvent, soundEvent.Position);
 
-		Log.Info("Client SoundHandle: " + handle.Name + " soundEventPos: " + soundEvent.Position);
+		Log.Info("Client SoundHandle: " + handle.Name + " soundEventPos: " + soundEvent.Position + " Handle" + handle.IsPlaying);
 
 		SoundHandles.Add(soundEvent, handle);
 
 		if (Networking.IsHost)
 		{
-			Log.Info("Host Adding Sound Event to list");
-			CurrentSounds.Add(soundEvent);
+			Log.Info("Host Adding Sound Event to list " + soundEvent.SoundId);
+		}
+		else
+		{
+			Log.Info("New Sound event " + soundEvent.SoundId);
 		}
 	}
 
@@ -49,30 +45,21 @@ public partial class PlayerPawn
 
 	private void SoundTick()
 	{
-		foreach (var currentSound in CurrentSounds)
+		if (Networking.IsHost)
 		{
-			var soundHandle = SoundHandles.FirstOrDefault(x => x.Key.SoundId == currentSound.SoundId);
-
-			if (soundHandle.Value is null)
-			{
-				//Log.Error("SoundHandle is null");
-				_stoppedSounds.Add(currentSound);
-				continue;
-			}
-
-			Log.Info( "Owner " + soundHandle.Key.Owner);
+			Log.Info("Host SoundTick " + SoundHandles.Count);
+		}
+		foreach (var soundHandle in SoundHandles)
+		{
+			Log.Info( $"Owner {soundHandle.Key.Owner}");
 			if (soundHandle is { Value: not null, Value.Finished: false, Key.UpdatePosition: true, })
 			{
-				soundHandle.Value.Position = soundHandle.Key.Owner.LocalPosition;
+				Log.Info("Updating sound position");
+				soundHandle.Value.Position = soundHandle.Key.Owner.WorldPosition;
 			}
 
 			if (!soundHandle.Value.IsValid() || soundHandle.Value.Finished || soundHandle.Value.IsStopped)
 			{
-				if (Networking.IsHost)
-				{
-					Log.Info("Host Removing sound 01" + currentSound.SoundEvent.ResourceName);
-				}
-
 				_stoppedSounds.Add(soundHandle.Key);
 			}
 		}
@@ -89,8 +76,7 @@ public partial class PlayerPawn
 
 			if (Networking.IsHost)
 			{
-				Log.Info("Host Removing sound 02" + soundHandle.SoundEvent.ResourceName);
-				CurrentSounds.Remove(soundHandle);
+				Log.Info("Host Removing sound" + soundHandle.SoundEvent.ResourceName);
 			}
 			if(x)
 			{
@@ -107,7 +93,7 @@ public struct FSound : IEquatable<FSound>
 	public SoundEvent SoundEvent { get; init; }
 	public Vector3 Position { get; init; }
 
-	public Guid SoundId;
+	public Guid SoundId { get; init;  }
 
 	public Component Owner { get; init; }
 	public bool UpdatePosition { get; init; } = false;
