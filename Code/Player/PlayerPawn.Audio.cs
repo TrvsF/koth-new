@@ -21,7 +21,7 @@ public partial class PlayerPawn
 		{
 			MedicSound = new FSound(PlayerPawnDefinition.CharacterDefinition.MedicVoiceEvent, WorldPosition, this,
 				true);
-			AudioComponent.PlaySoundForTeam(MedicSound, Team);
+			AudioComponent.PlaySound(MedicSound);
 		}
 	}
 }

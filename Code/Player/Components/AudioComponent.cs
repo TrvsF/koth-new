@@ -59,6 +59,10 @@ public sealed class AudioComponent : SingletonComponent<AudioComponent>
 	public void PlaySound(FSound soundEvent)
 	{
 		Log.Info("Playing sound " + soundEvent.SoundId);
+
+		var alreadyPlaying = Instance.SoundHandles.Any(x => x.Key.Owner.Id == soundEvent.Owner.Id);
+		if (alreadyPlaying) return;
+
 		var handle = Sound.Play(soundEvent.SoundEvent, soundEvent.Position);
 		Instance.SoundHandles.Add(soundEvent, handle);
 		Log.Info("New Sound event " + soundEvent.SoundId);
