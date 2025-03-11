@@ -3,7 +3,7 @@
   "Description": "detonate your primary weapon's stickies using mouse2; lock out areas of the map & cause massive damage!",
   "SpecificComponents": [],
   "MaxHealth": 150,
-  "WeightFactor": 1,
+  "WeightKnockbackFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/stickylauncher/stickylauncher.equip",
   "SecondaryWeapon": "prefabs/weapons/grenadelauncher/grenadelauncher.equip",
   "WalkSpeed": 280,
@@ -17,6 +17,8 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 16,
   "AirMaxAcceleration": 64,
+  "MedicVoice": "sounds/voice/alan_medic.wav",
+  "MedicVoiceEvent": "sounds/voice/alan_medic.sound",
   "__references": [],
   "__version": 0
 }

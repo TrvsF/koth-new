@@ -22,6 +22,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	[RequireComponent] public TextChat TextChat { get; private set; }
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
 	[RequireComponent] public ExpManager ExpManager { get; private set; }
+	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
 
 	/////////////////////////////////////////////////////////////
 

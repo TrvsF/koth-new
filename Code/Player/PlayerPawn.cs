@@ -109,6 +109,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
+
 		}
 		else
 		{
@@ -130,6 +131,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		if (IsLocallyControlled)
 		{
 			CameraTick();
+			SoundTick();
 		}
 
 		UpdateCrouch();

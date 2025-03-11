@@ -5,7 +5,7 @@
     "KOTH.EngiePlayer"
   ],
   "MaxHealth": 130,
-  "WeightFactor": 0.9,
+  "WeightKnockbackFactor": 1,
   "PrimaryWeapon": "prefabs/weapons/ppsh/ppsh.equip",
   "SecondaryWeapon": "prefabs/weapons/boltaction/boltaction.equip",
   "WalkSpeed": 320,
@@ -19,6 +19,8 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 16,
   "AirMaxAcceleration": 64,
+  "MedicVoice": "sounds/voice/dimitri_medic.wav",
+  "MedicVoiceEvent": "sounds/voice/dimitri_medic.sound",
   "__references": [],
   "__version": 0
 }
