@@ -110,13 +110,13 @@ public sealed class DamageComponent : Component
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastHeals(FHealingReceived HealingDone)
 	{
-		GameObject.Root.Dispatch(new HealingGivenEvent(HealingDone));
+		Scene.Dispatch(new HealingBroadcastEvent(HealingDone));
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastDamage(FDamageTaken DamageTaken)
 	{
-		GameObject.Root.Dispatch(new DamageTakenEvent(DamageTaken));
+		Scene.Dispatch(new DamageBroadcastEvent(DamageTaken));
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]

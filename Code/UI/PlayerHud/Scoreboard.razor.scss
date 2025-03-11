@@ -13,44 +13,20 @@ Scoreboard {
         height: 24px;
     }
 
-    separator {
-        flex-grow: 1;
-        height: 1px;
-        background-color: red;
-        margin: 0 4px;
+    .title {
+        position: absolute;
+        text-align: center;
+        width: 100%;
     }
 
     table {
-        width: 960px;
+        width: 30%;
         flex-direction: column;
         gap: 2px;
         color: white;
 
-        .title {
-            flex-direction: row;
-            text-shadow: 0 0 4px rgba( black, 0.5 );
-            justify-content: space-between;
-
-            label {
-                white-space: nowrap;
-                width: 33%;
-            }
-
-            .left {
-                text-align: left;
-            }
-
-            .center {
-                text-align: center;
-            }
-
-            .right {
-                text-align: right;
-            }
-        }
-
         .row {
-            background-color: rgba( black, 0.75 );
+            background-color: rgba( black, 0.5 );
             width: 100%;
             align-items: center;
 
@@ -84,18 +60,13 @@ Scoreboard {
             .stat {
                 flex-basis: 75px;
                 flex-grow: 1;
-                text-align: right;
+                text-align: left;
             }
 
             .stat-large {
                 flex-basis: 100px;
                 align-items: center;
-                text-align: right;
-            }
-
-            .stat-small {
-                flex-basis: 50px;
-                align-items: center;
+                text-align: left;
             }
         }
     }

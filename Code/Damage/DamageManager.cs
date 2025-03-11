@@ -158,10 +158,10 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
 			DamageType = DamageRequest.DamageType,
+			IsDummyDamage = TargetPlayerPawn.IsValid() && TargetPlayerPawn.IsDummy,
 		};
 
 		TargetDamageComponent.TakeDamage(DamageTaken);
-		AttackerPlayerPawn.GameObject.Root.Dispatch(new DamageGivenEvent(DamageTaken));
 
 		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health}" +
 			$" -> {TargetPlayerPawn?.DisplayName}:{TargetDamageComponent.Health}");

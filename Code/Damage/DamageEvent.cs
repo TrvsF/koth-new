@@ -3,9 +3,7 @@ using Sandbox.Events;
 namespace KOTH;
 
 public record DamageRequestEvent(FDamageRequest DamageRequest) : IGameEvent;
-
-public record DamageTakenEvent(FDamageTaken DamageEvent) : IGameEvent;
-public record DamageGivenEvent(FDamageTaken DamageEvent) : IGameEvent;
+public record DamageBroadcastEvent(FDamageTaken DamageEvent) : IGameEvent;
 public record KillEvent(FDamageTaken DamageEvent) : IGameEvent;
 
 // out /////////////////////
@@ -45,6 +43,7 @@ public record FDamageTaken
 	public float Damage { get; init; } = 0f;
 	public Vector3 DamageLocation { get; init; } = Vector3.Zero;
 	public EDamageType DamageType { get; init; } = EDamageType.Melee;
+	public bool IsDummyDamage { get; init; } = false;
 
 	public RealTimeSince TimeSinceEvent { get; init; } = 0;
 }

@@ -3,31 +3,48 @@ using Sandbox.Events;
 
 namespace KOTH.PlayerExp;
 
-public class ExpManager : SingletonComponent<ExpManager>
+public class ExpManager : SingletonComponent<ExpManager>,
+	IGameEventHandler<KillEvent>
 {
-	private readonly float _levelFactor = 1.4f;
+	private readonly float _levelFactor = 1.8f;
 	private readonly int _firstLevelExp = 25;
 
-	/// <summary>
-	///  Broadcasts exp event to player to be recorded in Sandbox's 'Stats' Service.
-	///  There is a possibility that we could move this off to http server that records the stats directly so we have more
-	///	 control over exp stats and other stats.
-	/// </summary>
-	/// <param name="expEvent">The Event Containing how much exp the player should receive</param>
-	/// <param name="player">The player receiving the exp</param>
-	public void BroadcastExpEvent(FExpEvent expEvent, PlayerPawn player)
+	public void OnGameEvent(KillEvent KillEvent)
 	{
-		Assert.True(Networking.IsHost);
+		if (!Networking.IsHost)
+		{
+			return;
+		}
 
-		var PlayerState = GameUtils.GetPlayer(player.Id);
+		var DamageEvent = KillEvent.DamageEvent;
 
-		Log.Info($"Broadcasting exp event to {player}:{PlayerState}:{PlayerState.SteamId}");
+		if (DamageEvent.IsDummyDamage)
+		{
+			return;
+		}
+
+		// TODO : we want to use the player state directly here
+		var AttackingPlayer = DamageEvent.AttackerPlayerPawn;
+		if (!AttackingPlayer.IsValid() || AttackingPlayer == DamageEvent.VictimPlayerPawn)
+		{
+			return;
+		}
+
+		var PlayerState = GameUtils.GetPlayer(AttackingPlayer.Id);
+		
+		FExpEvent ExpEvent = new()
+		{
+			Amount = CalculateExp(10, 5),
+			Origin = ExpOrigins.Kill,
+		};
+
+		Log.Info($"Broadcasting exp event {ExpEvent} to {AttackingPlayer}:{PlayerState}:{PlayerState.SteamId}");
+
 		using (Rpc.FilterInclude(PlayerState.Connection))
 		{
-			ProcessExpEvent(expEvent);
+			ProcessExpEvent(ExpEvent);
 		}
 	}
-
 
 	/// <summary>
 	/// Calculates exp

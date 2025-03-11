@@ -158,6 +158,18 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.AudioComponent",
+          "__guid": "a475c1b6-bef6-4165-8cfa-55535fd328b2",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SoundHandles": null,
+          "StoppedSounds": null
         }
       ],
       "Children": [

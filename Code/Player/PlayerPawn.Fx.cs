@@ -7,9 +7,8 @@ using Sandbox.Events;
 namespace KOTH;
 
 public partial class PlayerPawn :
-	IGameEventHandler<DamageGivenEvent>,
-	IGameEventHandler<DamageTakenEvent>,
-	IGameEventHandler<HealingGivenEvent>
+	IGameEventHandler<DamageBroadcastEvent>,
+	IGameEventHandler<HealingBroadcastEvent>
 {
 	private void TickVFXs()
 	{
@@ -115,7 +114,7 @@ public partial class PlayerPawn :
 	const float GibForce = 66f;
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]
-	private void BroadcastOnPlayerDeath(FDamageTaken DamageTaken)
+	private void BroadcastLocalPlayerDeath(FDamageTaken DamageTaken)
 	{
 		if (!Body.IsValid())
 		{
@@ -161,17 +160,20 @@ public partial class PlayerPawn :
 
 	[Property] public GameObject BloodSquirt { get; set; }
 
-	void IGameEventHandler<DamageTakenEvent>.OnGameEvent(DamageTakenEvent EventArgs)
+	void IGameEventHandler<DamageBroadcastEvent>.OnGameEvent(DamageBroadcastEvent EventArgs)
 	{
-		OnDamageTaken(EventArgs.DamageEvent);
+		if (EventArgs.DamageEvent.VictimPlayerPawn == this)
+		{
+			OnDamageTaken(EventArgs.DamageEvent);
+		}
+
+		if (EventArgs.DamageEvent.AttackerPlayerPawn == this)
+		{
+			OnDamageGiven(EventArgs.DamageEvent);
+		}
 	}
 
-	void IGameEventHandler<DamageGivenEvent>.OnGameEvent(DamageGivenEvent EventArgs)
-	{
-		OnDamageGiven(EventArgs.DamageEvent);
-	}
-	
-	void IGameEventHandler<HealingGivenEvent>.OnGameEvent(HealingGivenEvent EventArgs)
+	void IGameEventHandler<HealingBroadcastEvent>.OnGameEvent(HealingBroadcastEvent EventArgs)
 	{
 		OnHealingGiven(EventArgs.HealingRequest);
 	}

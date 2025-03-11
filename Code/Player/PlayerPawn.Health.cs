@@ -29,23 +29,11 @@ public partial class PlayerPawn
 
 		Inventory.Clear();
 
-		BroadcastOnPlayerDeath(DamageTaken);
+		BroadcastLocalPlayerDeath(DamageTaken);
 
 		if (Camera.IsValid())
 		{
 			Camera.GameObject.Root.Destroy();
-		}
-
-		// UNCOMMENT ID CHECK BEFORE PUBLISHING
-		if (this is { IsDummy: false } && DamageTaken.AttackerPlayerPawn is { IsDummy: false } /*&& Id != DamageTaken.VictimPlayerPawn.Id*/)
-		{
-			FExpEvent ExpEvent = new()
-			{
-				Amount = ExpManager.Instance.CalculateExp(10, 5),
-				Origin = ExpOrigins.Kill,
-			};
-
-			ExpManager.Instance.BroadcastExpEvent(ExpEvent, DamageTaken.AttackerPlayerPawn);
 		}
 
 		OnDeath?.Invoke();

@@ -7,84 +7,82 @@
 @attribute [StyleSheet]
 
 <root class="hidden flex absolute inset-0 align-center justify-center">
-	<table class="with-padding-lg layout">
-		<div class="title">
-			<label class="important uppercase left">@(Status is null ? Name : $"{Name} - {Status}")</label>
-			<label class="important uppercase right">@(Time?.ToString(@"m\:ss") ?? " ")</label>
+@* 	<div class="title">
+		@GameMode.Instance.Title
+	</div> *@
+	<table class="with-padding-lg layout" style="background-color: rgba( red, 0.33 );">
+		<div class="row header with-px-lg with-py-sm">
+			<label class="col stat stat-large">Team A</label>
+			<label class="col stat stat-large">Frags</label>
+			<label class="col stat stat-large">Deaths</label>
+			<label class="col stat stat-large">Points</label>
 		</div>
 
-		@for (int i = 0; i < GroupedPlayers.Count(); i++)
-		{
-			@{
-				var group = GroupedPlayers[i];
-			}
-
-			@if (group.Key == Team.Unassigned)
-			{
-				<div class="flex gap-sm align-center">
-					<Icon file="/ui/teams/spectator.png" size="16" />
-					<label class="small grey">@(string.Join(", ", group.Select(x => x.SteamName))</label>
-				</div>
-			}
-			else
-			{
-				<div class="row header with-px-lg with-py-sm">
-					<label class="col stat-small small"></label>
-					<label class="col stat-small small"></label>
-					<label class="col playername small"></label>
-
-				</div>
-
-				@foreach (var player in group)
-				{
-					// <ScoreboardRow PlayerState="@player" />
-				}
-			}
-		}
+		<div class="row header with-px-lg with-py-sm">
+			<label class="col stat stat-large">travis</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+		</div>
+		<div class="row header with-px-lg with-py-sm">
+			<label class="col stat stat-large">travis</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+		</div>
+		<div class="row header with-px-lg with-py-sm">
+			<label class="col stat stat-large">travis</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+			<label class="col stat stat-large">1337</label>
+		</div>
+	</table>
+	<table class="with-padding-lg layout" style="background-color: rgba( green, 0.33 );">
+		<div class="row header with-px-lg with-py-sm">
+			<label class="col stat stat-large">Team B</label>
+			<label class="col stat stat-large">Frags</label>
+			<label class="col stat stat-large">Deaths</label>
+			<label class="col stat stat-large">Points</label>
+		</div>
+		@(GeneratePlayerRow(PlayerState.Local))
 	</table>
 </root>
 
 @code
 {
-	public string Status => GameMode.Instance?.DisplayedStatus;
-	public string Name => GameMode.Instance?.Title;
-	public TimeSpan? Time => GameMode.Instance?.DisplayedTime;
-
-	public IEnumerable<PlayerState> PlayerStates => GameNetworkManager.PlayerStates;
-
-	private List<IGrouping<Team, PlayerState>> GroupedPlayers
+	private RenderFragment GeneratePlayerRow(PlayerState PlayerState) => Builder =>
 	{
-		get
-		{
-			var sortedPlayers = PlayerStates;
-			var groupedPlayers = sortedPlayers.GroupBy(x => x.Team);
-			return groupedPlayers.ToList();
-		}
-	}
+		Builder.OpenElement(0, "div");
+		Builder.AddAttribute(1, "class", "row header with-px-lg with-py-sm");
+
+		Builder.OpenElement(2, "label");
+		Builder.AddAttribute(3, "class", "col stat stat-large");
+		Builder.AddContent(4, PlayerState.SteamName);
+		Builder.CloseElement();
+
+		Builder.OpenElement(5, "label");
+		Builder.AddAttribute(6, "class", "col stat stat-large");
+		Builder.AddContent(7, 0);
+		Builder.CloseElement();
+
+		Builder.OpenElement(8, "label");
+		Builder.AddAttribute(9, "class", "col stat stat-large");
+		Builder.AddContent(10, 0);
+		Builder.CloseElement();
+
+		Builder.OpenElement(11, "label");
+		Builder.AddAttribute(12, "class", "col stat stat-large");
+		Builder.AddContent(13, 0);
+		Builder.CloseElement();
+
+		Builder.CloseElement();
+	};
 
 	public bool IsActive { get; set; }
 
 	protected override int BuildHash()
 	{
-		if (!IsActive) return 0;
-
-		var hash = new HashCode();
-
-		hash.Add(IsActive);
-		hash.Add(Status);
-		hash.Add(Time?.TotalSeconds);
-
-		foreach (var team in GroupedPlayers)
-		{
-			hash.Add(team.Key);
-
-			foreach (var player in team)
-			{
-				hash.Add(player.Id);
-			}
-		}
-
-		return hash.ToHashCode();
+		return HashCode.Combine(Time.Now);
 	}
 
 	public override void Tick()

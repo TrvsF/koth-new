@@ -3,8 +3,7 @@ using Sandbox.Events;
 namespace KOTH;
 
 public record HealingRequestEvent(FHealingRequest HealingRequest) : IGameEvent;
-
-public record HealingGivenEvent(FHealingReceived HealingRequest) : IGameEvent;
+public record HealingBroadcastEvent(FHealingReceived HealingRequest) : IGameEvent;
 
 public record FHealingRequest
 {
