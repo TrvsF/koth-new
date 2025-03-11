@@ -55,16 +55,6 @@
           }
         },
         {
-          "__type": "KOTH.Stats",
-          "__guid": "2b821f9f-ce32-4cac-8550-93ee83be67f1",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "KOTH.TextChat",
           "__guid": "29b427b1-7ead-4452-8f65-9a657cdc0ff6",
           "OnComponentDestroy": null,
@@ -87,6 +77,28 @@
         {
           "__type": "KOTH.PlayerExp.ExpManager",
           "__guid": "c52bf2a5-347b-41e3-b4f4-a00e2456bd45",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.AudioComponent",
+          "__guid": "ea5e578c-a2ec-4571-a56c-38c9605cbe90",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SoundHandles": {},
+          "StoppedSounds": []
+        },
+        {
+          "__type": "KOTH.GameStats",
+          "__guid": "783e60e1-9c3b-4aab-a51e-a02c5c119688",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

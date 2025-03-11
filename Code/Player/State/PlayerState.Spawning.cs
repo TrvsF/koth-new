@@ -178,7 +178,7 @@ public partial class PlayerState
 		Assert.True(Networking.IsHost);
 		Assert.IsValid(SpawnPoint);
 
-		Log.Info($"attempting to spawn player {RequestedCharacterDefinition} via {OwningConnection}");
+		Log.Info($"attempting to spawn player {RequestedCharacterDefinition} for {OwningConnection}");
 
 		var SpawnPlayerPawnPrefab = DefaultPlayerPawnPrefab.Clone(SpawnPoint.GameObject.WorldTransform, null, true);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);

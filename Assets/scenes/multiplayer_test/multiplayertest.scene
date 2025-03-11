@@ -106,16 +106,6 @@
           }
         },
         {
-          "__type": "KOTH.Stats",
-          "__guid": "2cda8473-d9be-46f8-9b72-85c25751b14a",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "KOTH.TextChat",
           "__guid": "a45b6384-ee2c-4c2b-8c25-49e6a3713f3c",
           "OnComponentDestroy": null,
@@ -168,8 +158,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SoundHandles": null,
-          "StoppedSounds": null
+          "SoundHandles": {},
+          "StoppedSounds": []
         }
       ],
       "Children": [

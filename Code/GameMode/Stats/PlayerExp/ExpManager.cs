@@ -4,12 +4,12 @@ using Sandbox.Events;
 namespace KOTH.PlayerExp;
 
 public class ExpManager : SingletonComponent<ExpManager>,
-	IGameEventHandler<KillEvent>
+	IGameEventHandler<KillBroadcastEvent>
 {
 	private readonly float _levelFactor = 1.8f;
 	private readonly int _firstLevelExp = 25;
 
-	public void OnGameEvent(KillEvent KillEvent)
+	public void OnGameEvent(KillBroadcastEvent KillEvent)
 	{
 		if (!Networking.IsHost)
 		{

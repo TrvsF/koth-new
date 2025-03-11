@@ -12,70 +12,79 @@
 	</div> *@
 	<table class="with-padding-lg layout" style="background-color: rgba( red, 0.33 );">
 		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat stat-large">Team A</label>
-			<label class="col stat stat-large">Frags</label>
-			<label class="col stat stat-large">Deaths</label>
-			<label class="col stat stat-large">Points</label>
+			<label class="col stat-avatar"></label>
+			<label class="col stat-large">Team A</label>
+			<label class="col stat">Points</label>
+			<label class="col stat">Frags</label>
+			<label class="col stat">Deaths</label>
 		</div>
 
-		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat stat-large">travis</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
+		<div class="row header with-px-lg with-py-sm" onclick="@(() => Log.Info("clicky"))">
+
+			<label class="col stat-avatar" style="background-image: url(avatar:@PlayerState.Local.SteamId);"></label>
+			<label class="col stat-large">travis</label>
+
+			<label class="col stat">1337</label>
+			<label class="col stat">9</label>
+			<label class="col stat">5</label>
 		</div>
-		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat stat-large">travis</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
-		</div>
-		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat stat-large">travis</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
-			<label class="col stat stat-large">1337</label>
-		</div>
+
+		@GeneratePlayerRow(PlayerState.Local)
+		@GeneratePlayerRow(PlayerState.Local)
+		@GeneratePlayerRow(PlayerState.Local)
 	</table>
 	<table class="with-padding-lg layout" style="background-color: rgba( green, 0.33 );">
 		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat stat-large">Team B</label>
-			<label class="col stat stat-large">Frags</label>
-			<label class="col stat stat-large">Deaths</label>
-			<label class="col stat stat-large">Points</label>
+			<label class="col stat-avatar"></label>
+			<label class="col stat-large">Team A</label>
+			<label class="col stat">Points</label>
+			<label class="col stat">Frags</label>
+			<label class="col stat">Deaths</label>
 		</div>
-		@(GeneratePlayerRow(PlayerState.Local))
+
+		@GeneratePlayerRow(PlayerState.Local)
+		@GeneratePlayerRow(PlayerState.Local)
+		@GeneratePlayerRow(PlayerState.Local)
 	</table>
 </root>
 
 @code
 {
-	private RenderFragment GeneratePlayerRow(PlayerState PlayerState) => Builder =>
+	private RenderFragment GeneratePlayerRow(PlayerState playerState) => builder =>
 	{
-		Builder.OpenElement(0, "div");
-		Builder.AddAttribute(1, "class", "row header with-px-lg with-py-sm");
+	builder.OpenElement(0, "div");
+	builder.AddAttribute(1, "class", "row header with-px-lg with-py-sm");
+	// builder.AddAttribute(2, "onclick", EventCallback.Factory.Create(this, () => Log.Info("clicky")));
 
-		Builder.OpenElement(2, "label");
-		Builder.AddAttribute(3, "class", "col stat stat-large");
-		Builder.AddContent(4, PlayerState.SteamName);
-		Builder.CloseElement();
+	// Avatar Column
+	builder.OpenElement(3, "label");
+	builder.AddAttribute(4, "class", "col stat-avatar");
+	builder.AddAttribute(5, "style", $"background-image: url(avatar:{playerState.SteamId});");
+	builder.CloseElement();
 
-		Builder.OpenElement(5, "label");
-		Builder.AddAttribute(6, "class", "col stat stat-large");
-		Builder.AddContent(7, 0);
-		Builder.CloseElement();
+	// Player Name Column
+	builder.OpenElement(6, "label");
+	builder.AddAttribute(7, "class", "col stat-large");
+	builder.AddContent(8, playerState.SteamName);
+	builder.CloseElement();
 
-		Builder.OpenElement(8, "label");
-		Builder.AddAttribute(9, "class", "col stat stat-large");
-		Builder.AddContent(10, 0);
-		Builder.CloseElement();
+	// Stat Columns
+	builder.OpenElement(9, "label");
+	builder.AddAttribute(10, "class", "col stat");
+	builder.AddContent(11, 1337); // Replace with actual stat property
+	builder.CloseElement();
 
-		Builder.OpenElement(11, "label");
-		Builder.AddAttribute(12, "class", "col stat stat-large");
-		Builder.AddContent(13, 0);
-		Builder.CloseElement();
+	builder.OpenElement(12, "label");
+	builder.AddAttribute(13, "class", "col stat");
+	builder.AddContent(14, 20); // Replace with actual stat property
+	builder.CloseElement();
 
-		Builder.CloseElement();
+	builder.OpenElement(15, "label");
+	builder.AddAttribute(16, "class", "col stat");
+	builder.AddContent(17, 4); // Replace with actual stat property
+	builder.CloseElement();
+
+	builder.CloseElement(); // Close the row div
 	};
 
 	public bool IsActive { get; set; }

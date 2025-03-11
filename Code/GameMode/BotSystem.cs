@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace KOTH;
 
 public sealed class BotSystem : SingletonComponent<BotSystem>,
-	IGameEventHandler<KillEvent>
+	IGameEventHandler<KillBroadcastEvent>
 {
 	[Property] public GameObject DummyPrefab { get; private set; } = null;
 	public Dictionary<TeamSpawnPoint, PlayerPawn> DummyPlayerPawns { get; private set; }
@@ -74,7 +74,7 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 		DummyPlayerPawns[SpawnPoint] = SpawnPlayerPawnComponent;
 	}
 
-	void IGameEventHandler<KillEvent>.OnGameEvent(KillEvent EventArgs)
+	void IGameEventHandler<KillBroadcastEvent>.OnGameEvent(KillBroadcastEvent EventArgs)
 	{
 	}
 }

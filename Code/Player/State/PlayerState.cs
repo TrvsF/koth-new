@@ -12,7 +12,7 @@ public enum EPlayerState
 	Game,
 }
 
-public partial class PlayerState : Component
+public partial class PlayerState : Component, Component.INetworkSpawn
 {
 	public Connection Connection { get; private set; }
 	public bool IsConnected => Connection != null && Connection.IsActive;
@@ -119,5 +119,17 @@ public partial class PlayerState : Component
 		Assert.True(Networking.IsHost);
 
 		Team = team;
+	}
+
+	public void OnNetworkSpawn(Connection Owner)
+	{
+		var Gamemode = GameMode.Instance;
+
+		if (!Gamemode.IsValid())
+		{
+			return;
+		}
+
+		Gamemode.GameStats?.OnNewPlayerState(this);
 	}
 }

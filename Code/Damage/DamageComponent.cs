@@ -122,7 +122,7 @@ public sealed class DamageComponent : Component
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	private void BroadcastKill(FDamageTaken DamageTaken)
 	{
-		Scene.Dispatch(new KillEvent(DamageTaken));
+		Scene.Dispatch(new KillBroadcastEvent(DamageTaken));
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

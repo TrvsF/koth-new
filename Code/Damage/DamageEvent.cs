@@ -4,7 +4,7 @@ namespace KOTH;
 
 public record DamageRequestEvent(FDamageRequest DamageRequest) : IGameEvent;
 public record DamageBroadcastEvent(FDamageTaken DamageEvent) : IGameEvent;
-public record KillEvent(FDamageTaken DamageEvent) : IGameEvent;
+public record KillBroadcastEvent(FDamageTaken DamageEvent) : IGameEvent;
 
 // out /////////////////////
 public record FDamageRequest

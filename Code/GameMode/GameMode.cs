@@ -18,11 +18,11 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	[RequireComponent] public DamageManager DamageManager { get; private set; }
 	[RequireComponent] public ClassList ClassList { get; private set; }
-	[RequireComponent] public Stats Stats { get; private set; }
 	[RequireComponent] public TextChat TextChat { get; private set; }
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
 	[RequireComponent] public ExpManager ExpManager { get; private set; }
 	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
+	[RequireComponent] public GameStats GameStats { get; private set; }
 
 	/////////////////////////////////////////////////////////////
 
@@ -154,11 +154,6 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		{
 			return Team.Terrorist;
 		}
-	}
-
-	public Stats GetStats()
-	{
-		return Components.Get<Stats>();
 	}
 
 	/////////////////////////////////////////////////////////////
