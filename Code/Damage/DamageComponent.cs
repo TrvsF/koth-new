@@ -1,4 +1,4 @@
-using KOTH.PlayerExp;
+﻿using KOTH.PlayerExp;
 using KOTH.UI;
 using Sandbox;
 using Sandbox.Diagnostics;
@@ -61,35 +61,39 @@ public sealed class DamageComponent : Component
 		Team = TeamIn;
 	}
 
-	public void Heal(float Healing, bool AllowOverheal)
+	//////////////////////////////////////////////////////////////////////////////////
+
+	public void Heal(FHealingRequest Heals)
 	{
 		Assert.True(Networking.IsHost);
 
-		if (!AllowOverheal && Health >= MaxBaseHealth)
-		{
-			return; // NOTE : early return
-		}
-
-		var MaxHealth = AllowOverheal ? MaxHealthWithOverheal : MaxBaseHealth;
-		var RequestedHealth = Health + Healing;
+		var MaxHealth = Heals.AllowOverheal ? MaxHealthWithOverheal : MaxBaseHealth;
+		var RequestedHealth = Health + Heals.BaseHealing;
+		
+		var Healing = Heals.BaseHealing;
 
 		if (RequestedHealth > MaxHealth)
 		{
-			Healing = MaxHealth - Health;
+			var HealingDone = MaxHealth - Health;
+			Healing = HealingDone < 0 ? 0 : HealingDone;
 		}
 
-		Health = Math.Min(MaxHealth, RequestedHealth);
+		Health += Healing;
 
+		// feels right to have this here ¯\_(ツ)_/¯
 		FHealingReceived HealingDoneMessage = new()
 		{
-			TargetPlayerPawn = GameObject.Root.Components.Get<PlayerPawn>(),
-			Healing = Healing,
+			TargetPlayerState = GameUtils.GetPlayerState(Heals.TargetPlayerPawn?.Id),
+			HealerPlayerState = GameUtils.GetPlayerState(Heals.AttackerPlayerPawn?.Id),
+			TargetPlayerPawn = Heals.TargetPlayerPawn,
+			HealerPlayerPawn = Heals.AttackerPlayerPawn,
+			Heals = Healing,
 		};
+
+		//////////////////////////////////////////
 
 		BroadcastHeals(HealingDoneMessage);
 	}
-
-	//////////////////////////////////////////////////////////////////////////////////
 
 	public void TakeDamage(FDamageTaken DamageTaken)
 	{

@@ -65,16 +65,22 @@ public sealed class ScoutPlayer : Component
 			return false;
 		}
 
-		var WishInputInverted = WishMove * -1f;
+		if (WishMove.Length > 1f)
+		{
+			WishMove = WishMove.Normal * 1.5f;
+		}
+		else
+		{
+			WishMove = WishMove.Normal * 1.1f;
+		}
+
 		var YawRotation = PlayerPawn.Camera.WorldRotation.Yaw();
+		var WorldWishMove = WishMove.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
+		var CheckVector = WorldWishMove * -1f;
 
-		var RotatedInput = WishMove.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
-		var RotatedInputInverted = WishInputInverted.RotateAround(Vector3.Zero, Rotation.FromYaw(YawRotation));
-		RotatedInputInverted = RotatedInputInverted.Normal;
+		PunchVector = WorldWishMove.WithZ(1f) * WallkickPower;
 
-		PunchVector = RotatedInput.WithZ(1f) * WallkickPower;
-
-		Ray HitRay = new(PlayerPawn.WorldPosition, RotatedInputInverted);
+		Ray HitRay = new(PlayerPawn.WorldPosition, CheckVector);
 		var Hits = Scene.Trace.Ray(HitRay, MaxWallDistance)
 			.IgnoreGameObjectHierarchy(PlayerPawn.GameObject)
 			.RunAll();
@@ -86,8 +92,8 @@ public sealed class ScoutPlayer : Component
 		}
 
 		// debug
-		//Line HitLine = new(OwnerPawn.WorldPosition, RotatedInputInverted, MaxWallDistance);
-		//DebugOverlay.Line(HitLine, CanWallKick ? Color.Green : Color.Red, 100);
+		// Line HitLine = new(PlayerPawn.WorldPosition, CheckVector, MaxWallDistance);
+		// DebugOverlaySystem.Current.Line(HitLine, CanWallKick ? Color.Green : Color.Red, 100);
 
 		return CanWallKick;
 	}

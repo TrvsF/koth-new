@@ -37,6 +37,7 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 			{
 				FHealingRequest HealingRequest = new()
 				{
+					TargetDamageComponent = PlayerPawn.DamageComponent,
 					TargetPlayerPawn = PlayerPawn,
 					BaseHealing = PlayerPawn.MaxHealth * HealthPercent,
 					AllowOverheal = false,

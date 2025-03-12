@@ -87,8 +87,8 @@ public static class TeamExtensions
 	{
 		return team switch
 		{
-			Team.CounterTerrorist => "Security",
-			Team.Terrorist => "Anarchists",
+			Team.CounterTerrorist => "ROUG",
+			Team.Terrorist => "VERD",
 			_ => "Unassigned",
 		};
 	}

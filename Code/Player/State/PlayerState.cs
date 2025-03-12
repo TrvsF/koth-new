@@ -23,8 +23,6 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 
 	//////////////////////////////////////////////////////////////
 
-	public Color PlayerColor => PlayerColors.Instance?.GetColor(this) ?? Team.GetColor(false);
-
 	[RequireComponent] public PlayerId PlayerId { get; private set; }
 	[RequireComponent] public LocalStats LocalStats { get; private set; }
 
@@ -32,6 +30,7 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 
 	[Sync(SyncFlags.FromHost), Property] public ulong SteamId { get; private set; }
 	[Sync(SyncFlags.FromHost), Property] public string SteamName { get; private set; }
+	[Sync(SyncFlags.FromHost), Property] public string PingString { get; set; }
 
 	//////////////////////////////////////////////////////////////
 
@@ -114,12 +113,7 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 		AssumedSceneCameraObject.Enabled = true;
 	}
 
-	public void AssignTeam(Team team)
-	{
-		Assert.True(Networking.IsHost);
-
-		Team = team;
-	}
+	//////////////////////////////////////////////////////////////
 
 	public void OnNetworkSpawn(Connection Owner)
 	{

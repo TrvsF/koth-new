@@ -7,6 +7,7 @@ public record HealingBroadcastEvent(FHealingReceived HealingRequest) : IGameEven
 
 public record FHealingRequest
 {
+	public DamageComponent TargetDamageComponent { get; init; }
 	public PlayerPawn TargetPlayerPawn { get; init; }
 	public PlayerPawn AttackerPlayerPawn { get; init; }
 	public float BaseHealing { get; init; } = 0f;
@@ -27,7 +28,9 @@ public record FHealingReceived
 {
 	public PlayerPawn TargetPlayerPawn { get; init; }
 	public PlayerPawn HealerPlayerPawn { get; init; }
-	public float Healing { get; init; } = 0f;
+	public PlayerState TargetPlayerState { get; init; }
+	public PlayerState HealerPlayerState { get; init; }
+	public float Heals { get; init; } = 0f;
 }
 
 public enum EHealingType

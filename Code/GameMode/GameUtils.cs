@@ -20,7 +20,7 @@ public static partial class GameUtils
 	/// <summary>
 	/// Gets a player by their id.
 	/// </summary>
-	public static PlayerState GetPlayer(Guid id) => AllPlayers.FirstOrDefault(n => n.PlayerPawn.Id == id);
+	public static PlayerState GetPlayerState(Guid? id) => AllPlayers.FirstOrDefault(n => n.PlayerPawn?.Id == id);
 
 	/// <summary>
 	/// Get all players on a team.

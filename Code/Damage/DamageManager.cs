@@ -30,17 +30,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
-		var TargetPlayerPawn = HealingRequest.TargetPlayerPawn;
-
-		switch (HealingRequest.HealingType)
-		{
-			case EHealingType.Continuous:
-				ServerInflictHealing(TargetPlayerPawn, HealingRequest.AttackerPlayerPawn, HealingRequest.BaseHealing, HealingRequest.AllowOverheal);
-				// HealingRequest.AttackerPlayerPawn.GameObject.Root.Dispatch(new HealingGivenEvent(new(HealingRequest.TargetPlayerPawn, HealingRequest.BaseHealing)));
-				break;
-			case EHealingType.Projectile:
-				break;
-		}
+		ServerInflictHealing(HealingRequest);
 	}
 
 	public void OnGameEvent(DamageRequestEvent EventArgs)
@@ -75,22 +65,27 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 			return;
 		}
 
+		var TargetPlayerPawn = DamageRequest.TargetDamageComponent.GetComponent<PlayerPawn>();
+
 		// we've taken damage without an attacker pawn, apply & return early ///////////////////
 		if (!AttackerPlayerPawn.IsValid())
 		{
 			FDamageTaken EnvDamageTaken = new()
 			{
-				VictimPlayerPawn = DamageRequest.TargetPlayerPawn,
+				VictimGameObject = TargetDamageComponent.GameObject,
+				AssumedVictimPlayerPawn = TargetPlayerPawn,
+				VictimPlayerState = GameUtils.GetPlayerState(TargetPlayerPawn?.Id),
+
 				Damage = Damage,
 				DamageLocation = DamageOrigin,
+				DamageType = DamageRequest.DamageType,
+				IsDummyDamage = TargetPlayerPawn.IsValid() && TargetPlayerPawn.IsDummy,
 			};
 
 			TargetDamageComponent.TakeDamage(EnvDamageTaken);
 			return; // NOTE : early return
 		}
 
-		var TargetPlayerPawn = DamageRequest.TargetPlayerPawn;
-		
 		// team check ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn)
 		{
@@ -153,8 +148,12 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		FDamageTaken DamageTaken = new()
 		{
 			VictimGameObject = TargetDamageComponent.GameObject,
-			AttackerPlayerPawn = AttackerPlayerPawn,
-			VictimPlayerPawn = TargetPlayerPawn,
+
+			AssumedAttackerPlayerPawn = AttackerPlayerPawn,
+			AssumedVictimPlayerPawn = TargetPlayerPawn,
+			AttackerPlayerState = GameUtils.GetPlayerState(AttackerPlayerPawn?.Id),
+			VictimPlayerState = GameUtils.GetPlayerState(TargetPlayerPawn?.Id),
+
 			Damage = Damage,
 			DamageLocation = DamageOrigin,
 			DamageType = DamageRequest.DamageType,
@@ -168,27 +167,17 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 	}
 
 	[Rpc.Host]
-	private void ServerInflictHealing(PlayerPawn Target, PlayerPawn Giver, float Healing, bool AllowOverhealing)
+	private void ServerInflictHealing(FHealingRequest HealingRequest)
 	{
-		if (!Networking.IsHost)
+		Assert.True(Networking.IsHost);
+
+		if (!HealingRequest.TargetDamageComponent.IsValid())
 		{
-			Log.Warning("Trying to invoke server damage methods from client");
 			return;
 		}
 
-		if (!Target.IsValid())
-		{
-			Log.Warning($"Invalid Target when trying to inflict healing on {Target}");
-			return;
-		}
-
-		if (!Target.DamageComponent.IsValid())
-		{
-			Log.Warning($"Invalid damage comp when trying to inflict healing on {Target}");
-			return;
-		}
-
-		Target.DamageComponent.Heal(Healing, AllowOverhealing);
+		// we do it the other way round to the damage here :)
+		HealingRequest.TargetDamageComponent.Heal(HealingRequest);
 	}
 
 	[Rpc.Broadcast(NetFlags.HostOnly)]

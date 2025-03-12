@@ -43,7 +43,7 @@
 
 	public void OnHit(FDamageTaken DamageGiven)
 	{
-		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || DamageGiven.VictimPlayerPawn == LocalPlayerPawn)
+		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive || DamageGiven.AssumedVictimPlayerPawn == LocalPlayerPawn)
 		{
 			return;
 		}
@@ -53,7 +53,7 @@
 
 		foreach (var Element in DamageNumberElements)
 		{
-			if (Element.TargetPawn == DamageGiven.VictimPlayerPawn)
+			if (Element.TargetPawn == DamageGiven.AssumedVictimPlayerPawn)
 			{
 				Element.AddDamage(DamageGiven.Damage);
 				Element.DisplayedTime = 0;
@@ -67,7 +67,7 @@
 		FScreenNumberElement DamageNumberElement = new()
 			{
 				PlayerPawn = LocalPlayerPawn,
-				TargetPawn = DamageGiven.VictimPlayerPawn,
+				TargetPawn = DamageGiven.AssumedVictimPlayerPawn,
 				ScreenOffset = GetScreenOffset(Distance),
 				Damage = DamageGiven.Damage,
 				DisplayedTime = 0,

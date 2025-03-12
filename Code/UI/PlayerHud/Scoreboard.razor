@@ -1,5 +1,6 @@
 ﻿@using System;
 @using Sandbox.UI;
+@using KOTH.PlayerExp;
 
 @namespace KOTH.UI
 @inherits Panel
@@ -10,81 +11,141 @@
 @* 	<div class="title">
 		@GameMode.Instance.Title
 	</div> *@
-	<table class="with-padding-lg layout" style="background-color: rgba( red, 0.33 );">
-		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat-avatar"></label>
-			<label class="col stat-large">Team A</label>
-			<label class="col stat">Points</label>
-			<label class="col stat">Frags</label>
-			<label class="col stat">Deaths</label>
-		</div>
-
-		<div class="row header with-px-lg with-py-sm" onclick="@(() => Log.Info("clicky"))">
-
-			<label class="col stat-avatar" style="background-image: url(avatar:@PlayerState.Local.SteamId);"></label>
-			<label class="col stat-large">travis</label>
-
-			<label class="col stat">1337</label>
-			<label class="col stat">9</label>
-			<label class="col stat">5</label>
-		</div>
-
-		@GeneratePlayerRow(PlayerState.Local)
-		@GeneratePlayerRow(PlayerState.Local)
-		@GeneratePlayerRow(PlayerState.Local)
-	</table>
-	<table class="with-padding-lg layout" style="background-color: rgba( green, 0.33 );">
-		<div class="row header with-px-lg with-py-sm">
-			<label class="col stat-avatar"></label>
-			<label class="col stat-large">Team A</label>
-			<label class="col stat">Points</label>
-			<label class="col stat">Frags</label>
-			<label class="col stat">Deaths</label>
-		</div>
-
-		@GeneratePlayerRow(PlayerState.Local)
-		@GeneratePlayerRow(PlayerState.Local)
-		@GeneratePlayerRow(PlayerState.Local)
-	</table>
+	@RenderTableSection(PlayerState.Local.Team)
+	@RenderTableSection(PlayerState.Local.Team.GetOpponents())
 </root>
 
 @code
 {
-	private RenderFragment GeneratePlayerRow(PlayerState playerState) => builder =>
+	private RenderFragment RenderTableSection(Team Team) => Builder =>
 	{
-	builder.OpenElement(0, "div");
-	builder.AddAttribute(1, "class", "row header with-px-lg with-py-sm");
-	// builder.AddAttribute(2, "onclick", EventCallback.Factory.Create(this, () => Log.Info("clicky")));
+		var ColourString = "";
+		if (Team == Team.Terrorist)
+		{
+			ColourString = "rgba(0, 255, 0, 0.33)";
+		}
+		if (Team == Team.CounterTerrorist)
+		{
+			ColourString = "rgba(255, 0, 0, 0.33)";
+		}
 
-	// Avatar Column
-	builder.OpenElement(3, "label");
-	builder.AddAttribute(4, "class", "col stat-avatar");
-	builder.AddAttribute(5, "style", $"background-image: url(avatar:{playerState.SteamId});");
-	builder.CloseElement();
+		Builder.OpenElement(0, "table");
+		Builder.AddAttribute(1, "class", "with-padding-lg layout");
+		Builder.AddAttribute(2, "style", $"background-color: {ColourString};");
 
-	// Player Name Column
-	builder.OpenElement(6, "label");
-	builder.AddAttribute(7, "class", "col stat-large");
-	builder.AddContent(8, playerState.SteamName);
-	builder.CloseElement();
+		// Table Header Row
+		Builder.OpenElement(3, "div");
+		Builder.AddAttribute(4, "class", "row header with-px-lg with-py-sm");
 
-	// Stat Columns
-	builder.OpenElement(9, "label");
-	builder.AddAttribute(10, "class", "col stat");
-	builder.AddContent(11, 1337); // Replace with actual stat property
-	builder.CloseElement();
+		// Level Column
+		Builder.OpenElement(5, "label");
+		Builder.AddAttribute(6, "class", "col stat-little");
+		Builder.AddContent(7, "◎");
+		Builder.CloseElement();
 
-	builder.OpenElement(12, "label");
-	builder.AddAttribute(13, "class", "col stat");
-	builder.AddContent(14, 20); // Replace with actual stat property
-	builder.CloseElement();
+		// Avatar Column
+		Builder.OpenElement(8, "label");
+		Builder.AddAttribute(9, "class", "col stat-avatar");
+		Builder.CloseElement();
 
-	builder.OpenElement(15, "label");
-	builder.AddAttribute(16, "class", "col stat");
-	builder.AddContent(17, 4); // Replace with actual stat property
-	builder.CloseElement();
+		// Team Name Column
+		Builder.OpenElement(10, "label");
+		Builder.AddAttribute(11, "class", "col stat-large");
+		Builder.AddContent(12, $"{Team.GetName()}");
+		Builder.CloseElement();
 
-	builder.CloseElement(); // Close the row div
+		// Stat Columns
+		Builder.OpenElement(13, "label");
+		Builder.AddAttribute(14, "class", "col stat");
+		Builder.AddContent(15, "Points");
+		Builder.CloseElement();
+
+		Builder.OpenElement(16, "label");
+		Builder.AddAttribute(17, "class", "col stat");
+		Builder.AddContent(18, "Kills");
+		Builder.CloseElement();
+
+		Builder.OpenElement(19, "label");
+		Builder.AddAttribute(20, "class", "col stat");
+		Builder.AddContent(21, "Deaths");
+		Builder.CloseElement();
+
+		// Level Column
+		Builder.OpenElement(22, "label");
+		Builder.AddAttribute(23, "class", "col stat-little");
+		Builder.CloseElement();
+
+		// Close Header Row
+		Builder.CloseElement();
+
+		foreach (var PlayerState in GameUtils.AllPlayers)
+		{
+			if (PlayerState.IsValid() && PlayerState.Team == Team)
+			{
+				GeneratePlayerRow(PlayerState).Invoke(Builder);
+			}
+		}
+
+		// Close the table element
+		Builder.CloseElement();
+	};
+
+	private RenderFragment GeneratePlayerRow(PlayerState PlayerState) => Builder =>
+	{
+		if (!PlayerState.IsValid())
+		{
+			return;
+		}
+
+		FPlayerGameStat PlayerStats = GameMode.Instance.GameStats.PlayerStateStats[PlayerState];
+
+		// Open the row div
+		Builder.OpenElement(0, "div");
+		Builder.AddAttribute(1, "class", "row header with-px-lg with-py-sm");
+		// builder.AddAttribute(2, "onclick", EventCallback.Factory.Create(this, () => Log.Info("clicky")));
+
+		// Level Column
+		Builder.OpenElement(3, "label");
+		Builder.AddAttribute(4, "class", "col stat-little");
+		Builder.AddContent(5, ExpManager.GetLevelString(PlayerState.SteamId));
+		Builder.CloseElement();
+
+		// Avatar Column
+		Builder.OpenElement(6, "label");
+		Builder.AddAttribute(7, "class", "col stat-avatar");
+		Builder.AddAttribute(8, "style", $"background-image: url(avatar:{PlayerState.SteamId});");
+		Builder.CloseElement();
+
+		// Player Name Column
+		Builder.OpenElement(9, "label");
+		Builder.AddAttribute(10, "class", "col stat-large");
+		Builder.AddContent(11, PlayerState.SteamName);
+		Builder.CloseElement();
+
+		// Stat Columns
+		Builder.OpenElement(12, "label");
+		Builder.AddAttribute(13, "class", "col stat");
+		Builder.AddContent(14, ((int)PlayerStats.Damage + (int)PlayerStats.Heals));
+		Builder.CloseElement();
+
+		Builder.OpenElement(15, "label");
+		Builder.AddAttribute(16, "class", "col stat");
+		Builder.AddContent(17, PlayerStats.Kills);
+		Builder.CloseElement();
+
+		Builder.OpenElement(18, "label");
+		Builder.AddAttribute(19, "class", "col stat");
+		Builder.AddContent(20, PlayerStats.Deaths);
+		Builder.CloseElement();
+
+		// Ping Column
+		Builder.OpenElement(21, "label");
+		Builder.AddAttribute(22, "class", "col stat-little");
+		Builder.AddContent(23, PlayerState.PingString);
+		Builder.CloseElement();
+
+		// Close the row div
+		Builder.CloseElement();
 	};
 
 	public bool IsActive { get; set; }
@@ -96,6 +157,11 @@
 
 	public override void Tick()
 	{
+		if (!GameMode.Instance.GameStats.IsValid() || !PlayerState.Local.PlayerPawn.IsValid())
+		{
+			return;
+		}
+
 		if (Input.Pressed("Score"))
 		{
 			IsActive = Input.Pressed("Score");

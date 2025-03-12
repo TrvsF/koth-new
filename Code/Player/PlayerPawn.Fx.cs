@@ -162,12 +162,12 @@ public partial class PlayerPawn :
 
 	void IGameEventHandler<DamageBroadcastEvent>.OnGameEvent(DamageBroadcastEvent EventArgs)
 	{
-		if (EventArgs.DamageEvent.VictimPlayerPawn == this)
+		if (EventArgs.DamageEvent.AssumedVictimPlayerPawn == this)
 		{
 			OnDamageTaken(EventArgs.DamageEvent);
 		}
 
-		if (EventArgs.DamageEvent.AttackerPlayerPawn == this)
+		if (EventArgs.DamageEvent.AssumedAttackerPlayerPawn == this)
 		{
 			OnDamageGiven(EventArgs.DamageEvent);
 		}

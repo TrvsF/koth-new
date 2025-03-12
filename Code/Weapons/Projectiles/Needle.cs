@@ -59,10 +59,9 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 			{
 				var Healing = MathX.Lerp(MinHealing, MaxHealing, InterpFactor);
 
-				Log.Info($"doing {Healing} healing");
-
 				FHealingRequest HealingRequest = new()
 				{
+					TargetDamageComponent = CollidePlayerPawn.DamageComponent,
 					TargetPlayerPawn = CollidePlayerPawn,
 					AttackerPlayerPawn = OwnerPlayerPawn,
 					BaseHealing = Healing,

@@ -173,6 +173,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 
 		FHealingRequest HealingRequest = new()
 		{
+			TargetDamageComponent = HealTarget.DamageComponent,
 			TargetPlayerPawn = HealTarget,
 			AttackerPlayerPawn = PlayerPawn,
 			BaseHealing = HealsPerTick,

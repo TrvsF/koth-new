@@ -100,6 +100,22 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 		base.OnDestroy();
 	}
 
+	TimeSince LastPingUpdate = new();
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if (Networking.IsHost && LastPingUpdate > 1f)
+		{
+			foreach (var PlayerState in PlayerStates)
+			{
+				PlayerState.PingString = PlayerState.Connection.Ping.FloorToInt().ToString();
+			}
+
+			LastPingUpdate = 0;
+		}
+	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private static bool CreateLobby(string LobbyName = "awesomelobby", LobbyPrivacy Privacy = LobbyPrivacy.Public)

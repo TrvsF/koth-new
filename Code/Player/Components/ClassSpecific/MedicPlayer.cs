@@ -18,14 +18,14 @@ public sealed class MedicPlayer : Component
 
 		if (Networking.IsHost && OwnerPawn.IsValid())
 		{
-			FHealingRequest HealingRequest = new()
-			{
-				TargetPlayerPawn = OwnerPawn,
-				BaseHealing = HealsPerTick,
-				HealingOrigin = GameObject.WorldPosition,
-				AllowOverheal = false,
-			};
-			Scene.Dispatch(new HealingRequestEvent(HealingRequest));
+			//FHealingRequest HealingRequest = new()
+			//{
+			//	TargetPlayerPawn = OwnerPawn,
+			//	BaseHealing = HealsPerTick,
+			//	HealingOrigin = GameObject.WorldPosition,
+			//	AllowOverheal = false,
+			//};
+			//Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 		}
 	}
 }

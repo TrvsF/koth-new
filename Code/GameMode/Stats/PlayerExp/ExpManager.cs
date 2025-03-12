@@ -23,22 +23,21 @@ public class ExpManager : SingletonComponent<ExpManager>,
 			return;
 		}
 
-		// TODO : we want to use the player state directly here
-		var AttackingPlayer = DamageEvent.AttackerPlayerPawn;
-		if (!AttackingPlayer.IsValid() || AttackingPlayer == DamageEvent.VictimPlayerPawn)
+		var PlayerState = DamageEvent.AttackerPlayerState;
+
+		if (!PlayerState.IsValid())
 		{
+			// likely means we're a dummy
 			return;
 		}
 
-		var PlayerState = GameUtils.GetPlayer(AttackingPlayer.Id);
-		
 		FExpEvent ExpEvent = new()
 		{
 			Amount = CalculateExp(10, 5),
 			Origin = ExpOrigins.Kill,
 		};
 
-		Log.Info($"Broadcasting exp event {ExpEvent} to {AttackingPlayer}:{PlayerState}:{PlayerState.SteamId}");
+		Log.Info($"Broadcasting exp event {ExpEvent} to {DamageEvent.AssumedAttackerPlayerPawn}:{PlayerState}:{PlayerState.SteamId}");
 
 		using (Rpc.FilterInclude(PlayerState.Connection))
 		{
@@ -98,5 +97,11 @@ public class ExpManager : SingletonComponent<ExpManager>,
 	public static Sandbox.Services.Stats.PlayerStat GetCurrentLocalLevel()
 	{
 		return Sandbox.Services.Stats.LocalPlayer.Get("player_level");
+	}
+
+	public static string GetLevelString(ulong SteamId)
+	{
+		var Stats = Sandbox.Services.Stats.GetPlayerStats("wurstsoftware.koth", (long)SteamId);
+		return Stats.Get("player_level").LastValue.ToString();
 	}
 }

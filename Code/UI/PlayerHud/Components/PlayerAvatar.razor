@@ -28,7 +28,6 @@
 	public PlayerPawn Pawn => Player.IsValid() ? Player.PlayerPawn : null;
 	public PlayerState Player { get; set; }
 	public bool IsFriendly => PlayerState.Local.IsFriendly(Player);
-	public Color PlayerColor => Player.IsValid() ? Player.PlayerColor : Color.White;
 	private bool IsDead => !Pawn.IsValid() || !Pawn.IsAlive;
 
 	public bool ShowBomb { get; set; } = true;

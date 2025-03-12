@@ -38,8 +38,12 @@ public record FDamageRequest
 public record FDamageTaken
 {
 	public GameObject VictimGameObject { get; init; }
-	public PlayerPawn VictimPlayerPawn { get; init; }
-	public PlayerPawn AttackerPlayerPawn { get; init; }
+
+	public PlayerPawn AssumedVictimPlayerPawn { get; init; }
+	public PlayerPawn AssumedAttackerPlayerPawn { get; init; }
+	public PlayerState AttackerPlayerState { get; init; }
+	public PlayerState VictimPlayerState { get; init; }
+
 	public float Damage { get; init; } = 0f;
 	public Vector3 DamageLocation { get; init; } = Vector3.Zero;
 	public EDamageType DamageType { get; init; } = EDamageType.Melee;

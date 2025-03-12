@@ -34,6 +34,7 @@ public sealed class PayloadCart : Component
 			{
 				FHealingRequest HealingRequest = new()
 				{
+					TargetDamageComponent = CapturePlayer.DamageComponent,
 					TargetPlayerPawn = CapturePlayer,
 					AttackerPlayerPawn = null,
 					BaseHealing = BaseHealing,
