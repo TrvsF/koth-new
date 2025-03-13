@@ -81,15 +81,6 @@ public sealed class Equipment : Component, IEquipment, IDescription
 	private bool _wasDeployed { get; set; }
 	private bool _hasStarted { get; set; }
 
-	[DeveloperCommand("Toggle View Model", "Visuals")]
-	private static void ToggleViewModel()
-	{
-		var ViewerPlayerPawn = PlayerState.Local.PlayerPawn;
-
-		ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.ModelRenderer.Enabled;
-		ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled = !ViewerPlayerPawn.CurrentEquipment.ViewModel.Arms.Enabled;
-	}
-
 	public void UpdateRenderMode(bool force = false)
 	{
 		var on = force || (Owner.IsValid() && !Owner.IsViewer && IsDeployed);

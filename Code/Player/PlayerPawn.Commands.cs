@@ -10,7 +10,7 @@ public partial class PlayerPawn
 	/// </summary>
 	[ConVar("hc1_bot_follow")] public static bool BotFollowHostInput { get; set; }
 
-	[DeveloperCommand("Suicide", "Player"), ConCmd("kill")]
+	[ConCmd("kill")]
 	private static void Command_Suicide()
 	{
 		// TODO : FIX!

@@ -53,6 +53,11 @@
 
 		foreach (var Element in DamageNumberElements)
 		{
+			if (Element.DisplayedTime < -0.1f)
+			{
+				continue;
+			}
+
 			if (Element.TargetPawn == DamageGiven.AssumedVictimPlayerPawn)
 			{
 				Element.AddDamage(DamageGiven.Damage);
@@ -83,7 +88,7 @@
 
 		foreach (var DamageNumber in DamageNumberElements)
 		{
-			if (DamageNumber.DisplayedTime < -0.3f)
+			if (DamageNumber.DisplayedTime < -0.66f)
 			{
 				DamageNumbersToRemove.Add(DamageNumber);
 			}

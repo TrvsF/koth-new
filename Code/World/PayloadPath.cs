@@ -6,6 +6,23 @@ public sealed class PayloadPathNode
 {
 	[Property] public List<Vector3> SegmentPoints { get; set; } = [];
 
+	public float GetDistance()
+	{
+		float Distance = 0;
+
+		if (!IsValidPath())
+		{
+			return Distance;
+		}
+
+		for (int SegmentIndex = 1; SegmentIndex < SegmentPoints.Count; ++SegmentIndex)
+		{
+			Distance += SegmentPoints[SegmentIndex - 1].Distance(SegmentPoints[SegmentIndex]);
+		}
+
+		return Distance;
+	}
+
 	public bool IsValidPath()
 	{
 		return SegmentPoints.Count > 1;
@@ -43,6 +60,21 @@ public sealed class PayloadPath : Component
 		return StartRotaion;
 	}
 
+	public float GetTotalDistance(out List<float> SegmentDistances)
+	{
+		var TotalDistance = 0f;
+		SegmentDistances = new();
+
+		foreach (var Path in PathSegments)
+		{
+			var Distance = Path.GetDistance();
+
+			TotalDistance += Distance;
+			SegmentDistances.Add(Distance);
+		}
+
+		return TotalDistance;
+	}
 
 	protected override void DrawGizmos()
 	{

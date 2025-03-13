@@ -29,8 +29,8 @@ public sealed class PayloadGamemode : Component,
 		}
 	}
 
-	PayloadCart PayloadCartComponent { get => PayloadGameobject.GetComponent<PayloadCart>(); }
-	PayloadPath PayloadPathComponent { get => PayloadPathGameobject.GetComponent<PayloadPath>(); }
+	public PayloadCart PayloadCartComponent { get => PayloadGameobject.GetComponent<PayloadCart>(); }
+	public PayloadPath PayloadPathComponent { get => PayloadPathGameobject.GetComponent<PayloadPath>(); }
 
 	public float TSpawnTime => TActiveSpawn.GetComponent<SpawnZone>().SpawnTime;
 	public float CTSpawnTime => CTActiveSpawn.GetComponent<SpawnZone>().SpawnTime;

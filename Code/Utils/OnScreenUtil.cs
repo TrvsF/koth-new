@@ -49,11 +49,11 @@ public class FScreenNumberElement
 	{
 		if (IsDamage)
 		{
-			return $"-{Damage.CeilToInt()}";
+			return $"-{Math.Round(Damage)}";
 		}
 		else
 		{
-			return $"+{Damage.CeilToInt()}";
+			return $"+{Math.Round(Damage)}";
 		}
 	}
 

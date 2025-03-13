@@ -12,9 +12,7 @@
 <root>
 	<canvas>
 		<Watermark/>
-		<Notifications/>
 		<DamageNumbers/>
-		<Toast/>
 		<DamageIndicatorNew/>
 		<StickyOverlay/>
 		<HealStatus/>
@@ -22,14 +20,13 @@
 		<XHair/>
 		<Health/>
 		<Ammo/>
+		<PayloadIndicator/>
 
 		<div class="right">
 			<div class="flex-grow"/>
 			<Voices/>
 			<WeaponInfoComponent/>
 		</div>
-
-		<ScoringSystem @ref="ScoringSystem"/>
 	</canvas>
 
 	<Scoreboard/>
@@ -53,14 +50,6 @@
 {
 
 	[ConVar("cl_drawhud")] public static bool IsHudEnabled { get; set; } = true;
-
-	[DeveloperCommand("Toggle HUD", "Visuals")]
-	private static void Command_ToggleHUD()
-	{
-		IsHudEnabled = !IsHudEnabled;
-	}
-
-	public ScoringSystem ScoringSystem { get; set; }
 
 	protected override void OnEnabled()
 	{
