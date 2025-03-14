@@ -24,7 +24,7 @@
           "Roll": false
         },
         "MassCenterOverride": "0,0,0",
-        "MassOverride": 0,
+        "MassOverride": 500,
         "MotionEnabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -85,9 +85,9 @@
         "OnComponentUpdate": null,
         "Time": 30,
         "TimeUntilDestroy": {
-          "Absolute": 510.42886,
-          "Relative": -13.042877,
-          "Passed": 13.042877,
+          "Absolute": 0,
+          "Relative": -3720.9868,
+          "Passed": 3720.9868,
           "Fraction": 1
         }
       }

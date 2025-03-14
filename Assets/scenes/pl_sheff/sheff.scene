@@ -178,7 +178,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 2,
+                  "MinPlayerCount": 1,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -237,7 +237,7 @@
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
                   },
-                  "SetupTime": 30,
+                  "SetupTime": 0,
                   "TActiveSpawn": {
                     "_type": "gameobject",
                     "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"
@@ -1436,6 +1436,14 @@
                 "-519.3005,414.3011,97.30009",
                 "-779.6997,490,101.5996",
                 "-1471.099,490,131.5998"
+              ]
+            },
+            {
+              "SegmentPoints": [
+                "-1957.299,486.5995,104.8996",
+                "-2857.295,673.299,104.8996",
+                "-2881.696,-582.3012,104.8996",
+                "-4104.394,-582.3012,104.8996"
               ]
             }
           ]

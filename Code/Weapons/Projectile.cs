@@ -99,8 +99,8 @@ public abstract class Projectile : Component, Component.ICollisionListener
 
 		if (ContactPoint == Vector3.Zero)
 		{
-			Log.Warning($"Projectile {this} has mising contact point");
-			return;
+			Log.Warning($"Projectile {this} has mising contact point, using fallback point..");
+			ContactPoint = Collision.Other.GameObject.WorldPosition;
 		}
 
 		SimulateExplode(out FProjectileCollision ProjectileCollision, ContactPoint, OtherRoot);

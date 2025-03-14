@@ -160,6 +160,16 @@
           "OnComponentUpdate": null,
           "SoundHandles": {},
           "StoppedSounds": []
+        },
+        {
+          "__type": "KOTH.GameStats",
+          "__guid": "ec69d6cd-e8bb-40b6-afe7-c6f555fe5f88",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
         }
       ],
       "Children": [
@@ -211,20 +221,6 @@
                   "OnEnterState": null,
                   "OnLeaveState": null,
                   "OnUpdateState": null
-                },
-                {
-                  "__type": "KOTH.ShowStatusText",
-                  "__guid": "bd350265-e1f9-4990-a148-c27d5ff812fe",
-                  "BothTeams": true,
-                  "IsKoth": false,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "StatusText": "waiting for players",
-                  "Team": "Unassigned"
                 },
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
@@ -308,6 +304,7 @@
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
+          "RenderUI": true,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,

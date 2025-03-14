@@ -102,68 +102,6 @@
       "Children": []
     },
     {
-      "__guid": "fed2b91f-4df7-444f-90a0-af6d94dc6c53",
-      "Flags": 0,
-      "Name": "HUD",
-      "Position": "-11.66301,-170.663,499.0976",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "Components": [
-        {
-          "__type": "KOTH.UI.MainHUD",
-          "__guid": "037052d7-7742-4e88-9a45-68529e96e6cd",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "57867fc6-897f-4925-ba59-16015fff42ac",
-          "AutoScreenScale": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "ZIndex": 100
-        },
-        {
-          "__type": "KOTH.UI.DeveloperMenu",
-          "__guid": "072b97fd-94da-4ec9-955f-3ee671c81acd",
-          "__enabled": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "57ff3da8-114f-4af5-9f3a-a107792c2adf",
-          "__enabled": false,
-          "AutoScreenScale": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "ZIndex": 100
-        }
-      ]
-    },
-    {
       "__guid": "2fe5edcf-823c-41a5-bf76-c57b259b5426",
       "Flags": 0,
       "Name": "JumpZones",
@@ -515,16 +453,6 @@
           }
         },
         {
-          "__type": "KOTH.Stats",
-          "__guid": "0b5f04de-5505-489b-b4ce-2122f7bb06c1",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
           "__type": "KOTH.TextChat",
           "__guid": "0164591d-c8ef-4cb3-bdde-b99a3185bf66",
           "OnComponentDestroy": null,
@@ -547,6 +475,28 @@
         {
           "__type": "KOTH.PlayerExp.ExpManager",
           "__guid": "0cd74b6b-6734-469c-a808-a4a45174c3af",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.AudioComponent",
+          "__guid": "87890fba-69e6-456f-ae8a-9b592783e5e9",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SoundHandles": {},
+          "StoppedSounds": []
+        },
+        {
+          "__type": "KOTH.GameStats",
+          "__guid": "817abf01-b501-4866-8d43-b0e660e9f626",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -652,6 +602,7 @@
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
+          "RenderUI": true,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,

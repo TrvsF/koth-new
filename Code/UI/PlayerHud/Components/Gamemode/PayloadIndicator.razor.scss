@@ -1,11 +1,28 @@
 ﻿@import "/UI/Styles/Theme.scss";
-.indicator {
+
+PayloadIndicator {
     z-index: 100;
     border-radius: $rounding;
-    position: absolute;
-    width: 75%;
-    height: 250px;
-    top: 55%;
-    background-color: black;
-}
+    flex-direction: column;
+    width: 100%;
+    height: 64px;
+    top: 90%;
+    align-items: center;
 
+    .indicator {
+        width: 50%;
+        min-height: 24px;
+    }
+
+    .point {
+        width: 32px;
+        background-color: darkseagreen;
+        min-height: 24px;
+    }
+
+    .path {
+        width: 320px;
+        background-color: forestgreen;
+        min-height: 24px;
+    }
+}

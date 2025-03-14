@@ -12,7 +12,7 @@
         "__type": "KOTH.PayloadCart",
         "__guid": "40d8be31-bea7-452f-a888-2e8c4b25b43b",
         "BaseHealing": 0.066,
-        "BaseSpeed": 1,
+        "BaseSpeed": 10,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

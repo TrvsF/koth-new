@@ -42,7 +42,7 @@ public sealed class PayloadGamemode : Component,
 	private bool HasCartFinished = false;
 	private int CurrentSegmentIndex = 0;
 	private float TargetTransitionFactor = 0;
-	
+
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
 	{
 		var PayloadHightlight = PayloadGameobject.GetOrAddComponent<HighlightOutline>();
@@ -141,5 +141,59 @@ public sealed class PayloadGamemode : Component,
 
 		var LerpedVector = Vector3.Lerp(CurrentNodePos, TargetNodePos, TargetTransitionFactor);
 		PayloadGameobject.WorldPosition = LerpedVector;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////
+
+	public float GetUIData(out List<(float Distance, float CaptureAmount)> SegmentDistances)
+	{
+		SegmentDistances = new();
+
+		var AllSegmentLocations = PayloadPathComponent.AllSegmentPoints;
+		var TotalSegmentsEvaluated = 0;
+
+		foreach (var Path in PayloadPathComponent.PathSegments)
+		{
+			var SegmentPointsInPath = Path.SegmentPoints.Count;
+		Log.Info($"{CurrentSegmentIndex} {TotalSegmentsEvaluated + SegmentPointsInPath} {TotalSegmentsEvaluated}");
+
+			if (CurrentSegmentIndex + 1 >= TotalSegmentsEvaluated + SegmentPointsInPath)
+			{
+				SegmentDistances.Add((Path.GetDistance(), 1f));
+				TotalSegmentsEvaluated += SegmentPointsInPath;
+				continue;
+			}
+
+			if (TotalSegmentsEvaluated <= CurrentSegmentIndex && TotalSegmentsEvaluated + SegmentPointsInPath > CurrentSegmentIndex)
+			{
+				var TotalPathDistance = Path.GetDistance();
+				var CoveredDistance = 0f;
+
+				var PathIndex = CurrentSegmentIndex - TotalSegmentsEvaluated;
+				for (int NodeIndex = 0; NodeIndex < Path.SegmentPoints.Count; ++NodeIndex)
+				{
+					if (PathIndex == NodeIndex)
+					{
+						break;
+					}
+					
+					CoveredDistance += Path.SegmentPoints[NodeIndex].Distance(Path.SegmentPoints[NodeIndex + 1]);
+				}
+
+				var CoveredFactor = CoveredDistance / TotalPathDistance;
+				CoveredFactor += (TargetTransitionFactor * AllSegmentLocations[CurrentSegmentIndex].Distance(AllSegmentLocations[CurrentSegmentIndex + 1])) / TotalPathDistance;
+				
+				SegmentDistances.Add((TotalPathDistance, CoveredFactor));
+
+				TotalSegmentsEvaluated += SegmentPointsInPath;
+				continue;
+			}
+
+			SegmentDistances.Add((Path.GetDistance(), 0));
+			TotalSegmentsEvaluated += SegmentPointsInPath;
+		}
+
+
+		return 0;
 	}
 }

@@ -8,13 +8,44 @@
 @attribute [StyleSheet]
 
 <root class="flex absolute align-center justify-center">
-	<div class="indicator">
-		a
-	</div>
+	@GeneratePlayerRow(CurrentData.OutData)
 </root>
 
 @code
 {
+	private RenderFragment GeneratePlayerRow(List<(float Distance, float CaptureAmount)> OutData) => Builder =>
+	{
+		if (OutData == null || OutData.Count == 0)
+		{
+			return;
+		}
+
+		var Sequency = 0;
+		Builder.OpenElement(Sequency++, "div");
+		Builder.AddAttribute(Sequency++, "class", "indicator");
+
+		foreach ((float Distance, float CaptureAmount) in OutData)
+		{
+			Log.Info(CaptureAmount);
+
+			Builder.OpenElement(Sequency++, "div");
+			Builder.AddAttribute(Sequency++, "class", "point");
+			Builder.CloseElement();
+			
+			Builder.OpenElement(Sequency++, "div");
+			Builder.AddAttribute(Sequency++, "class", "path");
+			Builder.AddAttribute(Sequency++, "style", $"width: {Distance.FloorToInt()}px;");
+			Builder.AddAttribute(Sequency++, "style", $"background-image: linear-gradient(to right, #00FF00 100%, #FF0000 {CaptureAmount * 100f}%);");
+			Builder.CloseElement();
+		}
+
+		Builder.OpenElement(Sequency++, "div");
+		Builder.AddAttribute(Sequency++, "class", "point");
+		Builder.CloseElement();
+
+		Builder.CloseElement();
+	};
+
 	protected override int BuildHash()
 	{
 		return HashCode.Combine(Time.Now);
@@ -24,6 +55,12 @@
 
 	public override void Tick()
 	{
+		if (!PayloadUI.QueryUIData(out CurrentData))
+		{
+			SetClass("hidden", true);
+			return;
+		}
 
+		SetClass("hidden", false);
 	}
 }
