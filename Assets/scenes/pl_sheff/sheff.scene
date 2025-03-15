@@ -178,7 +178,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 1,
+                  "MinPlayerCount": 2,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -237,7 +237,7 @@
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
                   },
-                  "SetupTime": 0,
+                  "SetupTime": 5,
                   "TActiveSpawn": {
                     "_type": "gameobject",
                     "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"

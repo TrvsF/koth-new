@@ -26,8 +26,6 @@
 
 		foreach ((float Distance, float CaptureAmount) in OutData)
 		{
-			Log.Info(CaptureAmount);
-
 			Builder.OpenElement(Sequency++, "div");
 			Builder.AddAttribute(Sequency++, "class", "point");
 			Builder.CloseElement();
@@ -35,7 +33,7 @@
 			Builder.OpenElement(Sequency++, "div");
 			Builder.AddAttribute(Sequency++, "class", "path");
 			Builder.AddAttribute(Sequency++, "style", $"width: {Distance.FloorToInt()}px;");
-			Builder.AddAttribute(Sequency++, "style", $"background-image: linear-gradient(to right, #00FF00 100%, #FF0000 {CaptureAmount * 100f}%);");
+			Builder.AddAttribute(Sequency++, "style", $"background-image: linear-gradient(to right, #00FF00AA 100%, #FF0000AA {CaptureAmount * 100f}%);");
 			Builder.CloseElement();
 		}
 

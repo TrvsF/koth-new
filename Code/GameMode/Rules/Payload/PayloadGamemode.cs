@@ -40,8 +40,8 @@ public sealed class PayloadGamemode : Component,
 	private RealTimeSince TimeSinceStart = 0;
 	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
-	private int CurrentSegmentIndex = 0;
-	private float TargetTransitionFactor = 0;
+	[Sync] private int CurrentSegmentIndex { get; set; } = 0;
+	[Sync] private float TargetTransitionFactor { get; set; } = 0;
 
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
 	{
@@ -155,7 +155,6 @@ public sealed class PayloadGamemode : Component,
 		foreach (var Path in PayloadPathComponent.PathSegments)
 		{
 			var SegmentPointsInPath = Path.SegmentPoints.Count;
-		Log.Info($"{CurrentSegmentIndex} {TotalSegmentsEvaluated + SegmentPointsInPath} {TotalSegmentsEvaluated}");
 
 			if (CurrentSegmentIndex + 1 >= TotalSegmentsEvaluated + SegmentPointsInPath)
 			{
