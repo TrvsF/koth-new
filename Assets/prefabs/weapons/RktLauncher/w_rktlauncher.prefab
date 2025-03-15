@@ -59,7 +59,7 @@
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 480,
+        "KnockbackStrength": 500,
         "MaxAmmo": 4,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -77,7 +77,8 @@
         "ReloadTime": 1,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "RequiresAllInputActions": false,
+        "ShootSound": null
       }
     ],
     "Children": [

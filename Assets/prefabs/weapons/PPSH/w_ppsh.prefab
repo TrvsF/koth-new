@@ -78,6 +78,7 @@
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "ShootSound": null,
         "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",

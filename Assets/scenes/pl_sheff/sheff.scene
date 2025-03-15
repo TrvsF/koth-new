@@ -178,7 +178,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 2,
+                  "MinPlayerCount": 1,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,

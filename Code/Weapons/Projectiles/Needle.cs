@@ -6,10 +6,10 @@ namespace KOTH;
 
 public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEvent>
 {
-	[Property, Group("Healing")] public float MinHealing { get; set; } = 50f;
-	[Property, Group("Healing")] public float MaxHealing { get; set; } = 100f;
-	[Property, Group("Damage")] public float MinDamage { get; set; } = 40f;
-	[Property, Group("Damage")] public float MaxDamage { get; set; } = 90f;
+	[Property, Group("Healing")] public int MinHealing { get; set; } = 50;
+	[Property, Group("Healing")] public int MaxHealing { get; set; } = 100;
+	[Property, Group("Damage")] public int MinDamage { get; set; } = 40;
+	[Property, Group("Damage")] public int MaxDamage { get; set; } = 90;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +57,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 			if (CollidePlayerPawn.Team == OwnerPlayerPawn.Team)
 			{
-				var Healing = MathX.Lerp(MinHealing, MaxHealing, InterpFactor);
+				var Healing = MathX.Lerp(MinHealing, MaxHealing, InterpFactor).CeilToInt();
 
 				FHealingRequest HealingRequest = new()
 				{

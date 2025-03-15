@@ -58,7 +58,6 @@
         "ChargeDegradeRate": 0.05,
         "FireRate": 1.66,
         "HasAmmo": false,
-        "HealsPerTick": 0.5,
         "InputActions": [
           "Attack1"
         ],
@@ -75,7 +74,8 @@
         "ReloadTime": 1,
         "ReloadType": "None",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "RequiresAllInputActions": false,
+        "TimePerOneHeal": 0.05
       }
     ],
     "Children": [

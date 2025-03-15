@@ -5,7 +5,8 @@ namespace KOTH;
 
 public sealed class HealBeamComponent : InputWeaponComponent
 {
-	[Property, Category("Healing")] public float HealsPerTick { get; set; } = .45f;
+	[Property, Category("Healing")] public float TimePerOneHeal { get; set; } = .45f;
+	// [Property, Category("Healing")] public float HealsPerTick { get; set; } = .45f;
 	[Property, Category("Healing")] public float MaxHealDistance { get; set; } = 340f;
 	[Property, Category("Healing")] public float ChargeBuildRate { get; set; } = .03f;
 	[Property, Category("Healing")] public float ChargeDegradeRate { get; set; } = .05f;
@@ -161,6 +162,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		// if our target is invalid then remove our heal taget
 		if (!HealTarget.IsValid() || !IsDown())
 		{
+			HealTarget = null;
 			return; // NOTE : early return
 		}
 
@@ -171,23 +173,26 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return; // NOTE : early return
 		}
 
-		FHealingRequest HealingRequest = new()
-		{
-			TargetDamageComponent = HealTarget.DamageComponent,
-			TargetPlayerPawn = HealTarget,
-			AttackerPlayerPawn = PlayerPawn,
-			BaseHealing = HealsPerTick,
-			HealingOrigin = PlayerPawn.WorldPosition,
-			AllowOverheal = true,
-		};
-		Scene.Dispatch(new HealingRequestEvent(HealingRequest));
-
 		if (!IsUbered)
 		{
 			Charge += ChargeBuildRate;
 		}
+		
+		if (TimeSinceBeamHealingDone >= TimePerOneHeal)
+		{
+			FHealingRequest HealingRequest = new()
+			{
+				TargetDamageComponent = HealTarget.DamageComponent,
+				TargetPlayerPawn = HealTarget,
+				AttackerPlayerPawn = PlayerPawn,
+				BaseHealing = 1,
+				HealingOrigin = PlayerPawn.WorldPosition,
+				AllowOverheal = true,
+			};
+			Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 
-		TimeSinceBeamHealingDone = 0;
+			TimeSinceBeamHealingDone = 0;
+		}
 	}
 
 	const float PlayerSwitchDelay = .4f;

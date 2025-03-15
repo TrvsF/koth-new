@@ -39,7 +39,7 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 				{
 					TargetDamageComponent = PlayerPawn.DamageComponent,
 					TargetPlayerPawn = PlayerPawn,
-					BaseHealing = PlayerPawn.MaxHealth * HealthPercent,
+					BaseHealing = (PlayerPawn.MaxHealth * HealthPercent).CeilToInt(),
 					AllowOverheal = false,
 				};
 				Scene.Dispatch(new HealingRequestEvent(HealingRequest));

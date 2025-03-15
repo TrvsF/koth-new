@@ -74,10 +74,11 @@
           "prefab": "prefabs/weapons/grenadelauncher/p_grenade.prefab"
         },
         "ProjectileVerticalSpeed": 200,
-        "ReloadTime": 1,
+        "ReloadTime": 0.66,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "RequiresAllInputActions": false,
+        "ShootSound": null
       }
     ],
     "Children": [

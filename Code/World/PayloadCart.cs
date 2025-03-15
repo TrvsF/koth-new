@@ -12,6 +12,7 @@ public sealed class PayloadCart : Component
 	[Property] public float BaseHealing { get; set; } = 0.05f;
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
 
+	int HealCounter = 0;
 	protected override void OnFixedUpdate()
 	{
 		base.OnFixedUpdate();
@@ -20,6 +21,13 @@ public sealed class PayloadCart : Component
 		{
 			return;
 		}
+
+		++HealCounter;
+		if (HealCounter < 20)
+		{
+			return;
+		}
+		HealCounter = 0;
 
 		// do some healing
 		foreach (var CapturePlayer in CaptureZone.CapturingPlayers)
@@ -37,7 +45,7 @@ public sealed class PayloadCart : Component
 					TargetDamageComponent = CapturePlayer.DamageComponent,
 					TargetPlayerPawn = CapturePlayer,
 					AttackerPlayerPawn = null,
-					BaseHealing = BaseHealing,
+					BaseHealing = 1,
 					HealingOrigin = GameObject.WorldPosition,
 					AllowOverheal = false,
 				};

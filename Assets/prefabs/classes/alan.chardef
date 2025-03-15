@@ -15,9 +15,8 @@
   "AirAcceleration": 12,
   "BaseAcceleration": 9,
   "CrouchingAcceleration": 8,
-  "MaxAcceleration": 16,
+  "MaxAcceleration": 10,
   "AirMaxAcceleration": 64,
-  "MedicVoice": "sounds/voice/alan_medic.wav",
   "MedicVoiceEvent": "sounds/voice/alan_medic.sound",
   "__references": [],
   "__version": 0

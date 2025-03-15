@@ -14,8 +14,8 @@ public sealed class TurretComponent : Component
 
 	////////////////////////////////////////////////////////////////////////
 
-	[Property] public float MaxHealth { get; private set; } = 1f;
-	[Property] public float Damage { get; private set; } = 1f;
+	[Property] public int MaxHealth { get; private set; } = 1;
+	[Property] public int Damage { get; private set; } = 1;
 	[Property] public float KnockbackStrength { get; private set; } = 1f;
 	[Property] public float Firerate { get; private set; } = 1f;
 	[Property] public float Range { get; private set; } = 256f;
@@ -83,7 +83,7 @@ public sealed class TurretComponent : Component
 		// TODO : check ownership!
 
 		var WeaponStats = InputWeaponComponent.GetWeaponStats();
-		Damage = WeaponStats.BaseDamage * 0.66f; // !
+		Damage = (WeaponStats.BaseDamage * 0.66f).FloorToInt(); // !
 		Firerate = WeaponStats.FireRate;
 		KnockbackStrength = WeaponStats.KnockbackStrength;
 

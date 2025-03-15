@@ -38,7 +38,7 @@
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "f505ebca-6921-45d7-9ae0-7c55827f8ab7",
-        "Center": "0,0,0",
+        "Center": "7.499993,0,0",
         "Friction": null,
         "IsTrigger": false,
         "OnComponentDestroy": null,

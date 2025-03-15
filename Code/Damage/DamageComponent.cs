@@ -12,8 +12,8 @@ public sealed class DamageComponent : Component
 {
 	public event Action<FDamageTaken> OnDeath;
 
-	[Property, Sync(SyncFlags.FromHost)] public float Health { get; private set; } = 100f;
-	[Property, Sync(SyncFlags.FromHost)] public float MaxBaseHealth { get; private set; } = 100f;
+	[Property, Sync(SyncFlags.FromHost)] public int Health { get; private set; } = 100;
+	[Property, Sync(SyncFlags.FromHost)] public int MaxBaseHealth { get; private set; } = 100;
 	[Sync(SyncFlags.FromHost)] public Team Team { get; private set; } = Team.Unassigned;
 	public bool IsDead => Health < 0f;
 
@@ -21,7 +21,7 @@ public sealed class DamageComponent : Component
 
 	const float OverhealFactor = 1.5f;
 	const float HealDegradePerSecond = 7f;
-	private float MaxHealthWithOverheal { get => MaxBaseHealth * OverhealFactor; }
+	private int MaxHealthWithOverheal { get => (MaxBaseHealth * OverhealFactor).CeilToInt(); }
 
 	// HACK : TODO REWORK
 	protected override void OnAwake()
@@ -46,13 +46,13 @@ public sealed class DamageComponent : Component
 		// if we have overheal slowly drain it
 		if (Health > MaxBaseHealth)
 		{
-			Health = Math.Max(MaxBaseHealth, Health - (Time.Delta * HealDegradePerSecond));
+			Health = Math.Max(MaxBaseHealth, Health - (Time.Delta * HealDegradePerSecond)).CeilToInt();
 		}
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public void Initalize(float MaxBaseHealthIn, Team TeamIn)
+	public void Initalize(int MaxBaseHealthIn, Team TeamIn)
 	{
 		Assert.True(Networking.IsHost);
 
@@ -99,7 +99,7 @@ public sealed class DamageComponent : Component
 	{
 		Assert.True(Networking.IsHost);
 
-		Health -= DamageTaken.Damage;
+		Health -= DamageTaken.Damage.FloorToInt();
 		BroadcastDamage(DamageTaken);
 
 		if (Health <= 0f)
@@ -133,11 +133,11 @@ public sealed class DamageComponent : Component
 
 	public string GetHealthString()
 	{
-		return Health.CeilToInt().ToString();
+		return Health.ToString();
 	}
 
 	public string GetMaxHealthString()
 	{
-		return MaxBaseHealth.CeilToInt().ToString();
+		return MaxBaseHealth.ToString();
 	}
 }

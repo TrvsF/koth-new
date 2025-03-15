@@ -18,7 +18,7 @@ public record FDamageRequest
 	public Vector3 DamageOrigin { get; init; } = Vector3.Zero;
 	public Vector3 TargetOrigin { get; set; } = Vector3.Zero;
 
-	public float BaseDamage { get; init; } = 0f;
+	public int BaseDamage { get; init; } = 0;
 	public float BaseKnockbackStrength { get; init; } = 0f;
 	public bool DoesLessSelfDamage { get; init; } = false;
 

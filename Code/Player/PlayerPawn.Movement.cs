@@ -270,7 +270,7 @@ public partial class PlayerPawn
 
 	public TimeSince TimeSinceGroundedChanged { get; private set; }
 
-	const float MinimumFallDamage = 15f;
+	const int MinimumFallDamage = 15;
 	private void GroundedChanged(bool WasOnGround, bool IsOnGround)
 	{
 		if (!IsLocallyControlled)
@@ -286,7 +286,7 @@ public partial class PlayerPawn
 		if (!WasOnGround && IsOnGround && !IsNoclipping)
 		{
 			var Velocity = MathF.Abs(_previousVelocity.z);
-			var FallDamage = Velocity * 0.0225f; // 15/0.0225 = 666.6
+			var FallDamage = (Velocity * 0.0225f).FloorToInt(); // 15/0.0225 = 666.6
 
 			if (FallDamage > MinimumFallDamage)
 			{

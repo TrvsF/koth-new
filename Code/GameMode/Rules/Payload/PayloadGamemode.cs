@@ -40,6 +40,7 @@ public sealed class PayloadGamemode : Component,
 	private RealTimeSince TimeSinceStart = 0;
 	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
+
 	[Sync] private int CurrentSegmentIndex { get; set; } = 0;
 	[Sync] private float TargetTransitionFactor { get; set; } = 0;
 

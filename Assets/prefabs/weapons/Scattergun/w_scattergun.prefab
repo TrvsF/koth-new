@@ -54,9 +54,8 @@
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 6,
         "BaseDamage": 15,
-        "BulletsPerSecondBeforeMax": 0,
         "DecalDefinition": "prefabs/decals/bulletdecal.decal",
-        "FireRate": 0.75,
+        "FireRate": 0.625,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
@@ -74,10 +73,12 @@
         "OnInputAction": null,
         "OutwardFactor": 0.77,
         "Radius": 4,
-        "ReloadTime": 0.66,
+        "RecoilAddFactor": 0.2,
+        "ReloadTime": 0.76,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "ShootSound": null,
         "Sides": 5,
         "TrailPrefab": {
           "_type": "gameobject",

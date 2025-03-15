@@ -17,7 +17,7 @@ public record FProjectileCollision
 
 public abstract class Projectile : Component, Component.ICollisionListener
 {
-	[Property, Group("Base")] public float BaseDamage { get; set; } = 50f;
+	[Property, Group("Base")] public int BaseDamage { get; set; } = 50;
 	[Property, Group("Base")] public float BaseKnockbackStrength { get; set; } = 300f;
 	[Property, Group("Base")] public float ExplosionRadius { get; set; } = 128f;
 

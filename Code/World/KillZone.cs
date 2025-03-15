@@ -17,7 +17,7 @@ public sealed class KillZone : Component, Component.ITriggerListener
 				TargetDamageComponent = PlayerPawn.DamageComponent,
 				AttackerPlayerPawn = null,
 				DamageOrigin = 0,
-				BaseDamage = float.MaxValue,
+				BaseDamage = int.MaxValue,
 				BaseKnockbackStrength = 0,
 				DirectImpact = true,
 				DamageType = EDamageType.Melee,

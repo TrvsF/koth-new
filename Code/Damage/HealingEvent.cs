@@ -10,7 +10,7 @@ public record FHealingRequest
 	public DamageComponent TargetDamageComponent { get; init; }
 	public PlayerPawn TargetPlayerPawn { get; init; }
 	public PlayerPawn AttackerPlayerPawn { get; init; }
-	public float BaseHealing { get; init; } = 0f;
+	public int BaseHealing { get; init; } = 0;
 	public bool AllowOverheal { get; init; } = false;
 
 	public EHealingType HealingType { get; init; } = EHealingType.Continuous;
@@ -30,7 +30,7 @@ public record FHealingReceived
 	public PlayerPawn HealerPlayerPawn { get; init; }
 	public PlayerState TargetPlayerState { get; init; }
 	public PlayerState HealerPlayerState { get; init; }
-	public float Heals { get; init; } = 0f;
+	public int Heals { get; init; } = 0;
 }
 
 public enum EHealingType

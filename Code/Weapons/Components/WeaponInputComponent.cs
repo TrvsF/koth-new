@@ -195,8 +195,8 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 // damage /////////////////////////////////////////////////////////////
 public abstract partial class InputWeaponComponent : EquipmentComponent
 {
+	[Property, Group(".Damage")] protected int BaseDamage { get; set; } = 100;
 	[Property, Group(".Damage")] protected float FireRate { get; set; } = 0.2f;
-	[Property, Group(".Damage")] protected float BaseDamage { get; set; } = 100f;
 	[Property, Group(".Damage")] protected float KnockbackStrength { get; set; } = 100f;
 
 	bool IsProjectile { get => this is ProjectileWeaponComponent; }

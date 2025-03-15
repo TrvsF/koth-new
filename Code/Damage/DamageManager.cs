@@ -112,11 +112,11 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 			if (DamageRequest.DamageFalloffType == EDamageFalloffType.Falloff)
 			{
-				Damage = MathX.Lerp(MaxDamage, MinDamage, DamageLerp);
+				Damage = MathX.Lerp(MaxDamage, MinDamage, DamageLerp).FloorToInt();
 			}
 			else
 			{
-				Damage = MathX.Lerp(MinDamage, MaxDamage, DamageLerp);
+				Damage = MathX.Lerp(MinDamage, MaxDamage, DamageLerp).FloorToInt();
 			}
 		}
 
@@ -142,7 +142,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		bool WasSelfDamage = TargetPlayerPawn == AttackerPlayerPawn;
 		if (WasSelfDamage && DamageRequest.DoesLessSelfDamage)
 		{
-			Damage *= SelfDamageMultiplyer;
+			Damage = (Damage * SelfDamageMultiplyer).FloorToInt();
 		}
 
 		FDamageTaken DamageTaken = new()

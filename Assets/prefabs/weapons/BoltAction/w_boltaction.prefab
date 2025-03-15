@@ -74,10 +74,11 @@
         "OutwardFactor": 0.77,
         "Radius": 4,
         "RecoilAddFactor": 0.2,
-        "ReloadTime": 2,
+        "ReloadTime": 1.66,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
+        "ShootSound": null,
         "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",
