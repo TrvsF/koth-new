@@ -178,7 +178,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 1,
+                  "MinPlayerCount": 2,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -237,7 +237,7 @@
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
                   },
-                  "SetupTime": 5,
+                  "SetupTime": 45,
                   "TActiveSpawn": {
                     "_type": "gameobject",
                     "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"
@@ -308,6 +308,16 @@
                   "OnComponentUpdate": null,
                   "TryUseGamemodeRespawnTime": false,
                   "UseSpawnWaves": false
+                },
+                {
+                  "__type": "KOTH.SwapTeams",
+                  "__guid": "b740d352-435a-4124-b169-8bf32ecf9d7c",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             }
@@ -1440,6 +1450,7 @@
             },
             {
               "SegmentPoints": [
+                "-1476.803,490.8,127.1995",
                 "-1957.299,486.5995,104.8996",
                 "-2857.295,673.299,104.8996",
                 "-2881.696,-582.3012,104.8996",

@@ -115,7 +115,7 @@ public static class ShootHelper
 		foreach (var Element in Entries)
 		{
 			Thickness += Element.Thickness;
-			if (Thickness >= 100)
+			if (Thickness >= 10)
 				break;
 
 			ShotHits.Add(Element.Trace);

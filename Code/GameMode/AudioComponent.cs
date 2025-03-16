@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace KOTH;
 
@@ -87,8 +86,8 @@ public sealed class AudioComponent : SingletonComponent<AudioComponent>
 				continue;
 			}
 			if (soundHandle is { Value: not null, Value.Finished: false, Key.UpdatePosition: true, }
-			    && soundHandle.Value.Position != soundHandle.Key.Owner.WorldPosition
-			    )
+				&& soundHandle.Value.Position != soundHandle.Key.Owner.WorldPosition
+				)
 			{
 				soundHandle.Value.Position = soundHandle.Key.Owner.WorldPosition;
 			}
@@ -151,7 +150,7 @@ public struct FSound : IEquatable<FSound>
 	/// This identifier is automatically generated upon the creation of a sound event and is used
 	/// to distinguish and manage individual sound instances effectively.
 	/// </summary>
-	public Guid SoundId { get; init;  }
+	public Guid SoundId { get; init; }
 
 	/// <summary>
 	/// The component responsible for triggering the sound event in the game.

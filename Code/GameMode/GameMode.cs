@@ -54,7 +54,10 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 		NotificationManager.AddNotification(new FNotification()
 		{
-			Message = $"Welcome to {Title}", Duration = 5, Zone = ENotificationZone.Center, Image = "images/square.png"
+			Message = $"Welcome to {Title}",
+			Duration = 5,
+			Zone = ENotificationZone.Center,
+			Image = "images/square.png"
 		});
 
 		foreach (var Object in Scene.GetAllObjects(true))
@@ -82,6 +85,13 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 		// TODO : we want to accept the scene's version of the spawn as truth but create our own
 		// not-networked version that we can act on. This spawns another zone every time u spawn :(
+
+		foreach (var TempZone in SpawnZoneBlockers)
+		{
+			TempZone.Destroy();
+		}
+
+		SpawnZoneBlockers.Clear();
 
 		foreach (var SpawnZoneObject in MapSpawnZones)
 		{
@@ -114,7 +124,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		}
 	}
 
-	void IGameEventHandler<LocalPlayerDiedEvent>.OnGameEvent(LocalPlayerDiedEvent PlayerDiedEvent)
+	public void OnGameEvent(LocalPlayerDiedEvent eventArgs)
 	{
 		foreach (var TempZone in SpawnZoneBlockers)
 		{
@@ -175,7 +185,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		}
 
 		if (!_componentCache.TryGetValue(typeof(T), out var component) || component is { IsValid: false } ||
-		    component is { Active: false })
+			component is { Active: false })
 		{
 			component = Components.GetInDescendantsOrSelf<T>() as Component;
 			_componentCache[typeof(T)] = component;
@@ -193,7 +203,9 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	{
 		NotificationManager.AddNotification(new FNotification()
 		{
-			Message = $"Level Up: {eventArgs.Level}", Duration = 5, Zone = ENotificationZone.Center
+			Message = $"Level Up: {eventArgs.Level}",
+			Duration = 5,
+			Zone = ENotificationZone.Center
 		});
 	}
 }
