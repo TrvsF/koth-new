@@ -88,6 +88,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 		foreach (var TempZone in SpawnZoneBlockers)
 		{
+			Log.Warning("?");
 			TempZone.Destroy();
 		}
 

@@ -21,24 +21,6 @@ Scoreboard {
             align-items: center;
             cursor: pointer;
 
-            &.dead {
-                .avatar {
-                    filter: saturate( 0.2 ) brightness(50%);
-                }
-            }
-
-            &.local {
-                background-color: rgba( white, 0.75 );
-
-                text, label {
-                    color: black;
-                }
-
-                Icon {
-                    background-image-tint: black;
-                }
-            }
-
             .stat {
                 flex-basis: 100px;
                 flex-grow: 1;
@@ -53,6 +35,13 @@ Scoreboard {
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
+            }
+
+            .avatar-overlay {
+                height: 64px;
+                width: 64px;
+                background: linear-gradient( 45deg, transparent 45%, red 45%, red 55%, transparent 55% ), linear-gradient( -45deg, transparent 45%, red 45%, red 55%, transparent 55% );
+                filter: saturate( 0.5 ) brightness(50%);
             }
 
             .stat-large {

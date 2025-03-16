@@ -19,7 +19,7 @@
 {
 	private RenderFragment RenderTableSection(Team Team) => Builder =>
 	{
-		var ColourString = "";
+		var ColourString = "rgba(200, 200, 200, 0.25)";
 		if (Team == Team.Terrorist)
 		{
 			ColourString = "rgba(0, 255, 0, 0.25)";
@@ -114,6 +114,10 @@
 		Builder.OpenElement(6, "label");
 		Builder.AddAttribute(7, "class", "col stat-avatar");
 		Builder.AddAttribute(8, "style", $"background-image: url(avatar:{PlayerState.SteamId});");
+		if (!PlayerState.PlayerPawn.IsValid())
+		{
+			Builder.AddAttribute(26, "class", "avatar-overlay");
+		}
 		Builder.CloseElement();
 
 		// Player Name Column
