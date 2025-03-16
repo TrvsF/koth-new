@@ -117,7 +117,7 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public void SpawnPlayerPawn(TeamSpawnPoint SpawnPoint)
+	public async void SpawnPlayerPawn(TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
 
@@ -125,6 +125,12 @@ public partial class PlayerState
 		{
 			PlayerPawn.GameObject.Root.Destroy();
 			PlayerPawn = null;
+			OnLocalDeath();
+
+			// HACK : my fault- however we need to wait for the client to run its
+			// local death stuff before spawning it- this is only for the very
+			// specfic case when we swap teams...
+			await Task.Delay(2000); 
 		}
 
 		if (!SpawnPoint.IsValid())

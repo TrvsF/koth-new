@@ -43,14 +43,14 @@ public sealed class PayloadGamemode : Component,
 	private RealTimeSince TimeSinceStart = 0;
 	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
-	private FSound s;
+	private FSound PayloadPushSound;
 
 	[Sync] private int CurrentSegmentIndex { get; set; } = 0;
 	[Sync] private float TargetTransitionFactor { get; set; } = 0;
 
 	protected override void OnEnabled()
 	{
-		s = new FSound(PayloadMoveSound, PayloadCartComponent.WorldPosition, PayloadCartComponent, true);
+		PayloadPushSound = new FSound(PayloadMoveSound, PayloadCartComponent.WorldPosition, PayloadCartComponent, true);
 	}
 
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
@@ -120,15 +120,15 @@ public sealed class PayloadGamemode : Component,
 
 		if (!IsCapturing)
 		{
-			if (AudioComponent.Instance.IsPlayingSound(s))
+			if (AudioComponent.Instance.IsPlayingSound(PayloadPushSound))
 			{
-				AudioComponent.Instance.StopSound(s);
+				AudioComponent.Instance.StopSound(PayloadPushSound);
 			}
 
 			return;
 		}
 
-		AudioComponent.Instance.PlaySound(s);
+		AudioComponent.Instance.PlaySound(PayloadPushSound);
 
 		var AllSegmentLocations = PayloadPathComponent.AllSegmentPoints;
 		var CurrentNodePos = AllSegmentLocations[CurrentSegmentIndex];
@@ -141,8 +141,6 @@ public sealed class PayloadGamemode : Component,
 		TargetTransitionFactor += FactorMoved;
 		if (TargetTransitionFactor > 1)
 		{
-			Log.Info("next node");
-
 			TargetTransitionFactor = 0;
 			++CurrentSegmentIndex;
 
@@ -209,7 +207,6 @@ public sealed class PayloadGamemode : Component,
 			SegmentDistances.Add((Path.GetDistance(), 0));
 			TotalSegmentsEvaluated += SegmentPointsInPath;
 		}
-
 
 		return 0;
 	}
