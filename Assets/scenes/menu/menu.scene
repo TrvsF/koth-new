@@ -340,6 +340,7 @@
           "Opacity": 1,
           "Scale": 1,
           "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
           "ZIndex": 100
         },
         {
@@ -465,6 +466,7 @@
           "DestroyOnFinish": false,
           "Follow": true,
           "LifeTime": 1,
+          "Loop": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

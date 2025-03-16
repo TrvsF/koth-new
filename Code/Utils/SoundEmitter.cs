@@ -22,6 +22,8 @@ public sealed class SoundEmitter : Component
 	/// </summary>
 	[Property] public bool DestroyOnFinish { get; set; } = true;
 
+	[Property] public bool Loop { get; set; } = false;
+
 	[Property, ToggleGroup("VolumeModifier", Label = "Volume Modifier")]
 	public bool VolumeModifier { get; set; } = false;
 
@@ -56,6 +58,8 @@ public sealed class SoundEmitter : Component
 		{
 			if (DestroyOnFinish)
 				GameObject.Destroy();
+			else if (Loop)
+				handle = Sound.Play(SoundEvent, WorldPosition);
 		}
 		// Otherwise, let's keep updating the position
 		else if (Follow)

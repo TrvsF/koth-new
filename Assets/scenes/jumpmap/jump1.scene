@@ -97,6 +97,38 @@
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
           "UseMapFromLaunch": true
+        },
+        {
+          "__type": "KOTH.SoundEmitter",
+          "__guid": "e1ea834c-3ff8-4e42-a3a7-a36caadce48a",
+          "DestroyOnFinish": false,
+          "Follow": true,
+          "LifeTime": 1,
+          "Loop": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SoundEvent": "sounds/jumpmap/jumpmapbackgroundnoise.sound",
+          "VolumeModifier": false,
+          "VolumeOverTime": [
+            {
+              "x": 0,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            },
+            {
+              "x": 1,
+              "y": 1,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ]
         }
       ],
       "Children": []
@@ -602,7 +634,6 @@
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
-          "RenderUI": true,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
