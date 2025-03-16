@@ -80,6 +80,12 @@ public sealed class AudioComponent : SingletonComponent<AudioComponent>
 	{
 		foreach (var soundHandle in Instance.SoundHandles)
 		{
+			if (!soundHandle.Key.Owner.IsValid())
+			{
+				soundHandle.Value.Stop();
+				Instance.StoppedSounds.Add(soundHandle.Key);
+				continue;
+			}
 			if (soundHandle is { Value: not null, Value.Finished: false, Key.UpdatePosition: true, }
 			    && soundHandle.Value.Position != soundHandle.Key.Owner.WorldPosition
 			    )

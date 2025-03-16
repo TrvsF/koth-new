@@ -2,6 +2,7 @@
 using KOTH.PlayerExp;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using Sandbox.Utility;
 
 namespace KOTH;
 
