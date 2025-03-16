@@ -35,7 +35,8 @@ public sealed class PayloadCart : Component
 			if (!CapturePlayer.IsValid())
 			{
 				Log.Warning($"invalid player in capture zone {this}");
-				continue;
+				CaptureZone.RemoveInvalidCapturePlayers();
+				return;
 			}
 
 			if (CapturePlayer.Team == Team)

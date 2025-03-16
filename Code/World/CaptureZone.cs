@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sandbox.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,19 @@ namespace KOTH.World
 				}
 
 				CapturingPlayers.Remove(PlayerPawn);
+			}
+		}
+
+		public void RemoveInvalidCapturePlayers()
+		{
+			Assert.True(Networking.IsHost);
+
+			for (int Index = CapturingPlayers.Count - 1; Index >= 0; --Index)
+			{
+				if (!CapturingPlayers[Index].IsValid())
+				{
+					CapturingPlayers.RemoveAt(Index);
+				}
 			}
 		}
 	}
