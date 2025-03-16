@@ -58,14 +58,36 @@ public sealed class AudioComponent : SingletonComponent<AudioComponent>
 	[Rpc.Broadcast]
 	public void PlaySound(FSound soundEvent)
 	{
-		Log.Info("Playing sound " + soundEvent.SoundId);
-
-		var alreadyPlaying = Instance.SoundHandles.Any(x => x.Key.Owner.Id == soundEvent.Owner.Id);
+		var alreadyPlaying = Instance.SoundHandles.Any(x => x.Key.Owner.Id == soundEvent.Owner.Id || x.Key.SoundId == soundEvent.SoundId);
 		if (alreadyPlaying) return;
-
+		Log.Info("Playing sound " + soundEvent.SoundId);
 		var handle = Sound.Play(soundEvent.SoundEvent, soundEvent.Position);
 		Instance.SoundHandles.Add(soundEvent, handle);
-		Log.Info("New Sound event " + soundEvent.SoundId);
+	}
+
+
+	/// <summary>
+	/// Stops the playback of a specified sound in the game.
+	/// </summary>
+	/// <param name="soundEvent">The sound event to be stopped.</param>
+	[Rpc.Broadcast]
+	public void StopSound(FSound soundEvent)
+	{
+		var soundHandle = Instance.SoundHandles.FirstOrDefault(x => x.Key.SoundId == soundEvent.SoundId);
+		var alreadyRemoving = Instance.StoppedSounds.Any(x => x.SoundId == soundEvent.SoundId);
+		if(soundHandle.Value == null || alreadyRemoving) return;
+		soundHandle.Value.Stop();
+		Instance.StoppedSounds.Add(soundHandle.Key);
+	}
+
+	/// <summary>
+	/// Determines whether the specified sound event is currently playing.
+	/// </summary>
+	/// <param name="soundEvent">The sound event to check.</param>
+	/// <returns>True if the sound event is currently playing; otherwise, false.</returns>
+	public Boolean IsPlayingSound(FSound soundEvent)
+	{
+		return Instance.SoundHandles.Any(x => x.Key.SoundId == soundEvent.SoundId);
 	}
 
 	/// <summary>
@@ -114,15 +136,7 @@ public sealed class AudioComponent : SingletonComponent<AudioComponent>
 	{
 		foreach (var soundHandle in Instance.StoppedSounds)
 		{
-			bool x = Instance.SoundHandles.Remove(soundHandle);
-			if (x)
-			{
-				Log.Info("Removed Sound event " + soundHandle.SoundId);
-			}
-			else
-			{
-				Log.Error("Failed to remove Sound event " + soundHandle.SoundId);
-			}
+			Instance.SoundHandles.Remove(soundHandle);
 		}
 
 		Instance.StoppedSounds.Clear();

@@ -233,6 +233,7 @@
                     "_type": "gameobject",
                     "go": "93317bae-87c5-4512-9796-6690f9fe455f"
                   },
+                  "PayloadMoveSound": "sounds/sheff/cartmove.sound",
                   "PayloadPathGameobject": {
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"

@@ -3,6 +3,7 @@ using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace KOTH;
 
@@ -16,6 +17,8 @@ public sealed class PayloadGamemode : Component,
 	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
 	[Property] public GameObject TActiveSpawn { get; set; } = null;
 	[Property] public GameObject CTActiveSpawn { get; set; } = null;
+
+	[Property] public SoundEvent PayloadMoveSound { get; set; }
 	[Property] public float SetupTime { get; set; } = 30f;
 
 	protected override void OnStart()
@@ -40,9 +43,15 @@ public sealed class PayloadGamemode : Component,
 	private RealTimeSince TimeSinceStart = 0;
 	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
+	private FSound s;
 
 	[Sync] private int CurrentSegmentIndex { get; set; } = 0;
 	[Sync] private float TargetTransitionFactor { get; set; } = 0;
+
+	protected override void OnEnabled()
+	{
+		s = new FSound(PayloadMoveSound, PayloadCartComponent.WorldPosition, PayloadCartComponent, true);
+	}
 
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
 	{
@@ -103,6 +112,7 @@ public sealed class PayloadGamemode : Component,
 				Assert.IsValid(ParentState.DefaultNextState);
 				GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
 			}
+
 			return;
 		}
 
@@ -110,8 +120,15 @@ public sealed class PayloadGamemode : Component,
 
 		if (!IsCapturing)
 		{
+			if (AudioComponent.Instance.IsPlayingSound(s))
+			{
+				AudioComponent.Instance.StopSound(s);
+			}
+
 			return;
 		}
+
+		AudioComponent.Instance.PlaySound(s);
 
 		var AllSegmentLocations = PayloadPathComponent.AllSegmentPoints;
 		var CurrentNodePos = AllSegmentLocations[CurrentSegmentIndex];
@@ -176,7 +193,7 @@ public sealed class PayloadGamemode : Component,
 					{
 						break;
 					}
-					
+
 					CoveredDistance += Path.SegmentPoints[NodeIndex].Distance(Path.SegmentPoints[NodeIndex + 1]);
 				}
 
