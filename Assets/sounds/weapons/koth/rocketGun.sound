@@ -1,0 +1,27 @@
+{
+  "UI": false,
+  "Volume": "4.499997",
+  "Pitch": "1",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/koth/rocketgunsound.vsnd"
+  ],
+  "Occlusion": true,
+  "AirAbsorption": true,
+  "Transmission": true,
+  "OcclusionRadius": 30.45,
+  "DistanceAttenuation": true,
+  "Distance": 17500,
+  "Falloff": [
+    {
+      "x": 0.5,
+      "y": 0.5,
+      "in": 0,
+      "out": 0,
+      "mode": "Mirrored"
+    }
+  ],
+  "__references": [],
+  "__version": 1
+}
