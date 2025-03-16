@@ -51,7 +51,7 @@
           "OnComponentUpdate": null,
           "TurretPrefab": {
             "_type": "gameobject",
-            "prefab": "prefabs/buildings/turret/turret.prefab"
+            "prefab": "prefabs/weapons/buildings/turret.prefab"
           }
         },
         {
@@ -223,6 +223,16 @@
                     "_type": "gameobject",
                     "go": "1b974669-0bce-4ea0-97ee-9093f207f579"
                   },
+                  "CTSpawns": [
+                    {
+                      "_type": "gameobject",
+                      "go": "5a498e38-2aab-4a28-95e8-7a5e23615adf"
+                    },
+                    {
+                      "_type": "gameobject",
+                      "go": "63bff175-9c5d-42e3-a8de-5035524a1f3f"
+                    }
+                  ],
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -468,7 +478,7 @@
                   "component_type": "SpawnDoor"
                 }
               ],
-              "SpawnTime": 6,
+              "SpawnTime": 7,
               "Team": "Terrorist"
             }
           ]
@@ -1413,6 +1423,7 @@
       "__guid": "63bff175-9c5d-42e3-a8de-5035524a1f3f",
       "Flags": 0,
       "Name": "defencespawns2",
+      "Enabled": true,
       "Children": [
         {
           "__guid": "1aa3df89-35e8-48f4-a315-c3d4985a40ee",
@@ -1654,7 +1665,7 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "SpawnDoors": [],
-              "SpawnTime": 10,
+              "SpawnTime": 6,
               "Team": "CounterTerrorist"
             }
           ]
@@ -1800,10 +1811,192 @@
       ]
     },
     {
+      "__guid": "98246465-0ea9-4ec3-b4db-571bf89556f6",
+      "Flags": 0,
+      "Name": "Camera (1)",
+      "Position": "-4433.184,-334.6359,513.8677",
+      "Rotation": "0.03378269,0.1260787,-0.2566049,0.9576623",
+      "Tags": "scenecamera2",
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "5e4db7d9-0e78-4de8-881e-259933caa806",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "FovAxis": "Horizontal",
+          "IsMainCamera": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
       "__guid": "5d78868f-7f7d-4234-83cf-8e2ea5be1f11",
       "Flags": 0,
       "Name": "lights",
-      "Enabled": true
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "03f7df6c-6cca-4595-a008-c644d711f078",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "-2753.624,-767.4588,230.5977",
+          "Rotation": "0,0,0.8660254,0.5000001",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "e32ec8ee-c8ba-430e-8f5a-336c0b6382c4",
+              "Attenuation": 0.64,
+              "ConeInner": 31.22,
+              "ConeOuter": 49.36,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.6093,0.5814,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 1198.3992,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "ad394fec-5ddd-4107-881a-3e3740426557",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "-2908.861,-420.1959,385.0415",
+          "Rotation": "-0.6123723,0.3535534,0.6123724,0.3535535",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "f3bcf08a-34eb-45a9-9a61-9d815afbc6ab",
+              "Attenuation": 0.64,
+              "ConeInner": 31.22,
+              "ConeOuter": 22.85,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.6093,0.5814,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 498.49698,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "cd9441d1-629a-4f53-bbf3-0224e9943c7e",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "-2895.141,251.2538,385.0417",
+          "Rotation": "-0.6123723,0.3535534,0.6123724,0.3535535",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "21163f0b-c576-4609-9270-b299fe2b0d23",
+              "Attenuation": 0.64,
+              "ConeInner": 31.22,
+              "ConeOuter": 22.85,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.6093,0.5814,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 498.49698,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "935eab37-06c9-4ef8-8791-b80c6b96e012",
+          "Flags": 0,
+          "Name": "Spot Light",
+          "Position": "-2705.402,-132.3158,201.5642",
+          "Rotation": "-0.113039,0.4957225,0.8586163,0.06526321",
+          "Tags": "light_spot,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SpotLight",
+              "__guid": "e72b1b24-f066-4b11-8120-80d74b28a2d8",
+              "Attenuation": 0.64,
+              "ConeInner": 31.22,
+              "ConeOuter": 22.85,
+              "Cookie": null,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "1,0.6093,0.5814,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 1022.69666,
+              "Shadows": true
+            }
+          ]
+        },
+        {
+          "__guid": "db96cc21-3a49-4c42-a5bc-1677e9b2343b",
+          "Flags": 0,
+          "Name": "Point Light",
+          "Position": "-2893.544,-762.5989,401.3356",
+          "Tags": "light_point,light",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.PointLight",
+              "__guid": "9b36ad08-8ab9-4ef5-b05f-6136b59c8618",
+              "Attenuation": 1,
+              "FogMode": "Enabled",
+              "FogStrength": 1,
+              "LightColor": "0.91373,0.98039,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Radius": 400,
+              "Shadows": true
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

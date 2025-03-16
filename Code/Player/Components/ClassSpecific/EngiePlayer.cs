@@ -43,13 +43,13 @@ public sealed class EngiePlayer : Component
 
 		if (RequestBuilding && !IsTurretInWorld)
 		{
-			var Projectile = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition + (OwnerPawn.AimRay.Forward * 128), Rotation.Identity);
-			ActiveTurretComponent = Projectile.Components.Get<TurretComponent>();
+			var Turret = GameMode.Instance.ClassList.TurretPrefab.Clone(GameObject.Root.WorldPosition + (OwnerPawn.AimRay.Forward * 128), Rotation.Identity);
+			ActiveTurretComponent = Turret.Components.Get<TurretComponent>();
 			ActiveTurretComponent.OwnerState = PlayerState.Local; // !
 			ActiveTurretComponent.OnDestroyed += OnTurretDestroy;
 
 			// can this be Connection.Local rather than PlayerState.Local.Connection ?
-			Projectile.NetworkSpawn(true, PlayerState.Local.Connection);
+			Turret.NetworkSpawn(true, PlayerState.Local.Connection);
 		}
 
 		//////////////////////////////////////////////////

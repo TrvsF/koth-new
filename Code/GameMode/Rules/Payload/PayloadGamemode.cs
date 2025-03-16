@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace KOTH;
 
+public record OnPayloadCapturePointEvent(int PointIndex) : IGameEvent;
+
 public sealed class PayloadGamemode : Component,
 	ITeamSpawnTime,
 	IGameEventHandler<UpdateStateEvent>,
@@ -15,6 +17,9 @@ public sealed class PayloadGamemode : Component,
 {
 	[Property] public GameObject PayloadGameobject { get; set; } = null;
 	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
+
+	[Property] public List<GameObject> CTSpawns { get; set; } = null;
+
 	[Property] public GameObject TActiveSpawn { get; set; } = null;
 	[Property] public GameObject CTActiveSpawn { get; set; } = null;
 
@@ -43,6 +48,7 @@ public sealed class PayloadGamemode : Component,
 	private RealTimeSince TimeSinceStart = 0;
 	private bool IsSetupTime = true;
 	private bool HasCartFinished = false;
+	private int CurrentPathSegmentIndex = 0;
 	private FSound PayloadPushSound;
 
 	[Sync] private int CurrentSegmentIndex { get; set; } = 0;
@@ -64,6 +70,7 @@ public sealed class PayloadGamemode : Component,
 	{
 		Assert.IsValid(PayloadCartComponent);
 		Assert.IsValid(PayloadPathGameobject);
+		Assert.True(CTSpawns.Count > 0);
 
 		var StartLocationRotation = PayloadPathComponent.GetStartPositionRotation();
 		PayloadGameobject.WorldPosition = StartLocationRotation.Position;
@@ -78,13 +85,15 @@ public sealed class PayloadGamemode : Component,
 		HasCartFinished = false;
 		CurrentSegmentIndex = 0;
 		TargetTransitionFactor = 0;
+		CurrentPathSegmentIndex = 0;
 
 		foreach (var Door in SpawnDoors)
 		{
 			Door.Open = false;
 		}
-	}
 
+		SetCTSpawn(0);
+	}
 
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
@@ -144,6 +153,19 @@ public sealed class PayloadGamemode : Component,
 			TargetTransitionFactor = 0;
 			++CurrentSegmentIndex;
 
+			var PriorPathsCovered = 0;
+			for (int Index = CurrentPathSegmentIndex; Index >= 0; --Index)
+			{
+				PriorPathsCovered += PayloadPathComponent.PathSegments[Index].SegmentPoints.Count;
+			}
+
+			Log.Info($"{CurrentSegmentIndex}:{PriorPathsCovered}");
+			if (CurrentSegmentIndex >= PriorPathsCovered)
+			{
+				OnCapture(CurrentPathSegmentIndex);
+				++CurrentPathSegmentIndex;
+			}
+
 			if (AllSegmentLocations.Count == CurrentSegmentIndex + 1)
 			{
 				// CART STOPPED
@@ -157,6 +179,36 @@ public sealed class PayloadGamemode : Component,
 
 		var LerpedVector = Vector3.Lerp(CurrentNodePos, TargetNodePos, TargetTransitionFactor);
 		PayloadGameobject.WorldPosition = LerpedVector;
+	}
+
+	private void SetCTSpawn(int SpawnIndex)
+	{
+		if (CTSpawns.Count < SpawnIndex)
+		{
+			return;
+		}
+
+		foreach (var Spawn in CTSpawns)
+		{
+			Spawn.Enabled = false;
+		}
+
+		CTSpawns[SpawnIndex].Enabled = true;
+		CTActiveSpawn = CTSpawns[SpawnIndex].GetComponentInChildren<SpawnZone>().GameObject;
+	}
+
+	private void OnCapture(int Index)
+	{
+		BroadcastOnCapture(Index);
+
+		var SpawnIndex = Index + 1;
+		SetCTSpawn(SpawnIndex);
+	}
+
+	[Rpc.Broadcast]
+	private void BroadcastOnCapture(int Index)
+	{
+		Scene.Dispatch(new OnPayloadCapturePointEvent(Index));
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////

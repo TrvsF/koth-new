@@ -60,18 +60,22 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 			Image = "images/square.png"
 		});
 
-		foreach (var Object in Scene.GetAllObjects(true))
+		if (Networking.IsHost)
 		{
-			if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
+			MapSpawnZones = new();
+			foreach (var Object in Scene.GetAllObjects(true))
 			{
-				MapSpawnZones.Add(Object);
+				if (Object.GetComponent<SpawnZone>() is { } SpawnZone)
+				{
+					MapSpawnZones.Add(Object);
+				}
 			}
 		}
 	}
 
 	/////////////////////////////////////////////////////////////
 
-	private List<GameObject> MapSpawnZones = new();
+	[Sync] public NetList<GameObject> MapSpawnZones { get; set; }
 	private List<GameObject> SpawnZoneBlockers = new();
 
 	void IGameEventHandler<LocalPlayerSpawnedEvent>.OnGameEvent(LocalPlayerSpawnedEvent PlayerSpawnedEvent)
