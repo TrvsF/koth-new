@@ -67,6 +67,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 
 		TimeSinceShot = 0;
 		Ammo--;
+		WorldShotVFX();
 
 		var AimForward = PlayerPawn.AimRay.Forward;
 

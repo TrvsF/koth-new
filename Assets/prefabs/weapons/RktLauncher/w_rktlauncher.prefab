@@ -78,7 +78,7 @@
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
-        "ShootSound": null
+        "ShootSound": "sounds/weapons/koth/rocketgun.sound"
       }
     ],
     "Children": [

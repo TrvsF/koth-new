@@ -70,6 +70,7 @@
           "prefab": "particles/weapons/blue-hit.prefab"
         },
         "ExplosionRadius": 96,
+        "ExplosionSound": "sounds/weapons/koth/rocketexplode.sound",
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

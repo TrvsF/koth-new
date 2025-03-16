@@ -9,6 +9,7 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	[Property, Group("VFX")] public GameObject AuraPrefab { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
 	[Property, Group("VFX")] public GameObject ExplosionPrefab { get; set; }
+	[Property, Group("VFX")] public SoundEvent ExplosionSound { get; set; }
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,10 +45,15 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	[Rpc.Broadcast]
 	public void DoExplosionVfx(Vector3 EndLocation)
 	{
+		if (ExplosionSound.IsValid())
+		{
+			if (Sound.Play(ExplosionSound, EndLocation) is { } SoundHandel) {}
+		}
 		if (ExplosionPrefab.IsValid())
 		{
 			ExplosionPrefab.Clone(EndLocation);
 		}
+
 	}
 
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
