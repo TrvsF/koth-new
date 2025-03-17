@@ -416,6 +416,7 @@
       "Flags": 0,
       "Name": "KillZone",
       "Position": "-63.8437,631.0758,-1397.045",
+      "Scale": "1,1.507592,1",
       "Tags": "zone",
       "Enabled": true,
       "Components": [
