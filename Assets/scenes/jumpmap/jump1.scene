@@ -354,6 +354,60 @@
               "TeleportRotation": "0,0,0.7071068,0.7071068"
             }
           ]
+        },
+        {
+          "__guid": "66b8787e-8cb2-46d5-957b-b56167307ba2",
+          "Flags": 0,
+          "Name": "teleportzone (3)",
+          "Position": "3021.205,3249.146,-39.9803",
+          "Tags": "zone",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "ffc6812e-12e6-44f4-81fa-9c6316a362ed",
+              "Center": "796.1501,1294.187,-51.79834",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "1444.317,3635.351,37.30315",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "Zone",
+              "__guid": "a602259b-bb2e-4c26-a0a1-264ad4d6f249",
+              "Color": "0,1,1,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "KOTH.TeleportZone",
+              "__guid": "532cee22-1b3c-4163-979d-594d9c9375f9",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "TeleportLocation": "387.5928,-713.1584,367.6214",
+              "TeleportRotation": "0,0,0.7071068,0.7071068"
+            }
+          ]
         }
       ]
     },
