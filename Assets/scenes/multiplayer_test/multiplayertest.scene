@@ -304,7 +304,6 @@
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
-          "RenderUI": true,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,

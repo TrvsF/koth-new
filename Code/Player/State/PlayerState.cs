@@ -3,6 +3,8 @@ using KOTH.UI;
 using Sandbox;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using Sandbox.Utility;
+using System.Net.NetworkInformation;
 
 namespace KOTH;
 
