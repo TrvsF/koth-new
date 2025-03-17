@@ -50,6 +50,11 @@ public sealed class PlayerDresser : Component, Component.INetworkSpawn
 	{
 		// why don't we keep a reference of these ANYWHERE when we spawn them? @facepunch
 
+		if (!LocalPlayer.IsValid())
+		{
+			return;
+		}
+
 		foreach (var ChildBodyObject in GameObject.Children)
 		{
 			if (!ChildBodyObject.IsValid() || !ChildBodyObject.Tags.Contains("clothing"))

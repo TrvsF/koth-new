@@ -5,11 +5,28 @@ using Sandbox.Events;
 namespace KOTH;
 
 public sealed class ResetGame : Component,
-	IGameEventHandler<EnterStateEvent>
+	IGameEventHandler<EnterStateEvent>,
+	IGameEventHandler<UpdateStateEvent>
 {
-	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
+	bool HasReset = false;
+
+	public void OnGameEvent(EnterStateEvent eventArgs)
+	{
+		HasReset = false;
+	}
+
+	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
 		Assert.True(Networking.IsHost);
+
+		if (HasReset)
+		{
+			return;
+		}
+
+		Log.Info("YERP");
+
+		HasReset = true;
 
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{

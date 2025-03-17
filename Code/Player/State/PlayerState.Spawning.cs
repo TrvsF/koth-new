@@ -130,6 +130,7 @@ public partial class PlayerState
 			// HACK : my fault- however we need to wait for the client to run its
 			// local death stuff before spawning it- this is only for the very
 			// specfic case when we swap teams...
+			Game.TakeScreenshot();
 			await Task.Delay(2000); 
 		}
 

@@ -248,7 +248,7 @@
                     "_type": "gameobject",
                     "go": "c21448b9-c0e3-447b-9546-71cb38c36f23"
                   },
-                  "SetupTime": 5,
+                  "SetupTime": 45,
                   "TActiveSpawn": {
                     "_type": "gameobject",
                     "go": "56288ba5-8bb4-44b3-9442-61a6bbff51bd"

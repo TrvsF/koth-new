@@ -208,6 +208,7 @@ public sealed class PayloadGamemode : Component,
 	[Rpc.Broadcast]
 	private void BroadcastOnCapture(int Index)
 	{
+		Game.TakeScreenshot();
 		Scene.Dispatch(new OnPayloadCapturePointEvent(Index));
 	}
 
