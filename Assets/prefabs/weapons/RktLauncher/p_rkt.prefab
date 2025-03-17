@@ -64,7 +64,7 @@
           "prefab": "particles/weapons/rkt-aura.prefab"
         },
         "BaseDamage": 90,
-        "BaseKnockbackStrength": 500,
+        "BaseKnockbackStrength": 550,
         "ExplosionPrefab": {
           "_type": "gameobject",
           "prefab": "particles/weapons/blue-hit.prefab"

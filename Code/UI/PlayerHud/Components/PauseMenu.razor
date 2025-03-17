@@ -1,0 +1,57 @@
+﻿@using System;
+@using Sandbox.UI;
+@using KOTH.PlayerExp;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+<root class="hidden flex absolute inset-0 align-center justify-center">
+	<div onclick="@(() => {PlayerState.Local.IsPaused = false;})">Resume</div>
+	@* <div>Change Class</div> *@
+	<div onclick="@(() => SwapTeam())">Swap Team</div>
+	<div onclick="@(() => GoToMenu())">Main Menu</div>
+	<div onclick ="@(() => {Game.Close();})">Quit</div>
+</root>
+
+@code
+{
+	public void GoToMenu()
+	{
+		PlayerState.Local.IsPaused = false;
+		Networking.Disconnect();
+		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
+	}
+
+	public void SwapTeam()
+	{
+		PlayerState.Local.RequestTeamSwap();
+		PlayerState.Local.IsPaused = false;
+	}
+
+	public void ChangeClass()
+	{
+
+	}
+
+	public bool IsActive { get; set; }
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+
+	public override void Tick()
+	{
+		if (PlayerState.Local.IsPaused)
+		{
+			IsActive = true;
+			SetClass("visible", true);
+			return;
+		}
+
+		IsActive = false;
+		SetClass("visible", false);	
+	}
+}

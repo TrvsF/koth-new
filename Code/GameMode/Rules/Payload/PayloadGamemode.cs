@@ -169,6 +169,7 @@ public sealed class PayloadGamemode : Component,
 			if (AllSegmentLocations.Count == CurrentSegmentIndex + 1)
 			{
 				// CART STOPPED
+				BroadcastOnCapture(-1);
 				HasCartFinished = true;
 				return;
 			}
@@ -209,6 +210,13 @@ public sealed class PayloadGamemode : Component,
 	private void BroadcastOnCapture(int Index)
 	{
 		Game.TakeScreenshot();
+
+		// HACK : shitty screenshot hack TODO : remove
+		if (Index == -1)
+		{
+			return;
+		}
+
 		Scene.Dispatch(new OnPayloadCapturePointEvent(Index));
 	}
 

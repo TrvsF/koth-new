@@ -78,7 +78,13 @@
 		// Close Header Row
 		Builder.CloseElement();
 
-		foreach (var PlayerState in GameUtils.AllPlayers)
+		var OrderedPlayers = GameUtils.AllPlayers.OrderByDescending(PlayerState =>
+		{
+			FPlayerGameStat Stats = GameMode.Instance.GameStats.PlayerStateStats[PlayerState];
+			return Stats.Damage;
+		}).ToList();
+
+		foreach (var PlayerState in OrderedPlayers)
 		{
 			if (PlayerState.IsValid() && PlayerState.Team == Team)
 			{
@@ -161,7 +167,7 @@
 
 	public override void Tick()
 	{
-		if (!GameMode.Instance.GameStats.IsValid() || !PlayerState.Local.PlayerPawn.IsValid())
+		if (!PlayerState.Local.IsValid() || !GameMode.Instance.IsValid())
 		{
 			return;
 		}

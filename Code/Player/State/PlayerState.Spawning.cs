@@ -84,6 +84,22 @@ public partial class PlayerState
 		Log.Info($"Requested Character change 2 {RequestedCharacterDefinition}");
 	}
 
+	public void RequestTeamSwap()
+	{
+		Team = Team.GetOpponents();
+
+		HostSwapTeams(Team);
+	}
+
+	[Rpc.Host]
+	private void HostSwapTeams(Team Team)
+	{
+		
+
+		var SpawnPoint = GameUtils.GetRandomTeamSpawn(Team);
+		SpawnPlayerPawn(SpawnPoint);
+	}
+
 	public void RequestCharacterDefinition(CharacterDefinition CharacterDefintionIn)
 	{
 		Log.Info($"Requested Character {CharacterDefintionIn}");
@@ -130,7 +146,6 @@ public partial class PlayerState
 			// HACK : my fault- however we need to wait for the client to run its
 			// local death stuff before spawning it- this is only for the very
 			// specfic case when we swap teams...
-			Game.TakeScreenshot();
 			await Task.Delay(2000); 
 		}
 

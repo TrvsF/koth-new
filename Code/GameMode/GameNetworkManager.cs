@@ -67,7 +67,14 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 					return;
 				}
 
-				bool Joined = await Networking.JoinBestLobby(Game.Ident);
+				
+				bool Joined = false;
+				
+				if (!Game.IsEditor)
+				{
+					Joined = await Networking.JoinBestLobby(Game.Ident);
+				}
+
 				if (!Joined)
 				{
 					Log.Info("starting own lobby...");

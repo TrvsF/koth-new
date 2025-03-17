@@ -14,7 +14,7 @@ public readonly struct FPayloadUIData
 
 public sealed class PayloadUI
 {
-	public static PayloadGamemode CurrentPayloadGamemode => GameMode.Instance.StateMachine.CurrentState.GameObject.Components.Get<PayloadGamemode>();
+	public static PayloadGamemode CurrentPayloadGamemode => GameMode.Instance?.StateMachine.CurrentState.GameObject.Components.Get<PayloadGamemode>();
 
 	public static bool QueryUIData(out FPayloadUIData UiData)
 	{

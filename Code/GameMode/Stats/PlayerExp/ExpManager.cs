@@ -102,6 +102,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 	public static string GetLevelString(ulong SteamId)
 	{
 		var Stats = Sandbox.Services.Stats.GetPlayerStats(Game.Ident, (long)SteamId);
+		Stats.Refresh();
 		return Stats.Get("player_level").LastValue.ToString();
 	}
 }

@@ -24,8 +24,6 @@ public sealed class ResetGame : Component,
 			return;
 		}
 
-		Log.Info("YERP");
-
 		HasReset = true;
 
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)

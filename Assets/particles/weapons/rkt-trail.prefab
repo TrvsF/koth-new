@@ -17,8 +17,8 @@
         "Time": 0.5,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4767.3813,
-          "Passed": 4767.3813,
+          "Relative": -607.7553,
+          "Passed": 607.7553,
           "Fraction": 1
         }
       }
@@ -226,7 +226,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.33,0.33,0,0"
+              "Constants": "0.33,0.5,0,0"
             },
             "SequenceId": 0,
             "SequenceSpeed": {
@@ -328,7 +328,7 @@
           {
             "__type": "Sandbox.ParticleSphereEmitter",
             "__guid": "7596412f-ca5c-4a83-9ef5-35713754a73a",
-            "Burst": 50,
+            "Burst": 100,
             "Delay": 0,
             "DestroyOnEnd": true,
             "Duration": 0.5,
@@ -340,10 +340,10 @@
             "OnComponentStart": null,
             "OnComponentUpdate": null,
             "OnEdge": false,
-            "Radius": 1,
+            "Radius": 2,
             "Rate": 0,
             "RateOverDistance": 0,
-            "Velocity": 25
+            "Velocity": 50
           }
         ]
       }
