@@ -18,6 +18,11 @@ public partial class PlayerState
 	{
 		base.OnUpdate();
 
+		if (Local != this)
+		{
+			return;
+		}
+
 		if (Input.EscapePressed)
 		{
 			Input.EscapePressed = false;

@@ -66,7 +66,6 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 					// INetworkListener.OnActive will be called
 					return;
 				}
-
 				
 				bool Joined = false;
 				
@@ -178,6 +177,12 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 			PlayerStateToDestroy.GameObject.Root.Destroy();
 		}
+	}
+
+	void INetworkListener.OnBecameHost(Connection PreviousHost)
+	{
+		Networking.Disconnect();
+		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////

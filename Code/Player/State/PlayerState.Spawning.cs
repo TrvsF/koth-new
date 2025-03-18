@@ -94,8 +94,6 @@ public partial class PlayerState
 	[Rpc.Host]
 	private void HostSwapTeams(Team Team)
 	{
-		
-
 		var SpawnPoint = GameUtils.GetRandomTeamSpawn(Team);
 		SpawnPlayerPawn(SpawnPoint);
 	}

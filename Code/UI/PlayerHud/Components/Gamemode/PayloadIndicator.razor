@@ -24,22 +24,28 @@
 		Builder.OpenElement(Sequency++, "div");
 		Builder.AddAttribute(Sequency++, "class", "indicator");
 
+		Builder.OpenElement(Sequency++, "div");
+		Builder.AddAttribute(Sequency++, "class", "point");
+		Builder.AddAttribute(Sequency++, "style", $"background-color: rgba(20, 150 ,10, 0.8);)");
+		Builder.CloseElement();
+
 		foreach ((float Distance, float CaptureAmount) in OutData)
 		{
 			Builder.OpenElement(Sequency++, "div");
-			Builder.AddAttribute(Sequency++, "class", "point");
-			Builder.CloseElement();
-			
-			Builder.OpenElement(Sequency++, "div");
 			Builder.AddAttribute(Sequency++, "class", "path");
 			Builder.AddAttribute(Sequency++, "style", $"width: {Distance.FloorToInt()}px;");
-			Builder.AddAttribute(Sequency++, "style", $"background-image: linear-gradient(to right, #00FF00AA 100%, #FF0000AA {CaptureAmount * 100f}%);");
+			Builder.AddAttribute(Sequency++, "style", $"background-image: linear-gradient(to right, #FFFF00AA 100%, #FF0A0AAA {CaptureAmount * 100f}%);");
+			Builder.CloseElement();
+
+			Builder.OpenElement(Sequency++, "div");
+			Builder.AddAttribute(Sequency++, "class", "point");
+			Builder.AddAttribute(Sequency++, "class", "point");
+			var ColourString = CaptureAmount >= 1 ? "rgba(0, 50, 0, 0.8)" : "rgba(225, 0, 0, 0.95)";
+
+			Builder.AddAttribute(Sequency++, "style", $"background-color: {ColourString};)");
 			Builder.CloseElement();
 		}
 
-		Builder.OpenElement(Sequency++, "div");
-		Builder.AddAttribute(Sequency++, "class", "point");
-		Builder.CloseElement();
 
 		Builder.CloseElement();
 	};

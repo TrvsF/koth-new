@@ -11,18 +11,18 @@ PayloadIndicator {
 
     .indicator {
         width: 50%;
-        min-height: 24px;
+        height: 32px;
     }
 
     .point {
         width: 32px;
-        background-color: darkseagreen;
-        min-height: 24px;
+        background-color: rgba(0, 0, 50, 0.8);
     }
 
     .path {
+        transform: translate(0%, 50%);
+        height: 16px;
         width: 320px;
-        background-color: forestgreen;
-        min-height: 24px;
+        background-color: rgba(20, 255, 0, 0.8);
     }
 }
