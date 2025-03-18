@@ -13,6 +13,7 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "c3199629-5a1e-4b65-8e76-f26b489edff8",
+          "NothingState": "",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -178,7 +179,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 2,
+                  "MinPlayerCount": 1,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -199,7 +200,7 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "c15b2515-eb85-4244-babe-1e396072e03e",
-                  "DefaultDuration": 1200,
+                  "DefaultDuration": 345,
                   "DefaultNextState": {
                     "_type": "component",
                     "component_id": "5d78d7ca-8c29-4eb6-8569-cb6e469b1fd6",

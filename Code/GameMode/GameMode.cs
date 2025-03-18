@@ -13,7 +13,8 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	IGameEventHandler<LocalPlayerDiedEvent>,
 	IGameEventHandler<LevelUpEvent>
 {
-	[Property] public string Title { get; set; }
+	[Property] public string Title { get; set; } = "KOTH";
+	[Property] public string NothingState { get; set; } = "";
 
 	/////////////////////////////////////////////////////////////
 
@@ -31,6 +32,22 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	public StateMachineComponent StateMachine =>
 		_stateMachine ??= Components.GetInDescendantsOrSelf<StateMachineComponent>();
+
+	/////////////////////////////////////////////////////////////
+	
+	public string GetTimeLeftString()
+	{
+		if (float.IsInfinity(StateMachine.NextStateTime))
+		{
+			return NothingState;
+		}
+		
+		var Remaining = StateMachine.NextStateTime - Time.Now;
+		var TimeRemaining = TimeSpan.FromSeconds(Remaining);
+		var FormattedTime = string.Format("{0:D2}:{1:D2}", (int)TimeRemaining.TotalMinutes, TimeRemaining.Seconds);
+
+		return FormattedTime;
+	}
 
 	/////////////////////////////////////////////////////////////
 

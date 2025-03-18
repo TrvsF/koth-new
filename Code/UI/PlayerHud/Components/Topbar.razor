@@ -1,0 +1,18 @@
+﻿@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+<root>
+    @if (GameMode.Instance.GetTimeLeftString() != "")
+    {
+        <label class="timer">@(GameMode.Instance.GetTimeLeftString())</label>
+    }
+</root>
+
+@code
+{
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Time.Now);
+    }
+}

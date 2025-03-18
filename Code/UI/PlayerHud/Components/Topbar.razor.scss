@@ -1,0 +1,19 @@
+@import "/UI/Styles/Theme.scss";
+
+Topbar {
+    * {
+        width: 100%;
+        position: absolute;
+        top: 3%;
+    }
+
+    .timer {
+        width: auto;
+        font-size: 24px;
+        color: white;
+        background-color: rgba(10, 10, 50, 0.8);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 16px;
+    }
+}
