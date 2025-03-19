@@ -37,7 +37,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	
 	public string GetTimeLeftString()
 	{
-		if (float.IsInfinity(StateMachine.NextStateTime))
+		if (float.IsInfinity(StateMachine.NextStateTime) || StateMachine.CurrentState.DefaultDuration == 999)
 		{
 			return NothingState;
 		}

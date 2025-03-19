@@ -51,8 +51,8 @@
 		return new()
 			{
 				Name = Target.DisplayName,
-				Health = Math.Round(Target.Health).ToString(),
-				MaxHealth = Math.Round(Target.MaxHealth).ToString(),
+				Health = Target.Health.ToString(),
+				MaxHealth = Target.MaxHealth.ToString(),
 			};
 	}
 

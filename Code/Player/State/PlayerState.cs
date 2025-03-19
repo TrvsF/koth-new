@@ -88,7 +88,7 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 		{
 			// HACK : cameras that are placed within the scene via the editor are not behaving
 			// to how i would assume they would. Workaround for now
-			
+
 			var CameraObject = Scene.CreateObject();
 			CameraObject.Components.Create<ScreenPanel>();
 			CameraObject.Components.Create<PlayerMenuComponent>();

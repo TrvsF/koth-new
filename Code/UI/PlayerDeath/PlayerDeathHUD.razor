@@ -1,0 +1,56 @@
+@namespace KOTH.UI
+@using KOTH.Notification
+@using Sandbox.Events
+@inherits PanelComponent
+
+@if (!DeathCameraData.IsValid())
+{
+	return;
+}
+
+<root>
+	<div class="dead">
+		killed by:
+	</div>
+	<div class="name">
+		@DeathCameraData.KillerName
+	</div>
+	@(DeathCameraData.KillerHealth != 0)
+	{
+		<div class="hp">
+			@DeathCameraData.KillerHealth HP
+		</div>
+	}
+</root>
+
+@code
+{
+	public static PlayerDeathHUD Instance { get; set; }
+
+	public PlayerDeathHUD()
+	{
+		Instance = this;
+	}
+
+	public FDeathCameraData DeathCameraData { get; set; }
+
+	public void SetData(FDeathCameraData Data)
+	{
+		DeathCameraData = Data;
+	}
+
+	protected override void OnEnabled()
+	{
+		base.OnEnabled();
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+}

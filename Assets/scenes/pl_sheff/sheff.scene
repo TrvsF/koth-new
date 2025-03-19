@@ -13,7 +13,7 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "c3199629-5a1e-4b65-8e76-f26b489edff8",
-          "NothingState": "",
+          "NothingState": "Waiting For Players",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -179,7 +179,7 @@
                 {
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
-                  "MinPlayerCount": 1,
+                  "MinPlayerCount": 2,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -307,19 +307,6 @@
                   "OnEnterState": null,
                   "OnLeaveState": null,
                   "OnUpdateState": null
-                },
-                {
-                  "__type": "KOTH.PlayerAutoRespawner",
-                  "__guid": "a9c63096-ea7b-446b-9749-8dbaef839553",
-                  "DefaultRespawnDelaySeconds": 0,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "TryUseGamemodeRespawnTime": false,
-                  "UseSpawnWaves": false
                 },
                 {
                   "__type": "KOTH.SwapTeams",
