@@ -127,7 +127,13 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		{
 			var DirectionVec = (TargetCenter - DamageOrigin).Normal;
 			var CrouchFactor = TargetPlayerPawn.IsCrouching ? 62 : 82;
-			var KnockbackFactor = Damage * (DamageRequest.BaseKnockbackStrength / CrouchFactor);
+			var KBStrength = DamageRequest.BaseKnockbackStrength;
+			if (!TargetPlayerPawn.IsGrounded && TargetPlayerPawn == AttackerPlayerPawn)
+			{
+				KBStrength *= 1.33f;
+			}
+
+			var KnockbackFactor = Damage * (KBStrength / CrouchFactor);
 
 			Knockback = DirectionVec * KnockbackFactor * TargetPlayerPawn.WeightFactor;
 			TargetPlayerPawn.DoKnockback(Knockback);
