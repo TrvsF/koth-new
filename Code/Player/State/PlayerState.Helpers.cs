@@ -14,6 +14,7 @@ public partial class PlayerState
 
 	// HACK : doing the pause here because we can't listen
 	// to Input.EscapePressed within the UI update method..
+	// TODO : move all this
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
@@ -28,5 +29,7 @@ public partial class PlayerState
 			Input.EscapePressed = false;
 			IsPaused = !IsPaused;
 		}
+
+		CameraUtils.LocalTick();
 	}
 }

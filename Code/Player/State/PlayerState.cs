@@ -73,7 +73,7 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 		return true;
 	}
 
-	private GameObject AssumedSceneCameraObject = null;
+	public GameObject OverviewCameraObject = null;
 	[Rpc.Broadcast]
 	public void ClientInitilize(bool InitForGame = true)
 	{
@@ -84,35 +84,11 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 			return;
 		}
 
-		if (AssumedSceneCameraObject == null)
-		{
-			// HACK : cameras that are placed within the scene via the editor are not behaving
-			// to how i would assume they would. Workaround for now
+		CameraUtils.CreateOverviewCamera(Scene);
+		OverviewCameraObject = CameraUtils.OverviewCamera.GameObject;
 
-			var CameraObject = Scene.CreateObject();
-			CameraObject.Components.Create<ScreenPanel>();
-			CameraObject.Components.Create<PlayerMenuComponent>();
-			CameraObject.Name = "TEMPCAMERA";
-			CameraObject.NetworkMode = NetworkMode.Never;
-
-			// HACK : further silly hack to use the transform of a placed camera within the level
-			foreach (var Object in Scene.GetAllObjects(false))
-			{
-				if (Object.Tags.Contains("scenecamera"))
-				{
-					CameraObject.WorldPosition = Object.WorldPosition;
-					CameraObject.WorldRotation = Object.WorldRotation;
-				}
-			}
-
-			var CameraComp = CameraObject.Components.Create<CameraComponent>();
-			CameraComp.Priority = 100;
-
-			AssumedSceneCameraObject = CameraObject;
-		}
-
-		Assert.IsValid(AssumedSceneCameraObject);
-		AssumedSceneCameraObject.Enabled = true;
+		Assert.IsValid(OverviewCameraObject);
+		OverviewCameraObject.Enabled = true;
 	}
 
 	//////////////////////////////////////////////////////////////

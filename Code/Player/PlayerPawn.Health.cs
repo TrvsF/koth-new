@@ -30,18 +30,21 @@ public partial class PlayerPawn
 
 		Inventory.Clear();
 
-		var LookAtLocation = DamageTaken.AssumedAttackerPlayerPawn.IsValid() ? DamageTaken.AssumedAttackerPlayerPawn.WorldPosition : Vector3.Zero;
-		using (Rpc.FilterInclude(Network.Owner))
-		{
-			// CreateDeathCamera(DamageTaken);
-		}
-
-		BroadcastLocalPlayerDeath(DamageTaken);
-
 		if (Camera.IsValid())
 		{
 			Camera.GameObject.Root.Destroy();
 		}
+
+		// TODO : camera system should have to go thru PlayerState
+		if (!IsDummy)
+		{
+			using (Rpc.FilterInclude(Network.Owner))
+			{
+				CreateDeathCamera(DamageTaken);
+			}
+		}
+
+		BroadcastLocalPlayerDeath(DamageTaken);
 
 		OnDeath?.Invoke();
 		GameObject.Root.Destroy();
@@ -50,35 +53,13 @@ public partial class PlayerPawn
 	[Rpc.Broadcast]
 	private void CreateDeathCamera(FDamageTaken DamageTaken)
 	{
-		var CameraObject = Scene.CreateObject();
-		CameraObject.Name = "DEATHCAMERA";
-		CameraObject.NetworkMode = NetworkMode.Never;
-
-		if (!DamageTaken.AttackerPlayerState.IsValid())
+		if (DamageTaken.AssumedAttackerPlayerPawn.IsValid())
 		{
-			return;
+			CameraUtils.CreateDeathCamera(Scene, Head.WorldPosition, DamageTaken);
 		}
-
-		var LookAtLocation = DamageTaken.AssumedAttackerPlayerPawn.IsValid() ? DamageTaken.AssumedAttackerPlayerPawn.WorldPosition : Vector3.Zero;
-		var Health = DamageTaken.AssumedAttackerPlayerPawn.IsValid() ? DamageTaken.AssumedAttackerPlayerPawn.Health : 0;
-
-		CameraObject.WorldPosition = WorldPosition + (WorldRotation.Forward * 100f) + (WorldRotation.Up * 50f);
-		CameraObject.WorldRotation = Rotation.LookAt(LookAtLocation - CameraObject.WorldPosition);
-
-		CameraObject.Components.Create<ScreenPanel>();
-		CameraObject.Components.Create<PlayerDeathHUD>();
-
-		FDeathCameraData DeathCameraData = new()
+		else
 		{
-			KillerName = DamageTaken.AttackerPlayerState.SteamName,
-			KillerPlayerState = DamageTaken.AttackerPlayerState,
-			KillerHealth = Health,
-		};
-
-		PlayerDeathHUD.Instance.SetData(DeathCameraData);
-
-		var CameraComp = CameraObject.Components.Create<CameraComponent>();
-		CameraComp.Priority = 101;
-		CameraUtils.CurrentCamera = CameraComp;
+			PlayerState.Local.OverviewCameraObject.Enabled = true;
+		}
 	}
 }

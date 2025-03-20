@@ -183,13 +183,13 @@ public partial class PlayerState
 	[Rpc.Broadcast] // broadcast filter
 	private void CameraDisableHack()
 	{
-		AssumedSceneCameraObject.Enabled = false;
+		OverviewCameraObject.Enabled = false;
 	}
 
 	[Rpc.Broadcast] // broadcast filter
 	private void CameraEnableHack()
 	{
-		AssumedSceneCameraObject.Enabled = true;
+		OverviewCameraObject.Enabled = true;
 	}
 
 	[Rpc.Host]
@@ -234,7 +234,7 @@ public partial class PlayerState
 
 		using (Rpc.FilterInclude(Connection))
 		{
-			CameraEnableHack();
+			// CameraEnableHack();
 			OnLocalDeath();
 		}
 	}
