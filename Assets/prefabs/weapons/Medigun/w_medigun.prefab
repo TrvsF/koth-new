@@ -53,15 +53,15 @@
         "__type": "KOTH.HealBeamComponent",
         "__guid": "5469cd32-6e57-4452-af41-d61185fe8424",
         "Ammo": -1,
-        "BaseDamage": 33,
+        "BaseDamage": 50,
         "ChargeBuildRate": 0.03,
         "ChargeDegradeRate": 0.05,
-        "FireRate": 1.66,
+        "FireRate": 1,
         "HasAmmo": false,
         "InputActions": [
           "Attack1"
         ],
-        "KnockbackStrength": 260,
+        "KnockbackStrength": 300,
         "MaxAmmo": -1,
         "MaxHealDistance": 340,
         "OnComponentDestroy": null,

@@ -20,7 +20,6 @@ public sealed class DamageComponent : Component
 	//////////////////////////////////////////////////////////////////////////////////
 
 	const float OverhealFactor = 1.5f;
-	const float HealDegradePerSecond = 7f;
 	private int MaxHealthWithOverheal { get => (MaxBaseHealth * OverhealFactor).CeilToInt(); }
 
 	// HACK : TODO REWORK
@@ -39,14 +38,21 @@ public sealed class DamageComponent : Component
 		}
 	}
 
+	TimeSince TimeSinceHealthDegrade = 0;
 	protected override void OnFixedUpdate()
 	{
 		base.OnFixedUpdate();
 
-		// if we have overheal slowly drain it
-		if (Health > MaxBaseHealth)
+		if (!Networking.IsHost)
 		{
-			Health = Math.Max(MaxBaseHealth, Health - (Time.Delta * HealDegradePerSecond)).CeilToInt();
+			return;
+		}
+
+		// if we have overheal slowly drain it
+		if (Health > MaxBaseHealth && TimeSinceHealthDegrade > 0.45)
+		{
+			--Health;
+			TimeSinceHealthDegrade = 0;
 		}
 	}
 
@@ -88,6 +94,7 @@ public sealed class DamageComponent : Component
 			TargetPlayerPawn = Heals.TargetPlayerPawn,
 			HealerPlayerPawn = Heals.AttackerPlayerPawn,
 			Heals = Healing,
+			HealingType = Heals.HealingType,
 		};
 
 		//////////////////////////////////////////

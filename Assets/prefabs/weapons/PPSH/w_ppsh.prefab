@@ -53,9 +53,9 @@
         "__type": "KOTH.HitscanWeaponComponent",
         "__guid": "10519cb6-6bad-41cb-934c-59cc80f11a0e",
         "Ammo": 64,
-        "BaseDamage": 4,
+        "BaseDamage": 9,
         "DecalDefinition": "prefabs/decals/bulletdecal.decal",
-        "FireRate": 0.08,
+        "FireRate": 0.099,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"

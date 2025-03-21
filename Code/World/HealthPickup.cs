@@ -41,6 +41,7 @@ public sealed class HealthPickup : Component, Component.ITriggerListener
 					TargetPlayerPawn = PlayerPawn,
 					BaseHealing = (PlayerPawn.MaxHealth * HealthPercent).CeilToInt(),
 					AllowOverheal = false,
+					HealingType = EHealingType.OneOff,
 				};
 				Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 				IsAcitve = false;

@@ -168,7 +168,7 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 
 		TargetDamageComponent.TakeDamage(DamageTaken);
 
-		Log.Info($"{Damage:0.0}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health}" +
+		Log.Info($"{Damage}:{Knockback.Length:0.0} damage:kb has been taken {AttackerPlayerPawn.DisplayName}:{AttackerPlayerPawn.Health}" +
 			$" -> {TargetPlayerPawn?.DisplayName}:{TargetDamageComponent.Health}");
 	}
 

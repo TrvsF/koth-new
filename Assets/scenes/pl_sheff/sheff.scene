@@ -1737,7 +1737,7 @@
       "__guid": "bb580f92-50fd-479a-b3d5-d999b79c0fcb",
       "Flags": 0,
       "Name": "healthpack (2)",
-      "Position": "-2160,287.9999,121",
+      "Position": "-3058.285,858.8944,121",
       "Tags": "consumable",
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
@@ -1748,6 +1748,28 @@
       "Flags": 0,
       "Name": "healthpack (3)",
       "Position": "-2208,-343.8953,133.3152",
+      "Rotation": "-0.02353105,0.02353057,0.7067153,0.7067149",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "e0775954-4938-4cb8-a00e-772f03aaeed8",
+      "Flags": 0,
+      "Name": "healthpack (4)",
+      "Position": "-2901.155,-1128.413,345.2881",
+      "Rotation": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "fb7842b0-9a26-4d1d-8c80-5796ad576669",
+      "Flags": 0,
+      "Name": "healthpack (5)",
+      "Position": "-4057.051,-345.5828,163.569",
       "Rotation": "-0.02353105,0.02353057,0.7067153,0.7067149",
       "Tags": "consumable",
       "Enabled": true,
@@ -2017,6 +2039,17 @@
           "Tint": "1,1,1,1"
         }
       ]
+    },
+    {
+      "__guid": "574f7841-2f9b-4a6b-aef0-706e4998a68a",
+      "Flags": 0,
+      "Name": "healthpack (6)",
+      "Position": "-3082.534,-146.568,117.6354",
+      "Rotation": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

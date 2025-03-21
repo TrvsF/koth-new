@@ -49,6 +49,7 @@ public sealed class PayloadCart : Component
 					BaseHealing = 1,
 					HealingOrigin = GameObject.WorldPosition,
 					AllowOverheal = false,
+					HealingType = EHealingType.Continuous,
 				};
 				Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 			}

@@ -31,10 +31,11 @@ public record FHealingReceived
 	public PlayerState TargetPlayerState { get; init; }
 	public PlayerState HealerPlayerState { get; init; }
 	public int Heals { get; init; } = 0;
+	public EHealingType HealingType { get; init; } = EHealingType.Continuous;
 }
 
 public enum EHealingType
 {
 	Continuous = 0,
-	Projectile,
+	OneOff,
 }

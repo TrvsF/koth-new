@@ -66,6 +66,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 					AttackerPlayerPawn = OwnerPlayerPawn,
 					BaseHealing = Healing,
 					AllowOverheal = false,
+					HealingType = EHealingType.OneOff,
 				};
 				Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 			}

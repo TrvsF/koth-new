@@ -127,13 +127,13 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			TryToHitTarget(EnemyPawn);
 		}
 
+		TimeSinceLastAttemptedHit = 0;
 		return true;
 	}
 
 	private TimeSince TimeSinceLastAttemptedHit = new();
 	private void TryToHitTarget(PlayerPawn EnemyPawn)
-	{	
-		TimeSinceLastAttemptedHit = 0;
+	{
 		FDamageRequest DamageRequest = new()
 		{
 			TargetDamageComponent = EnemyPawn.DamageComponent,
@@ -151,7 +151,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 
 	private PlayerPawn GetEnemyTargetIfAny()
 	{
-		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 200, TeamExtensions.GetOpponents(PlayerPawn.Team), 10);
+		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 200, 10);
 		return UniqueTargets.Any() ? UniqueTargets.First() : null;
 	}
 
@@ -188,6 +188,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 				BaseHealing = 1,
 				HealingOrigin = PlayerPawn.WorldPosition,
 				AllowOverheal = true,
+				HealingType = EHealingType.Continuous,
 			};
 			Scene.Dispatch(new HealingRequestEvent(HealingRequest));
 
@@ -204,13 +205,20 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return null;
 		}
 
-		List<PlayerPawn> UniqueTargets = GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 280, PlayerPawn.Team, 25);
-		return UniqueTargets.Any() ? UniqueTargets.First() : null;
+		foreach (var Target in GetAllPlayerPawnsIntront(PlayerPawn.AimRay, 280, 25))
+		{
+			if (Target.Team == Player.Team)
+			{
+				return Target;
+			}
+		}
+
+		return null;
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	private List<PlayerPawn> GetAllPlayerPawnsIntront(Ray AimRay, int Distance, Team PlayerTeam, int WiderOffset = 0)
+	public List<PlayerPawn> GetAllPlayerPawnsIntront(Ray AimRay, int Distance, int WiderOffset = 0)
 	{
 		// calc 3 rays to check for collision 
 		// TODO : make this a cone
@@ -237,7 +245,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 				}
 
 				var TargetPlayerPawn = Target.Root.Components.Get<PlayerPawn>();
-				if (!TargetPlayerPawn.IsValid() || TargetPlayerPawn == PlayerPawn || TargetPlayerPawn.Team != PlayerTeam)
+				if (!TargetPlayerPawn.IsValid() || TargetPlayerPawn == PlayerPawn)
 				{
 					continue;
 				}
