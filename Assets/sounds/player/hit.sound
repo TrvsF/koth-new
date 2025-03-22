@@ -2,17 +2,19 @@
   "UI": false,
   "Volume": "1",
   "Pitch": "1",
-  "Decibels": 140,
+  "Decibels": 70,
   "SelectionMode": "Random",
   "Sounds": [
-    "sounds/weapons/koth/botaction.vsnd"
+    "sounds/player/hit1.vsnd",
+    "sounds/player/hit2.vsnd",
+    "sounds/player/hit3.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,
   "Transmission": true,
   "OcclusionRadius": 64,
   "DistanceAttenuation": true,
-  "Distance": 15000,
+  "Distance": 10568,
   "Falloff": [
     {
       "x": 0,

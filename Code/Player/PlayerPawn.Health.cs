@@ -44,6 +44,12 @@ public partial class PlayerPawn
 			}
 		}
 
+		if (WalkSoundHandle.IsValid())
+		{
+			WalkSoundHandle.Stop();
+			WalkSoundHandle = null;
+		}
+
 		BroadcastLocalPlayerDeath(DamageTaken);
 
 		OnDeath?.Invoke();

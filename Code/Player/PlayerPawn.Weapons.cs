@@ -21,12 +21,8 @@ public partial class PlayerPawn :
 			CurrentEquipment = null;
 	}
 
-	public TimeSince TimeSinceWeaponDeployed { get; private set; }
-
 	public void SetCurrentEquipment(Equipment Weapon)
 	{
-		TimeSinceWeaponDeployed = 0;
-
 		if (CurrentEquipment.IsValid())
 		{
 			CurrentEquipment.Holster();

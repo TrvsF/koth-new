@@ -105,7 +105,7 @@ public partial class PlayerInventory : Component
 		Switch(equipment[(index + 1) % equipment.Length]);
 	}
 
-	const double SwitchCooldown = 0.15;
+	public static readonly float SwitchCooldown = 0.15f; // TODO : moveme
 	TimeSince TimeSinceLastSwitch = 0;
 	public void Switch(Equipment equipment)
 	{

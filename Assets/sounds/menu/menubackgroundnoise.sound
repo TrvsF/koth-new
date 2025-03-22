@@ -5,7 +5,7 @@
   "Decibels": 70,
   "SelectionMode": "Forward",
   "Sounds": [
-    "scenes/menu/img_7079.vsnd"
+    "sounds/menu/img_7079.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,

@@ -78,7 +78,7 @@
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
-        "ShootSound": null,
+        "ShootSound": "sounds/guns/revolver/revolver_shoot.sound",
         "Sides": 5,
         "TrailPrefab": {
           "_type": "gameobject",

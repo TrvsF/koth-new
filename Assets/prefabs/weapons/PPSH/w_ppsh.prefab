@@ -78,7 +78,7 @@
         "ReloadType": "Mag",
         "ReloadWhileNotActive": false,
         "RequiresAllInputActions": false,
-        "ShootSound": null,
+        "ShootSound": "sounds/guns/mp5/smg1_shoot.sound",
         "Sides": 1,
         "TrailPrefab": {
           "_type": "gameobject",

@@ -52,6 +52,11 @@ public partial class PlayerPawn :
 			//{
 			//	AnimationHelper.LookAtEnabled = false;
 			//}
+
+			if (Networking.IsHost)
+			{
+				CheckWalkSound(CharacterController.Velocity.WithZ(0).Length);
+			}
 		}
 
 		if (TimeSinceLastUberMessage > .8f)
@@ -159,6 +164,43 @@ public partial class PlayerPawn :
 	/////////////////////////////////////////////////////////////////////////////////
 
 	[Property] public GameObject BloodSquirt { get; set; }
+	[Property] public SoundEvent HitSound { get; set; }
+	[Property] public SoundEvent WalkSound { get; set; }
+
+	public SoundHandle WalkSoundHandle = null;
+
+	[Rpc.Broadcast(NetFlags.HostOnly)]
+	void CheckWalkSound(float Velocity)
+	{
+		if (!WalkSound.IsValid())
+		{
+			return;
+		}
+
+		if (!IsGrounded && WalkSoundHandle.IsValid())
+		{
+			WalkSoundHandle.Stop();
+			WalkSoundHandle = null;
+		}
+
+		if (Velocity > 100)
+		{
+			if (WalkSoundHandle is null || WalkSoundHandle.Finished)
+			{
+				if (Sound.Play(WalkSound, WorldPosition) is { } SoundHandel)
+				{
+					WalkSoundHandle = SoundHandel;
+				}
+			}
+
+			WalkSoundHandle.Position = WorldPosition;
+		}
+		else if (WalkSoundHandle is not null)
+		{
+			WalkSoundHandle.Stop();
+			WalkSoundHandle = null;
+		}
+	}
 
 	void IGameEventHandler<DamageBroadcastEvent>.OnGameEvent(DamageBroadcastEvent EventArgs)
 	{
@@ -200,6 +242,14 @@ public partial class PlayerPawn :
 		if (BloodSquirt.IsValid())
 		{
 			BloodSquirt.Clone(DamageTaken.DamageLocation);
+		}
+
+		if (HitSound.IsValid())
+		{
+			if (Sound.Play(HitSound, WorldPosition) is { } SoundHandel)
+			{
+
+			}
 		}
 	}
 

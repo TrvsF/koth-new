@@ -1,18 +1,18 @@
 {
   "UI": false,
-  "Volume": "1",
-  "Pitch": "1",
-  "Decibels": 140,
+  "Volume": "1.6",
+  "Pitch": "0.9 1.1",
+  "Decibels": 70,
   "SelectionMode": "Random",
   "Sounds": [
-    "sounds/weapons/koth/botaction.vsnd"
+    "sounds/player/walkcyle.vsnd"
   ],
   "Occlusion": true,
   "AirAbsorption": true,
   "Transmission": true,
   "OcclusionRadius": 64,
   "DistanceAttenuation": true,
-  "Distance": 15000,
+  "Distance": 6101,
   "Falloff": [
     {
       "x": 0,

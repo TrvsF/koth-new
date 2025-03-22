@@ -11,7 +11,7 @@ public struct FTextChatMessage
 
 	public string Message { get; init; } = "";
 	public Team Team { get; init; } = Team.Unassigned;
-	public PlayerState AuthorPlayerState { get; init; } = null;
+	public string AuthorName { get; init; } = "";
 	public ulong AuthorSteamID { get; init; } = 0;
 	public TimeSince TimeSinceAdd { get; init; } = 0;
 
@@ -24,9 +24,9 @@ public struct FTextChatMessage
 			Prefix += $"[{Team}] ";
 		}
 
-		if (AuthorPlayerState.IsValid())
+		if (AuthorName != "")
 		{
-			Prefix += $"{AuthorPlayerState.SteamName}";
+			Prefix += $"{AuthorName}";
 		}
 
 		return $"{Prefix} : {Message}";
@@ -111,7 +111,7 @@ public sealed class TextChatBox : TextEntry
 		FTextChatMessage ChatMessage = new()
 		{
 			Message = FilteredMessage,
-			AuthorPlayerState = PlayerState.Local,
+			AuthorName = PlayerState.Local.SteamName,
 			AuthorSteamID = PlayerState.Local.SteamId,
 			Team = IsTeamChat ? PlayerState.Local.Team : Team.Unassigned,
 		};

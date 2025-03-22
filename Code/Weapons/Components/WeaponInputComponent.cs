@@ -226,83 +226,40 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 {
 
 	[Property, Category(".Input")] public List<string> InputActions { get; set; } = new() { "Attack1" };
-	[Property, Category(".Input")] public bool RequiresAllInputActions { get; set; }
-	[Property, Category(".Input")] public Action<InputWeaponComponent> OnInputAction { get; set; }
 
 	bool isDown = false;
 
 	protected bool IsDown() => isDown;
 
-	protected virtual void OnInput()
-	{
-	}
-
-	protected virtual void OnInputUp()
-	{
-	}
-
-	protected virtual void OnInputDown()
-	{
-	}
-
 	protected virtual void OnInputUpdate()
 	{
 	}
 
+	TimeSince TimeSinceDeployed = 0;
 	protected override void OnFixedUpdate()
 	{
-		if (!Equipment.IsValid())
+		if (!Equipment.IsValid() || !Equipment.Owner.IsValid() || !Equipment.Owner.IsLocallyControlled)
+		{
 			return;
+		}
 
-		// Don't execute weapon components on weapons that aren't deployed.
 		if (!Equipment.IsDeployed)
+		{
+			TimeSinceDeployed = 0;
 			return;
+		}
 
-		if (!Equipment.Owner.IsValid())
+		if (TimeSinceDeployed < PlayerInventory.SwitchCooldown)
+		{
 			return;
-
-		// We only care about input actions coming from the owning object.
-		if (!Equipment.Owner.IsLocallyControlled)
-			return;
-
-		OnInputUpdate();
-
-		bool matched = false;
+		}
 
 		foreach (var action in InputActions)
 		{
-			var down = Input.Down(action);
-
-			if (RequiresAllInputActions && !down)
-			{
-				matched = false;
-				break;
-			}
-			if (down)
-			{
-				matched = true;
-			}
+			isDown = Input.Down(action);
 		}
-
-		if (matched)
-		{
-			OnInput();
-			OnInputAction?.Invoke(this);
-
-			if (!isDown)
-			{
-				OnInputDown();
-				isDown = true;
-			}
-		}
-		else
-		{
-			if (isDown)
-			{
-				OnInputUp();
-				isDown = false;
-			}
-		}
+		
+		OnInputUpdate();
 	}
 }
 

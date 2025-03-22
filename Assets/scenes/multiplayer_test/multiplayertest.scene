@@ -246,7 +246,7 @@
       "__guid": "4f91999c-2228-4a79-853a-e6e40c2448dc",
       "Flags": 0,
       "Name": "healthpack (2)",
-      "Position": "0,93.04044,94.36147",
+      "Position": "0,93.04044,84.33002",
       "Tags": "consumable",
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",

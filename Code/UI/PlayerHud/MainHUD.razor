@@ -2,6 +2,7 @@
 @using KOTH.Notification
 @using Sandbox.Events
 @inherits PanelComponent
+@implements Component.INetworkListener
 
 @if (!IsHudEnabled)
 	return;
@@ -11,22 +12,22 @@
 
 <root>
 	<canvas>
-		<Watermark/>
-		<DamageNumbers/>
-		<DamageIndicatorNew/>
-		<StickyOverlay/>
-		<HealStatus/>
-		<SmallClassSelect/>
-		<XHair/>
-		<Health/>
-		<Ammo/>
-		<PayloadIndicator/>
-		<Topbar/>
+		<Watermark />
+		<DamageNumbers />
+		<DamageIndicatorNew />
+		<StickyOverlay />
+		<HealStatus />
+		<SmallClassSelect />
+		<XHair />
+		<Health />
+		<Ammo />
+		<PayloadIndicator />
+		<Topbar />
 
 		<div class="right">
-			<div class="flex-grow"/>
-			<Voices/>
-			<WeaponInfoComponent/>
+			<div class="flex-grow" />
+			<Voices />
+			<WeaponInfoComponent />
 		</div>
 	</canvas>
 
@@ -41,7 +42,7 @@
 			@if (VisableMessage.AuthorSteamID > 0)
 			{
 				<div class="square rounded shrink-0"
-				     style="background-image: url( avatar:@VisableMessage.AuthorSteamID )"></div>
+				style="background-image: url( avatar:@VisableMessage.AuthorSteamID )"></div>
 			}
 
 			<label class="message no-shadow">@VisableMessage.GetChatMessage()</label>
@@ -75,6 +76,30 @@
 		{
 			TextChat.Instance?.InputBox?.Focus();
 		}
+	}
+
+	void Component.INetworkListener.OnConnected(Connection channel)
+	{
+		FTextChatMessage ChatMessage = new()
+			{
+				Message = "joined the game",
+				AuthorName = channel.DisplayName,
+				AuthorSteamID = channel.SteamId,
+			};
+
+		TextChat.Instance.ServerRequestMessage(ChatMessage);
+	}
+
+	void Component.INetworkListener.OnDisconnected(Connection channel)
+	{
+		FTextChatMessage ChatMessage = new()
+			{
+				Message = "left the game",
+				AuthorName = channel.DisplayName,
+				AuthorSteamID = channel.SteamId,
+			};
+
+		TextChat.Instance.ServerRequestMessage(ChatMessage);
 	}
 
 	protected override int BuildHash()
