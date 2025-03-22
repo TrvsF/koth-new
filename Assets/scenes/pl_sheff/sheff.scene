@@ -1744,6 +1744,16 @@
       "__PrefabVariables": {}
     },
     {
+      "__guid": "53945434-c26d-447d-a367-138c0a1859e5",
+      "Flags": 0,
+      "Name": "healthpack (7)",
+      "Position": "-3058.285,858.8944,121",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
       "__guid": "f07229f5-61ad-438f-b70f-712a74702bf6",
       "Flags": 0,
       "Name": "healthpack (3)",
@@ -1771,6 +1781,17 @@
       "Name": "healthpack (5)",
       "Position": "-4057.051,-345.5828,163.569",
       "Rotation": "-0.02353105,0.02353057,0.7067153,0.7067149",
+      "Tags": "consumable",
+      "Enabled": true,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "4b3c4471-c45b-4b8a-a4e7-d4851b4087eb",
+      "Flags": 0,
+      "Name": "healthpack (8)",
+      "Position": "-4033.942,-872.989,299.6488",
+      "Rotation": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065",
       "Tags": "consumable",
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
@@ -2050,6 +2071,626 @@
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "446bbb44-29da-4797-96ee-ecf057bd1832",
+      "Flags": 0,
+      "Name": "clipzone (2)",
+      "Position": "-915.3835,-406.1116,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "32c460cd-a302-4422-9d72-4ad8c44a5816",
+          "Center": "-4.508316,-54.82623,139.4951",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "509.0166,609.6525,864.6161",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "6bdc5403-06fd-4d70-82f0-2e809b05b545",
+      "Flags": 0,
+      "Name": "clipzone (1)",
+      "Position": "-1422.24,-406.1116,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "f026edeb-474f-47d0-9d28-689c4e8436c2",
+          "Center": "-55.00348,-136.9884,139.4951",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "610.007,445.328,864.6161",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "3f53ceef-ac53-4409-b855-6e2c52e81716",
+      "Flags": 0,
+      "Name": "clipzone (3)",
+      "Position": "-2165.334,-712.2111,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "43bff60b-0a2c-4ed4-9668-9ab1dbcaa51c",
+          "Center": "-69.88803,-155.4792,139.4951",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "580.2379,482.3095,864.6161",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "9f42a4ce-4f82-4e58-bafa-2433f3cbe425",
+      "Flags": 0,
+      "Name": "clipzone (4)",
+      "Position": "-2749.474,-712.2111,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "95fba901-65f5-4d9b-b66e-00578824edbf",
+          "Center": "-39.88956,-272.0543,162.1107",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "640.2348,249.1594,819.3848",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "b9b39fb0-2957-4fc2-be59-cdbf3e75b330",
+      "Flags": 0,
+      "Name": "clipzone (12)",
+      "Position": "-2749.474,-471.9313,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "08cdcc49-cd6f-4ba0-98f2-228e51ccb272",
+          "Center": "-423.2969,297.3243,163.9902",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "836.3629,1387.917,815.6257",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "eb59878f-a6ed-4d35-af3d-cbecf6d7fe64",
+      "Flags": 0,
+      "Name": "clipzone (19)",
+      "Position": "-3361.057,-1115.881,501.9464",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "d8c940af-df22-4a65-9d58-c13f537df491",
+          "Center": "-104.9415,587.4728,109.6181",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "172.5419,630.297,391.2558",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "759fd547-1be6-4428-a1ad-421cb252f781",
+      "Flags": 0,
+      "Name": "clipzone (18)",
+      "Position": "-3571.277,-471.9313,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "641b837e-b524-4fc6-948e-8d02abeeb1ae",
+          "Center": "-323.0811,153.7039,201.3995",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "635.9312,1675.158,740.8065",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "9cd95d03-ad17-4b57-b854-f68aaa43a36b",
+      "Flags": 0,
+      "Name": "clipzone (15)",
+      "Position": "-2749.474,-741.6591,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "216350d1-5117-49ab-b4da-205692e14697",
+          "Center": "-171.917,-248.2711,163.9902",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "938.2594,296.7262,815.6257",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "891dd9d6-822b-409f-bf33-9e71a9c0d6bd",
+      "Flags": 0,
+      "Name": "clipzone (16)",
+      "Position": "-1812.015,-741.6591,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "59513a14-b00a-48d9-95da-9c679845963e",
+          "Center": "-205.8849,-153.3404,103.9601",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "1006.195,486.5877,935.6862",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "7ba4e6a0-3af0-4ff5-9c7d-f1f5d867a707",
+      "Flags": 0,
+      "Name": "clipzone (13)",
+      "Position": "-2122.268,-471.9313,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "2a5df3a5-a485-45b5-a054-a858b3758334",
+          "Center": "-599.01,323.9998,133.767",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "64.95703,1334.566,876.0719",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "c5f13562-2d8a-4fb3-95d1-7647ffdb9a8f",
+      "Flags": 0,
+      "Name": "clipzone (14)",
+      "Position": "-2042.093,-471.9313,794.0625",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "2a10c5de-fd9b-49c3-8383-d5691a3c831e",
+          "Center": "-565.636,323.9998,165.7282",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "131.705,1334.566,812.1492",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "49e7ec48-838d-496a-9dab-3b7c88e1c759",
+      "Flags": 0,
+      "Name": "clipzone (7)",
+      "Position": "18.74982,446.4528,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "bd88d94e-b446-400e-ac5a-d4a817ba2ecb",
+          "Center": "80.97219,300.7559,237.8416",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "338.0558,580.92,975.6829",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "3ed8ff3f-6f0c-452e-a33d-52f7a1f76c30",
+      "Flags": 0,
+      "Name": "clipzone (5)",
+      "Position": "-337.4668,446.4528,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "0a6981ed-14d4-4b5a-9587-1d15f66aeae8",
+          "Center": "80.97219,368.8907,237.8416",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "338.0558,444.6503,975.6829",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "c176c165-9dcf-46c6-acf8-6f33a0839e83",
+      "Flags": 0,
+      "Name": "clipzone (6)",
+      "Position": "-770.9495,446.4528,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "2bcfdc3a-05f9-43fe-8c98-e2b51a1977f5",
+          "Center": "-415.7649,496.4975,478.6311",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "1531.981,189.4366,1457.262",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "5de74932-179b-4e26-a4c0-0d23cc7326ca",
+      "Flags": 0,
+      "Name": "clipzone (11)",
+      "Position": "-770.9495,225.0346,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "24b8211f-1c18-47ec-b6f8-667847d5b36b",
+          "Center": "-742.7364,264.3248,737.9167",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "878.038,653.782,938.6904",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "fefd3d38-248c-42b7-bcb3-dd61082116bf",
+      "Flags": 0,
+      "Name": "clipzone (17)",
+      "Position": "-770.9495,-181.89,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "cc625193-4419-4235-bf40-ef349a6c3650",
+          "Center": "-1062.115,247.0146,764.0339",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "586.1111,688.4024,886.4561",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "6daf43e7-518d-4905-b2c0-d6dce8e825ba",
+      "Flags": 0,
+      "Name": "clipzone (8)",
+      "Position": "536.9208,446.4528,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "b277d476-3199-4bf3-8bcd-f3c9228d044a",
+          "Center": "0,-131.87,0",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "500,763.7399,500",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "d569c58e-844b-4daa-a711-211c0a84fca7",
+      "Flags": 0,
+      "Name": "clipzone (9)",
+      "Position": "670.4098,-299.9299,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "ebce85c9-d4d5-4af6-9350-22593b0fee6a",
+          "Center": "-3.888214,-86.80063,236.2589",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "507.7764,673.6013,972.5178",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "1920df13-ac3f-42ad-911f-f9b7733f3c51",
+      "Flags": 0,
+      "Name": "clipzone (10)",
+      "Position": "670.4098,-998.7863,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "4ee98012-5527-413e-ab12-baf0e1b8e9d8",
+          "Center": "0,0,0",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "500,500,500",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "12545c3e-36b6-48e9-b8c7-75d77bc3dc61",
+      "Flags": 0,
+      "Name": "clipzone (20)",
+      "Position": "144.8331,-998.7863,532.4888",
+      "Tags": "clip",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "820c5221-dfac-4c1b-86eb-5602c18eef83",
+          "Center": "-107.1906,6.608047,229.8694",
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "714.3813,513.2161,959.7388",
+          "Static": true,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ]
     }
   ],
   "SceneProperties": {

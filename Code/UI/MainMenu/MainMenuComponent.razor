@@ -27,24 +27,24 @@
 
 <style>
 	* {
-		width: auto;
-		pointer-events: all;
-		color: white;
+	width: auto;
+	pointer-events: all;
+	color: white;
 	}
 
 	.nav {
-		position: absolute;
-		top: 90%;
-		right: 50%;
+	position: absolute;
+	top: 90%;
+	right: 50%;
 	}
 
 	.nav button {
-		width: 256px;
-		font-size: 16px;
+	width: 256px;
+	font-size: 16px;
 	}
-	
+
 	.nav button:hover {
-		cursor: pointer;
+	cursor: pointer;
 	}
 </style>
 
@@ -65,19 +65,22 @@
 		Game.ActiveScene.LoadFromFile("scenes/jumpmap/jump1.scene");
 	}
 
+	bool Trying = false;
 	private async void OnMultiplayer()
 	{
-		if (Networking.IsActive)
+		if (Networking.IsConnecting || Trying)
 		{
-			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+			Log.Info("connecting...");
 			return;
 		}
 
+		Trying = true;
 		bool Joined = await Networking.JoinBestLobby(Game.Ident);
 		if (!Joined)
 		{
 			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
 		}
+		Trying = false;
 	}
 
 	protected override int BuildHash()
