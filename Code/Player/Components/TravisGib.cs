@@ -12,7 +12,7 @@ public sealed class TravisGib : Component
 
 		foreach (var Child in GameObject.Children)
 		{
-			if (Random.Shared.Next() % 2 == 0)
+			if (Random.Shared.Next() % 3 == 0)
 			{
 				Child.Destroy();
 			}

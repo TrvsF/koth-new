@@ -14,7 +14,7 @@ public enum EPlayerState
 	Game,
 }
 
-public partial class PlayerState : Component, Component.INetworkSpawn
+public partial class PlayerState : Component
 {
 	public Connection Connection { get; private set; }
 	public bool IsConnected => Connection != null && Connection.IsActive;
@@ -89,19 +89,5 @@ public partial class PlayerState : Component, Component.INetworkSpawn
 
 		Assert.IsValid(OverviewCameraObject);
 		OverviewCameraObject.Enabled = true;
-	}
-
-	//////////////////////////////////////////////////////////////
-
-	public void OnNetworkSpawn(Connection Owner)
-	{
-		var Gamemode = GameMode.Instance;
-
-		if (!Gamemode.IsValid())
-		{
-			return;
-		}
-
-		Gamemode.GameStats?.OnNewPlayerState(this);
 	}
 }

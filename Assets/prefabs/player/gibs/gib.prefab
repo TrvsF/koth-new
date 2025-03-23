@@ -3,70 +3,116 @@
     "__guid": "8ec24fde-ef9c-4983-9664-f0efcc62697d",
     "Flags": 0,
     "Name": "gib",
-    "Tags": "gib",
     "Enabled": true,
     "NetworkMode": 0,
     "Components": [
       {
         "__type": "KOTH.TravisGib",
-        "__guid": "42fbdfff-8b66-4220-a81a-dab01edcfb67"
+        "__guid": "42fbdfff-8b66-4220-a81a-dab01edcfb67",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
       {
-        "__guid": "57f1e8e9-4129-44aa-8b1b-3492634c59b6",
-        "Flags": 0,
-        "Name": "arm",
-        "Enabled": true,
-        "NetworkMode": 0,
-        "Components": [
-          {
-            "__type": "Sandbox.Gib",
-            "__guid": "4b246407-8245-493f-999c-ad26062e3af5",
-            "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
-            "Model": "models/citizen_gibs/models/left_arm_gib_cap.vmdl",
-            "Tint": "1,1,1,1"
-          }
-        ]
-      },
-      {
         "__guid": "b2a73ff2-25b4-498a-b8cd-124c538dcd66",
         "Flags": 0,
         "Name": "arm (1)",
-        "Position": "1.756988,-6.697239,0",
+        "Position": "2.243703,-8.552482,0",
         "Rotation": "0,-0,-0.9917832,0.1279301",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
           {
-            "__type": "Sandbox.Gib",
-            "__guid": "85816af4-71ca-4060-b725-10054e8cd379",
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "52ad0c7c-7551-421e-a053-25ca4981ebfa",
+            "AnimationGraph": null,
             "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
             "Model": "models/citizen_gibs/models/torn_torso_gib.vmdl",
-            "Tint": "1,1,1,1"
-          }
-        ]
-      },
-      {
-        "__guid": "15bb3f52-651b-4763-a27f-c0088d85179d",
-        "Flags": 0,
-        "Name": "other",
-        "Position": "-0.8147278,18.0217,6.548342",
-        "Enabled": true,
-        "NetworkMode": 0,
-        "Components": [
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 1,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          },
           {
-            "__type": "Sandbox.Gib",
-            "__guid": "6b9749c3-f174-4de4-a3d4-86e60a9c0605",
-            "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
-            "Model": "models/citizen_gibs/models/torn_leg_gib.vmdl",
-            "Tint": "1,1,1,1"
+            "__type": "Sandbox.ModelCollider",
+            "__guid": "227d7c2e-831c-4416-a0d4-3f2f11bd3028",
+            "Friction": null,
+            "IsTrigger": false,
+            "Model": "models/citizen_gibs/models/torn_torso_gib.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.Rigidbody",
+            "__guid": "c0d87b03-0068-4db1-8bb6-bd7bcc6dd4a7",
+            "AngularDamping": 0,
+            "Gravity": true,
+            "LinearDamping": 0,
+            "Locking": {
+              "X": false,
+              "Y": false,
+              "Z": false,
+              "Pitch": false,
+              "Yaw": false,
+              "Roll": false
+            },
+            "MassCenterOverride": "0,0,0",
+            "MassOverride": 0,
+            "MotionEnabled": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OverrideMassCenter": false,
+            "RigidbodyFlags": 0,
+            "StartAsleep": false
           }
         ]
       },
@@ -74,7 +120,8 @@
         "__guid": "9416ca70-3789-4b9d-8698-4e97c1289948",
         "Flags": 0,
         "Name": "other (4)",
-        "Position": "-0.8147278,-13.0279,-5.890158",
+        "Position": "-0.8147278,-8.262433,-1.796134",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
@@ -84,7 +131,17 @@
             "BodyGroups": 18446744073709551615,
             "Health": 0,
             "IsStatic": false,
+            "MaterialGroup": null,
             "Model": "models/citizen_gibs/models/right_hand_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
             "Tint": "1,1,1,1"
           }
         ]
@@ -93,7 +150,9 @@
         "__guid": "2695c8ae-2fcc-455e-a329-a6b30c6fb49a",
         "Flags": 0,
         "Name": "other (5)",
-        "Position": "-0.8147278,30.01471,-5.890158",
+        "Position": "12.11479,-6.448483,-6.86218",
+        "Rotation": "0,0,0.9914448,0.1305264",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
@@ -103,7 +162,17 @@
             "BodyGroups": 18446744073709551615,
             "Health": 0,
             "IsStatic": false,
+            "MaterialGroup": null,
             "Model": "models/citizen_gibs/models/right_hand_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
             "Tint": "1,1,1,1"
           }
         ]
@@ -112,38 +181,96 @@
         "__guid": "97f67b32-9417-4148-81a2-fcb4844148d3",
         "Flags": 0,
         "Name": "other (1)",
-        "Position": "0.2024708,-6.137095,6.798653",
+        "Position": "0.2024708,-6.137095,2.417094",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
           {
-            "__type": "Sandbox.Gib",
-            "__guid": "15cf1f56-9143-45ee-aa63-2caddd7f393c",
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "cc9a99f5-ebed-47e4-a331-7b9be066615e",
+            "AnimationGraph": null,
             "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
+            "BoneMergeTarget": null,
+            "CreateAttachments": false,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
             "Model": "models/citizen_gibs/models/skull_gib.vmdl",
-            "Tint": "1,1,1,1"
-          }
-        ]
-      },
-      {
-        "__guid": "88315f2a-3509-4f39-a1aa-a7166cc8c285",
-        "Flags": 0,
-        "Name": "other (2)",
-        "Position": "-16,15.77878,27.84053",
-        "Rotation": "0.5,0,0,0.8660254",
-        "Enabled": true,
-        "NetworkMode": 0,
-        "Components": [
+            "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "PlaybackRate": 1,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          },
           {
-            "__type": "Sandbox.Gib",
-            "__guid": "056f1946-6ee4-4a18-81f7-0310267fcbc8",
-            "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
-            "Model": "models/citizen_gibs/models/torn_arm_gib.vmdl",
-            "Tint": "1,1,1,1"
+            "__type": "Sandbox.ModelCollider",
+            "__guid": "7277dc70-f238-41f8-bfe3-2491917143fa",
+            "Friction": null,
+            "IsTrigger": false,
+            "Model": "models/citizen_gibs/models/skull_gib.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.Rigidbody",
+            "__guid": "b1b61429-3d4a-4882-982b-ccb6ab0b78a9",
+            "AngularDamping": 0,
+            "Gravity": true,
+            "LinearDamping": 0,
+            "Locking": {
+              "X": false,
+              "Y": false,
+              "Z": false,
+              "Pitch": false,
+              "Yaw": false,
+              "Roll": false
+            },
+            "MassCenterOverride": "0,0,0",
+            "MassOverride": 0,
+            "MotionEnabled": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OverrideMassCenter": false,
+            "RigidbodyFlags": 0,
+            "StartAsleep": false
           }
         ]
       },
@@ -151,19 +278,81 @@
         "__guid": "45b16ba5-4eb6-42e3-a334-0477a8c766b6",
         "Flags": 0,
         "Name": "other (3)",
-        "Position": "0,-2.19,22.47876",
-        "Rotation": "0.5,0,0,0.8660254",
+        "Position": "-2.187001,9.310342,-5.562861",
+        "Rotation": "0.1305263,0,0,0.9914449",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
           {
-            "__type": "Sandbox.Gib",
-            "__guid": "ccc806b8-577b-435f-bc50-3dae950a4a30",
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "2e4e03c4-7a36-4c73-8984-67895c0d1442",
             "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
+            "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
             "Model": "models/citizen_gibs/models/right_leg_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
+            "RenderType": "On",
             "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "Sandbox.ModelCollider",
+            "__guid": "0b83207e-7b37-4ad8-9d37-8b8d6015ed11",
+            "Friction": null,
+            "IsTrigger": false,
+            "Model": "models/citizen_gibs/models/right_leg_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "Sandbox.Rigidbody",
+            "__guid": "ab9afc14-a45d-4537-8288-65b405b55be5",
+            "AngularDamping": 0,
+            "Gravity": true,
+            "LinearDamping": 0,
+            "Locking": {
+              "X": false,
+              "Y": false,
+              "Z": false,
+              "Pitch": false,
+              "Yaw": false,
+              "Roll": false
+            },
+            "MassCenterOverride": "0,0,0",
+            "MassOverride": 0,
+            "MotionEnabled": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OverrideMassCenter": false,
+            "RigidbodyFlags": 0,
+            "StartAsleep": false
           }
         ]
       },
@@ -171,8 +360,9 @@
         "__guid": "fcb1b348-b112-4d23-8bc5-7c2757164c67",
         "Flags": 0,
         "Name": "other (6)",
-        "Position": "0,1.295197,-0.7477837",
+        "Position": "0,9.268401,13.06221",
         "Rotation": "0.5,0,0,0.8660254",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
@@ -182,7 +372,17 @@
             "BodyGroups": 18446744073709551615,
             "Health": 0,
             "IsStatic": false,
+            "MaterialGroup": null,
             "Model": "models/citizen_gibs/models/organ_02_gib.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
             "Tint": "1,1,1,1"
           }
         ]
@@ -193,6 +393,7 @@
         "Name": "other (7)",
         "Position": "0,16.23879,-3.87359",
         "Rotation": "0.5,0,0,0.8660254",
+        "Tags": "gib",
         "Enabled": true,
         "NetworkMode": 0,
         "Components": [
@@ -202,17 +403,111 @@
             "BodyGroups": 18446744073709551615,
             "Health": 0,
             "IsStatic": false,
+            "MaterialGroup": null,
             "Model": "models/citizen_gibs/models/organ_02_gib.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "6b49a948-05bc-41a2-85de-e10dc6eaa10f",
+        "Flags": 0,
+        "Name": "other (9)",
+        "Position": "2.718334,-8.84659,-0.4423161",
+        "Tags": "gib",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "04f60795-39b8-4e34-b7f1-c7c136e34bf0",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "MaterialGroup": null,
+            "Model": "models/citizen_gibs/models/right_foot_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "717a25dd-d60c-45be-ace2-0990f2cc03c0",
+        "Flags": 0,
+        "Name": "other (8)",
+        "Position": "0,-5.605148,-6.974862",
+        "Tags": "gib",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "Components": [
+          {
+            "__type": "Sandbox.Gib",
+            "__guid": "bf7b17ad-fe1c-4fe5-ac59-cabd689287a2",
+            "BodyGroups": 18446744073709551615,
+            "Health": 0,
+            "IsStatic": false,
+            "MaterialGroup": null,
+            "Model": "models/citizen_gibs/models/pelvis_gib_cap.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnPropBreak": null,
+            "OnPropTakeDamage": null,
+            "StartAsleep": false,
             "Tint": "1,1,1,1"
           }
         ]
       }
     ],
-    "__variables": []
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "DontBreakAsTemplate": false,
   "ResourceVersion": 1,
   "__references": [],
   "__version": 1

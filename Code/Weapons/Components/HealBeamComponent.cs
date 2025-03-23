@@ -37,9 +37,10 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			{
 				Charge -= ChargeDegradeRate;
 
-				if (Charge < 0)
+				if (Charge <= 0)
 				{
 					Charge = 0;
+					IsUbered = false;
 				}
 			}
 		}
@@ -63,20 +64,17 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		bool UberInput = Input.Pressed("attack2");
 		bool MeleeInput = Input.Pressed("attack3");
 
-		if (IsUbered)
-		{
-			if (HealTarget.IsValid())
-			{
-				if (Charge > 3)
-				{
-					HealTarget.Uber();
-				}
-			}
-		}
-		
 		if (UberInput)
 		{
-			IsUbered = !IsUbered;
+			if (!IsUbered && Charge >= 100)
+			{
+				IsUbered = true;
+			}
+		}
+
+		if (IsUbered)
+		{
+			HealTarget.Uber();
 		}
 
 		if (!HealInput)

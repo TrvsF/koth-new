@@ -33,11 +33,15 @@ public sealed class GameStats : SingletonComponent<GameStats>,
 		}
 	}
 
-	public void OnNewPlayerState(PlayerState PlayerState)
+	protected override void OnFixedUpdate()
 	{
-		PlayerStateStats.Add(PlayerState, new());
-	}
+		base.OnFixedUpdate();
 
+		foreach (var PlayerState in GameNetworkManager.PlayerStates)
+		{
+			PlayerStateStats.GetOrCreate(PlayerState);
+		}
+	}
 
 	public void ResetAll()
 	{
