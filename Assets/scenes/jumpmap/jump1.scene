@@ -502,6 +502,8 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
+          "GameStats": null,
+          "NothingState": "",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,

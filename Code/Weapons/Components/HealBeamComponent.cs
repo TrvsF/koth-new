@@ -6,8 +6,7 @@ namespace KOTH;
 public sealed class HealBeamComponent : InputWeaponComponent
 {
 	[Property, Category("Healing")] public float TimePerOneHeal { get; set; } = .45f;
-	// [Property, Category("Healing")] public float HealsPerTick { get; set; } = .45f;
-	[Property, Category("Healing")] public float MaxHealDistance { get; set; } = 340f;
+	[Property, Category("Healing")] public float MaxHealDistance { get; set; } = 330f;
 	[Property, Category("Healing")] public float MaxCharge { get; set; } = 200f;
 	[Property, Category("Healing")] public float ChargeBuildRate { get; set; } = .03f;
 	[Property, Category("Healing")] public float ChargeDegradeRate { get; set; } = .05f;
@@ -75,6 +74,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 
 		if (IsUbered)
 		{
+			Equipment?.Owner?.DamageComponent.Uber();
 			HealTarget?.DamageComponent.Uber();
 		}
 
@@ -101,6 +101,8 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		}
 
 		var FriendlyPawn = GetFriendlyTargetIfAny();
+
+		Equipment.ViewModel?.ModelRenderer?.Set("b_jump", true);
 
 		if (FriendlyPawn.IsValid())
 		{
@@ -228,7 +230,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		{
 			Vector3 OffsetVec = Vector3.Cross(AimRay.Forward, Vector3.Up * Offset).Normal;
 			Vector3 StartingLocation = AimRay.Position + (OffsetVec * WiderOffset);
-			Gizmo.Draw.Line(StartingLocation, StartingLocation + (AimRay.Forward * Distance));
+			
 			var PlayerPawnTrace = Scene.Trace.Ray(StartingLocation, StartingLocation + (AimRay.Forward * Distance))
 			.WithTag("player")
 			.WithoutTags("hill")

@@ -2662,16 +2662,6 @@
           "__PrefabVariables": {}
         },
         {
-          "__guid": "53945434-c26d-447d-a367-138c0a1859e5",
-          "Flags": 0,
-          "Name": "healthpack (7)",
-          "Position": "-3058.285,858.8944,121",
-          "Tags": "consumable",
-          "Enabled": true,
-          "__Prefab": "prefabs/map_shared/healthpack.prefab",
-          "__PrefabVariables": {}
-        },
-        {
           "__guid": "bb580f92-50fd-479a-b3d5-d999b79c0fcb",
           "Flags": 0,
           "Name": "healthpack (2)",

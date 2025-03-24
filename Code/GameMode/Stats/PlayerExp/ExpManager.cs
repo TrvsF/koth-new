@@ -33,7 +33,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 
 		FExpEvent ExpEvent = new()
 		{
-			Amount = CalculateExp(10, 5),
+			Amount = CalculateExp(3, 1),
 			Origin = ExpOrigins.Kill,
 		};
 

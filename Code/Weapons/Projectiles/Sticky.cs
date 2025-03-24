@@ -11,6 +11,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
+	private bool IsAttached = false;
 	private GameObject AttachedGameObject = null;
 	private Vector3 InitArmedWorldPosition;
 	private Transform InitArmedWorldTransformAttachedObject;
@@ -26,7 +27,6 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	public new void Destroy()
 	{
-		// PROGrAMmER
 		GameObject?.Root?.Destroy();
 	}
 
@@ -41,9 +41,14 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 	{
 		base.OnUpdate();
 
-		// TODO : make logic seperate 
-		if (AttachedGameObject != null)
+		if (IsAttached)
 		{
+			if (!AttachedGameObject.IsValid())
+			{
+				GameObject.Root.Destroy();
+				return;
+			}
+
 			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
 			GameObject.WorldPosition = InitArmedWorldPosition + GameObjectOffset;
 		}
@@ -84,6 +89,8 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 
 		Rigidbody.Velocity = Vector3.Zero;
 		Rigidbody.MotionEnabled = false;
+
+		IsAttached = true;
 		AttachedGameObject = HitObject;
 		InitArmedWorldTransformAttachedObject = HitObject.WorldTransform;
 		InitArmedWorldPosition = EventArgs.ProjectileCollision.HitLocation;

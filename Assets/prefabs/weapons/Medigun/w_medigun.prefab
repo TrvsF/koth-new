@@ -64,7 +64,7 @@
         "KnockbackStrength": 300,
         "MaxAmmo": -1,
         "MaxCharge": 200,
-        "MaxHealDistance": 340,
+        "MaxHealDistance": 330,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

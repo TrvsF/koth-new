@@ -98,17 +98,21 @@ public partial class PlayerPawn :
 	bool UberApplied = false;
 
 	[Rpc.Broadcast]
-	public void CheckUber(bool Ubered)
+	private void CheckUber(bool Ubered)
 	{
 		if (UberApplied && !Ubered)
 		{
 			Body.ModelRenderer.ClearMaterialOverrides();
+			CurrentEquipment?.ModelRenderer.ClearMaterialOverrides();
+
 			UberApplied = false;
 		}
 
 		if (!UberApplied && Ubered)
 		{
 			Body.ModelRenderer.SetMaterial(UberMaterial);
+			CurrentEquipment?.ModelRenderer.SetMaterial(UberMaterial);
+
 			UberApplied = true;
 		}
 	}

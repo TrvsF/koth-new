@@ -13,6 +13,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
+	private bool IsAttached = false;
 	private GameObject AttachedGameObject = null;
 	private Vector3 HitLocation;
 	private Transform InitArmedWorldTransformAttachedObject;
@@ -32,8 +33,14 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 	{
 		base.OnUpdate();
 
-		if (AttachedGameObject != null)
+		if (IsAttached)
 		{
+			if (!AttachedGameObject.IsValid())
+			{
+				GameObject.Root.Destroy();
+				return;
+			}
+			
 			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
 			GameObject.WorldPosition = HitLocation + GameObjectOffset;
 		}
@@ -99,6 +106,8 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 		Rigidbody.Velocity = Vector3.Zero;
 		Rigidbody.MotionEnabled = false;
+
+		IsAttached = true;
 		AttachedGameObject = Collision.HitObject;
 		InitArmedWorldTransformAttachedObject = Collision.HitObject.WorldTransform;
 		HitLocation = Collision.HitLocation;
