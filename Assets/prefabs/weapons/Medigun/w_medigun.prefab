@@ -54,8 +54,8 @@
         "__guid": "5469cd32-6e57-4452-af41-d61185fe8424",
         "Ammo": -1,
         "BaseDamage": 50,
-        "ChargeBuildRate": 0.03,
-        "ChargeDegradeRate": 0.05,
+        "ChargeBuildRate": 0.06,
+        "ChargeDegradeRate": 0.24,
         "FireRate": 1,
         "HasAmmo": false,
         "InputActions": [
@@ -63,6 +63,7 @@
         ],
         "KnockbackStrength": 300,
         "MaxAmmo": -1,
+        "MaxCharge": 200,
         "MaxHealDistance": 340,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -70,11 +71,9 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "OnInputAction": null,
         "ReloadTime": 1,
         "ReloadType": "None",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false,
         "TimePerOneHeal": 0.05
       }
     ],

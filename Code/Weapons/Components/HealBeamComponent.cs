@@ -8,6 +8,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 	[Property, Category("Healing")] public float TimePerOneHeal { get; set; } = .45f;
 	// [Property, Category("Healing")] public float HealsPerTick { get; set; } = .45f;
 	[Property, Category("Healing")] public float MaxHealDistance { get; set; } = 340f;
+	[Property, Category("Healing")] public float MaxCharge { get; set; } = 200f;
 	[Property, Category("Healing")] public float ChargeBuildRate { get; set; } = .03f;
 	[Property, Category("Healing")] public float ChargeDegradeRate { get; set; } = .05f;
 
@@ -74,7 +75,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 
 		if (IsUbered)
 		{
-			HealTarget.Uber();
+			HealTarget?.DamageComponent.Uber();
 		}
 
 		if (!HealInput)
@@ -171,9 +172,9 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			return; // NOTE : early return
 		}
 
-		if (!IsUbered)
+		if (!IsUbered && Charge <= MaxCharge)
 		{
-			Charge += ChargeBuildRate;
+			Charge = Math.Min(ChargeBuildRate + Charge, MaxCharge);
 		}
 		
 		if (TimeSinceBeamHealingDone >= TimePerOneHeal)

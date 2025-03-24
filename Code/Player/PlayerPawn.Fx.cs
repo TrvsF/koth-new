@@ -12,56 +12,42 @@ public partial class PlayerPawn :
 {
 	private void TickVFXs()
 	{
-		if (IsAlive /*HACK for proxy characters when body dies b4 health knows*/&& Body.IsValid())
+		if (!IsAlive /*HACK for proxy characters when body dies b4 health knows*/|| !Body.IsValid())
 		{
-			Assert.True(Body.IsValid());
-			Assert.True(AnimationHelper.IsValid());
-
-			Body.WorldRotation = Rotation.FromYaw(EyeAngles.yaw);
-
-			AnimationHelper.WithVelocity(CharacterController.Velocity);
-			AnimationHelper.WithWishVelocity(WishVelocity);
-			AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
-			AnimationHelper.IsGrounded = IsGrounded;
-			AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
-			AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
-			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
-			AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
-			AnimationHelper.IsWeaponLowered = false;
-			AnimationHelper.AimBodyWeight = 1f;
-
-			if (CurrentEquipment.IsValid())
-			{
-				AnimationHelper.HoldType = CurrentEquipment.HoldType;
-				AnimationHelper.Handedness = CurrentEquipment.Handedness;
-			}
-			else
-			{
-				AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.None;
-			}
-
-			var ClosestPlayerObject = GetClosestPlayerGameobject();
-
-			// TODO : this would be fun but its causing issues with base look
-			//if (ClosestPlayerObject != null)
-			//{
-			//	AnimationHelper.LookAtEnabled = true;
-			//	AnimationHelper.LookAt = ClosestPlayerObject;
-			//}
-			//else
-			//{
-			//	AnimationHelper.LookAtEnabled = false;
-			//}
-
-			if (Networking.IsHost)
-			{
-				CheckWalkSound(CharacterController.Velocity.WithZ(0).Length);
-			}
+			return;
 		}
 
-		if (TimeSinceLastUberMessage > .8f)
+		// Assert.True(Body.IsValid());
+		Assert.True(AnimationHelper.IsValid());
+
+		Body.WorldRotation = Rotation.FromYaw(EyeAngles.yaw);
+
+		AnimationHelper.WithVelocity(CharacterController.Velocity);
+		AnimationHelper.WithWishVelocity(WishVelocity);
+		AnimationHelper.WithLook(EyeAngles.Forward, 1, 1, 1.0f);
+		AnimationHelper.IsGrounded = IsGrounded;
+		AnimationHelper.DuckLevel = IsCrouching ? .5f : 0;
+		AnimationHelper.MoveStyle = CitizenAnimationHelper.MoveStyles.Run;
+		AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Shotgun;
+		AnimationHelper.Handedness = CitizenAnimationHelper.Hand.Both;
+		AnimationHelper.IsWeaponLowered = false;
+		AnimationHelper.AimBodyWeight = 1f;
+
+		if (CurrentEquipment.IsValid())
 		{
-			ClearMaterial();
+			AnimationHelper.HoldType = CurrentEquipment.HoldType;
+			AnimationHelper.Handedness = CurrentEquipment.Handedness;
+		}
+		else
+		{
+			AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.None;
+		}
+
+		if (Networking.IsHost)
+		{
+			CheckWalkSound(CharacterController.Velocity.WithZ(0).Length);
+
+			CheckUber(DamageComponent.IsUbered);
 		}
 	}
 
@@ -69,6 +55,18 @@ public partial class PlayerPawn :
 
 	private GameObject GetClosestPlayerGameobject()
 	{
+		// TODO : this would be fun but its causing issues with base look
+		// var ClosestPlayerObject = GetClosestPlayerGameobject();
+		//if (ClosestPlayerObject != null)
+		//{
+		//	AnimationHelper.LookAtEnabled = true;
+		//	AnimationHelper.LookAt = ClosestPlayerObject;
+		//}
+		//else
+		//{
+		//	AnimationHelper.LookAtEnabled = false;
+		//}
+
 		GameObject ClosestPlayerObject = null;
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
@@ -97,18 +95,22 @@ public partial class PlayerPawn :
 
 	/////////////////////////////////////////////////////////////////////////////////
 
-	TimeSince TimeSinceLastUberMessage = 0;
-	[Rpc.Broadcast]
-	public void Uber()
-	{
-		TimeSinceLastUberMessage = 0;
-		Body.ModelRenderer.SetMaterial(UberMaterial);
-	}
+	bool UberApplied = false;
 
 	[Rpc.Broadcast]
-	public void ClearMaterial()
+	public void CheckUber(bool Ubered)
 	{
-		Body.ModelRenderer.ClearMaterialOverrides();
+		if (UberApplied && !Ubered)
+		{
+			Body.ModelRenderer.ClearMaterialOverrides();
+			UberApplied = false;
+		}
+
+		if (!UberApplied && Ubered)
+		{
+			Body.ModelRenderer.SetMaterial(UberMaterial);
+			UberApplied = true;
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////

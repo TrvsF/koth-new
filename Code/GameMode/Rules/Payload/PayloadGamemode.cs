@@ -160,7 +160,6 @@ public sealed class PayloadGamemode : Component,
 				PriorPathsCovered += PayloadPathComponent.PathSegments[Index].SegmentPoints.Count;
 			}
 
-			Log.Info($"{CurrentSegmentIndex}:{PriorPathsCovered}");
 			if (CurrentSegmentIndex >= PriorPathsCovered)
 			{
 				OnCapture(CurrentPathSegmentIndex);

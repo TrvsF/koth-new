@@ -19,6 +19,12 @@ public sealed class DamageComponent : Component
 
 	//////////////////////////////////////////////////////////////////////////////////
 
+	public bool IsUbered { get; private set; } = false;
+	private TimeSince TimeSinceLastHealFromBeam = 1;
+	private TimeSince TimeSinceLastUbered = 1;
+
+	//////////////////////////////////////////////////////////////////////////////////
+
 	const float OverhealFactor = 1.5f;
 	private int MaxHealthWithOverheal { get => (MaxBaseHealth * OverhealFactor).CeilToInt(); }
 
@@ -49,11 +55,13 @@ public sealed class DamageComponent : Component
 		}
 
 		// if we have overheal slowly drain it
-		if (Health > MaxBaseHealth && TimeSinceHealthDegrade > 0.45)
+		if (Health > MaxBaseHealth && TimeSinceHealthDegrade > 0.33f && TimeSinceLastHealFromBeam > 0.08f)
 		{
 			--Health;
 			TimeSinceHealthDegrade = 0;
 		}
+
+		IsUbered = TimeSinceLastUbered < 0.33f;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -73,6 +81,11 @@ public sealed class DamageComponent : Component
 	{
 		Assert.True(Networking.IsHost);
 
+		if (Heals.HealingType == EHealingType.Continuous)
+		{
+			TimeSinceLastHealFromBeam = 0;
+		}
+
 		var MaxHealth = Heals.AllowOverheal ? MaxHealthWithOverheal : MaxBaseHealth;
 		var RequestedHealth = Health + Heals.BaseHealing;
 		
@@ -86,6 +99,7 @@ public sealed class DamageComponent : Component
 
 		Health += Healing;
 
+		//////////////////////////////////////////
 		// feels right to have this here ¯\_(ツ)_/¯
 		FHealingReceived HealingDoneMessage = new()
 		{
@@ -97,14 +111,22 @@ public sealed class DamageComponent : Component
 			HealingType = Heals.HealingType,
 		};
 
-		//////////////////////////////////////////
-
 		BroadcastHeals(HealingDoneMessage);
+	}
+
+	public void Uber()
+	{
+		TimeSinceLastUbered = 0;
 	}
 
 	public void TakeDamage(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
+
+		if (IsUbered)
+		{
+			return;
+		}
 
 		Health -= DamageTaken.Damage.FloorToInt();
 		BroadcastDamage(DamageTaken);

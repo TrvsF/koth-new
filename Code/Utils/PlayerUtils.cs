@@ -16,6 +16,26 @@ public sealed class PlayerUtils
 	{
 		LookAtInfo = new();
 
+		if (!PlayerPawn.IsValid() || !Scene.IsValid())
+		{
+			return false;
+		}
+
+		if (PlayerPawn.CurrentEquipment.GameObject.GetComponent<HealBeamComponent>() is { } HealBeam)
+		{
+			if (HealBeam.HealTarget.IsValid())
+			{
+				LookAtInfo = new()
+				{
+					Name = HealBeam.HealTarget.DisplayName,
+					Health = HealBeam.HealTarget.Health.ToString(),
+					Team = HealBeam.HealTarget.Team,
+				};
+
+				return true;
+			}
+		}
+
 		var TraceStart = PlayerPawn.AimRay.Position;
 		var StartRotation = Rotation.LookAt(PlayerPawn.AimRay.Forward);
 		var TraceForward = StartRotation.Forward.Normal;
