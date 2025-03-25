@@ -858,6 +858,978 @@
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/killzone.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "8e490e78-e1b4-48f2-9320-0a73d9799528",
+      "Flags": 0,
+      "Name": "MSpawns",
+      "Enabled": true,
+      "Children": [
+        {
+          "__guid": "71a7e04a-823e-436e-8659-ebed42550d6f",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1154.114,586.6116,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "749b24a9-91c5-4f4e-9124-094d6e61dbdf",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "4a2d00d1-d3de-4920-bb04-85964e0156f9",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1154.114,506.4683,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "1c57772a-2f07-4327-9c7f-e516e2cd9ad6",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "c329c37e-9bff-42e5-8aeb-03f6bf65f3da",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1154.114,655.7548,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "c2859327-4ac3-47fe-a15f-1875588bd661",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "37cfc19e-c09e-448c-9205-f53df2f27f9d",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1248.328,586.6115,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "356101bd-8b53-4c34-bb7c-0f2f70aaad54",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "bcecda25-aace-494b-a09f-8a4befffcfb2",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1248.328,506.4681,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "4b17aa50-50ca-4bf1-a14e-29235f8d09b0",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "30197750-42de-4330-b158-ec3b3f9878ff",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1248.328,655.7546,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "5aad2a74-728d-419a-b047-a1c89f7abb3c",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "3cc5ba17-50be-4422-856b-2f2fd0507964",
+          "Flags": 0,
+          "Name": "sidepoint",
+          "Position": "-1452.331,782.9026,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "6127e8be-9055-4486-ade6-8adf3fa0c1e8",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "9c757ae6-627f-4569-ac88-7bca05b46be1",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1062.09,586.6117,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "384dd0c3-77fb-4330-b199-e6160f16bdca",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "77c8d665-5ac2-4d9d-aa2b-65dcb84338e3",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1062.09,506.4684,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "8e3b78f4-fa4b-4a49-a601-09a004a9ffdb",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "cf021180-fd60-4842-869d-dab4c6e95c5d",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1062.091,655.7549,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "8f385dc7-a9ce-4f55-a9b6-e56e1e9995af",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "b0eb536c-9a52-42bf-b90d-938f784a4d9c",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.456,586.6115,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "e65c41cc-001a-49b6-9c34-b19a7aa3a003",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "270768d4-a8ca-4768-be5b-0e7103d2daee",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.456,506.4682,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "34be5c6c-0e14-44f8-92f0-e0752a36c757",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "304ec4c1-f70b-489a-b47f-c9542e99e697",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.456,655.7547,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "eda0c189-848b-4301-a196-a676ba87be13",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "74b8d836-9300-40cd-99c4-bf06b14ce2f7",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,586.6114,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "3e328289-a7ea-4434-baff-a74bb8ebfa61",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "4634412f-776e-49b7-999f-e7530f5231c9",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,506.4681,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "95084d7c-da86-42a7-9905-8e57f7290816",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "50b561c5-c529-449b-bc27-b7d446167900",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,655.7546,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "be6b9a72-cf9f-4db4-b7d6-83b472ff52a5",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "18cb55bb-427d-4383-9876-94596c07aa71",
+          "Flags": 0,
+          "Name": "sidepoint",
+          "Position": "-1501.673,782.9026,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "2f0ebc65-805a-4e73-aa8d-518935f865d2",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "b34364cb-d4f9-464b-8e73-d4e85140025e",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.432,586.6116,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "5b476bc1-775d-46cd-8d83-d456b7c860f4",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "bce8ebb2-5a5b-4125-9ae0-6eaadde51b35",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.433,506.4683,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "a26cb7cb-9f9e-4d90-bcbc-2bdc6b4c0754",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "807371da-86f9-4c99-a203-ba084c9256c3",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.433,655.7548,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "b984bd0b-7195-4e4c-bd34-f33eb8de08a9",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "bc061c51-f355-42e5-a9df-97f47ecfc35b",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.456,624.3031,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "2a2fc815-73d5-48d0-94be-b0294a098f1a",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "c024c6de-4d16-4cc9-a3d4-a6c03522fe5e",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.456,544.1598,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "2d878a04-7607-4db6-bc6e-d2e88d9736b0",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "25e248e0-f2d2-444e-83b6-d03dbfc66a2d",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1203.457,693.4463,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "96021f94-e29f-40b3-b37c-d6c40e857890",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "125dcaf1-9a02-4e49-8492-5b8a80a14efe",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,624.303,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "d1a355d9-cc51-4675-9252-c9ebd5656a1f",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "35a8af90-bcc6-4ad6-8858-8ce8f4d878ba",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,544.1597,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "f44825a2-7483-4b62-9d34-3f18bd5ed467",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "68e05182-c7da-4943-97d8-7d309354410d",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1297.67,693.4462,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "cf922b23-3852-4168-9e2b-f1fc8daa2568",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "62b0af0e-a695-4c02-b74a-bfd00d34b1e8",
+          "Flags": 0,
+          "Name": "sidepoint",
+          "Position": "-1501.673,820.5942,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "ea01656b-4a04-49dd-828a-895548bfe36c",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "471f0e6b-1c80-4f47-a0f2-9c03e405afe4",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.433,624.3032,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "911d34a9-f395-4ac4-b684-0b6b295d5a7e",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "ea9a4b28-2789-47df-ae47-0c1e3075a726",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.433,544.1599,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "4d791776-eeed-4c0e-9d6b-66995cbdf4ce",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "27a3c9d4-81c5-4ed3-b098-4245705b0f9f",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1111.433,693.4464,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "af6f92e6-a919-4ffc-a9d0-8617f5cbcbd1",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "5faa34ea-59c7-47da-b2aa-dc885c34f424",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1153.356,624.3031,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "adab9d14-405b-4ecc-be6a-7ad36b7adf8a",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "48b013b3-810f-4bbf-838e-b41f53c73957",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1153.356,544.1598,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "a232f279-9719-406e-80e8-5493218a7e00",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "b0c338dc-fbe4-469b-8ed0-2931ddaf5f85",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1153.356,693.4463,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "50aaa21d-e13d-4dbe-a580-0139e8019b01",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "3d9bc90d-1f12-4753-af8c-1bc9ce77f236",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1247.57,624.303,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "1e0706dc-e9b0-4f94-b80a-a473faf8f0f3",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "c3804988-b406-4c1f-ad2c-bf8b62489d3a",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1247.57,544.1597,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "34a895d7-aa75-4ed4-a834-b3dc2f9d9400",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "01ee6840-8d3e-42b2-a150-cc7fe46f9434",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1247.57,693.4462,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "475e74a3-2581-4f62-ba0f-afdb5848c003",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "5e18e821-f413-4a9c-99e1-b2bae8721dc5",
+          "Flags": 0,
+          "Name": "sidepoint",
+          "Position": "-1451.573,820.5942,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "7d973d9b-63cc-4c8d-9d6b-47d24ed5ff4d",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "5a058ad3-f0be-4306-bcbe-d63f9ef74d35",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1061.333,624.3032,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "c620edfd-6fb5-4f9c-8bf5-4b652574a9d5",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "3b8bc513-7a70-46fb-aa82-5345c7d3ee71",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1061.333,544.1599,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "3dea7449-720f-41e9-82f2-9dd2fcf7a568",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        },
+        {
+          "__guid": "d8c218ad-855f-42a7-a513-5828093a5c05",
+          "Flags": 0,
+          "Name": "spawnpoint (1)",
+          "Position": "-1061.333,693.4464,130.5549",
+          "Rotation": "0,0,-0.7071066,0.7071068",
+          "Components": [
+            {
+              "__type": "TeamSpawnPoint",
+              "__guid": "a6dc40cf-5a0b-448c-8349-058f9962c720",
+              "IsDummy": true,
+              "Jumper": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "SpawnZone": null,
+              "Team": "Unassigned",
+              "Walker": false
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

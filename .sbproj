@@ -10,7 +10,7 @@
   "EditorReferences": [],
   "IsStandaloneOnly": false,
   "Metadata": {
-    "MaxPlayers": 16,
+    "MaxPlayers": 18,
     "MinPlayers": 1,
     "GameNetworkType": "Multiplayer",
     "MapSelect": "Official",

@@ -1,0 +1,23 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Botz",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "botz",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "quack.skybox_white#13352"
+      ],
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/mge/mge.vmap",
+        "ParentPackage": "wurstsoftware.koth"
+      }
+    }
+  }
+}

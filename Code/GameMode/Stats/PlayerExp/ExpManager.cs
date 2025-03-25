@@ -25,7 +25,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 
 		var PlayerState = DamageEvent.AttackerPlayerState;
 
-		if (!PlayerState.IsValid())
+		if (!PlayerState.IsValid() || PlayerState == DamageEvent.VictimPlayerState)
 		{
 			// likely means we're a dummy
 			return;
