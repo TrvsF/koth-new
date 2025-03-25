@@ -229,9 +229,14 @@ public partial class PlayerPawn :
 	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void OnHealingGiven(FHealingReceived HealingDone)
 	{
-		if (IsLocallyControlled && HealingDone.TargetPlayerPawn == this)
+		if (IsLocallyControlled)
 		{
-			UI.Health.Instance?.OnHealing(HealingDone);
+			if (HealingDone.TargetPlayerPawn == this)
+			{
+				UI.Health.Instance?.OnHealing(HealingDone);
+			}
+
+			UI.DamageNumbers.Instance?.OnHit(HealingDone);
 		}
 	}
 

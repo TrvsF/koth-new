@@ -82,6 +82,50 @@
 		DamageNumberElements.Add(DamageNumberElement);
 	}
 
+	public void OnHit(FHealingReceived HealingReceived)
+	{
+		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive
+			|| HealingReceived.TargetPlayerPawn == LocalPlayerPawn || !HealingReceived.TargetPlayerPawn.IsValid()
+			|| HealingReceived.HealingType == EHealingType.Continuous)
+		{
+			return;
+		}
+
+		var Distance = HealingReceived.TargetPlayerPawn.WorldPosition.Distance(LocalPlayerPawn.WorldPosition);
+		var DamageLocation = HealingReceived.TargetPlayerPawn.WorldPosition;
+
+		foreach (var Element in DamageNumberElements)
+		{
+			if (Element.DisplayedTime < -0.1f)
+			{
+				continue;
+			}
+
+			if (Element.TargetPawn == HealingReceived.TargetPlayerPawn)
+			{
+				Element.AddDamage(HealingReceived.Heals);
+				Element.DisplayedTime = 0;
+				Element.Location = DamageLocation;
+
+				return; // NOTE : early return
+			}
+		}
+
+		// if we haven't return'd then make a new element
+		FScreenNumberElement DamageNumberElement = new()
+			{
+				PlayerPawn = LocalPlayerPawn,
+				TargetPawn = HealingReceived.TargetPlayerPawn,
+				ScreenOffset = GetScreenOffset(Distance),
+				Damage = HealingReceived.Heals,
+				DisplayedTime = 0,
+				Location = DamageLocation,
+				IsDamage = false,
+			};
+
+		DamageNumberElements.Add(DamageNumberElement);
+	}
+
 	public override void Tick()
 	{
 		List<FScreenNumberElement> DamageNumbersToRemove = new();

@@ -185,7 +185,7 @@ public sealed class HealBeamComponent : InputWeaponComponent
 			{
 				TargetDamageComponent = HealTarget.DamageComponent,
 				TargetPlayerPawn = HealTarget,
-				AttackerPlayerPawn = PlayerPawn,
+				HealerPlayerPawn = PlayerPawn,
 				BaseHealing = 1,
 				HealingOrigin = PlayerPawn.WorldPosition,
 				AllowOverheal = true,

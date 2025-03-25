@@ -7,6 +7,8 @@ public struct FPlayerLookAtInfo
 	public string Name { get; init; }
 	public string Health { get; init; }
 	public Team Team { get; init; }
+
+	public string Description { get; init; }
 }
 
 
@@ -21,7 +23,7 @@ public sealed class PlayerUtils
 			return false;
 		}
 
-		if (PlayerPawn.CurrentEquipment.GameObject.GetComponent<HealBeamComponent>() is { } HealBeam)
+		if (PlayerPawn.CurrentEquipment?.GameObject.GetComponent<HealBeamComponent>() is { } HealBeam)
 		{
 			if (HealBeam.HealTarget.IsValid())
 			{
@@ -35,6 +37,20 @@ public sealed class PlayerUtils
 				return true;
 			}
 		}
+
+		//if (PlayerPawn.DamageComponent.TimeSinceLastHealFromBeam < 0.1 && PlayerPawn.DamageComponent.LastHealer.IsValid())
+		//{
+
+		//	LookAtInfo = new()
+		//	{
+		//		Name = PlayerPawn.DamageComponent.LastHealer.DisplayName,
+		//		Health = PlayerPawn.DamageComponent.LastHealer.Health.ToString(),
+		//		Team = PlayerPawn.DamageComponent.LastHealer.Team,
+		//		Description = "Healer :  "
+		//	};
+
+		//	return true;
+		//}
 
 		var TraceStart = PlayerPawn.AimRay.Position;
 		var StartRotation = Rotation.LookAt(PlayerPawn.AimRay.Forward);

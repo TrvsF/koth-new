@@ -45,7 +45,7 @@ public sealed class PayloadCart : Component
 				{
 					TargetDamageComponent = CapturePlayer.DamageComponent,
 					TargetPlayerPawn = CapturePlayer,
-					AttackerPlayerPawn = null,
+					HealerPlayerPawn = null,
 					BaseHealing = 1,
 					HealingOrigin = GameObject.WorldPosition,
 					AllowOverheal = false,

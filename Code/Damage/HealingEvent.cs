@@ -9,7 +9,7 @@ public record FHealingRequest
 {
 	public DamageComponent TargetDamageComponent { get; init; }
 	public PlayerPawn TargetPlayerPawn { get; init; }
-	public PlayerPawn AttackerPlayerPawn { get; init; }
+	public PlayerPawn HealerPlayerPawn { get; init; }
 	public int BaseHealing { get; init; } = 0;
 	public bool AllowOverheal { get; init; } = false;
 

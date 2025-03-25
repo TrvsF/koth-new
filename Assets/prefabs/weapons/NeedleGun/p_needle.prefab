@@ -72,7 +72,11 @@
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "TrailPrefab": {
+          "_type": "gameobject",
+          "prefab": "particles/weapons/needle-trial.prefab"
+        }
       },
       {
         "__type": "KOTH.TimedDestroyComponent",
@@ -86,8 +90,8 @@
         "Time": 30,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -3071.7117,
-          "Passed": 3071.7117,
+          "Relative": -4078.7517,
+          "Passed": 4078.7517,
           "Fraction": 1
         }
       }

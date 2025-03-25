@@ -10,6 +10,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 	[Property, Group("Healing")] public int MaxHealing { get; set; } = 100;
 	[Property, Group("Damage")] public int MinDamage { get; set; } = 40;
 	[Property, Group("Damage")] public int MaxDamage { get; set; } = 90;
+	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +45,13 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
 			GameObject.WorldPosition = HitLocation + GameObjectOffset;
 		}
+		else
+		{
+			if (TrailPrefab.IsValid())
+			{
+				TrailPrefab.Clone(WorldPosition);
+			}
+		}
 	}
 
 	private float MaxDistance = 1800f;
@@ -70,7 +78,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 				{
 					TargetDamageComponent = CollidePlayerPawn.DamageComponent,
 					TargetPlayerPawn = CollidePlayerPawn,
-					AttackerPlayerPawn = OwnerPlayerPawn,
+					HealerPlayerPawn = OwnerPlayerPawn,
 					BaseHealing = Healing,
 					AllowOverheal = false,
 					HealingType = EHealingType.OneOff,

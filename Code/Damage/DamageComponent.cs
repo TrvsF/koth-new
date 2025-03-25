@@ -104,9 +104,9 @@ public sealed class DamageComponent : Component
 		FHealingReceived HealingDoneMessage = new()
 		{
 			TargetPlayerState = GameUtils.GetPlayerState(Heals.TargetPlayerPawn?.Id),
-			HealerPlayerState = GameUtils.GetPlayerState(Heals.AttackerPlayerPawn?.Id),
+			HealerPlayerState = GameUtils.GetPlayerState(Heals.HealerPlayerPawn?.Id),
 			TargetPlayerPawn = Heals.TargetPlayerPawn,
-			HealerPlayerPawn = Heals.AttackerPlayerPawn,
+			HealerPlayerPawn = Heals.HealerPlayerPawn,
 			Heals = Healing,
 			HealingType = Heals.HealingType,
 		};
