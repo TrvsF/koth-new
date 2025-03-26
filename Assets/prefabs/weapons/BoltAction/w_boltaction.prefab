@@ -70,14 +70,12 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "OnInputAction": null,
         "OutwardFactor": 0.77,
         "Radius": 4,
         "RecoilAddFactor": 0.2,
         "ReloadTime": 1.66,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false,
         "ShootSound": "sounds/guns/f1/ar2_shoot.sound",
         "Sides": 1,
         "TrailPrefab": {
@@ -141,7 +139,7 @@
             "__guid": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979",
             "Flags": 0,
             "Name": "Muzzle",
-            "Position": "20.07571,0,7.212921",
+            "Position": "19.32129,0.0000006556511,7.212921",
             "Enabled": true
           },
           {

@@ -240,14 +240,16 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		if (TrailPrefab.IsValid())
 		{
-			var EstimatedStartPositionWorld = Equipment.Owner.CenterPosition;
+			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
 			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectTransform.Position);
 
-			var Lerp = 0.05f;
+			var Lerp = 0f;
 			while (Lerp < 1f)
 			{
 				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectTransform.Position, Lerp);
-				TrailPrefab.Clone(Position, Equipment.Owner.Boom.WorldRotation);
+				var Trail = TrailPrefab.Clone(Position, Equipment.Owner.Boom.WorldRotation);
+				Trail.NetworkMode = NetworkMode.Never;
+
 				Lerp += LerpFactor;
 				++ShotParticles;
 

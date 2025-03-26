@@ -86,7 +86,7 @@
 	{
 		if (!LocalPlayerPawn.IsValid() || !LocalPlayerPawn.IsAlive
 			|| HealingReceived.TargetPlayerPawn == LocalPlayerPawn || !HealingReceived.TargetPlayerPawn.IsValid()
-			|| HealingReceived.HealingType == EHealingType.Continuous)
+			|| HealingReceived.HealingType == EHealingType.Continuous || HealingReceived.TargetPlayerPawn.Team != LocalPlayerPawn.Team)
 		{
 			return;
 		}
