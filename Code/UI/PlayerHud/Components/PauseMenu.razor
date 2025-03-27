@@ -9,10 +9,8 @@
 
 <root class="hidden flex absolute inset-0 align-center justify-center">
 	<div onclick="@(() => {PlayerState.Local.IsPaused = false;})">Resume</div>
-	@* <div>Change Class</div> *@
-	<div onclick="@(() => SwapTeam())">Swap Team</div>
+	<div @onclick="@(() => Game.Overlay.ShowSettingsModal())">Settings</div>
 	<div onclick="@(() => GoToMenu())">Main Menu</div>
-	<div onclick ="@(() => {Game.Close();})">Quit</div>
 </root>
 
 @code
@@ -52,6 +50,6 @@
 		}
 
 		IsActive = false;
-		SetClass("visible", false);	
+		SetClass("visible", false);
 	}
 }

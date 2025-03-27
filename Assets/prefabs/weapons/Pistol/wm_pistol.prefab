@@ -28,7 +28,7 @@
         },
         "Muzzle": {
           "_type": "gameobject",
-          "go": "17537c4e-23c1-45b8-9429-f950b345213d"
+          "go": "e2f1a9dd-f530-4a06-afec-cc971904ef7b"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -63,6 +63,7 @@
           "vectors": {},
           "rotations": {}
         },
+        "PlaybackRate": 1,
         "RenderOptions": {
           "GameLayer": true,
           "OverlayLayer": false,
@@ -115,6 +116,7 @@
               "vectors": {},
               "rotations": {}
             },
+            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -147,7 +149,7 @@
                 "__guid": "17537c4e-23c1-45b8-9429-f950b345213d",
                 "Flags": 0,
                 "Name": "muzzle",
-                "Position": "26.12877,-0.000008847099,0.3117719",
+                "Position": "5.895199,-0.0000108136,1.741158",
                 "Rotation": "0.000001825357,0.00000008972711,-0.00000008035568,1",
                 "Enabled": true
               },

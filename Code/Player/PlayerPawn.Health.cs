@@ -24,13 +24,6 @@ public partial class PlayerPawn
 		DamageComponent.OnDeath += OnKill;
 	}
 
-	protected override void OnDestroy()
-	{
-		OnDeath?.Invoke();
-
-		base.OnDestroy();
-	}
-
 	public void OnKill(FDamageTaken DamageTaken)
 	{
 		Assert.True(Networking.IsHost);
@@ -57,8 +50,10 @@ public partial class PlayerPawn
 			WalkSoundHandle = null;
 		}
 
+
 		BroadcastLocalPlayerDeath(DamageTaken);
 
+		OnDeath?.Invoke();
 		GameObject.Root.Destroy();
 	}
 

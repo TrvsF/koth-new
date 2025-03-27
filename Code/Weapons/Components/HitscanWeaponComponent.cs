@@ -232,18 +232,17 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	[Rpc.Broadcast]
 	public void BulletHitVFX(Transform HitObjectTransform)
 	{
-		if (!Equipment.Owner.IsValid())
+		if (!Equipment.IsValid() || !Equipment.Owner.IsValid() || !Equipment.ViewModel.IsValid())
 		{
-			Log.Warning($"owner not valid on hitscan comp {this}");
 			return;
 		}
 
 		if (TrailPrefab.IsValid())
 		{
-			var EstimatedStartPositionWorld = Equipment.Muzzle.WorldPosition;
+			var EstimatedStartPositionWorld = IsProxy ? Equipment.Muzzle.WorldPosition : Equipment.ViewModel.Muzzle.WorldPosition;
 			var LerpFactor = TrialAmount / EstimatedStartPositionWorld.Distance(HitObjectTransform.Position);
 
-			var Lerp = 0f;
+			var Lerp = IsProxy ? 0 : 0.02f;
 			while (Lerp < 1f)
 			{
 				var Position = Vector3.Lerp(EstimatedStartPositionWorld, HitObjectTransform.Position, Lerp);

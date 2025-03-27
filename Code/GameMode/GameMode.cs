@@ -134,6 +134,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 				var ClonedSpawnZone = ClonedSpawnObject.GetComponent<SpawnZone>();
 				if (ClonedSpawnZone.IsValid())
 				{
+					Log.Info("Creating Blocker");
 					ClonedSpawnZone.CreatePlayerCollisionBox();
 					SpawnZoneBlockers.Add(ClonedSpawnObject);
 				}

@@ -11,7 +11,7 @@
 			{
 				<button onclick=@(() => { BaseMenu = false; SinglePlayer = true; })>SinglePlayer</button>
 				<button onclick=@(() => OnMultiplayer())>Multiplayer</button>
-				<button onclick=@(() => Log.Info("you found the easer egg!"))>Settings</button>
+				<button onclick=@(() => Game.Overlay.ShowSettingsModal())>Settings</button>
 			}
 
 			@if (SinglePlayer)

@@ -35,4 +35,18 @@ public partial class StickyTrackerComponent : Component
 			Stickies.Dequeue();
 		}
 	}
+
+	protected override void OnDestroy()
+	{
+		// TODO : understand the lifecycle of these
+		// methods more, this is erroring when leaving
+		// the game...
+
+		//foreach (var Sticky in Stickies)
+		//{
+		//	Sticky.GameObject.Destroy();
+		//}
+
+		base.OnDestroy();
+	}
 }
