@@ -111,7 +111,7 @@ public sealed class TextChatBox : TextEntry
 		FTextChatMessage ChatMessage = new()
 		{
 			Message = FilteredMessage,
-			AuthorName = PlayerState.Local.SteamName,
+			AuthorName = PlayerState.Local.PlayerPawn.DisplayName,
 			AuthorSteamID = PlayerState.Local.SteamId,
 			Team = IsTeamChat ? PlayerState.Local.Team : Team.Unassigned,
 		};

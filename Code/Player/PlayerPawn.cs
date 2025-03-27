@@ -5,6 +5,7 @@ using Sandbox.Diagnostics;
 using Sandbox.Events;
 using Sandbox.Services;
 using System.Reflection.Metadata.Ecma335;
+using KOTH.Api;
 using KOTH.PlayerExp;
 
 namespace KOTH;
@@ -44,7 +45,9 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	[Property] public bool IsDummy { get; private set; } = false;
 	[Property] public bool IsLocallyControlled => !IsProxy && !IsDummy;
-	[Property] public bool IsViewer => PlayerState.Local?.PlayerPawn == this; // TODO : make spectate target in playerpawn?
+
+	[Property]
+	public bool IsViewer => PlayerState.Local?.PlayerPawn == this; // TODO : make spectate target in playerpawn?
 
 	// TODO : dummy only var, refactor
 	public bool IsJumper = false;
@@ -77,13 +80,29 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	protected override void OnStart()
+	protected override async void OnStart()
 	{
 		Assert.NotNull(Head);
 		Assert.True(PlayerPawnDefinition.IsValid());
 
-		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
+		DisplayName = PlayerPawnDefinition.Name;
+		var state = GameUtils.GetPlayerState(Id);
+
+		if (state == null) { Log.Warning("State is null"); }
+		else
+		{
+			var connection = state.Connection;
+			if (connection == null) { Log.Warning("Connection id is null"); }
+			else
+			{
+				var clanTag = await BlueMurderApi.Instance.GetPlayerClanTag(connection.SteamId.Value.ToString());
+				if (clanTag != null && clanTag.Length > 0)
+				{
+					DisplayName = $"[{clanTag}] " + PlayerPawnDefinition.Name;
+				}
+			}
+		}
 
 		Tags.Add($"{Team}");
 		Team = PlayerPawnDefinition.Team;
@@ -109,7 +128,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
-
 		}
 		else
 		{
@@ -139,6 +157,7 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 	}
 
 	public SceneTraceResult CachedEyeTrace { get; private set; }
+
 	protected override void OnFixedUpdate()
 	{
 		// TODO : these have been downgraded til sbox has a proper component
