@@ -1,4 +1,6 @@
-﻿using KOTH.Notification;
+﻿using System.Threading.Tasks;
+using KOTH.Api;
+using KOTH.Notification;
 using KOTH.PlayerExp;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
@@ -24,6 +26,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
 	[RequireComponent] public ExpManager ExpManager { get; private set; }
 	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
+	[RequireComponent] public BlueMurderApi Api { get; private set; }
 	[Property] public GameStats GameStats { get; private set; }
 
 	/////////////////////////////////////////////////////////////
@@ -65,9 +68,16 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		base.OnAwake();
 	}
 
-	protected override void OnStart()
+	protected override async void OnDestroy()
+	{
+		await Api.RemovePlayerSession();
+	}
+
+	protected override async void OnStart()
 	{
 		base.OnStart();
+
+		await Api.RegisterNewPlayerSession();
 
 		NotificationManager.AddNotification(new FNotification()
 		{

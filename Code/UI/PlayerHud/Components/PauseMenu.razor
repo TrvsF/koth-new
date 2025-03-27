@@ -1,4 +1,6 @@
 ﻿@using System;
+@using System.Text.RegularExpressions
+@using KOTH.Api
 @using Sandbox.UI;
 @using KOTH.PlayerExp;
 
@@ -8,18 +10,63 @@
 @attribute [StyleSheet]
 
 <root class="hidden flex absolute inset-0 align-center justify-center">
-	<div onclick="@(() => {PlayerState.Local.IsPaused = false;})">Resume</div>
+	@if (EditingClanTag)
+	{
+		<p>
+			Enter New Clan Tag:
+		</p>
+		<TextEntry @ref="ClanTag" onsubmit="@SubmitClanTag" onchange="@LimitClanTag"/>
+	}
+	<div onclick="@(() => { PlayerState.Local.IsPaused = false; })">Resume</div>
 	@* <div>Change Class</div> *@
+	<div onclick="@(() => ShowClantag())">Change Clan Tag</div>
+
 	<div onclick="@(() => SwapTeam())">Swap Team</div>
 	<div onclick="@(() => GoToMenu())">Main Menu</div>
-	<div onclick ="@(() => {Game.Close();})">Quit</div>
+	<div onclick="@(() => { Game.Close(); })">Quit</div>
 </root>
 
 @code
 {
+
+	bool EditingClanTag = false;
+
+	public TextEntry ClanTag { get; set; }
+
+
+	public async void ShowClantag()
+	{
+		EditingClanTag = true;
+		ClanTag = new TextEntry();
+		//ClanTag.Focus();
+		var netClanTag = await BlueMurderApi.Instance.GetPlayerClanTag(Connection.Local.SteamId.Value.ToString());
+		ClanTag.Text = netClanTag;
+	}
+
+	public void SubmitClanTag()
+	{
+		_ = BlueMurderApi.Instance.SetCurrentPlayerClanTag(ClanTag.Text);
+		EditingClanTag = false;
+		ClanTag = null;
+	}
+
+	public void LimitClanTag()
+	{
+
+		if (ClanTag.Text.Length > 3)
+		{
+			ClanTag.Text = ClanTag.Text.Substring(0, 3);
+		}
+
+		ClanTag.Text = Regex.Replace(ClanTag.Text, TextChat.TextFilterRegex, "");
+
+	}
+
 	public void GoToMenu()
 	{
 		PlayerState.Local.IsPaused = false;
+		EditingClanTag = false;
+		ClanTag = null;
 		Networking.Disconnect();
 		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
 	}
@@ -27,12 +74,13 @@
 	public void SwapTeam()
 	{
 		PlayerState.Local.RequestTeamSwap();
+		EditingClanTag = false;
+		ClanTag = null;
 		PlayerState.Local.IsPaused = false;
 	}
 
 	public void ChangeClass()
 	{
-
 	}
 
 	public bool IsActive { get; set; }
@@ -51,7 +99,9 @@
 			return;
 		}
 
+		ClanTag = null;
+		EditingClanTag = false;
 		IsActive = false;
-		SetClass("visible", false);	
+		SetClass("visible", false);
 	}
 }
