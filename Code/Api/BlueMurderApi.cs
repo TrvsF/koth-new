@@ -10,7 +10,7 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	private Dictionary<string, string> Headers = new();
 
 	// TODO Don't know if there is a method in sandbox to see if we are running in the editor or live?
-	private bool Dev = true;
+	private bool Dev = false;
 
 
 	public bool Connected = false;
@@ -28,7 +28,7 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	{
 		get
 		{
-			return (Dev) ? "http://localhost:8080/api/v1/" : "https://bluemurder.co.uk/api/v1/";
+			return (Dev) ? "http://localhost:8080/api/v1/" : "https://blue-murder.com/api/v1/";
 		}
 	}
 
@@ -36,7 +36,7 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	{
 		get
 		{
-			return (Dev) ? "http://localhost:8080/auth/" : "https://bluemurder.co.uk/auth/";
+			return (Dev) ? "http://localhost:8080/auth/" : "https://blue-murder.com/auth/";
 		}
 	}
 
