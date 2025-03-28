@@ -38,11 +38,10 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	private bool LastReload = false;
 	protected override void OnUpdate()
 	{
-		if (!Player.IsValid())
+		if (!Player.IsValid() || !Player.IsLocallyControlled)
+		{
 			return;
-
-		if (!Player.IsLocallyControlled)
-			return;
+		}
 
 		if (IsReloading && !LastReload)
 		{
@@ -104,35 +103,30 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void StartReload()
 	{
+		SetReloadAnimations(true);
+
 		if (!IsProxy)
 		{
 			TimeUntilReload = GetReloadTime();
-			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", true);
 		}
-
-		// Tags will be better so we can just react to stimuli.
-		// Equipment.Owner?.BodyRenderer?.Set("b_reload", true);
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void CancelReload()
 	{
+		SetReloadAnimations(false);
+
 		if (!IsProxy)
 		{
 			IsReloading = false;
 			LastReload = false;
-			Equipment.ViewModel?.ModelRenderer?.Set("b_reload", false);
 		}
-
-		// TODO : this doesn't seem to work?
-		// Equipment.Owner?.BodyRenderer?.Set("b_reload", false);
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void EndReload()
 	{
-		// Tags will be better so we can just react to stimuli.
-		Equipment.ViewModel?.ModelRenderer.Set("b_reload", false);
+		SetReloadAnimations(false);
 
 		if (IsProxy)
 		{
@@ -176,6 +170,12 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		}
 	}
 
+	private void SetReloadAnimations(bool Reloading)
+	{
+		Equipment.ViewModel?.ModelRenderer.Set("b_reload", Reloading);
+		Player?.Body?.ModelRenderer?.Set("b_reload", Reloading);
+	}
+
 	public Dictionary<float, SoundEvent> TimedReloadSounds { get; set; } = new();
 	public Dictionary<float, SoundEvent> EmptyReloadSounds { get; set; } = new();
 
@@ -204,7 +204,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	{
 		var Damage = BaseDamage;
 		var Kb = KnockbackStrength;
-		
+
 		if (IsProjectile)
 		{
 			var ProjectileShooter = (ProjectileWeaponComponent)this;
@@ -246,6 +246,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		if (!Equipment.IsDeployed)
 		{
 			TimeSinceDeployed = 0;
+			isDown = false;
 			return;
 		}
 
@@ -258,7 +259,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		{
 			isDown = Input.Down(action);
 		}
-		
+
 		OnInputUpdate();
 	}
 }
