@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 
 	// TODO Don't know if there is a method in sandbox to see if we are running in the editor or live?
 	private bool Dev = true;
+
+
+	public bool Connected = false;
 
 	private long SteamId
 	{
@@ -60,16 +64,27 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	/// </returns>
 	public async Task<bool> RegisterNewPlayer()
 	{
-		var response = await Http.RequestAsync(AuthEndpoint + "newPlayer", "POST",
-			Http.CreateJsonContent(new { steamId = SteamId }));
-
-		if (response.StatusCode == HttpStatusCode.Created)
+		try
 		{
-			Log.Info("Player registered successfully");
-			return true;
-		}
+			var response = await Http.RequestAsync(AuthEndpoint + "newPlayer", "POST",
+				Http.CreateJsonContent(new { steamId = SteamId }));
 
-		Log.Error("Failed to register new player");
+			Connected = true;
+
+			if (response.StatusCode == HttpStatusCode.Created)
+			{
+				Log.Info("Player registered successfully");
+				return true;
+			}
+
+			Log.Error("Failed to register new player");
+
+			return false;
+		}
+		catch (HttpRequestException e)
+		{
+			Connected = false;
+		}
 
 		return false;
 	}
@@ -86,33 +101,44 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	/// </returns>
 	public async Task<bool> RegisterNewPlayerSession()
 	{
-		var response = await Http.RequestAsync(AuthEndpoint + $"newSession/{SteamId}");
-
-		Log.Info("Registering new player session");
-
-
-		if (response.StatusCode == HttpStatusCode.Unauthorized)
+		try
 		{
-			Log.Info("Registering new player:");
-			bool register = await RegisterNewPlayer();
+			var response = await Http.RequestAsync(AuthEndpoint + $"newSession/{SteamId}");
 
-			if (!register)
+			Connected = true;
+
+			Log.Info("Registering new player session");
+
+
+			if (response.StatusCode == HttpStatusCode.Unauthorized)
 			{
-				Log.Error("Failed to register new player");
-				return false;
+				Log.Info("Registering new player:");
+				bool register = await RegisterNewPlayer();
+
+				if (!register)
+				{
+					Log.Error("Failed to register new player");
+					return false;
+				}
+
+				return await RegisterNewPlayerSession();
 			}
 
-			return await RegisterNewPlayerSession();
-		}
+			if (response.StatusCode == HttpStatusCode.OK)
+			{
+				Log.Info("Player session registered successfully");
+				var content = await response.Content.ReadAsStringAsync();
+				CurrentSession = Json.Deserialize<Session>(content);
+				Headers.Clear();
+				Headers.Add("Authorization", $"Bearer {CurrentSession.jwt}");
+				return true;
+			}
 
-		if (response.StatusCode == HttpStatusCode.OK)
+			return false;
+		}
+		catch (HttpRequestException e)
 		{
-			Log.Info("Player session registered successfully");
-			var content = await response.Content.ReadAsStringAsync();
-			CurrentSession = Json.Deserialize<Session>(content);
-			Headers.Clear();
-			Headers.Add("Authorization", $"Bearer {CurrentSession.jwt}");
-			return true;
+			Connected = false;
 		}
 
 		return false;
@@ -128,21 +154,31 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	/// </returns>
 	public async Task<bool> RemovePlayerSession()
 	{
-		var response = await Http.RequestAsync(AuthEndpoint + $"removeSession", "GET", null, Headers);
-
-		if (response.StatusCode == HttpStatusCode.OK)
+		if(!Connected) return false;
+		try
 		{
-			Log.Info("Player session removed successfully");
-			return true;
+			var response = await Http.RequestAsync(AuthEndpoint + $"removeSession", "GET", null, Headers);
+
+			if (response.StatusCode == HttpStatusCode.OK)
+			{
+				Log.Info("Player session removed successfully");
+				return true;
+			}
+
+			if (response.StatusCode == HttpStatusCode.NotFound)
+			{
+				Log.Warning("Player session not found");
+				return true;
+			}
+
+			Log.Error("Failed to remove player session");
+			return false;
+		}
+		catch (HttpRequestException e)
+		{
+			Connected = false;
 		}
 
-		if (response.StatusCode == HttpStatusCode.NotFound)
-		{
-			Log.Warning("Player session not found");
-			return true;
-		}
-
-		Log.Error("Failed to remove player session");
 		return false;
 	}
 
@@ -152,16 +188,26 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	/// <returns>A string representing the player's clan tag if retrieved successfully; otherwise, an empty string.</returns>
 	public async Task<string> GetPlayerClanTag(string steamId)
 	{
-		var response = await Http.RequestAsync(Endpoint + $"player/clanTag/{steamId}");
-
-		if (response.StatusCode == HttpStatusCode.OK)
+		if(!Connected) return "";
+		try
 		{
-			var content = await response.Content.ReadAsStringAsync();
-			Log.Info($"Player clan tag retrieved successfully {content}");
-			return content;
-		}
+			var response = await Http.RequestAsync(Endpoint + $"player/clanTag/{steamId}");
 
-		Log.Error($"Failed to get player clan tag for {steamId}");
+			if (response.StatusCode == HttpStatusCode.OK)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+				Log.Info($"Player clan tag retrieved successfully {content}");
+				return content;
+			}
+
+			Log.Error($"Failed to get player clan tag for {steamId}");
+
+			return "";
+		}
+		catch (HttpRequestException e)
+		{
+			Connected = false;
+		}
 
 		return "";
 	}
@@ -171,28 +217,40 @@ public class BlueMurderApi : SingletonComponent<BlueMurderApi>
 	/// <returns>A task representing the asynchronous operation. The task's result is a boolean indicating whether the clan tag was successfully set.</returns>
 	public async Task<bool> SetCurrentPlayerClanTag(string clanTag)
 	{
+		if(!Connected) return false;
+
 		var model = new ClanTag(clanTag, SteamId);
 
-		var response =
-			await Http.RequestAsync(Endpoint + "player/clanTag", "POST", Http.CreateJsonContent(model), Headers);
-		var responseString = await response.Content.ReadAsStringAsync();
-
-		if (response.StatusCode == HttpStatusCode.Unauthorized)
+		try
 		{
-			Log.Warning("Player has no session");
+
+			var response =
+				await Http.RequestAsync(Endpoint + "player/clanTag", "POST", Http.CreateJsonContent(model), Headers);
+			var responseString = await response.Content.ReadAsStringAsync();
+
+			if (response.StatusCode == HttpStatusCode.Unauthorized)
+			{
+				Log.Warning("Player has no session");
+				return false;
+			}
+
+			if (response.StatusCode == HttpStatusCode.BadRequest)
+			{
+				Log.Warning($"Player clan error: {responseString}");
+				return false;
+			}
+
+			if (response.StatusCode == HttpStatusCode.Created)
+			{
+				Log.Info("Player clan tag set successfully");
+				return true;
+			}
+
 			return false;
 		}
-
-		if (response.StatusCode == HttpStatusCode.BadRequest)
+		catch (HttpRequestException e)
 		{
-			Log.Warning($"Player clan error: {responseString}");
-			return false;
-		}
-
-		if (response.StatusCode == HttpStatusCode.Created)
-		{
-			Log.Info("Player clan tag set successfully");
-			return true;
+			Connected = false;
 		}
 
 		return false;

@@ -134,13 +134,7 @@
 		// Player Name Column
 		Builder.OpenElement(9, "label");
 		Builder.AddAttribute(10, "class", "col stat-large");
-		if (PlayerState.PlayerPawn == null)
-		{
-			Builder.AddContent(11, PlayerState.SteamName);
-		}
-		else {
-			Builder.AddContent(11, PlayerState.PlayerPawn.DisplayName);
-		}
+		Builder.AddContent(11, PlayerState.SteamName);
 		Builder.CloseElement();
 
 		// Stat Columns

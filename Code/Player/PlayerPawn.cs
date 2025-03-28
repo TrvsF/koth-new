@@ -87,22 +87,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		GameObject.Name = DisplayName;
 		DisplayName = PlayerPawnDefinition.Name;
-		var state = GameUtils.GetPlayerState(Id);
-
-		if (state == null) { Log.Warning("State is null"); }
-		else
-		{
-			var connection = state.Connection;
-			if (connection == null) { Log.Warning("Connection id is null"); }
-			else
-			{
-				var clanTag = await BlueMurderApi.Instance.GetPlayerClanTag(connection.SteamId.Value.ToString());
-				if (clanTag != null && clanTag.Length > 0)
-				{
-					DisplayName = $"[{clanTag}] " + PlayerPawnDefinition.Name;
-				}
-			}
-		}
 
 		Tags.Add($"{Team}");
 		Team = PlayerPawnDefinition.Team;
