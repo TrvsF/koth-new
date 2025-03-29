@@ -32,6 +32,36 @@
       ]
     },
     {
+      "__guid": "6e81a525-ba4d-4ed4-b3d1-42a0d301911f",
+      "Flags": 0,
+      "Name": "Spot Light (2)",
+      "Position": "912.1725,2895.605,70.26884",
+      "Rotation": "-0.6607517,-0.1971863,0.7152714,-0.1136335",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "35230303-1e12-4876-95c8-84fa81f24ccf",
+          "Attenuation": 0.83,
+          "ConeInner": 19.17,
+          "ConeOuter": 44.48,
+          "Cookie": "materials/effects/lightcookie.vtex",
+          "FogMode": "Disabled",
+          "FogStrength": 1,
+          "LightColor": "0.78866,0.82307,0.86512,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 115.899086,
+          "Shadows": true
+        }
+      ]
+    },
+    {
       "__guid": "d26d19fd-2146-46de-acf8-5831ea1bbf3e",
       "Flags": 0,
       "Name": "Spot Light",

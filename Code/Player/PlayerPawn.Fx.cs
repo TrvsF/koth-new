@@ -3,6 +3,7 @@ using Sandbox;
 using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using System.Numerics;
 
 namespace KOTH;
 
@@ -33,6 +34,8 @@ public partial class PlayerPawn :
 		AnimationHelper.IsWeaponLowered = false;
 		AnimationHelper.AimBodyWeight = 1f;
 
+		TickWeaponAnimations();
+
 		if (CurrentEquipment.IsValid())
 		{
 			AnimationHelper.HoldType = CurrentEquipment.HoldType;
@@ -49,6 +52,49 @@ public partial class PlayerPawn :
 
 			CheckUber(DamageComponent.IsUbered);
 		}
+	}
+
+	const float ShotCooldown = 0.33f;
+	private bool ShowShoot = false;
+	private void TickWeaponAnimations()
+	{
+		if (!CurrentEquipment.IsValid())
+		{
+			return;
+		}
+
+		if (TimeSinceLastShot < ShotCooldown && !ShowShoot)
+		{
+			Body.ModelRenderer.Set("b_attack", true);
+			CurrentEquipment.ViewModel?.ModelRenderer.Set("b_attack", true);
+			ShowShoot = true;
+		}
+
+		bool ShowReload = false;
+		if (CurrentEquipment.GetWeaponComponent() is InputWeaponComponent WeaponComp)
+		{
+			ShowReload = WeaponComp.IsReloading && TimeSinceLastShot > ShotCooldown;
+
+			Body.ModelRenderer.Set("b_reload", ShowReload);
+		}
+
+		bool ShowSprint = WishMove == Vector3.Forward && TimeSinceLastShot > 1f;
+		if (CurrentEquipment.ViewModel.IsValid())
+		{
+			CurrentEquipment.ViewModel.ModelRenderer.Set("b_reload", ShowReload);
+			CurrentEquipment.ViewModel.ModelRenderer.Set("b_sprint", ShowSprint);
+			CurrentEquipment.ViewModel.ModelRenderer.Set("move_bob", IsGrounded ? 0f : 1f);
+		}
+		Body.ModelRenderer.Set("b_sprint", ShowSprint);
+	}
+
+	TimeSince TimeSinceLastShot { get; set; } = 0;
+
+	[Rpc.Broadcast]
+	public void VFXOnShoot()
+	{
+		TimeSinceLastShot = 0;
+		ShowShoot = false;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////

@@ -2,6 +2,7 @@ using Sandbox;
 using Sandbox.Citizen;
 using Sandbox.Diagnostics;
 using Sandbox.Events;
+using System.Reflection.Metadata.Ecma335;
 
 namespace KOTH;
 
@@ -54,6 +55,11 @@ public sealed class Equipment : Component, IEquipment, IDescription
 	public PlayerPawn Owner
 	{
 		get => owner ??= GameObject.Root.GetComponent<PlayerPawn>(true);
+	}
+
+	public InputWeaponComponent GetWeaponComponent()
+	{
+		return GameObject.GetComponentInChildren<InputWeaponComponent>();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////

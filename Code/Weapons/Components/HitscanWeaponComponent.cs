@@ -47,6 +47,15 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		bool IsShooting = IsDown() && CanShoot();
 
+		if (IsShooting)
+		{
+			Equipment.Owner.VFXOnShoot();
+			if (IsReloading && Ammo > 0)
+			{
+				CancelReload();
+			}
+		}
+
 		if (IsProxy)
 		{
 			return;
@@ -93,9 +102,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 			
 			WorldShotVFX();
 		}
-
-		Equipment.Owner?.Body?.ModelRenderer?.Set("b_attack", IsShooting);
-		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
 
@@ -190,11 +196,6 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	{
 		Assert.IsValid(Equipment);
 		Assert.IsValid(Equipment.Owner);
-
-		if (IsReloading && Ammo > 0)
-		{
-			TryCancelReload();
-		}
 
 		if (Equipment.Owner.IsFrozen)
 			return false;

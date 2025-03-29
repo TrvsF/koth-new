@@ -26,7 +26,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 	public bool IsStickyLauncher { get => StickyTrackerComponent.IsValid(); }
 	public int ActiveStickies { get => StickyTrackerComponent.IsValid() ? StickyTrackerComponent.StickyCount : 0; }
 	protected StickyTrackerComponent StickyTrackerComponent { get; set; }
-	
+
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnAwake()
@@ -52,9 +52,13 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 		bool IsShooting = IsDown() && CanShoot();
 		if (IsShooting)
 		{
+			if (IsReloading && Ammo > 0)
+			{
+				CancelReload();
+			}
+			Equipment.Owner.VFXOnShoot();
 			Shoot();
 		}
-		Equipment.ViewModel?.ModelRenderer?.Set("b_attack", IsShooting);
 	}
 
 	protected virtual GameObject Shoot() // TODO : revisit the return
@@ -117,11 +121,6 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 		// these 2 should be ensures?
 		if (!Equipment.IsValid()) return false;
 		if (!Equipment.Owner.IsValid()) return false;
-
-		if (IsReloading && Ammo > 0)
-		{
-			TryCancelReload();
-		}
 
 		if (Equipment.Owner.IsFrozen)
 			return false;

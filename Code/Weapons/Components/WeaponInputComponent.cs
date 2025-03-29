@@ -70,14 +70,6 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		}
 	}
 
-	public void TryCancelReload()
-	{
-		if (Player.IsLocallyControlled)
-		{
-			CancelReload();
-		}
-	}
-
 	private bool CanReload()
 	{
 		return !IsAmmoFull;
@@ -94,40 +86,32 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 		return ReloadTimeOut;
 	}
 
-	Dictionary<float, SoundEvent> GetReloadSounds()
-	{
-		if (!HasAmmo) return EmptyReloadSounds;
-		return TimedReloadSounds;
-	}
-
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void StartReload()
 	{
-		SetReloadAnimations(true);
-
-		if (!IsProxy)
+		if (IsProxy)
 		{
-			TimeUntilReload = GetReloadTime();
+			return;
 		}
+
+		TimeUntilReload = GetReloadTime();
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
-	void CancelReload()
+	public void CancelReload()
 	{
-		SetReloadAnimations(false);
-
-		if (!IsProxy)
+		if (IsProxy)
 		{
-			IsReloading = false;
-			LastReload = false;
+			return;
 		}
+
+		IsReloading = false;
+		LastReload = false;
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	void EndReload()
 	{
-		SetReloadAnimations(false);
-
 		if (IsProxy)
 		{
 			return;
@@ -163,31 +147,6 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 			case EReloadType.None:
 				break;
 		}
-
-		foreach (var kv in GetReloadSounds())
-		{
-			PlayAsyncSound(kv.Key, kv.Value, () => IsReloading);
-		}
-	}
-
-	private void SetReloadAnimations(bool Reloading)
-	{
-		Equipment.ViewModel?.ModelRenderer.Set("b_reload", Reloading);
-		Player?.Body?.ModelRenderer?.Set("b_reload", Reloading);
-	}
-
-	public Dictionary<float, SoundEvent> TimedReloadSounds { get; set; } = new();
-	public Dictionary<float, SoundEvent> EmptyReloadSounds { get; set; } = new();
-
-	async void PlayAsyncSound(float delay, SoundEvent snd, Func<bool> playCondition = null)
-	{
-		await GameTask.DelaySeconds(delay);
-
-		// Can we play this sound?
-		if (playCondition != null && !playCondition.Invoke())
-			return;
-
-		GameObject?.PlaySound(snd);
 	}
 }
 
