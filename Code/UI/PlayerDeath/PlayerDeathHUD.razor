@@ -15,12 +15,10 @@
 	<div class="name">
 		@DeathCameraData.KillerName
 	</div>
-	@(DeathCameraData.KillerHealth != 0)
-	{
-		<div class="hp">
-			@DeathCameraData.KillerHealth HP
-		</div>
-	}
+
+	<div class="hp">
+		@DeathCameraData.KillerHealth HP
+	</div>
 </root>
 
 @code

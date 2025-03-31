@@ -24,7 +24,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }
 	[RequireComponent] public ExpManager ExpManager { get; private set; }
 	[RequireComponent] public AudioComponent AudioComponent { get; private set; }
-	[Property] public GameStats GameStats { get; private set; }
+	public GameStats GameStats { get => GameObject.GetComponent<GameStats>(); }
 
 	/////////////////////////////////////////////////////////////
 

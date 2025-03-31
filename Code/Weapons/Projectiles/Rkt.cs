@@ -47,7 +47,7 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	{
 		if (ExplosionSound.IsValid())
 		{
-			if (Sound.Play(ExplosionSound, EndLocation) is { } SoundHandel) {}
+			if (Sound.Play(ExplosionSound, EndLocation) is { } SoundHandel) { }
 		}
 		if (ExplosionPrefab.IsValid())
 		{

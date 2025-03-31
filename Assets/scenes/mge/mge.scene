@@ -64,15 +64,14 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "e1ddd168-dee3-463d-af9e-682151c03381",
-          "GameStats": null,
-          "NothingState": "",
+          "NothingState": "waiting for opponent",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Title": "Botz"
+          "Title": "MGE"
         },
         {
           "__type": "KOTH.DamageManager",
@@ -198,8 +197,13 @@
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "854b92d5-e054-4f97-b2c0-660b81094490",
-                  "DefaultDuration": -1,
-                  "DefaultNextState": null,
+                  "DefaultDuration": 999,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "ab2f1364-8fb8-4b55-a7a5-d2d5fb233050",
+                    "go": "1b97aee3-3a97-448d-a411-b56a0b2bb1f7",
+                    "component_type": "StateComponent"
+                  },
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -213,7 +217,7 @@
                 {
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "34267498-f9b2-46c5-8691-8a2a6a444e95",
-                  "DefaultRespawnDelaySeconds": 3,
+                  "DefaultRespawnDelaySeconds": 0,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -222,22 +226,77 @@
                   "OnComponentUpdate": null,
                   "TryUseGamemodeRespawnTime": false,
                   "UseSpawnWaves": false
+                },
+                {
+                  "__type": "KOTH.WaitForPlayers",
+                  "__guid": "59469d73-71f2-4f89-b93f-250fb9b4ce8f",
+                  "MinPlayerCount": 2,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
+                }
+              ]
+            },
+            {
+              "__guid": "1b97aee3-3a97-448d-a411-b56a0b2bb1f7",
+              "Flags": 0,
+              "Name": "Mge",
+              "Enabled": true,
+              "NetworkMode": 1,
+              "NetworkOrphaned": 1,
+              "Components": [
+                {
+                  "__type": "Sandbox.Events.StateComponent",
+                  "__guid": "ab2f1364-8fb8-4b55-a7a5-d2d5fb233050",
+                  "DefaultDuration": 999,
+                  "DefaultNextState": {
+                    "_type": "component",
+                    "component_id": "854b92d5-e054-4f97-b2c0-660b81094490",
+                    "go": "7240c3cf-4c6c-4755-aecb-81daa9bda1bc",
+                    "component_type": "StateComponent"
+                  },
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "OnEnterState": null,
+                  "OnLeaveState": null,
+                  "OnUpdateState": null
+                },
+                {
+                  "__type": "KOTH.PlayerAutoRespawner",
+                  "__guid": "8d4535e9-681c-46e5-8554-54e42c2ac5a8",
+                  "DefaultRespawnDelaySeconds": 0,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null,
+                  "TryUseGamemodeRespawnTime": false,
+                  "UseSpawnWaves": false
+                },
+                {
+                  "__type": "KOTH.MgeGamemode",
+                  "__guid": "57cd334b-5f1d-4617-9c4c-595e82746196",
+                  "KillLimit": 20,
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             }
           ]
         }
       ]
-    },
-    {
-      "__guid": "4f91999c-2228-4a79-853a-e6e40c2448dc",
-      "Flags": 0,
-      "Name": "healthpack (2)",
-      "Position": "0,93.04044,84.33002",
-      "Tags": "consumable",
-      "Enabled": true,
-      "__Prefab": "prefabs/map_shared/healthpack.prefab",
-      "__PrefabVariables": {}
     },
     {
       "__guid": "35743eb6-f234-45f1-afdf-30d0d97963ad",
@@ -269,7 +328,7 @@
       "__guid": "8f51bece-6a1a-4b2a-b948-26a69274f839",
       "Flags": 0,
       "Name": "Camera",
-      "Position": "-1161.284,1227.479,606.1463",
+      "Position": "-416.3052,432.1066,606.1463",
       "Rotation": "0.04995024,0.1205905,-0.3794096,0.9159757",
       "Tags": "scenecamera",
       "Components": [
