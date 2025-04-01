@@ -20,9 +20,9 @@ public struct FPlayerPawnDefinition
 	public Team Team { get; init; } = Team.Unassigned;
 	public bool IsDummy { get; init; } = false;
 
-	public bool IsValid()
+	public readonly bool IsValid()
 	{
-		return CharacterDefinition.IsValid()/* && (OwnerPlayerState.IsValid() || IsBot)*/;
+		return CharacterDefinition.IsValid();
 	}
 }
 
@@ -49,11 +49,6 @@ public partial class PlayerState
 {
 	[Sync(SyncFlags.FromHost)/*, Change(nameof(OnPlayerStateSpawningStateChanged))*/] public EPlayerStateSpawningState PlayerStateSpawningState { get; private set; } = EPlayerStateSpawningState.MainMenu;
 
-	private void OnPlayerStateSpawningStateChanged()
-	{
-
-	}
-
 	//////////////////////////////////////////////////////////////////////////////////
 
 	[Sync(SyncFlags.FromHost)] public float TimeTilAttemptedSpawn { get; private set; } = -1;
@@ -72,31 +67,6 @@ public partial class PlayerState
 	 * by the server the requested character def will never sync! this is the workaround for now..
 	 */
 	public CharacterDefinition RequestedCharacterDefinition { get; private set; } = null;
-
-	private void OnRequestedCharacterDefinitionChanged(CharacterDefinition OldDefinition, CharacterDefinition NewDefinition)
-	{
-		if (NewDefinition != null)
-		{
-			PlayerStateSpawningState = EPlayerStateSpawningState.WaitingForSpawn;
-		}
-
-		Log.Info($"old : {OldDefinition} | new : {NewDefinition}");
-		Log.Info($"Requested Character change 2 {RequestedCharacterDefinition}");
-	}
-
-	public void RequestTeamSwap()
-	{
-		Team = Team.GetOpponents();
-
-		HostSwapTeams(Team);
-	}
-
-	[Rpc.Host]
-	private void HostSwapTeams(Team Team)
-	{
-		var SpawnPoint = GameUtils.GetRandomTeamSpawn(Team);
-		SpawnPlayerPawn(SpawnPoint);
-	}
 
 	public void RequestCharacterDefinition(CharacterDefinition CharacterDefintionIn)
 	{
@@ -139,7 +109,7 @@ public partial class PlayerState
 		{
 			PlayerPawn.GameObject.Root.Destroy();
 			PlayerPawn = null;
-			OnLocalDeath();
+			LocalOnLocalDeath();
 
 			// HACK : my fault- however we need to wait for the client to run its
 			// local death stuff before spawning it- this is only for the very
@@ -167,31 +137,15 @@ public partial class PlayerState
 		PlayerPawn.OnDeath += OnPlayerPawnDeath;
 		PlayerStateSpawningState = EPlayerStateSpawningState.Alive;
 
+		BroadcastPlayerSpawn(PlayerPawn);
+		
 		using (Rpc.FilterInclude(Connection))
 		{
-			CameraDisableHack();
-			BroadcastPlayerSpawn(PlayerPawn);
+			LocalPlayerSpawn(PlayerPawn);
+			LocalCameraDisableHack();
 		}
 	}
-
-	[Rpc.Broadcast] // broadcast filter
-	private void BroadcastPlayerSpawn(PlayerPawn PlayerPawn)
-	{
-		Scene.Dispatch(new LocalPlayerSpawnedEvent(PlayerPawn));
-	}
-
-	[Rpc.Broadcast] // broadcast filter
-	private void CameraDisableHack()
-	{
-		OverviewCameraObject.Enabled = false;
-	}
-
-	[Rpc.Broadcast] // broadcast filter
-	private void CameraEnableHack()
-	{
-		OverviewCameraObject.Enabled = true;
-	}
-
+	
 	[Rpc.Host]
 	private void SpawnPlayerPawn(Connection OwningConnection, string Name, CharacterDefinition CharacterDefinition, TeamSpawnPoint SpawnPoint)
 	{
@@ -234,13 +188,32 @@ public partial class PlayerState
 
 		using (Rpc.FilterInclude(Connection))
 		{
-			// CameraEnableHack();
-			OnLocalDeath();
+			LocalOnLocalDeath();
 		}
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////
+
 	[Rpc.Broadcast]
-	public void OnLocalDeath()
+	private void BroadcastPlayerSpawn(PlayerPawn PlayerPawn)
+	{
+		Scene.Dispatch(new PlayerSpawnedEvent(PlayerPawn));
+	}
+
+	[Rpc.Broadcast] // broadcast filter
+	private void LocalPlayerSpawn(PlayerPawn PlayerPawn)
+	{
+		Scene.Dispatch(new LocalPlayerSpawnedEvent(PlayerPawn));
+	}
+
+	[Rpc.Broadcast] // broadcast filter
+	private void LocalCameraDisableHack()
+	{
+		OverviewCameraObject.Enabled = false;
+	}
+
+	[Rpc.Broadcast] // broadcast filter
+	public void LocalOnLocalDeath()
 	{
 		Scene.Dispatch(new LocalPlayerDiedEvent());
 	}

@@ -15,25 +15,14 @@
 
 @code
 {
-	public void GoToMenu()
+	private void GoToMenu()
 	{
 		PlayerState.Local.IsPaused = false;
 		Networking.Disconnect();
 		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
 	}
 
-	public void SwapTeam()
-	{
-		PlayerState.Local.RequestTeamSwap();
-		PlayerState.Local.IsPaused = false;
-	}
-
-	public void ChangeClass()
-	{
-
-	}
-
-	public bool IsActive { get; set; }
+	private bool IsActive { get; set; }
 
 	protected override int BuildHash()
 	{

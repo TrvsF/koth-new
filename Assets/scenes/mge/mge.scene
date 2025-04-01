@@ -291,6 +291,16 @@
                   "OnComponentFixedUpdate": null,
                   "OnComponentStart": null,
                   "OnComponentUpdate": null
+                },
+                {
+                  "__type": "KOTH.ResetGame",
+                  "__guid": "6ce2a53d-4849-44af-b8c8-4b1d9b26671d",
+                  "OnComponentDestroy": null,
+                  "OnComponentDisabled": null,
+                  "OnComponentEnabled": null,
+                  "OnComponentFixedUpdate": null,
+                  "OnComponentStart": null,
+                  "OnComponentUpdate": null
                 }
               ]
             }

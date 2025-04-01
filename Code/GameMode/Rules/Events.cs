@@ -3,6 +3,7 @@ using Sandbox.Events;
 
 public record PlayerConnectedEvent(PlayerState PlayerState) : IGameEvent;
 public record LocalPlayerSpawnedEvent(PlayerPawn Player) : IGameEvent;
+public record PlayerSpawnedEvent(PlayerPawn Player) : IGameEvent;
 public record LocalPlayerDiedEvent() : IGameEvent;
 public record ResetScoresEvent : IGameEvent;
 

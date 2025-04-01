@@ -11,7 +11,8 @@ public sealed class MgeGamemode : Component,
 	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<EnterStateEvent>,
 	IGameEventHandler<LeaveStateEvent>,
-	IGameEventHandler<KillBroadcastEvent>
+	IGameEventHandler<KillBroadcastEvent>,
+	IGameEventHandler<PlayerSpawnedEvent>
 {
 	[Property] public int KillLimit { get; set; } = 20;
 
@@ -54,5 +55,25 @@ public sealed class MgeGamemode : Component,
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
 	{
 		
+	}
+
+	public void OnGameEvent(PlayerSpawnedEvent PlayerSpawnEvent)
+	{
+		var PlayerPawn = PlayerSpawnEvent.Player;
+		if (!PlayerPawn.IsValid())
+		{
+			return;
+		}
+
+		FHealingRequest OverhealRequest = new()
+		{
+			TargetDamageComponent = PlayerPawn.DamageComponent,
+			TargetPlayerPawn = PlayerPawn,
+			HealingOrigin = PlayerPawn.WorldPosition,
+			BaseHealing = 300,
+			AllowOverheal = true,
+			HealingType = EHealingType.OneOff,
+		};
+		Scene.Dispatch(new HealingRequestEvent(OverhealRequest));
 	}
 }
