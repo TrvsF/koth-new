@@ -1,0 +1,28 @@
+﻿@import "/UI/Styles/Theme.scss";
+
+MGEScore {
+    /* width: 100%;
+    position: absolute;
+    top: 7%;
+
+
+    .scores {
+        width: auto;
+        font-size: 36px;
+        color: white;
+    }*/
+
+    * {
+        width: 100%;
+        position: absolute;
+        top: 7%;
+    }
+
+    .scores {
+        width: auto;
+        font-size: 36px;
+        color: white;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

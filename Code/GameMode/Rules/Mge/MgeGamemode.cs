@@ -7,18 +7,74 @@ using System.Threading.Tasks;
 
 namespace KOTH;
 
+public readonly struct FMGEUIData
+{
+	public FMGEUIData() { }
+
+	public string Player1Name { get; init; } = string.Empty;
+	public string Player2Name { get; init; } = string.Empty;
+	public int Player1Score { get; init; } = -1;
+	public int Player2Score { get; init; } = -1;
+
+	public readonly bool IsValid()
+	{
+		return Player1Name != string.Empty && Player2Name != string.Empty;
+	}
+}
+
+public sealed class MGEUI
+{
+	public static MgeGamemode CurrentMgeGamemode => GameMode.Instance?.StateMachine.CurrentState.GameObject.Components.Get<MgeGamemode>();
+}
+
 public sealed class MgeGamemode : Component,
-	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<EnterStateEvent>,
 	IGameEventHandler<KillBroadcastEvent>,
 	IGameEventHandler<PlayerSpawnedEvent>
 {
 	[Property] public int KillLimit { get; set; } = 20;
 
-	[Sync(SyncFlags.FromHost)] NetDictionary<PlayerState, int> PlayerScores { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] public NetDictionary<PlayerState, int> PlayerScores { get; set; }
+
+	protected override void OnAwake()
+	{
+		base.OnAwake();
+
+		if (Networking.IsHost)
+		{
+			PlayerScores = new();
+		}
+	}
+
+	public bool QueryUIData(out FMGEUIData UiData)
+	{
+		if (PlayerScores.Count != 2)
+		{
+			UiData = new();
+			return false;
+		}
+
+		var P1 = PlayerScores.ElementAt(0);
+		var P2 = PlayerScores.ElementAt(1);
+
+		UiData = new()
+		{
+			Player1Name = P1.Key.SteamName,
+			Player1Score = P1.Value,
+			Player2Name = P2.Key.SteamName,
+			Player2Score = P2.Value,
+		};
+
+		return true;
+	}
 
 	public void OnGameEvent(KillBroadcastEvent KillEvent)
 	{
+		if (!Networking.IsHost)
+		{
+			return;
+		}
+
 		var Attacker = KillEvent.DamageEvent.AttackerPlayerState;
 
 		if (!Attacker.IsValid())
@@ -60,11 +116,6 @@ public sealed class MgeGamemode : Component,
 		{
 			PlayerScores.Add(PlayerState, 0);
 		}
-	}
-
-	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
-	{
-		
 	}
 
 	public void OnGameEvent(PlayerSpawnedEvent PlayerSpawnEvent)

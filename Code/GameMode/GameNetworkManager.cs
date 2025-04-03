@@ -39,11 +39,13 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	[Property] public GameObject PlayerStatePrefab { get; set; } = null;
 	[Property] public EGameNetworkMode NetworkMode { get; set; } = EGameNetworkMode.None;
+	[Property] public int MaxPlayers { get; set; } = 16;
+	[Property] public string DefaultLobbyName { get; set; } = "awesomelobby";
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public bool IsLocalSession { get; private set; } = false;
-
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	protected override async Task OnLoad()
@@ -124,12 +126,12 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
-	private static bool CreateLobby(string LobbyName = "awesomelobby", LobbyPrivacy Privacy = LobbyPrivacy.Public)
+	private bool CreateLobby(LobbyPrivacy Privacy = LobbyPrivacy.Public)
 	{
 		LobbyConfig Config = new();
-		Config.Name = LobbyName;
+		Config.Name = DefaultLobbyName;
 		Config.DestroyWhenHostLeaves = false;
-		Config.MaxPlayers = 16;
+		Config.MaxPlayers = MaxPlayers;
 		Config.Privacy = Privacy;
 
 		Networking.CreateLobby(Config);

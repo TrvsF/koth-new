@@ -1,0 +1,45 @@
+﻿@using System;
+@using Sandbox.UI;
+@using KOTH.PlayerExp;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+<root>
+	<label class="scores">
+		@GeneratePlayerScore()
+	</label>
+</root>
+
+@code
+{
+	private string GeneratePlayerScore()
+	{
+		if (!CurrentData.IsValid())
+		{
+			return "";
+		}
+
+		return $"{CurrentData.Player1Name} {CurrentData.Player1Score} | {CurrentData.Player2Score} {CurrentData.Player2Name}";
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+
+	FMGEUIData CurrentData;
+
+	public override void Tick()
+	{
+		if (!MGEUI.CurrentMgeGamemode.IsValid() || !MGEUI.CurrentMgeGamemode.QueryUIData(out CurrentData))
+		{
+			SetClass("hidden", true);
+			return;
+		}
+
+		SetClass("hidden", false);
+	}
+}

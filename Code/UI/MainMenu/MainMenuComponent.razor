@@ -10,7 +10,7 @@
 			@if (BaseMenu)
 			{
 				<button onclick=@(() => { BaseMenu = false; SinglePlayer = true; })>SinglePlayer</button>
-				<button onclick=@(() => OnMultiplayer())>Multiplayer</button>
+				<button onclick=@(() => { BaseMenu = false; Multiplayer = true; })>Multiplayer</button>
 				<button onclick=@(() => Game.Overlay.ShowSettingsModal())>Settings</button>
 			}
 
@@ -19,6 +19,13 @@
 				<button onclick=@(() => LoadBotz())>Botz</button>
 				<button onclick=@(() => LoadJumper())>Jump Map</button>
 				<button onclick=@(() => { BaseMenu = true; SinglePlayer = false; })>Back</button>
+			}
+
+			@if (Multiplayer)
+			{
+				<button onclick=@(() => LoadMge())>1v1</button>
+				<button onclick=@(() => LoadPayload())>Payload</button>
+				<button onclick=@(() => { BaseMenu = true; Multiplayer = false; })>Back</button>
 			}
 		</div>
 
@@ -66,7 +73,7 @@
 	}
 
 	bool Trying = false;
-	private async void OnMultiplayer()
+	private async void LoadPayload()
 	{
 		if (Networking.IsConnecting || Trying)
 		{
@@ -79,6 +86,23 @@
 		if (!Joined)
 		{
 			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+		}
+		Trying = false;
+	}
+
+	private async void LoadMge()
+	{
+		if (Networking.IsConnecting || Trying)
+		{
+			Log.Info("connecting...");
+			return;
+		}
+
+		Trying = true;
+		bool Joined = await Networking.JoinBestLobby(Game.Ident);
+		if (!Joined)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/mge/mge.scene");
 		}
 		Trying = false;
 	}
