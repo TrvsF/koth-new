@@ -36,7 +36,6 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost), Property] public Team Team { get; set; } // TODO : listen to onteamchange
 	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn PlayerPawn { get; private set; }
 	[Sync(SyncFlags.FromHost), ValidOrNull] public PlayerPawn SpectatingTarget { get; private set; }
 
@@ -61,21 +60,20 @@ public partial class PlayerState : Component
 		}
 		else
 		{
-			Team = GameMode.Instance.GetStarterTeam();
+			Team = GameMode.GetStarterTeam();
 		}
 
 		// client rpc
 		using (Rpc.FilterInclude(Connection))
 		{
-			ClientInitilize(InitForGame);
+			LocalInitilize(InitForGame);
 		}
 
 		return true;
 	}
 
-	public GameObject OverviewCameraObject = null;
 	[Rpc.Broadcast]
-	public void ClientInitilize(bool InitForGame = true)
+	public void LocalInitilize(bool InitForGame = true)
 	{
 		Local = this;
 
@@ -84,10 +82,6 @@ public partial class PlayerState : Component
 			return;
 		}
 
-		CameraUtils.CreateOverviewCamera(Scene);
-		OverviewCameraObject = CameraUtils.OverviewCamera.GameObject;
-
-		Assert.IsValid(OverviewCameraObject);
-		OverviewCameraObject.Enabled = true;
+		CameraUtils.CreateSetOverviewCamera(Scene);
 	}
 }

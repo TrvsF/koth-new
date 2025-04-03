@@ -40,7 +40,7 @@ public partial class PlayerPawn
 		{
 			using (Rpc.FilterInclude(Network.Owner))
 			{
-				CreateDeathCamera(DamageTaken);
+				LocalCreateDeathCamera(DamageTaken);
 			}
 		}
 
@@ -58,15 +58,10 @@ public partial class PlayerPawn
 	}
 
 	[Rpc.Broadcast]
-	private void CreateDeathCamera(FDamageTaken DamageTaken)
+	private void LocalCreateDeathCamera(FDamageTaken DamageTaken)
 	{
-		if (DamageTaken.AssumedAttackerPlayerPawn.IsValid())
-		{
-			CameraUtils.CreateDeathCamera(Scene, Head.WorldPosition, DamageTaken);
-		}
-		else
-		{
-			PlayerState.Local.OverviewCameraObject.Enabled = true;
-		}
+		Log.Info($"{Scene} {Head} {DamageTaken}");
+
+		CameraUtils.CreateSetDeathCamera(Scene, Head.WorldPosition, DamageTaken);
 	}
 }

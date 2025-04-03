@@ -39,7 +39,7 @@ public sealed partial class PlayerPawn
 		}
 	}
 
-	private bool CreatePlayerCamera()
+	private void CreatePlayerCamera()
 	{
 		var CameraPrefabConfig = new CloneConfig()
 		{
@@ -49,12 +49,6 @@ public sealed partial class PlayerPawn
 		};
 
 		PlayerCameraPrefab.Clone(CameraPrefabConfig);
-		// Camera = PlayerCameraPrefab.GetComponent<CameraComponent>();
-		if (!Camera.IsValid())
-		{
-			return false;
-		}
-
-		return true;
+		CameraUtils.TurnOffCameras();
 	}
 }

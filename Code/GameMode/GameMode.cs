@@ -149,6 +149,11 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	public void OnGameEvent(LocalPlayerDiedEvent eventArgs)
 	{
+		// DestroySpawnZoneBlockers();
+	}
+
+	public void DestroySpawnZoneBlockers()
+	{
 		foreach (var TempZone in SpawnZoneBlockers)
 		{
 			TempZone.Destroy();
@@ -159,7 +164,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 
 	/////////////////////////////////////////////////////////////
 
-	public Team GetStarterTeam()
+	public static Team GetStarterTeam()
 	{
 		int Ts = 0;
 		int CTs = 0;
@@ -191,36 +196,6 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	}
 
 	/////////////////////////////////////////////////////////////
-
-	private StateComponent _prevState;
-	private readonly Dictionary<Type, Component> _componentCache = new();
-
-	/// <summary>
-	/// Gets the given component from within the game mode's object hierarchy, or null if not found / enabled.
-	/// </summary>
-	public T Get<T>(bool required = false)
-		where T : class
-	{
-		if (_prevState != StateMachine.CurrentState)
-		{
-			_prevState = StateMachine.CurrentState;
-			_componentCache.Clear();
-		}
-
-		if (!_componentCache.TryGetValue(typeof(T), out var component) || component is { IsValid: false } ||
-			component is { Active: false })
-		{
-			component = Components.GetInDescendantsOrSelf<T>() as Component;
-			_componentCache[typeof(T)] = component;
-		}
-
-		if (required && component is not T)
-		{
-			throw new Exception($"Expected a {typeof(T).Name} to be active in the {nameof(GameMode)}!");
-		}
-
-		return component as T;
-	}
 
 	public void OnGameEvent(LevelUpEvent eventArgs)
 	{

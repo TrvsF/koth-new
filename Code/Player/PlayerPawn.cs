@@ -102,14 +102,13 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 
 		if (IsLocallyControlled)
 		{
-			Assert.True(CreatePlayerCamera());
+			CreatePlayerCamera();
 			EyeAngles = WorldRotation.Angles();
 
 			Tags.Add("self");
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
-
 		}
 		else
 		{

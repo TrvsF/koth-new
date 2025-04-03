@@ -1,4 +1,5 @@
 using KOTH.UI;
+using System.Linq;
 
 namespace KOTH;
 
@@ -19,39 +20,67 @@ public struct FDeathCameraData
 
 public sealed class CameraUtils
 {
-	public static CameraComponent DeathCamera { get; set; } = null;
-	public static CameraComponent OverviewCamera { get; set; } = null;
+	// private static CameraComponent PlayerCamera { get; set; } = null;
+	private static CameraComponent DeathCamera = null;
+	private static CameraComponent OverviewCamera = null;
+
+	public static void SetActiveCamera(CameraComponent CameraComponent)
+	{
+		TurnOffCameras();
+
+		CameraComponent.GameObject.Enabled = true;
+	}
+
+	public static void TurnOffCameras()
+	{
+		if (DeathCamera.IsValid())
+		{
+			DeathCamera.GameObject.Enabled = false;
+		}
+
+		if (OverviewCamera.IsValid())
+		{
+			OverviewCamera.GameObject.Enabled = false;
+		}
+	}
 
 	///////////////////////////////////////////////
 
 	public static void LocalTick()
 	{
-		if (TimeSinceDeathCameraCreated > DeathCameraTime && DeathCamera.IsValid())
+		if (!DeathCamera.IsValid() || !DeathCamera.GameObject.IsValid() || !DeathCamera.GameObject.Enabled)
 		{
-			DeathCamera.GameObject.Destroy();
-			if (!PlayerState.Local.PlayerPawn.IsValid())
-			{
-				PlayerState.Local.OverviewCameraObject.Enabled = true;
-			}
+			return;
 		}
 
-		if (DeathCamera.IsValid())
+		if (TimeSinceDeathCameraCreated > DeathCameraTime)
+		{
+			CreateSetOverviewCamera(LastDeathcameraScene);
+			DeathCamera.GameObject.Enabled = false;
+		}
+		else
 		{
 			DeathCamera.GameObject.WorldRotation = Rotation.LookAt(DeathCameraLookAtPawn.Head.WorldPosition - DeathCamera.GameObject.WorldPosition);
 		}
 	}
 
 	const float DeathCameraTime = 3;
-
-	static bool AreInDeathCameraState = false;
+	static Scene LastDeathcameraScene = null;
 	static PlayerPawn DeathCameraLookAtPawn = null;
 	static TimeSince TimeSinceDeathCameraCreated = new();
 
-	public static bool CreateDeathCamera(Scene Scene, Vector3 SpawnPosition, FDamageTaken DamageTaken)
+	public static CameraComponent CreateSetDeathCamera(Scene Scene, Vector3 SpawnPosition, FDamageTaken DamageTaken)
 	{
+		LastDeathcameraScene = Scene; // HACK
+
 		var CameraObject = Scene.CreateObject();
 		CameraObject.Name = "DEATHCAMERA";
 		CameraObject.NetworkMode = NetworkMode.Never;
+
+		if (!DamageTaken.AssumedAttackerPlayerPawn.IsValid())
+		{
+			return CreateSetOverviewCamera(Scene);
+		}
 
 		DeathCameraLookAtPawn = DamageTaken.AssumedAttackerPlayerPawn;
 
@@ -71,38 +100,52 @@ public sealed class CameraUtils
 		var CameraComp = CameraObject.Components.Create<CameraComponent>();
 		CameraComp.Priority = 101;
 
-		AreInDeathCameraState = true;
 		TimeSinceDeathCameraCreated = 0;
 
 		DeathCamera = CameraComp;
 		DeathCamera.GameObject.WorldPosition = SpawnPosition;
-		return DeathCamera.IsValid();
+
+		SetActiveCamera(DeathCamera);
+
+		return DeathCamera;
 	}
 
 	////////////////////////////////////////////////////
 
-	public static bool CreateOverviewCamera(Scene Scene)
+	public static CameraComponent CreateSetOverviewCamera(Scene Scene, bool Override = false)
 	{
-		var CameraObject = Scene.CreateObject();
-		CameraObject.Components.Create<ScreenPanel>();
-		CameraObject.Components.Create<PlayerMenuComponent>();
-		CameraObject.Name = "TEMPCAMERA";
-		CameraObject.NetworkMode = NetworkMode.Never;
-
-		// HACK : further silly hack to use the transform of a placed camera within the level
-		foreach (var Object in Scene.GetAllObjects(false))
+		if (Override && OverviewCamera.IsValid())
 		{
-			if (Object.Tags.Contains("scenecamera"))
-			{
-				CameraObject.WorldPosition = Object.WorldPosition;
-				CameraObject.WorldRotation = Object.WorldRotation;
-			}
+			OverviewCamera.GameObject.Destroy();
 		}
 
-		var CameraComp = CameraObject.Components.Create<CameraComponent>();
-		CameraComp.Priority = 100;
+		if (!OverviewCamera.IsValid())
+		{
+			var CameraObject = Scene.CreateObject();
+			CameraObject.Components.Create<ScreenPanel>();
+			CameraObject.Components.Create<PlayerMenuComponent>();
+			CameraObject.Name = "TEMPCAMERA";
+			CameraObject.NetworkMode = NetworkMode.Never;
 
-		OverviewCamera = CameraComp;
-		return OverviewCamera.IsValid();
+			// HACK : use the transform of a placed camera within the level
+			foreach (var Object in Scene.GetAllObjects(false))
+			{
+				if (Object.Tags.Contains("scenecamera"))
+				{
+					CameraObject.WorldPosition = Object.WorldPosition;
+					CameraObject.WorldRotation = Object.WorldRotation;
+				}
+			}
+
+			var CameraComp = CameraObject.Components.Create<CameraComponent>();
+			CameraComp.Priority = 100;
+			CameraComp.Enabled = true;
+
+			OverviewCamera = CameraComp;
+		}
+
+		SetActiveCamera(OverviewCamera);
+
+		return OverviewCamera;
 	}
 }

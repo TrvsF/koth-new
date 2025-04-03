@@ -74,8 +74,7 @@ public partial class PlayerState
 
 		RequestedCharacterDefinition = CharacterDefintionIn;
 
-		// HACK : we should ensure the owner is requesting this
-		// (same with damage, TODO : )
+		// TODO : actaully send a request
 		HostSetCharacterDefinition(CharacterDefintionIn);
 	}
 
@@ -101,7 +100,11 @@ public partial class PlayerState
 
 	//////////////////////////////////////////////////////////////////////////////////
 
-	public async void SpawnPlayerPawn(TeamSpawnPoint SpawnPoint)
+	[Sync(SyncFlags.FromHost)] public Team Team { get; set; }
+
+	//////////////////////////////////////////////////////////////////////////////////
+
+	public void SpawnPlayerPawn(TeamSpawnPoint SpawnPoint)
 	{
 		Assert.True(Networking.IsHost);
 
@@ -109,12 +112,9 @@ public partial class PlayerState
 		{
 			PlayerPawn.GameObject.Root.Destroy();
 			PlayerPawn = null;
-			LocalOnLocalDeath();
+			LocalOnPlayerDeath();
 
-			// HACK : my fault- however we need to wait for the client to run its
-			// local death stuff before spawning it- this is only for the very
-			// specfic case when we swap teams...
-			await Task.Delay(2000); 
+			GameMode.Instance?.DestroySpawnZoneBlockers();
 		}
 
 		if (!SpawnPoint.IsValid())
@@ -142,7 +142,6 @@ public partial class PlayerState
 		using (Rpc.FilterInclude(Connection))
 		{
 			LocalPlayerSpawn(PlayerPawn);
-			LocalCameraDisableHack();
 		}
 	}
 	
@@ -188,7 +187,7 @@ public partial class PlayerState
 
 		using (Rpc.FilterInclude(Connection))
 		{
-			LocalOnLocalDeath();
+			LocalOnPlayerDeath();
 		}
 	}
 
@@ -207,13 +206,7 @@ public partial class PlayerState
 	}
 
 	[Rpc.Broadcast] // broadcast filter
-	private void LocalCameraDisableHack()
-	{
-		OverviewCameraObject.Enabled = false;
-	}
-
-	[Rpc.Broadcast] // broadcast filter
-	public void LocalOnLocalDeath()
+	public void LocalOnPlayerDeath()
 	{
 		Scene.Dispatch(new LocalPlayerDiedEvent());
 	}

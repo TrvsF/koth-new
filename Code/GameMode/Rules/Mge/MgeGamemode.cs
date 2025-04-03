@@ -10,7 +10,6 @@ namespace KOTH;
 public sealed class MgeGamemode : Component,
 	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<EnterStateEvent>,
-	IGameEventHandler<LeaveStateEvent>,
 	IGameEventHandler<KillBroadcastEvent>,
 	IGameEventHandler<PlayerSpawnedEvent>
 {
@@ -22,34 +21,45 @@ public sealed class MgeGamemode : Component,
 	{
 		var Attacker = KillEvent.DamageEvent.AttackerPlayerState;
 
-		++PlayerScores[Attacker];
-
-		OutputPlayerScores();
-	}
-
-	private void OutputPlayerScores()
-	{
-		Log.Info($"~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		foreach (var (Player, Score) in PlayerScores)
+		if (!Attacker.IsValid())
 		{
-			Log.Info($"{Player.SteamName}:{Score}");
+			return;
 		}
-		Log.Info($"~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+		if (Attacker.PlayerPawn.IsValid())
+		{
+			FHealingRequest OverhealRequest = new()
+			{
+				TargetDamageComponent = Attacker.PlayerPawn.DamageComponent,
+				TargetPlayerPawn = Attacker.PlayerPawn,
+				HealingOrigin = Attacker.PlayerPawn.WorldPosition,
+				BaseHealing = 300,
+				AllowOverheal = true,
+				HealingType = EHealingType.OneOff,
+			};
+			Scene.Dispatch(new HealingRequestEvent(OverhealRequest));
+		}
+
+		var Score = PlayerScores[Attacker] = PlayerScores.GetValueOrDefault(Attacker) + 1; // !
+
+		if (Score >= KillLimit)
+		{
+			if (GameObject.GetComponent<StateComponent>() is { } ParentState)
+			{
+				Assert.IsValid(ParentState.DefaultNextState);
+				GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
+			}
+		}
 	}
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
+		PlayerScores.Clear();
+
 		foreach (var PlayerState in GameNetworkManager.PlayerStates)
 		{
 			PlayerScores.Add(PlayerState, 0);
 		}
-
-		OutputPlayerScores();
-	}
-	
-	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
-	{
-		PlayerScores.Clear();
 	}
 
 	void IGameEventHandler<UpdateStateEvent>.OnGameEvent(UpdateStateEvent eventArgs)
