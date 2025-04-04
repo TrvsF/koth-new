@@ -75,35 +75,25 @@ public sealed class MgeGamemode : Component,
 			return;
 		}
 
-		var Attacker = KillEvent.DamageEvent.AttackerPlayerState;
+		var DamageEvent = KillEvent.DamageEvent;
+		OverhealPlayer(DamageEvent.AttackerPlayerState?.PlayerPawn);
 
-		if (!Attacker.IsValid())
+		foreach (var PlayerState in PlayerScores.Keys)
 		{
-			return;
-		}
-
-		if (Attacker.PlayerPawn.IsValid())
-		{
-			FHealingRequest OverhealRequest = new()
+			if (PlayerState == DamageEvent.VictimPlayerState)
 			{
-				TargetDamageComponent = Attacker.PlayerPawn.DamageComponent,
-				TargetPlayerPawn = Attacker.PlayerPawn,
-				HealingOrigin = Attacker.PlayerPawn.WorldPosition,
-				BaseHealing = 300,
-				AllowOverheal = true,
-				HealingType = EHealingType.OneOff,
-			};
-			Scene.Dispatch(new HealingRequestEvent(OverhealRequest));
-		}
+				continue;
+			}
 
-		var Score = PlayerScores[Attacker] = PlayerScores.GetValueOrDefault(Attacker) + 1; // !
+			var Score = PlayerScores[PlayerState] = PlayerScores.GetValueOrDefault(PlayerState) + 1; // !
 
-		if (Score >= KillLimit)
-		{
-			if (GameObject.GetComponent<StateComponent>() is { } ParentState)
+			if (Score >= KillLimit)
 			{
-				Assert.IsValid(ParentState.DefaultNextState);
-				GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
+				if (GameObject.GetComponent<StateComponent>() is { } ParentState)
+				{
+					Assert.IsValid(ParentState.DefaultNextState);
+					GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
+				}
 			}
 		}
 	}
@@ -120,7 +110,11 @@ public sealed class MgeGamemode : Component,
 
 	public void OnGameEvent(PlayerSpawnedEvent PlayerSpawnEvent)
 	{
-		var PlayerPawn = PlayerSpawnEvent.Player;
+		OverhealPlayer(PlayerSpawnEvent.Player);
+	}
+
+	private void OverhealPlayer(PlayerPawn PlayerPawn)
+	{
 		if (!PlayerPawn.IsValid())
 		{
 			return;
