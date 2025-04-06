@@ -25,6 +25,11 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 	{
 		base.OnUpdate();
 
+		if (!IsProxy && TimeSinceSpawn < LocalInvisableTime)
+		{
+			return;
+		}
+
 		if (TrailPrefab.IsValid())
 		{
 			TrailPrefab.Clone(WorldPosition);

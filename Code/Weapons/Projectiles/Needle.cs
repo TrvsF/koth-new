@@ -14,8 +14,8 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
-	private bool IsAttached = false;
-	private GameObject AttachedGameObject = null;
+	[Sync] private bool IsAttached { get; set; } = false;
+	private GameObject AttachedGameObject { get; set; } = null;
 	private Vector3 HitLocation;
 	private Transform InitArmedWorldTransformAttachedObject;
 
@@ -36,17 +36,27 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 		if (IsAttached)
 		{
+			if (IsProxy)
+			{
+				return;
+			}
+
 			if (!AttachedGameObject.IsValid())
 			{
 				GameObject.Root.Destroy();
 				return;
 			}
-			
+
 			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
 			GameObject.WorldPosition = HitLocation + GameObjectOffset;
 		}
 		else
 		{
+			if (!IsProxy && TimeSinceSpawn < LocalInvisableTime)
+			{
+				return;
+			}
+
 			if (TrailPrefab.IsValid())
 			{
 				TrailPrefab.Clone(WorldPosition);

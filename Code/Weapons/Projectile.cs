@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.Diagnostics;
 using Sandbox.Events;
 using static Sandbox.PhysicsContact;
 
@@ -22,6 +23,18 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	[Property, Group("Base")] public float ExplosionRadius { get; set; } = 128f;
 
 	public PlayerPawn OwnerPlayerPawn { get; set; }
+
+	////////////////////////////////////////////////////////////////////////
+
+	protected readonly float LocalInvisableTime = .05f;
+	protected TimeSince TimeSinceSpawn = 0;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		TimeSinceSpawn = 0;
+	}
 
 	////////////////////////////////////////////////////////////////////////
 

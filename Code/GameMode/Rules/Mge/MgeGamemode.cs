@@ -29,6 +29,7 @@ public sealed class MGEUI
 
 public sealed class MgeGamemode : Component,
 	IGameEventHandler<EnterStateEvent>,
+	IGameEventHandler<UpdateStateEvent>,
 	IGameEventHandler<KillBroadcastEvent>,
 	IGameEventHandler<PlayerSpawnedEvent>
 {
@@ -108,6 +109,18 @@ public sealed class MgeGamemode : Component,
 		}
 	}
 
+	public void OnGameEvent(UpdateStateEvent eventArgs)
+	{
+		if (GameNetworkManager.PlayerStates.Count < 2)
+		{
+			if (GameObject.GetComponent<StateComponent>() is { } ParentState)
+			{
+				Assert.IsValid(ParentState.DefaultNextState);
+				GameMode.Instance.StateMachine.Transition(ParentState.DefaultNextState);
+			}
+		}
+	}
+	
 	public void OnGameEvent(PlayerSpawnedEvent PlayerSpawnEvent)
 	{
 		OverhealPlayer(PlayerSpawnEvent.Player);
