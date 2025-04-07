@@ -17,8 +17,8 @@
         "Time": 0.5,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -607.7553,
-          "Passed": 607.7553,
+          "Relative": -2208.4849,
+          "Passed": 2208.4849,
           "Fraction": 1
         }
       }
@@ -139,7 +139,7 @@
               ],
               "Constants": "0.05,0.5,0,0"
             },
-            "MaxParticles": 500,
+            "MaxParticles": 750,
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
@@ -226,7 +226,7 @@
                   "mode": "Mirrored"
                 }
               ],
-              "Constants": "0.33,0.5,0,0"
+              "Constants": "0.3,0.75,0,0"
             },
             "SequenceId": 0,
             "SequenceSpeed": {
@@ -320,7 +320,7 @@
               "$compiler": "texture",
               "$source": "color",
               "data": {
-                "Color": "91.27,91.27,91.27,0.001"
+                "Color": "49.85391,49.85391,49.85391,0.0025"
               },
               "compiled": null
             }

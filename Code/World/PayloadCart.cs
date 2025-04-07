@@ -11,6 +11,7 @@ public sealed class PayloadCart : Component
 	[Property] public float BaseSpeed { get; set; } = 1f;
 	[Property] public float BaseHealing { get; set; } = 0.05f;
 	[Property] public Team Team { get; private set; } = Team.Unassigned;
+	[Sync] public HighlightOutline HighlightOutline { get; set; }
 
 	int HealCounter = 0;
 	protected override void OnFixedUpdate()

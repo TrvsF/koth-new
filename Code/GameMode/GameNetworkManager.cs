@@ -68,20 +68,10 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 					// INetworkListener.OnActive will be called
 					return;
 				}
-				
-				bool Joined = false;
-				
-				if (!Game.IsEditor)
-				{
-					Joined = await Networking.JoinBestLobby(Game.Ident);
-				}
 
-				if (!Joined)
-				{
-					Log.Info("starting own lobby...");
-					CreateLobby();
-					// INetworkListener.OnActive will be called
-				}
+				Log.Info("starting own lobby...");
+				CreateLobby();
+				// INetworkListener.OnActive will be called
 				break;
 			case EGameNetworkMode.Menu:
 				CreatePlayerState(Connection.Local, out GameObject PlayerState, out PlayerState PlayerStateComponent, true);

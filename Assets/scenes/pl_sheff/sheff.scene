@@ -13,12 +13,6 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "c3199629-5a1e-4b65-8e76-f26b489edff8",
-          "GameStats": {
-            "_type": "component",
-            "component_id": "783e60e1-9c3b-4aab-a51e-a02c5c119688",
-            "go": "558d1da8-bde9-4d9c-8693-4989bf4e96a8",
-            "component_type": "GameStats"
-          },
           "NothingState": "Waiting For Players",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -342,6 +336,8 @@
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "6c2e8274-ba5d-4d50-9193-d126c3ffbdee",
+          "DefaultLobbyName": "pl_sheff",
+          "MaxPlayers": 16,
           "NetworkMode": "Multiplayer",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

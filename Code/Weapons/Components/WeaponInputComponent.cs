@@ -211,6 +211,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 		if (TimeSinceDeployed < PlayerInventory.SwitchCooldown)
 		{
+			isDown = false;
 			return;
 		}
 

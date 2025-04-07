@@ -61,9 +61,8 @@ public sealed class PayloadGamemode : Component,
 
 	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
 	{
-		var PayloadHightlight = PayloadGameobject.GetOrAddComponent<HighlightOutline>();
-		PayloadHightlight.ObscuredColor = Color.Green.WithAlpha(0);
-		PayloadHightlight.Color = Color.Yellow.WithAlpha(0);
+		PayloadCartComponent.HighlightOutline.Destroy();
+		PayloadCartComponent.HighlightOutline = null;
 	}
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
@@ -76,10 +75,10 @@ public sealed class PayloadGamemode : Component,
 		PayloadGameobject.WorldPosition = StartLocationRotation.Position;
 		PayloadGameobject.WorldRotation = StartLocationRotation.Rotation;
 
-		var PayloadHightlight = PayloadGameobject.GetOrAddComponent<HighlightOutline>();
-		PayloadHightlight.ObscuredColor = Color.Green.WithAlpha(0.2f);
-		PayloadHightlight.Color = Color.Yellow.WithAlpha(0.05f);
-		PayloadHightlight.Width = .66f;
+		PayloadCartComponent.HighlightOutline = PayloadGameobject.AddComponent<HighlightOutline>();
+		PayloadCartComponent.HighlightOutline.ObscuredColor = Color.Blue.WithAlpha(0.2f);
+		PayloadCartComponent.HighlightOutline.Color = Color.Cyan.WithAlpha(0.05f);
+		PayloadCartComponent.HighlightOutline.Width = .25f;
 
 		TimeSinceStart = 0;
 		IsSetupTime = true;

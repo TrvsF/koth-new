@@ -81,19 +81,20 @@
 			return;
 		}
 
-		var Lobbies = await Networking.QueryLobbies(Game.Ident, "sheff");
+		Trying = true;
+		var Lobbies = await Networking.QueryLobbies(Game.Ident);
 		foreach (var Lobby in Lobbies)
 		{
-			Log.Info(Lobby.Name);
+			if (Lobby.Name.StartsWith("pl_") && !Lobby.IsFull)
+			{
+				if (await Networking.TryConnectSteamId(Lobby.LobbyId))
+				{
+					return;
+				}
+			}
 		}
-
-		// Trying = true;
-		// bool Joined = await Networking.JoinBestLobby(Game.Ident);
-		// if (!Joined)
-		// {
-		// 	Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
-		// }
-		// Trying = false;
+		Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+		Trying = false;
 	}
 
 	private async void LoadMge()
@@ -104,19 +105,20 @@
 			return;
 		}
 
-		var Lobbies = await Networking.QueryLobbies(Game.Ident, "mge");
+		Trying = true;
+		var Lobbies = await Networking.QueryLobbies(Game.Ident);
 		foreach (var Lobby in Lobbies)
 		{
-			Log.Info(Lobby.Name);
+			if (Lobby.Name.StartsWith("mge_") && !Lobby.IsFull)
+			{
+				if (await Networking.TryConnectSteamId(Lobby.LobbyId))
+				{
+					return;
+				}
+			}
 		}
-
-		// Trying = true;
-		// bool Joined = await Networking.JoinBestLobby(Game.Ident);
-		// if (!Joined)
-		// {
-		// 	Game.ActiveScene.LoadFromFile("scenes/mge/mge.scene");
-		// }
-		// Trying = false;
+		Game.ActiveScene.LoadFromFile("scenes/mge/mge.scene");
+		Trying = false;
 	}
 
 	protected override int BuildHash()

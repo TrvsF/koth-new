@@ -18,7 +18,7 @@
 	}
 </style>
 
-<root class="flex absolute inset-0 align-center justify-center">
+<root class="hidden flex absolute inset-0 align-center justify-center">
 	<table class="with-padding-lg layout" style="background-color: #BEBEBE22;">
 		<div class="title" style="font-size: 24px;">
 			Select Class
@@ -38,6 +38,8 @@
 
 @code
 {
+	public bool IsActive { get; set; } = true;
+
 	protected override int BuildHash()
 	{
 		return HashCode.Combine(Time.Now);
@@ -48,5 +50,12 @@
 	private void SelectClass(CharacterDefinition Class)
 	{
 		PlayerState.Local.RequestCharacterDefinition(Class);
+	}
+
+	public override void Tick()
+	{
+		base.Tick();
+
+		SetClass("visible", IsActive);
 	}
 }
