@@ -63,9 +63,9 @@
         "BaseDamage": 50,
         "BaseKnockbackStrength": 300,
         "ExplosionRadius": 128,
-        "MaxDamage": 90,
+        "MaxDamage": 65,
         "MaxHealing": 100,
-        "MinDamage": 40,
+        "MinDamage": 35,
         "MinHealing": 50,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -90,8 +90,8 @@
         "Time": 30,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4078.7517,
-          "Passed": 4078.7517,
+          "Relative": -4172.1357,
+          "Passed": 4172.1357,
           "Fraction": 1
         }
       }

@@ -20,6 +20,22 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "Team": "Terrorist"
+      },
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "b23481c1-dd58-4395-97c7-213026aeaf07",
+        "Color": "0.41789,0.65581,0.62806,0.53",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "Material": null,
+        "ObscuredColor": "0.15619,0.48358,0.88372,0.4",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Width": 0.25
       }
     ],
     "Children": [

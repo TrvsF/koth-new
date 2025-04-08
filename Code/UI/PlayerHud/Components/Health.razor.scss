@@ -24,5 +24,17 @@ Health {
         left: 30%;
         font-size: 64px;
         color: white;
+        z-index: 1;
+    }
+
+    .hp-img {
+        z-index: 0;
+        margin-left: -6px;
+        margin-top: -18px;
+        top: 70%;
+        left: 30%;
+        width: 128px;
+        height: 128px;
+        opacity: 0.5;
     }
 }

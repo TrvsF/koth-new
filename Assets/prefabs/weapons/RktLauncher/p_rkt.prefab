@@ -63,7 +63,7 @@
           "_type": "gameobject",
           "prefab": "particles/weapons/rkt-aura.prefab"
         },
-        "BaseDamage": 90,
+        "BaseDamage": 100,
         "BaseKnockbackStrength": 500,
         "ExplosionPrefab": {
           "_type": "gameobject",

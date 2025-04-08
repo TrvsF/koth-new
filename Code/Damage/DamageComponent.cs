@@ -169,4 +169,9 @@ public sealed class DamageComponent : Component
 	{
 		return MaxBaseHealth.ToString();
 	}
+
+	public bool IsOverhealed()
+	{
+		return Health > MaxBaseHealth;
+	}
 }

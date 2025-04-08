@@ -12,8 +12,7 @@ public record OnPayloadCapturePointEvent(int PointIndex) : IGameEvent;
 public sealed class PayloadGamemode : Component,
 	ITeamSpawnTime,
 	IGameEventHandler<UpdateStateEvent>,
-	IGameEventHandler<EnterStateEvent>,
-	IGameEventHandler<LeaveStateEvent>
+	IGameEventHandler<EnterStateEvent>
 {
 	[Property] public GameObject PayloadGameobject { get; set; } = null;
 	[Property] public GameObject PayloadPathGameobject { get; set; } = null;
@@ -59,12 +58,6 @@ public sealed class PayloadGamemode : Component,
 		PayloadPushSound = new FSound(PayloadMoveSound, PayloadCartComponent.WorldPosition, PayloadCartComponent, true);
 	}
 
-	void IGameEventHandler<LeaveStateEvent>.OnGameEvent(LeaveStateEvent eventArgs)
-	{
-		PayloadCartComponent.HighlightOutline.Destroy();
-		PayloadCartComponent.HighlightOutline = null;
-	}
-
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{
 		Assert.IsValid(PayloadCartComponent);
@@ -74,11 +67,6 @@ public sealed class PayloadGamemode : Component,
 		var StartLocationRotation = PayloadPathComponent.GetStartPositionRotation();
 		PayloadGameobject.WorldPosition = StartLocationRotation.Position;
 		PayloadGameobject.WorldRotation = StartLocationRotation.Rotation;
-
-		PayloadCartComponent.HighlightOutline = PayloadGameobject.AddComponent<HighlightOutline>();
-		PayloadCartComponent.HighlightOutline.ObscuredColor = Color.Blue.WithAlpha(0.2f);
-		PayloadCartComponent.HighlightOutline.Color = Color.Cyan.WithAlpha(0.05f);
-		PayloadCartComponent.HighlightOutline.Width = .25f;
 
 		TimeSinceStart = 0;
 		IsSetupTime = true;

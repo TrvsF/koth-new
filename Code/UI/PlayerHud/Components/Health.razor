@@ -6,6 +6,10 @@
     return;
 
 <root>
+    @if (Player.DamageComponent.IsOverhealed())
+    {
+        <img class="hp-img" src="/ui/koth/hp.png"/>
+    }
     <label class="hp" style="color: white;">@(Player.DamageComponent.GetHealthString() ?? "∞")</label>
     @if (CurrentHealthElement.IsVisable)
     {
