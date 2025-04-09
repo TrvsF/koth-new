@@ -478,6 +478,8 @@
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "08164420-4e80-4ea2-b963-a63b7c519e29",
+          "DefaultLobbyName": "awesomelobby",
+          "MaxPlayers": 16,
           "NetworkMode": "Menu",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,

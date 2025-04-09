@@ -77,7 +77,6 @@ public sealed class MgeGamemode : Component,
 		}
 
 		var DamageEvent = KillEvent.DamageEvent;
-		OverhealPlayer(DamageEvent.AttackerPlayerState?.PlayerPawn);
 
 		foreach (var PlayerState in PlayerScores.Keys)
 		{
@@ -86,6 +85,7 @@ public sealed class MgeGamemode : Component,
 				continue;
 			}
 
+			OverhealPlayer(PlayerState?.PlayerPawn);
 			var Score = PlayerScores[PlayerState] = PlayerScores.GetValueOrDefault(PlayerState) + 1; // !
 
 			if (Score >= KillLimit)

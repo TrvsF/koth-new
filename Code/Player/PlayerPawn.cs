@@ -192,17 +192,6 @@ public sealed partial class PlayerPawn : Component, IDescription, Component.ICol
 		DebugUpdate();
 	}
 
-	// HACK : we should be holding these Objects on the dresser
-	private List<GameObject> GetLocalClothes()
-	{
-		List<GameObject> Clothes = new();
-		//foreach (var Child in Body.GameObject.Children)
-		//{
-		//	if (Child.)
-		//}
-		return Clothes;
-	}
-
 	//////////////////////////////////////////////////////////////////////////////////
 
 	private void DoDummyMovement()

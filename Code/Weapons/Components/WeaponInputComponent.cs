@@ -17,20 +17,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 	[Property, Group(".Reload")] public float ReloadTime { get; set; } = 1.0f;
 	const float FirstTimeReloadFactor = 1.2f;
 
-	private bool _IsReloading;
-	[Sync]
-	public bool IsReloading
-	{
-		get => _IsReloading;
-		private set
-		{
-			_IsReloading = value;
-			if (!_IsReloading)
-			{
-				IsFirstReloadInSequence = false;
-			}
-		}
-	}
+	[Sync] public bool IsReloading { get; set; }
 	private bool IsFirstReloadInSequence = false;
 
 	private TimeUntil TimeUntilReload { get; set; }
@@ -105,6 +92,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 			return;
 		}
 
+		IsFirstReloadInSequence = true;
 		IsReloading = false;
 		LastReload = false;
 	}

@@ -2,7 +2,7 @@
 @inherits Panel
 @attribute [StyleSheet]
 
-@if (!PlayerState.Local.PlayerPawn.IsValid())
+@if (PlayerState.Local.PlayerPawn == null || !PlayerState.Local.PlayerPawn.IsValid())
 {
 	return;
 }

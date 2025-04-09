@@ -81,6 +81,12 @@
 			return;
 		}
 
+		if (Game.IsEditor)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+			return;
+		}
+
 		Trying = true;
 		var Lobbies = await Networking.QueryLobbies(Game.Ident);
 		foreach (var Lobby in Lobbies)
@@ -102,6 +108,12 @@
 		if (Networking.IsConnecting || Trying)
 		{
 			Log.Info("connecting...");
+			return;
+		}
+
+		if (Game.IsEditor)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/mge/mge.scene");
 			return;
 		}
 

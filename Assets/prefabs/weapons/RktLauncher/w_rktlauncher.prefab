@@ -67,7 +67,6 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "OnInputAction": null,
         "ProjectileHorizontalSpeed": 1100,
         "ProjectilePrefab": {
           "_type": "gameobject",
@@ -77,7 +76,6 @@
         "ReloadTime": 1,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false,
         "ShootSound": "sounds/weapons/koth/rocketgun.sound"
       }
     ],
