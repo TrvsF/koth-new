@@ -61,24 +61,23 @@
         ],
         "KnockbackStrength": 100,
         "MaxAmmo": 6,
-        "MaxChargeTime": 1.6,
+        "MaxChargeTime": 1.66,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "OnInputAction": null,
         "ProjectileHorizontalSpeed": 666,
         "ProjectilePrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
         },
         "ProjectileVerticalSpeed": 240,
-        "ReloadTime": 1,
+        "ReloadTime": 0.9,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false
+        "ShootSound": null
       },
       {
         "__type": "KOTH.StickyTrackerComponent",

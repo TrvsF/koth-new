@@ -141,6 +141,7 @@ public class ProjectileWeaponComponent : InputWeaponComponent
 ////////////////////////////////////////////////////////////////////////
 
 // NOTE : i think this should now just be a 'mode' within the base projectile comp
+// TODO : please god fix this
 
 [Title("Sticky Shooter"), Group("Weapon Components")]
 public class StickyWeaponComponent : ProjectileWeaponComponent
@@ -169,6 +170,10 @@ public class StickyWeaponComponent : ProjectileWeaponComponent
 		{
 			if (!KeyDown && CanShoot())
 			{
+				if (IsReloading && Ammo > 0)
+				{
+					CancelReload();
+				}
 				GameObject Projectile = Shoot();
 				if (Projectile.Components.Get<Sticky>() is Sticky Sticky)
 				{

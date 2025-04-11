@@ -81,7 +81,9 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 			return;
 		}
 
+		IsFirstReloadInSequence |= Ammo == MaxAmmo; // !
 		TimeUntilReload = GetReloadTime();
+		Log.Info(TimeUntilReload);
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
@@ -127,6 +129,7 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 					}
 					else
 					{
+						IsFirstReloadInSequence = true;
 						IsReloading = false;
 					}
 					break;

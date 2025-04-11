@@ -54,7 +54,7 @@
         "__guid": "871b3a76-fc4a-461b-8f0e-a3158aeb8954",
         "Ammo": 4,
         "BaseDamage": 90,
-        "FireRate": 0.66,
+        "FireRate": 0.7,
         "HasAmmo": true,
         "InputActions": [
           "Attack1"
@@ -67,17 +67,15 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "OnInputAction": null,
         "ProjectileHorizontalSpeed": 1000,
         "ProjectilePrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/weapons/grenadelauncher/p_grenade.prefab"
         },
         "ProjectileVerticalSpeed": 200,
-        "ReloadTime": 0.66,
+        "ReloadTime": 0.8,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
-        "RequiresAllInputActions": false,
         "ShootSound": null
       }
     ],

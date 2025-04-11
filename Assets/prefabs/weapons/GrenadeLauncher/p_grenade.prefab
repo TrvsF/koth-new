@@ -60,8 +60,8 @@
         "__type": "KOTH.Grenade",
         "__guid": "7f4d2b59-e90f-47cb-b4cf-fd9581c714a0",
         "BaseDamage": 75,
-        "BaseKnockbackStrength": 400,
-        "ExplosionFuse": 3,
+        "BaseKnockbackStrength": 800,
+        "ExplosionFuse": 1.5,
         "ExplosionPrefab": {
           "_type": "gameobject",
           "prefab": "particles/gameplay/guns/taser/taser_fire_tags.prefab"

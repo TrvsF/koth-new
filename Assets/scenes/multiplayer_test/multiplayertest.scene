@@ -38,6 +38,8 @@
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "7b2af182-d5fb-4f7b-befa-36fd43818d43",
+          "DefaultLobbyName": "awesomelobby",
+          "MaxPlayers": 16,
           "NetworkMode": "Singleplayer",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -64,7 +66,6 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "e1ddd168-dee3-463d-af9e-682151c03381",
-          "GameStats": null,
           "NothingState": "",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
