@@ -247,11 +247,18 @@ public class CharacterController : Component
 	{
 		var result = BuildTrace(WorldPosition, WorldPosition).Run();
 
-		// Not stuck, we cool
 		if (!result.StartedSolid)
 		{
 			_stuckTries = 0;
 			return false;
+		}
+
+		Log.Info(GameObject);
+		Log.Info(result.GameObject);
+		Log.Info(result.GameObject.Tags);
+		if (result.GameObject.Tags.Contains("player_collider"))
+		{
+			// return false;
 		}
 
 		//using ( Gizmo.Scope( "unstuck", Transform.World ) )

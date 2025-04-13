@@ -83,7 +83,6 @@ public abstract partial class InputWeaponComponent : EquipmentComponent
 
 		IsFirstReloadInSequence |= Ammo == MaxAmmo; // !
 		TimeUntilReload = GetReloadTime();
-		Log.Info(TimeUntilReload);
 	}
 
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]

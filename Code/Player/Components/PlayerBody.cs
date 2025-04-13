@@ -30,6 +30,7 @@ public sealed class PlayerBody : Component
 	{
 		Physics.Enabled = true;
 		ModelRenderer.UseAnimGraph = false;
+		Player.PlayerBoxCollider.Enabled = false;
 
 		GameObject.Tags.Set("ragdoll", true);
 
