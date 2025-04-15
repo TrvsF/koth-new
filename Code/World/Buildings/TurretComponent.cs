@@ -14,12 +14,12 @@ public sealed class TurretComponent : Component
 
 	////////////////////////////////////////////////////////////////////////
 
-	[Property] public int MaxHealth { get; private set; } = 1;
-	[Property] public int Damage { get; private set; } = 1;
-	[Property] public float KnockbackStrength { get; private set; } = 1f;
-	[Property] public float Firerate { get; private set; } = 1f;
-	[Property] public float Range { get; private set; } = 256f;
+	[Property] public int MaxHealth { get; private set; } = 100;
 	[Property] public GameObject TurretMuzzleObject { get; set; }
+	[Sync] public int Damage { get; private set; } = 1;
+	[Sync] public float KnockbackStrength { get; private set; } = 1f;
+	[Sync] public float Firerate { get; private set; } = 1f;
+	[Sync] public float Range { get; private set; } = 360f;
 
 	[Property] public GameObject TrailPrefab { get; set; }
 
@@ -34,7 +34,6 @@ public sealed class TurretComponent : Component
 
 	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
 
-	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	public void SetFromWeaponGameObject(GameObject WeaponObject)
 	{
 		if (!WeaponObject.IsValid())
@@ -50,17 +49,6 @@ public sealed class TurretComponent : Component
 
 		Model WeaponModel = null;
 		Color WeaponTint = Color.Black;
-		// TODO : make work
-		// if (WeaponComponent.GameObject.Children.Any())
-		//{
-		//	var SkinnedModelRenderer = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>();
-		//	if (SkinnedModelRenderer.IsValid())
-		//	{
-
-		//		WeaponModel = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>().Model;
-		//		WeaponTint = WeaponComponent.GameObject.Children[0].GetComponent<SkinnedModelRenderer>().Tint;
-		//	}
-		//}
 
 		var IsDataLoaded = LoadDataFromInputWeaponComponent(WeaponComponent, WeaponModel, WeaponTint);
 
@@ -69,8 +57,6 @@ public sealed class TurretComponent : Component
 			EquippedWeaponGameObject = WeaponObject;
 			return;
 		}
-
-		return;
 	}
 
 	private bool LoadDataFromInputWeaponComponent(InputWeaponComponent InputWeaponComponent, Model WeaponModel, Color WeaponTint)
@@ -123,7 +109,15 @@ public sealed class TurretComponent : Component
 
 	protected override void OnFixedUpdate()
 	{
-		ShootTargetIfExists();
+		if (Networking.IsHost)
+		{
+			ShootTargetIfExists();
+			
+			if (WorldRotation.Up.z < 0.5)
+			{
+				GameObject.Root.Destroy();
+			}
+		}
 	}
 
 	private void ShootTargetIfExists()
@@ -135,15 +129,13 @@ public sealed class TurretComponent : Component
 		}
 
 		var TargetPosition = TargetPlayerPawn.CenterPosition;
-
-		var HasFiredShot = FireShot(TargetPosition);
-		DoTurretFX(TargetPosition, HasFiredShot);
+		FireShot(TargetPosition);
 	}
 
 	////////////////////////////////////////////////////////////////////////
 	
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
-	public void DoTurretFX(Vector3 TargetPosition, bool IsShooting)
+	public void DoTurretFX(Vector3 TargetPosition)
 	{
 		if (!TurretMuzzleObject.IsValid())
 		{
@@ -152,11 +144,6 @@ public sealed class TurretComponent : Component
 		}
 
 		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TurretMuzzleObject.WorldPosition - TargetPosition);
-
-		if (!IsShooting)
-		{
-			return;
-		}
 
 		if (TrailPrefab.IsValid())
 		{
@@ -207,7 +194,9 @@ public sealed class TurretComponent : Component
 				};
 
 				Scene.Dispatch(new DamageRequestEvent(DamageRequest));
-				
+
+				DoTurretFX(TargetPosition);
+
 				TimeSinceShot = 0;
 				return true;
 			}
@@ -246,29 +235,24 @@ public sealed class TurretComponent : Component
 		PlayerPawn BestTarget = null;
 		float ShortestDistance = float.PositiveInfinity;
 
-		foreach (var PlayerState in GameNetworkManager.PlayerStates) // TODO : change to player pawns in world
+		// TODO : track playerpawns better, this is slow
+		foreach (var GameObject in Scene.GetAllObjects(true))
 		{
-			if (!PlayerState.IsValid())
+			if (GameObject.GetComponentInChildren<PlayerPawn>() is { } PlayerPawn)
 			{
-				Log.Warning("player state not valid when finding turret target");
-				continue;
-			}
-
-			if (!PlayerState.PlayerPawn.IsValid() || !PlayerState.PlayerPawn.IsAlive || PlayerState.Team == DamageComponent.Team)
-			{
-				continue;
-			}
-
-			var Player = PlayerState.PlayerPawn;
-			if (IsPlayerPawnValidTarget(Player, out var Distance))
-			{
-				if (Distance > ShortestDistance)
+				if (PlayerPawn.Team != DamageComponent.Team)
 				{
-					continue;
-				}
+					if (IsPlayerPawnValidTarget(PlayerPawn, out var Distance))
+					{
+						if (Distance > ShortestDistance)
+						{
+							continue;
+						}
 
-				ShortestDistance = Distance;
-				BestTarget = Player;
+						ShortestDistance = Distance;
+						BestTarget = PlayerPawn;
+					}
+				}
 			}
 		}
 

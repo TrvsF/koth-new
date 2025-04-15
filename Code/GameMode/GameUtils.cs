@@ -7,35 +7,11 @@ public interface IWeighted
 	float Weight { get; }
 }
 
-/// <summary>
-/// A list of game utilities that'll help us achieve common goals with less code... I guess?
-/// </summary>
 public static partial class GameUtils
 {
-	/// <summary>
-	/// All players in the game (includes disconnected players before expiration).
-	/// </summary>
 	public static IEnumerable<PlayerState> AllPlayers => Game.ActiveScene.GetAllComponents<PlayerState>();
-
-	/// <summary>
-	/// Gets a player by their id.
-	/// </summary>
 	public static PlayerState GetPlayerState(Guid? id) => AllPlayers.FirstOrDefault(n => n.PlayerPawn?.Id == id);
-
-	/// <summary>
-	/// Get all players on a team.
-	/// </summary>
 	public static IEnumerable<PlayerState> GetPlayers(Team team) => AllPlayers.Where(x => x.Team == team);
-
-	/// <summary>
-	/// Every <see cref="PlayerPawn"/> currently in the world.
-	/// </summary>
-	public static IEnumerable<PlayerPawn> PlayerPawns => AllPlayers.Select(x => x.PlayerPawn).Where(x => x.IsValid());
-
-	/// <summary>
-	/// Every <see cref="PlayerPawn"/> currently in the world, on the given team.
-	/// </summary>
-	public static IEnumerable<PlayerPawn> GetPlayerPawns(Team team) => PlayerPawns.Where(x => x.Team == team);
 
 	public static IDescription GetDescription(GameObject go) => go?.Components.Get<IDescription>(FindMode.EverythingInSelfAndDescendants);
 	public static IDescription GetDescription(Component component) => GetDescription(component?.GameObject);
