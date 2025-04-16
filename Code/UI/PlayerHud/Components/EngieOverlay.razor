@@ -1,0 +1,26 @@
+﻿@namespace KOTH.UI
+@inherits Panel
+@attribute [StyleSheet]
+
+@if (!Player.IsValid() || !EngiePlayer.IsValid() || !EngiePlayer.ActiveTurretComponent.IsValid())
+{
+	return;
+}
+
+<root>
+	<label class="building">@(EngiePlayer.ActiveTurretComponent.DamageComponent.Health)/@(EngiePlayer.ActiveTurretComponent.DamageComponent.MaxBaseHealth)</label>
+</root>
+
+@code
+{
+	public PlayerPawn Player => PlayerState.Local.PlayerPawn;
+	public EngiePlayer EngiePlayer => Player.GameObject.GetComponent<EngiePlayer>();
+
+	protected override int BuildHash()
+	{
+		if (!Player.IsValid())
+			return 0;
+
+		return HashCode.Combine(Time.Now);
+	}
+}

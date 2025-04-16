@@ -1,0 +1,14 @@
+@import "/UI/Styles/Theme.scss";
+
+EngieOverlay {
+    * {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+    }
+
+    .building {
+        font-size: 64px;
+        color: white;
+    }
+}
