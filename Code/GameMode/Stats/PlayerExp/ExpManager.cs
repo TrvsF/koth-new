@@ -40,7 +40,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 
 		using (Rpc.FilterInclude(PlayerState.Connection))
 		{
-			ProcessExpEvent(ExpEvent);
+			LocalProcessExpEvent(ExpEvent);
 		}
 	}
 
@@ -62,7 +62,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 	/// </summary>
 	/// <param name="expEvent">The event received from the server</param>
 	[Rpc.Broadcast]
-	private void ProcessExpEvent(FExpEvent expEvent)
+	private void LocalProcessExpEvent(FExpEvent expEvent)
 	{
 		Log.Info($"Received exp event {expEvent.Amount} from {expEvent.Origin}");
 		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin.ToString());

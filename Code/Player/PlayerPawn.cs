@@ -9,7 +9,7 @@ using KOTH.PlayerExp;
 
 namespace KOTH;
 
-public sealed partial class PlayerPawn : Component, IDescription, Component.ICollisionListener
+public sealed partial class PlayerPawn : Component, IDescription
 {
 	[Property, Sync(SyncFlags.FromHost)] public FPlayerPawnDefinition PlayerPawnDefinition { get; private set; }
 	public string DisplayName { get; private set; } = "UNINITALIZED";

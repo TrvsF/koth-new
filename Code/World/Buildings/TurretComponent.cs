@@ -145,16 +145,16 @@ public sealed class TurretComponent : Component
 
 		TurretMuzzleObject.WorldRotation = Rotation.LookAt(TurretMuzzleObject.WorldPosition - TargetPosition);
 
-		if (TrailPrefab.IsValid())
-		{
-			var Lerp = 0f;
-			while (Lerp < 1f)
-			{
-				var Position = Vector3.Lerp(TurretMuzzleObject.WorldPosition, TargetPosition, Lerp);
-				TrailPrefab.Clone(Position);
-				Lerp += 0.033f;
-			}
-		}
+		//if (TrailPrefab.IsValid())
+		//{
+		//	var Lerp = 0f;
+		//	while (Lerp < 1f)
+		//	{
+		//		var Position = Vector3.Lerp(TurretMuzzleObject.WorldPosition, TargetPosition, Lerp);
+		//		TrailPrefab.Clone(Position);
+		//		Lerp += 0.033f;
+		//	}
+		//}
 	}
 
 	private TimeSince TimeSinceShot = new();

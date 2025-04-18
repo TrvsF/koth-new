@@ -69,6 +69,11 @@ public sealed class GameStats : SingletonComponent<GameStats>,
 			var Stats = PlayerStateStats[Kill.AttackerPlayerState];
 			++Stats.Kills;
 			PlayerStateStats[Kill.AttackerPlayerState] = Stats;
+
+			using (Rpc.FilterInclude(Kill.AttackerPlayerState.Connection))
+			{
+				LocalIncrementPlayerStat("kills-new", 1);
+			}
 		}
 
 		if (Kill.VictimPlayerState.IsValid())
@@ -76,6 +81,11 @@ public sealed class GameStats : SingletonComponent<GameStats>,
 			var Stats = PlayerStateStats[Kill.VictimPlayerState];
 			++Stats.Deaths;
 			PlayerStateStats[Kill.VictimPlayerState] = Stats;
+
+			using (Rpc.FilterInclude(Kill.VictimPlayerState.Connection))
+			{
+				LocalIncrementPlayerStat("deaths-new", 1);
+			}
 		}
 	}
 
@@ -87,12 +97,18 @@ public sealed class GameStats : SingletonComponent<GameStats>,
 		}
 
 		var Heals = HealingEvent.HealingRequest;
+		var HealsPlayerState = Heals.HealerPlayerState;
 
-		if (Heals.HealerPlayerState.IsValid())
+		if (HealsPlayerState.IsValid())
 		{
-			var Stats = PlayerStateStats[Heals.HealerPlayerState];
+			var Stats = PlayerStateStats[HealsPlayerState];
 			Stats.Heals += Heals.Heals;
-			PlayerStateStats[Heals.HealerPlayerState] = Stats;
+			PlayerStateStats[HealsPlayerState] = Stats;
+
+			using (Rpc.FilterInclude(HealsPlayerState.Connection))
+			{
+				LocalIncrementPlayerStat("heals-given-new", Heals.Heals);
+			}
 		}
 	}
 
@@ -104,16 +120,33 @@ public sealed class GameStats : SingletonComponent<GameStats>,
 		}
 
 		var Damage = DamageEvent.DamageEvent;
+		var DamagePlayerState = Damage.AttackerPlayerState;
 
-		if (Damage.AttackerPlayerState.IsValid())
+		if (DamagePlayerState == Damage.VictimPlayerState)
 		{
-			var Stats = PlayerStateStats[Damage.AttackerPlayerState];
+			return;
+		}
+
+		if (DamagePlayerState.IsValid())
+		{
+			var Stats = PlayerStateStats[DamagePlayerState];
 			Stats.Damage += Damage.Damage;
-			PlayerStateStats[Damage.AttackerPlayerState] = Stats;
+			PlayerStateStats[DamagePlayerState] = Stats;
+
+			using (Rpc.FilterInclude(DamagePlayerState.Connection))
+			{
+				LocalIncrementPlayerStat("dmg-given-new", Damage.Damage);
+			}
 		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
+
+	[Rpc.Broadcast]
+	private void LocalIncrementPlayerStat(string StatName, float Value)
+	{
+		Sandbox.Services.Stats.Increment(StatName, Value);
+	}
 
 	// debug
 	//protected override void OnFixedUpdate()

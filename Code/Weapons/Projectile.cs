@@ -84,13 +84,16 @@ public abstract class Projectile : Component, Component.ICollisionListener
 		}
 
 		var OtherRoot = Collision.Other.GameObject?.Root;
-		if (!OtherRoot.IsValid())
+		if (Collision.Other.Body == null)
+		{
+			return;
+		}
+		if (OtherRoot == null)
 		{
 			Log.Warning($"Projectile {this} is hit something invalid!");
 			return;
 		}
-
-		if (OtherRoot == null)
+		if (!OtherRoot.IsValid())
 		{
 			Log.Warning($"Projectile {this} is hit something invalid!");
 			return;
