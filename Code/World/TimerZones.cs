@@ -54,6 +54,15 @@ public sealed class TimerZones : Component
 	{
 		Assert.True(Time > 0);
 
+		if (Sandbox.Services.Stats.LocalPlayer.TryGet("jump1_time", out var BestTime))
+		{
+			if (Time > BestTime.LastValue)
+			{
+				Log.Info("2slow");
+				return;
+			}
+		}
+
 		Sandbox.Services.Stats.SetValue("jump1_time", Time);
 	}
 }
