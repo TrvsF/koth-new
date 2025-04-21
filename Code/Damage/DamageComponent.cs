@@ -55,7 +55,7 @@ public sealed class DamageComponent : Component
 		}
 
 		// if we have overheal slowly drain it
-		if (Health > MaxBaseHealth && TimeSinceHealthDegrade > 0.33f && TimeSinceLastHealFromBeam > 0.08f)
+		if (Health > MaxBaseHealth && TimeSinceHealthDegrade > 0.2f && TimeSinceLastHealFromBeam > 0.08f)
 		{
 			--Health;
 			TimeSinceHealthDegrade = 0;

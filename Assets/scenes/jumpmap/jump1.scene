@@ -476,6 +476,8 @@
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "7dc97ee7-1858-4728-9cb5-d561c00ec634",
+          "DefaultLobbyName": "awesomelobby",
+          "MaxPlayers": 16,
           "NetworkMode": "Singleplayer",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -502,7 +504,6 @@
         {
           "__type": "KOTH.GameMode",
           "__guid": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
-          "GameStats": null,
           "NothingState": "",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -699,73 +700,10 @@
       ]
     },
     {
-      "__guid": "5f96477b-00f2-4f76-bba1-8ccd03dddb7f",
-      "Flags": 0,
-      "Name": "World",
-      "Position": "577.4293,449.8655,29.12496",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.TextRenderer",
-          "__guid": "c3909ede-32bf-4de5-93c8-ca9669d351f5",
-          "__version": 1,
-          "BlendMode": "Normal",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "Scale": 1,
-          "TextAlignment": "Center",
-          "TextScope": {
-            "Text": "World Record",
-            "TextColor": "1,1,1,1",
-            "FontName": "Poppins",
-            "FontSize": 32,
-            "FontWeight": 400,
-            "FontItalic": false,
-            "LineHeight": 1,
-            "LetterSpacing": 0,
-            "WordSpacing": 0,
-            "Outline": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,1,1"
-            },
-            "Shadow": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            },
-            "OutlineUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,1,0,1"
-            },
-            "ShadowUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            }
-          }
-        }
-      ]
-    },
-    {
       "__guid": "eceaa25f-cc36-4d50-ac75-3f5f668e437c",
       "Flags": 0,
       "Name": "leaderboard_txt",
-      "Position": "129.3838,24.03295,-115.8026",
-      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Position": "524.8105,441.6857,-30.52859",
       "Enabled": true,
       "Components": [
         {
@@ -785,7 +723,7 @@
             "BloomLayer": false,
             "AfterUILayer": false
           },
-          "Scale": 1,
+          "Scale": 0.62,
           "TextAlignment": "Center",
           "TextScope": {
             "Text": "Leadboard",
@@ -820,68 +758,16 @@
               "Offset": "4,4"
             }
           }
-        }
-      ]
-    },
-    {
-      "__guid": "0a9f8805-b27d-4bca-8525-ec5f997b4604",
-      "Flags": 0,
-      "Name": "worldrecord_txt",
-      "Position": "577.4293,449.8655,-9.571486",
-      "Enabled": true,
-      "Components": [
+        },
         {
-          "__type": "Sandbox.TextRenderer",
-          "__guid": "a21f8bf1-8fe4-48aa-89a0-524d11e0e616",
-          "__version": 1,
-          "BlendMode": "Normal",
+          "__type": "KOTH.Jump1Text",
+          "__guid": "f4c17085-6bd6-4b17-925f-e61c32924368",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "RenderOptions": {
-            "GameLayer": true,
-            "OverlayLayer": false,
-            "BloomLayer": false,
-            "AfterUILayer": false
-          },
-          "Scale": 1,
-          "TextAlignment": "Center",
-          "TextScope": {
-            "Text": "travis : 2m 34s",
-            "TextColor": "1,1,1,1",
-            "FontName": "Poppins",
-            "FontSize": 32,
-            "FontWeight": 400,
-            "FontItalic": false,
-            "LineHeight": 1,
-            "LetterSpacing": 0,
-            "WordSpacing": 0,
-            "Outline": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,1,1"
-            },
-            "Shadow": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            },
-            "OutlineUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,1,0,1"
-            },
-            "ShadowUnder": {
-              "Enabled": false,
-              "Size": 4,
-              "Color": "0,0,0,1",
-              "Offset": "4,4"
-            }
-          }
+          "OnComponentUpdate": null
         }
       ]
     },
@@ -918,6 +804,122 @@
       "Enabled": true,
       "__Prefab": "prefabs/map_shared/healthpack.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "5827d345-add6-4370-ac6f-216d67f8bec5",
+      "Flags": 0,
+      "Name": "timerzones",
+      "Position": "730.3115,487.629,-186.1169",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "KOTH.TimerZones",
+          "__guid": "602866e6-ed03-4061-923e-58b6773c3cf9",
+          "EndZone": {
+            "_type": "component",
+            "component_id": "2d64e264-e12c-40f3-b1e0-62c5da9ca62e",
+            "go": "266b9ef3-c3b2-4568-a566-a47e3bd15f11",
+            "component_type": "Zone"
+          },
+          "EnterZone": {
+            "_type": "component",
+            "component_id": "864b9e52-1b3c-4ac8-8070-aec4315be45a",
+            "go": "022cf182-6b8d-499a-9076-bf2afe24afb1",
+            "component_type": "Zone"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "022cf182-6b8d-499a-9076-bf2afe24afb1",
+          "Flags": 0,
+          "Name": "start",
+          "Position": "-160.6035,-31.0864,0",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Zone",
+              "__guid": "864b9e52-1b3c-4ac8-8070-aec4315be45a",
+              "Color": "0.58915,1,0.53488,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "c8de514e-6abf-4f91-920a-fe2b431e80cd",
+              "Center": "0,-15.51962,43.82306",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "50,357.737,137.6461",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ]
+        },
+        {
+          "__guid": "266b9ef3-c3b2-4568-a566-a47e3bd15f11",
+          "Flags": 0,
+          "Name": "end",
+          "Position": "3285.936,5568.54,492.091",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Zone",
+              "__guid": "2d64e264-e12c-40f3-b1e0-62c5da9ca62e",
+              "Color": "1,0.52093,0.52093,1",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "0fdeb32b-1994-47f9-9c3c-8899a9d6a53c",
+              "Center": "132.1996,37.38701,200.4639",
+              "Friction": null,
+              "IsTrigger": true,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "Scale": "723.7549,336.0703,450.9279",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

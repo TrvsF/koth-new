@@ -1,0 +1,148 @@
+{
+  "RootObject": {
+    "__guid": "3316380c-3fe1-41b1-9948-bdbc077bd56a",
+    "Flags": 0,
+    "Name": "timerzones",
+    "Tags": "zone",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "KOTH.TimerZones",
+        "__guid": "c0641fd0-5478-48a1-b335-a66b88046d84",
+        "EndZone": {
+          "_type": "component",
+          "component_id": "9b6a3962-b6be-4f41-b9c0-3582379be3df",
+          "go": "f82b9996-2843-45ff-8d58-6cf2f31a8e99",
+          "component_type": "Zone"
+        },
+        "EnterZone": {
+          "_type": "component",
+          "component_id": "1ec968bd-4adb-44d9-bcac-c8988eca60e3",
+          "go": "d2e20cf1-e726-4325-aa04-3677f62171e0",
+          "component_type": "Zone"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "d2e20cf1-e726-4325-aa04-3677f62171e0",
+        "Flags": 0,
+        "Name": "start",
+        "Position": "-50,0,0",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Zone",
+            "__guid": "1ec968bd-4adb-44d9-bcac-c8988eca60e3",
+            "Color": "0.58915,1,0.53488,1",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "3f9e1ad2-7dde-489e-8cc1-2f9cd613186d",
+            "Center": "0,0,0",
+            "Friction": null,
+            "IsTrigger": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Scale": "50,50,50",
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ]
+      },
+      {
+        "__guid": "f82b9996-2843-45ff-8d58-6cf2f31a8e99",
+        "Flags": 0,
+        "Name": "end",
+        "Position": "50,0,0",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Zone",
+            "__guid": "9b6a3962-b6be-4f41-b9c0-3582379be3df",
+            "Color": "1,0.52093,0.52093,1",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
+          },
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "d02f3ce0-6df2-40dd-95af-416991116de8",
+            "Center": "0,0,0",
+            "Friction": null,
+            "IsTrigger": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Scale": "50,50,50",
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

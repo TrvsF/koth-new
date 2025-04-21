@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 /// <summary>
 /// A region of the map with some specific gameplay purpose.
 /// The extents of the zone are defined by <see cref="BoxCollider"/>s attached to this object.
@@ -9,6 +11,8 @@ public class Zone : Component
 
 	private readonly HashSet<BoxCollider> _colliders = new();
 
+	public event Action<Collider> OnZoneEnter;
+	
 	protected override void OnValidate()
 	{
 		UpdateColliders();
@@ -17,6 +21,11 @@ public class Zone : Component
 	protected override void OnEnabled()
 	{
 		UpdateColliders();
+	}
+
+	private void ZoneEnter(Collider Collider)
+	{
+		OnZoneEnter.Invoke(Collider);
 	}
 
 	private void UpdateColliders()
@@ -33,6 +42,7 @@ public class Zone : Component
 			_colliders.Add(collider);
 
 			collider.GameObject.Tags.Add("zone");
+			collider.OnTriggerEnter += ZoneEnter;
 		}
 	}
 
