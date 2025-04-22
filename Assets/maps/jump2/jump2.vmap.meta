@@ -1,0 +1,24 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "Jump 2",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "jump2",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "quack.skybox_white#13352"
+      ],
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/jump2/jump2.vmap",
+        "ParentPackage": "wurstsoftware.koth"
+      }
+    }
+  }
+}

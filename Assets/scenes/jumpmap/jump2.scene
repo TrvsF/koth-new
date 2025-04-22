@@ -5,7 +5,7 @@
       "__guid": "2623adfa-1963-4399-bc14-ed02b44aabe0",
       "Flags": 0,
       "Name": "spawnpoint (3)",
-      "Position": "-89.50693,403.5176,-133.6398",
+      "Position": "-850.5483,431.3283,-133.6398",
       "Enabled": true,
       "Components": [
         {
@@ -29,7 +29,7 @@
       "__guid": "97c56719-132b-48d0-a815-056587429380",
       "Flags": 0,
       "Name": "spawnpoint (4)",
-      "Position": "-147.7051,504.3199,-133.6398",
+      "Position": "-756.759,692.5726,-133.6398",
       "Enabled": true,
       "Components": [
         {
@@ -45,6 +45,30 @@
           "OnComponentUpdate": null,
           "SpawnZone": null,
           "Team": "CounterTerrorist",
+          "Walker": false
+        }
+      ]
+    },
+    {
+      "__guid": "d98ee09c-9464-4f65-9a6e-a6cd90beb28e",
+      "Flags": 0,
+      "Name": "spawnpoint (5)",
+      "Position": "-766.2281,201.8526,-138.1074",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TeamSpawnPoint",
+          "__guid": "4bfc8fb6-dedb-48c5-8cff-bbe21db6e73a",
+          "IsDummy": false,
+          "Jumper": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnZone": null,
+          "Team": "Terrorist",
           "Walker": false
         }
       ]
@@ -86,7 +110,7 @@
           "__guid": "03615e7e-c2ad-45b5-8cd6-742fcfbb5df6",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "maps/jump1/jump1.vmap",
+          "MapName": "maps/jump2/jump2.vmap",
           "NoOrigin": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -132,284 +156,6 @@
         }
       ],
       "Children": []
-    },
-    {
-      "__guid": "2fe5edcf-823c-41a5-bf76-c57b259b5426",
-      "Flags": 0,
-      "Name": "JumpZones",
-      "Enabled": true,
-      "Children": [
-        {
-          "__guid": "d1e57c3b-f49e-4823-9d3f-e65544a09185",
-          "Flags": 0,
-          "Name": "teleportzone",
-          "Position": "1266.849,428.4224,-285.1655",
-          "Tags": "zone",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "5d51691d-310d-4957-9bbe-fa74360324bb",
-              "Center": "0,0,0",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "326.6012,728.1995,90.30023",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Zone",
-              "__guid": "2b76acec-38ac-465f-a33a-9ff5b28a3f93",
-              "Color": "0,1,1,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "KOTH.TeleportZone",
-              "__guid": "34a3d64e-9937-4135-8fcc-93680c662115",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "TeleportLocation": "-349.0072,-15.66235,121.521",
-              "TeleportRotation": "0,0,0,1"
-            }
-          ]
-        },
-        {
-          "__guid": "67fad40b-9d5f-493c-921c-a6c698077c2d",
-          "Flags": 0,
-          "Name": "teleportzone (1)",
-          "Position": "2077.247,419.6228,-270.4866",
-          "Tags": "zone",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "ac21233d-d7e1-42b6-bf02-5b129a68cc58",
-              "Center": "0,0,-12.49805",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "656.6039,728.1995,115.904",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Zone",
-              "__guid": "6ace79f4-3a32-403f-81a9-e794db60ea27",
-              "Color": "0,1,1,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "KOTH.TeleportZone",
-              "__guid": "288ec048-1b0c-4b78-818b-3541f11602eb",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "TeleportLocation": "-406.2075,-15.66235,169.3215",
-              "TeleportRotation": "0,0,0.003490651,0.9999939"
-            }
-          ]
-        },
-        {
-          "__guid": "4f3a5226-9f73-4420-8a1c-9c56ca97b6cd",
-          "Flags": 0,
-          "Name": "teleportzone (1)",
-          "Position": "3026.881,419.6228,-270.4866",
-          "Tags": "zone",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "9815563a-5e3a-4045-b179-ab4ad210a921",
-              "Center": "227.8876,202.2299,-45.90728",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "1112.379,1132.659,49.08528",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Zone",
-              "__guid": "bbbbdd6e-cfb5-4256-b605-bc787317ab6f",
-              "Color": "0,1,1,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "KOTH.TeleportZone",
-              "__guid": "112cf2f9-1fd8-4ba6-a0af-100ea4cb7510",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "TeleportLocation": "-406.2075,-15.66235,169.3215",
-              "TeleportRotation": "0,0,0.003490651,0.9999939"
-            }
-          ]
-        },
-        {
-          "__guid": "5067cea0-0ae1-498b-88fa-2a3b7b1c61e9",
-          "Flags": 0,
-          "Name": "teleportzone (2)",
-          "Position": "3021.205,2110.783,-39.9803",
-          "Tags": "zone",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "24c2eb7d-0d7c-4453-93bd-6113644bdb76",
-              "Center": "462.0131,-166.8948,-45.90728",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "776.0424,713.1872,49.08528",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Zone",
-              "__guid": "1a7b1b60-85f6-4cc0-b1bf-6a2446ebb3f2",
-              "Color": "0,1,1,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "KOTH.TeleportZone",
-              "__guid": "906ab9cc-0b53-4da4-a1d2-497d92679647",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "TeleportLocation": "392.393,-589.863,364.6213",
-              "TeleportRotation": "0,0,0.7071068,0.7071068"
-            }
-          ]
-        },
-        {
-          "__guid": "66b8787e-8cb2-46d5-957b-b56167307ba2",
-          "Flags": 0,
-          "Name": "teleportzone (3)",
-          "Position": "3021.205,3249.146,-39.9803",
-          "Tags": "zone",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "ffc6812e-12e6-44f4-81fa-9c6316a362ed",
-              "Center": "796.1501,1294.187,-51.79834",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "1444.317,3635.351,37.30315",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            },
-            {
-              "__type": "Zone",
-              "__guid": "a602259b-bb2e-4c26-a0a1-264ad4d6f249",
-              "Color": "0,1,1,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "KOTH.TeleportZone",
-              "__guid": "532cee22-1b3c-4163-979d-594d9c9375f9",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "TeleportLocation": "387.5928,-713.1584,367.6214",
-              "TeleportRotation": "0,0,0.7071068,0.7071068"
-            }
-          ]
-        }
-      ]
     },
     {
       "__guid": "5161b6f6-483d-4a69-8358-723d9aebc201",
@@ -669,7 +415,7 @@
       "__guid": "f4e7fb7f-c7ab-49fc-8cc1-708988f7d66c",
       "Flags": 0,
       "Name": "Camera",
-      "Position": "167.6459,445.7328,-141.7825",
+      "Position": "-542.4807,465.8309,-195.8681",
       "Rotation": "0.00000004020403,-0.0754749,-0.00000008292673,0.9971479",
       "Tags": "scenecamera",
       "Enabled": true,
@@ -704,7 +450,7 @@
       "__guid": "eceaa25f-cc36-4d50-ac75-3f5f668e437c",
       "Flags": 0,
       "Name": "leaderboard_txt",
-      "Position": "524.8105,441.6857,-30.52859",
+      "Position": "-81.2139,467.351,-30.52859",
       "Enabled": true,
       "Components": [
         {
@@ -770,163 +516,6 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "StatName": "jump1_time"
-        }
-      ]
-    },
-    {
-      "__guid": "d98ee09c-9464-4f65-9a6e-a6cd90beb28e",
-      "Flags": 0,
-      "Name": "spawnpoint (5)",
-      "Position": "-13.98562,401.1184,-138.1074",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "TeamSpawnPoint",
-          "__guid": "4bfc8fb6-dedb-48c5-8cff-bbe21db6e73a",
-          "IsDummy": false,
-          "Jumper": false,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SpawnZone": null,
-          "Team": "Terrorist",
-          "Walker": false
-        }
-      ]
-    },
-    {
-      "__guid": "7160ef25-22e4-4622-b4f5-cdd1425e5e6b",
-      "Flags": 0,
-      "Name": "healthpack (2)",
-      "Position": "242.5951,424.9337,-199.3778",
-      "Tags": "consumable",
-      "Enabled": true,
-      "__Prefab": "prefabs/map_shared/healthpack.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "5827d345-add6-4370-ac6f-216d67f8bec5",
-      "Flags": 0,
-      "Name": "timerzones",
-      "Position": "730.3115,487.629,-186.1169",
-      "Tags": "zone",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "KOTH.TimerZones",
-          "__guid": "602866e6-ed03-4061-923e-58b6773c3cf9",
-          "EndZone": {
-            "_type": "component",
-            "component_id": "2d64e264-e12c-40f3-b1e0-62c5da9ca62e",
-            "go": "266b9ef3-c3b2-4568-a566-a47e3bd15f11",
-            "component_type": "Zone"
-          },
-          "EnterZone": {
-            "_type": "component",
-            "component_id": "864b9e52-1b3c-4ac8-8070-aec4315be45a",
-            "go": "022cf182-6b8d-499a-9076-bf2afe24afb1",
-            "component_type": "Zone"
-          },
-          "LeaderboardText": {
-            "_type": "component",
-            "component_id": "36a5369b-2315-4d92-bc49-073eb2add4ad",
-            "go": "eceaa25f-cc36-4d50-ac75-3f5f668e437c",
-            "component_type": "LeaderboardText"
-          },
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "StartPoint": "-404.8007,-44.60003,0"
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "022cf182-6b8d-499a-9076-bf2afe24afb1",
-          "Flags": 0,
-          "Name": "start",
-          "Position": "-160.6035,-31.0864,0",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Zone",
-              "__guid": "864b9e52-1b3c-4ac8-8070-aec4315be45a",
-              "Color": "0.58915,1,0.53488,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "c8de514e-6abf-4f91-920a-fe2b431e80cd",
-              "Center": "0,-11.49194,132.034",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "50,516.6182,314.0681",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            }
-          ]
-        },
-        {
-          "__guid": "266b9ef3-c3b2-4568-a566-a47e3bd15f11",
-          "Flags": 0,
-          "Name": "end",
-          "Position": "3285.936,5568.54,492.091",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Zone",
-              "__guid": "2d64e264-e12c-40f3-b1e0-62c5da9ca62e",
-              "Color": "1,0.52093,0.52093,1",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            },
-            {
-              "__type": "Sandbox.BoxCollider",
-              "__guid": "0fdeb32b-1994-47f9-9c3c-8899a9d6a53c",
-              "Center": "132.1996,37.38701,200.4639",
-              "Friction": null,
-              "IsTrigger": true,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "OnObjectTriggerEnter": null,
-              "OnObjectTriggerExit": null,
-              "OnTriggerEnter": null,
-              "OnTriggerExit": null,
-              "Scale": "723.7549,336.0703,450.9279",
-              "Static": false,
-              "Surface": null,
-              "SurfaceVelocity": "0,0,0"
-            }
-          ]
         }
       ]
     }
