@@ -518,6 +518,60 @@
           "StatName": "jump1_time"
         }
       ]
+    },
+    {
+      "__guid": "e71721e5-ca24-4c10-ab87-50e21c935c65",
+      "Flags": 0,
+      "Name": "teleportzone",
+      "Position": "2801.287,452.9468,-25.11688",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "c1dc9b7c-bfd3-46eb-9689-f548f19fce1b",
+          "Center": "128.9898,19.81329,-255.141",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "1629.159,394.11,23.36703",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "Zone",
+          "__guid": "bffa41d9-0f4f-48a0-9b96-20e2dd348fc2",
+          "Color": "0,1,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.TeleportZone",
+          "__guid": "0fd7e926-f3ab-4cca-8977-047ff7581ee2",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TeleportLocation": "-821.5992,54.50002,-78.70046",
+          "TeleportRotation": "0,0,0,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {
