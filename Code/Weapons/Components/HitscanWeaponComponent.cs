@@ -262,21 +262,21 @@ public class HitscanWeaponComponent : InputWeaponComponent
 
 		if (DecalDefinition.IsValid())
 		{
-			var Decal = Game.Random.FromList(DecalDefinition.Decals);
+			//var Decal = Game.Random.FromList(DecalDefinition.Decals);
 
-			var DecalObject = Scene.CreateObject();
-			DecalObject.NetworkMode = NetworkMode.Never;
-			DecalObject.WorldPosition = HitObjectTransform.Position;
-			DecalObject.WorldRotation = HitObjectTransform.Rotation;
+			//var DecalObject = Scene.CreateObject();
+			//DecalObject.NetworkMode = NetworkMode.Never;
+			//DecalObject.WorldPosition = HitObjectTransform.Position;
+			//DecalObject.WorldRotation = HitObjectTransform.Rotation;
 
-			var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
-			DecalRenderer.Material = Decal.Material;
-			DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
+			//var DecalRenderer = DecalObject.AddComponent<DecalRenderer>();
+			//DecalRenderer.Material = Decal.Material;
+			//DecalRenderer.Size = new(Decal.Width.GetValue(), Decal.Height.GetValue(), Decal.Depth.GetValue());
 
-			var Destroy = DecalObject.AddComponent<TimedDestroyComponent>();
-			Destroy.Time = 15f;
+			//var Destroy = DecalObject.AddComponent<TimedDestroyComponent>();
+			//Destroy.Time = 15f;
 
-			DecalObject.NetworkSpawn();
+			//DecalObject.NetworkSpawn();
 		}
 	}
 }

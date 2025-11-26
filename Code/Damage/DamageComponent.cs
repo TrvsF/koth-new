@@ -20,8 +20,8 @@ public sealed class DamageComponent : Component
 	//////////////////////////////////////////////////////////////////////////////////
 
 	public bool IsUbered { get; private set; } = false;
-	private TimeSince TimeSinceLastHealFromBeam = 1;
-	private TimeSince TimeSinceLastUbered = 1;
+	private TimeSince TimeSinceLastHealFromBeam = 999;
+	private TimeSince TimeSinceLastUbered = 999;
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -114,8 +114,10 @@ public sealed class DamageComponent : Component
 		BroadcastHeals(HealingDoneMessage);
 	}
 
-	public void Uber()
+	[Rpc.Broadcast]
+	public void BroadcastUber()
 	{
+		Log.Info("u");
 		TimeSinceLastUbered = 0;
 	}
 

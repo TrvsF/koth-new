@@ -74,8 +74,8 @@ public sealed class HealBeamComponent : InputWeaponComponent
 
 		if (IsUbered)
 		{
-			Equipment?.Owner?.DamageComponent.Uber();
-			HealTarget?.DamageComponent.Uber();
+			Equipment?.Owner?.DamageComponent.BroadcastUber();
+			HealTarget?.DamageComponent.BroadcastUber();
 		}
 
 		if (!HealInput)

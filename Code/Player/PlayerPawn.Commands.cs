@@ -5,23 +5,17 @@ namespace KOTH;
 
 public partial class PlayerPawn
 {
-	/// <summary>
-	/// Development: should bots follow the player's input?
-	/// </summary>
-	[ConVar("hc1_bot_follow")] public static bool BotFollowHostInput { get; set; }
-
 	[ConCmd("kill")]
-	private static void Command_Suicide()
+	private static void ConKill()
 	{
-		// TODO : FIX!
-		if (!Networking.IsHost)
+		var LocalPlayerPawn = PlayerState.Local?.PlayerPawn;
+
+		if (LocalPlayerPawn == null)
 		{
 			return;
 		}
 
-		var LocalPlayerPawn = PlayerState.Local?.PlayerPawn;
-
-		if (LocalPlayerPawn.IsValid() && LocalPlayerPawn.IsAlive && Game.ActiveScene.IsValid())
+		if (LocalPlayerPawn.IsValid() && LocalPlayerPawn.IsAlive)
 		{
 			FDamageRequest DamageRequest = new()
 			{

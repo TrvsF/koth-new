@@ -34,11 +34,6 @@ public sealed class PlayerBody : Component
 
 		GameObject.Tags.Set("ragdoll", true);
 
-		foreach (var Body in Physics.PhysicsGroup.Bodies)
-		{
-			Body.ApplyImpulseAt(DamageTaken.DamageLocation, DamageTaken.Damage * 5f);
-		}
-
 		Transform.ClearInterpolation();
 
 		var TimedDestroyComponent = GameObject.AddComponent<TimedDestroyComponent>();

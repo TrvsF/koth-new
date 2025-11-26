@@ -24,7 +24,8 @@
           "Title": "jump1",
           "Version": null
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "337b45d2-f94a-41a9-b735-093088733043",
@@ -52,7 +53,8 @@
             "prefab": "prefabs/player/playerstate.prefab"
           }
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "38e7bddb-3a82-492f-91e8-59113b5cbf3b",
@@ -228,7 +230,8 @@
                   "TryUseGamemodeRespawnTime": false,
                   "UseSpawnWaves": false
                 }
-              ]
+              ],
+              "Children": []
             }
           ]
         }
@@ -302,7 +305,8 @@
           "ZFar": 10000,
           "ZNear": 10
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "01d25664-e6e0-4db0-82e4-e6c75d6f6e62",
@@ -327,7 +331,8 @@
           "Team": "Unassigned",
           "Walker": false
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "ad94043a-cd76-4335-bb33-4c566c94ff2b",
@@ -352,7 +357,8 @@
           "Team": "CounterTerrorist",
           "Walker": false
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "c0ee6798-d478-403c-ad66-b861dd6a3ed5",
@@ -377,13 +383,15 @@
           "Team": "Terrorist",
           "Walker": false
         }
-      ]
+      ],
+      "Children": []
     },
     {
       "__guid": "1075a1ea-4441-4502-9d4e-f699ad46a157",
       "Flags": 0,
       "Name": "PSpawns",
       "Enabled": true,
+      "Components": [],
       "Children": [
         {
           "__guid": "0cde1ed7-823b-49bb-a89b-52d65a7c3bbb",
@@ -408,7 +416,8 @@
               "Team": "Terrorist",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "6ddaa339-2144-4ec6-b94e-70c6cf7f1669",
@@ -433,7 +442,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "ee344eaa-2da1-4888-911c-a0ddf765dd28",
@@ -458,7 +468,8 @@
               "Team": "CounterTerrorist",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         }
       ]
     },
@@ -467,6 +478,7 @@
       "Flags": 0,
       "Name": "JSpawns",
       "Enabled": true,
+      "Components": [],
       "Children": [
         {
           "__guid": "3e465bc9-0bbc-4b3b-a2be-4471329cd1db",
@@ -491,7 +503,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "dff7eb27-97ad-47d3-8d33-3405ec0f3aa1",
@@ -516,7 +529,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "9de5887a-7421-43d9-9e70-2db7647dbb5b",
@@ -541,7 +555,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "0f76a294-37b2-4243-a611-617e37b1d7a8",
@@ -566,7 +581,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "36ae25f3-626c-443b-9260-2fce64c3cb63",
@@ -591,7 +607,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "10cc8b40-2e2a-4f86-bf50-846840168e5b",
@@ -616,7 +633,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "695244b5-eac2-4860-bc2b-28e9b655f2e7",
@@ -641,7 +659,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "940f4daa-8ccc-45e7-883b-c9914050e8c1",
@@ -666,7 +685,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "bf133489-1128-419e-b568-06533ae476fe",
@@ -691,7 +711,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "24ebbfa0-de4b-40e6-9c2c-c4ba41d0a10e",
@@ -716,7 +737,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "31e6f9b9-1ac3-4a10-bb60-a4ecd0120c91",
@@ -741,7 +763,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "aa9e18ee-c08d-4e70-a5f0-7036f3632295",
@@ -766,7 +789,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         }
       ]
     },
@@ -775,6 +799,7 @@
       "Flags": 0,
       "Name": "WSpawns",
       "Enabled": true,
+      "Components": [],
       "Children": [
         {
           "__guid": "c473219a-6a36-4348-8f68-6a47b5717cdc",
@@ -798,7 +823,8 @@
               "Team": "Unassigned",
               "Walker": true
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "272ee5fe-d083-4c13-8b4d-9d70b6205af4",
@@ -822,7 +848,8 @@
               "Team": "Unassigned",
               "Walker": true
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "d37bf3cf-6618-496d-8a16-df42d30823db",
@@ -846,7 +873,8 @@
               "Team": "Unassigned",
               "Walker": true
             }
-          ]
+          ],
+          "Children": []
         }
       ]
     },
@@ -865,6 +893,7 @@
       "Flags": 0,
       "Name": "MSpawns",
       "Enabled": true,
+      "Components": [],
       "Children": [
         {
           "__guid": "71a7e04a-823e-436e-8659-ebed42550d6f",
@@ -888,7 +917,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "4a2d00d1-d3de-4920-bb04-85964e0156f9",
@@ -912,7 +942,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "c329c37e-9bff-42e5-8aeb-03f6bf65f3da",
@@ -936,7 +967,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "37cfc19e-c09e-448c-9205-f53df2f27f9d",
@@ -960,7 +992,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "bcecda25-aace-494b-a09f-8a4befffcfb2",
@@ -984,7 +1017,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "30197750-42de-4330-b158-ec3b3f9878ff",
@@ -1008,7 +1042,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "3cc5ba17-50be-4422-856b-2f2fd0507964",
@@ -1033,7 +1068,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "9c757ae6-627f-4569-ac88-7bca05b46be1",
@@ -1057,7 +1093,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "77c8d665-5ac2-4d9d-aa2b-65dcb84338e3",
@@ -1081,7 +1118,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "cf021180-fd60-4842-869d-dab4c6e95c5d",
@@ -1105,7 +1143,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "b0eb536c-9a52-42bf-b90d-938f784a4d9c",
@@ -1129,7 +1168,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "270768d4-a8ca-4768-be5b-0e7103d2daee",
@@ -1153,7 +1193,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "304ec4c1-f70b-489a-b47f-c9542e99e697",
@@ -1177,7 +1218,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "74b8d836-9300-40cd-99c4-bf06b14ce2f7",
@@ -1201,7 +1243,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "4634412f-776e-49b7-999f-e7530f5231c9",
@@ -1225,7 +1268,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "50b561c5-c529-449b-bc27-b7d446167900",
@@ -1249,7 +1293,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "18cb55bb-427d-4383-9876-94596c07aa71",
@@ -1274,7 +1319,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "b34364cb-d4f9-464b-8e73-d4e85140025e",
@@ -1298,7 +1344,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "bce8ebb2-5a5b-4125-9ae0-6eaadde51b35",
@@ -1322,7 +1369,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "807371da-86f9-4c99-a203-ba084c9256c3",
@@ -1346,7 +1394,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "bc061c51-f355-42e5-a9df-97f47ecfc35b",
@@ -1370,7 +1419,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "c024c6de-4d16-4cc9-a3d4-a6c03522fe5e",
@@ -1394,7 +1444,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "25e248e0-f2d2-444e-83b6-d03dbfc66a2d",
@@ -1418,7 +1469,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "125dcaf1-9a02-4e49-8492-5b8a80a14efe",
@@ -1442,7 +1494,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "35a8af90-bcc6-4ad6-8858-8ce8f4d878ba",
@@ -1466,7 +1519,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "68e05182-c7da-4943-97d8-7d309354410d",
@@ -1490,7 +1544,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "62b0af0e-a695-4c02-b74a-bfd00d34b1e8",
@@ -1515,7 +1570,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "471f0e6b-1c80-4f47-a0f2-9c03e405afe4",
@@ -1539,7 +1595,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "ea9a4b28-2789-47df-ae47-0c1e3075a726",
@@ -1563,7 +1620,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "27a3c9d4-81c5-4ed3-b098-4245705b0f9f",
@@ -1587,7 +1645,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "5faa34ea-59c7-47da-b2aa-dc885c34f424",
@@ -1611,7 +1670,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "48b013b3-810f-4bbf-838e-b41f53c73957",
@@ -1635,7 +1695,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "b0c338dc-fbe4-469b-8ed0-2931ddaf5f85",
@@ -1659,7 +1720,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "3d9bc90d-1f12-4753-af8c-1bc9ce77f236",
@@ -1683,7 +1745,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "c3804988-b406-4c1f-ad2c-bf8b62489d3a",
@@ -1707,7 +1770,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "01ee6840-8d3e-42b2-a150-cc7fe46f9434",
@@ -1731,7 +1795,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "5e18e821-f413-4a9c-99e1-b2bae8721dc5",
@@ -1756,7 +1821,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "5a058ad3-f0be-4306-bcbe-d63f9ef74d35",
@@ -1780,7 +1846,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "3b8bc513-7a70-46fb-aa82-5345c7d3ee71",
@@ -1804,7 +1871,8 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         },
         {
           "__guid": "d8c218ad-855f-42a7-a513-5828093a5c05",
@@ -1828,20 +1896,59 @@
               "Team": "Unassigned",
               "Walker": false
             }
-          ]
+          ],
+          "Children": []
         }
       ]
+    },
+    {
+      "__guid": "06f487e2-1b79-440e-97fd-4c02ab4bfa3b",
+      "Flags": 0,
+      "Name": "spawnzone",
+      "Position": "-1012.948,792.0724,118.7519",
+      "Tags": "zone",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "3906f816-0764-4a86-9790-881566b58624",
+          "Center": "85.97506,-142.8832,77.35105",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "325.4052,385.7664,254.7021",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "KOTH.UberZone",
+          "__guid": "3ee3bff8-de86-4ed9-a057-58f3632f3f03",
+          "Color": "1,1,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
-    "FixedUpdateFrequency": 60,
-    "MaxFixedUpdates": 5,
-    "NetworkFrequency": 86,
     "NetworkInterpolation": true,
-    "PhysicsSubSteps": 1,
-    "ThreadedAnimation": true,
     "TimeScale": 1,
-    "UseFixedUpdate": true,
+    "WantsSystemScene": true,
     "Metadata": {
       "Title": "jump1"
     },

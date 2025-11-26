@@ -253,9 +253,8 @@ public class CharacterController : Component
 			return false;
 		}
 
-		Log.Info(GameObject);
-		Log.Info(result.GameObject);
-		Log.Info(result.GameObject.Tags);
+		Log.Info($"attempting unstuck for {GameObject} against {result.GameObject}");
+
 		if (result.GameObject.Tags.Contains("player_collider"))
 		{
 			// return false;
@@ -290,8 +289,6 @@ public class CharacterController : Component
 		}
 
 		_stuckTries++;
-
-		Log.Info("trying to unstick");
 
 		return true;
 	}

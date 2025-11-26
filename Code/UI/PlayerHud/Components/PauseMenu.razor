@@ -7,7 +7,7 @@
 
 @attribute [StyleSheet]
 
-<root class="hidden flex absolute inset-0 align-center justify-center">
+<root class="">
 	<div onclick="@(() => {PlayerState.Local.IsPaused = false;})">Resume</div>
 	<div @onclick="@(() => Game.Overlay.ShowSettingsModal())">Settings</div>
 	<div onclick="@(() => GoToMenu())">Main Menu</div>
