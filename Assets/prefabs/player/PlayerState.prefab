@@ -1,14 +1,25 @@
 {
   "RootObject": {
     "__guid": "13e05e7e-a93c-4a2a-8d00-3f5d066be661",
+    "__version": 2,
     "Flags": 0,
     "Name": "playerstate",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
     "Enabled": true,
     "NetworkMode": 0,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "KOTH.PlayerState",
         "__guid": "4287ea75-f9a3-44a1-9b33-47d8171c2433",
+        "__enabled": true,
+        "Flags": 0,
         "DefaultPlayerPawnPrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/player/player.prefab"
@@ -19,13 +30,15 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "PingString": null,
         "SteamId": 0,
-        "SteamName": null,
-        "Team": "Unassigned"
+        "SteamName": null
       },
       {
         "__type": "KOTH.PlayerId",
         "__guid": "aab3a546-80c0-4d1c-aa86-c834ce2ea541",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -36,6 +49,8 @@
       {
         "__type": "KOTH.PlayerVoiceComponent",
         "__guid": "c92ec926-f734-4463-89d5-786760d9bc3e",
+        "__enabled": true,
+        "Flags": 0,
         "Distance": 15000,
         "Falloff": [
           {
@@ -67,6 +82,7 @@
             "mode": "Mirrored"
           }
         ],
+        "LipSync": true,
         "Loopback": false,
         "Mode": "PushToTalk",
         "MorphScale": 0.12,
@@ -90,6 +106,8 @@
       {
         "__type": "KOTH.LocalStats",
         "__guid": "15f354ef-7255-4bf0-849b-80c32f02e67f",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -99,36 +117,33 @@
       }
     ],
     "Children": [],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
         "IncludeStaticBodies": true,
         "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
+        "EditorAutoUpdate": false,
         "AgentHeight": 64,
         "AgentRadius": 16,
         "AgentStepSize": 18,
         "AgentMaxSlope": 40,
         "ExcludedBodies": "",
-        "IncludedBodies": ""
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

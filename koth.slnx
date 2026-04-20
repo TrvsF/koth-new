@@ -4,7 +4,7 @@
   </Configurations>
   <Project Path="Code/koth.csproj" />
   <Folder Name="/Addons/">
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/addons/base/Code/Base Library.csproj" />
+    <Project Path="../sbox-plus/game/addons/base/code/Base Library.csproj" />
   </Folder>
   <Folder Name="/Libraries/">
     <Project Path="Libraries/facepunch.jigglebones/Code/jigglebones.csproj" />
@@ -12,10 +12,11 @@
     <Project Path="Libraries/facepunch.libevents/UnitTests/libevents.unittest.csproj" />
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj" />
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/editor/ActionGraph/Code/actiongraph.csproj" />
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/editor/Hammer/Code/hammer.csproj" />
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/editor/MovieMaker/Code/moviemaker.csproj" />
-    <Project Path="C:/Program Files (x86)/Steam/steamapps/common/sbox/editor/ShaderGraph/Code/shadergraph.csproj" />
+    <Project Path="../sbox-plus/game/addons/tools/Code/Base Editor Library.csproj" />
+    <Project Path="../sbox-plus/game/editor/ActionGraph/Code/actiongraph.csproj" />
+    <Project Path="../sbox-plus/game/editor/DooEditor/Code/dooeditor.csproj" />
+    <Project Path="../sbox-plus/game/editor/Hammer/Code/hammer.csproj" />
+    <Project Path="../sbox-plus/game/editor/MovieMaker/Code/moviemaker.csproj" />
+    <Project Path="../sbox-plus/game/editor/ShaderGraph/Code/shadergraph.csproj" />
   </Folder>
 </Solution>

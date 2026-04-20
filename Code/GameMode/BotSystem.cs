@@ -47,7 +47,7 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 		Assert.True(Networking.IsHost);
 		Assert.IsValid(SpawnPoint);
 
-		var SpawnPlayerPawnPrefab = PlayerState.DefaultPlayerPawnPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
+		var SpawnPlayerPawnPrefab = DummyPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
 		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
 
 		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();

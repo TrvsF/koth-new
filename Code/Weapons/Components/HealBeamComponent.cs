@@ -3,6 +3,26 @@ using Sandbox.Events;
 
 namespace KOTH;
 
+public sealed class HealBeamBeam : Component
+{
+	public PlayerPawn HealTarget { get; set; }
+
+	protected override void OnFixedUpdate()
+	{
+		base.OnFixedUpdate();
+
+		if (!HealTarget.IsValid())
+		{
+			Log.Warning("ohno");
+			return;
+		}
+
+		WorldPosition = (GameObject.Parent.WorldPosition + HealTarget.WorldPosition) / 2;
+		WorldPosition += Vector3.Up * 25;
+		WorldRotation = Rotation.LookAt(HealTarget.WorldPosition - GameObject.Parent.WorldPosition);
+	}
+}
+
 public sealed class HealBeamComponent : InputWeaponComponent
 {
 	[Property, Category("Healing")] public float TimePerOneHeal { get; set; } = .45f;
@@ -10,13 +30,15 @@ public sealed class HealBeamComponent : InputWeaponComponent
 	[Property, Category("Healing")] public float MaxCharge { get; set; } = 200f;
 	[Property, Category("Healing")] public float ChargeBuildRate { get; set; } = .03f;
 	[Property, Category("Healing")] public float ChargeDegradeRate { get; set; } = .05f;
+	[Property, Category("Healing")] public GameObject HealBeamBeamPrefab { get; set; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	[Sync] public PlayerPawn HealTarget { get; private set; }
 	[Sync] public bool IsUbered { get; private set; } = false;
 	[Sync] public float Charge { get; private set; } = 0f;
-	private PlayerPawn PlayerPawn { get => Equipment.Owner; }
+	public PlayerPawn PlayerPawn { get => Equipment.Owner; }
+	private HealBeamBeam HealBeamBeam { get; set; }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -27,6 +49,23 @@ public sealed class HealBeamComponent : InputWeaponComponent
 		if (!PlayerPawn.IsValid())
 		{
 			return;
+		}
+
+		if (HealTarget.IsValid())
+		{
+			if (!HealBeamBeam.IsValid())
+			{
+				CloneConfig CloneConfig = new();
+				CloneConfig.StartEnabled = true;
+				CloneConfig.Parent = GameObject;
+				HealBeamBeam = HealBeamBeamPrefab.Clone(CloneConfig).GetComponent<HealBeamBeam>();
+			}
+
+			HealBeamBeam.HealTarget = HealTarget;
+		}
+		else if (HealBeamBeam.IsValid())
+		{
+			HealBeamBeam.DestroyGameObject();
 		}
 
 		if (!IsProxy)

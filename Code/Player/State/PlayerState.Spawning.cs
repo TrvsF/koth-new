@@ -127,7 +127,7 @@ public partial class PlayerState
 	}
 
 
-	[Property] public static GameObject DefaultPlayerPawnPrefab { get; private set; }
+	[Property] public GameObject DefaultPlayerPawnPrefab { get; private set; }
 
 	private void OnPlayerPawnSpawn()
 	{
