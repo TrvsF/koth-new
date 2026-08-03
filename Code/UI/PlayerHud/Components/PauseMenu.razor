@@ -8,16 +8,19 @@
 @attribute [StyleSheet]
 
 <root class="">
-	<div onclick="@(() => {PlayerState.Local.IsPaused = false;})">Resume</div>
-	<div @onclick="@(() => Game.Overlay.ShowSettingsModal())">Settings</div>
-	<div onclick="@(() => GoToMenu())">Main Menu</div>
+@* 	@if (false)
+	{
+		<div onclick="@(() => { Game.IsPaused = false; })">Resume</div>
+		<div @onclick="@(() => Game.Overlay.ShowSettingsModal())">Settings</div>
+		<div onclick="@(() => GoToMenu())">Main Menu</div>
+	} *@
 </root>
 
 @code
 {
 	private void GoToMenu()
 	{
-		PlayerState.Local.IsPaused = false;
+		Game.IsPaused = false;
 		Networking.Disconnect();
 		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
 	}
@@ -31,14 +34,8 @@
 
 	public override void Tick()
 	{
-		if (PlayerState.Local.IsPaused)
-		{
-			IsActive = true;
-			SetClass("visible", true);
-			return;
-		}
-
-		IsActive = false;
-		SetClass("visible", false);
+		// IsActive = Game.IsPaused;
+		// SetClass("visible", Game.IsPaused);
+		// Log.Info(IsActive);
 	}
 }

@@ -13,6 +13,7 @@
       "EditorReferences": [
         "quack.skybox_white#13352"
       ],
+      "Mounts": null,
       "IsStandaloneOnly": false,
       "Metadata": {
         "SingleAssetSource": "maps/jump1/jump1.vmap",

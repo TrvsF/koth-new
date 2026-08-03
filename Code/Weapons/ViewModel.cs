@@ -27,13 +27,10 @@ public partial class ViewModel : Component, IEquipment
 
 	protected override void OnStart()
 	{
-		// Somehow?
 		if (Owner.IsValid())
+		{
 			Owner.OnJump += OnPlayerJumped;
-
-		// Somehow this can happen?
-		if (!Equipment.IsValid())
-			return;
+		}
 	}
 
 	void OnPlayerJumped()
@@ -49,10 +46,8 @@ public partial class ViewModel : Component, IEquipment
 		var bone = ModelRenderer.SceneModel.GetBoneLocalTransform("camera");
 		var camera = Equipment.Owner.Camera.GameObject;
 
-		var scale = GameSettingsSystem.Current.ViewBob / 100f;
-
-		camera.LocalPosition += bone.Position * scale;
-		camera.LocalRotation *= bone.Rotation * scale;
+		camera.LocalPosition += bone.Position;
+		camera.LocalRotation *= bone.Rotation;
 	}
 
 	void ApplyInertia()
@@ -145,9 +140,7 @@ public partial class ViewModel : Component, IEquipment
 		ApplyAnimationTransform();
 		ApplyInertia();
 
-		var baseFov = GameSettingsSystem.Current.FieldOfView;
-
-		TargetFieldOfView = TargetFieldOfView.LerpTo(baseFov + FieldOfViewOffset, Time.Delta * 10f);
+		TargetFieldOfView = TargetFieldOfView.LerpTo(90 + FieldOfViewOffset, Time.Delta * 10f);
 		FieldOfViewOffset = 0;
 
 		lerpedlocalRotation = Rotation.Lerp(lerpedlocalRotation, localRotation, Time.Delta * 10f);

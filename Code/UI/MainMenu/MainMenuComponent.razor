@@ -6,7 +6,7 @@
 	<canvas>
 		<Watermark />
 
-		<div class="nav">
+		@* <div class="nav">
 			@if (BaseMenu)
 			{
 				<button onclick=@(() => { BaseMenu = false; SinglePlayer = true; })>SinglePlayer</button>
@@ -27,7 +27,7 @@
 				<button onclick=@(() => LoadPayload())>Payload</button>
 				<button onclick=@(() => { BaseMenu = true; Multiplayer = false; })>Back</button>
 			}
-		</div>
+		</div> *@
 
 	</canvas>
 </root>

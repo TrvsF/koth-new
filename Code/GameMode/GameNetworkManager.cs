@@ -197,7 +197,7 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 		Assert.True(Networking.IsHost);
 		Assert.True(PlayerStatePrefab.IsValid(), "Could not spawn player as no PlayerStatePrefab assigned to network manager");
 
-		// TODO : visit
+		// TODO : revisit
 		//CloneConfig CloneConfig = new();
 		//CloneConfig.StartEnabled = true;
 		//CloneConfig.Parent = Actor;

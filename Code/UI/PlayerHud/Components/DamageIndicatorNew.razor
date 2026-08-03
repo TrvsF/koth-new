@@ -33,7 +33,7 @@
 
 			// ---------------
 			// rotation
-			var PlayerToHit = HitLocation - LocalPlayerPawn.Transform.Position;
+			var PlayerToHit = HitLocation - LocalPlayerPawn.WorldPosition;
 			var PlayerToHit2d = new Vector2(PlayerToHit.x, PlayerToHit.y).Normal;
 
 			var PlayerForward = LocalPlayerPawn.AimRay.Forward.Normal;

@@ -109,6 +109,8 @@ public sealed partial class PlayerPawn : Component, IDescription
 
 			Inventory.Give(CharacterDefinition.SecondaryWeapon, false);
 			Inventory.Give(CharacterDefinition.PrimaryWeapon, true);
+
+			Mouse.Visibility = MouseVisibility.Hidden;
 		}
 		else
 		{
