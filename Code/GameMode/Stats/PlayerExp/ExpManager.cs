@@ -65,8 +65,8 @@ public class ExpManager : SingletonComponent<ExpManager>,
 	private void LocalProcessExpEvent(FExpEvent expEvent)
 	{
 		Log.Info($"Received exp event {expEvent.Amount} from {expEvent.Origin}");
-		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount, "origin", expEvent.Origin.ToString());
-		Sandbox.Services.Stats.Increment("player_exp_current", expEvent.Amount, "origin", expEvent.Origin.ToString());
+		Sandbox.Services.Stats.Increment("player_exp", expEvent.Amount/*, "origin", expEvent.Origin.ToString()*/);
+		Sandbox.Services.Stats.Increment("player_exp_current", expEvent.Amount/*, "origin", expEvent.Origin.ToString()*/);
 		CheckLevelUp();
 	}
 

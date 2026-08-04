@@ -7,12 +7,12 @@ namespace KOTH;
 /// </summary>
 public sealed class FreezePlayers : Component
 {
-	[Property][HostSync] public int FreezeTime { get; set; }
+	[Property][Sync(SyncFlags.FromHost)] public int FreezeTime { get; set; }
 
 	/////////////////////////////////////////////////////////
 
-	[HostSync] private bool IsFrozen { get; set; } = true;
-	[HostSync] private TimeSince TimeSinceEnterState { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] private bool IsFrozen { get; set; } = true;
+	[Sync(SyncFlags.FromHost)] private TimeSince TimeSinceEnterState { get; set; } = new();
 
 	protected override void OnUpdate()
 	{

@@ -7,10 +7,10 @@ namespace KOTH;
 public sealed class KothWinCondition : Component,
 	IGameEventHandler<HillWinEvent>
 {
-	[Property, HostSync]
+	[Property, Sync(SyncFlags.FromHost)]
 	public int TargetScore { get; set; } = 3;
 
-	[HostSync]
+	[Sync(SyncFlags.FromHost)]
 	public NetDictionary<Team, int> Scores { get; private set; } = new();
 
 	[Property]

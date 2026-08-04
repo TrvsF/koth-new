@@ -6,7 +6,7 @@ namespace KOTH;
 public sealed class HillController : Component, IGameEventHandler<EnterStateEvent>
 {
 	[Property] public bool HillEnabled { get; set; } = false;
-	[HostSync] public Hill ActiveHill { get; private set; }
+	[Sync(SyncFlags.FromHost)] public Hill ActiveHill { get; private set; }
 
 	void IGameEventHandler<EnterStateEvent>.OnGameEvent(EnterStateEvent eventArgs)
 	{

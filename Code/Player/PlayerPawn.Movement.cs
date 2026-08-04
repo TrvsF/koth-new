@@ -10,7 +10,7 @@ public partial class PlayerPawn
 
 	//////////////////////////////////////////////////////////////
 
-	[HostSync] public bool IsFrozen { get; set; }
+	[Sync(SyncFlags.FromHost)] public bool IsFrozen { get; set; }
 
 	[Sync] public bool IsCrouching { get; set; }
 	public float CrouchAmount { get; set; }
@@ -261,7 +261,7 @@ public partial class PlayerPawn
 		return tr;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void BroadcastPlayerJumped()
 	{
 		AnimationHelper?.TriggerJump();
@@ -310,7 +310,7 @@ public partial class PlayerPawn
 
 	[Property, Group("Effects")] public SoundEvent LandSound { get; set; }
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	private void PlayFallSound()
 	{
 		var handle = Sound.Play(LandSound, WorldPosition);

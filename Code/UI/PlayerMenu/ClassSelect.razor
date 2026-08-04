@@ -38,7 +38,7 @@
 
 @code
 {
-	public bool IsActive { get; set; } = true;
+	public static bool IsActive { get; set; } = true;
 
 	protected override int BuildHash()
 	{
@@ -57,5 +57,7 @@
 		base.Tick();
 
 		SetClass("visible", IsActive);
+
+		Mouse.Visibility = IsActive ? MouseVisibility.Visible : MouseVisibility.Hidden;
 	}
 }

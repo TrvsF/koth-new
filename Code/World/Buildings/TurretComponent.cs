@@ -28,8 +28,6 @@ public sealed class TurretComponent : Component
 	[Sync(SyncFlags.FromHost)] public PlayerState OwnerState { get; set; }
 	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
-	public Action OnDestroyed = null;
-
 	////////////////////////////////////////////////////////////////////////
 
 	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
@@ -101,7 +99,6 @@ public sealed class TurretComponent : Component
 
 	private void OnKill(FDamageTaken DamageTaken)
 	{
-		OnDestroyed?.Invoke();
 		GameObject.Root.Destroy();
 	}
 	

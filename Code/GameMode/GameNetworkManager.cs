@@ -55,8 +55,6 @@ public sealed class GameNetworkManager : SingletonComponent<GameNetworkManager>,
 			return;
 		}
 
-		PlayerId.Init();
-
 		switch (NetworkMode)
 		{
 			case EGameNetworkMode.Singleplayer:

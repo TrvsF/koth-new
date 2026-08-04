@@ -44,10 +44,7 @@ public sealed class EngiePlayer : Component
 		base.OnDestroy();
 	}
 
-	private void OnTurretDestroy()
-	{
-		//
-	}
+	EEquipmentSlot GoneSlot = EEquipmentSlot.Undefined;
 
 	private Vector3 GetTurretSpawnLocation()
 	{
@@ -55,24 +52,37 @@ public sealed class EngiePlayer : Component
 		return OwnerPawn.CenterPosition + (OwnerPawn.AimRay.Forward * 128);
 	}
 
-	private void SpawnTurret(GameObject WeaponToEquip = null)
+	private void SpawnTurret()
 	{
 		var Turret = GameMode.Instance.ClassList.TurretPrefab.Clone(GetTurretSpawnLocation(), OwnerPawn.Boom.WorldRotation);
 		ActiveTurretComponent = Turret.Components.Get<TurretComponent>();
 		ActiveTurretComponent.OwnerState = PlayerState.Local; // !
-		ActiveTurretComponent.OnDestroyed += OnTurretDestroy;
 
-		if (WeaponToEquip.IsValid())
+		if (!OwnerPawn.Inventory.CurrentWeaponGameObject.IsValid())
 		{
-			ActiveTurretComponent.SetFromWeaponGameObject(WeaponToEquip);
-			// TODO : remove weapon from player
+			Log.Error("failed to spawn turret bc of some bullshit");
+			return;
 		}
+
+		GoneSlot = OwnerPawn.CurrentEquipment.Slot;
+		ActiveTurretComponent.SetFromWeaponGameObject(OwnerPawn.Inventory.CurrentWeaponGameObject);
+		OwnerPawn.Inventory.RemoveWeapon(OwnerPawn.CurrentEquipment);
 
 		Turret.NetworkSpawn();
 	}
 
 	private void DestroyTurret()
 	{
+		if (GoneSlot == EEquipmentSlot.Primary)
+		{
+			OwnerPawn.Inventory.Give(OwnerPawn.PlayerPawnDefinition.CharacterDefinition.PrimaryWeapon, false);
+		}
+		else if (GoneSlot == EEquipmentSlot.Secondary)
+		{
+			OwnerPawn.Inventory.Give(OwnerPawn.PlayerPawnDefinition.CharacterDefinition.SecondaryWeapon, false);
+		}
+		GoneSlot = EEquipmentSlot.Undefined;
+
 		ActiveTurretComponent.GameObject.Destroy();
 		ActiveTurretComponent = null;
 	}
@@ -137,7 +147,7 @@ public sealed class EngiePlayer : Component
 			else if (!IsTurretInWorld)
 			{
 				DestroyTurretPreview();
-				SpawnTurret(OwnerPawn.Inventory.CurrentWeaponGameObject);
+				SpawnTurret();
 			}
 		}
 

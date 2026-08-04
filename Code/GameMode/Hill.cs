@@ -12,10 +12,10 @@ public sealed class Hill : Component, Component.ITriggerListener,
 	[Property] public float CaptureTime { get; set; } = 5f;
 	[Property] public float WinTime { get; set; } = 10f;
 
-	[HostSync] public bool IsActive { get; private set; } = false;
-	[HostSync] public Team OwningTeam { get; private set; } = Team.Unassigned;
-	[HostSync] private NetDictionary<Team, float> TeamsTimer { get; set; } = new();
-	[HostSync] private NetList<PlayerPawn> CurrentHillPlayers { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] public bool IsActive { get; private set; } = false;
+	[Sync(SyncFlags.FromHost)] public Team OwningTeam { get; private set; } = Team.Unassigned;
+	[Sync(SyncFlags.FromHost)] private NetDictionary<Team, float> TeamsTimer { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] private NetList<PlayerPawn> CurrentHillPlayers { get; set; } = new();
 
 	////////////////////////////////////////////////////////////////////////
 
@@ -44,14 +44,14 @@ public sealed class Hill : Component, Component.ITriggerListener,
 		return TeamsTimer[Team];
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast( NetFlags.HostOnly )]
 	public void SetHillActive(bool Active)
 	{
 		IsActive = Active;
 		ResetHill();
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast( NetFlags.HostOnly )]
 	public void ResetHill()
 	{
 		TeamsTimer = new()
@@ -64,7 +64,7 @@ public sealed class Hill : Component, Component.ITriggerListener,
 		SetChildGeometryColour(Color.White);
 	}
 
-	[HostSync] public RealTimeSince HillCaptureTime { get; set; } = new();
+	[Sync(SyncFlags.FromHost)] public RealTimeSince HillCaptureTime { get; set; } = new();
 	bool IsCapping = false;
 	bool IsFirstPassOfRound = true;
 	protected override void OnUpdate()
@@ -170,26 +170,26 @@ public sealed class Hill : Component, Component.ITriggerListener,
 		}
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast( NetFlags.HostOnly )]
 	public void BroadcastHillDecay()
 	{
 		Scene.Dispatch(new HillDecayCapEvent(HillCaptureTime / CaptureTime, this)); ;
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void BroadcastHillCapping(Team Team)
 	{
 		Scene.Dispatch(new HillCappingEvent(Team, HillCaptureTime / CaptureTime, this)); ;
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void BroadcastHillCapture()
 	{
 		Scene.Dispatch(new HillCapturedEvent(CurrentHillPlayers.ToList(), OwningTeam, this));
 		SetChildGeometryColour(TeamExtensions.GetColor(OwningTeam, true));
 	}
 
-	[Broadcast(NetPermission.HostOnly)]
+	[Rpc.Broadcast(NetFlags.HostOnly)]
 	public void BroadcastHillWin()
 	{
 		Scene.Dispatch(new HillWinEvent(OwningTeam, this));

@@ -25,6 +25,11 @@ public class Zone : Component
 
 	private void ZoneEnter(Collider Collider)
 	{
+		if (Collider == null)
+		{
+			return;
+		}
+
 		OnZoneEnter.Invoke(Collider);
 	}
 

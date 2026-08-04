@@ -25,7 +25,6 @@ public partial class PlayerState : Component
 
 	//////////////////////////////////////////////////////////////
 
-	[RequireComponent] public PlayerId PlayerId { get; private set; }
 	[RequireComponent] public LocalStats LocalStats { get; private set; }
 
 	//////////////////////////////////////////////////////////////
@@ -76,6 +75,7 @@ public partial class PlayerState : Component
 	public void LocalInitilize(bool InitForGame = true)
 	{
 		Local = this;
+		IsPaused = false;
 
 		if (!InitForGame)
 		{

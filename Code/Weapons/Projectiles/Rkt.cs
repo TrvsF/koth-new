@@ -40,7 +40,8 @@ public sealed class Rkt : Projectile, IGameEventHandler<ProjectileCollideEvent>
 			var TeamAura = AuraPrefab;
 			if (TeamAura.GetComponent<ParticleSpriteRenderer>() is { } Sprite)
 			{
-				Sprite.Texture = Texture.Create(1, 1).WithData(new byte[4] { 0, 0, 0, 255 }).Finish();
+				// TODO : fix
+				// Sprite.Texture = Texture.Create(1, 1).WithData(new byte[4] { 0, 0, 0, 255 }).Finish();
 			}
 
 			TeamAura.Clone(WorldPosition, WorldRotation);

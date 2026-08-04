@@ -7,13 +7,19 @@
 
 @attribute [StyleSheet]
 
-<root class="">
-@* 	@if (false)
+<root class="love">
+	@if (PlayerState.IsPaused)
 	{
-		<div onclick="@(() => { Game.IsPaused = false; })">Resume</div>
+		<div onclick="@(() => { PlayerState.IsPaused = false; })">Resume</div>
 		<div @onclick="@(() => Game.Overlay.ShowSettingsModal())">Settings</div>
+
+		@foreach (CharacterDefinition Class in ActiveClassList.ClassDefinitions)
+		{
+			<button class="class-button" onclick="@(() => SelectClass(Class))" style="width: 100%; cursor: pointer; color: white; padding: 24px; background: @(PlayerState.Local.RequestedCharacterDefinition == Class ? "rgb(20, 20, 20, 0.5)" : "rgb(20, 20, 20, 0.25)") ;">@Class.CharacterName</button>
+		}
+
 		<div onclick="@(() => GoToMenu())">Main Menu</div>
-	} *@
+	}
 </root>
 
 @code
@@ -25,8 +31,6 @@
 		Game.ActiveScene.LoadFromFile("scenes/menu/menu.scene");
 	}
 
-	private bool IsActive { get; set; }
-
 	protected override int BuildHash()
 	{
 		return HashCode.Combine(Time.Now);
@@ -34,8 +38,14 @@
 
 	public override void Tick()
 	{
-		// IsActive = Game.IsPaused;
-		// SetClass("visible", Game.IsPaused);
-		// Log.Info(IsActive);
+		Mouse.Visibility = PlayerState.IsPaused ? MouseVisibility.Visible : MouseVisibility.Hidden;
+	}
+
+	public ClassList ActiveClassList { get => GameMode.Instance.Components.Get<ClassList>(); }
+
+	private void SelectClass(CharacterDefinition Class)
+	{
+		PlayerState.Local.RequestCharacterDefinition(Class);
+		PlayerState.IsPaused = false;
 	}
 }

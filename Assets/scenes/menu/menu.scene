@@ -45,6 +45,135 @@
       "Children": []
     },
     {
+      "__guid": "fbde378a-eda4-4cf9-ba25-3965102e9742",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Spot Light (3)",
+      "Position": "765.136047,3057.70288,-8.47236633",
+      "Rotation": "-0.193555161,0.0718615726,0.781619906,-0.588594317",
+      "Scale": "1,1,1",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "d5725d6d-3225-4c6e-90e0-c36a8245acd8",
+          "__enabled": true,
+          "Flags": 0,
+          "Attenuation": 0.83,
+          "ConeInner": 19.17,
+          "ConeOuter": 41.076923,
+          "Contribution": "Diffuse, Specular, Transmissive",
+          "Cookie": null,
+          "FogMode": "Disabled",
+          "FogStrength": 1,
+          "LightColor": "0.90233,0.85868,0.79321,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "ShadowBias": 0.0005,
+          "ShadowHardness": 0,
+          "Shadows": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "066fc58b-e70c-4364-9a7f-046e19da337c",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Spot Light (4)",
+      "Position": "765.136047,3057.70288,-8.47236633",
+      "Rotation": "-0.193555161,0.0718615726,0.781619906,-0.588594317",
+      "Scale": "1,1,1",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "eb248ad4-eb94-4c51-898d-2a019dfdb14a",
+          "__enabled": true,
+          "Flags": 0,
+          "Attenuation": 0.83,
+          "ConeInner": 19.17,
+          "ConeOuter": 41.076923,
+          "Contribution": "Diffuse, Specular, Transmissive",
+          "Cookie": null,
+          "FogMode": "Disabled",
+          "FogStrength": 1,
+          "LightColor": "0.90233,0.85868,0.79321,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "ShadowBias": 0.0005,
+          "ShadowHardness": 0,
+          "Shadows": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "d6c59fa4-0b27-47ca-b0c6-97f3376e3ec7",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "Spot Light (5)",
+      "Position": "1008.02222,2967.36646,6.21369934",
+      "Rotation": "-0.193555161,0.0718615726,0.781619906,-0.588594317",
+      "Scale": "1,1,1",
+      "Tags": "light_spot,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.SpotLight",
+          "__guid": "888d7867-81f6-48e2-8851-5eba14ffe06d",
+          "__enabled": true,
+          "Flags": 0,
+          "Attenuation": 0.83,
+          "ConeInner": 19.17,
+          "ConeOuter": 11.076923,
+          "Contribution": "Diffuse, Specular, Transmissive",
+          "Cookie": null,
+          "FogMode": "Disabled",
+          "FogStrength": 1,
+          "LightColor": "1,1,1,1",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Radius": 500,
+          "ShadowBias": 0.0005,
+          "ShadowHardness": 0,
+          "Shadows": true
+        }
+      ],
+      "Children": []
+    },
+    {
       "__guid": "6e81a525-ba4d-4ed4-b3d1-42a0d301911f",
       "__version": 2,
       "Flags": 0,
@@ -391,7 +520,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Camera",
-      "Position": "975.491699,3031.74609,17.6092224",
+      "Position": "975.491699,3031.74609,26.5046577",
       "Rotation": "-0.0319874994,-0.01161562,0.859282196,-0.510368526",
       "Scale": "1,1,1",
       "Tags": "",
@@ -462,100 +591,7 @@
           "OnComponentUpdate": null
         }
       ],
-      "Children": [
-        {
-          "__guid": "c14a1231-4410-4517-aaff-21823e302b7e",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "Text",
-          "Position": "157.164429,-66.0583496,44.6904755",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.TextRenderer",
-              "__guid": "928b61a0-0b01-44ce-bf32-19ad9f04a0ac",
-              "__enabled": true,
-              "Flags": 0,
-              "__version": 2,
-              "Billboard": "None",
-              "BlendMode": "Lighten",
-              "FogStrength": 1,
-              "HorizontalAlignment": "Center",
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "RenderOptions": {
-                "GameLayer": false,
-                "OverlayLayer": true,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "Scale": 0.13,
-              "TextScope": {
-                "Text": "name",
-                "TextColor": "1,1,1,1",
-                "FontName": "Roboto Mono",
-                "FontSize": 32,
-                "FontWeight": 400,
-                "FontItalic": false,
-                "FontVariantNumeric": "Normal",
-                "LineHeight": 1,
-                "LetterSpacing": 0,
-                "WordSpacing": 0,
-                "FilterMode": "Bilinear",
-                "FontSmooth": "Auto",
-                "Outline": {
-                  "Enabled": false,
-                  "Size": 4,
-                  "Color": "0,0,1,1"
-                },
-                "Shadow": {
-                  "Enabled": false,
-                  "Size": 4,
-                  "Color": "0,0,0,1",
-                  "Offset": "4,4"
-                },
-                "OutlineUnder": {
-                  "Enabled": false,
-                  "Size": 4,
-                  "Color": "0,1,0,1"
-                },
-                "ShadowUnder": {
-                  "Enabled": false,
-                  "Size": 4,
-                  "Color": "0,0,0,1",
-                  "Offset": "4,4"
-                }
-              },
-              "VerticalAlignment": "Center"
-            },
-            {
-              "__type": "KOTH.MainMenuText",
-              "__guid": "51a6162f-62dd-417c-9c74-dd55d3802e9b",
-              "__enabled": true,
-              "Flags": 0,
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ],
-          "Children": []
-        }
-      ]
+      "Children": []
     },
     {
       "__guid": "225a28b0-5ae0-4b03-82d1-5283192fdd43",
@@ -597,8 +633,8 @@
             "Property": "TimeUntilDestroy",
             "Value": {
               "Absolute": 0,
-              "Relative": -157.87741,
-              "Passed": 157.87741,
+              "Relative": -1354.9589,
+              "Passed": 1354.9589,
               "Fraction": 1
             }
           }
@@ -1000,6 +1036,124 @@
             }
           ],
           "Children": []
+        },
+        {
+          "__guid": "732831ae-62d5-4450-ba2d-1899883cc599",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Text (3)",
+          "Position": "8.05956936,12.5778799,22.4358101",
+          "Rotation": "0,0,-0.923879504,-0.382683396",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.TextRenderer",
+              "__guid": "e0c7ab01-0ee9-4dfc-98af-f1d62b559091",
+              "__enabled": true,
+              "Flags": 0,
+              "__version": 2,
+              "Billboard": "Always",
+              "BlendMode": "Normal",
+              "FogStrength": 1,
+              "HorizontalAlignment": "Center",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "Scale": 0.03,
+              "TextScope": {
+                "Text": "MARK NUTT LEVEL 3",
+                "TextColor": "0.87823,0.89054,0.92558,1",
+                "FontName": "Poppins",
+                "FontSize": 64,
+                "FontWeight": 800,
+                "FontItalic": false,
+                "FontVariantNumeric": "Normal",
+                "LineHeight": 1,
+                "LetterSpacing": 0,
+                "WordSpacing": 0,
+                "FilterMode": "Bilinear",
+                "FontSmooth": "Auto",
+                "Outline": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,1,1"
+                },
+                "Shadow": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,0,1",
+                  "Offset": "4,4"
+                },
+                "OutlineUnder": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,1,0,1"
+                },
+                "ShadowUnder": {
+                  "Enabled": false,
+                  "Size": 4,
+                  "Color": "0,0,0,1",
+                  "Offset": "4,4"
+                }
+              },
+              "VerticalAlignment": "Center"
+            },
+            {
+              "__type": "Sandbox.BoxCollider",
+              "__guid": "ebb8a6aa-9996-411d-8074-e930b96729f4",
+              "__enabled": true,
+              "Flags": 0,
+              "Center": "0,0,0",
+              "ColliderFlags": 0,
+              "Elasticity": null,
+              "Friction": null,
+              "IsTrigger": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "OnObjectTriggerEnter": null,
+              "OnObjectTriggerExit": null,
+              "OnTriggerEnter": null,
+              "OnTriggerExit": null,
+              "RollingResistance": null,
+              "Scale": "5,15,5",
+              "Static": false,
+              "Surface": null,
+              "SurfaceVelocity": "0,0,0"
+            },
+            {
+              "__type": "KOTH.MainMenuText",
+              "__guid": "978b8d86-92e3-4a07-9914-f83d7ad6346e",
+              "__enabled": true,
+              "Flags": 0,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null
+            }
+          ],
+          "Children": []
         }
       ]
     },
@@ -1008,7 +1162,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Text",
-      "Position": "965.809326,2946.53418,31.4210625",
+      "Position": "955.516296,2980.79834,30.1085758",
       "Rotation": "0,0,-0.923879504,0.382683426",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1056,9 +1210,9 @@
             "FilterMode": "Bilinear",
             "FontSmooth": "Auto",
             "Outline": {
-              "Enabled": false,
+              "Enabled": true,
               "Size": 4,
-              "Color": "0,0,1,1"
+              "Color": "0.32092,0.25986,0.3907,1"
             },
             "Shadow": {
               "Enabled": false,
@@ -1126,7 +1280,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Text (1)",
-      "Position": "959.071899,2978.63867,2.75987196",
+      "Position": "946.876892,2990.86377,22.0385437",
       "Rotation": "0,0,-0.923879504,0.382683426",
       "Scale": "1,1,1",
       "Tags": "",
@@ -1174,9 +1328,9 @@
             "FilterMode": "Bilinear",
             "FontSmooth": "Auto",
             "Outline": {
-              "Enabled": false,
+              "Enabled": true,
               "Size": 4,
-              "Color": "0,0,1,1"
+              "Color": "0.1378,0.1378,0.16279,1"
             },
             "Shadow": {
               "Enabled": false,
@@ -1244,7 +1398,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "Text (2)",
-      "Position": "931.34668,2998.41577,1.24166274",
+      "Position": "897.938293,2944.31934,-1.22137928",
       "Rotation": "0,0,-0.923879504,0.382683426",
       "Scale": "1,1,1",
       "Tags": "",

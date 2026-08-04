@@ -24,7 +24,6 @@ public sealed class MenuButtonManager : Component
 
 				if (ClickTrace.GameObject.GetComponent<MenuButton>() is { } HitButton)
 				{
-					Log.Info($"pressing {HitButton}");
 					HitButton.OnClick();
 					return;
 				}
@@ -133,9 +132,18 @@ public class MultiPlayerButton : MenuButton
 	bool MadeKids = false;
 	List<GameObject> Kids = new();
 
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		RefreshLobbyStats();
+	}
+
 	public override void OnClick()
 	{
 		base.OnClick();
+
+		RefreshLobbyStats();
 
 		MadeKids = !MadeKids;
 
@@ -170,6 +178,35 @@ public class MultiPlayerButton : MenuButton
 		ChildPayload.AddComponent<PayloadButton>();
 		Kids.Add(ChildPayload);
 	}
+
+	public static int NumLobbies = 0;
+	public static int NumPlayers = 0;
+	public static int NumMgePlayers = 0;
+	public static int NumPayloadPlayers = 0;
+
+	public static async void RefreshLobbyStats()
+	{
+		NumLobbies = 0;
+		NumPlayers = 0;
+		NumMgePlayers = 0;
+		NumPayloadPlayers = 0;
+
+		var Lobbies = await Networking.QueryLobbies(Game.Ident);
+		NumLobbies = Lobbies.Count;
+
+		foreach (var Lobby in Lobbies)
+		{
+			NumPlayers += Lobby.Members;
+			if (Lobby.Name.StartsWith("mge_"))
+			{
+				NumMgePlayers += Lobby.Members;
+			}
+			else if (Lobby.Name.StartsWith("pl_"))
+			{
+				NumPayloadPlayers += Lobby.Members;
+			}
+		}
+	}
 }
 
 public class MgeButton : MenuButton
@@ -180,7 +217,7 @@ public class MgeButton : MenuButton
 	{
 		base.OnStart();
 
-		TextRenderer.Text = "1v1";
+		TextRenderer.Text = $"1v1 {MultiPlayerButton.NumMgePlayers}p";
 	}
 
 	public override void OnClick()
@@ -229,7 +266,7 @@ public class PayloadButton : MenuButton
 	{
 		base.OnStart();
 
-		TextRenderer.Text = "Payload";
+		TextRenderer.Text = $"Payload {MultiPlayerButton.NumPayloadPlayers}p";
 	}
 
 	public override void OnClick()
