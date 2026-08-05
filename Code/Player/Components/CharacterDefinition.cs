@@ -7,6 +7,9 @@ public partial class CharacterDefinition : GameResource
 {
 	[Category("Character")] public string CharacterName { get; set; } = "Mark Nutt";
 	[Category("Character")] public string Description { get; set; } = "suck my nutt";
+	[Category("Character")] public Color Skin { get; set; } = Color.White;
+	[Category("Character")] public int Height { get; set; } = 5;
+	[Category("Character")] public int Fat { get; set; } = 5;
 
 	//////////////////////////////////////////////////////////////////////////
 	

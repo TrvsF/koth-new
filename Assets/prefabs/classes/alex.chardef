@@ -1,6 +1,9 @@
 {
   "CharacterName": "Alexandra",
   "Description": "heal your teammates using the hose or fire projectiles at them with your needler",
+  "Skin": "0.2186,0.14336,0.0305,1",
+  "Height": 9,
+  "Fat": 4,
   "SpecificComponents": [
     "KOTH.MedicPlayer"
   ],
@@ -19,7 +22,6 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 12,
   "AirMaxAcceleration": 64,
-  "MedicVoice": "soundsvoice/alex_medic.wav",
   "MedicVoiceEvent": "sounds/voice/alex_meidc.sound",
   "__references": [],
   "__version": 0

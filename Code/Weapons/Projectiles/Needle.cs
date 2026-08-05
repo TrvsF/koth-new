@@ -14,10 +14,10 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
-	[Sync] private bool IsAttached { get; set; } = false;
-	private GameObject AttachedGameObject { get; set; } = null;
-	private Vector3 HitLocation;
-	private Transform InitArmedWorldTransformAttachedObject;
+	//[Sync] private bool IsAttached { get; set; } = false;
+	//private GameObject AttachedGameObject { get; set; } = null;
+	//private Vector3 HitLocation;
+	//private Transform InitArmedWorldTransformAttachedObject;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,23 +34,23 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 	{
 		base.OnUpdate();
 
-		if (IsAttached)
-		{
-			if (IsProxy)
-			{
-				return;
-			}
+		//if (IsAttached)
+		//{
+		//	if (IsProxy)
+		//	{
+		//		return;
+		//	}
 
-			if (!AttachedGameObject.IsValid())
-			{
-				GameObject.Root.Destroy();
-				return;
-			}
+		//	if (!AttachedGameObject.IsValid())
+		//	{
+		//		GameObject.Root.Destroy();
+		//		return;
+		//	}
 
-			Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
-			GameObject.WorldPosition = HitLocation + GameObjectOffset;
-		}
-		else
+		//	Vector3 GameObjectOffset = AttachedGameObject.WorldPosition - InitArmedWorldTransformAttachedObject.Position;
+		//	GameObject.WorldPosition = HitLocation + GameObjectOffset;
+		//}
+		//else
 		{
 			if (!IsProxy && TimeSinceSpawn < LocalInvisableTime)
 			{
@@ -64,7 +64,7 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 		}
 	}
 
-	private float MaxDistance = 1800f;
+	const float MaxDistance = 1800f;
 	public void OnGameEvent(ProjectileCollideEvent EventArgs)
 	{
 		var Collision = EventArgs.ProjectileCollision;
@@ -125,9 +125,10 @@ public sealed class Needle : Projectile, IGameEventHandler<ProjectileCollideEven
 		Rigidbody.Velocity = Vector3.Zero;
 		Rigidbody.MotionEnabled = false;
 
-		IsAttached = true;
-		AttachedGameObject = Collision.HitObject;
-		InitArmedWorldTransformAttachedObject = Collision.HitObject.WorldTransform;
-		HitLocation = Collision.HitLocation;
+		DestroyGameObject();
+		//IsAttached = true;
+		//AttachedGameObject = Collision.HitObject;
+		//InitArmedWorldTransformAttachedObject = Collision.HitObject.WorldTransform;
+		//HitLocation = Collision.HitLocation;
 	}
 }

@@ -1,6 +1,9 @@
 {
   "CharacterName": "Sayuna",
   "Description": "run fast",
+  "Skin": "1,0.94999,0,1",
+  "Height": 2,
+  "Fat": 4,
   "SpecificComponents": [
     "KOTH.ScoutPlayer"
   ],
@@ -19,7 +22,6 @@
   "CrouchingAcceleration": 8,
   "MaxAcceleration": 12,
   "AirMaxAcceleration": 64,
-  "MedicVoice": "sounds/voice/sayuna_medic.wav",
   "MedicVoiceEvent": "sounds/voice/sayuna_medic.sound",
   "__references": [],
   "__version": 0

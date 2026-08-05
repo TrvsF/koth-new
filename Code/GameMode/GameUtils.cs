@@ -2,6 +2,10 @@ using System.IO;
 
 namespace KOTH;
 
+// TODO : destroy this shit
+// move player state utils to player state
+// move : spawns to world or some bullshit
+
 public static partial class GameUtils
 {
 	public static IEnumerable<PlayerState> AllPlayers => Game.ActiveScene.GetAllComponents<PlayerState>();

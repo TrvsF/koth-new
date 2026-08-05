@@ -1,14 +1,25 @@
 {
   "RootObject": {
     "__guid": "0e9b3837-380e-4587-acdb-f8a1c6e3ea61",
+    "__version": 2,
     "Flags": 0,
     "Name": "w_stickylauncher",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
     "Tags": "player",
     "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "KOTH.Equipment",
         "__guid": "aa2c3636-b926-4bfd-b13d-7bcb63fd1f1e",
+        "__enabled": true,
+        "Flags": 0,
         "DeploySound": "sounds/guns/switch/weapon_switch.sound",
         "EjectionPort": {
           "_type": "gameobject",
@@ -42,6 +53,8 @@
       {
         "__type": "KOTH.TagBinder",
         "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -52,6 +65,8 @@
       {
         "__type": "KOTH.StickyWeaponComponent",
         "__guid": "41b5e062-e995-403c-b35e-1712558fdf7e",
+        "__enabled": true,
+        "Flags": 0,
         "Ammo": 6,
         "BaseDamage": 100,
         "FireRate": 0.72,
@@ -61,20 +76,20 @@
         ],
         "KnockbackStrength": 100,
         "MaxAmmo": 6,
-        "MaxChargeTime": 1.66,
+        "MaxChargeTime": 2.33,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
-        "ProjectileHorizontalSpeed": 666,
+        "ProjectileHorizontalSpeed": 720,
         "ProjectilePrefab": {
           "_type": "gameobject",
           "prefab": "prefabs/weapons/stickylauncher/p_sticky.prefab"
         },
         "ProjectileVerticalSpeed": 240,
-        "ReloadTime": 0.9,
+        "ReloadTime": 1,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "ShootSound": null
@@ -82,6 +97,8 @@
       {
         "__type": "KOTH.StickyTrackerComponent",
         "__guid": "306d74ae-e94f-4b1f-ab39-4bc6da629282",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -93,22 +110,34 @@
     "Children": [
       {
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
+        "__version": 2,
         "Flags": 0,
         "Name": "Model",
-        "Position": "7.381615,-2.291098,-1.215292",
-        "Rotation": "-0.7380018,-0.02302234,0.02521095,0.6739343",
+        "Position": "7.38161516,-2.29109812,-1.21529198",
+        "Rotation": "-0.738001823,-0.0230223406,0.0252109505,0.673934281",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
+            "__enabled": true,
+            "Flags": 0,
             "AnimationGraph": null,
             "BodyGroups": 1,
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
+            "LodOverride": null,
             "MaterialGroup": null,
             "MaterialOverride": null,
+            "Materials": null,
             "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
@@ -133,7 +162,9 @@
             },
             "RenderType": "On",
             "Sequence": {
-              "Name": null
+              "Name": null,
+              "Looping": true,
+              "Blending": false
             },
             "Tint": "0.08785,0.54847,0.6093,1",
             "UseAnimGraph": true
@@ -142,53 +173,72 @@
         "Children": [
           {
             "__guid": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979",
+            "__version": 2,
             "Flags": 0,
             "Name": "Muzzle",
-            "Position": "20.07571,0,7.212921",
-            "Enabled": true
+            "Position": "20.0757103,0,7.21292114",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 0,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
           },
           {
             "__guid": "a1749d19-0334-479c-a43d-57577da6d589",
+            "__version": 2,
             "Flags": 0,
             "Name": "EjectionPort",
-            "Position": "1.774985,-0.4210945,7.672482",
-            "Enabled": true
+            "Position": "1.77498496,-0.421094507,7.67248201",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 0,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
           }
         ]
       }
     ],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
         "IncludeStaticBodies": true,
         "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
+        "EditorAutoUpdate": false,
         "AgentHeight": 64,
         "AgentRadius": 16,
         "AgentStepSize": 18,
         "AgentMaxSlope": 40,
         "ExcludedBodies": "",
-        "IncludedBodies": ""
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [
     "facepunch.w_mp5#33703"
   ],
-  "__version": 1
+  "__version": 2
 }

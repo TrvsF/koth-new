@@ -36,7 +36,7 @@ public class ExpManager : SingletonComponent<ExpManager>,
 			Origin = ExpOrigins.Kill,
 		};
 
-		Log.Info($"Broadcasting exp event {ExpEvent} to {DamageEvent.AssumedAttackerPlayerPawn}:{PlayerState}:{PlayerState.SteamId}");
+		Log.Info($"Broadcasting exp event {ExpEvent} to {PlayerState}:{PlayerState.SteamId}");
 
 		using (Rpc.FilterInclude(PlayerState.Connection))
 		{

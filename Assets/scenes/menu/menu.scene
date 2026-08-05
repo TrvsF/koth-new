@@ -633,8 +633,8 @@
             "Property": "TimeUntilDestroy",
             "Value": {
               "Absolute": 0,
-              "Relative": -1354.9589,
-              "Passed": 1354.9589,
+              "Relative": -5221.3745,
+              "Passed": 5221.3745,
               "Fraction": 1
             }
           }

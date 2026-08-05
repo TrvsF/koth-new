@@ -1,14 +1,25 @@
 {
   "RootObject": {
     "__guid": "0e9b3837-380e-4587-acdb-f8a1c6e3ea61",
+    "__version": 2,
     "Flags": 0,
     "Name": "w_grenadelauncher",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
     "Tags": "player",
     "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "KOTH.Equipment",
         "__guid": "aa2c3636-b926-4bfd-b13d-7bcb63fd1f1e",
+        "__enabled": true,
+        "Flags": 0,
         "DeploySound": "sounds/guns/switch/weapon_switch.sound",
         "EjectionPort": {
           "_type": "gameobject",
@@ -42,6 +53,8 @@
       {
         "__type": "KOTH.TagBinder",
         "__guid": "1a7ef131-e4a7-4b09-81fa-0af88edfd7b2",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -52,6 +65,8 @@
       {
         "__type": "KOTH.ProjectileWeaponComponent",
         "__guid": "871b3a76-fc4a-461b-8f0e-a3158aeb8954",
+        "__enabled": true,
+        "Flags": 0,
         "Ammo": 4,
         "BaseDamage": 90,
         "FireRate": 0.7,
@@ -73,7 +88,7 @@
           "prefab": "prefabs/weapons/grenadelauncher/p_grenade.prefab"
         },
         "ProjectileVerticalSpeed": 200,
-        "ReloadTime": 0.8,
+        "ReloadTime": 1.1,
         "ReloadType": "Single",
         "ReloadWhileNotActive": false,
         "ShootSound": null
@@ -82,22 +97,34 @@
     "Children": [
       {
         "__guid": "e6199e40-738f-44b2-a1a5-5916daa5725e",
+        "__version": 2,
         "Flags": 0,
         "Name": "Model",
-        "Position": "12.80474,2.716229,0",
-        "Rotation": "-0.6901777,-0.1538007,0.1538007,0.6901777",
+        "Position": "12.80474,2.71622896,0",
+        "Rotation": "-0.690177679,-0.153800696,0.153800696,0.690177679",
+        "Scale": "1,1,1",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "d3031980-2ee6-4417-98f9-49a8a8d3d088",
+            "__enabled": true,
+            "Flags": 0,
             "AnimationGraph": null,
             "BodyGroups": 3,
             "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
+            "LodOverride": null,
             "MaterialGroup": null,
             "MaterialOverride": null,
+            "Materials": null,
             "Model": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
             "Morphs": {},
             "OnComponentDestroy": null,
@@ -122,7 +149,9 @@
             },
             "RenderType": "On",
             "Sequence": {
-              "Name": null
+              "Name": null,
+              "Looping": true,
+              "Blending": false
             },
             "Tint": "1,1,1,1",
             "UseAnimGraph": true
@@ -131,53 +160,72 @@
         "Children": [
           {
             "__guid": "ca4abf38-a77c-44ab-9b32-4b08ff9f1979",
+            "__version": 2,
             "Flags": 0,
             "Name": "Muzzle",
-            "Position": "20.07571,0,7.212921",
-            "Enabled": true
+            "Position": "20.0757103,0,7.21292114",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 0,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
           },
           {
             "__guid": "a1749d19-0334-479c-a43d-57577da6d589",
+            "__version": 2,
             "Flags": 0,
             "Name": "EjectionPort",
-            "Position": "1.774985,-0.4210945,7.672482",
-            "Enabled": true
+            "Position": "1.77498496,-0.421094507,7.67248201",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 0,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [],
+            "Children": []
           }
         ]
       }
     ],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
         "IncludeStaticBodies": true,
         "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
+        "EditorAutoUpdate": false,
         "AgentHeight": 64,
         "AgentRadius": 16,
         "AgentStepSize": 18,
         "AgentMaxSlope": 40,
         "ExcludedBodies": "",
-        "IncludedBodies": ""
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [
     "facepunch.w_spaghellim4#58057"
   ],
-  "__version": 1
+  "__version": 2
 }

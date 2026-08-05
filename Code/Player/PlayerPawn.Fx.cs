@@ -256,12 +256,12 @@ public partial class PlayerPawn :
 
 	void IGameEventHandler<DamageBroadcastEvent>.OnGameEvent(DamageBroadcastEvent EventArgs)
 	{
-		if (EventArgs.DamageEvent.AssumedVictimPlayerPawn == this)
+		if (EventArgs.DamageEvent.VictimPlayerState?.PlayerPawn == this)
 		{
 			OnDamageTaken(EventArgs.DamageEvent);
 		}
 
-		if (EventArgs.DamageEvent.AssumedAttackerPlayerPawn == this)
+		if (EventArgs.DamageEvent.AttackerPlayerState?.PlayerPawn == this)
 		{
 			OnDamageGiven(EventArgs.DamageEvent);
 		}

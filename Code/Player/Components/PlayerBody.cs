@@ -20,10 +20,17 @@ public sealed class PlayerBody : Component
 		Player.OnPlayerStart += Initialize;
 	}
 
+	private readonly List<float> Fats = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
+	private readonly List<float> Heights = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
+
 	private void Initialize()
 	{
+		var CharacterDefinition = Player.PlayerPawnDefinition.CharacterDefinition;
+		Assert.NotNull(CharacterDefinition);
+
 		ModelRenderer.RenderType = Player.IsLocallyControlled ? Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly : Sandbox.ModelRenderer.ShadowRenderType.On;
-		ModelRenderer.Tint = Player.Team.GetColor(false);
+		ModelRenderer.Tint = CharacterDefinition.Skin;
+		ModelRenderer.WorldScale = new(Fats[CharacterDefinition.Fat], Fats[CharacterDefinition.Fat], Heights[CharacterDefinition.Height]);
 	}
 
 	internal void Ragdoll(FDamageTaken DamageTaken)

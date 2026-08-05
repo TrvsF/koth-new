@@ -1,19 +1,31 @@
 {
   "RootObject": {
     "__guid": "60087b42-cd0a-4bac-9540-8aa5ef06af0b",
+    "__version": 2,
     "Flags": 0,
     "Name": "p_needle",
-    "Scale": "0.3,0.3,0.3",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "0.300000012,0.300000012,0.300000012",
     "Tags": "projectile",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkFlags": 0,
     "NetworkOrphaned": 3,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "Sandbox.Rigidbody",
         "__guid": "b9eb7f58-8495-48a0-aaab-651f5b0d909d",
+        "__enabled": true,
+        "Flags": 0,
         "AngularDamping": 0,
+        "EnableImpactDamage": true,
+        "EnhancedCcd": false,
         "Gravity": false,
+        "GravityScale": 1,
+        "ImpactDamage": 0,
         "LinearDamping": 0,
         "Locking": {
           "X": false,
@@ -25,6 +37,7 @@
         },
         "MassCenterOverride": "0,0,0",
         "MassOverride": 500,
+        "MinImpactDamageSpeed": 500,
         "MotionEnabled": true,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
@@ -34,12 +47,17 @@
         "OnComponentUpdate": null,
         "OverrideMassCenter": false,
         "RigidbodyFlags": "DisableCollisionSounds",
+        "SleepThreshold": 2,
         "StartAsleep": false
       },
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "ea96de1c-a1d8-4d60-b20a-6c1d4f9e0b4b",
+        "__enabled": true,
+        "Flags": 0,
         "Center": "0,0,0",
+        "ColliderFlags": 0,
+        "Elasticity": null,
         "Friction": null,
         "IsTrigger": false,
         "OnComponentDestroy": null,
@@ -52,7 +70,8 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
-        "Scale": "10,10,10",
+        "RollingResistance": null,
+        "Scale": "33,10,10",
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
@@ -60,6 +79,8 @@
       {
         "__type": "KOTH.Needle",
         "__guid": "e9fe6937-2210-430f-94f4-2d2acb214c68",
+        "__enabled": true,
+        "Flags": 0,
         "BaseDamage": 50,
         "BaseKnockbackStrength": 300,
         "ExplosionRadius": 128,
@@ -81,6 +102,8 @@
       {
         "__type": "KOTH.TimedDestroyComponent",
         "__guid": "d80c8cbf-9ca8-48d2-bc94-2db775a48437",
+        "__enabled": true,
+        "Flags": 0,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -90,8 +113,8 @@
         "Time": 30,
         "TimeUntilDestroy": {
           "Absolute": 0,
-          "Relative": -4172.1357,
-          "Passed": 4172.1357,
+          "Relative": -7394.183,
+          "Passed": 7394.183,
           "Fraction": 1
         }
       }
@@ -99,18 +122,31 @@
     "Children": [
       {
         "__guid": "de4629bc-cd55-461e-8f5d-01c0321b4ba5",
+        "__version": 2,
         "Flags": 0,
         "Name": "Sphere",
-        "Scale": "0.5,0.15,0.15",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "0.5,0.150000006,0.150000006",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
             "__guid": "85aeec6a-f319-4063-9d00-ed3c74178ace",
+            "__enabled": true,
+            "Flags": 0,
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
+            "LodOverride": null,
             "MaterialGroup": null,
             "MaterialOverride": null,
+            "Materials": null,
             "Model": "models/dev/sphere.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -127,39 +163,37 @@
             "RenderType": "On",
             "Tint": "0.18691,0.74419,0.23335,1"
           }
-        ]
+        ],
+        "Children": []
       }
     ],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
         "IncludeStaticBodies": true,
         "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
+        "EditorAutoUpdate": false,
         "AgentHeight": 64,
         "AgentRadius": 16,
         "AgentStepSize": 18,
         "AgentMaxSlope": 40,
         "ExcludedBodies": "",
-        "IncludedBodies": ""
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

@@ -1,6 +1,9 @@
 {
   "CharacterName": "Donny",
   "Description": "blow people (& yourself) up with a rocket launcher",
+  "Skin": "1,0.7,0,1",
+  "Height": 8,
+  "Fat": 7,
   "SpecificComponents": [],
   "MaxHealth": 175,
   "WeightKnockbackFactor": 1,
@@ -17,7 +20,6 @@
   "CrouchingAcceleration": 6,
   "MaxAcceleration": 10,
   "AirMaxAcceleration": 76,
-  "MedicVoice": "voice/donny_medic.wav",
   "MedicVoiceEvent": "sounds/voice/donny_medic.sound",
   "__references": [],
   "__version": 0

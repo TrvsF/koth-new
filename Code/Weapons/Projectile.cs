@@ -78,6 +78,12 @@ public abstract class Projectile : Component, Component.ICollisionListener
 	private bool IsInitialHit = true;
 	void ICollisionListener.OnCollisionStart(Collision Collision)
 	{
+		if (this is null)
+		{
+			Log.Warning("curse you s&box!");
+			return;
+		}
+
 		if (!Network.IsOwner)
 		{
 			return;
