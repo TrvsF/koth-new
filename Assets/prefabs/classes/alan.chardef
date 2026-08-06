@@ -3,7 +3,7 @@
   "Description": "detonate your primary weapon's stickies using mouse2; lock out areas of the map & cause massive damage!",
   "Skin": "1,0.59535,0.79767,1",
   "Height": 5,
-  "Fat": 8,
+  "Fat": 9,
   "SpecificComponents": [],
   "MaxHealth": 150,
   "WeightKnockbackFactor": 1,

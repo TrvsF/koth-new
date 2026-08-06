@@ -13,6 +13,10 @@ public sealed class TeamSpawnPoint : Component
 	[Property][HideIf(nameof(IsDummy), false)] public bool Jumper { get; set; } = false;
 	[Property][HideIf(nameof(IsDummy), false)] public bool Walker { get; set; } = false;
 
+
+	[Property][HideIf(nameof(IsDummy), false)] public bool RandomSpawn { get; set; } = true;
+	[Property][HideIf(nameof(RandomSpawn), true)] public CharacterDefinition CharacterDefinition { get; set; }
+
 	protected override void DrawGizmos()
 	{
 		Gizmo.Hitbox.Model(Model);

@@ -3,7 +3,7 @@
   "Description": "blow people (& yourself) up with a rocket launcher",
   "Skin": "1,0.7,0,1",
   "Height": 8,
-  "Fat": 7,
+  "Fat": 3,
   "SpecificComponents": [],
   "MaxHealth": 175,
   "WeightKnockbackFactor": 1,

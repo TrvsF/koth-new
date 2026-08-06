@@ -3,7 +3,7 @@
   "Description": "heal your teammates using the hose or fire projectiles at them with your needler",
   "Skin": "0.2186,0.14336,0.0305,1",
   "Height": 9,
-  "Fat": 4,
+  "Fat": 5,
   "SpecificComponents": [
     "KOTH.MedicPlayer"
   ],

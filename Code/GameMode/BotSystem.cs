@@ -25,7 +25,7 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 
 		foreach (var SpawnPoint in GameUtils.GetDummySpawns())
 		{
-			SpawnPlayerPawn(Connection.Host, "Dummy", WorldUtil.GetRandomCharacter(), SpawnPoint);
+			SpawnPlayerPawn(Connection.Host, "Dummy", SpawnPoint.RandomSpawn ? WorldUtil.GetRandomCharacter() : SpawnPoint.CharacterDefinition, SpawnPoint);
 		}
 	}
 
@@ -33,11 +33,11 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 	{
 		base.OnFixedUpdate();
 
-		foreach (var (Spawn, Player) in DummyPlayerPawns)
+		foreach (var (SpawnPoint, Player) in DummyPlayerPawns)
 		{
 			if (!Player.IsValid() || !Player.IsAlive)
 			{
-				SpawnPlayerPawn(Connection.Host, "Dummy", WorldUtil.GetRandomCharacter(), Spawn);
+				SpawnPlayerPawn(Connection.Host, "Dummy", SpawnPoint.RandomSpawn ? WorldUtil.GetRandomCharacter() : SpawnPoint.CharacterDefinition, SpawnPoint);
 			}
 		}
 	}
@@ -47,10 +47,10 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 		Assert.True(Networking.IsHost);
 		Assert.IsValid(SpawnPoint);
 
-		var SpawnPlayerPawnPrefab = DummyPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
-		SpawnPlayerPawnPrefab.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
+		var PlayerPawnClone = DummyPrefab.Clone(SpawnPoint.GameObject.WorldTransform);
+		PlayerPawnClone.Network.SetOrphanedMode(NetworkOrphaned.Destroy);
 
-		var SpawnPlayerPawnComponent = SpawnPlayerPawnPrefab.Components.Get<PlayerPawn>();
+		var SpawnPlayerPawnComponent = PlayerPawnClone.Components.Get<PlayerPawn>();
 		Assert.NotNull(SpawnPlayerPawnComponent);
 
 		FPlayerPawnDefinition PlayerPawnDefinition = new()
@@ -65,9 +65,9 @@ public sealed class BotSystem : SingletonComponent<BotSystem>,
 		SpawnPlayerPawnComponent.IsJumper = SpawnPoint.Jumper;
 		SpawnPlayerPawnComponent.IsWalker = SpawnPoint.Walker;
 
-		if (!SpawnPlayerPawnPrefab.NetworkSpawn(OwningConnection))
+		if (!PlayerPawnClone.NetworkSpawn(OwningConnection))
 		{
-			SpawnPlayerPawnPrefab.Destroy();
+			PlayerPawnClone.Destroy();
 			return;
 		}
 

@@ -20,8 +20,8 @@ public sealed class PlayerBody : Component
 		Player.OnPlayerStart += Initialize;
 	}
 
-	private readonly List<float> Fats = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
-	private readonly List<float> Heights = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
+	public static readonly List<float> Fats = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
+	public static readonly List<float> Heights = [0.66f, 0.75f, 0.8f, 0.85f, 0.9f, 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f];
 
 	private void Initialize()
 	{

@@ -82,6 +82,9 @@ public sealed partial class PlayerPawn : Component, IDescription
 		Assert.NotNull(Head);
 		Assert.True(PlayerPawnDefinition.IsValid());
 
+		// top 1 top3 lines
+		Head.LocalPosition = Head.LocalPosition.WithZ(64 * PlayerBody.Heights[PlayerPawnDefinition.CharacterDefinition.Height]);
+
 		DisplayName = PlayerPawnDefinition.Name;
 		GameObject.Name = DisplayName;
 

@@ -633,9 +633,76 @@
             "Property": "TimeUntilDestroy",
             "Value": {
               "Absolute": 0,
-              "Relative": -5221.3745,
-              "Passed": 5221.3745,
+              "Relative": -650.6121,
+              "Passed": 650.6121,
               "Fraction": 1
+            }
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "575961b2-b5a5-4f83-97d9-6d5717b5f2cc"
+            },
+            "Property": "Sprite",
+            "Value": {
+              "$compiler": "embed",
+              "$source": null,
+              "data": {
+                "Animations": [
+                  {
+                    "Name": "Default",
+                    "FrameRate": 15,
+                    "Origin": "0.5,0.5",
+                    "LoopMode": "Loop",
+                    "LoopStart": -1,
+                    "LoopEnd": -1,
+                    "Frames": [
+                      {
+                        "Texture": {
+                          "$compiler": "texture",
+                          "$source": "gradientradial",
+                          "data": {
+                            "Size": "128,128",
+                            "IsHdr": false,
+                            "Scale": 1,
+                            "Center": "0.5,0.5",
+                            "Gradient": {
+                              "blend": "Linear",
+                              "color": [
+                                {
+                                  "t": 0,
+                                  "c": "1,1,1,1"
+                                },
+                                {
+                                  "t": 0.82983196,
+                                  "c": "1,1,1,1"
+                                }
+                              ],
+                              "alpha": [
+                                {
+                                  "t": 0,
+                                  "a": 1
+                                },
+                                {
+                                  "t": 1,
+                                  "a": 1
+                                }
+                              ]
+                            },
+                            "ConvertHeightToNormals": false,
+                            "NormalScale": 1,
+                            "FormatOverride": null
+                          },
+                          "compiled": null
+                        },
+                        "BroadcastMessages": []
+                      }
+                    ]
+                  }
+                ],
+                "__references": null
+              },
+              "compiled": null
             }
           }
         ],
@@ -1536,7 +1603,8 @@
     "GameObjectSystems": {
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
-          "$blob": "1f3cae0d-a267-4acf-af01-855fe7f57661"
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
         }
       },
       "Sandbox.SelectionSetsSystem": {

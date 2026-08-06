@@ -3,7 +3,7 @@
   "Description": "Когда-то ты был битником",
   "Skin": "0.88837,0.86358,0.7892,1",
   "Height": 6,
-  "Fat": 3,
+  "Fat": 5,
   "SpecificComponents": [
     "KOTH.EngiePlayer"
   ],
