@@ -68,7 +68,7 @@
         "__enabled": true,
         "Flags": 0,
         "Ammo": 12,
-        "BaseDamage": 15,
+        "BaseDamage": 11,
         "DecalDefinition": "prefabs/decals/bulletdecal.decal",
         "FireRate": 0.15,
         "HasAmmo": true,

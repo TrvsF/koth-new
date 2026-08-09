@@ -8,7 +8,12 @@ using System.Numerics;
 
 namespace KOTH;
 
-public sealed class TurretComponent : Component
+public class BuildingComponent : Component
+{
+	[Sync(SyncFlags.FromHost)] public PlayerState OwnerState { get; set; }
+}
+
+public sealed class TurretComponent : BuildingComponent
 {
 	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
 
@@ -25,12 +30,11 @@ public sealed class TurretComponent : Component
 
 	////////////////////////////////////////////////////////////////////////
 
-	[Sync(SyncFlags.FromHost)] public PlayerState OwnerState { get; set; }
 	[Sync(SyncFlags.FromHost)] public PlayerPawn TargetPawn { get; private set; }
 
 	////////////////////////////////////////////////////////////////////////
 
-	[Property, Sync(SyncFlags.FromHost)] public GameObject EquippedWeaponGameObject { get; private set; } = null;
+	public EEquipmentSlot EquippedSlot { get; private set; } = EEquipmentSlot.Undefined;
 
 	public void SetFromWeaponGameObject(GameObject WeaponObject)
 	{
@@ -48,13 +52,8 @@ public sealed class TurretComponent : Component
 		Model WeaponModel = null;
 		Color WeaponTint = Color.Black;
 
-		var IsDataLoaded = LoadDataFromInputWeaponComponent(WeaponComponent, WeaponModel, WeaponTint);
-
-		if (IsDataLoaded)
-		{
-			EquippedWeaponGameObject = WeaponObject;
-			return;
-		}
+		Assert.True(LoadDataFromInputWeaponComponent(WeaponComponent, WeaponModel, WeaponTint));
+		EquippedSlot = WeaponObject.GetComponent<Equipment>().Slot;
 	}
 
 	private bool LoadDataFromInputWeaponComponent(InputWeaponComponent InputWeaponComponent, Model WeaponModel, Color WeaponTint)
@@ -101,7 +100,7 @@ public sealed class TurretComponent : Component
 	{
 		GameObject.Root.Destroy();
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////
 
 	protected override void OnFixedUpdate()
@@ -109,7 +108,7 @@ public sealed class TurretComponent : Component
 		if (Networking.IsHost)
 		{
 			ShootTargetIfExists();
-			
+
 			if (WorldRotation.Up.z < 0.5)
 			{
 				GameObject.Root.Destroy();
@@ -130,7 +129,7 @@ public sealed class TurretComponent : Component
 	}
 
 	////////////////////////////////////////////////////////////////////////
-	
+
 	[Rpc.Broadcast(NetFlags.OwnerOnly)]
 	public void DoTurretFX(Vector3 TargetPosition)
 	{

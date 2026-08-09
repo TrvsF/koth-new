@@ -19,6 +19,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 	/////////////////////////////////////////////////////////////
 
 	[RequireComponent] public DamageManager DamageManager { get; private set; }
+	[RequireComponent] public BuildingManager BuildingManager { get; private set; }
 	[RequireComponent] public ClassList ClassList { get; private set; }
 	[RequireComponent] public TextChat TextChat { get; private set; }
 	[RequireComponent] public NotificationManager NotificationManager { get; private set; }

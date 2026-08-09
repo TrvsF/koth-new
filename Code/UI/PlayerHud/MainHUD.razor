@@ -38,7 +38,7 @@
 	<PlayerInfo />
 	<Notifications />
 
-	<div class="hud flex column justify-start bottom-left chat">
+	@* <div class="hud flex column justify-start bottom-left chat">
 		@foreach (var VisableMessage in TextChat.Instance.GetVisableMessages())
 		{
 			@if (VisableMessage.AuthorSteamID > 0)
@@ -50,7 +50,7 @@
 			<label class="message no-shadow">@VisableMessage.GetChatMessage()</label>
 		}
 		<TextChatBox @ref="TextChat.Instance.InputBox" onsubmit="@TextChat.Instance.InputBox.SendMessage"></TextChatBox>
-	</div>
+	</div> *@
 </root>
 
 @code
