@@ -138,12 +138,7 @@
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "TeleporterPrefab": null,
-          "TurretPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/weapons/buildings/turret.prefab"
-          }
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.TextChat",
@@ -210,6 +205,26 @@
           "OnComponentUpdate": null,
           "SoundHandles": {},
           "StoppedSounds": []
+        },
+        {
+          "__type": "KOTH.BuildingManager",
+          "__guid": "57f5b60e-099c-4683-92e0-d8a766b6f53c",
+          "__enabled": true,
+          "Flags": 0,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporter.prefab"
+          },
+          "TurretPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/turret.prefab"
+          }
         }
       ],
       "Children": [

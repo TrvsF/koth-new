@@ -3,7 +3,7 @@
   "GameObjects": [
     {
       "__guid": "558d1da8-bde9-4d9c-8693-4989bf4e96a8",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "GameMode",
       "Position": "0,0,0",
@@ -12,14 +12,16 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 1,
-      "NetworkInterpolation": false,
+      "NetworkFlags": 1,
       "NetworkOrphaned": 1,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "KOTH.GameMode",
           "__guid": "c3199629-5a1e-4b65-8e76-f26b489edff8",
           "__enabled": true,
+          "Flags": 0,
           "NothingState": "Waiting For Players",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -33,6 +35,7 @@
           "__type": "KOTH.DamageManager",
           "__guid": "2e565ed8-4047-4345-b6ac-6349f636f32b",
           "__enabled": true,
+          "Flags": 0,
           "HitSound": "sounds/hitsound.sound",
           "KnockbackOnly": false,
           "OnComponentDestroy": null,
@@ -46,6 +49,7 @@
           "__type": "KOTH.ClassList",
           "__guid": "421c259f-ae05-494e-8664-0a334a200db6",
           "__enabled": true,
+          "Flags": 0,
           "ClassDefinitions": [
             "prefabs/classes/alan.chardef",
             "prefabs/classes/alex.chardef",
@@ -58,16 +62,13 @@
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "TurretPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/weapons/buildings/turret.prefab"
-          }
+          "OnComponentUpdate": null
         },
         {
           "__type": "KOTH.TextChat",
           "__guid": "29b427b1-7ead-4452-8f65-9a657cdc0ff6",
           "__enabled": true,
+          "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -79,6 +80,7 @@
           "__type": "KOTH.Notification.NotificationManager",
           "__guid": "403abd49-ed09-491e-933a-9703ae03810e",
           "__enabled": true,
+          "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -90,6 +92,7 @@
           "__type": "KOTH.PlayerExp.ExpManager",
           "__guid": "c52bf2a5-347b-41e3-b4f4-a00e2456bd45",
           "__enabled": true,
+          "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -101,6 +104,7 @@
           "__type": "KOTH.AudioComponent",
           "__guid": "ea5e578c-a2ec-4571-a56c-38c9605cbe90",
           "__enabled": true,
+          "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -114,18 +118,43 @@
           "__type": "KOTH.GameStats",
           "__guid": "783e60e1-9c3b-4aab-a51e-a02c5c119688",
           "__enabled": true,
+          "Flags": 0,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null
+        },
+        {
+          "__type": "KOTH.BuildingManager",
+          "__guid": "f582d0a8-b442-48fd-ad10-6301dc56260f",
+          "__enabled": true,
+          "Flags": 0,
+          "EnterTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterenter.prefab"
+          },
+          "ExitTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "TurretPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/turret.prefab"
+          }
         }
       ],
       "Children": [
         {
           "__guid": "3cf9bb8d-c7cb-46bb-b885-f39717a13d86",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "States",
           "Position": "0,0,0",
@@ -134,14 +163,16 @@
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 1,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 1,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.Events.StateMachineComponent",
               "__guid": "9c24f55c-91ee-4c25-b820-c91d56589e3a",
               "__enabled": true,
+              "Flags": 0,
               "CurrentState": {
                 "_type": "component",
                 "component_id": "6042e389-31ad-4c97-8074-775cf2cd7d4c",
@@ -159,7 +190,7 @@
           "Children": [
             {
               "__guid": "ceedd810-0e2d-4f8f-a2d7-043b6869da20",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "WaitingForPlayers",
               "Position": "0,0,0",
@@ -168,14 +199,16 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "6042e389-31ad-4c97-8074-775cf2cd7d4c",
                   "__enabled": true,
+                  "Flags": 0,
                   "DefaultDuration": 999,
                   "DefaultNextState": {
                     "_type": "component",
@@ -197,6 +230,7 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "881306aa-c383-4c2b-b163-b36ec6c60017",
                   "__enabled": true,
+                  "Flags": 0,
                   "DefaultRespawnDelaySeconds": 5,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
@@ -211,6 +245,7 @@
                   "__type": "KOTH.WaitForPlayers",
                   "__guid": "9e372480-5b5a-4f61-9659-750040ee27b5",
                   "__enabled": true,
+                  "Flags": 0,
                   "MinPlayerCount": 2,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
@@ -224,7 +259,7 @@
             },
             {
               "__guid": "df822720-2382-4fde-aeaa-fdd479d5b9ea",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "PayloadPlay",
               "Position": "0,0,0",
@@ -233,14 +268,16 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "c15b2515-eb85-4244-babe-1e396072e03e",
                   "__enabled": true,
+                  "Flags": 0,
                   "DefaultDuration": 345,
                   "DefaultNextState": {
                     "_type": "component",
@@ -262,6 +299,7 @@
                   "__type": "KOTH.PayloadGamemode",
                   "__guid": "f8944979-bb97-4bb3-a885-4c396c48b4d3",
                   "__enabled": true,
+                  "Flags": 0,
                   "CTActiveSpawn": {
                     "_type": "gameobject",
                     "go": "1b974669-0bce-4ea0-97ee-9093f207f579"
@@ -301,6 +339,7 @@
                   "__type": "KOTH.PlayerAutoRespawner",
                   "__guid": "3f947822-4562-4b89-af86-6a57d584489d",
                   "__enabled": true,
+                  "Flags": 0,
                   "DefaultRespawnDelaySeconds": 10,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
@@ -315,6 +354,7 @@
                   "__type": "KOTH.ResetGame",
                   "__guid": "905bc03b-558f-4db1-8779-cbd613c7854a",
                   "__enabled": true,
+                  "Flags": 0,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -327,7 +367,7 @@
             },
             {
               "__guid": "140c390e-242b-46ba-90a0-8ab841befc30",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "GameOver",
               "Position": "0,0,0",
@@ -336,14 +376,16 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.Events.StateComponent",
                   "__guid": "5d78d7ca-8c29-4eb6-8569-cb6e469b1fd6",
                   "__enabled": true,
+                  "Flags": 0,
                   "DefaultDuration": 15,
                   "DefaultNextState": {
                     "_type": "component",
@@ -365,6 +407,7 @@
                   "__type": "KOTH.SwapTeams",
                   "__guid": "b740d352-435a-4124-b169-8bf32ecf9d7c",
                   "__enabled": true,
+                  "Flags": 0,
                   "OnComponentDestroy": null,
                   "OnComponentDisabled": null,
                   "OnComponentEnabled": null,
@@ -381,7 +424,7 @@
     },
     {
       "__guid": "50d2eb3d-a1f8-4f13-b91b-095f138d028e",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "GameState",
       "Position": "0,0,0",
@@ -390,14 +433,16 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 1,
-      "NetworkInterpolation": false,
+      "NetworkFlags": 1,
       "NetworkOrphaned": 1,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "KOTH.GameNetworkManager",
           "__guid": "6c2e8274-ba5d-4d50-9193-d126c3ffbdee",
           "__enabled": true,
+          "Flags": 0,
           "DefaultLobbyName": "pl_sheff",
           "MaxPlayers": 16,
           "NetworkMode": "Multiplayer",
@@ -417,7 +462,7 @@
     },
     {
       "__guid": "013ddc23-dc8c-44ed-af68-434fb7c7c869",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "Scene Information",
       "Position": "0,0,0",
@@ -426,14 +471,16 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.SceneInformation",
           "__guid": "93c473b7-3c49-4b99-afd5-54a86af3896c",
           "__enabled": true,
+          "Flags": 0,
           "Author": "trvsf",
           "Changes": "",
           "Description": "",
@@ -453,7 +500,7 @@
     },
     {
       "__guid": "e5c58978-1b06-4465-9d2a-53287cba7907",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "MapInstance",
       "Position": "0,0,0",
@@ -462,14 +509,16 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.MapInstance",
           "__guid": "4b53ceba-b295-4f36-a61b-7eb5d7cc233f",
           "__enabled": true,
+          "Flags": 0,
           "__version": 1,
           "EnableCollision": true,
           "MapName": "maps/payload/pl_sheff.vmap",
@@ -489,7 +538,7 @@
     },
     {
       "__guid": "9dd3bf00-4a9e-4b3d-bae6-993b7e2a9615",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "attackspawns",
       "Position": "0,0,0",
@@ -498,31 +547,35 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "56288ba5-8bb4-44b3-9442-61a6bbff51bd",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "mainspawn",
-          "Position": "687.9999,-352,160",
+          "Position": "687.999878,-352,160",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "zone",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "a175c98f-31f1-45e1-8edf-b8dd5c7131fe",
               "__enabled": true,
-              "Center": "263.7111,18.90735,-55.73116",
+              "Flags": 0,
+              "Center": "263.71109,18.9073505,-55.7311592",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": true,
@@ -537,7 +590,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "1060.035,1502.484,211.4622",
+              "Scale": "1060.03503,1502.48401,211.462204",
               "Static": false,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -546,6 +599,7 @@
               "__type": "KOTH.SpawnZone",
               "__guid": "f2c79e55-49bc-41b6-ba6e-c7266fa0d3f4",
               "__enabled": true,
+              "Flags": 0,
               "Color": "1,0,0,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -581,24 +635,27 @@
         },
         {
           "__guid": "f7ae0afa-e252-403d-85d3-f66000d96674",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnzone",
-          "Position": "176,-895.9999,96",
+          "Position": "176,-895.999878,96",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "zone",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "a4a4f00f-2f1c-4c42-841b-e5ca9818f4c8",
               "__enabled": true,
-              "Center": "-19.9017,11.97708,-0.8516846",
+              "Flags": 0,
+              "Center": "-19.9016991,11.9770803,-0.85168457",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": true,
@@ -613,7 +670,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "564.6188,222.2296,192.2125",
+              "Scale": "564.618774,222.229599,192.212494",
               "Static": false,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -622,6 +679,7 @@
               "__type": "KOTH.SpawnZone",
               "__guid": "03ea7b5d-586a-45be-b3cc-103f4c818cdb",
               "__enabled": true,
+              "Flags": 0,
               "Color": "1,0,0,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -638,23 +696,26 @@
         },
         {
           "__guid": "8a2dd879-3acf-49ce-9b8f-b6f2ee5a6e1a",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1275.728,-33.63545,80.00002",
-          "Rotation": "0,0,0.9238796,0.3826835",
+          "Position": "1275.72803,-33.6354485,80.0000229",
+          "Rotation": "0,0,0.923879623,0.382683486",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "4da9e580-ea41-416c-a99b-176f52b23a32",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -663,6 +724,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -672,23 +734,26 @@
         },
         {
           "__guid": "7ab3cce7-c441-4f0b-ae6c-6bdfe03231db",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1389.572,-33.63545,80.00002",
-          "Rotation": "0,0,0.9238796,0.3826835",
+          "Position": "1389.57202,-33.6354485,80.0000229",
+          "Rotation": "0,0,0.923879623,0.382683486",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "bbcac0ed-53d8-461c-955d-b742f36662a2",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -697,6 +762,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -706,23 +772,26 @@
         },
         {
           "__guid": "39bd806e-d48f-41c8-9f91-0ed09e47bbdb",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1335.826,-187.2142,79.99226",
-          "Rotation": "0,0,0.7071068,0.7071068",
+          "Position": "1335.82605,-187.214203,79.9922638",
+          "Rotation": "0,0,0.707106829,0.707106829",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "7c89b44c-f95b-4490-a83a-6ada4ac982bf",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -731,6 +800,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -740,23 +810,26 @@
         },
         {
           "__guid": "6b933d92-78bc-42de-9577-c2fa601cc5fd",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1263.304,-80.00045,80.00002",
-          "Rotation": "0,0,0.9659261,0.2588192",
+          "Position": "1263.30396,-80.0004501,80.0000229",
+          "Rotation": "0,0,0.965926111,0.258819193",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "580ae6c0-ce80-4be7-bdcd-029840aaff1a",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -765,6 +838,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -774,23 +848,26 @@
         },
         {
           "__guid": "8f64ab24-5abe-4eb6-912b-bd279247bd92",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1377.148,-80.00045,80.00002",
-          "Rotation": "0,0,0.9659261,0.2588192",
+          "Position": "1377.14795,-80.0004501,80.0000229",
+          "Rotation": "0,0,0.965926111,0.258819193",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "ae49b11b-19c9-4170-bef1-d1cbd4dee806",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -799,6 +876,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -808,23 +886,26 @@
         },
         {
           "__guid": "c031476b-1d4a-4851-abb9-93bb90e77489",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1294.256,-211.214,79.99226",
-          "Rotation": "0,0,0.7933536,0.6087617",
+          "Position": "1294.25598,-211.214005,79.9922638",
+          "Rotation": "0,0,0.793353617,0.608761728",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "388f56c6-fb6f-4a50-a3a1-a7c6416d80ab",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -833,6 +914,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -842,23 +924,26 @@
         },
         {
           "__guid": "19b9107f-4399-46a0-8b65-91ce0be820f7",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1250.881,-126.3645,80.00002",
-          "Rotation": "0,0,0.991445,0.1305263",
+          "Position": "1250.88098,-126.364502,80.0000229",
+          "Rotation": "0,0,0.991445005,0.130526304",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "26f12480-c3e6-4dfb-ac45-bf846355c627",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -867,6 +952,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -876,23 +962,26 @@
         },
         {
           "__guid": "2ff6509f-64f4-4edd-b689-dc8b91fe5d8e",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1364.725,-126.3645,80.00002",
-          "Rotation": "0,0,0.991445,0.1305263",
+          "Position": "1364.72498,-126.364502,80.0000229",
+          "Rotation": "0,0,0.991445005,0.130526304",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "ec6a4d0c-a39a-4560-8491-c2246f7e55ab",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -901,6 +990,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -910,23 +1000,26 @@
         },
         {
           "__guid": "df6c044a-c458-4de3-b2dc-066b27f1f18f",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint",
-          "Position": "1252.688,-235.214,79.99226",
-          "Rotation": "0,0,0.8660255,0.5000001",
+          "Position": "1252.68799,-235.214005,79.9922638",
+          "Rotation": "0,0,0.866025507,0.500000119",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "172ee4e5-16a6-4f4b-bbd4-ae78a95800f1",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -935,6 +1028,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "Terrorist",
               "Walker": false
@@ -944,23 +1038,25 @@
         },
         {
           "__guid": "29226d21-c422-4d40-9356-95cd464c78ab",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawndoor1",
-          "Position": "429.8889,-469.2789,0.9999931",
-          "Rotation": "-0.00000007362976,0.00000001139187,0.7071068,0.7071068",
-          "Scale": "1.650729,1,1.553004",
+          "Position": "429.888885,-469.2789,0.999993086",
+          "Rotation": "-7.36297565E-08,1.13918697E-08,0.707106829,0.707106829",
+          "Scale": "1.65072894,1,1.55300403",
           "Tags": "solid",
           "Enabled": true,
           "NetworkMode": 1,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 1,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "KOTH.SpawnDoor",
               "__guid": "eb08d4a4-178f-4c11-ba0a-f2b55a6de1f5",
               "__enabled": true,
+              "Flags": 0,
               "ModelRenderer": {
                 "_type": "component",
                 "component_id": "5da8c307-972d-4b38-8b38-14cc2c3923fc",
@@ -980,7 +1076,7 @@
           "Children": [
             {
               "__guid": "d9c4ab54-2e1c-41a4-9da0-c377d721907f",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "Model",
               "Position": "0,0,0",
@@ -989,19 +1085,22 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.SkinnedModelRenderer",
                   "__guid": "5da8c307-972d-4b38-8b38-14cc2c3923fc",
                   "__enabled": true,
+                  "Flags": 0,
                   "AnimationGraph": null,
                   "BodyGroups": 18446744073709551615,
                   "BoneMergeTarget": null,
                   "CreateAttachments": false,
                   "CreateBoneObjects": false,
+                  "LodOverride": null,
                   "MaterialGroup": null,
                   "MaterialOverride": null,
                   "Materials": null,
@@ -1040,7 +1139,9 @@
                   "__type": "Sandbox.BoxCollider",
                   "__guid": "22abdeb0-c29e-4731-856e-9e083d6a5c5f",
                   "__enabled": true,
-                  "Center": "2.887207,-1.515848,67.02565",
+                  "Flags": 0,
+                  "Center": "2.88720703,-1.51584804,67.02565",
+                  "ColliderFlags": 0,
                   "Elasticity": null,
                   "Friction": null,
                   "IsTrigger": false,
@@ -1055,7 +1156,7 @@
                   "OnTriggerEnter": null,
                   "OnTriggerExit": null,
                   "RollingResistance": null,
-                  "Scale": "256.4691,20.53263,130.8029",
+                  "Scale": "256.469086,20.5326309,130.802902",
                   "Static": false,
                   "Surface": null,
                   "SurfaceVelocity": "0,0,0"
@@ -1067,23 +1168,25 @@
         },
         {
           "__guid": "7088d075-359e-450f-befd-fa9820a7cb00",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawndoor2",
-          "Position": "-1.601212,-774.3134,-2.072288",
+          "Position": "-1.60121202,-774.313416,-2.07228804",
           "Rotation": "0,0,0,1",
-          "Scale": "1.650729,1,1.553004",
+          "Scale": "1.65072894,1,1.55300403",
           "Tags": "solid",
           "Enabled": true,
           "NetworkMode": 1,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 1,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "KOTH.SpawnDoor",
               "__guid": "973796f7-ec16-4433-84da-c80a83a079f4",
               "__enabled": true,
+              "Flags": 0,
               "ModelRenderer": {
                 "_type": "component",
                 "component_id": "cae0d437-0418-4ea4-b2fe-5ee54b8e5a65",
@@ -1103,7 +1206,7 @@
           "Children": [
             {
               "__guid": "fdd7c654-9301-4208-a104-c4db1b00cdc2",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "Model",
               "Position": "0,0,0",
@@ -1112,19 +1215,22 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.SkinnedModelRenderer",
                   "__guid": "cae0d437-0418-4ea4-b2fe-5ee54b8e5a65",
                   "__enabled": true,
+                  "Flags": 0,
                   "AnimationGraph": null,
                   "BodyGroups": 18446744073709551615,
                   "BoneMergeTarget": null,
                   "CreateAttachments": false,
                   "CreateBoneObjects": false,
+                  "LodOverride": null,
                   "MaterialGroup": null,
                   "MaterialOverride": null,
                   "Materials": null,
@@ -1163,7 +1269,9 @@
                   "__type": "Sandbox.BoxCollider",
                   "__guid": "0d514e76-f1cb-4fd3-9085-22ed437a66bc",
                   "__enabled": true,
-                  "Center": "2.887207,-1.515848,67.02565",
+                  "Flags": 0,
+                  "Center": "2.88720703,-1.51584804,67.02565",
+                  "ColliderFlags": 0,
                   "Elasticity": null,
                   "Friction": null,
                   "IsTrigger": false,
@@ -1178,7 +1286,7 @@
                   "OnTriggerEnter": null,
                   "OnTriggerExit": null,
                   "RollingResistance": null,
-                  "Scale": "256.4691,20.53263,130.8029",
+                  "Scale": "256.469086,20.5326309,130.802902",
                   "Static": false,
                   "Surface": null,
                   "SurfaceVelocity": "0,0,0"
@@ -1190,23 +1298,25 @@
         },
         {
           "__guid": "cb6ed24d-2ccb-42ad-a966-0ae745c92fa5",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawndoor3",
-          "Position": "428.0705,276.6201,31.34225",
-          "Rotation": "-0.00000007362976,0.00000001139187,0.7071068,0.7071068",
-          "Scale": "1.650729,1,1.553004",
+          "Position": "428.070496,276.620087,31.3422508",
+          "Rotation": "-7.36297565E-08,1.13918697E-08,0.707106829,0.707106829",
+          "Scale": "1.65072894,1,1.55300403",
           "Tags": "solid",
           "Enabled": true,
           "NetworkMode": 1,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 1,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "KOTH.SpawnDoor",
               "__guid": "29cb3662-c047-4707-b472-7b8192232ef5",
               "__enabled": true,
+              "Flags": 0,
               "ModelRenderer": {
                 "_type": "component",
                 "component_id": "72862d1d-c24f-4125-98cf-b8a6a2bfe41a",
@@ -1226,7 +1336,7 @@
           "Children": [
             {
               "__guid": "ebc13e9a-5d7f-412a-9e16-f1019074f618",
-              "__version": 1,
+              "__version": 2,
               "Flags": 0,
               "Name": "Model",
               "Position": "0,0,0",
@@ -1235,19 +1345,22 @@
               "Tags": "",
               "Enabled": true,
               "NetworkMode": 1,
-              "NetworkInterpolation": true,
+              "NetworkFlags": 0,
               "NetworkOrphaned": 1,
+              "NetworkTransmit": true,
               "OwnerTransfer": 1,
               "Components": [
                 {
                   "__type": "Sandbox.SkinnedModelRenderer",
                   "__guid": "72862d1d-c24f-4125-98cf-b8a6a2bfe41a",
                   "__enabled": true,
+                  "Flags": 0,
                   "AnimationGraph": null,
                   "BodyGroups": 18446744073709551615,
                   "BoneMergeTarget": null,
                   "CreateAttachments": false,
                   "CreateBoneObjects": false,
+                  "LodOverride": null,
                   "MaterialGroup": null,
                   "MaterialOverride": null,
                   "Materials": null,
@@ -1286,7 +1399,9 @@
                   "__type": "Sandbox.BoxCollider",
                   "__guid": "46ca4879-85d6-43c1-9c3f-1d594cd32c0f",
                   "__enabled": true,
-                  "Center": "2.887207,-1.515848,67.02565",
+                  "Flags": 0,
+                  "Center": "2.88720703,-1.51584804,67.02565",
+                  "ColliderFlags": 0,
                   "Elasticity": null,
                   "Friction": null,
                   "IsTrigger": false,
@@ -1301,7 +1416,7 @@
                   "OnTriggerEnter": null,
                   "OnTriggerExit": null,
                   "RollingResistance": null,
-                  "Scale": "256.4691,20.53263,130.8029",
+                  "Scale": "256.469086,20.5326309,130.802902",
                   "Static": false,
                   "Surface": null,
                   "SurfaceVelocity": "0,0,0"
@@ -1315,7 +1430,7 @@
     },
     {
       "__guid": "5a498e38-2aab-4a28-95e8-7a5e23615adf",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "defencespawns",
       "Position": "0,0,0",
@@ -1324,30 +1439,34 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "217f11ba-2003-43c7-8de5-dfb74bb8b577",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-3643.459,277.5717,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3643.45898,277.571686,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "5d499b23-672f-43c0-85d3-c4f390180c58",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1356,6 +1475,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1365,23 +1485,26 @@
         },
         {
           "__guid": "6c72b0fb-2c50-4cc2-9c57-df8f78ccff02",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-3722.38,277.5717,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3722.37988,277.571686,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "f3a4224f-89d8-4f18-83f6-25456a47b746",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1390,6 +1513,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1399,23 +1523,26 @@
         },
         {
           "__guid": "af2eb4e6-645e-4cf2-a0fd-90d5bf56fdc9",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-3805.713,277.5717,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3805.71289,277.571686,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "f4738bf3-6b0c-406c-b5fc-a9bba7fcc2bd",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1424,6 +1551,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1433,23 +1561,26 @@
         },
         {
           "__guid": "ec35385a-3e91-48f0-ab2c-b1245fd53244",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-3905.497,277.5717,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3905.49707,277.571686,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "fbc4d3ab-a71d-489e-8815-1b5277e2a129",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1458,6 +1589,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1467,23 +1599,26 @@
         },
         {
           "__guid": "4394efcf-6a8f-417c-8594-330792cbc65d",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-3643.459,152.2714,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3643.45898,152.271393,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "4cdec562-48cb-4829-92f6-979d73092abe",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1492,6 +1627,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1501,23 +1637,26 @@
         },
         {
           "__guid": "8a101e1b-7d31-42e9-b038-ef2185d9c171",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-3722.38,152.2714,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3722.37988,152.271393,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "c6e5db0d-9d41-48ba-907a-3164040a8c1f",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1526,6 +1665,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1535,23 +1675,26 @@
         },
         {
           "__guid": "e6f01f64-e791-446b-9001-b0d6b1152a7a",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-3805.713,152.2714,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3805.71289,152.271393,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "49f037b5-7d1f-4720-995b-169599700b17",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1560,6 +1703,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1569,23 +1713,26 @@
         },
         {
           "__guid": "51b87609-6b5a-4c16-ae52-dc6dac9c9131",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-3905.497,152.2714,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3905.49707,152.271393,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "bb298adf-b6fd-43e4-8d12-3f6c86446cf7",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1594,6 +1741,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1603,23 +1751,26 @@
         },
         {
           "__guid": "5506d5e0-6651-4d97-b7dc-b2eb92d2ffeb",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (3)",
-          "Position": "-3643.459,466.7709,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3643.45898,466.770905,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "99505943-b931-4ecd-87c0-266d35e97e39",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1628,6 +1779,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1637,23 +1789,26 @@
         },
         {
           "__guid": "d3672de9-9f2d-46ee-9ae7-68bd1cb94980",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (3)",
-          "Position": "-3722.38,466.7709,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3722.37988,466.770905,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "2372578a-8171-4201-bc7f-97c713221663",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1662,6 +1817,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1671,23 +1827,26 @@
         },
         {
           "__guid": "9608efcb-6f11-4feb-a8fe-8660e451024b",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (3)",
-          "Position": "-3805.713,466.7709,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3805.71289,466.770905,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "b18e38e7-17e4-4e3e-a042-1cfdf1f91fbf",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1696,6 +1855,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1705,23 +1865,26 @@
         },
         {
           "__guid": "0fc11cd7-f810-4e63-878c-36d015917573",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (3)",
-          "Position": "-3905.497,466.7709,264.8997",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-3905.49707,466.770905,264.899689",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "e74aad27-e3a6-46a4-8e2d-42d84597802e",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1730,6 +1893,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1739,7 +1903,7 @@
         },
         {
           "__guid": "1b974669-0bce-4ea0-97ee-9093f207f579",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "mainspawn",
           "Position": "-3728,240,304",
@@ -1748,15 +1912,18 @@
           "Tags": "zone",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "0e9334e8-b004-4e94-8473-367e8100fa52",
               "__enabled": true,
-              "Center": "-2.700577,19.0067,61.7993",
+              "Flags": 0,
+              "Center": "-2.70057702,19.0067005,61.7993011",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": true,
@@ -1771,7 +1938,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "490.5989,520.5095,223.5986",
+              "Scale": "490.598907,520.509521,223.598602",
               "Static": false,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -1780,6 +1947,7 @@
               "__type": "KOTH.SpawnZone",
               "__guid": "03c20afc-9757-4426-a946-c532e59c04fe",
               "__enabled": true,
+              "Flags": 0,
               "Color": "0,1,0.88333,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -1798,7 +1966,7 @@
     },
     {
       "__guid": "63bff175-9c5d-42e3-a8de-5035524a1f3f",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "defencespawns2",
       "Position": "0,0,0",
@@ -1807,30 +1975,34 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "1aa3df89-35e8-48f4-a315-c3d4985a40ee",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-4580.042,-682.2681,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4580.04199,-682.268127,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "6f5865ef-d17a-47f9-acea-200be6d1413e",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1839,6 +2011,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1848,23 +2021,26 @@
         },
         {
           "__guid": "fbae677a-45c2-4a87-9e7c-08effdd897e4",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-4658.962,-682.2681,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4658.96191,-682.268127,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "07e8c8f0-1e1f-428a-9978-5120dff481ae",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1873,6 +2049,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1882,23 +2059,26 @@
         },
         {
           "__guid": "87fe9df7-a169-4925-b8e1-132e877e276c",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-4742.295,-682.2681,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4742.29492,-682.268127,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "fc804d1a-876f-4dfa-9baa-3d1b3dadab46",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1907,6 +2087,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1916,23 +2097,26 @@
         },
         {
           "__guid": "6c203ef8-900f-40dc-b446-6a9e874b1a33",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (1)",
-          "Position": "-4842.08,-682.2681,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4842.08008,-682.268127,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "bfccd7f8-e5bd-4f6d-9382-5716151c055e",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1941,6 +2125,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1950,23 +2135,26 @@
         },
         {
           "__guid": "991db5e0-9cba-4507-9a1e-7805a9e966fb",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-4581.676,-789.262,302.6039",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4581.67578,-789.262024,302.603912",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "b0ed6ade-dc82-4628-8a9f-f304a1fd3d5d",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -1975,6 +2163,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -1984,23 +2173,26 @@
         },
         {
           "__guid": "2e652e30-015c-40c1-94d1-ab7c6eaf734b",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-4660.277,-792.8379,302.6039",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4660.27686,-792.837891,302.603912",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "b0d5b1ca-57c3-422d-8038-8c97bb3c3205",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -2009,6 +2201,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -2018,23 +2211,26 @@
         },
         {
           "__guid": "43e58195-4ee8-491f-a861-ebfec4cc948a",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-4742.295,-807.5684,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4742.29492,-807.56842,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "a1915c52-f33d-4a4f-bc74-e90eab0da558",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -2043,6 +2239,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -2052,23 +2249,26 @@
         },
         {
           "__guid": "1a05be22-830a-4b34-bb46-0b080d3a136d",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "spawnpoint (2)",
-          "Position": "-4842.08,-807.5684,302.604",
-          "Rotation": "0,0,0.0444911,0.9990098",
+          "Position": "-4842.08008,-807.56842,302.604004",
+          "Rotation": "0,0,0.0444911011,0.999009788",
           "Scale": "1,1,1",
           "Tags": "",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "TeamSpawnPoint",
               "__guid": "48e15ff7-f982-45bf-a667-df2a51fadf1d",
               "__enabled": true,
+              "Flags": 0,
+              "CharacterDefinition": null,
               "IsDummy": false,
               "Jumper": false,
               "OnComponentDestroy": null,
@@ -2077,6 +2277,7 @@
               "OnComponentFixedUpdate": null,
               "OnComponentStart": null,
               "OnComponentUpdate": null,
+              "RandomSpawn": true,
               "SpawnZone": null,
               "Team": "CounterTerrorist",
               "Walker": false
@@ -2086,24 +2287,27 @@
         },
         {
           "__guid": "a75855c6-cbba-4048-b1dc-69076cd2b73c",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "mainspawn2",
-          "Position": "-4664.583,-719.8397,341.7043",
+          "Position": "-4664.58301,-719.839722,341.704315",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "zone",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "65013979-3173-4f57-a767-66aaf18c2664",
               "__enabled": true,
-              "Center": "-32.31712,-39.88344,11.4501",
+              "Flags": 0,
+              "Center": "-32.3171196,-39.8834381,11.4500999",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": true,
@@ -2118,7 +2322,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "495.3924,402.7293,122.9002",
+              "Scale": "495.392395,402.729309,122.9002",
               "Static": false,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2127,6 +2331,7 @@
               "__type": "KOTH.SpawnZone",
               "__guid": "1552640c-7bb5-41f7-a373-d72ccf3d8033",
               "__enabled": true,
+              "Flags": 0,
               "Color": "0,1,0.88333,1",
               "OnComponentDestroy": null,
               "OnComponentDisabled": null,
@@ -2145,7 +2350,7 @@
     },
     {
       "__guid": "93317bae-87c5-4512-9796-6690f9fe455f",
-      "__version": 1,
+      "__version": 2,
       "__Prefab": "prefabs/map_shared/payload/cart.prefab",
       "__PrefabInstancePatch": {
         "AddedObjects": [],
@@ -2157,7 +2362,7 @@
               "IdValue": "690d1c8b-630f-4c56-8b02-32952c9e09f4"
             },
             "Property": "Position",
-            "Value": "224.6959,-627.2839,0.1701965"
+            "Value": "224.695908,-627.283875,0.170196503"
           },
           {
             "Target": {
@@ -2165,15 +2370,7 @@
               "IdValue": "690d1c8b-630f-4c56-8b02-32952c9e09f4"
             },
             "Property": "Rotation",
-            "Value": "-0.0000000000001815793,0.0000000000004383674,0.9238806,0.3826807"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "690d1c8b-630f-4c56-8b02-32952c9e09f4"
-            },
-            "Property": "NetworkInterpolation",
-            "Value": false
+            "Value": "-1.81579307E-13,4.38367387E-13,0.923880577,0.382680714"
           }
         ],
         "MovedObjects": []
@@ -2192,7 +2389,7 @@
     },
     {
       "__guid": "c21448b9-c0e3-447b-9546-71cb38c36f23",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "cartpath",
       "Position": "0,0,0",
@@ -2201,14 +2398,16 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "KOTH.PayloadPath",
           "__guid": "48bdf220-3747-4d48-acb5-d1cefed58191",
           "__enabled": true,
+          "Flags": 0,
           "CaptureNodeColour": "1,0,0,1",
           "NodeColour": "0,1,0,1",
           "OnComponentDestroy": null,
@@ -2220,22 +2419,22 @@
           "PathSegments": [
             {
               "SegmentPoints": [
-                "273.1998,-320.4994,2",
-                "77.30001,-320.4994,2",
-                "-404.8992,-466.0988,66.30015",
-                "-519.3005,13.60123,97.30009",
-                "-519.3005,414.3011,97.30009",
-                "-779.6997,490,101.5996",
-                "-1471.099,490,131.5998"
+                "273.199799,-320.49939,2",
+                "77.3000107,-320.49939,2",
+                "-404.8992,-466.098785,66.300148",
+                "-519.300476,13.6012297,97.300087",
+                "-519.300476,414.301086,97.300087",
+                "-779.699707,490,101.599602",
+                "-1471.099,490,131.599792"
               ]
             },
             {
               "SegmentPoints": [
-                "-1475.503,490,131.6998",
-                "-1957.299,486.5995,104.8996",
-                "-2857.295,673.299,104.8996",
-                "-2881.696,-582.3012,104.8996",
-                "-4104.394,-582.3012,104.8996"
+                "-1475.50305,490,131.699799",
+                "-1957.29895,486.599487,104.899597",
+                "-2857.29492,673.299011,104.899597",
+                "-2881.69604,-582.301208,104.899597",
+                "-4104.39404,-582.301208,104.899597"
               ]
             }
           ]
@@ -2245,7 +2444,7 @@
     },
     {
       "__guid": "cd842069-ba13-4e93-b931-64c6f2cd44ab",
-      "__version": 1,
+      "__version": 2,
       "__Prefab": "prefabs/map_shared/killzone.prefab",
       "__PrefabInstancePatch": {
         "AddedObjects": [],
@@ -2258,14 +2457,6 @@
             },
             "Property": "Position",
             "Value": "-144,944,-912"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "3316380c-3fe1-41b1-9948-bdbc077bd56a"
-            },
-            "Property": "NetworkInterpolation",
-            "Value": false
           }
         ],
         "MovedObjects": []
@@ -2279,25 +2470,28 @@
     },
     {
       "__guid": "3608b41c-ed12-403c-8516-69d0cbce527e",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "Camera",
-      "Position": "119.1588,910.3894,606.1462",
-      "Rotation": "0.1205905,0.04995021,-0.9159757,0.3794096",
+      "Position": "119.158798,910.389404,606.146179",
+      "Rotation": "0.120590501,0.0499502085,-0.91597569,0.379409611",
       "Scale": "1,1,1",
       "Tags": "scenecamera",
       "Enabled": false,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.CameraComponent",
           "__guid": "041c19ab-dd91-476c-a47c-9ac3a5f55d20",
           "__enabled": true,
+          "Flags": 0,
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
+          "EnablePostProcessing": true,
           "FieldOfView": 60,
           "FovAxis": "Horizontal",
           "IsMainCamera": true,
@@ -2309,9 +2503,11 @@
           "OnComponentUpdate": null,
           "Orthographic": false,
           "OrthographicHeight": 1204,
+          "PostProcessAnchor": null,
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
+          "RenderTexture": null,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
@@ -2322,25 +2518,28 @@
     },
     {
       "__guid": "98246465-0ea9-4ec3-b4db-571bf89556f6",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "Camera (1)",
-      "Position": "-4433.184,-334.6359,513.8677",
-      "Rotation": "0.03378269,0.1260787,-0.2566049,0.9576623",
+      "Position": "-4433.18408,-334.635895,513.867676",
+      "Rotation": "0.0337826908,0.126078695,-0.25660491,0.957662284",
       "Scale": "1,1,1",
       "Tags": "scenecamera2",
       "Enabled": false,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.CameraComponent",
           "__guid": "5e4db7d9-0e78-4de8-881e-259933caa806",
           "__enabled": true,
+          "Flags": 0,
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
+          "EnablePostProcessing": true,
           "FieldOfView": 60,
           "FovAxis": "Horizontal",
           "IsMainCamera": true,
@@ -2352,9 +2551,11 @@
           "OnComponentUpdate": null,
           "Orthographic": false,
           "OrthographicHeight": 1204,
+          "PostProcessAnchor": null,
           "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
+          "RenderTexture": null,
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
@@ -2365,7 +2566,7 @@
     },
     {
       "__guid": "5d78868f-7f7d-4234-83cf-8e2ea5be1f11",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "lights",
       "Position": "0,0,0",
@@ -2374,33 +2575,37 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "03f7df6c-6cca-4595-a008-c644d711f078",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "Spot Light",
-          "Position": "-2753.624,-767.4588,230.5977",
-          "Rotation": "0,0,0.8660254,0.5000001",
+          "Position": "-2753.62402,-767.458801,230.597702",
+          "Rotation": "0,0,0.866025388,0.500000119",
           "Scale": "1,1,1",
           "Tags": "light_spot,light",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.SpotLight",
               "__guid": "e32ec8ee-c8ba-430e-8f5a-336c0b6382c4",
               "__enabled": true,
+              "Flags": 0,
               "Attenuation": 0.64,
               "ConeInner": 31.22,
               "ConeOuter": 49.36,
+              "Contribution": "Diffuse, Specular, Transmissive",
               "Cookie": null,
               "FogMode": "Enabled",
               "FogStrength": 1,
@@ -2412,6 +2617,8 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Radius": 1198.3992,
+              "ShadowBias": 0,
+              "ShadowHardness": 0,
               "Shadows": true
             }
           ],
@@ -2419,26 +2626,29 @@
         },
         {
           "__guid": "ad394fec-5ddd-4107-881a-3e3740426557",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "Spot Light",
-          "Position": "-2908.861,-420.1959,385.0415",
-          "Rotation": "-0.6123723,0.3535534,0.6123724,0.3535535",
+          "Position": "-2908.86108,-420.195892,385.041504",
+          "Rotation": "-0.612372279,0.353553414,0.612372398,0.353553504",
           "Scale": "1,1,1",
           "Tags": "light_spot,light",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.SpotLight",
               "__guid": "f3bcf08a-34eb-45a9-9a61-9d815afbc6ab",
               "__enabled": true,
+              "Flags": 0,
               "Attenuation": 0.64,
               "ConeInner": 31.22,
               "ConeOuter": 30.17,
+              "Contribution": "Diffuse, Specular, Transmissive",
               "Cookie": null,
               "FogMode": "Enabled",
               "FogStrength": 1,
@@ -2450,6 +2660,8 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Radius": 498.49698,
+              "ShadowBias": 0,
+              "ShadowHardness": 0,
               "Shadows": true
             }
           ],
@@ -2457,26 +2669,29 @@
         },
         {
           "__guid": "cd9441d1-629a-4f53-bbf3-0224e9943c7e",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "Spot Light",
-          "Position": "-2895.141,251.2538,385.0417",
-          "Rotation": "-0.6123723,0.3535534,0.6123724,0.3535535",
+          "Position": "-2895.14111,251.253799,385.041687",
+          "Rotation": "-0.612372279,0.353553414,0.612372398,0.353553504",
           "Scale": "1,1,1",
           "Tags": "light_spot,light",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.SpotLight",
               "__guid": "21163f0b-c576-4609-9270-b299fe2b0d23",
               "__enabled": true,
+              "Flags": 0,
               "Attenuation": 0.64,
               "ConeInner": 31.22,
               "ConeOuter": 32.27,
+              "Contribution": "Diffuse, Specular, Transmissive",
               "Cookie": null,
               "FogMode": "Enabled",
               "FogStrength": 1,
@@ -2488,6 +2703,8 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Radius": 498.49698,
+              "ShadowBias": 0,
+              "ShadowHardness": 0,
               "Shadows": true
             }
           ],
@@ -2495,26 +2712,29 @@
         },
         {
           "__guid": "935eab37-06c9-4ef8-8791-b80c6b96e012",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "Spot Light",
-          "Position": "-2705.402,-132.3158,201.5642",
-          "Rotation": "-0.113039,0.4957225,0.8586163,0.06526321",
+          "Position": "-2705.4021,-132.315796,201.564194",
+          "Rotation": "-0.113039002,0.495722502,0.858616292,0.0652632117",
           "Scale": "1,1,1",
           "Tags": "light_spot,light",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.SpotLight",
               "__guid": "e72b1b24-f066-4b11-8120-80d74b28a2d8",
               "__enabled": true,
+              "Flags": 0,
               "Attenuation": 0.64,
               "ConeInner": 31.22,
               "ConeOuter": 22.85,
+              "Contribution": "Diffuse, Specular, Transmissive",
               "Cookie": null,
               "FogMode": "Enabled",
               "FogStrength": 1,
@@ -2526,6 +2746,8 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Radius": 1022.69666,
+              "ShadowBias": 0,
+              "ShadowHardness": 0,
               "Shadows": true
             }
           ],
@@ -2533,24 +2755,27 @@
         },
         {
           "__guid": "db96cc21-3a49-4c42-a5bc-1677e9b2343b",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "Point Light",
-          "Position": "-2893.544,-762.5989,401.3356",
+          "Position": "-2893.54395,-762.598877,401.335602",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "light_point,light",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.PointLight",
               "__guid": "9b36ad08-8ab9-4ef5-b05f-6136b59c8618",
               "__enabled": true,
+              "Flags": 0,
               "Attenuation": 1,
+              "Contribution": "Diffuse, Specular, Transmissive",
               "FogMode": "Enabled",
               "FogStrength": 1,
               "LightColor": "0.91373,0.98039,1,1",
@@ -2561,6 +2786,8 @@
               "OnComponentStart": null,
               "OnComponentUpdate": null,
               "Radius": 400,
+              "ShadowBias": 0,
+              "ShadowHardness": 0,
               "Shadows": true
             }
           ],
@@ -2570,25 +2797,28 @@
     },
     {
       "__guid": "b9e081c2-a0e7-4e27-a150-69880fbbd496",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "barrelmodel",
-      "Position": "-3545.481,31.00778,256.3966",
+      "Position": "-3545.48096,31.0077801,256.396606",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [
         {
           "__type": "Sandbox.ModelRenderer",
           "__guid": "31e16d1f-3b77-4433-89ba-bc287530bb12",
           "__enabled": true,
+          "Flags": 0,
           "BodyGroups": 18446744073709551615,
           "CreateAttachments": false,
+          "LodOverride": null,
           "MaterialGroup": null,
           "MaterialOverride": null,
           "Materials": null,
@@ -2613,7 +2843,7 @@
     },
     {
       "__guid": "ccf6aab3-1139-4da8-8539-e4d0585663e7",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "clips",
       "Position": "0,0,0",
@@ -2622,31 +2852,35 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "446bbb44-29da-4797-96ee-ecf057bd1832",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (2)",
-          "Position": "-915.3835,-406.1116,794.0625",
+          "Position": "-915.383484,-406.111603,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "32c460cd-a302-4422-9d72-4ad8c44a5816",
               "__enabled": true,
-              "Center": "-4.508316,-54.82623,139.4951",
+              "Flags": 0,
+              "Center": "-4.50831604,-54.8262291,139.495102",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2661,7 +2895,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "509.0166,609.6525,864.6161",
+              "Scale": "509.016602,609.652527,864.616089",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2671,24 +2905,27 @@
         },
         {
           "__guid": "6bdc5403-06fd-4d70-82f0-2e809b05b545",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (1)",
-          "Position": "-1422.24,-406.1116,794.0625",
+          "Position": "-1422.23999,-406.111603,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "f026edeb-474f-47d0-9d28-689c4e8436c2",
               "__enabled": true,
-              "Center": "-55.00348,-136.9884,139.4951",
+              "Flags": 0,
+              "Center": "-55.003479,-136.988403,139.495102",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2703,7 +2940,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "610.007,445.328,864.6161",
+              "Scale": "610.007019,445.328003,864.616089",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2713,24 +2950,27 @@
         },
         {
           "__guid": "3f53ceef-ac53-4409-b855-6e2c52e81716",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (3)",
-          "Position": "-2165.334,-712.2111,794.0625",
+          "Position": "-2165.33398,-712.211121,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "43bff60b-0a2c-4ed4-9668-9ab1dbcaa51c",
               "__enabled": true,
-              "Center": "-69.88803,-155.4792,139.4951",
+              "Flags": 0,
+              "Center": "-69.888031,-155.479202,139.495102",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2745,7 +2985,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "580.2379,482.3095,864.6161",
+              "Scale": "580.237915,482.309509,864.616089",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2755,24 +2995,27 @@
         },
         {
           "__guid": "9f42a4ce-4f82-4e58-bafa-2433f3cbe425",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (4)",
-          "Position": "-2749.474,-712.2111,794.0625",
+          "Position": "-2749.47412,-712.211121,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "95fba901-65f5-4d9b-b66e-00578824edbf",
               "__enabled": true,
-              "Center": "-39.88956,-272.0543,162.1107",
+              "Flags": 0,
+              "Center": "-39.8895607,-272.054291,162.110703",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2787,7 +3030,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "640.2348,249.1594,819.3848",
+              "Scale": "640.234802,249.159393,819.384827",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2797,24 +3040,27 @@
         },
         {
           "__guid": "b9b39fb0-2957-4fc2-be59-cdbf3e75b330",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (12)",
-          "Position": "-2749.474,-471.9313,794.0625",
+          "Position": "-2749.47412,-471.931305,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "08cdcc49-cd6f-4ba0-98f2-228e51ccb272",
               "__enabled": true,
-              "Center": "-423.2969,297.3243,163.9902",
+              "Flags": 0,
+              "Center": "-423.296906,297.32431,163.990204",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2829,7 +3075,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "836.3629,1387.917,815.6257",
+              "Scale": "836.362915,1387.91699,815.625671",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2839,24 +3085,27 @@
         },
         {
           "__guid": "eb59878f-a6ed-4d35-af3d-cbecf6d7fe64",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (19)",
-          "Position": "-3361.057,-1115.881,501.9464",
+          "Position": "-3361.05688,-1115.88098,501.946411",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "d8c940af-df22-4a65-9d58-c13f537df491",
               "__enabled": true,
-              "Center": "-104.9415,587.4728,109.6181",
+              "Flags": 0,
+              "Center": "-104.941498,587.472778,109.618103",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2871,7 +3120,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "172.5419,630.297,391.2558",
+              "Scale": "172.541901,630.296997,391.255798",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2881,24 +3130,27 @@
         },
         {
           "__guid": "759fd547-1be6-4428-a1ad-421cb252f781",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (18)",
-          "Position": "-3571.277,-471.9313,794.0625",
+          "Position": "-3571.2771,-471.931305,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "641b837e-b524-4fc6-948e-8d02abeeb1ae",
               "__enabled": true,
-              "Center": "-323.0811,153.7039,201.3995",
+              "Flags": 0,
+              "Center": "-323.081085,153.703903,201.399506",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2913,7 +3165,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "635.9312,1675.158,740.8065",
+              "Scale": "635.931213,1675.15796,740.806519",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2923,24 +3175,27 @@
         },
         {
           "__guid": "9cd95d03-ad17-4b57-b854-f68aaa43a36b",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (15)",
-          "Position": "-2749.474,-741.6591,794.0625",
+          "Position": "-2749.47412,-741.659119,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "216350d1-5117-49ab-b4da-205692e14697",
               "__enabled": true,
-              "Center": "-171.917,-248.2711,163.9902",
+              "Flags": 0,
+              "Center": "-171.917007,-248.271103,163.990204",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2955,7 +3210,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "938.2594,296.7262,815.6257",
+              "Scale": "938.259399,296.726196,815.625671",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -2965,24 +3220,27 @@
         },
         {
           "__guid": "891dd9d6-822b-409f-bf33-9e71a9c0d6bd",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (16)",
-          "Position": "-1812.015,-741.6591,794.0625",
+          "Position": "-1812.01501,-741.659119,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "59513a14-b00a-48d9-95da-9c679845963e",
               "__enabled": true,
-              "Center": "-205.8849,-153.3404,103.9601",
+              "Flags": 0,
+              "Center": "-205.884903,-153.340393,103.960098",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -2997,7 +3255,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "1006.195,486.5877,935.6862",
+              "Scale": "1006.19501,486.587708,935.686218",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3007,24 +3265,27 @@
         },
         {
           "__guid": "7ba4e6a0-3af0-4ff5-9c7d-f1f5d867a707",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (13)",
-          "Position": "-2122.268,-471.9313,794.0625",
+          "Position": "-2122.26807,-471.931305,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "2a5df3a5-a485-45b5-a054-a858b3758334",
               "__enabled": true,
-              "Center": "-599.01,323.9998,133.767",
+              "Flags": 0,
+              "Center": "-599.01001,323.999786,133.766998",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3039,7 +3300,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "64.95703,1334.566,876.0719",
+              "Scale": "64.9570312,1334.56604,876.071899",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3049,24 +3310,27 @@
         },
         {
           "__guid": "c5f13562-2d8a-4fb3-95d1-7647ffdb9a8f",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (14)",
-          "Position": "-2042.093,-471.9313,794.0625",
+          "Position": "-2042.09302,-471.931305,794.0625",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "2a10c5de-fd9b-49c3-8383-d5691a3c831e",
               "__enabled": true,
-              "Center": "-565.636,323.9998,165.7282",
+              "Flags": 0,
+              "Center": "-565.635986,323.999786,165.728195",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3081,7 +3345,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "131.705,1334.566,812.1492",
+              "Scale": "131.705002,1334.56604,812.14917",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3091,24 +3355,27 @@
         },
         {
           "__guid": "49e7ec48-838d-496a-9dab-3b7c88e1c759",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (7)",
-          "Position": "18.74982,446.4528,532.4888",
+          "Position": "18.7498207,446.452789,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "bd88d94e-b446-400e-ac5a-d4a817ba2ecb",
               "__enabled": true,
-              "Center": "80.97219,300.7559,237.8416",
+              "Flags": 0,
+              "Center": "80.9721909,300.75589,237.841599",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3123,7 +3390,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "338.0558,580.92,975.6829",
+              "Scale": "338.055786,580.919983,975.682922",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3133,24 +3400,27 @@
         },
         {
           "__guid": "3ed8ff3f-6f0c-452e-a33d-52f7a1f76c30",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (5)",
-          "Position": "-337.4668,446.4528,532.4888",
+          "Position": "-337.466797,446.452789,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "0a6981ed-14d4-4b5a-9587-1d15f66aeae8",
               "__enabled": true,
-              "Center": "80.97219,368.8907,237.8416",
+              "Flags": 0,
+              "Center": "80.9721909,368.890686,237.841599",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3165,7 +3435,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "338.0558,444.6503,975.6829",
+              "Scale": "338.055786,444.650299,975.682922",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3175,24 +3445,27 @@
         },
         {
           "__guid": "c176c165-9dcf-46c6-acf8-6f33a0839e83",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (6)",
-          "Position": "-770.9495,446.4528,532.4888",
+          "Position": "-770.949524,446.452789,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "2bcfdc3a-05f9-43fe-8c98-e2b51a1977f5",
               "__enabled": true,
-              "Center": "-415.7649,496.4975,478.6311",
+              "Flags": 0,
+              "Center": "-415.764893,496.497498,478.631104",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3207,7 +3480,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "1531.981,189.4366,1457.262",
+              "Scale": "1531.98096,189.4366,1457.26196",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3217,24 +3490,27 @@
         },
         {
           "__guid": "5de74932-179b-4e26-a4c0-0d23cc7326ca",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (11)",
-          "Position": "-770.9495,225.0346,532.4888",
+          "Position": "-770.949524,225.034607,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "24b8211f-1c18-47ec-b6f8-667847d5b36b",
               "__enabled": true,
-              "Center": "-742.7364,264.3248,737.9167",
+              "Flags": 0,
+              "Center": "-742.736389,264.324799,737.916687",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3249,7 +3525,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "878.038,653.782,938.6904",
+              "Scale": "878.038025,653.781982,938.69043",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3259,24 +3535,27 @@
         },
         {
           "__guid": "fefd3d38-248c-42b7-bcb3-dd61082116bf",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (17)",
-          "Position": "-770.9495,-181.89,532.4888",
+          "Position": "-770.949524,-181.889999,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "cc625193-4419-4235-bf40-ef349a6c3650",
               "__enabled": true,
-              "Center": "-1062.115,247.0146,764.0339",
+              "Flags": 0,
+              "Center": "-1062.11499,247.014603,764.033875",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3291,7 +3570,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "586.1111,688.4024,886.4561",
+              "Scale": "586.111084,688.402405,886.456116",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3301,24 +3580,27 @@
         },
         {
           "__guid": "6daf43e7-518d-4905-b2c0-d6dce8e825ba",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (8)",
-          "Position": "536.9208,446.4528,532.4888",
+          "Position": "536.920776,446.452789,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "b277d476-3199-4bf3-8bcd-f3c9228d044a",
               "__enabled": true,
-              "Center": "0,-131.87,0",
+              "Flags": 0,
+              "Center": "0,-131.869995,0",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3333,7 +3615,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "500,763.7399,500",
+              "Scale": "500,763.739929,500",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3343,24 +3625,27 @@
         },
         {
           "__guid": "d569c58e-844b-4daa-a711-211c0a84fca7",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (9)",
-          "Position": "670.4098,-299.9299,532.4888",
+          "Position": "670.40979,-299.929901,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "ebce85c9-d4d5-4af6-9350-22593b0fee6a",
               "__enabled": true,
-              "Center": "-3.888214,-86.80063,236.2589",
+              "Flags": 0,
+              "Center": "-3.88821411,-86.8006287,236.258896",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3375,7 +3660,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "507.7764,673.6013,972.5178",
+              "Scale": "507.776398,673.601318,972.517822",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3385,24 +3670,27 @@
         },
         {
           "__guid": "1920df13-ac3f-42ad-911f-f9b7733f3c51",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (10)",
-          "Position": "670.4098,-998.7863,532.4888",
+          "Position": "670.40979,-998.786316,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "4ee98012-5527-413e-ab12-baf0e1b8e9d8",
               "__enabled": true,
+              "Flags": 0,
               "Center": "0,0,0",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3427,24 +3715,27 @@
         },
         {
           "__guid": "12545c3e-36b6-48e9-b8c7-75d77bc3dc61",
-          "__version": 1,
+          "__version": 2,
           "Flags": 0,
           "Name": "clipzone (20)",
-          "Position": "144.8331,-998.7863,532.4888",
+          "Position": "144.833099,-998.786316,532.48877",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "clip",
           "Enabled": true,
           "NetworkMode": 2,
-          "NetworkInterpolation": true,
+          "NetworkFlags": 0,
           "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
           "OwnerTransfer": 1,
           "Components": [
             {
               "__type": "Sandbox.BoxCollider",
               "__guid": "820c5221-dfac-4c1b-86eb-5602c18eef83",
               "__enabled": true,
-              "Center": "-107.1906,6.608047,229.8694",
+              "Flags": 0,
+              "Center": "-107.190598,6.60804701,229.8694",
+              "ColliderFlags": 0,
               "Elasticity": null,
               "Friction": null,
               "IsTrigger": false,
@@ -3459,7 +3750,7 @@
               "OnTriggerEnter": null,
               "OnTriggerExit": null,
               "RollingResistance": null,
-              "Scale": "714.3813,513.2161,959.7388",
+              "Scale": "714.381287,513.216125,959.73877",
               "Static": true,
               "Surface": null,
               "SurfaceVelocity": "0,0,0"
@@ -3471,7 +3762,7 @@
     },
     {
       "__guid": "7d76f485-3ece-4368-850b-ea151d9aa7a3",
-      "__version": 1,
+      "__version": 2,
       "Flags": 0,
       "Name": "packs",
       "Position": "0,0,0",
@@ -3480,14 +3771,15 @@
       "Tags": "",
       "Enabled": true,
       "NetworkMode": 2,
-      "NetworkInterpolation": true,
+      "NetworkFlags": 0,
       "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
       "OwnerTransfer": 1,
       "Components": [],
       "Children": [
         {
           "__guid": "4b3c4471-c45b-4b8a-a4e7-d4851b4087eb",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3507,7 +3799,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-4033.942,-872.989,299.6488"
+                "Value": "-4033.94189,-872.989014,299.648804"
               },
               {
                 "Target": {
@@ -3515,7 +3807,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Rotation",
-                "Value": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065"
+                "Value": "-2.33642197E-07,-2.33642396E-07,0.707107008,0.707106471"
               },
               {
                 "Target": {
@@ -3524,14 +3816,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3546,7 +3830,7 @@
         },
         {
           "__guid": "fb7842b0-9a26-4d1d-8c80-5796ad576669",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3566,7 +3850,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-4057.051,-345.5828,163.569"
+                "Value": "-4057.05103,-345.582794,163.569"
               },
               {
                 "Target": {
@@ -3574,7 +3858,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Rotation",
-                "Value": "-0.02353105,0.02353057,0.7067153,0.7067149"
+                "Value": "-0.0235310495,0.0235305708,0.706715286,0.706714928"
               },
               {
                 "Target": {
@@ -3583,14 +3867,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3605,7 +3881,7 @@
         },
         {
           "__guid": "e0775954-4938-4cb8-a00e-772f03aaeed8",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3625,7 +3901,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-2901.155,-1128.413,345.2881"
+                "Value": "-2901.15503,-1128.41296,345.288086"
               },
               {
                 "Target": {
@@ -3633,7 +3909,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Rotation",
-                "Value": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065"
+                "Value": "-2.33642197E-07,-2.33642396E-07,0.707107008,0.707106471"
               },
               {
                 "Target": {
@@ -3642,14 +3918,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3664,7 +3932,7 @@
         },
         {
           "__guid": "f07229f5-61ad-438f-b70f-712a74702bf6",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3684,7 +3952,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-2208,-343.8953,133.3152"
+                "Value": "-2208,-343.895294,133.315201"
               },
               {
                 "Target": {
@@ -3692,7 +3960,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Rotation",
-                "Value": "-0.02353105,0.02353057,0.7067153,0.7067149"
+                "Value": "-0.0235310495,0.0235305708,0.706715286,0.706714928"
               },
               {
                 "Target": {
@@ -3701,14 +3969,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3723,7 +3983,7 @@
         },
         {
           "__guid": "bb580f92-50fd-479a-b3d5-d999b79c0fcb",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3743,7 +4003,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-3058.285,858.8944,121"
+                "Value": "-3058.28491,858.894409,121"
               },
               {
                 "Target": {
@@ -3752,14 +4012,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3774,7 +4026,7 @@
         },
         {
           "__guid": "de62b93b-8ecd-4b20-862e-2844a41510c1",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3794,7 +4046,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-687.9999,768,121"
+                "Value": "-687.999878,768,121"
               },
               {
                 "Target": {
@@ -3803,14 +4055,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3825,7 +4069,7 @@
         },
         {
           "__guid": "e9687f69-f21a-4a35-b214-02cb2575055e",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3846,14 +4090,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3868,7 +4104,7 @@
         },
         {
           "__guid": "574f7841-2f9b-4a6b-aef0-706e4998a68a",
-          "__version": 1,
+          "__version": 2,
           "__Prefab": "prefabs/map_shared/healthpack.prefab",
           "__PrefabInstancePatch": {
             "AddedObjects": [],
@@ -3888,7 +4124,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Position",
-                "Value": "-3082.534,-146.568,117.6354"
+                "Value": "-3082.53394,-146.567993,117.635399"
               },
               {
                 "Target": {
@@ -3896,7 +4132,7 @@
                   "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
                 },
                 "Property": "Rotation",
-                "Value": "-0.0000002336422,-0.0000002336424,0.707107,0.7071065"
+                "Value": "-2.33642197E-07,-2.33642396E-07,0.707107008,0.707106471"
               },
               {
                 "Target": {
@@ -3905,14 +4141,6 @@
                 },
                 "Property": "Scale",
                 "Value": "1,1,1"
-              },
-              {
-                "Target": {
-                  "Type": "GameObject",
-                  "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-                },
-                "Property": "NetworkInterpolation",
-                "Value": false
               }
             ],
             "MovedObjects": []
@@ -3947,7 +4175,22 @@
       "AgentStepSize": 18,
       "AgentMaxSlope": 40,
       "ExcludedBodies": "",
-      "IncludedBodies": ""
+      "IncludedBodies": "",
+      "DeferGeneration": false,
+      "CustomBounds": false
+    },
+    "GameObjectSystems": {
+      "Sandbox.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "64db792e-5935-8fbc-8cfa-050cd49fa7fd",
+          "$refs": []
+        }
+      },
+      "Sandbox.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
+      }
     }
   },
   "ResourceVersion": 3,

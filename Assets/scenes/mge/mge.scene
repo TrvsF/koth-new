@@ -207,16 +207,20 @@
           "__guid": "a8713419-386b-4965-99e7-21a96aedc9f8",
           "__enabled": true,
           "Flags": 0,
+          "EnterTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterenter.prefab"
+          },
+          "ExitTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+          },
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "TeleporterPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/weapons/buildings/teleporter.prefab"
-          },
           "TurretPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/weapons/buildings/turret.prefab"

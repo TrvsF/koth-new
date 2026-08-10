@@ -11,15 +11,30 @@ namespace KOTH;
 public class BuildingComponent : Component
 {
 	[Sync(SyncFlags.FromHost)] public PlayerState OwnerState { get; set; }
+	[RequireComponent] public DamageComponent DamageComponent { get; set; }
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		Assert.NotNull(DamageComponent);
+		DamageComponent.OnDeath += OnKill;
+
+		if (Networking.IsHost)
+		{
+			Assert.NotNull(OwnerState);
+			DamageComponent.Initalize(DamageComponent.MaxBaseHealth, OwnerState.Team);
+		}
+	}
+
+	protected virtual void OnKill(FDamageTaken DamageTaken) 
+	{
+		GameObject.Root.Destroy();
+	}
 }
 
 public sealed class TurretComponent : BuildingComponent
 {
-	[RequireComponent] public DamageComponent DamageComponent { get; private set; }
-
-	////////////////////////////////////////////////////////////////////////
-
-	[Property] public int MaxHealth { get; private set; } = 100;
 	[Property] public GameObject TurretMuzzleObject { get; set; }
 	[Sync] public int Damage { get; private set; } = 1;
 	[Sync] public float KnockbackStrength { get; private set; } = 1f;
@@ -78,27 +93,6 @@ public sealed class TurretComponent : BuildingComponent
 		}
 
 		return true;
-	}
-
-	////////////////////////////////////////////////////////////////////////
-
-	protected override void OnStart()
-	{
-		base.OnStart();
-
-		Assert.NotNull(DamageComponent);
-
-		DamageComponent.OnDeath += OnKill;
-
-		if (Networking.IsHost)
-		{
-			DamageComponent.Initalize(MaxHealth, OwnerState.Team);
-		}
-	}
-
-	private void OnKill(FDamageTaken DamageTaken)
-	{
-		GameObject.Root.Destroy();
 	}
 
 	////////////////////////////////////////////////////////////////////////

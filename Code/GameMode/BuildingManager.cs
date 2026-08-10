@@ -6,7 +6,8 @@ namespace KOTH;
 public sealed class BuildingManager : Component
 {
 	[Property] public GameObject TurretPrefab { get; private set; }
-	[Property] public GameObject TeleporterPrefab { get; private set; }
+	[Property] public GameObject EnterTeleporterPrefab { get; private set; }
+	[Property] public GameObject ExitTeleporterPrefab { get; private set; }
 
 	[Sync(SyncFlags.FromHost)] public NetDictionary<PlayerState, List<GameObject>> PlayerBuildings { get; private set; } = new();
 
@@ -40,14 +41,61 @@ public sealed class BuildingManager : Component
 	}
 
 	[Rpc.Host]
-	public void ServerRequestTeleporter(PlayerState RequestingState)
+	public void ServerRequestEnterTeleporter(PlayerState RequestingState)
 	{
 		if (RequestingState == null || RequestingState.PlayerPawn == null)
 		{
 			return;
 		}
 
-		Build_ServerOnly(TeleporterPrefab, RequestingState);
+		Build_ServerOnly(EnterTeleporterPrefab, RequestingState);
+	}
+
+	[Rpc.Host]
+	public void ServerDestroyEnterTeleporter(PlayerState RequestingState)
+	{
+		if (RequestingState == null)
+		{
+			return;
+		}
+
+		foreach (var Building in PlayerBuildings.GetOrCreate(RequestingState))
+		{
+			if (Building.GetComponent<TeleporterEntrenceComponent>() != null)
+			{
+				Destroy_ServerOnly(Building, RequestingState);
+				return;
+			}
+		}
+	}
+
+	[Rpc.Host]
+	public void ServerRequestExitTeleporter(PlayerState RequestingState)
+	{
+		if (RequestingState == null || RequestingState.PlayerPawn == null)
+		{
+			return;
+		}
+
+		Build_ServerOnly(ExitTeleporterPrefab, RequestingState);
+	}
+
+	[Rpc.Host]
+	public void ServerDestroyExitTeleporter(PlayerState RequestingState)
+	{
+		if (RequestingState == null)
+		{
+			return;
+		}
+
+		foreach (var Building in PlayerBuildings.GetOrCreate(RequestingState))
+		{
+			if (Building.GetComponent<TeleporterExitComponent>() != null)
+			{
+				Destroy_ServerOnly(Building, RequestingState);
+				return;
+			}
+		}
 	}
 
 	private void Build_ServerOnly(GameObject BuildingPrefab, PlayerState RequestingState)

@@ -3,7 +3,7 @@
     "__guid": "9a1e71b7-6aad-4afa-901c-93ce887545d9",
     "__version": 2,
     "Flags": 0,
-    "Name": "teleporter",
+    "Name": "teleporterexit",
     "Position": "0,0,-1",
     "Rotation": "-0.707106769,0,0,0.707106769",
     "Scale": "1,1,1",
@@ -59,6 +59,32 @@
         },
         "Tint": "1,1,1,1",
         "UseAnimGraph": true
+      },
+      {
+        "__type": "TeleporterExitComponent",
+        "__guid": "6b285ae7-19a9-4930-aadf-2b856169e835",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.DamageComponent",
+        "__guid": "378b020c-da6c-4f19-a9a1-0fdecf6eed6d",
+        "__enabled": true,
+        "Flags": 0,
+        "Health": 50,
+        "MaxBaseHealth": 50,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [],

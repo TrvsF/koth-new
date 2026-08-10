@@ -1,16 +1,37 @@
 ﻿using Sandbox;
 using Sandbox.Diagnostics;
-using Sandbox.Events;
-using static Sandbox.PhysicsContact;
 
 namespace KOTH;
+
+public enum EBuildingType
+{
+	Turret,
+	TpEnter,
+	TpExit,
+}
 
 public sealed class EngiePlayer : Component
 {
 	public PlayerPawn OwnerPawn { get => GameObject.Root.GetComponent<PlayerPawn>(); }
-	public bool IsPreviewingTurret { get => TurretPreviewObject.IsValid(); }
-	
-	private GameObject TurretPreviewObject = null;
+
+	private int BuildingIndexInput = 0;
+	private int BuildingIndex => ((BuildingIndexInput % BuildingToType.Count) + BuildingToType.Count) % BuildingToType.Count;
+	private Dictionary<GameObject, EBuildingType> BuildingToType;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		BuildingToType = new()
+		{
+			{ GameMode.Instance.BuildingManager.TurretPrefab, EBuildingType.Turret },
+			{ GameMode.Instance.BuildingManager.EnterTeleporterPrefab, EBuildingType.TpEnter },
+			{ GameMode.Instance.BuildingManager.ExitTeleporterPrefab, EBuildingType.TpExit },
+		};
+	}
+
+	public bool IsPreviewingBuilding { get => BuildingPreviewObject.IsValid(); }
+	private GameObject BuildingPreviewObject = null;
 
 	private Vector3 GetTurretSpawnLocation()
 	{
@@ -31,12 +52,14 @@ public sealed class EngiePlayer : Component
 		return false;
 	}
 
-	private void CreateTurretPreview()
+	private void CreateBuildingPreview()
 	{
-		TurretPreviewObject = GameMode.Instance.BuildingManager.TurretPrefab.Clone(GetTurretSpawnLocation(), OwnerPawn.Boom.WorldRotation);
-		TurretPreviewObject.NetworkMode = NetworkMode.Never;
+		var Prefab = BuildingToType.ElementAt(BuildingIndex).Key;
 
-		foreach (var Component in TurretPreviewObject.Components.GetAll())
+		BuildingPreviewObject = Prefab.Clone(GetTurretSpawnLocation(), OwnerPawn.Boom.WorldRotation);
+		BuildingPreviewObject.NetworkMode = NetworkMode.Never;
+
+		foreach (var Component in BuildingPreviewObject.Components.GetAll())
 		{
 			if (Component is SkinnedModelRenderer { } SkinnedModelRenderer)
 			{
@@ -48,14 +71,14 @@ public sealed class EngiePlayer : Component
 		}
 	}
 
-	private void DestroyTurretPreview()
+	private void DestroyBuildingPreview()
 	{
-		if (!TurretPreviewObject.IsValid())
+		if (!BuildingPreviewObject.IsValid())
 		{
 			return;
 		}
 
-		TurretPreviewObject.Destroy();
+		BuildingPreviewObject.Destroy();
 	}
 
 	protected override void OnUpdate()
@@ -67,31 +90,64 @@ public sealed class EngiePlayer : Component
 			return;
 		}
 
-		if (TurretPreviewObject.IsValid())
+		if (BuildingPreviewObject.IsValid())
 		{
-			TurretPreviewObject.WorldPosition = GetTurretSpawnLocation();
-			TurretPreviewObject.WorldRotation = OwnerPawn.Boom.WorldRotation;
+			BuildingPreviewObject.WorldPosition = GetTurretSpawnLocation();
+			BuildingPreviewObject.WorldRotation = OwnerPawn.Boom.WorldRotation;
 		}
 
 		///////////////////////////////////////////////////
+
+		if (IsPreviewingBuilding)
+		{
+			if (Input.MouseWheel != 0)
+			{
+				DestroyBuildingPreview();
+				BuildingIndexInput += (int) Math.Round(Input.MouseWheel.y);
+				CreateBuildingPreview();
+			}
+		}
 
 		bool RequestBuilding = Input.Pressed("use");
 
 		if (RequestBuilding)
 		{
-			if (IsTurretInWorld())
-			{
-				GameMode.Instance.BuildingManager.ServerDestroyTurret(PlayerState.Local);
-			}
+			//if (IsTurretInWorld())
+			//{
+			//	switch (BuildingToType.ElementAt(BuildingIndex).Value)
+			//	{
+			//		case EBuildingType.Turret:
+			//			GameMode.Instance.BuildingManager.ServerDestroyEnterTeleporter(PlayerState.Local);
+			//			break;
+			//		case EBuildingType.TpEnter:
+			//			GameMode.Instance.BuildingManager.ServerRequestEnterTeleporter(PlayerState.Local);
+			//			break;
+			//		case EBuildingType.TpExit:
+			//			GameMode.Instance.BuildingManager.ServerRequestExitTeleporter(PlayerState.Local);
+			//			break;
+			//	}
+			//}
 
-			if (!IsPreviewingTurret)
+			if (!IsPreviewingBuilding)
 			{
-				CreateTurretPreview();
+				CreateBuildingPreview();
 			}
 			else if (!IsTurretInWorld())
 			{
-				DestroyTurretPreview();
-				GameMode.Instance.BuildingManager.ServerRequestTurret(PlayerState.Local);
+				DestroyBuildingPreview();
+
+				switch (BuildingToType.ElementAt(BuildingIndex).Value)
+				{
+					case EBuildingType.Turret:
+						GameMode.Instance.BuildingManager.ServerRequestTurret(PlayerState.Local);
+						break;
+					case EBuildingType.TpEnter:
+						GameMode.Instance.BuildingManager.ServerRequestEnterTeleporter(PlayerState.Local);
+						break;
+					case EBuildingType.TpExit:
+						GameMode.Instance.BuildingManager.ServerRequestExitTeleporter(PlayerState.Local);
+						break;
+				}
 			}
 		}
 	}
