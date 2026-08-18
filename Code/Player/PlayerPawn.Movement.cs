@@ -90,9 +90,6 @@ public partial class PlayerPawn
 		return CharacterController.IsOnGround ? MaxAcceleration : AirMaxAcceleration;
 	}
 
-	private bool WasOnGround = true;
-	private TimeSince TimeSinceLeftGround = 0;
-
 	static Vector3 Gravity = new Vector3(0, 0, 800); // TODO : move me
 	private void ApplyMovement()
 	{
@@ -110,23 +107,9 @@ public partial class PlayerPawn
 			CharacterController.Velocity = CharacterController.Velocity.WithZ(0);
 			CharacterController.Accelerate(WishVelocity);
 			CharacterController.Velocity = CharacterController.Velocity.ClampLength(GetWishSpeed());
-
-			if (!WasOnGround)
-			{
-				Log.Info($"{TimeSinceLeftGround} time in air");
-				TimeSinceLeftGround = 0;
-				WasOnGround = true;
-			}
 		}
 		else
 		{
-			if (WasOnGround)
-			{
-				Log.Info($"Left floor with speed of {CharacterController.Velocity.z}");
-				WasOnGround = false;
-				TimeSinceLeftGround = 0;
-			}
-			
 			CharacterController.Velocity -= Gravity * Time.Delta;
 			CharacterController.Accelerate(WishVelocity.ClampLength(GetMaxAcceleration()));
 		}

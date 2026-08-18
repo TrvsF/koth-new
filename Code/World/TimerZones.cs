@@ -1,5 +1,6 @@
 using Sandbox;
 using Sandbox.Diagnostics;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace KOTH;
 
@@ -9,6 +10,7 @@ public sealed class TimerZones : Component
 	[Property] Zone EndZone { get; set; }
 	[Property] LeaderboardText LeaderboardText { get; set; }
 	[Property] Vector3 StartPoint { get; set; }
+	[Property] string Detials { get => LeaderboardText == null ? "" : LeaderboardText.StatName; }
 
 	private bool IsTimerGoing = false;
 	private TimeSince TimeSinceEnter;
