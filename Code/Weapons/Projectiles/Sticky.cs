@@ -35,7 +35,7 @@ public sealed class Sticky : Projectile, IGameEventHandler<ProjectileCollideEven
 		{
 			SpinBaseRotation = ModelRenderer.WorldRotation;
 
-			if (GameUtils.GetPlayerState(OwnerPlayerPawn.Id) is { } PlayerState)
+			if (GameUtils.GetPlayerState(OwnerPlayerPawn?.Id) is { } PlayerState)
 			{
 				ModelRenderer.Tint = PlayerState.Team == Team.Terrorist ? Color.Red : Color.Green;
 			}

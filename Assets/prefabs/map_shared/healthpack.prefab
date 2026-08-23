@@ -1,17 +1,25 @@
 {
   "RootObject": {
     "__guid": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0",
+    "__version": 2,
     "Flags": 0,
     "Name": "healthpack",
-    "Scale": "25,25,25",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
     "Tags": "consumable",
     "Enabled": true,
     "NetworkMode": 1,
+    "NetworkFlags": 0,
     "NetworkOrphaned": 1,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
     "Components": [
       {
         "__type": "KOTH.HealthPickup",
         "__guid": "73ca2ae5-ce2c-4104-b073-cf013116e342",
+        "__enabled": true,
+        "Flags": 0,
         "HealthPercent": 0.5,
         "Model": {
           "_type": "component",
@@ -30,7 +38,11 @@
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "ad5f8fd5-3eb0-408c-a40f-a9d99f2aaef4",
+        "__enabled": true,
+        "Flags": 0,
         "Center": "0,0,0.5",
+        "ColliderFlags": 0,
+        "Elasticity": null,
         "Friction": null,
         "IsTrigger": true,
         "OnComponentDestroy": null,
@@ -43,6 +55,7 @@
         "OnObjectTriggerExit": null,
         "OnTriggerEnter": null,
         "OnTriggerExit": null,
+        "RollingResistance": null,
         "Scale": "1.5,1.5,1.25",
         "Static": false,
         "Surface": null,
@@ -52,18 +65,31 @@
     "Children": [
       {
         "__guid": "7fda5b4f-b5eb-4037-968a-959441f2924c",
+        "__version": 2,
         "Flags": 0,
         "Name": "Model",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
         "Scale": "33,33,33",
+        "Tags": "",
         "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 0,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
             "__guid": "f0f420fe-0565-4b0b-97ac-e7eea9da59a9",
+            "__enabled": true,
+            "Flags": 0,
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
+            "LodOverride": null,
             "MaterialGroup": null,
             "MaterialOverride": null,
+            "Materials": null,
             "Model": "models/koth/health_cans.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
@@ -80,39 +106,37 @@
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }
-        ]
+        ],
+        "Children": []
       }
     ],
-    "__variables": [],
     "__properties": {
-      "FixedUpdateFrequency": 50,
-      "MaxFixedUpdates": 5,
-      "NetworkFrequency": 30,
       "NetworkInterpolation": true,
-      "PhysicsSubSteps": 1,
-      "ThreadedAnimation": true,
       "TimeScale": 1,
-      "UseFixedUpdate": true,
+      "WantsSystemScene": true,
       "Metadata": {},
       "NavMesh": {
         "Enabled": false,
         "IncludeStaticBodies": true,
         "IncludeKeyframedBodies": true,
-        "EditorAutoUpdate": true,
+        "EditorAutoUpdate": false,
         "AgentHeight": 64,
         "AgentRadius": 16,
         "AgentStepSize": 18,
         "AgentMaxSlope": 40,
         "ExcludedBodies": "",
-        "IncludedBodies": ""
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
       }
-    }
+    },
+    "__variables": []
   },
+  "ResourceVersion": 2,
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "ResourceVersion": 1,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

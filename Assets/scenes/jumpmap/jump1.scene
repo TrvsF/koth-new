@@ -677,231 +677,30 @@
     {
       "__guid": "c0310615-2b5a-402a-ad67-cee4e07d4cdb",
       "__version": 2,
-      "Flags": 0,
-      "Name": "GameMode",
-      "Position": "0,0,0",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkFlags": 1,
-      "NetworkOrphaned": 1,
-      "NetworkTransmit": true,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "KOTH.GameMode",
-          "__guid": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
-          "__enabled": true,
-          "Flags": 0,
-          "NothingState": "",
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "Title": "Jumper"
-        },
-        {
-          "__type": "KOTH.DamageManager",
-          "__guid": "f63bd239-41b8-4348-b7f6-07cac6fb7485",
-          "__enabled": true,
-          "Flags": 0,
-          "HitSound": "sounds/hitsound.sound",
-          "KnockbackOnly": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.ClassList",
-          "__guid": "96cf176c-da2a-4d79-bd7e-de804021ec71",
-          "__enabled": true,
-          "Flags": 0,
-          "ClassDefinitions": [
-            "prefabs/classes/donny.chardef"
-          ],
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.TextChat",
-          "__guid": "0164591d-c8ef-4cb3-bdde-b99a3185bf66",
-          "__enabled": true,
-          "Flags": 0,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.Notification.NotificationManager",
-          "__guid": "697c69ab-8d8c-4d60-8d6d-1072cbaf44cd",
-          "__enabled": true,
-          "Flags": 0,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.PlayerExp.ExpManager",
-          "__guid": "0cd74b6b-6734-469c-a808-a4a45174c3af",
-          "__enabled": true,
-          "Flags": 0,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.AudioComponent",
-          "__guid": "87890fba-69e6-456f-ae8a-9b592783e5e9",
-          "__enabled": true,
-          "Flags": 0,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "SoundHandles": {},
-          "StoppedSounds": []
-        },
-        {
-          "__type": "KOTH.GameStats",
-          "__guid": "817abf01-b501-4866-8d43-b0e660e9f626",
-          "__enabled": false,
-          "Flags": 0,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null
-        },
-        {
-          "__type": "KOTH.BuildingManager",
-          "__guid": "aa17a577-c74a-438e-8950-e93b060ec54b",
-          "__enabled": true,
-          "Flags": 0,
-          "EnterTeleporterPrefab": null,
-          "ExitTeleporterPrefab": null,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "TurretPrefab": null
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "8b4c3e84-069e-4624-ae11-1ccd49452883",
-          "__version": 2,
-          "Flags": 0,
-          "Name": "States",
-          "Position": "0,0,0",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 1,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 1,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.Events.StateMachineComponent",
-              "__guid": "98e58b3d-5eee-429b-bd0c-3682075612ba",
-              "__enabled": true,
-              "Flags": 0,
-              "CurrentState": {
-                "_type": "component",
-                "component_id": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
-                "go": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
-                "component_type": "StateComponent"
-              },
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null
-            }
-          ],
-          "Children": [
-            {
-              "__guid": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
-              "__version": 2,
-              "Flags": 0,
-              "Name": "Waiting",
-              "Position": "0,0,0",
-              "Rotation": "0,0,0,1",
-              "Scale": "1,1,1",
-              "Tags": "",
-              "Enabled": true,
-              "NetworkMode": 1,
-              "NetworkFlags": 0,
-              "NetworkOrphaned": 1,
-              "NetworkTransmit": true,
-              "OwnerTransfer": 1,
-              "Components": [
-                {
-                  "__type": "Sandbox.Events.StateComponent",
-                  "__guid": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "DefaultDuration": -1,
-                  "DefaultNextState": null,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "OnEnterState": null,
-                  "OnLeaveState": null,
-                  "OnUpdateState": null
-                },
-                {
-                  "__type": "KOTH.PlayerAutoRespawner",
-                  "__guid": "f9e8c863-1c45-4671-842d-2d04ce3fe336",
-                  "__enabled": true,
-                  "Flags": 0,
-                  "DefaultRespawnDelaySeconds": 0,
-                  "OnComponentDestroy": null,
-                  "OnComponentDisabled": null,
-                  "OnComponentEnabled": null,
-                  "OnComponentFixedUpdate": null,
-                  "OnComponentStart": null,
-                  "OnComponentUpdate": null,
-                  "TryUseGamemodeRespawnTime": false,
-                  "UseSpawnWaves": false
-                }
-              ],
-              "Children": []
-            }
-          ]
-        }
-      ]
+      "__Prefab": "prefabs/game_modes/jumper.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "ee1b285a-5d1d-4c12-86c0-065374846246": "c0310615-2b5a-402a-ad67-cee4e07d4cdb",
+        "9efa01cf-b63e-41d5-9710-5e5bb94a9619": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
+        "459b6341-18cd-4be4-94f7-73cc7a6d63d5": "f63bd239-41b8-4348-b7f6-07cac6fb7485",
+        "a50dbcec-51fe-4271-a2e6-9b931c920b51": "96cf176c-da2a-4d79-bd7e-de804021ec71",
+        "b5b8ed5c-027d-4fc9-90a0-a3a97d75d1ae": "0164591d-c8ef-4cb3-bdde-b99a3185bf66",
+        "301350ca-fc4f-46d1-b14a-c8c2f9f7b6d8": "697c69ab-8d8c-4d60-8d6d-1072cbaf44cd",
+        "3225b4fc-a3c6-476a-8958-f51f5829f5b0": "0cd74b6b-6734-469c-a808-a4a45174c3af",
+        "fc6ceec6-8dfe-43c9-8841-ca6dbea88946": "87890fba-69e6-456f-ae8a-9b592783e5e9",
+        "9660a4ce-e043-4dda-8759-18ab8ed932b2": "817abf01-b501-4866-8d43-b0e660e9f626",
+        "10143e79-fbb4-4f9b-9927-bbcee5d55338": "aa17a577-c74a-438e-8950-e93b060ec54b",
+        "1985cdfe-e060-4ace-bc57-406663c03c3c": "8b4c3e84-069e-4624-ae11-1ccd49452883",
+        "4882ec3b-c578-41d8-bcac-5910d22532d8": "98e58b3d-5eee-429b-bd0c-3682075612ba",
+        "35c84599-67cc-40f0-8aba-79bd9df9a751": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
+        "3ecee179-d4c8-4b54-8c52-e8a1912db90c": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
+        "e5c7c4af-cd27-4521-87e5-89b2f479ee84": "f9e8c863-1c45-4671-842d-2d04ce3fe336"
+      }
     },
     {
       "__guid": "f4e7fb7f-c7ab-49fc-8cc1-708988f7d66c",

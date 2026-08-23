@@ -1,0 +1,50 @@
+﻿@using System;
+@using Sandbox.UI;
+@using KOTH.PlayerExp;
+
+@namespace KOTH.UI
+@inherits Panel
+
+@attribute [StyleSheet]
+
+<root>
+	<label class="scores">
+		@GeneratePlayerScore()
+	</label>
+</root>
+
+@code
+{
+	private string GeneratePlayerScore()
+	{
+		if (!CurrentData.IsValid())
+		{
+			return "";
+		}
+
+		if (CurrentData.IsThree())
+		{
+			return $"1.{CurrentData.Player1Name} {CurrentData.Player1Score}k 2.{CurrentData.Player2Name} {CurrentData.Player2Score}k 3.{CurrentData.Player3Name} {CurrentData.Player3Score}k";
+		}
+
+		return $"1.{CurrentData.Player1Name} {CurrentData.Player1Score}k 2.{CurrentData.Player2Name} {CurrentData.Player2Score}k";
+	}
+
+	protected override int BuildHash()
+	{
+		return HashCode.Combine(Time.Now);
+	}
+
+	FDMUIData CurrentData;
+
+	public override void Tick()
+	{
+		if (!DMUI.CurrentDmGamemode.IsValid() || !DMUI.CurrentDmGamemode.QueryUIData(out CurrentData))
+		{
+			SetClass("hidden", true);
+			return;
+		}
+
+		SetClass("hidden", false);
+	}
+}

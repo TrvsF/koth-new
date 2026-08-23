@@ -17,6 +17,7 @@ public enum EPlayerState
 public partial class PlayerState : Component
 {
 	public Connection Connection { get; private set; }
+	[Sync(SyncFlags.FromHost)] public Guid ConnectionId { get; private set; }
 	public bool IsConnected => Connection != null && Connection.IsActive;
 
 	//////////////////////////////////////////////////////////////
@@ -49,6 +50,7 @@ public partial class PlayerState : Component
 		Assert.NotNull(ConnectionIn);
 
 		Connection = ConnectionIn;
+		ConnectionId = Connection.Id;
 		SteamId = Connection.SteamId;
 		SteamName = Connection.DisplayName;
 

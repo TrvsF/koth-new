@@ -177,12 +177,23 @@ public class MultiPlayerButton : MenuButton
 		var ChildPayload = Scene.CreateObject().Clone(Config2);
 		ChildPayload.AddComponent<PayloadButton>();
 		Kids.Add(ChildPayload);
+
+		CloneConfig Config3 = new()
+		{
+			StartEnabled = true,
+			Transform = WorldTransform.WithPosition(WorldPosition + Vector3.Down * 9f),
+		};
+
+		var ChildDm = Scene.CreateObject().Clone(Config3);
+		ChildDm.AddComponent<DeathmatchButton>();
+		Kids.Add(ChildDm);
 	}
 
 	public static int NumLobbies = 0;
 	public static int NumPlayers = 0;
 	public static int NumMgePlayers = 0;
 	public static int NumPayloadPlayers = 0;
+	public static int NumDmPlayers = 0;
 
 	public static async void RefreshLobbyStats()
 	{
@@ -190,6 +201,7 @@ public class MultiPlayerButton : MenuButton
 		NumPlayers = 0;
 		NumMgePlayers = 0;
 		NumPayloadPlayers = 0;
+		NumDmPlayers = 0;
 
 		var Lobbies = await Networking.QueryLobbies(Game.Ident);
 		NumLobbies = Lobbies.Count;
@@ -204,6 +216,10 @@ public class MultiPlayerButton : MenuButton
 			else if (Lobby.Name.StartsWith("pl_"))
 			{
 				NumPayloadPlayers += Lobby.Members;
+			}
+			else if (Lobby.Name.StartsWith("dm_"))
+			{
+				NumDmPlayers += Lobby.Members;
 			}
 		}
 	}
@@ -303,6 +319,55 @@ public class PayloadButton : MenuButton
 			}
 		}
 		Game.ActiveScene.LoadFromFile("scenes/pl_sheff/sheff.scene");
+		Trying = false;
+	}
+}
+
+public class DeathmatchButton : MenuButton
+{
+	private bool Trying = false;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+
+		TextRenderer.Text = $"DeathMatch {MultiPlayerButton.NumDmPlayers}p";
+	}
+
+	public override void OnClick()
+	{
+		base.OnClick();
+
+		LoadPayload();
+	}
+
+	private async void LoadPayload()
+	{
+		if (Networking.IsConnecting || Trying)
+		{
+			Log.Info("connecting...");
+			return;
+		}
+
+		if (Game.IsEditor)
+		{
+			Game.ActiveScene.LoadFromFile("scenes/deathmatch/deathmatch.scene");
+			return;
+		}
+
+		Trying = true;
+		var Lobbies = await Networking.QueryLobbies(Game.Ident);
+		foreach (var Lobby in Lobbies)
+		{
+			if (Lobby.Name.StartsWith("dm_") && !Lobby.IsFull)
+			{
+				if (await Networking.TryConnectSteamId(Lobby.LobbyId))
+				{
+					return;
+				}
+			}
+		}
+		Game.ActiveScene.LoadFromFile("scenes/deathmatch/deathmatch.scene");
 		Trying = false;
 	}
 }

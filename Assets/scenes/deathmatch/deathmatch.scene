@@ -60,8 +60,8 @@
           "__guid": "7b2af182-d5fb-4f7b-befa-36fd43818d43",
           "__enabled": true,
           "Flags": 0,
-          "DefaultLobbyName": "mge_i",
-          "MaxPlayers": 2,
+          "DefaultLobbyName": "dm_i",
+          "MaxPlayers": 7,
           "NetworkMode": "Multiplayer",
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -80,7 +80,7 @@
     {
       "__guid": "942f6bbc-d169-4819-9e5d-d647af549af1",
       "__version": 2,
-      "__Prefab": "prefabs/game_modes/mge.prefab",
+      "__Prefab": "prefabs/game_modes/dm.prefab",
       "__PrefabInstancePatch": {
         "AddedObjects": [],
         "RemovedObjects": [],
@@ -88,27 +88,27 @@
         "MovedObjects": []
       },
       "__PrefabIdToInstanceId": {
-        "f0454f1c-20de-4d0f-b779-f126391535c4": "942f6bbc-d169-4819-9e5d-d647af549af1",
-        "f9cfa159-0229-400e-9527-81d60e2fce83": "44e6aa85-d6eb-483f-a5aa-27d758086279",
-        "5ac9b28a-dc35-4b3f-a44b-ce165d6cb868": "52d8f691-eab0-406e-af18-507aef6f2168",
-        "cf2cd7a4-8c55-420d-9374-758008cb52e6": "c43dfb8d-b565-44ee-938b-8878ad36d16c",
-        "2d0ae8e1-09f5-4701-b86f-e87881d44c42": "6ae9f56b-e086-4d80-9072-47b8a4ad0aa4",
-        "f2fc79d1-290b-47de-9e78-8bfab54a4140": "b338caba-ad0f-48ef-b6ab-32a3725d8586",
-        "e42b3a4d-e2ae-4a40-a2a2-3c37c8c39055": "55a9e575-371a-4748-abf6-cb84702fb82c",
-        "399690cf-e4b8-4377-9319-8ab7239e552b": "e8083649-b66f-41cd-9e17-61592eb1380e",
-        "027f4cce-3e46-463d-a478-f3ed5527e348": "59f56494-5931-44e8-80b8-f959a9a98b31",
-        "9cab5971-4eb6-457f-a5f6-3d7e6ad8ff96": "8cdb79a0-ccd1-4c70-aef2-b0595ee97c60",
-        "f11a6675-84b8-4ba1-ad27-6eedefba5f1c": "148f1d1d-9588-4ea2-8dd1-ac8dff41f958",
-        "7cf7c0a5-0345-45ee-923a-5505359cf1b9": "84e512b5-5a9c-4a16-a266-d01d2ce27fcb",
-        "e2e6521e-07ef-4f5d-9725-d618bc6ae9c7": "bc9a66c6-c6df-40ae-9c69-7f6ea8970589",
-        "87672fb6-6f14-47b3-b149-d9180261aef2": "4b199b03-3c41-426d-a547-4d1f6b7b7425",
-        "fec79133-32ef-4da4-9ae3-10b87bb2ddfc": "9b128c45-beaf-4ed3-81d0-d1e06065528a",
-        "102cb5f5-b06f-4339-b9c3-73677b4da854": "13b269c4-6721-47ec-bcf4-656bf095a60b",
-        "fa9cc1ce-6f47-4149-9a06-89b983981203": "c79d60e6-4f2c-4747-b355-cbf79a15ba8f",
-        "d6375780-70a2-479c-af8f-3cd7e0506235": "f79a6fcf-eedc-4a05-aec3-c3c9a7d159af",
-        "8add52dd-715f-4259-9df9-deff5d3a141e": "0d292283-326a-4b08-9165-5799d08f414a",
-        "5ffde8fd-9114-482b-a7b1-ff418c2c58ab": "8ef857a0-2c1f-4e90-8e43-10025039e25e",
-        "ce425875-680f-4936-be4f-4e6b1bfcebea": "3fa1708e-888b-4f31-85b8-e48e1491a73e"
+        "4a694986-d77f-461d-9b70-468535ec407e": "942f6bbc-d169-4819-9e5d-d647af549af1",
+        "5e0730e8-852d-4f7b-a902-7e5f6ad3f8fa": "44e6aa85-d6eb-483f-a5aa-27d758086279",
+        "41af900e-bd46-4562-8c05-fbc217809065": "52d8f691-eab0-406e-af18-507aef6f2168",
+        "2a325990-b9a2-4dfc-aa15-1dacb1bfc849": "c43dfb8d-b565-44ee-938b-8878ad36d16c",
+        "52e7d0c9-b1dd-4b2a-9865-ac237a106e15": "6ae9f56b-e086-4d80-9072-47b8a4ad0aa4",
+        "9a4d254b-d67e-4171-95b0-e215f38b9a15": "b338caba-ad0f-48ef-b6ab-32a3725d8586",
+        "3629df3f-ddb6-44a8-9879-12902415ff24": "55a9e575-371a-4748-abf6-cb84702fb82c",
+        "1b84a5d8-6b67-46c3-9d7e-e68afaf175ea": "e8083649-b66f-41cd-9e17-61592eb1380e",
+        "9c1f2fdc-7eb3-4451-bff9-4f0624b23c88": "59f56494-5931-44e8-80b8-f959a9a98b31",
+        "3c2ee4b3-f4de-4f61-bb34-b3f468bb7a0a": "8cdb79a0-ccd1-4c70-aef2-b0595ee97c60",
+        "f4371d87-9436-49e2-bab0-f044f5ac0b61": "148f1d1d-9588-4ea2-8dd1-ac8dff41f958",
+        "e42fff48-9fd1-448e-86c2-4d91c22566b1": "84e512b5-5a9c-4a16-a266-d01d2ce27fcb",
+        "74423181-f89a-4095-8ba4-2ae617d1406d": "bc9a66c6-c6df-40ae-9c69-7f6ea8970589",
+        "914a8e3e-47fe-4e8f-a748-9d9608dd4c35": "4b199b03-3c41-426d-a547-4d1f6b7b7425",
+        "4d3b59e8-4708-40e8-8b2b-5bdcde5292d8": "9b128c45-beaf-4ed3-81d0-d1e06065528a",
+        "28db20c3-9ac2-496f-af6a-4e6f31d41290": "13b269c4-6721-47ec-bcf4-656bf095a60b",
+        "c259d17c-34da-4fd2-afc8-bc78e509cb9d": "c79d60e6-4f2c-4747-b355-cbf79a15ba8f",
+        "045e3123-d2cb-4adb-b8ec-cfa2e73b398d": "f79a6fcf-eedc-4a05-aec3-c3c9a7d159af",
+        "320eb322-ea6d-423a-910c-bfb9e86c41de": "0d292283-326a-4b08-9165-5799d08f414a",
+        "9a4df7d8-e191-49ca-944b-65ad6f9227c7": "3fa1708e-888b-4f31-85b8-e48e1491a73e",
+        "e2eab5fa-f5f6-864d-9c47-3b217624064d": "39055091-3f4c-4070-836d-023e4f731e72"
       }
     },
     {
@@ -1104,6 +1104,41 @@
           "Children": []
         }
       ]
+    },
+    {
+      "__guid": "4a7de55e-1161-448f-a8ec-8ed37a8fc53e",
+      "__version": 2,
+      "__Prefab": "prefabs/map_shared/healthpack.prefab",
+      "__PrefabInstancePatch": {
+        "AddedObjects": [],
+        "RemovedObjects": [],
+        "PropertyOverrides": [
+          {
+            "Target": {
+              "Type": "GameObject",
+              "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
+            },
+            "Property": "Position",
+            "Value": "460.022278,-424.485474,226"
+          },
+          {
+            "Target": {
+              "Type": "Component",
+              "IdValue": "73ca2ae5-ce2c-4104-b073-cf013116e342"
+            },
+            "Property": "RespawnTime",
+            "Value": 5
+          }
+        ],
+        "MovedObjects": []
+      },
+      "__PrefabIdToInstanceId": {
+        "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0": "4a7de55e-1161-448f-a8ec-8ed37a8fc53e",
+        "73ca2ae5-ce2c-4104-b073-cf013116e342": "91d82090-e1f0-4ba3-96f1-fac3a13c9def",
+        "ad5f8fd5-3eb0-408c-a40f-a9d99f2aaef4": "d58e1a83-f590-4321-abf6-81a1744fd45a",
+        "7fda5b4f-b5eb-4037-968a-959441f2924c": "ec9e25de-810c-4397-8272-db9e19dca333",
+        "f0f420fe-0565-4b0b-97ac-e7eea9da59a9": "70d44bf6-0a45-4af2-ba3a-d04e994922ab"
+      }
     }
   ],
   "SceneProperties": {

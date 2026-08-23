@@ -21,7 +21,7 @@
 	bool GotLookAtInfo()
 	{
 		bool ManInfront = PlayerUtils.LookAtInfoQuery(PlayerState.Local.PlayerPawn, Scene, out LookAtInfo);
-		return ManInfront && LookAtInfo.Team == PlayerState.Local.PlayerPawn.Team;
+		return ManInfront && LookAtInfo.Team == PlayerState.Local.PlayerPawn.Team && !DamageManager.Instance.IgnoreTeams;
 	}
 
     protected override int BuildHash()

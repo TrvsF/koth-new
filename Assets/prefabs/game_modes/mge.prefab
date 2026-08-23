@@ -1,0 +1,371 @@
+{
+  "RootObject": {
+    "__guid": "f0454f1c-20de-4d0f-b779-f126391535c4",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "mge",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkFlags": 1,
+    "NetworkOrphaned": 1,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "KOTH.GameMode",
+        "__guid": "f9cfa159-0229-400e-9527-81d60e2fce83",
+        "__enabled": true,
+        "Flags": 0,
+        "NothingState": "",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Title": "MGE"
+      },
+      {
+        "__type": "KOTH.DamageManager",
+        "__guid": "5ac9b28a-dc35-4b3f-a44b-ce165d6cb868",
+        "__enabled": true,
+        "Flags": 0,
+        "HitSound": "sounds/hitsound.sound",
+        "KnockbackOnly": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.ClassList",
+        "__guid": "cf2cd7a4-8c55-420d-9374-758008cb52e6",
+        "__enabled": true,
+        "Flags": 0,
+        "ClassDefinitions": [
+          "prefabs/classes/alan.chardef",
+          "prefabs/classes/alex.chardef",
+          "prefabs/classes/donny.chardef",
+          "prefabs/classes/dimitri.chardef",
+          "prefabs/classes/sayuna.chardef"
+        ],
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.TextChat",
+        "__guid": "2d0ae8e1-09f5-4701-b86f-e87881d44c42",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.Notification.NotificationManager",
+        "__guid": "f2fc79d1-290b-47de-9e78-8bfab54a4140",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.PlayerExp.ExpManager",
+        "__guid": "e42b3a4d-e2ae-4a40-a2a2-3c37c8c39055",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.AudioComponent",
+        "__guid": "399690cf-e4b8-4377-9319-8ab7239e552b",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "SoundHandles": {},
+        "StoppedSounds": []
+      },
+      {
+        "__type": "KOTH.GameStats",
+        "__guid": "027f4cce-3e46-463d-a478-f3ed5527e348",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "KOTH.BuildingManager",
+        "__guid": "9cab5971-4eb6-457f-a5f6-3d7e6ad8ff96",
+        "__enabled": true,
+        "Flags": 0,
+        "EnterTeleporterPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/weapons/buildings/teleporterenter.prefab"
+        },
+        "ExitTeleporterPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "TurretPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/weapons/buildings/turret.prefab"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "f11a6675-84b8-4ba1-ad27-6eedefba5f1c",
+        "__version": 2,
+        "Flags": 0,
+        "Name": "States",
+        "Position": "0,0,0",
+        "Rotation": "0,0,0,1",
+        "Scale": "1,1,1",
+        "Tags": "",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkFlags": 0,
+        "NetworkOrphaned": 1,
+        "NetworkTransmit": true,
+        "OwnerTransfer": 1,
+        "Components": [
+          {
+            "__type": "Sandbox.Events.StateMachineComponent",
+            "__guid": "7cf7c0a5-0345-45ee-923a-5505359cf1b9",
+            "__enabled": true,
+            "Flags": 0,
+            "CurrentState": {
+              "_type": "component",
+              "component_id": "87672fb6-6f14-47b3-b149-d9180261aef2",
+              "go": "e2e6521e-07ef-4f5d-9725-d618bc6ae9c7",
+              "component_type": "StateComponent"
+            },
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "e2e6521e-07ef-4f5d-9725-d618bc6ae9c7",
+            "__version": 2,
+            "Flags": 0,
+            "Name": "Waiting",
+            "Position": "0,0,0",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 1,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 1,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [
+              {
+                "__type": "Sandbox.Events.StateComponent",
+                "__guid": "87672fb6-6f14-47b3-b149-d9180261aef2",
+                "__enabled": true,
+                "Flags": 0,
+                "DefaultDuration": 999,
+                "DefaultNextState": {
+                  "_type": "component",
+                  "component_id": "d6375780-70a2-479c-af8f-3cd7e0506235",
+                  "go": "fa9cc1ce-6f47-4149-9a06-89b983981203",
+                  "component_type": "StateComponent"
+                },
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "OnEnterState": null,
+                "OnLeaveState": null,
+                "OnUpdateState": null
+              },
+              {
+                "__type": "KOTH.PlayerAutoRespawner",
+                "__guid": "fec79133-32ef-4da4-9ae3-10b87bb2ddfc",
+                "__enabled": true,
+                "Flags": 0,
+                "DefaultRespawnDelaySeconds": 0,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "TryUseGamemodeRespawnTime": false,
+                "UseSpawnWaves": false
+              },
+              {
+                "__type": "KOTH.WaitForPlayers",
+                "__guid": "102cb5f5-b06f-4339-b9c3-73677b4da854",
+                "__enabled": true,
+                "Flags": 0,
+                "MinPlayerCount": 2,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null
+              }
+            ],
+            "Children": []
+          },
+          {
+            "__guid": "fa9cc1ce-6f47-4149-9a06-89b983981203",
+            "__version": 2,
+            "Flags": 0,
+            "Name": "Mge",
+            "Position": "0,0,0",
+            "Rotation": "0,0,0,1",
+            "Scale": "1,1,1",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 1,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 1,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [
+              {
+                "__type": "Sandbox.Events.StateComponent",
+                "__guid": "d6375780-70a2-479c-af8f-3cd7e0506235",
+                "__enabled": true,
+                "Flags": 0,
+                "DefaultDuration": 999,
+                "DefaultNextState": {
+                  "_type": "component",
+                  "component_id": "87672fb6-6f14-47b3-b149-d9180261aef2",
+                  "go": "e2e6521e-07ef-4f5d-9725-d618bc6ae9c7",
+                  "component_type": "StateComponent"
+                },
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "OnEnterState": null,
+                "OnLeaveState": null,
+                "OnUpdateState": null
+              },
+              {
+                "__type": "KOTH.PlayerAutoRespawner",
+                "__guid": "8add52dd-715f-4259-9df9-deff5d3a141e",
+                "__enabled": true,
+                "Flags": 0,
+                "DefaultRespawnDelaySeconds": 0,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "TryUseGamemodeRespawnTime": false,
+                "UseSpawnWaves": false
+              },
+              {
+                "__type": "KOTH.MgeGamemode",
+                "__guid": "5ffde8fd-9114-482b-a7b1-ff418c2c58ab",
+                "__enabled": true,
+                "Flags": 0,
+                "KillLimit": 20,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null
+              },
+              {
+                "__type": "KOTH.ResetGame",
+                "__guid": "ce425875-680f-4936-be4f-4e6b1bfcebea",
+                "__enabled": true,
+                "Flags": 0,
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null
+              }
+            ],
+            "Children": []
+          }
+        ]
+      }
+    ],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": false,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

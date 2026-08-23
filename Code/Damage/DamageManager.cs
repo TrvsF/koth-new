@@ -14,8 +14,9 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 {
 	[Property] public SoundEvent HitSound { get; set; }
 
-	// special bool for jumper gamemode
+	// special bool zone
 	[Property] public bool KnockbackOnly { get; private set; } = false;
+	[Property] public bool IgnoreTeams { get; private set; } = false;
 
 	const float SelfDamageMultiplyer = 0.25f;
 
@@ -87,9 +88,12 @@ public sealed class DamageManager : SingletonComponent<DamageManager>,
 		}
 
 		// team check //////////////////////////////////////////////////////////////////////////////////////
-		if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn)
+		if (!IgnoreTeams)
 		{
-			return; // NOTE : early return
+			if (TargetDamageComponent.Team == AttackerPlayerPawn.Team && TargetPlayerPawn != AttackerPlayerPawn)
+			{
+				return; // NOTE : early return
+			}
 		}
 
 		var TargetCenter = DamageRequest.TargetOrigin;

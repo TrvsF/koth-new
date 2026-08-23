@@ -10,6 +10,7 @@ public static partial class GameUtils
 {
 	public static IEnumerable<PlayerState> AllPlayers => Game.ActiveScene.GetAllComponents<PlayerState>();
 	public static PlayerState GetPlayerState(Guid? id) => AllPlayers.FirstOrDefault(n => n.PlayerPawn?.Id == id);
+	public static PlayerState GetPlayerState(Connection Connection) => AllPlayers.FirstOrDefault(n => n.ConnectionId == Connection.Id);
 	public static IEnumerable<PlayerState> GetPlayers(Team team) => AllPlayers.Where(x => x.Team == team);
 
 	public static IDescription GetDescription(GameObject go) => go?.Components.Get<IDescription>(FindMode.EverythingInSelfAndDescendants);
