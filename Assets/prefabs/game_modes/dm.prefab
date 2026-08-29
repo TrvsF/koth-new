@@ -299,7 +299,7 @@
                 "__guid": "320eb322-ea6d-423a-910c-bfb9e86c41de",
                 "__enabled": true,
                 "Flags": 0,
-                "DefaultRespawnDelaySeconds": 3.33,
+                "DefaultRespawnDelaySeconds": 2,
                 "OnComponentDestroy": null,
                 "OnComponentDisabled": null,
                 "OnComponentEnabled": null,

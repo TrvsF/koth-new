@@ -57,7 +57,7 @@
           "Looping": true,
           "Blending": false
         },
-        "Tint": "1,1,1,1",
+        "Tint": "0.46667,1,0,1",
         "UseAnimGraph": true
       },
       {
@@ -65,7 +65,6 @@
         "__guid": "6c6d3f4f-7979-48cb-a988-371cb9859ed9",
         "__enabled": true,
         "Flags": 0,
-        "MaxHealth": 100,
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,

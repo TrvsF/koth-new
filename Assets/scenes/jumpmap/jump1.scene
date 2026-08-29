@@ -675,7 +675,7 @@
       "Children": []
     },
     {
-      "__guid": "c0310615-2b5a-402a-ad67-cee4e07d4cdb",
+      "__guid": "45f6eefc-3f99-88f8-8073-8c064d71a7d1",
       "__version": 2,
       "__Prefab": "prefabs/game_modes/jumper.prefab",
       "__PrefabInstancePatch": {
@@ -685,21 +685,22 @@
         "MovedObjects": []
       },
       "__PrefabIdToInstanceId": {
-        "ee1b285a-5d1d-4c12-86c0-065374846246": "c0310615-2b5a-402a-ad67-cee4e07d4cdb",
-        "9efa01cf-b63e-41d5-9710-5e5bb94a9619": "d896df51-5c87-43dc-b995-2f7ab4e236c3",
-        "459b6341-18cd-4be4-94f7-73cc7a6d63d5": "f63bd239-41b8-4348-b7f6-07cac6fb7485",
-        "a50dbcec-51fe-4271-a2e6-9b931c920b51": "96cf176c-da2a-4d79-bd7e-de804021ec71",
-        "b5b8ed5c-027d-4fc9-90a0-a3a97d75d1ae": "0164591d-c8ef-4cb3-bdde-b99a3185bf66",
-        "301350ca-fc4f-46d1-b14a-c8c2f9f7b6d8": "697c69ab-8d8c-4d60-8d6d-1072cbaf44cd",
-        "3225b4fc-a3c6-476a-8958-f51f5829f5b0": "0cd74b6b-6734-469c-a808-a4a45174c3af",
-        "fc6ceec6-8dfe-43c9-8841-ca6dbea88946": "87890fba-69e6-456f-ae8a-9b592783e5e9",
-        "9660a4ce-e043-4dda-8759-18ab8ed932b2": "817abf01-b501-4866-8d43-b0e660e9f626",
-        "10143e79-fbb4-4f9b-9927-bbcee5d55338": "aa17a577-c74a-438e-8950-e93b060ec54b",
-        "1985cdfe-e060-4ace-bc57-406663c03c3c": "8b4c3e84-069e-4624-ae11-1ccd49452883",
-        "4882ec3b-c578-41d8-bcac-5910d22532d8": "98e58b3d-5eee-429b-bd0c-3682075612ba",
-        "35c84599-67cc-40f0-8aba-79bd9df9a751": "0c8fcbbb-1036-43f0-8449-a99fa27ced1b",
-        "3ecee179-d4c8-4b54-8c52-e8a1912db90c": "e4a1909d-28f9-4d76-9f8c-5e3265f863a8",
-        "e5c7c4af-cd27-4521-87e5-89b2f479ee84": "f9e8c863-1c45-4671-842d-2d04ce3fe336"
+        "5b253708-de7c-4c86-8893-b86fb4822642": "76387326-704c-87a5-a0c2-9b48f826521d",
+        "9d66ab60-1204-429a-9ac6-5a2af9b6c4b9": "289a72be-9b23-81ea-aa7c-1bd1602267ac",
+        "fec41e74-67b6-4ce4-9d93-31e46c97da45": "38e415d3-950f-8bf1-a62d-48f314f99783",
+        "f7c25223-1ca5-4076-9d06-aa3c3c46f4a1": "45f6eefc-3f99-88f8-8073-8c064d71a7d1",
+        "90709db4-c935-4404-90fa-4b1c61b243d2": "b6894147-ccf1-833e-9eb9-50c8f11dcff2",
+        "9e074434-17a8-439a-96f3-272ce0eee241": "2dc3b12e-9463-8fa9-a9ed-d92a5558bbf0",
+        "e6391e35-3afc-4828-a58e-8debc956e3bc": "ad29fbbb-f2a4-8753-bed0-c627fe5dae06",
+        "e3523077-dc7e-4d0a-a45f-e8598919832a": "5fd59462-0a69-8698-abf4-a4769ca0ae1c",
+        "100d9f09-2c5b-41ea-a4d6-e73e2e7a7474": "59fbc42c-a5e6-8668-b09c-b9d78b7994a9",
+        "19d65ae4-28c5-47b5-80fc-8240b0d78368": "13e42d78-725f-8c55-bef2-34f032bc2120",
+        "eb59db6f-2e1b-4290-8ea3-98f00b7ad4bc": "496310b9-71b3-8834-8646-d603ff9c58be",
+        "cd57e35f-e013-4198-aeb6-ad687fa6e0f5": "19a2d67a-9919-8dbe-b4c9-a25e58ef710c",
+        "094322bb-10a0-4478-bd22-990d2d3166e5": "8eae98fc-357b-86da-a645-b98df54c1101",
+        "9c73cf48-90b6-4ed1-b9f2-44c130f5993c": "9685fee5-a971-8f67-ba21-fab56eb0763c",
+        "b830d197-b6a6-4ed7-9ee2-517acba9a885": "42e03a4e-44fe-8d62-b6bd-ed627a60dd24",
+        "19850a4a-68d7-49ce-892d-4f57e0ebc3e5": "99159c4a-66c9-86ba-a89e-55dae83f9b75"
       }
     },
     {
@@ -904,14 +905,6 @@
             },
             "Property": "Position",
             "Value": "242.595093,424.933685,-199.377808"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-            },
-            "Property": "Scale",
-            "Value": "1,1,1"
           }
         ],
         "MovedObjects": []

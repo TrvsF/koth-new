@@ -19,25 +19,16 @@ public sealed class BuildingManager : Component
 			return;
 		}
 
-		Build_ServerOnly(TurretPrefab, RequestingState);
-	}
-
-	[Rpc.Host]
-	public void ServerDestroyTurret(PlayerState RequestingState)
-	{
-		if (RequestingState == null)
-		{
-			return;
-		}
-
 		foreach (var Building in PlayerBuildings.GetOrCreate(RequestingState))
 		{
 			if (Building.GetComponent<TurretComponent>() != null)
 			{
 				Destroy_ServerOnly(Building, RequestingState);
-				return;
+				break;
 			}
 		}
+
+		Build_ServerOnly(TurretPrefab, RequestingState);
 	}
 
 	[Rpc.Host]
@@ -48,25 +39,16 @@ public sealed class BuildingManager : Component
 			return;
 		}
 
-		Build_ServerOnly(EnterTeleporterPrefab, RequestingState);
-	}
-
-	[Rpc.Host]
-	public void ServerDestroyEnterTeleporter(PlayerState RequestingState)
-	{
-		if (RequestingState == null)
-		{
-			return;
-		}
-
 		foreach (var Building in PlayerBuildings.GetOrCreate(RequestingState))
 		{
 			if (Building.GetComponent<TeleporterEntrenceComponent>() != null)
 			{
 				Destroy_ServerOnly(Building, RequestingState);
-				return;
+				break;
 			}
 		}
+
+		Build_ServerOnly(EnterTeleporterPrefab, RequestingState);
 	}
 
 	[Rpc.Host]
@@ -77,25 +59,16 @@ public sealed class BuildingManager : Component
 			return;
 		}
 
-		Build_ServerOnly(ExitTeleporterPrefab, RequestingState);
-	}
-
-	[Rpc.Host]
-	public void ServerDestroyExitTeleporter(PlayerState RequestingState)
-	{
-		if (RequestingState == null)
-		{
-			return;
-		}
-
 		foreach (var Building in PlayerBuildings.GetOrCreate(RequestingState))
 		{
 			if (Building.GetComponent<TeleporterExitComponent>() != null)
 			{
 				Destroy_ServerOnly(Building, RequestingState);
-				return;
+				break;
 			}
 		}
+
+		Build_ServerOnly(ExitTeleporterPrefab, RequestingState);
 	}
 
 	private void Build_ServerOnly(GameObject BuildingPrefab, PlayerState RequestingState)

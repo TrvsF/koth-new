@@ -113,6 +113,7 @@
           "__enabled": true,
           "Flags": 0,
           "HitSound": "sounds/hitsound.sound",
+          "IgnoreTeams": false,
           "KnockbackOnly": false,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -211,16 +212,20 @@
           "__guid": "57f5b60e-099c-4683-92e0-d8a766b6f53c",
           "__enabled": true,
           "Flags": 0,
+          "EnterTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+          },
+          "ExitTeleporterPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+          },
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "TeleporterPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/weapons/buildings/teleporter.prefab"
-          },
           "TurretPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/weapons/buildings/turret.prefab"
@@ -342,14 +347,6 @@
             },
             "Property": "Position",
             "Value": "0,93.0404434,84.3300171"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "5cd1e48a-b9b6-4754-ae7d-ad4f3eb659a0"
-            },
-            "Property": "Scale",
-            "Value": "1,1,1"
           }
         ],
         "MovedObjects": []

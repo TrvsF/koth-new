@@ -112,31 +112,17 @@ public sealed class EngiePlayer : Component
 
 		if (RequestBuilding)
 		{
-			//if (IsTurretInWorld())
-			//{
-			//	switch (BuildingToType.ElementAt(BuildingIndex).Value)
-			//	{
-			//		case EBuildingType.Turret:
-			//			GameMode.Instance.BuildingManager.ServerDestroyEnterTeleporter(PlayerState.Local);
-			//			break;
-			//		case EBuildingType.TpEnter:
-			//			GameMode.Instance.BuildingManager.ServerRequestEnterTeleporter(PlayerState.Local);
-			//			break;
-			//		case EBuildingType.TpExit:
-			//			GameMode.Instance.BuildingManager.ServerRequestExitTeleporter(PlayerState.Local);
-			//			break;
-			//	}
-			//}
+			var CurrentBuilding = BuildingToType.ElementAt(BuildingIndex).Value;
 
 			if (!IsPreviewingBuilding)
 			{
 				CreateBuildingPreview();
 			}
-			else if (!IsTurretInWorld())
+			else
 			{
 				DestroyBuildingPreview();
 
-				switch (BuildingToType.ElementAt(BuildingIndex).Value)
+				switch (CurrentBuilding)
 				{
 					case EBuildingType.Turret:
 						GameMode.Instance.BuildingManager.ServerRequestTurret(PlayerState.Local);
