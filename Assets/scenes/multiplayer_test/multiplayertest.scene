@@ -214,7 +214,7 @@
           "Flags": 0,
           "EnterTeleporterPrefab": {
             "_type": "gameobject",
-            "prefab": "prefabs/weapons/buildings/teleporterexit.prefab"
+            "prefab": "prefabs/weapons/buildings/teleporterenter.prefab"
           },
           "ExitTeleporterPrefab": {
             "_type": "gameobject",
