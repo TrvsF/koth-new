@@ -39,19 +39,6 @@ public sealed class EngiePlayer : Component
 		return OwnerPawn.CenterPosition + (OwnerPawn.AimRay.Forward * 128);
 	}
 
-	private bool IsTurretInWorld()
-	{
-		foreach (var Building in GameMode.Instance.BuildingManager.PlayerBuildings.GetOrCreate(PlayerState.Local))
-		{
-			if (Building.GetComponent<TurretComponent>() != null)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	private void CreateBuildingPreview()
 	{
 		var Prefab = BuildingToType.ElementAt(BuildingIndex).Key;

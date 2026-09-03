@@ -3,9 +3,6 @@
     <Platform Name="Any CPU" />
   </Configurations>
   <Project Path="Code/koth.csproj" />
-  <Folder Name="/Addons/">
-    <Project Path="../../../../../Program Files (x86)/Steam/steamapps/common/sbox/addons/base/code/Base Library.csproj" />
-  </Folder>
   <Folder Name="/Libraries/">
     <Project Path="Libraries/facepunch.jigglebones/Code/jigglebones.csproj" />
     <Project Path="Libraries/facepunch.libevents/Code/libevents.csproj" />

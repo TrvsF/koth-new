@@ -39,7 +39,7 @@ public sealed class TurretComponent : BuildingComponent
 	[Sync] public int Damage { get; private set; } = 1;
 	[Sync] public float KnockbackStrength { get; private set; } = 1f;
 	[Sync] public float Firerate { get; private set; } = 1f;
-	[Sync] public float Range { get; private set; } = 360f;
+	[Sync] public float Range { get; private set; } = 720f;
 
 	[Property] public GameObject TrailPrefab { get; set; }
 

@@ -22,9 +22,46 @@ struct FFXHitscanShotTrail // TODO : visit
 	}
 };
 
+[Title("Charge Shooter"), Group("Weapon Components")]
+public class ChargeWeaponComponent : HitscanWeaponComponent
+{
+	[Property, Group("")] public float ChargeTime { get; set; } = .5f;
+
+	TimeSince SinceButtonWasNotDown = new();
+	protected override bool CanShoot()
+	{
+		if (!base.CanShoot())
+		{
+			return false;
+		}
+		
+		if (SinceButtonWasNotDown > ChargeTime)
+		{
+			SinceButtonWasNotDown = 0;
+			return true;
+		}
+
+		return false;
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		base.OnFixedUpdate();
+
+		if (!IsDown())
+		{
+			SinceButtonWasNotDown = 0;
+		}
+	}
+}
+
 [Title("Hitscan Shooter"), Group("Weapon Components")]
 public class HitscanWeaponComponent : InputWeaponComponent
 {
+	/////////////////////////////////////////////////////////////
+	
+	// TODO : make this bullshit an interface
+
 	[Property, Group("Recoil")] public float RecoilAddFactor { get; set; } = 0.2f;
 	[Property, Group("Recoil")] public float MaxOutwardDistance { get; set; } = 0f;
 	[Property, Group("Recoil")] public float MaxUpwardDistance { get; set; } = 0f;
@@ -33,6 +70,8 @@ public class HitscanWeaponComponent : InputWeaponComponent
 	[Property, Group("Spread")] public float Radius { get; set; } = 4f;
 	[Property, Group("Spread")] public float OutwardFactor { get; set; } = .77f;
 
+	/////////////////////////////////////////////////////////////
+	
 	[Property, Group("VFX")] public SoundEvent ShootSound { get; set; }
 	[Property, Group("VFX")] public DecalDefinition DecalDefinition { get; set; }
 	[Property, Group("VFX")] public GameObject TrailPrefab { get; set; }
