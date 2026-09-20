@@ -39,6 +39,7 @@ public sealed partial class PlayerPawn : Component, IDescription
 	[RequireComponent] public CharacterController CharacterController { get; private set; }
 	[RequireComponent] public HighlightOutline Outline { get; private set; }
 	[RequireComponent] public PlayerInventory Inventory { get; private set; }
+	[RequireComponent] public WallHexProjector WallHexProjector { get; set; }
 
 	//////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +128,7 @@ public sealed partial class PlayerPawn : Component, IDescription
 			DamageComponent.Initalize(CharacterDefinition.MaxHealth, Team);
 		}
 
+		WallHexProjector.LocalPawn = this;
 		OnPlayerStart?.Invoke();
 	}
 

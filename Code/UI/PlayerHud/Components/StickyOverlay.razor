@@ -5,11 +5,18 @@
 <root class="flex row gap align-center justify-end" style="width: 100px;">
 	@if (IsCurrentWeaponAStickyLauncher())
 	{
-		<label class="charge" style="background-color: whitesmoke; background-image: linear-gradient(to right, whitesmoke 100%, rgba(0, 0, 0, 100) @(GetChargeDelta() * 100f)%);"></label>
+		<div class="charge">
+			<div class="charge-fill" @ref="ChargeFill"></div>
+		</div>
 		<label class="stickies">@GetStickies()</label>
 	}
+	@if (IsCurrentWeaponABeamRifle())
+	{
+		<div class="charge">
+			<div class="charge-fill" @ref="ChargeFill"></div>
+		</div>
+	}
 </root>
-
 @code
 {
 	public PlayerInventory Inventory => Player.Inventory;
@@ -27,20 +34,33 @@
 	private float GetChargeDelta()
 	{
 		var ProjectileComp = GetProjectileWeaponComponent();
-		if (!ProjectileComp.IsValid())
-			return 0;
+		var ChargeComp = GetChargeWeaponComponent();
 
-		var StickyComp = (StickyWeaponComponent)ProjectileComp;
-		if (!StickyComp.WasInputDownLastTick)
-			return 0;
+		if (ProjectileComp.IsValid())
+		{
+			var StickyComp = (StickyWeaponComponent)ProjectileComp;
+			if (!StickyComp.WasInputDownLastTick)
+				return 0;
 
-		return Math.Clamp(StickyComp.TimeSinceInputFirstDown / StickyComp.MaxChargeTime, 0, 1);
+			return Math.Clamp(StickyComp.TimeSinceInputFirstDown / StickyComp.MaxChargeTime, 0, 1);
+		}
+		else if (ChargeComp.IsValid())
+		{
+			return Math.Clamp(ChargeComp.SinceButtonWasNotDown / ChargeComp.ChargeTime, 0, 1);
+		}
+		return 0;
 	}
 
 	private bool IsCurrentWeaponAStickyLauncher()
 	{
 		var ProjectileComp = GetProjectileWeaponComponent();
 		return ProjectileComp == null ? false : ProjectileComp.IsStickyLauncher;
+	}
+
+	// TODO : this is stupid & this class should be more generic, & the sticky launcher class probably should too or they should maybe share a component
+	private bool IsCurrentWeaponABeamRifle()
+	{
+		return GetChargeWeaponComponent() != null;
 	}
 
 	private ProjectileWeaponComponent GetProjectileWeaponComponent()
@@ -54,6 +74,27 @@
 
 		var ProjectileWeaponComponent = Weapon.GameObject.Components.Get<ProjectileWeaponComponent>();
 		return ProjectileWeaponComponent;
+	}
+
+	private ChargeWeaponComponent GetChargeWeaponComponent()
+	{
+		if (!Player.IsValid())
+			return null;
+
+		var Weapon = Player.CurrentEquipment;
+		if (!Weapon.IsValid() || !Weapon.IsDeployed)
+			return null;
+
+		var ChargeWeaponComponent = Weapon.GameObject.Components.Get<ChargeWeaponComponent>();
+		return ChargeWeaponComponent;
+	}
+
+	Panel ChargeFill;
+
+	public override void Tick()
+	{
+		if (ChargeFill is not null)
+			ChargeFill.Style.Width = Length.Fraction(GetChargeDelta());
 	}
 
 	protected override int BuildHash()

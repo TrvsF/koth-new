@@ -73,7 +73,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		NotificationManager.AddNotification(new FNotification()
 		{
 			Message = $"Welcome to {Title}",
-			Duration = 5,
+			Duration = 3,
 			Zone = ENotificationZone.Center,
 			Image = "images/square.png"
 		});
@@ -202,7 +202,7 @@ public sealed partial class GameMode : SingletonComponent<GameMode>,
 		NotificationManager.AddNotification(new FNotification()
 		{
 			Message = $"Level Up: {eventArgs.Level}",
-			Duration = 5,
+			Duration = 3,
 			Zone = ENotificationZone.Center
 		});
 	}

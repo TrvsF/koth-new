@@ -27,7 +27,7 @@ public class ChargeWeaponComponent : HitscanWeaponComponent
 {
 	[Property, Group("")] public float ChargeTime { get; set; } = .5f;
 
-	TimeSince SinceButtonWasNotDown = new();
+	public TimeSince SinceButtonWasNotDown = new();
 	protected override bool CanShoot()
 	{
 		if (!base.CanShoot())
