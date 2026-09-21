@@ -90,8 +90,6 @@ public sealed class DmGamemode : Component,
 			};
 		}
 
-		Log.Info(PlayerScores.Count);
-
 		return true;
 	}
 
